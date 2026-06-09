@@ -17,6 +17,14 @@ function toHref(relPath){
   return '/fisicando/' + relPath;
 }
 
+	function pageMatches(relPath){
+  const current = location.pathname.replace(/\\/g,'/').toLowerCase();
+
+  const expected = toHref(relPath).toLowerCase();
+
+  return current.endsWith(expected);
+}
+
   // costruiamo la sidebar
   window.SITE_MAP.forEach(group => {
     const wrap = document.createElement('div');
