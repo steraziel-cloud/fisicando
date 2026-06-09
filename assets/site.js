@@ -13,20 +13,19 @@
   const IS_HOME = isHomePage();
 
   // percorsi relativi sempre rispetto alla root del progetto
-  function toHref(relPath){
-    // trova la base "Fisicando/"
-    const path = location.pathname.replace(/\\/g,'/');
-    const base = path.includes("/Fisicando/") 
-      ? path.substring(0, path.indexOf("/Fisicando/")+11) 
-      : "/";
-    return base + relPath;
+function toHref(relPath){
+  const path = location.pathname.replace(/\\/g,'/');
+  const parts = path.split('/').filter(Boolean);
+
+  // Su GitHub Pages il primo pezzo dopo il dominio è il nome della repository
+  // es: /fisicando/pillole/vettori/teoria.html
+  if (location.hostname.includes('github.io') && parts.length > 0) {
+    return '/' + parts[0] + '/' + relPath;
   }
 
-  // pagina corrente corrisponde a "relPath"?
-  function pageMatches(relPath){
-    const here = location.pathname.replace(/\\/g,'/').toLowerCase();
-    return here.endsWith('/' + relPath.toLowerCase());
-  }
+  // In locale o su dominio normale
+  return '/' + relPath;
+}
 
   // costruiamo la sidebar
   window.SITE_MAP.forEach(group => {
