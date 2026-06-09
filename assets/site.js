@@ -14,17 +14,7 @@
 
   // percorsi relativi sempre rispetto alla root del progetto
 function toHref(relPath){
-  const path = location.pathname.replace(/\\/g,'/');
-  const parts = path.split('/').filter(Boolean);
-
-  // Su GitHub Pages il primo pezzo dopo il dominio è il nome della repository
-  // es: /fisicando/pillole/vettori/teoria.html
-  if (location.hostname.includes('github.io') && parts.length > 0) {
-    return '/' + parts[0] + '/' + relPath;
-  }
-
-  // In locale o su dominio normale
-  return '/' + relPath;
+  return '/fisicando/' + relPath;
 }
 
   // costruiamo la sidebar
