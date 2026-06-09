@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fisicando – Statica del punto materiale</title>
+
+  <link rel="stylesheet" href="../../assets/style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjs@11/lib/browser/math.js"></script>
+
+  <!--
+  <script src="../../assets/content.js" defer></script>
+  <script src="../../assets/site.js" defer></script>
+  -->
+  <script src="../../assets/main.js" defer></script>
+  <script src="laboratorio.js" defer></script>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <div class="container laboratorio-standalone">
+    <section class="card">
+      <div class="lab-grid">
+
+        <div class="lab-controls" style="display:flex; flex-direction:column; gap:14px; max-width:300px;">
+
+          <div id="didactic-panel" style="background:rgba(255,255,255,0.04); border-radius:14px; padding:12px 14px;">
+            <h3 style="margin:0 0 8px 0;">Percorso guidato</h3>
+
+            <div id="didactic-step-label">
+              <strong>Step attuale:</strong> Costruzione delle forze
+            </div>
+
+            <div id="didactic-step-help" style="margin-top:8px;">
+              Inserisci tutte le forze presenti nel problema.
+            </div>
+
+            <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
+              <button class="btn small" id="step-point">Punto</button>
+              <button class="btn small" id="step-constraint">Vincolo</button>
+              <button class="btn small" id="step-axes">Assi</button>
+              <button class="btn small" id="step-forces">Forze</button>
+              <button class="btn small" id="step-projections">Proiezioni</button>
+              <button class="btn small" id="step-equations">Equazioni</button>
+            </div>
+          </div>
+
+          <div id="point-box" style="background:rgba(255,255,255,0.04); border-radius:14px; padding:14px 14px 12px 14px;">
+            <h3 style="margin:0 0 12px 0; font-size:1.1rem;">Punto materiale</h3>
+
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:nowrap;">
+              <label>m</label>
+              <input type="text" id="pm-mass" placeholder="kg" style="width:60px;">
+
+              <label>g</label>
+              <input type="text" id="pm-g" value="9.81" style="width:60px;">
+
+              <button id="applyPoint" class="btn small" style="margin-left:auto; white-space:nowrap;">
+                Applica
+              </button>
+            </div>
+          </div>
+
+<div id="axes-box" style="background:rgba(255,255,255,0.04); border-radius:14px; padding:14px;">
+
+  <h3 style="margin:0 0 10px 0;">Sistema di riferimento</h3>
+
+  <!-- SMART MODE -->
+  <div id="axes-smart">
+
+    <div style="margin-bottom:10px; font-size:0.9rem; opacity:0.8;">
+      Assi consigliati (risoluzione più semplice)
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:8px;">
+
+      <label style="display:flex; align-items:center; gap:8px;">
+        <input type="checkbox" id="invert-x">
+         Inverti asse x 
+      </label>
+
+      <label style="display:flex; align-items:center; gap:8px;">
+        <input type="checkbox" id="invert-y">
+         Inverti asse y 
+      </label>
+
+    </div>
+
+  <button class="btn small" id="applyAxesSmart">
+  Disegna assi
+</button>
+
+<button class="btn small primary" id="confirmAxesBtn">
+  Conferma assi
+</button>
+
+  </div>
+  
+
+
+  <!-- FULL CONTROL -->
+  <div id="axes-advanced" style="margin-top:12px;">
+
+    <button id="toggleAdvancedAxes" class="btn small" style="width:100%;">
+      Modalità avanzata
+    </button>
+
+    <div id="axes-advanced-fields" style="display:none; margin-top:10px;">
+
+      <div style="display:flex; align-items:center; gap:6px;">
+        <input type="checkbox" id="show-axis-x"> x
+        <input type="text" id="axes-angle-x" value="0" style="width:50px;">
+        °
+      </div>
+
+      <div style="display:flex; align-items:center; gap:6px; margin-top:6px;">
+        <input type="checkbox" id="show-axis-y"> y
+        <input type="text" id="axes-angle-y" value="90" style="width:50px;">
+        °
+      </div>
+
+      <button id="applyAxes" class="btn small" style="margin-top:8px;">
+        Applica manuale
+      </button>
+
+    </div>
+  </div>
+
+</div>
+
+<div id="force-box" style="background:rgba(255,255,255,0.04); border-radius:14px; padding:12px 14px;">
+  <h3 style="margin:0 0 10px 0; font-size:1rem;">Forze</h3>
+
+  <button id="drawNormalBtn" class="btn small" style="width:100%; margin-bottom:10px;">
+    Disegna reazione normale
+  </button>
+
+  <button id="openMotorModalBtn" class="btn small" style="width:100%; margin-bottom:10px;">
+    Disegna forza motrice
+  </button>
+
+  <button id="openSpringModalBtn" class="btn small" style="width:100%; margin-bottom:10px;">
+    Disegna forza elastica
+  </button>
+
+  <button id="openFrictionModalBtn" class="btn small" style="width:100%; margin-bottom:10px; display:none;">
+    Gestisci attrito
+  </button>
+
+  <button id="confirmForcesBtn" class="btn small" style="width:100%;">
+    Conferma forze
+  </button>
+</div>
+
+
+          <div id="constraint-box" style="background:rgba(255,255,255,0.04); border-radius:14px; padding:12px 14px;">
+            <button id="openConstraintModal" class="btn small" style="width:100%;">Aggiungi vincolo</button>
+          </div>
+
+          <div id="analysis-box" style="background:rgba(255,255,255,0.04); border-radius:14px; padding:12px 14px;">
+            <h3 style="margin:0 0 8px 0; font-size:1rem;">Analisi vettore</h3>
+            <div id="vectorInfo" style="font-size:0.95rem; line-height:1.4;">
+              Nessun vettore selezionato.
+            </div>
+          </div>
+
+        </div>
+
+        <div class="lab-canvas-container">
+          <canvas id="lab-canvas"></canvas>
+          <button id="clearBtn" class="btn danger small">Cancella tutto</button>
+          <div id="vector-list" class="vector-list"></div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+
+<div id="motorModal" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.35);
+  z-index:1000;
+">
+  <div id="motorModalPanel" style="
+    position:absolute;
+    top:120px;
+    left:120px;
+    background:#fff;
+    color:#111;
+    border-radius:16px;
+    width:min(360px, 90vw);
+    box-shadow:0 12px 30px rgba(0,0,0,0.25);
+    overflow:hidden;
+  ">
+    <div id="motorModalHandle" style="
+      padding:12px 18px;
+      background:#f3f3f3;
+      cursor:move;
+      font-weight:600;
+      user-select:none;
+      border-bottom:1px solid #ddd;
+    ">
+      Forza motrice
+    </div>
+
+    <div style="padding:18px;">
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <label for="motor-module-input" style="min-width:70px;">Modulo</label>
+          <input type="text" id="motor-module-input" placeholder="es. 10" style="flex:1;">
+        </div>
+
+        <div style="display:flex; align-items:center; gap:8px;">
+          <label for="motor-angle-input" style="min-width:70px;">Angolo</label>
+          <input type="text" id="motor-angle-input" value="0" style="flex:1;">
+          <span>°</span>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:6px;">
+          <button id="closeMotorModalBtn" class="btn small">Annulla</button>
+          <button id="addMotorForceBtn" class="btn small">Disegna forza</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="springModal" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.35);
+  z-index:1000;
+">
+  <div id="springModalPanel" style="
+    position:absolute;
+    top:140px;
+    left:160px;
+    background:#fff;
+    color:#111;
+    border-radius:16px;
+    width:min(420px, 92vw);
+    box-shadow:0 12px 30px rgba(0,0,0,0.25);
+    overflow:hidden;
+  ">
+    <div id="springModalHandle" style="
+      padding:12px 18px;
+      background:#f3f3f3;
+      cursor:move;
+      font-weight:600;
+      user-select:none;
+      border-bottom:1px solid #ddd;
+    ">
+      Forza elastica
+    </div>
+
+    <div style="padding:18px;">
+      <div style="display:flex; flex-direction:column; gap:12px;">
+
+        <div style="padding:10px; border:1px solid #ddd; border-radius:10px;">
+          <div style="font-weight:600; margin-bottom:8px;">1. Geometria della molla</div>
+
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <label for="spring-angle-input" style="min-width:90px;">Angolo</label>
+            <input type="text" id="spring-angle-input" value="0" style="flex:1;">
+            <span>°</span>
+          </div>
+
+          <label style="display:flex; align-items:center; gap:6px; margin-bottom:8px;">
+            <input type="checkbox" id="spring-invert-side">
+            Inverti lato molla
+          </label>
+
+          <button id="drawSpringGeometryBtn" class="btn small" style="width:100%;">
+            Disegna molla
+          </button>
+        </div>
+
+        <div style="padding:10px; border:1px solid #ddd; border-radius:10px;">
+          <div style="font-weight:600; margin-bottom:8px;">2. Dati elastici</div>
+
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <label for="spring-k-input" style="min-width:90px;">k</label>
+            <input type="text" id="spring-k-input" placeholder="es. 300" style="flex:1;">
+          </div>
+
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <label for="spring-delta-input" style="min-width:90px;">Δ</label>
+            <input type="text" id="spring-delta-input" placeholder="es. 0.1" style="flex:1;">
+          </div>
+
+          <div style="display:flex; gap:16px; align-items:center; margin-bottom:8px;">
+            <label style="display:flex; align-items:center; gap:6px;">
+              <input type="radio" name="spring-state" id="spring-state-extension" value="extension" checked>
+              Estensione
+            </label>
+
+            <label style="display:flex; align-items:center; gap:6px;">
+              <input type="radio" name="spring-state" id="spring-state-compression" value="compression">
+              Compressione
+            </label>
+          </div>
+
+          <button id="drawSpringForceBtn" class="btn small" style="width:100%;">
+            Disegna forza
+          </button>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:8px;">
+          <button id="closeSpringModalBtn" class="btn small">Chiudi</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="frictionModal" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.35);
+  z-index:1000;
+">
+  <div id="frictionModalPanel" style="
+    position:absolute;
+    top:180px;
+    left:200px;
+    background:#fff;
+    color:#111;
+    border-radius:16px;
+    width:min(420px, 92vw);
+    box-shadow:0 12px 30px rgba(0,0,0,0.25);
+    overflow:hidden;
+  ">
+    <div id="frictionModalHandle" style="
+      padding:12px 18px;
+      background:#f3f3f3;
+      cursor:move;
+      font-weight:600;
+      user-select:none;
+      border-bottom:1px solid #ddd;
+    ">
+      Attrito
+    </div>
+
+    <div style="padding:18px;">
+      <div style="display:flex; flex-direction:column; gap:12px;">
+
+        <div style="padding:10px; border:1px solid #ddd; border-radius:10px;">
+          <div style="font-weight:600; margin-bottom:8px;">1. Tipo di attrito</div>
+
+          <label style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+            <input type="radio" name="friction-type" id="friction-type-static" value="static" checked>
+            Attrito statico
+          </label>
+
+          <label style="display:flex; align-items:center; gap:6px;">
+            <input type="radio" name="friction-type" id="friction-type-dynamic" value="dynamic">
+            Attrito dinamico
+          </label>
+        </div>
+
+        <div id="friction-static-mode-box" style="padding:10px; border:1px solid #ddd; border-radius:10px;">
+          <div style="font-weight:600; margin-bottom:8px;">2. Condizione statica</div>
+
+          <label style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+            <input type="radio" name="friction-static-mode" id="friction-static-generic" value="generic" checked>
+            Statico generico
+          </label>
+
+          <label style="display:flex; align-items:center; gap:6px;">
+            <input type="radio" name="friction-static-mode" id="friction-static-limit" value="limit">
+            Statico al limite
+          </label>
+        </div>
+
+        <div style="padding:10px; border:1px solid #ddd; border-radius:10px;">
+          <div style="font-weight:600; margin-bottom:8px;">3. Tendenza al moto lungo x</div>
+
+          <label style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+            <input type="radio" name="friction-direction" id="friction-dir-plus" value="plus" checked>
+            Tendenza verso +x
+          </label>
+
+          <label style="display:flex; align-items:center; gap:6px;">
+            <input type="radio" name="friction-direction" id="friction-dir-minus" value="minus">
+            Tendenza verso -x
+          </label>
+        </div>
+
+        <div style="padding:10px; border:1px solid #ddd; border-radius:10px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <label for="friction-mu-input" style="min-width:70px;">μ</label>
+            <input type="text" id="friction-mu-input" placeholder="es. 0.25" style="flex:1;">
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:8px;">
+          <button id="closeFrictionModalBtn" class="btn small">Chiudi</button>
+          <button id="applyFrictionBtn" class="btn small">Disegna attrito</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div id="constraintModal" style="
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.35);
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
+  ">
+    <div style="
+      background:#fff;
+      color:#111;
+      border-radius:16px;
+      padding:18px;
+      width:min(360px, 90vw);
+      box-shadow:0 12px 30px rgba(0,0,0,0.25);
+    ">
+      <h3 style="margin:0 0 12px 0;">Vincolo</h3>
+
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <label for="constraintType" style="min-width:70px;">Tipo</label>
+          <select id="constraintType" style="flex:1;">
+            <option value="plane">Piano</option>
+          </select>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:8px;">
+          <label for="constraintAngle" style="min-width:70px;">Angolo</label>
+          <input type="text" id="constraintAngle" value="0" style="flex:1;">
+          <span>°</span>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:8px;">
+          <label style="display:flex; align-items:center; gap:6px;">
+            <input type="checkbox" id="hasFriction">
+            Attrito
+          </label>
+        </div>
+
+        <div id="frictionFields" style="display:none; flex-direction:column; gap:10px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <label for="frictionMu" style="min-width:70px;">μ</label>
+            <input type="text" id="frictionMu" placeholder="es. 0.2" style="flex:1;">
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:6px;">
+          <button id="closeConstraintModal" class="btn small">Annulla</button>
+          <button id="addConstraintBtn" class="btn small">Inserisci</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

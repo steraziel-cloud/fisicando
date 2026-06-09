@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<title>Fisicando – Cinematica del punto materiale · Teoria</title>
+
+		<link rel="stylesheet" href="../../assets/style.css">
+		<script src="../../assets/content.js" defer></script>
+		<script src="../../assets/site.js" defer></script>
+		<script src="../../assets/main.js" defer></script>
+
+
+			<!-- MathJax -->
+			<script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      svg: { fontCache: 'global' }
+    };
+			</script>
+			<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+		</head>
+		<body>
+			<header class="header-bar">
+				<div class="header-inner">
+					<h1><a href="../../index.html" class="brand">Fisicando</a></h1>
+					<button id="theme-toggle" class="btn">🌙</button>
+				</div>
+			</header>
+
+			<div class="container">
+				<div class="layout">
+					<aside class="sidebar" id="sidebar"></aside>
+					<main class="main">
+						<section class="card theory">
+						<h2>Il Problema Fondamentale: Descrivere il Movimento</h2>
+						<p>
+						La <b>cinematica</b> è la parte della meccanica che descrive il movimento dei corpi, senza occuparsi
+						delle cause che lo producono. Per semplificare, consideriamo un <b>punto materiale</b>: un corpo dotato
+						di massa ma privo di dimensioni. Questa astrazione è valida quando le dimensioni del corpo sono
+						trascurabili rispetto alle distanze in gioco.
+						</p>
+
+						<p>
+						Studiare un moto significa rispondere a tre domande fondamentali:
+						</p>
+						<ul>
+						<li><em>Dove si trova il corpo?</em> (posizione)</li>
+						<li><em>Come si muove?</em> (velocità)</li>
+						<li><em>Come cambia il suo movimento?</em> (accelerazione)</li>
+						</ul>
+
+						<h3>Sistemi di Riferimento: Il Punto di Vista dell'Osservatore</h3>
+						<p>
+						Per descrivere un moto è necessario specificare il <b>sistema di riferimento</b>, costituito da:
+						</p>
+						<ul>
+						<li>un <b>sistema di coordinate</b>, che assegna a ogni punto dello spazio una posizione rispetto a un’origine;</li>
+						<li>un <b>orologio</b> che misura il tempo in modo uniforme.</li>
+						</ul>
+
+						<p>
+						Senza un sistema di riferimento il concetto di moto non ha senso: dire che un corpo è “fermo” o “in movimento”
+						ha significato solo rispetto a un osservatore. Questa idea apre la strada alla distinzione (che vedremo in seguito)
+						tra <b>sistemi inerziali</b> e <b>sistemi non inerziali</b>.
+						</p>
+
+						<h3>La Posizione e la Legge Oraria</h3>
+						<p>
+						Per studiare il moto di un punto materiale, dobbiamo prima poter dire <em>dove si trova</em> in ogni istante.
+						In un sistema di riferimento cartesiano con origine \(O\), la posizione è descritta dal <b>vettore posizione</b>:
+						</p>
+						<p style="text-align:center;">
+						\[ \vec{r} = x\,\hat{i} + y\,\hat{j} + z\,\hat{k} \]
+						</p>
+						<p>
+						Se il corpo fosse fermo, \(x, y, z\) sarebbero numeri fissi. 
+						Ma quando il corpo si muove, queste componenti cambiano nel tempo: diventano funzioni scalari   \(x(t), y(t), z(t)\).
+						In questo modo, il vettore posizione dipende dal tempo:
+						</p>
+						<p style="text-align:center;">
+						\[ \vec{r} = \vec{r}(t) \] 
+						</p>
+						<p>
+						Questa relazione prende il nome di <b>legge oraria</b>: è la descrizione completa del moto, 
+						perché conoscere \(\vec{r}(t)\) significa conoscere la <b>traiettoria</b> ( la “scia” che idealmente il corpo lascia quando si muove nello spazio) 
+						e la sua evoluzione temporale. 
+						</p>
+						<h3>Vettore Spostamento: Il Cambiamento di Posizione</h3>
+						<p>
+						Per capire come varia la posizione, introduciamo lo <b>spostamento</b>. 
+						Dati due istanti \(t_1\) e \(t_2\), esso è definito come:
+						</p>
+						<p style="text-align:center;">
+						\[ \Delta \vec{r} = \vec{r}(t_2) - \vec{r}(t_1) \]
+						</p>
+						<p>
+						Lo spostamento ha caratteristiche importanti:
+						</p>
+						<ul>
+						<li>È un <b>vettore secante</b> alla traiettoria, perché congiunge due punti distinti del percorso;</li>
+						<li>Non coincide con la lunghezza effettiva del cammino, che è una grandezza scalare;</li>
+						<li>Dipende solo dalle posizioni iniziale e finale, non dalla forma della traiettoria intermedia.</li>
+						</ul>
+
+						<h3>Velocità: Quanto Rapidamente Cambia la Posizione</h3>
+						<p>
+						Sapere <em>dove</em> si trova un corpo non basta: vogliamo anche capire <em>come si muove</em>.
+						Per descrivere come e quanto rapidamente cambia la posizione, si introduce una nuova grandezza che è il <b>vettore velocità</b>.
+						</p>
+						<p>
+						Consideriamo due posizioni del punto materiale agli istanti \(t_1\) e \(t_2\). Possiamo definire la <b>velocità media</b> come lo
+						spostamento diviso l’intervallo di tempo:
+						</p>
+						<p style="text-align:center;">
+						\[\vec{v}_\text{media} = \frac{\Delta \vec{r}}{\Delta t} = \frac{\vec{r}(t_2) - \vec{r}(t_1)}{t_2 - t_1}\]
+						</p>
+						<p>
+						Questo vettore ci dice in media quanto “rapidamente” e in che direzione si è mosso il corpo tra \(t_1\) e \(t_2\). Questo approccio non è ancora sufficiente per
+						descrivere pienamente come la posizione si sta modificando in un instante. Per conoscere la velocità <em>in un istante preciso</em> dobbiamo considerare 
+						intervalli di tempo sempre più piccoli. Osserviamo cosa succede quando riduciamo \(\Delta t\):
+						</p>
+						
+						<ul>
+						<li>Le due posizioni sulla traiettoria si avvicinano sempre di più.</li>
+						<li>Il vettore spostamento, inizialmente secante, tende a diventare <strong>tangente</strong> alla traiettoria.</li>
+						<li>La direzione della velocità media tende a coincidere con quella della tangente alla curva nella posizione iniziale dell'istante \(t_1\).</li>
+						</ul>
+						<p>
+						Riducendo progressivamente l’intervallo di tempo \(\Delta t\), si osserva che tutti i rapporti convergono verso lo stesso risultato.
+						Questa operazione, che in matematica prende il nome di <b>derivata</b>, rappresenta la <b>velocità istantanea</b>:
+						</p>
+						<p style="text-align:center;">
+						\[ \vec{v}(t) = \lim_{\Delta t \to 0} \frac{\Delta \vec{r}}{\Delta t} = \frac{d\vec{r}(t)}{dt} \]
+						</p>
+						<p> 
+						In coordinate cartesiane, questo significa che le componenti della velocità sono le derivate delle funzioni che descrivono la posizione:
+						</p>
+						<p style="text-align:center;">
+						\[\vec{v}(t) = \left( \frac{dx(t)}{dt}, \; \frac{dy(t)}{dt}, \; \frac{dz(t)}{dt} \right)\]
+						</p>
+						<p>
+						Notiamo che, se è noto il vettore velocità in ogni istante del moto, le componenti \((v_x(t), v_y(t), v_z(t))\) sono delle <b>funzioni del tempo</b>
+						che descrivono l’evoluzione del moto lungo ciascun asse. Inoltre, grazie al fatto che il vettore velocità è sempre <b>tangente alla traiettoria</b>,
+						conoscendo l’andamento temporale di \(\vec{v}(t)\), possiamo ricostruire (tramite l’inviluppo delle tangenti) la forma geometrica della traiettoria.
+						</p>
+
+						<h3>Dalla Velocità all'Accelerazione: Come Cambia il Moto</h3>
+						<p>
+						La velocità ci dice come cambia la posizione, ma non sempre è sufficiente per descrivere con precisione il moto. Infatti, possono esistere due movimenti
+						che hanno la stessa traiettoria e la stessa velocità media, ma che <em>si svolgono in modo diverso</em>. Ad esempio, un corpo che accelera molto all’inizio
+						e poi rallenta non descrive lo stesso moto di un corpo che procede regolare: la velocità media finale potrebbe coincidere, 
+						ma i due movimenti non sono equivalenti.
+						</p>
+						<p>
+						Per distinguere questi casi dobbiamo introdurre una nuova grandezza: l’<b>accelerazione</b>.Essa descrive come cambia la velocità,
+						cioè ci dice se il corpo sta aumentando o diminuendo la velocità in modulo, oppure se sta modificando la direzione del suo moto.
+						</p>
+						<p>
+						Definiamo allora l’<b>accelerazione media</b> tra due istanti \(t_1\) e \(t_2\) come:
+						</p>
+						<p style="text-align:center;">
+						\[\vec{a}_\text{media} = \frac{\Delta \vec{v}}{\Delta t} = \frac{\vec{v}(t_2) - \vec{v}(t_1)}{t_2 - t_1}\]
+						</p>
+						<p>
+						Riducendo progressivamente l’intervallo di tempo, si arriva alla <b>accelerazione istantanea</b>:
+						</p>
+						<p style="text-align:center;">
+						\[\vec{a}(t) = \lim_{\Delta t \to 0} \frac{\Delta \vec{v}}{\Delta t}= \frac{d\vec{v}(t)}{dt} = \frac{d^2\vec{r}(t)}{dt^2}\]
+						</p>
+						<p>
+						In coordinate cartesiane:
+						</p>
+						<p style="text-align:center;">
+						\[\vec{a}(t) = \left( \frac{d^2x(t)}{dt^2}, \; \frac{d^2y(t)}{dt^2}, \; \frac{d^2z(t)}{dt^2} \right)\]
+						</p>
+						<p>L’accelerazione è quindi la “seconda derivata” della posizione. Ma perché fermarsi qui? La risposta è che la seconda derivata 
+						è l’ultima che conserva un significato fisico diretto: essa infatti racchiude ancora informazioni sulla traiettoria. Il vettore accelerazione,
+						in ogni istante, è rivolto verso l’interno della curvatura del moto:ci dice <em>quanto la velocità cambia</em> e <em>come la traiettoria curva</em>. 
+						Se provassimo ad andare oltre (terza, quarta derivata…), otterremmo grandezze matematiche senza più una connessione chiara con la forma della traiettoria. 
+						In questo senso, posizione, velocità e accelerazione rappresentano le tre grandezze fondamentali della cinematica: oltre non ha senso spingersi. 
+						</p>
+
+						<h3>Il Problema Inverso: Dall'Accelerazione alla Legge Oraria</h3>
+
+						<p>Finora abbiamo seguito un percorso “diretto”: dalla posizione \(\vec{r}(t)\) abbiamo ottenuto la velocità come derivata e l’accelerazione 
+						come derivata seconda. Nella pratica, però, in fisica capita spesso il contrario: conosciamo l’accelerazione di un corpo e vogliamo risalire 
+						al suo movimento. Questo è detto <b>problema inverso della cinematica</b>.
+						</p>
+						
+						<p>
+						Per risolverlo, non possiamo più derivare, ma dobbiamo compiere l’operazione matematica opposta:
+						l’<b>integrazione</b>. Essa ci permette di “ricostruire” la grandezza originaria a partire dalla sua derivata.
+						</p>
+						<p>
+
+						Se conosciamo l’accelerazione \(\vec{a}(t)\), la velocità si ottiene integrando:
+						</p>
+						<p style="text-align:center;">
+						\[\vec{v}(t) = \vec{v}_0 + \int_{t_0}^{t} \vec{a}(h)\, dh\]
+						</p>
+						<p>
+						Dove \(\vec{v}_0\) è la velocità iniziale all’istante \(t_0\).Integrando una seconda volta, otteniamo la posizione:
+						</p>
+						<p style="text-align:center;">
+						\[\vec{r}(t) = \vec{r}_0 + \int_{t_0}^{t} \vec{v}(h)\, dh\]
+						</p>
+						<p>
+						Conoscendo quindi l’accelerazione nel tempo e le <b>condizioni iniziali</b> (posizione \(\vec{r}_0\) e velocità \(\vec{v}_0\)), 
+						la traiettoria è determinata in modo univoco. È proprio questo legame che rende la cinematica uno strumento potente:sapere come varia 
+						l’accelerazione significa, in linea di principio, poter ricostruire l’intero moto del corpo.
+						</p>
+
+						<h3>Decomposizione Intrinseca: Leggere il Moto Lungo la Traiettoria</h3>
+						<p>
+						Finora abbiamo descritto posizione, velocità e accelerazione usando le coordinate cartesiane. Questa rappresentazione è molto utile, 
+						ma a volte non è la più intuitiva. Un’idea particolarmente potente è quella di guardare il moto “dall’interno”, 
+						cioè seguendo la <b>traiettoria</b> stessa del punto materiale. In ogni punto della traiettoria possiamo introdurre due versori fondamentali:
+						</p>  
+						<ul>
+							<li>\(\vec{\tau}\): tangente alla traiettoria, nella direzione del moto</li>
+							<li>\(\vec{\eta}\): normale, diretto verso il centro di curvatura</li>
+						</ul>
+						<p>
+						In questa rappresentazione, la velocità ha una forma semplicissima:</p>
+						<p style="text-align:center;">
+						\[\vec{v} = v\vec{\tau}\]
+						</p>
+						<p>
+						cioè è sempre tangente alla traiettoria, con modulo pari a \(v\).</p>
+						<p>
+						Molto più interessante è l’accelerazione. Essa infatti contiene due contributi distinti:
+						</p>
+						<p style="text-align:center;">
+						\[\vec{a} = \frac{dv}{dt}\vec{\tau} + \frac{v^2}{\rho}\vec{\eta}\]
+						</p>
+						
+						<ul>
+							<li>
+							La <b>componente tangenziale</b> \(\tfrac{dv}{dt}\,\vec{\tau}\) misura come varia il <em>modulo</em> della velocità, 
+							cioè quanto il corpo accelera o rallenta lungo la traiettoria.
+							</li>
+							<li>
+							La <b>componente normale</b> \(\tfrac{v^2}{\rho}\,\vec{\eta}\) è legata alla curvatura della traiettoria 
+							e descrive il cambiamento di <em>direzione</em> del moto. 
+							Qui \(\rho\) è il <b>raggio di curvatura</b>: più la traiettoria è curva (piccolo \(\rho\)), più intensa è l’accelerazione normale.
+							</li>
+						</ul>
+						
+<h3>Moto Rettilineo: Quando la Descrizione Scalare è Completa</h3>
+
+<p>
+Quando la traiettoria è una <b>retta</b>, la situazione si semplifica radicalmente.  
+I tre vettori fondamentali della cinematica – posizione \(\vec r\), velocità \(\vec v\) e accelerazione \(\vec a\) – 
+sono sempre <b>paralleli</b> alla retta stessa: resta soltanto la loro <b>componente tangenziale</b>.
+</p>
+
+<p>
+A questo punto tanto vale cambiare punto di vista: orientiamo la retta, fissiamo un’origine e introduciamo 
+un’<b>ascissa curvilinea</b> \(s(t)\), che misura la posizione del punto lungo la traiettoria.  
+Le nuove grandezze cinematiche diventano allora:
+</p>
+
+<p style="text-align:center;">
+\[
+v_s(t) = \frac{ds}{dt}, \qquad a_s(t) = \frac{dv_s}{dt} = \frac{d^2 s}{dt^2}
+\]
+</p>
+
+<p class="important">
+<strong>Nota importante:</strong> È utile chiarire il legame di queste grandezze <b>scalari con segno</b> con le grandezze vettoriali introdotte in precedenza.  
+Nel moto rettilineo i vettori velocità e accelerazione coincidono sempre con la direzione della traiettoria. Perciò i loro <b>moduli</b> e le grandezze scalari con segno 
+coincidono a meno del verso:
+</p>
+
+<ul>
+  <li>\(|\vec v| = |v_s|\), ma \(v_s\) conserva il segno e quindi distingue se il corpo procede nel verso positivo o negativo della retta.</li>
+  <li>\(|\vec a| = |a_s|\), con \(a_s\) che indica anche se la velocità scalare cresce (\(a_s > 0\)) o diminuisce (\(a_s < 0\)).</li>
+</ul>
+
+<h4>Moto Rettilineo Uniforme</h4>
+
+<p>
+Se l’accelerazione è nulla (\(a_s = 0\)), la velocità scalare resta costante nel tempo:
+</p>
+
+<p style="text-align:center;">
+\[
+v_s(t) = v_{s0}
+\]
+</p>
+
+<p>
+La legge oraria è una funzione lineare:
+</p>
+
+<p style="text-align:center;">
+\[
+s(t) = s_0 + v_{s0}\, t
+\]
+</p>
+
+<p>
+Il grafico \(s(t)\) è una retta: la pendenza corrisponde al valore della velocità scalare.
+</p>
+
+<h4>Moto Rettilineo Uniformemente Accelerato</h4>
+
+<p>
+Se invece l’accelerazione è costante (\(a_s = \text{costante}\)), integrando le equazioni otteniamo:
+</p>
+
+<p style="text-align:center;">
+\[
+v_s(t) = v_{s0} + a_s t
+\]
+</p>
+
+<p style="text-align:center;">
+\[
+s(t) = s_0 + v_{s0} t + \tfrac{1}{2} a_s t^2
+\]
+</p>
+
+<p>
+Eliminando il tempo si ottiene la relazione diretta tra velocità scalare e spostamento:
+</p>
+
+<p style="text-align:center;">
+\[
+v_s^2 = v_{s0}^2 + 2a_s \,(s - s_0)
+\]
+</p>
+
+<h4>Schema riassuntivo - Moti rettilinei</h4>
+<p>
+<table style="width:100%; border-collapse:collapse; text-align:center; font-size:90%;">
+  <tr>
+    <th style="border:1px solid #ccc; padding:4px;">Caso</th>
+    <th style="border:1px solid #ccc; padding:4px;">Velocità scalare</th>
+    <th style="border:1px solid #ccc; padding:4px;">Posizione</th>
+    <th style="border:1px solid #ccc; padding:4px;">Relazione \(v_s\)–\(s\)</th>
+  </tr>
+  <tr>
+    <td style="border:1px solid #ccc; padding:4px;">Uniforme<br>(\(a_s=0\))</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(v_s(t) = v_{s0}\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(s(t) = s_0 + v_{s0} t\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">–</td>
+  </tr>
+  <tr>
+    <td style="border:1px solid #ccc; padding:4px;">Uniformemente accelerato<br>(\(a_s=\text{cost}\))</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(v_s(t) = v_{s0} + a_s t\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(s(t) = s_0 + v_{s0} t + \tfrac{1}{2} a_s t^2\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(v_s^2 = v_{s0}^2 + 2a_s(s-s_0)\)</td>
+  </tr>
+</table>
+</p>
+
+
+<h3>Moto Parabolico: Composizione di Moti Indipendenti</h3>
+
+<p>
+Consideriamo un punto materiale soggetto a un’accelerazione costante e verticale (gravità). 
+Scegliamo un sistema di riferimento cartesiano con asse \(y\) verticale verso l’alto e asse \(x\) orizzontale.
+</p>
+
+<p><b>Descrizione vettoriale</b>:</p>
+<p style="text-align:center;">
+\[
+\vec a = -\,g\,\vec{\jmath}
+\]
+\[
+\vec v(t) = \vec v_0 + \vec a\,t \;=\; v_{0x}\,\vec{\imath} + \bigl(v_{0y}-g\,t\bigr)\,\vec{\jmath}
+\]
+\[
+\vec r(t) = \vec r_0 + \vec v_0\,t + \tfrac12\,\vec a\,t^2
+= \bigl(x_0 + v_{0x}t\bigr)\,\vec{\imath} \;+\; \bigl(y_0 + v_{0y}t - \tfrac12 g t^2\bigr)\,\vec{\jmath}
+\]
+</p>
+
+<p><b>Descrizione per componenti</b> (indipendenza dei moti):</p>
+<ul>
+  <li><b>Lungo \(x\)</b>: moto rettilineo uniforme
+    <div style="text-align:center;margin-top:4px;">
+    \[
+    a_x = 0,\qquad v_x(t)=v_{0x},\qquad x(t)=x_0+v_{0x}t
+    \]
+    </div>
+  </li>
+  <li><b>Lungo \(y\)</b>: moto uniformemente accelerato
+    <div style="text-align:center;margin-top:4px;">
+    \[
+    a_y = -g,\qquad v_y(t)=v_{0y}-g t,\qquad y(t)=y_0+v_{0y}t-\tfrac12 g t^2
+    \]
+    </div>
+  </li>
+</ul>
+
+<p><b>Traiettoria (eliminando il tempo)</b>:</p>
+<p style="text-align:center;">
+\[
+y (x)\;=\; y_0 \;+\; \frac{v_{0y}}{v_{0x}}\,(x-x_0) \;-\; \frac{g}{2\,v_{0x}^{2}}\,(x-x_0)^2
+\]
+</p>
+<p class="muted" style="margin-top:-6px;">
+Con il parametro d’angolo \(\theta\): \(v_{0x}=v_0\cos\theta\), \(v_{0y}=v_0\sin\theta\), e
+\[
+y \;=\; y_0 \;+\; \tan\theta\,(x-x_0) \;-\; \frac{g}{2\,v_0^2\cos^2\theta}\,(x-x_0)^2.
+\]
+</p>
+
+<h4>Osservazioni fisiche fondamentali</h4>
+<ul>
+  <li><b>Indipendenza dei moti</b>:
+  Immagina di lanciare il punto con velocità iniziale \(\vec v_0\) formando un angolo \(\theta\) con l’orizzontale. 
+Il moto che osservi è la sovrapposizione di due storie semplici: lungo \(x\) l’oggetto procede “di inerzia”, 
+mentre lungo \(y\) la gravità lo rallenta in salita e lo accelera in discesa. 
+Per questo si dice che i due moti sono <b>indipendenti</b>: l’orizzontale non “sente” la gravità (velocità orizzontale costante), 
+il verticale è un MUA.
+  </li>
+  <li><b>Vertice (apice) della parabola</b>: 
+  C’è un istante in cui la salita finisce e inizia la discesa: è l’<b>apice</b> della parabola. 
+Lo raggiungi quando la componente verticale della velocità si annulla, \(v_y(t_\uparrow)=0\). 
+Da qui ricavi subito
+</p>
+<p style="text-align:center;">
+\[
+t_{\uparrow}=\frac{v_{0y}}{g},\qquad
+x_{\max}=x_0+\frac{v_{0x}v_{0y}}{g},\qquad
+y_{\max}=y_0+\frac{v_{0y}^2}{2g}.
+\]
+  </li>
+  <li><b>Simmetria (se \(y_0\) uguale alla quota di arrivo)</b>: tempo di salita uguale al tempo di discesa. Quindi il <b>tempo totale di volo</b> 
+  (stessa quota di partenza e arrivo) lo si può calcolare:
+
+<p style="text-align:center;">
+\[
+T=\frac{2v_{0y}}{g}=\frac{2v_0\sin\theta}{g}.
+\]
+</p>
+La <b>gittata orizzontale</b> è semplicemente lo spazio percorso lungo \(x\) in quel tempo:
+
+<p style="text-align:center;">
+\[
+R=v_{0x}\,T=\frac{v_0^2}{g}\,\sin(2\theta),
+\]
+</p>
+che è massima per \(\theta=45^\circ\). Un dettaglio elegante: due lanci con angoli complementari 
+\(\theta\) e \(90^\circ-\theta\) hanno la stessa gittata (a parità di \(v_0\)).
+  </li>
+  <li><b>Quota di arrivo diversa</b> (\(y_f\neq y_0\)): il tempo di impatto è la radice positiva di
+    \[
+    y_f = y_0 + v_{0y}t - \tfrac12 g t^2
+    \Rightarrow
+    t = \frac{v_{0y} + \sqrt{\,v_{0y}^2 - 2g\,(y_0-y_f)\,}}{g}.
+    \]
+  </li>
+  <li><b>Modulo della velocità</b> in ogni istante:
+<p style="text-align:center;">
+\[
+|\vec v(t)|=\sqrt{\,v_{0x}^2+\bigl(v_{0y}-gt\bigr)^2\,},
+\]
+</p>
+    <p>
+e raggiunge il minimo proprio all’apice, dove rimane la sola componente orizzontale \(v_{0x}\).
+</p>
+  </li>
+</ul>
+
+<h4>Schema riassuntivo (caso classico \(x_0=y_0=0\), stessa quota)</h4>
+<p>
+<table style="width:100%; border-collapse:collapse; text-align:center; font-size:90%;">
+  <tr>
+    <th style="border:1px solid #ccc; padding:4px;">Quantità</th>
+    <th style="border:1px solid #ccc; padding:4px;">Espressione</th>
+    <th style="border:1px solid #ccc; padding:4px;">Con \(v_{0x}=v_0\cos\theta,\ v_{0y}=v_0\sin\theta\)</th>
+  </tr>
+  <tr>
+    <td style="border:1px solid #ccc; padding:4px;">\(x(t)\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(v_{0x}\,t\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(v_0\cos\theta\,t\)</td>
+  </tr>
+  <tr>
+    <td style="border:1px solid #ccc; padding:4px;">\(y(t)\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(v_{0y}\,t - \tfrac12 g t^2\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(v_0\sin\theta\,t - \tfrac12 g t^2\)</td>
+  </tr>
+  <tr>
+    <td style="border:1px solid #ccc; padding:4px;">\(t_{\uparrow}\) (apice)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(v_{0y}/g\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(v_0\sin\theta/g\)</td>
+  </tr>
+  <tr>
+    <td style="border:1px solid #ccc; padding:4px;">\(y_{\max}\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(v_{0y}^2/(2g)\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(v_0^2\sin^2\theta/(2g)\)</td>
+  </tr>
+  <tr>
+    <td style="border:1px solid #ccc; padding:4px;">Tempo di volo \(T\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(2v_{0y}/g\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(2v_0\sin\theta/g\)</td>
+  </tr>
+  <tr>
+    <td style="border:1px solid #ccc; padding:4px;">Gittata \(R\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(v_{0x}\,T\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(\dfrac{v_0^2}{g}\,\sin(2\theta)\) (max a \(45^\circ\))</td>
+  </tr>
+</table>
+</p>
+
+
+<h3>Moto Circolare</h3>
+
+<p>
+Tra tutti i moti curvilinei, quello lungo una <b>circonferenza</b> è il più semplice da analizzare. 
+Il raggio di curvatura è costante e coincide con il raggio della circonferenza: \(\rho = R\).
+</p>
+
+<p>
+Dal punto di vista <b>intrinseco</b>, la velocità è sempre tangente alla traiettoria:
+</p>
+<p style="text-align:center;">
+\[\vec v = v\,\vec\tau\]
+</p>
+<p>
+e l’accelerazione ha due componenti:
+</p>
+<p style="text-align:center;">
+\[\vec a = \frac{dv}{dt}\,\vec\tau + \frac{v^2}{R}\,\vec\eta\]
+</p>
+<p>
+La componente tangenziale descrive il cambiamento del modulo della velocità, 
+la componente normale (o centripeta) descrive il cambiamento della direzione, sempre verso il centro.
+</p>
+
+<h4>Descrizione angolare</h4>
+<p>
+Conveniamo di descrivere il moto tramite la <b>coordinata angolare</b> \(\theta(t)\), misurata in senso antiorario. 
+Le grandezze cinematiche diventano:
+</p>
+<p style="text-align:center;">
+\[s(t) = R\theta(t), \qquad \omega(t) = \frac{d\theta}{dt}, \qquad \alpha(t) = \frac{d\omega}{dt}\]
+</p>
+
+<p>
+Queste sono legate alle grandezze lineari da:
+</p>
+<p style="text-align:center;">
+\[v = R\omega, \qquad a_t = R\alpha, \qquad a_n = R\omega^2\]
+</p>
+
+<h4>Moto circolare uniforme</h4>
+<p>
+Se \(\alpha=0\) (velocità angolare costante), il punto compie giri sempre uguali in tempi uguali. 
+Il modulo della velocità resta costante, quindi l’accelerazione ha soltanto la componente centripeta:
+</p>
+<p style="text-align:center;">
+\[a_t = 0, \qquad a_n = \frac{v^2}{R} = R\omega^2\]
+</p>
+<p>
+La legge oraria angolare è:
+</p>
+<p style="text-align:center;">
+\[\theta(t) = \theta_0 + \omega t.\]
+</p>
+
+<h4>Moto circolare uniformemente accelerato</h4>
+<p>
+Se \(\alpha\) è costante, la velocità angolare cresce o diminuisce linearmente:
+</p>
+<p style="text-align:center;">
+\[\omega(t) = \omega_0 + \alpha t.\]
+</p>
+<p>
+Di conseguenza la legge oraria angolare diventa:
+</p>
+<p style="text-align:center;">
+\[\theta(t) = \theta_0 + \omega_0 t + \tfrac{1}{2}\alpha t^2.\]
+</p>
+<p>
+In questo caso l’accelerazione ha <b>due componenti non nulle</b>:
+</p>
+<p style="text-align:center;">
+\[a_t = R\alpha, \qquad a_n = R\omega^2(t)\]
+</p>
+<p>
+Il moto ricorda una giostra che accelera progressivamente: il punto aumenta la propria velocità tangenziale mentre continua a “sentire” la forza centripeta che lo tiene in traiettoria.
+</p>
+
+<h4>Schema comparativo: descrizione rettilinea vs. circolare</h4>
+
+<p>
+La cinematica rettilinea (basata sull’ascissa curvilinea \(s(t)\)) e la cinematica circolare (basata sulla coordinata angolare \(\theta(t)\)) 
+hanno strutture del tutto analoghe. 
+</p>
+
+<table style="width:100%; border-collapse:collapse; text-align:center; font-size:90%;">
+  <tr>
+    <th style="border:1px solid #ccc; padding:6px;">Grandezza</th>
+    <th style="border:1px solid #ccc; padding:6px;">Moto rettilineo (scalare)</th>
+    <th style="border:1px solid #ccc; padding:6px;">Moto circolare (angolare)</th>
+    <th style="border:1px solid #ccc; padding:6px;">Relazioni lineari-angolari</th>
+  </tr>
+  <tr>
+    <td style="border:1px solid #ccc; padding:6px;">Posizione</td>
+    <td style="border:1px solid #ccc; padding:6px;">\(s(t)\)</td>
+    <td style="border:1px solid #ccc; padding:6px;">\(\theta(t)\)</td>
+    <td style="border:1px solid #ccc; padding:6px;">\(s = R\theta\)</td>
+  </tr>
+  <tr>
+    <td style="border:1px solid #ccc; padding:6px;">Velocità</td>
+    <td style="border:1px solid #ccc; padding:6px;">\(v_s(t) = \tfrac{ds}{dt}\)</td>
+    <td style="border:1px solid #ccc; padding:6px;">\(\omega(t) = \tfrac{d\theta}{dt}\)</td>
+    <td style="border:1px solid #ccc; padding:6px;">\(v = R\omega\)</td>
+  </tr>
+  <tr>
+    <td style="border:1px solid #ccc; padding:6px;">Accelerazione</td>
+    <td style="border:1px solid #ccc; padding:6px;">\(a_s(t) = \tfrac{d^2 s}{dt^2}\)</td>
+    <td style="border:1px solid #ccc; padding:6px;">\(\alpha(t) = \tfrac{d^2\theta}{dt^2}\)</td>
+    <td style="border:1px solid #ccc; padding:6px;">\(a_t = R\alpha\)</td>
+  </tr>
+  <tr>
+    <td style="border:1px solid #ccc; padding:6px;">Curvatura</td>
+    <td style="border:1px solid #ccc; padding:6px;">–</td>
+    <td style="border:1px solid #ccc; padding:6px;">\(\rho = R\)</td>
+    <td style="border:1px solid #ccc; padding:6px;">\(a_n = \tfrac{v^2}{R} = R\omega^2\)</td>
+  </tr>
+</table>
+
+<p>
+<table style="width:100%; border-collapse:collapse; text-align:center; font-size:90%;">
+  <tr>
+    <th style="border:1px solid #ccc; padding:4px;">Caso</th>
+    <th style="border:1px solid #ccc; padding:4px;">Velocità angolare</th>
+    <th style="border:1px solid #ccc; padding:4px;">Legge oraria angolare</th>
+    <th style="border:1px solid #ccc; padding:4px;">Componenti accelerazione</th>
+  </tr>
+  <tr>
+    <td style="border:1px solid #ccc; padding:4px;">Uniforme (\(\alpha=0\))</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(\omega(t) = \omega_0\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(\theta(t) = \theta_0 + \omega_0 t\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(a_t=0,\; a_n=R\omega_0^2\)</td>
+  </tr>
+  <tr>
+    <td style="border:1px solid #ccc; padding:4px;">Uniformemente accelerato (\(\alpha=\text{cost}\))</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(\omega(t) = \omega_0 + \alpha t\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(\theta(t) = \theta_0 + \omega_0 t + \tfrac12\alpha t^2\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(a_t=R\alpha,\; a_n=R\omega^2(t)\)</td>
+  </tr>
+</table>
+</p>
+
+								<h3>Moto Armonico: una proiezione del Moto Circolare</h3>
+								<p>Un punto materiale si muove di <strong>moto armonico</strong> quando la sua accelerazione è proporzionale e opposta allo
+								spostamento dalla posizione di equilibrio. Il modo più semplice per capire il <b>moto armonico</b> è immaginare un punto materiale che si muove 
+								di <b>moto circolare uniforme</b> su una circonferenza di raggio \(A\). Se proiettiamo la sua posizione sul diametro orizzontale (asse \(x\)),
+								otteniamo un punto che va avanti e indietro: questa è l’oscillazione armonica. La legge oraria del moto armonico è:</p>
+<p style="text-align:center;">
+\[
+x(t) = A \cos(\omega t + \phi)
+\]
+</p>
+
+<p>
+L’oscillazione ha quindi le caratteristiche del moto circolare di partenza:
+</p>
+<ul>
+  <li><b>Ampiezza</b> \(A\): il raggio del cerchio, cioè lo spostamento massimo dalla posizione di equilibrio.</li>
+  <li><b>Pulsazione</b> \(\omega\): la stessa velocità angolare del moto circolare.</li>
+  <li><b>Periodo</b> \(T = \tfrac{2\pi}{\omega}\): il tempo necessario a compiere un’oscillazione completa.</li>
+  <li><b>Fase iniziale</b> \(\phi\): determina da quale punto del cerchio parte il moto.</li>
+</ul>
+
+<h4>Velocità e accelerazione</h4>
+<p>
+Dalla formula della posizione otteniamo, per proiezione del moto circolare, anche le altre grandezze:
+</p>
+
+<p style="text-align:center;">
+\[
+v(t) = -A\omega \sin(\omega t + \phi), \qquad
+a(t) = -A\omega^2 \cos(\omega t + \phi) = -\omega^2 x(t)
+\]
+</p>
+
+<ul>
+  <li>La <b>velocità</b> è massima al centro e nulla agli estremi.</li>
+  <li>L’<b>accelerazione</b> è massima agli estremi e sempre diretta verso l’equilibrio, 
+      come un “richiamo” che tende a riportare il corpo al centro.</li>
+</ul>
+
+<h4>Esempi fisici</h4>
+<p>
+Il moto armonico non è solo una costruzione geometrica: descrive moltissimi fenomeni reali.  
+Alcuni esempi importanti sono:
+</p>
+<ul>
+  <li>Il <b>pendolo semplice</b> (per piccole oscillazioni).</li>
+  <li>Un <b>massa attaccata a una molla</b>, che si allunga e si comprime attorno all’equilibrio.</li>
+  <li>Oscillazioni in circuiti elettrici (corrente alternata) o in sistemi meccanici elastici.</li>
+</ul>
+<h4>Schema riassuntivo - Moti armonici</h4>
+<p>
+<table style="width:100%; border-collapse:collapse; text-align:center; font-size:90%;">
+  <tr>
+    <th style="border:1px solid #ccc; padding:4px;">Posizione</th>
+    <th style="border:1px solid #ccc; padding:4px;">Velocità</th>
+    <th style="border:1px solid #ccc; padding:4px;">Accelerazione</th>
+    <th style="border:1px solid #ccc; padding:4px;">Osservazioni</th>
+  </tr>
+  <tr>
+    <td style="border:1px solid #ccc; padding:4px;">Centro (\(x=0\))</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(|v| = v_{\max} = A\omega\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(a=0\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">Passaggio rapido per l’equilibrio</td>
+  </tr>
+  <tr>
+    <td style="border:1px solid #ccc; padding:4px;">Estremo (\(|x|=A\))</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(v=0\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">\(|a| = a_{\max} = A\omega^2\)</td>
+    <td style="border:1px solid #ccc; padding:4px;">Accelerazione massima verso il centro</td>
+  </tr>
+</table>
+</p>
+
+<h3>Moti Reali: L'Effetto dello Smorzamento</h3>
+
+<p>
+Nelle situazioni concrete, i moti non continuano indefinitamente: ad esempio in un moto armonico, l’ampiezza delle oscillazioni tende a ridursi con il tempo, fino a scomparire. 
+Questo fenomeno si chiama <b>smorzamento</b>.
+</p>
+
+<p>
+Dal punto di vista grafico, un moto che idealmente sarebbe sinusoidale 
+si presenta come un’oscillazione racchiusa in un “involucro” che via via si restringe.  
+È solo un cenno qualitativo, che approfondiremo più avanti con strumenti più adeguati.
+</p>
+
+						</section>
+					</main>
+
+				</div>
+				<footer class="muted"><small>© 2025 – Fisicando</small></footer>
+			</div>
+		</body>
+	</html>

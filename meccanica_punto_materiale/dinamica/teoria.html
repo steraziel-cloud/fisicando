@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<title>Fisicando – Cinematica del punto materiale · Teoria</title>
+
+		<link rel="stylesheet" href="../../assets/style.css">
+		<script src="../../assets/content.js" defer></script>
+		<script src="../../assets/site.js" defer></script>
+		<script src="../../assets/main.js" defer></script>
+
+
+			<!-- MathJax -->
+			<script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      svg: { fontCache: 'global' }
+    };
+			</script>
+			<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+		</head>
+		<body>
+			<header class="header-bar">
+				<div class="header-inner">
+					<h1><a href="../../index.html" class="brand">Fisicando</a></h1>
+					<button id="theme-toggle" class="btn">🌙</button>
+				</div>
+			</header>
+
+			<div class="container">
+				<div class="layout">
+					<aside class="sidebar" id="sidebar"></aside>
+					<main class="main">
+						<section class="card theory">
+						<section class="card theory">
+
+<h2>1. Perché la cinematica non basta</h2>
+<p>
+  La <strong>cinematica</strong> descrive il moto dei corpi: come cambia la posizione nel tempo,
+  come si definiscono velocità e accelerazione, e come si rappresentano queste grandezze.
+  Tuttavia, la cinematica si limita a <em>descrivere</em> ciò che accade, senza spiegare <strong>perché</strong> accade.
+</p>
+
+<p>
+  Osservando un corpo in movimento, la cinematica permette di ricostruire la sua traiettoria,
+  ma non di <em>prevederla</em> in una situazione nuova.
+  Questo perché la traiettoria dipende da come varia la velocità nel tempo,
+  e quindi dall’<strong>accelerazione</strong>.  
+  Ma la cinematica non è in grado di dire <em>quando</em> o <em>perché</em> l’accelerazione cambia:
+  si limita a constatarlo.
+</p>
+
+<p>
+  Per comprendere perché la velocità di un corpo cambi, cioè perché esso acceleri, deceleri
+  o modifichi direzione, è necessario introdurre un nuovo concetto:
+  quello di <strong>forza</strong>.  
+  Le forze non sono le cause del moto in sé — un corpo può muoversi anche in assenza di forze —  
+  ma sono le cause delle <em>variazioni</em> del moto.
+</p>
+
+
+  <hr>
+
+<h2>2. Il concetto di forza</h2>
+
+<p>
+  Quando osserviamo un corpo che cambia il proprio stato di moto — accelera, rallenta o devia la traiettoria —
+  constatiamo sempre la presenza o l’azione di altri corpi che ne influenzano il comportamento.
+  Nessun sistema materiale, infatti, modifica spontaneamente la propria velocità:
+  ogni variazione del moto è il segno di un’interazione con qualcos’altro.
+  L’esperienza mostra inoltre che, quando due corpi interagiscono, ciascuno esercita sull’altro
+  un effetto capace di alterarne lo stato di moto o di deformarlo.
+  Diciamo quindi che tra due sistemi <strong>agisce una forza</strong> quando essi manifestano
+  una variazione del loro stato di moto o una deformazione.
+</p>
+
+<p>
+  L’esperienza ci permette anche di analizzare <em>come</em> agiscono queste forze.
+  Quando più corpi interagiscono con lo stesso sistema, gli effetti non si sommano semplicemente come numeri:
+  talvolta si annullano, altre volte si amplificano o si compensano solo in parte,
+  a seconda della direzione in cui ciascuno azione agisce.
+</p>
+
+<p>
+  Per descrivere in modo coerente questi comportamenti, risulta naturale rappresentare ogni forza con una freccia orientata,
+  che indichi la <em>direzione</em> e il <em>verso</em> dell’azione e la cui lunghezza esprima l’<em>intensità</em>.
+  In laboratorio si osserva che combinando più forze secondo le regole della geometria dei vettori
+  si ottengono sempre gli stessi effetti reali: ciò mostra che la forza si comporta come una
+  <strong>grandezza vettoriale</strong>.
+</p>
+  
+<p>
+  Storicamente, studiando i fenomeni naturali, la fisica ha riconosciuto l’esistenza di
+  <strong>quattro forme fondamentali di interazione</strong>:
+</p>
+<ul>
+  <li>la <strong>forza gravitazionale</strong>, che agisce tra corpi dotati di massa;</li>
+  <li>la <strong>forza elettromagnetica</strong>, che agisce tra corpi dotati di carica elettrica;</li>
+  <li>la <strong>forza nucleare forte</strong>, che tiene uniti i le particelle nel nucleo atomico;</li>
+  <li>la <strong>forza nucleare debole</strong>, responsabile di alcuni processi di decadimento radioattivo.</li>
+</ul>
+
+<details class="approfondimento">
+  <summary>Mostra di più ▼</summary>
+  <p>
+    Nei modelli più recenti, alcune di queste interazioni sono state in parte unificate:
+    le forze elettrica e magnetica sono oggi descritte come aspetti di un’unica
+    <strong>interazione elettromagnetica</strong>,
+    mentre l’elettromagnetica e la debole sono riunite nella <strong>teoria elettrodebole</strong>.
+    La gravità, invece, nella teoria della relatività generale, non è più interpretata come una forza vera e propria,
+    ma come una manifestazione della <em>geometria dello spazio-tempo</em>.
+  </p>
+</details>
+
+<p>
+  Tuttavia, nel mondo quotidiano e macroscopico in cui viviamo, la maggior parte delle situazioni in cui parliamo di “forza” riguarda
+  interazioni <strong>a contatto</strong>:   la spinta di una mano, l’attrito tra superfici, la tensione di una fune o la reazione del suolo su un corpo.
+  Queste forze non sono fondamentali, ma <em>effetti collettivi</em> di innumerevoli interazioni elettromagnetiche tra le particelle che costituiscono la materia.
+</p>
+
+
+  <hr>
+
+<h2>3. La teoria della meccanica classica</h2>
+
+
+<p>
+  L’idea che le <strong>forze</strong> siano le cause delle variazioni dello stato di moto
+  costituisce la base della teoria nota come <strong>meccanica classica</strong>.
+  Formulata nel XVII secolo a partire dagli studi di <em>Galileo Galilei</em> e sistematizzata da
+  <em>Isaac Newton</em>, essa descrive in modo unitario come i corpi materiali si muovono
+  e si influenzano reciprocamente quando agiscono forze tra di essi.
+</p>
+
+<p>
+  Con la meccanica classica, fenomeni molto diversi — la caduta dei gravi, il moto dei pianeti,
+  l’oscillazione di un pendolo o il movimento di un carro — trovano una spiegazione comune,
+  fondata su pochi principi generali che chiamiamo <strong>principi della dinamica</strong>.
+</p>
+
+
+<p>
+  Come ogni teoria scientifica, anche la <strong>meccanica classica</strong> ha un proprio
+  <strong>ambito di validità</strong>.
+  Le sue leggi descrivono con grande precisione i fenomeni del mondo quotidiano,
+  ma non sono universali.
+  Quando le <em>velocità</em> si avvicinano a quella della luce, occorre ricorrere alla
+  <strong>relatività</strong>; quando le <em>dimensioni</em> sono paragonabili a quelle degli atomi,
+  è necessaria la <strong>meccanica quantistica</strong>;
+  e quando le <em>masse</em> sono così grandi da generare campi gravitazionali intensi,
+  come nel caso dei buchi neri, la descrizione corretta è fornita dalla <strong>relatività generale</strong>.
+</p>
+
+<p>
+  All’interno di questi limiti, tuttavia, la teoria di Newton resta un modello
+  straordinariamente efficace e coerente per comprendere e prevedere il moto dei corpi materiali.
+</p>
+
+
+
+  <hr>
+
+<h2>4. I principi fondamentali della dinamica</h2>
+
+<details class="fold" id="principio-relativita">
+  <summary>Principio di relatività (Galileiano)</summary>
+  <div class="fold-content">
+
+    <p>
+      Per descrivere il moto di un corpo è necessario stabilire un <strong>sistema di riferimento</strong>,
+      cioè un punto di osservazione rispetto al quale definiamo le posizioni, i tempi e le variazioni del moto.
+      Ogni sistema di riferimento si dota di strumenti di misura — assi cartesiani, orologi, unità di misura —
+      che permettono di quantificare le osservazioni.  
+    </p>
+
+
+    <p>
+      Il <strong>principio di relatività galileiano</strong> afferma che
+      <em>le leggi della fisica hanno la stessa forma in tutti i sistemi di riferimento in moto traslatorio rettilineo uniforme</em>.
+      Nessun esperimento meccanico può distinguere un sistema da un altro in queste condizioni: la natura si comporta nello stesso modo per tutti gli osservatori non accelerati.
+    </p>
+
+    <p>
+      Ciò significa, in particolare, che non esiste un sistema “assoluto” di quiete o di moto,
+      e che alcune grandezze fisiche mantengono lo stesso valore in tutti i sistemi inerziali.
+      Tra queste vi sono la <strong>distanza</strong> tra due punti,
+      la <strong>durata</strong> di un intervallo di tempo,
+      la <strong>massa</strong> di un corpo e la sua <strong>accelerazione</strong>.  
+      Anche la <strong>forza risultante</strong> che agisce su un corpo,
+      se misurata da diversi osservatori inerziali, risulta la stessa in modulo, direzione e verso.
+    </p>
+
+
+  </div>
+</details>
+
+<details class="fold" id="primo-principio">
+  <summary>1º Principio — Principio d’inerzia (Galileo–Newton)</summary>
+  <div class="fold-content">
+
+    <p>
+      Il <strong>principio d’inerzia</strong> afferma che
+      <em>un corpo mantiene il proprio stato di quiete o di moto rettilineo uniforme
+      se la risultante delle forze che agiscono su di esso è nulla</em>.
+    </p>
+
+    <p>
+<p>
+  In forma simbolica:
+  \[
+    \sum \vec{F} = \vec{0} \;\;\Rightarrow\;\; \vec{v} = \text{costante}
+  \]
+</p>
+
+    </p>
+
+    <p>
+      Questo principio, introdotto da <em>Galileo Galilei</em> e formalizzato da <em>Isaac Newton</em>,
+      si basa sull’esperienza: un corpo non accelera da solo, ma solo se agiscono su di lui forze esterne.
+      In assenza di tali forze, il corpo non ha motivo di cambiare velocità o direzione di moto.
+    </p>
+
+<p>
+  Il principio d’inerzia <strong>definisce i sistemi di riferimento inerziali</strong>:
+  un sistema è inerziale se, in esso, un corpo libero (non soggetto a forze)
+  si muove di moto rettilineo uniforme.  
+  Poiché, in base al principio di relatività galileiana, la risultante delle forze su un corpo
+  è la stessa in tutti i sistemi che si muovono di <em>moto traslatorio rettilineo uniforme</em>
+  uno rispetto all’altro, ne segue che <strong>tutti i sistemi di questo tipo sono inerziali</strong>.
+</p>
+
+
+    <p>
+      Nella vita quotidiana tendiamo a non accorgerci di questo comportamento
+      perché viviamo su un pianeta dove attriti e resistenze deformano l’esperienza del moto libero.
+      Ma in laboratorio, riducendo l’attrito o osservando il moto di un satellite nello spazio,
+      il principio d’inerzia si manifesta con grande evidenza.
+    </p>
+
+  </div>
+</details>
+
+<details class="fold" id="secondo-principio">
+  <summary>2º Principio — Legge fondamentale della dinamica</summary>
+  <div class="fold-content">
+
+    <p>
+      Il <strong>secondo principio della dinamica</strong> stabilisce la relazione quantitativa
+      tra la <em>forza risultante</em> applicata a un corpo e la <em>variazione del suo stato di moto</em>.
+      Questa variazione è descritta dalla <strong>quantità di moto</strong>,
+      definita come:
+    </p>
+
+    <p class="formula">
+      \[
+        \vec{p} = m \vec{v}
+      \]
+    </p>
+
+    <p>
+      L’enunciato generale del secondo principio è:
+    </p>
+
+    <p class="formula">
+      \[
+        \sum \vec{F} = \frac{d\vec{p}}{dt}= m \frac{d\vec{v}}{dt} + \vec{v} \frac{dm}{dt}
+      \]
+    </p>
+
+    <p>
+      In altre parole, la <strong>forza risultante</strong> che agisce su un sistema
+      è uguale alla <strong>derivata temporale della sua quantità di moto</strong>.
+      Questa formulazione è valida in tutti i casi, anche quando la massa del corpo
+      non è costante.
+    </p>
+
+    <p>
+      Nei casi più semplici, in cui la massa resta costante nel tempo, si ottiene la forma nota:
+    </p>
+
+    <p class="formula">
+      \[
+        \sum \vec{F} = m \frac{d\vec{v}}{dt} = m \vec{a}
+      \]
+    </p>
+
+    <p>
+      Ma se la massa varia (ad esempio in un razzo che espelle gas), la forza totale può essere
+      scritta come:
+    </p>
+
+    <p class="formula">
+      \[
+        \sum \vec{F} = m \frac{d\vec{v}}{dt} + \vec{v} \frac{dm}{dt}
+      \]
+    </p>
+
+    <p>
+      Il secondo termine rappresenta l’effetto dovuto alla variazione di massa:
+      in un razzo, ad esempio, è la spinta generata dal getto dei gas espulsi
+      ad alta velocità.  
+      Questa formulazione mostra che la grandezza veramente fondamentale nella dinamica
+      è la <strong>quantità di moto</strong>, non la velocità in sé.
+    </p>
+
+
+
+  </div>
+</details>
+
+
+<details class="fold" id="terzo-principio">
+  <summary>3º Principio — Principio di azione e reazione</summary>
+  <div class="fold-content">
+
+    <p>
+      Il <strong>terzo principio della dinamica</strong> afferma che
+      <em>quando un corpo A esercita una forza su un corpo B, anche B esercita su A
+      una forza uguale e contraria</em>:
+    </p>
+
+    <p class="formula">
+      \[
+        \vec{F}_{AB} = -\,\vec{F}_{BA}
+      \]
+    </p>
+
+    <p>
+      Le due forze, dette <strong>azione</strong> e <strong>reazione</strong>,
+      hanno la stessa direzione, moduli uguali e versi opposti,
+      e sono applicate a <em>corpi diversi</em>.
+      Nella meccanica classica esse agiscono lungo la <strong>retta congiungente</strong>
+      i punti materiali su cui sono applicate.
+    </p>
+
+    <p>
+      Il principio di azione e reazione non è solo una constatazione empirica,
+      ma può essere visto come una <strong>forma particolare del principio di conservazione
+      della quantità di moto</strong> in un sistema isolato.
+      Se sul sistema formato dai due corpi non agiscono forze esterne, la quantità di moto totale del sistema resta costante:
+    </p>
+
+    <p class="formula">
+      \[
+        \frac{d}{dt}(\vec{p}_A + \vec{p}_B) = \vec{0}
+      \]
+    </p>
+
+    <p>
+      Ciò implica che le variazioni di quantità di moto dei due corpi
+      siano sempre uguali e opposte, e quindi che le forze che i corpi si scambiano
+      siano anch’esse uguali e opposte:
+    </p>
+
+    <p class="formula">
+      \[
+        \frac{d\vec{p}_A}{dt} = -\,\frac{d\vec{p}_B}{dt}
+        \quad\Rightarrow\quad
+        \vec{F}_{AB} = -\,\vec{F}_{BA}
+      \]
+    </p>
+
+    <p>
+      Il terzo principio esprime dunque la <strong>reciprocità dell’interazione</strong>:
+      le forze non esistono isolate, ma sempre in coppia.
+      Ogni volta che un corpo esercita un’azione su un altro,
+      riceve a sua volta una reazione che tende a compensarla.
+    </p>
+
+
+
+  </div>
+</details>
+
+
+</section>
+
+
+						</section>
+					</main>
+
+				</div>
+				<footer class="muted"><small>© 2025 – Fisicando</small></footer>
+			</div>
+			<script>
+document.addEventListener('toggle', function (e) {
+  if (e.target.tagName === 'DETAILS' && e.target.open && window.MathJax?.typeset) {
+    MathJax.typeset([e.target]);
+  }
+});
+</script>
+
+		</body>
+	</html>

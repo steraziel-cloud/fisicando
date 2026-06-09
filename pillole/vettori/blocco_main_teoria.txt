@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <title>Teoria – Algebra Vettoriale</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- MathJax v3 -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body class="container">
+  <header>
+    <h1>Teoria - Algebra Vettoriale</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="laboratorio.html">Laboratorio</a>
+      <a href="esercizi.html">Esercizi</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 1. Scalari e vettori -->
+    <section>
+      <h2>1. Scalari e vettori</h2>
+      <p>
+        In fisica e matematica distinguiamo tra due tipi di grandezze:
+      </p>
+      <ul>
+        <li>
+          <b>Scalari:</b> grandezze descritte da un solo numero reale (es. temperatura, massa, tempo).
+          Sono completamente determinate dalla loro magnitudine (valore numerico).
+        </li>
+        <li>
+          <b>Vettori:</b> grandezze che richiedono modulo (intensità), direzione e verso 
+          (es. spostamento, velocità, forza). Non sono completamente descritte da un solo numero.
+        </li>
+      </ul>
+      <p>
+        Notazione: indicheremo gli scalari con lettere minuscole \(a, b, k, \ldots\); 
+        i vettori con una freccia sopra: \(\vec v, \vec a, \vec b, \ldots\).
+      </p>
+    </section>
+
+    <!-- 2. Rappresentazione dei vettori: coordinate cartesiane e polari -->
+    <section>
+      <h2>2. Rappresentazione dei vettori: coordinate cartesiane e polari</h2>
+      
+      <h3>Dal vettore geometrico alla rappresentazione numerica</h3>
+      <p>
+        Un <b>vettore geometrico applicato</b> è una freccia (segmento orientato) caratterizzata da modulo, direzione, verso e punto di applicazione.
+      </p>
+      
+      <p>
+        Due vettori geometrici sono <b>equipollenti</b> se hanno stesso modulo, direzione e verso, 
+        anche se applicati in punti diversi. Un <b>vettore libero</b> è la <em>classe di equipollenza</em> 
+        di tutti i vettori geometrici equipollenti.
+      </p>
+      
+      <h3>Coordinate cartesiane</h3>
+      <p>
+        Per lavorare algebricamente, fissiamo un <b>sistema di riferimento cartesiano</b> con origine \(O\). 
+        Rappresentiamo il vettore libero con il vettore applicato in \(O\). Le <b>componenti cartesiane</b> \((x, y)\) 
+        si ottengono proiettando il vettore sugli assi:
+      </p>
+      <p style="text-align:center;">
+        \[ \vec v = (x, y) \]
+      </p>
+      
+      <p class="important">
+        <b>Nota fondamentale:</b> Le componenti \((x, y)\) non sono una proprietà intrinseca del vettore libero, 
+        ma dipendono dal sistema di riferimento scelto.
+      </p>
+      
+      <h3>Modulo di un vettore</h3>
+      <p>
+        Il <b>modulo</b> (lunghezza) del vettore si calcola dalle componenti cartesiane:
+      </p>
+      <p style="text-align:center;">
+        \[ |\vec v| = \sqrt{x^2 + y^2} \]
+      </p>
+      
+      <h3>Coordinate polari</h3>
+      <p>
+        Utilizzando il modulo \(r = |\vec v|\) e l'angolo \(\theta\) formato con il semiasse positivo delle x, 
+        possiamo descrivere lo stesso vettore con le <b>coordinate polari</b>:
+      </p>
+      <p style="text-align:center;">
+        \[ \vec v = (r, \theta) \]
+      </p>
+      
+      <p class="important">
+        Anche le coordinate polari dipendono dal sistema di riferimento scelto.
+      </p>
+      
+      <h3>Conversioni tra le due rappresentazioni</h3>
+      
+      <p><b>Da polari a cartesiane:</b></p>
+      <p style="text-align:center;">
+        \[ x = r \cos\theta, \quad y = r \sin\theta \]
+      </p>
+      
+      <p><b>Da cartesiane a polari:</b></p>
+      <p style="text-align:center;">
+        \[ r = \sqrt{x^2 + y^2} \]
+        \[ \theta = \arctan\left(\frac{y}{x}\right) \quad \text{(con attenzione al quadrante!)} \]
+      </p>
+      
+      <h3>Determinazione corretta dell'angolo \(\theta\)</h3>
+      
+      <p>
+        La funzione \(\arctan\) restituisce valori solo tra \(-\frac{\pi}{2}\) e \(\frac{\pi}{2}\) 
+        (primo e quarto quadrante). Per determinare correttamente l'angolo:
+      </p>
+      
+      <ul>
+        <li>Se \(x > 0\): \(\theta = \arctan\left(\frac{y}{x}\right)\)</li>
+        <li>Se \(x < 0\): \(\theta = \arctan\left(\frac{y}{x}\right) + \pi\)</li>
+        <li>Se \(x = 0\) e \(y > 0\): \(\theta = \frac{\pi}{2}\)</li>
+        <li>Se \(x = 0\) e \(y < 0\): \(\theta = -\frac{\pi}{2}\)</li>
+      </ul>
+    </section>
+
+    <!-- 3. Versori -->
+    <section>
+      <h2>3. Versori</h2>
+      <p>
+        Un <b>versore</b> è un vettore di <b>modulo 1</b> che indica una direzione specifica.
+      </p>
+      
+      <h3>Versori canonici</h3>
+      <p>
+        Nel piano cartesiano, i versori fondamentali sono:
+      </p>
+      <p style="text-align:center;">
+        \[ \hat i = (1, 0), \qquad \hat j = (0, 1) \]
+      </p>
+      <p>
+        In \(\mathbb{R}^3\) (spazio tridimensionale) si aggiunge il versore:
+        \[ \hat k = (0, 0, 1) \]
+      </p>
+      
+      <h3>Rappresentazione di un vettore mediante versori</h3>
+      <p>
+        Qualsiasi vettore \(\vec v = (x, y)\) nel piano può essere espresso come combinazione lineare dei versori canonici:
+      </p>
+      <p style="text-align:center;">
+        \[ \vec v = x\,\hat i + y\,\hat j \]
+      </p>
+    </section>
+
+    <!-- 4. Operazioni fondamentali con i vettori -->
+    <section>
+      <h2>4. Operazioni fondamentali con i vettori</h2>
+      
+      <h3>Somma di vettori</h3>
+      <p>
+        La somma di due vettori \(\vec a = (x_a, y_a)\) e \(\vec b = (x_b, y_b)\) si calcola componente per componente:
+      </p>
+      <p style="text-align:center;">
+        \[ \vec a + \vec b = (x_a + x_b, y_a + y_b) \]
+      </p>
+      <p>
+        <b>Interpretazione geometrica:</b> la somma si può visualizzare con la <b>regola del parallelogramma</b> 
+        o la <b>regola della poligonale</b>.
+      </p>
+
+      <h4>Somma di vettori in coordinate polari</h4>
+      <p>
+        Per sommare vettori dati in coordinate polari, il metodo più generale è convertirli in cartesiane, sommare, e riconvertire.
+      </p>
+      <p>
+        In casi particolari può essere utile il <b>teorema di Carnot</b>. Se si conoscono i moduli \(r_1\), \(r_2\) 
+        e l'angolo \(\gamma\) tra i vettori:
+      </p>
+      <p style="text-align:center;">
+        \[ |\vec r| = \sqrt{r_1^2 + r_2^2 + 2 r_1 r_2 \cos\gamma} \]
+      </p>
+      
+      <p><b>Quando usare il teorema di Carnot:</b></p>
+      <ul>
+        <li>Quando si conoscono direttamente moduli e angolo tra i vettori</li>
+        <li>Quando si vuole solo il modulo (non le componenti) del vettore risultante</li>
+      </ul>
+      
+      <p><b>Quando preferire le componenti cartesiane:</b></p>
+      <ul>
+        <li>Quando servono tutte le componenti del vettore risultante</li>
+        <li>Quando si devono fare successive operazioni vettoriali</li>
+      </ul>
+      
+      <h3>Prodotto di un vettore per uno scalare</h3>
+      <p>
+        Dato un vettore \(\vec v = (x, y)\) e uno scalare \(k\), il prodotto è:
+      </p>
+      <p style="text-align:center;">
+        \[ k \cdot \vec v = (k \cdot x, k \cdot y) \]
+      </p>
+      <p>
+        <b>Effetto geometrico:</b>
+      </p>
+      <ul>
+        <li>Se \(|k| > 1\), il vettore viene allungato</li>
+        <li>Se \(|k| < 1\), il vettore viene accorciato</li>
+        <li>Se \(k < 0\), il vettore inverte il verso</li>
+        <li>Se \(k = 0\), si ottiene il vettore nullo</li>
+      </ul>
+      
+      <h3>Versore di un vettore qualsiasi</h3>
+      <p>
+        Dato un vettore non nullo \(\vec v \neq \vec 0\), il versore che ha la stessa direzione e verso di \(\vec v\) si ottiene dividendo il vettore per il suo modulo:
+      </p>
+      <p style="text-align:center;">
+        \[ \hat v = \frac{\vec v}{|\vec v|} = \frac{1}{|\vec v|} \cdot \vec v \]
+      </p>
+      <p>
+        Esempio: se \(\vec v = (3, 4)\), allora \(|\vec v| = \sqrt{3^2 + 4^2} = 5\) e 
+        \(\hat v = \left(\frac{3}{5}, \frac{4}{5}\right)\).
+      </p>
+      
+      <h3>Proprietà algebriche</h3>
+      <ul>
+        <li><b>Commutatività</b> della somma: \(\vec a + \vec b = \vec b + \vec a\)</li>
+        <li><b>Associatività</b> della somma: \((\vec a + \vec b) + \vec c = \vec a + (\vec b + \vec c)\)</li>
+        <li><b>Distributività</b> del prodotto per scalare rispetto alla somma vettoriale: 
+            \(k(\vec a + \vec b) = k\vec a + k\vec b\)</li>
+      </ul>
+    </section>
+
+    <!-- 5. Prodotto scalare -->
+    <section>
+      <h2>5. Prodotto scalare</h2>
+      <p>
+        Il <b>prodotto scalare</b> (o prodotto interno) è un'operazione che associa a due vettori uno scalare.
+      </p>
+      
+      <h3>Definizione algebrica</h3>
+      <p>
+        Per \(\vec a = (x_a, y_a)\) e \(\vec b = (x_b, y_b)\) in \(\mathbb{R}^2\):
+      </p>
+      <p style="text-align:center;">
+        \[ \vec a \cdot \vec b = x_a x_b + y_a y_b \]
+      </p>
+      <p>
+        In \(\mathbb{R}^3\), per \(\vec a = (x_a, y_a, z_a)\) e \(\vec b = (x_b, y_b, z_b)\):
+      </p>
+      <p style="text-align:center;">
+        \[ \vec a \cdot \vec b = x_a x_b + y_a y_b + z_a z_b \]
+      </p>
+      
+      <h3>Interpretazione geometrica</h3>
+      <p>
+        Se \(\theta\) è l'angolo compreso tra \(\vec a\) e \(\vec b\), allora:
+      </p>
+      <p style="text-align:center;">
+        \[ \vec a \cdot \vec b = |\vec a| |\vec b| \cos\theta \]
+      </p>
+      <p>
+        Il prodotto scalare è uguale al prodotto del modulo di \(\vec a\) per il modulo della proiezione di \(\vec b\) sulla direzione di \(\vec a\):
+      </p>
+      <p style="text-align:center;">
+        \[ \vec a \cdot \vec b = |\vec a| \cdot |\mathrm{proj}_{\vec a}(\vec b)| \]
+      </p>
+      
+      <h3>Applicazioni del prodotto scalare</h3>
+      <p>
+        Il prodotto scalare permette di:
+      </p>
+      <ul>
+        <li>Calcolare l'angolo tra due vettori: \(\cos\theta = \frac{\vec a \cdot \vec b}{|\vec a| |\vec b|}\)</li>
+        <li>Determinare se due vettori sono ortogonali: se \(\vec a \cdot \vec b = 0\), allora \(\cos\theta = 0\)</li>
+        <li>Verificare il parallelismo: se \(\vec a \cdot \vec b = \pm|\vec a||\vec b|\), i vettori sono paralleli</li>
+      </ul>
+    </section>
+
+    <!-- 6. Proiezioni di vettori -->
+    <section>
+      <h2>6. Proiezioni di vettori</h2>
+      <p>
+        Il prodotto scalare ci permette di calcolare la proiezione di un vettore su un altro.
+      </p>
+      
+      <h3>Proiezione scalare</h3>
+      <p>
+        La <b>proiezione scalare</b> di \(\vec b\) sulla direzione di \(\vec a\) è data da:
+      </p>
+      <p style="text-align:center;">
+        \[ \text{comp}_{\vec a}(\vec b) = |\vec b| \cos\theta = \frac{\vec a \cdot \vec b}{|\vec a|} \]
+      </p>
+      <p>
+        Usando il versore \(\hat a\): \(\text{comp}_{\hat a}(\vec b) = \vec b \cdot \hat a\)
+      </p>
+      
+      <h3>Proiezione vettoriale</h3>
+      <p>
+        La <b>proiezione vettoriale</b> di \(\vec b\) su \(\vec a\) è un vettore che ha la direzione di \(\vec a\) 
+        e modulo pari alla proiezione scalare:
+      </p>
+      <p style="text-align:center;">
+        \[ \text{proj}_{\vec a}(\vec b) = \left( \frac{\vec a \cdot \vec b}{|\vec a|^2} \right) \vec a \]
+      </p>
+      <p>
+        Usando il versore \(\hat a\): \(\text{proj}_{\hat a}(\vec b) = (\vec b \cdot \hat a) \hat a\)
+      </p>
+    </section>
+
+    <!-- 7. Prodotto vettoriale -->
+    <section>
+      <h2>7. Prodotto vettoriale</h2>
+      <p>
+        Il <b>prodotto vettoriale</b> è un'operazione definita solo in \(\mathbb{R}^3\) che associa a due vettori un terzo vettore.
+      </p>
+      
+      <h3>Definizione</h3>
+      <p>
+        Dati \(\vec a = (x_a, y_a, z_a)\) e \(\vec b = (x_b, y_b, z_b)\), il prodotto vettoriale si calcola come determinante formale:
+      </p>
+      <p style="text-align:center;">
+        \[
+          \vec a \times \vec b =
+          \begin{vmatrix}
+            \hat i & \hat j & \hat k \\
+            x_a & y_a & z_a \\
+            x_b & y_b & z_b
+          \end{vmatrix}
+          = (y_a z_b - z_a y_b)\,\hat i - (x_a z_b - z_a x_b)\,\hat j + (x_a y_b - y_a x_b)\,\hat k
+        \]
+      </p>
+      
+      <h3>Proprietà geometriche</h3>
+      <ul>
+        <li><b>Direzione:</b> perpendicolare al piano definito da \(\vec a\) e \(\vec b\)</li>
+        <li><b>Verso:</b> determinato dalla <em>regola della mano destra</em></li>
+        <li><b>Modulo:</b> \(|\vec a \times \vec b| = |\vec a| |\vec b| \sin\theta\)</li>
+      </ul>
+      
+      <h3>Interpretazione geometrica del modulo</h3>
+      <p>
+        Il modulo del prodotto vettoriale rappresenta l'area del parallelogramma i cui lati sono \(\vec a\) e \(\vec b\).
+      </p>
+      
+      <h3>Area del triangolo</h3>
+      <p>
+        Se due lati di un triangolo sono rappresentati dai vettori \(\vec a\) e \(\vec b\), l'area del triangolo è:
+      </p>
+      <p style="text-align:center;">
+        \[ \text{Area} = \frac{1}{2} |\vec a \times \vec b| \]
+      </p>
+      <p>
+        Questo perché il triangolo è esattamente la metà del parallelogramma formato dai due vettori.
+      </p>
+      
+      <h3>Prodotto vettoriale nel piano</h3>
+      <p>
+        Considerando i vettori nel piano xy (z=0), l'unica componente non nulla è lungo \(\hat k\):
+      </p>
+      <p style="text-align:center;">
+        \[ (x_1, y_1) \times (x_2, y_2) = x_1 y_2 - y_1 x_2 \]
+      </p>
+      <p>
+        Questo valore scalare rappresenta l'area orientata del parallelogramma formato dai due vettori.
+        Nei diagrammi bidimensionali, il verso del prodotto vettoriale è indicato con:
+      </p>
+      <ul>
+        <li>⊙ (punto): vettore uscente dal piano (verso l'osservatore)</li>
+        <li>⊗ (croce): vettore entrante nel piano (lontano dall'osservatore)</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <small>© 2025 – Algebra Vettoriale</small>
+  </footer>
+</body>
+</html>

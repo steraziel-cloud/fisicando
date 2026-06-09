@@ -1,0 +1,234 @@
+<section class="card theory">
+  <h2>Cinematica del Punto Materiale</h2>
+  
+  <p>La cinematica è quella branca della meccanica che si occupa di descrivere il movimento dei corpi, prescindendo completamente dalle cause che lo producono. Il nostro oggetto di studio sarà il <strong>punto materiale</strong>, un'astrazione fisica che ci permette di concentrarci sul movimento traslatorio, considerando un corpo dotato di massa ma privo di dimensioni.</p>
+  
+  <h3>Il Problema Fondamentale: Descrivere il Movimento</h3>
+  <p>Per descrivere il moto di un corpo, dobbiamo innanzitutto rispondere a domande fondamentali: <em>Dove si trova il corpo? Come si sta muovendo? Come sta cambiando il suo movimento?</em> Queste domande ci portano naturalmente a definire una gerarchia di grandezze fisiche.</p>
+  
+  <h3>Sistemi di Riferimento: Il Punto di Vista dell'Osservatore</h3>
+  <p>Prima di tutto, dobbiamo definire da quale punto di vista stiamo osservando il moto. Un <strong>sistema di riferimento</strong> è costituito da:</p>
+  <ul>
+    <li>Un <strong>sistema di coordinate</strong> che ci permette di assegnare una posizione univoca ad ogni punto dello spazio</li>
+    <li>Un <strong>orologio</strong> sincronizzato che misura il tempo in modo uniforme</li>
+  </ul>
+  <p>È importante sottolineare che il movimento è sempre relativo a un sistema di riferimento. Lo stesso moto può apparire diverso se osservato da sistemi di riferimento differenti.</p>
+  
+  <h3>Traiettoria e Legge Oraria</h3>
+  <p>La <strong>traiettoria</strong> è l'insieme di tutte le posizioni successive occupate dal punto materiale durante il suo movimento. È come la "scia" che il punto lascia idealmente nel suo passaggio.</p>
+  
+  <p>La descrizione completa del moto è contenuta nella <strong>legge oraria</strong>, che esprime la posizione del punto materiale in funzione del tempo:</p>
+  <p>\[
+  \vec{r} = \vec{r}(t)
+  \]</p>
+  <p>In coordinate cartesiane, questo significa conoscere le tre funzioni:</p>
+  <p>\[
+  x = x(t), \quad y = y(t), \quad z = z(t)
+  \]</p>
+  <p>La legge oraria contiene in sé tutte le informazioni sul moto. Se conosciamo la legge oraria, possiamo rispondere a qualsiasi domanda cinematica.</p>
+  
+  <h3>Vettore Spostamento: Il Cambiamento di Posizione</h3>
+  <p>Per descrivere come cambia la posizione del punto materiale, introduciamo il concetto di <strong>spostamento</strong>. Dati due istanti di tempo \(t_1\) e \(t_2\), il vettore spostamento è definito come:</p>
+  <p>\[
+  \Delta\vec{r} = \vec{r}(t_2) - \vec{r}(t_1)
+  \]</p>
+  <p>Il vettore spostamento ha alcune caratteristiche importanti:</p>
+  <ul>
+    <li>È un <strong>vettore secante</strong> alla traiettoria, poiché congiunge due punti distinti della curva</li>
+    <li>Non coincide con la lunghezza del percorso effettivamente compiuto</li>
+    <li>Dipende solo dalle posizioni iniziale e finale, non dal percorso intermedio</li>
+  </ul>
+  
+  <h3>Dallo Spostamento alla Velocità: La Tangente alla Traiettoria</h3>
+  <p>La <strong>velocità media</strong> su un intervallo di tempo \(\Delta t\) è definita come:</p>
+  <p>\[
+  \vec{v}_m = \frac{\Delta\vec{r}}{\Delta t}
+  \]</p>
+  
+  <p>Osserviamo cosa succede quando consideriamo intervalli di tempo sempre più piccoli. Man mano che \(\Delta t \to 0\):</p>
+  <ul>
+    <li>I due punti sulla traiettoria si avvicinano sempre di più</li>
+    <li>Il vettore spostamento, inizialmente secante, tende a diventare <strong>tangente</strong> alla traiettoria</li>
+    <li>La direzione della velocità media tende a coincidere con la tangente alla curva</li>
+  </ul>
+  
+  <p>Questo processo di limite ci porta alla definizione di <strong>velocità istantanea</strong>:</p>
+  <p>\[
+  \vec{v}(t) = \lim_{\Delta t \to 0} \frac{\Delta\vec{r}}{\Delta t} = \frac{d\vec{r}}{dt}
+  \]</p>
+  
+  <p>La velocità istantanea è quindi sempre <strong>tangente alla traiettoria</strong> e indica in ogni punto la direzione del moto.</p>
+  
+  <h3>Dalla Velocità all'Accelerazione: Come Cambia il Moto</h3>
+  <p>Allo stesso modo, per descrivere come cambia la velocità, introduciamo l'<strong>accelerazione istantanea</strong>:</p>
+  <p>\[
+  \vec{a}(t) = \lim_{\Delta t \to 0} \frac{\Delta\vec{v}}{\Delta t} = \frac{d\vec{v}}{dt} = \frac{d^2\vec{r}}{dt^2}
+  \]</p>
+  
+  <h3>Il Problema Inverso: Dalla Accelerazione alla Legge Oraria</h3>
+  <p>Spesso in fisica conosciamo l'accelerazione di un corpo (attraverso le forze che agiscono su di esso) e vogliamo risalire al suo movimento. Questo è il <strong>problema inverso</strong> della cinematica.</p>
+  
+  <p>Esiste un'operazione matematica inversa della derivazione, chiamata <strong>integrazione</strong>, che ci permette di risalire dalla accelerazione alla velocità e dalla velocità alla posizione:</p>
+  <p>\[
+  \vec{v}(t) = \vec{v}_0 + \int_0^t \vec{a}(\tau) d\tau
+  \]</p>
+  <p>\[
+  \vec{r}(t) = \vec{r}_0 + \int_0^t \vec{v}(\tau) d\tau
+  \]</p>
+  
+  <p>Noti \(\vec{a}(t)\) e le condizioni iniziali (\(\vec{r}_0\), \(\vec{v}_0\)), la traiettoria è univocamente determinata.</p>
+  
+  <h3>Decomposizione Intrinseca: Leggere il Moto Lungo la Traiettoria</h3>
+  <p>Una visione particolarmente illuminante si ottiene studiando il moto "dall'interno", seguendo la traiettoria. Introduciamo due versori fondamentali:</p>
+  
+  <ul>
+    <li>\(\vec{\tau}\): tangente alla traiettoria, nella direzione del moto</li>
+    <li>\(\vec{\eta}\): normale, diretto verso il centro di curvatura</li>
+  </ul>
+  
+  <p>In questa rappresentazione, la velocità ha una forma semplicissima:</p>
+  <p>\[
+  \vec{v} = v\vec{\tau}
+  \]</p>
+  
+  <p>L'accelerazione invece mostra la sua duplice natura:</p>
+  <p>\[
+  \vec{a} = \frac{dv}{dt}\vec{\tau} + \frac{v^2}{\rho}\vec{\eta}
+  \]</p>
+  
+  <p>La <strong>componente tangenziale</strong> \(\frac{dv}{dt}\) descrive come cambia il modulo della velocità, mentre la <strong>componente normale</strong> \(\frac{v^2}{\rho}\) descrive come cambia la direzione del moto. Il parametro \(\rho\) è il <strong>raggio di curvatura</strong> della traiettoria.</p>
+  
+  <h3>Moto Rettilineo: Quando la Descrizione Scalare è Completa</h3>
+  <p>Quando la traiettoria è una retta, possiamo scegliere un sistema di riferimento con l'asse x coincidente con la retta traiettoria. In questo caso:</p>
+  <ul>
+    <li>Tutti i vettori (posizione, velocità, accelerazione) sono paralleli alla traiettoria</li>
+    <li>Il raggio di curvatura è infinito: \(\rho \to \infty\)</li>
+    <li>La componente normale dell'accelerazione si annulla: \(a_n = \frac{v^2}{\rho} = 0\)</li>
+  </ul>
+  
+  <p>Il moto può essere completamente descritto con una sola coordinata scalare \(s(t)\) lungo la retta:</p>
+  <p>\[
+  v(t) = \frac{ds}{dt}, \quad a(t) = \frac{dv}{dt} = \frac{d^2s}{dt^2}
+  \]</p>
+  
+  <p><strong>Nota importante sulla velocità scalare</strong>: il valore \(v(t)\) può essere positivo o negativo. Se è positivo, il punto si muove nel verso positivo dell'asse; se è negativo, si muove nel verso opposto. Il modulo della velocità è \(|v(t)|\), mentre il segno indica il verso lungo la traiettoria orientata.</p>
+  
+  <h4>Moto Rettilineo Uniformemente Accelerato</h4>
+  <p>Quando l'accelerazione è costante (\(a = costante\)), integrando le equazioni precedenti si ottengono le leggi del moto:</p>
+  <p>\[
+  v(t) = v_0 + at
+  \]</p>
+  <p>\[
+  s(t) = s_0 + v_0t + \frac{1}{2}at^2
+  \]</p>
+  <p>Eliminando il tempo si ottiene la relazione:</p>
+  <p>\[
+  v^2 = v_0^2 + 2a(s - s_0)
+  \]</p>
+  
+  <h3>Moto Parabolico: Composizione di Moti Indipendenti</h3>
+  <p>Consideriamo un punto materiale soggetto a un'accelerazione costante verticale. Scegliamo un sistema di riferimento cartesiano con asse y verticale e asse x orizzontale.</p>
+  
+  <p><strong>Descrizione vettoriale</strong>:</p>
+  <p>\[
+  \vec{a} = -g\vec{j}
+  \]</p>
+  <p>\[
+  \vec{v}(t) = \vec{v}_0 + \vec{a}t = v_{0x}\vec{i} + (v_{0y} - gt)\vec{j}
+  \]</p>
+  <p>\[
+  \vec{r}(t) = \vec{r}_0 + \vec{v}_0t + \frac{1}{2}\vec{a}t^2 = (x_0 + v_{0x}t)\vec{i} + (y_0 + v_{0y}t - \frac{1}{2}gt^2)\vec{j}
+  \]</p>
+  
+  <p><strong>Descrizione scalare per componenti</strong>:</p>
+  <p>Lungo x (moto rettilineo uniforme):</p>
+  <p>\[
+  a_x = 0, \quad v_x(t) = v_{0x}, \quad x(t) = x_0 + v_{0x}t
+  \]</p>
+  
+  <p>Lungo y (moto uniformemente accelerato):</p>
+  <p>\[
+  a_y = -g, \quad v_y(t) = v_{0y} - gt, \quad y(t) = y_0 + v_{0y}t - \frac{1}{2}gt^2
+  \]</p>
+  
+  <p>Eliminando il tempo si ottiene l'equazione della traiettoria:</p>
+  <p>\[
+  y = y_0 + \frac{v_{0y}}{v_{0x}}(x - x_0) - \frac{g}{2v_{0x}^2}(x - x_0)^2
+  \]</p>
+  
+  <h3>Moto Circolare: Descrizione Quantitativa</h3>
+  <p>Consideriamo un punto materiale che si muove su una circonferenza di raggio R. Il raggio di curvatura è costante: \(\rho = R\).</p>
+  
+  <p><strong>Descrizione vettoriale intrinseca</strong>:</p>
+  <p>\[
+  \vec{v} = v\vec{\tau}
+  \]</p>
+  <p>\[
+  \vec{a} = \frac{dv}{dt}\vec{\tau} + \frac{v^2}{R}\vec{\eta}
+  \]</p>
+  
+  <p><strong>Descrizione scalare angolare</strong>:</p>
+  <p>Definiamo la coordinata angolare \(\theta(t)\) e la traiettoria orientata (senso antiorario positivo):</p>
+  <p>\[
+  s(t) = R\theta(t) \quad \text{(legge oraria scalare)}
+  \]</p>
+  <p>\[
+  \omega(t) = \frac{d\theta}{dt} \quad \text{(velocità angolare)}
+  \]</p>
+  <p>\[
+  \alpha(t) = \frac{d\omega}{dt} = \frac{d^2\theta}{dt^2} \quad \text{(accelerazione angolare)}
+  \]</p>
+  
+  <p><strong>Relazioni tra grandezze lineari e angolari</strong>:</p>
+  <p>\[
+  v = R\omega, \quad a_t = R\alpha, \quad a_n = R\omega^2
+  \]</p>
+  
+  <p><strong>Moto circolare uniforme</strong> (\(\alpha = 0\), \(\omega = costante\)):</p>
+  <p>\[
+  a_t = 0, \quad a_n = R\omega^2 = \frac{v^2}{R}
+  \]</p>
+  <p>\[
+  \theta(t) = \theta_0 + \omega t
+  \]</p>
+  
+  <h3>Moto Armonico: Descrizione Quantitativa</h3>
+  <p>Un punto materiale si muove di <strong>moto armonico</strong> quando la sua accelerazione è proporzionale e opposta allo spostamento dalla posizione di equilibrio:</p>
+  <p>\[
+  a(t) = -\omega^2 x(t)
+  \]</p>
+  
+  <p>L'equazione differenziale del moto armonico è:</p>
+  <p>\[
+  \frac{d^2x}{dt^2} + \omega^2 x = 0
+  \]</p>
+  
+  <p>La soluzione generale è:</p>
+  <p>\[
+  x(t) = A\cos(\omega t + \phi)
+  \]</p>
+  
+  <p>Derivando successivamente otteniamo:</p>
+  <p>\[
+  v(t) = -A\omega\sin(\omega t + \phi)
+  \]</p>
+  <p>\[
+  a(t) = -A\omega^2\cos(\omega t + \phi) = -\omega^2 x(t)
+  \]</p>
+  
+  <p>dove:</p>
+  <ul>
+    <li>\(A\): ampiezza (massimo spostamento)</li>
+    <li>\(\omega\): pulsazione</li>
+    <li>\(\phi\): fase iniziale</li>
+    <li>\(T = \frac{2\pi}{\omega}\): periodo</li>
+    <li>\(f = \frac{1}{T}\): frequenza</li>
+  </ul>
+  
+  <h3>Moti Reali: L'Effetto dello Smorzamento</h3>
+  <p>Nella realtà, i moti sono influenzati da forze dissipative. Per esempio, nel moto armonico smorzato l'equazione diventa:</p>
+  <p>\[
+  \frac{d^2x}{dt^2} + 2\beta\frac{dx}{dt} + \omega_0^2 x = 0
+  \]</p>
+  <p>dove \(\beta\) è il coefficiente di smorzamento. Questo spiega perché le oscillazioni reali si smorzano gradualmente nel tempo.</p>
+</section>

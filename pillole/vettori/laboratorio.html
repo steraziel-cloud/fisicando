@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fisicando – Laboratorio vettori</title>
+
+  <link rel="stylesheet" href="../../assets/style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjs@11/lib/browser/math.js"></script>
+
+<!--   <script src="../../assets/content.js" defer></script>
+  <script src="../../assets/site.js" defer></script> -->
+  <script src="../../assets/main.js" defer></script>
+  <script src="laboratorio.js" defer></script>
+
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <div class="container laboratorio-standalone">
+    <section class="card">
+      <div class="lab-grid">
+        
+        <div class="lab-controls">
+<h3>Aggiungi vettore</h3>
+
+<div class="input-block">
+  <div class="row compact-row">
+    <label>Nome</label>
+    <input type="text" id="vname" placeholder="es. v1">
+  </div>
+  <div class="row compact-row">
+    <label>x</label>
+    <input type="text" id="vx" placeholder="x">
+    <label>y</label>
+    <input type="text" id="vy" placeholder="y">
+    <button id="addVector" class="btn small">Disegna</button>
+  </div>
+</div>
+
+<div class="input-block">
+  <div class="row compact-row">
+    <label>Nome</label>
+    <input type="text" id="vnamePolar" placeholder="es. v2">
+  </div>
+  <div class="row compact-row">
+    <label>r</label>
+    <input type="text" id="vr" placeholder="r">
+    <label>θ</label>
+    <input type="text" id="vtheta" placeholder="°">
+    <button id="addVectorPolar" class="btn small">Disegna</button>
+  </div>
+  <div class="row theta-row-compact">
+    <span class="theta-mini-label">unità</span>
+    <label><input type="radio" name="theta-unit" value="deg" checked> gradi</label>
+    <label><input type="radio" name="theta-unit" value="rad"> rad</label>
+  </div>
+</div>
+
+          <h3>Operazioni</h3>
+<div class="row">
+  <label>k<sub>A</sub></label>
+  <input type="text" id="kA" placeholder="es. 2, sqrt(3)">
+  <label>V<sub>A</sub></label>
+  <select id="opA"></select>
+  <button id="drawScaled" class="btn small">k<sub>A</sub>·V<sub>A</sub></button>
+</div>
+
+<div class="row">
+  <label>V</label>
+<select id="opDecompose"></select>
+  <button id="drawComponents" class="btn small secondary">Scomponi</button>
+</div>
+
+          <div class="row">
+            <label>V<sub>A</sub></label>
+            <select id="opASum"></select>
+            <label>V<sub>B</sub></label>
+            <select id="opB"></select>
+            <button id="drawParallelogram" class="btn small">+</button>
+            <button id="drawDifference" class="btn small">−</button>
+          </div>
+
+          <h3>Prodotti</h3>
+          <div class="row">
+            <label>V<sub>A</sub></label>
+            <select id="dotA"></select>
+            <label>V<sub>B</sub></label>
+            <select id="dotB"></select>
+            <button id="calcDot" class="btn small">A·B</button>
+          </div>
+          <div id="dotResult" class="result"></div>
+
+          <div class="row">
+            <label>V<sub>A</sub></label>
+            <select id="crossA"></select>
+            <label>V<sub>B</sub></label>
+            <select id="crossB"></select>
+            <button id="calcCross" class="btn small">A×B</button>
+          </div>
+          <div id="crossResult" class="result"></div>
+        </div>
+
+        <div class="lab-canvas-container">
+          <canvas id="lab-canvas"></canvas>
+          <button id="clearVectors" class="btn danger small">Cancella tutti</button>
+          <div id="vector-list" class="vector-list"></div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+</body>
+</html>
