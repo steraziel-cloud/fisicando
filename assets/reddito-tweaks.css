@@ -51,6 +51,19 @@
   border:none;
   border-radius:0;
   box-shadow:none;
+  isolation:isolate;
+}
+
+.rm-home-art-final::after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  z-index:2;
+  pointer-events:none;
+  background:
+    linear-gradient(to bottom, var(--rm-bg) 0%, transparent 10%),
+    linear-gradient(to top, var(--rm-bg) 0%, transparent 12%),
+    linear-gradient(to left, var(--rm-bg) 0%, transparent 10%);
 }
 
 .rm-home-hero-image{
