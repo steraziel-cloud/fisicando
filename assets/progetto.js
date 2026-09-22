@@ -1,46 +1,68 @@
 window.addEventListener('DOMContentLoaded',()=>{
   const track=document.querySelector('.rm-track');
   if(!track) return;
+
   const slides=[...document.querySelectorAll('.rm-slide')];
-  const dots=[...document.querySelectorAll('.rm-slide-dot')];
-  const count=document.querySelector('.rm-slide-count');
   const prev=document.querySelector('[data-slide-prev]');
   const next=document.querySelector('[data-slide-next]');
+  const slider=document.querySelector('.rm-slider');
+
   let index=0;
-  let timer=null;
+  let slideTimer=null;
+  let microTimer=null;
   let pointerStartX=null;
   let pointerStartY=null;
   let wheelLocked=false;
+
   const AUTO_MS=20000;
+  const MICRO_MS=6500;
 
   function render(){
     track.style.transform=`translateX(-${index*100}%)`;
-    dots.forEach((d,i)=>d.classList.toggle('active',i===index));
-    if(count) count.textContent=`${index+1} / ${slides.length}`;
   }
-  function resetTimer(){
-    clearInterval(timer);
-    timer=setInterval(()=>go(index+1,false),AUTO_MS);
+
+  function resetSlideTimer(){
+    clearInterval(slideTimer);
+    slideTimer=setInterval(()=>go(index+1,false),AUTO_MS);
   }
+
+  function resetMicroTimer(){
+    clearInterval(microTimer);
+    if(index===0){
+      microTimer=setInterval(()=>showBook(bookIndex+1,rightPage,false),MICRO_MS);
+    }else if(index===2){
+      microTimer=setInterval(()=>advanceBoard(false),MICRO_MS);
+    }else if(index===3){
+      microTimer=setInterval(()=>advanceResource(false),MICRO_MS);
+    }
+  }
+
+  function registerActivity(){
+    resetSlideTimer();
+    resetMicroTimer();
+  }
+
   function go(i,user=true){
     index=(i+slides.length)%slides.length;
     render();
-    if(user) resetTimer();
+    resetMicroTimer();
+    if(user) resetSlideTimer();
   }
+
   prev?.addEventListener('click',()=>go(index-1));
   next?.addEventListener('click',()=>go(index+1));
-  dots.forEach((d,i)=>d.addEventListener('click',()=>go(i)));
 
   document.addEventListener('keydown',e=>{
     if(e.key==='ArrowRight') go(index+1);
     if(e.key==='ArrowLeft') go(index-1);
   });
 
-  const slider=document.querySelector('.rm-slider');
   slider?.addEventListener('pointerdown',e=>{
-    if(e.target.closest('button,a,.rm-page,.rm-board,.rm-whisper')) return;
-    pointerStartX=e.clientX; pointerStartY=e.clientY;
+    if(e.target.closest('button,a,.rm-page,.rm-board,.rm-reader,.rm-morgana,.rm-whisper')) return;
+    pointerStartX=e.clientX;
+    pointerStartY=e.clientY;
   });
+
   slider?.addEventListener('pointerup',e=>{
     if(pointerStartX===null) return;
     const dx=e.clientX-pointerStartX;
@@ -48,7 +70,10 @@ window.addEventListener('DOMContentLoaded',()=>{
     if(Math.abs(dx)>60 && Math.abs(dx)>Math.abs(dy)) go(index+(dx<0?1:-1));
     pointerStartX=pointerStartY=null;
   });
-  slider?.addEventListener('pointercancel',()=>{pointerStartX=pointerStartY=null});
+
+  slider?.addEventListener('pointercancel',()=>{
+    pointerStartX=pointerStartY=null;
+  });
 
   slider?.addEventListener('wheel',e=>{
     if(wheelLocked) return;
@@ -61,8 +86,23 @@ window.addEventListener('DOMContentLoaded',()=>{
   },{passive:false});
 
   document.addEventListener('visibilitychange',()=>{
-    if(document.hidden) clearInterval(timer); else resetTimer();
+    if(document.hidden){
+      clearInterval(slideTimer);
+      clearInterval(microTimer);
+    }else{
+      resetSlideTimer();
+      resetMicroTimer();
+    }
   });
+
+  function activateWithKeyboard(el,fn){
+    el?.addEventListener('keydown',e=>{
+      if(e.key==='Enter' || e.key===' '){
+        e.preventDefault();
+        fn();
+      }
+    });
+  }
 
   // Libro di Red
   const bookData=[
@@ -70,25 +110,46 @@ window.addEventListener('DOMContentLoaded',()=>{
     ['Didattica adattabile','Spiegazioni, esercizi e strumenti possono cambiare insieme al percorso.'],
     ['Autonomia','L’obiettivo è capire meglio e acquisire metodo, non soltanto arrivare alla risposta.']
   ];
+
   let bookIndex=0;
   const bookTitle=document.querySelector('[data-book-title]');
   const bookCopy=document.querySelector('[data-book-copy]');
   const bookStep=document.querySelector('[data-book-step]');
   const leftPage=document.querySelector('.rm-page.left');
   const rightPage=document.querySelector('.rm-page.right');
-  function showBook(nextIndex,page){
+  const reader=document.querySelector('.rm-reader');
+  const bookPrev=document.querySelector('[data-book-prev]');
+  const bookNext=document.querySelector('[data-book-next]');
+  const bookDots=[...document.querySelectorAll('[data-book-index]')];
+  const bookCount=document.querySelector('[data-book-count]');
+
+  function updateBookControls(){
+    bookDots.forEach((dot,i)=>dot.classList.toggle('active',i===bookIndex));
+    if(bookCount) bookCount.textContent=`${bookIndex+1} / ${bookData.length}`;
+  }
+
+  function showBook(nextIndex,page=rightPage,user=true){
     bookIndex=(nextIndex+bookData.length)%bookData.length;
     page?.classList.add('turn');
     setTimeout(()=>{
       if(bookTitle) bookTitle.textContent=bookData[bookIndex][0];
       if(bookCopy) bookCopy.textContent=bookData[bookIndex][1];
       if(bookStep) bookStep.textContent=`${bookIndex+1} / ${bookData.length}`;
+      updateBookControls();
       page?.classList.remove('turn');
     },130);
-    resetTimer();
+    if(user) registerActivity();
   }
+
   leftPage?.addEventListener('click',()=>showBook(bookIndex-1,leftPage));
   rightPage?.addEventListener('click',()=>showBook(bookIndex+1,rightPage));
+  reader?.addEventListener('click',()=>showBook(bookIndex+1,rightPage));
+  bookPrev?.addEventListener('click',()=>showBook(bookIndex-1,leftPage));
+  bookNext?.addEventListener('click',()=>showBook(bookIndex+1,rightPage));
+  bookDots.forEach(dot=>dot.addEventListener('click',()=>showBook(Number(dot.dataset.bookIndex),rightPage)));
+  activateWithKeyboard(leftPage,()=>showBook(bookIndex-1,leftPage));
+  activateWithKeyboard(rightPage,()=>showBook(bookIndex+1,rightPage));
+  activateWithKeyboard(reader,()=>showBook(bookIndex+1,rightPage));
 
   // Lavagna di Morgana
   const boardData=[
@@ -96,33 +157,68 @@ window.addEventListener('DOMContentLoaded',()=>{
     ['PASSO 02','Scegliere strumenti e spiegazioni','Spiegazioni, strumenti ed esercizi vengono scelti in base alla situazione e agli obiettivi, senza proporre lo stesso percorso a tutte e tutti.'],
     ['PASSO 03','Adattare il lavoro nel tempo','Il percorso può cambiare insieme ai progressi che emergono, senza restare bloccato in uno schema deciso in partenza.']
   ];
+
   let boardIndex=0;
   const board=document.querySelector('.rm-board');
   const boardStep=document.querySelector('[data-board-step]');
   const boardTitle=document.querySelector('[data-board-title]');
   const boardCopy=document.querySelector('[data-board-copy]');
   const morgana=document.querySelector('.rm-morgana');
+  const boardPrev=document.querySelector('[data-board-prev]');
+  const boardNext=document.querySelector('[data-board-next]');
+  const boardDots=[...document.querySelectorAll('[data-board-index]')];
+  const boardCount=document.querySelector('[data-board-count]');
   let typeTimer=null;
+
   function typeText(el,text){
     if(!el) return;
     clearInterval(typeTimer);
-    if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=text;return;}
-    el.textContent=''; let i=0;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+      el.textContent=text;
+      return;
+    }
+    el.textContent='';
+    let i=0;
     typeTimer=setInterval(()=>{
       el.textContent+=text[i++]||'';
       if(i>=text.length) clearInterval(typeTimer);
     },7);
   }
-  function advanceBoard(){
-    boardIndex=(boardIndex+1)%boardData.length;
-    const data=boardData[boardIndex];
-    morgana?.classList.remove('writing'); void morgana?.offsetWidth; morgana?.classList.add('writing');
-    if(boardStep) boardStep.textContent=data[0];
-    if(boardTitle){boardTitle.classList.remove('rm-fade-write');void boardTitle.offsetWidth;boardTitle.textContent=data[1];boardTitle.classList.add('rm-fade-write');}
-    typeText(boardCopy,data[2]);
-    resetTimer();
+
+  function updateBoardControls(){
+    boardDots.forEach((dot,i)=>dot.classList.toggle('active',i===boardIndex));
+    if(boardCount) boardCount.textContent=`${boardIndex+1} / ${boardData.length}`;
   }
-  board?.addEventListener('click',advanceBoard);
+
+  function showBoard(nextIndex,user=true){
+    boardIndex=(nextIndex+boardData.length)%boardData.length;
+    const data=boardData[boardIndex];
+    morgana?.classList.remove('writing');
+    void morgana?.offsetWidth;
+    morgana?.classList.add('writing');
+    if(boardStep) boardStep.textContent=data[0];
+    if(boardTitle){
+      boardTitle.classList.remove('rm-fade-write');
+      void boardTitle.offsetWidth;
+      boardTitle.textContent=data[1];
+      boardTitle.classList.add('rm-fade-write');
+    }
+    typeText(boardCopy,data[2]);
+    updateBoardControls();
+    if(user) registerActivity();
+  }
+
+  function advanceBoard(user=true){
+    showBoard(boardIndex+1,user);
+  }
+
+  board?.addEventListener('click',()=>advanceBoard(true));
+  morgana?.addEventListener('click',()=>advanceBoard(true));
+  boardPrev?.addEventListener('click',()=>showBoard(boardIndex-1,true));
+  boardNext?.addEventListener('click',()=>showBoard(boardIndex+1,true));
+  boardDots.forEach(dot=>dot.addEventListener('click',()=>showBoard(Number(dot.dataset.boardIndex),true)));
+  activateWithKeyboard(board,()=>advanceBoard(true));
+  activateWithKeyboard(morgana,()=>advanceBoard(true));
 
   // Red + Bjorne
   const resourceData=[
@@ -131,21 +227,52 @@ window.addEventListener('DOMContentLoaded',()=>{
     ['Esercitazioni','Attività per allenarsi e mettere alla prova ciò che si è capito.'],
     ['Laboratori','Strumenti interattivi per osservare, provare e ragionare sui concetti.']
   ];
+
   let resourceIndex=0;
   const whisper=document.querySelector('.rm-whisper');
   const balloon=document.querySelector('.rm-balloon');
   const resourceTitle=document.querySelector('[data-resource-title]');
   const resourceCopy=document.querySelector('[data-resource-copy]');
-  function advanceResource(){
-    resourceIndex=(resourceIndex+1)%resourceData.length;
-    balloon?.classList.remove('pulse'); void balloon?.offsetWidth; balloon?.classList.add('pulse');
+  const resourcePrev=document.querySelector('[data-resource-prev]');
+  const resourceNext=document.querySelector('[data-resource-next]');
+  const resourceDots=[...document.querySelectorAll('[data-resource-index]')];
+  const resourceCount=document.querySelector('[data-resource-count]');
+
+  function updateResourceControls(){
+    resourceDots.forEach((dot,i)=>dot.classList.toggle('active',i===resourceIndex));
+    if(resourceCount) resourceCount.textContent=`${resourceIndex+1} / ${resourceData.length}`;
+  }
+
+  function showResource(nextIndex,user=true){
+    resourceIndex=(nextIndex+resourceData.length)%resourceData.length;
+    balloon?.classList.remove('pulse');
+    void balloon?.offsetWidth;
+    balloon?.classList.add('pulse');
     setTimeout(()=>{
       if(resourceTitle) resourceTitle.textContent=resourceData[resourceIndex][0];
       if(resourceCopy) resourceCopy.textContent=resourceData[resourceIndex][1];
+      updateResourceControls();
     },110);
-    resetTimer();
+    if(user) registerActivity();
   }
-  whisper?.addEventListener('click',advanceResource);
 
-  render(); resetTimer();
+  function advanceResource(user=true){
+    showResource(resourceIndex+1,user);
+  }
+
+  whisper?.addEventListener('click',e=>{
+    if(e.target.closest('.rm-micro-controls')) return;
+    advanceResource(true);
+  });
+  resourcePrev?.addEventListener('click',e=>{e.stopPropagation();showResource(resourceIndex-1,true)});
+  resourceNext?.addEventListener('click',e=>{e.stopPropagation();showResource(resourceIndex+1,true)});
+  resourceDots.forEach(dot=>dot.addEventListener('click',e=>{e.stopPropagation();showResource(Number(dot.dataset.resourceIndex),true)}));
+  activateWithKeyboard(whisper,()=>advanceResource(true));
+
+  updateBookControls();
+  updateBoardControls();
+  updateResourceControls();
+  render();
+  resetSlideTimer();
+  resetMicroTimer();
 });
