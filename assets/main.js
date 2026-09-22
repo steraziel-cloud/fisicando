@@ -1,6 +1,22 @@
 window.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("theme-toggle");
 
+  // Correzione layout per la pagina "Il progetto": i titoli possono andare su piu righe
+  // e restano sempre dentro la colonna di testo senza finire dietro la scena illustrata.
+  if (document.body.classList.contains("rm-lock")) {
+    const projectTitleFix = document.createElement("style");
+    projectTitleFix.textContent = `
+      .rm-slide-copy h1 {
+        white-space: normal !important;
+        text-wrap: balance;
+        max-width: 100%;
+        overflow-wrap: normal;
+        font-size: clamp(28px, 3vw, 44px);
+      }
+    `;
+    document.head.appendChild(projectTitleFix);
+  }
+
   // Applica sempre il tema salvato, anche se il bottone non esiste
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
