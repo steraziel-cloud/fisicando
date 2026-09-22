@@ -1,7 +1,27 @@
-/* Iteration refinements: keep desktop titles on one line and rebalance the layout. */
+/* Iteration refinements */
 @media (min-width:1120px){
-  .rm-home-grid{grid-template-columns:minmax(0,1.45fr) minmax(360px,.75fr);gap:52px}
+  .rm-home-grid{grid-template-columns:minmax(0,1.05fr) minmax(520px,.95fr);gap:38px}
   .rm-home-title{font-size:clamp(38px,3vw,44px);white-space:nowrap}
   .rm-slide-inner{grid-template-columns:minmax(0,1.25fr) minmax(360px,.75fr);gap:48px}
-  .rm-slide-copy h1{font-size:clamp(26px,2.15vw,31px);white-space:nowrap}
+  .rm-slide-copy h1{font-size:clamp(26px,2.15vw,31px);white-space:normal;text-wrap:balance;max-width:100%}
+}
+
+/* Final hero artwork */
+.rm-home-art-final{
+  min-height:0;
+  aspect-ratio:3 / 2;
+  padding:0;
+  overflow:hidden;
+  background:none;
+}
+.rm-home-hero-image{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:inherit;
+}
+
+@media (max-width:1119px){
+  .rm-home-art-final{min-height:0;aspect-ratio:3 / 2}
 }
