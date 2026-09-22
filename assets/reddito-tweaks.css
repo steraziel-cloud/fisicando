@@ -1,0 +1,7 @@
+/* Iteration refinements: keep desktop titles on one line and rebalance the layout. */
+@media (min-width:1120px){
+  .rm-home-grid{grid-template-columns:minmax(0,1.45fr) minmax(360px,.75fr);gap:52px}
+  .rm-home-title{font-size:clamp(38px,3vw,44px);white-space:nowrap}
+  .rm-slide-inner{grid-template-columns:minmax(0,1.25fr) minmax(360px,.75fr);gap:48px}
+  .rm-slide-copy h1{font-size:clamp(26px,2.15vw,31px);white-space:nowrap}
+}
