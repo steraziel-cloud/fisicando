@@ -4,270 +4,157 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Reddito Math – Il progetto</title>
-  <meta name="description" content="Scopri Reddito Math: lezioni in presenza e online, supporto allo studio e strumenti digitali pensati per accompagnare studentesse e studenti." />
-
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
-  <link rel="stylesheet" href="assets/info.css">
-  <link rel="stylesheet" href="assets/info-narrative.css">
+  <meta name="description" content="Scopri come nasce Reddito Math, come lavoriamo e come stiamo costruendo uno spazio digitale per lo studio." />
+  <link rel="stylesheet" href="assets/reddito.css">
   <script src="assets/main.js" defer></script>
-  <script src="assets/info.js" defer></script>
+  <script src="assets/progetto.js" defer></script>
 </head>
-<body class="rm-page">
-  <header class="rm-header">
-    <div class="rm-shell rm-header-inner">
-      <a class="rm-brand" href="index.html">reddito<span>Math</span></a>
-
+<body class="rm-lock">
+  <header class="rm-topbar">
+    <div class="rm-shell rm-topbar-inner">
+      <a class="rm-logo" href="index.html">reddito<span>Math</span></a>
       <nav class="rm-nav" aria-label="Navigazione principale">
         <a href="index.html">Home</a>
-        <a href="info.html" class="active">Il progetto</a>
+        <a class="active" href="info.html">Il progetto</a>
         <a href="contatti.html">Contatti</a>
-        <a href="index.html">Lezioni online</a>
+        <a href="lezioni.html">Lezioni online</a>
       </nav>
-
-      <button id="theme-toggle" class="btn rm-theme-btn" aria-label="Cambia tema">🌙</button>
+      <button id="theme-toggle" class="rm-theme" aria-label="Cambia tema">🌙</button>
     </div>
   </header>
 
-  <main class="rm-main">
-    <!-- HERO -->
-    <section class="rm-hero rm-hero-story">
-      <div class="rm-shell rm-hero-grid">
-        <div>
-          <div class="rm-eyebrow">Il progetto</div>
-          <h1>Capire, imparare, <em>diventare autonomi</em>.</h1>
-          <p class="rm-hero-copy">
-            Lezioni in presenza e online, supporto allo studio e strumenti digitali pensati per aiutare chi studia a comprendere meglio, acquisire metodo e diventare progressivamente più autonomo.
-          </p>
-          <div class="rm-actions">
-            <a class="rm-action primary" href="#chi-siamo">Scopri il progetto</a>
-            <a class="rm-action secondary" href="contatti.html">Contattaci</a>
-          </div>
-        </div>
+  <main class="rm-project-main">
+    <div class="rm-slider" aria-label="Presentazione del progetto Reddito Math">
+      <div class="rm-track">
 
-        <div class="story-stage hero-stage" aria-label="Wireframe della futura illustrazione con Red, Morgana e Bjorne che escono dallo schermo insieme a elementi legati alle materie delle ripetizioni">
-          <div class="stage-label">SCENA HERO</div>
-          <div class="screen-frame">
-            <div class="screen-glow"></div>
-            <div class="wire-cat cat-red">Red</div>
-            <div class="wire-cat cat-morgana">Morgana</div>
-            <div class="wire-cat cat-bjorne">Bjorne</div>
-            <span class="subject-token token-math">f(x)</span>
-            <span class="subject-token token-physics">F = ma</span>
-            <span class="subject-token token-geometry">△</span>
-            <span class="subject-token token-science">H₂O</span>
-            <span class="subject-token token-study">📚</span>
-          </div>
-          <p class="stage-note">Wireframe: qui andrà l'illustrazione definitiva dei tre gattini che “bucano” lo schermo e portano con sé matematica, fisica, scienze e strumenti di studio.</p>
-        </div>
-      </div>
-    </section>
+        <section class="rm-slide" aria-label="Chi siamo">
+          <div class="rm-slide-inner">
+            <div class="rm-slide-copy">
+              <div class="rm-eyebrow">Chi siamo</div>
+              <h1>Un progetto educativo nato sul campo.</h1>
+              <p><strong>Reddito Math è un progetto educativo nato dal lavoro diretto con studentesse e studenti.</strong></p>
+              <p>Unisce competenze e sensibilità diverse nel campo dell'educazione e dell'insegnamento, mettendo insieme <strong>competenze didattiche e attenzione educativa ai bisogni di chi studia</strong>.</p>
+              <p>L’idea alla base del progetto è semplice: non tutte le difficoltà dipendono dallo stesso motivo e non tutte le persone imparano allo stesso modo. Per questo cerchiamo di costruire percorsi che tengano conto della situazione concreta di ogni studentessa e di ogni studente.</p>
+            </div>
 
-    <!-- CHI SIAMO -->
-    <section class="rm-section soft" id="chi-siamo">
-      <div class="rm-shell narrative-split">
-        <div class="rm-prose">
-          <div class="rm-eyebrow">Chi siamo</div>
-          <div class="rm-section-head">
-            <h2>Un progetto educativo nato sul campo.</h2>
-          </div>
-          <p><strong>Reddito Math è un progetto educativo nato dal lavoro diretto con studentesse e studenti.</strong></p>
-          <p>Unisce competenze e sensibilità diverse nel campo dell'educazione e dell'insegnamento, mettendo insieme <strong>competenze didattiche e attenzione educativa ai bisogni di chi studia</strong>.</p>
-          <p>L’idea alla base del progetto è semplice: non tutte le difficoltà dipendono dallo stesso motivo e non tutte le persone imparano allo stesso modo. Per questo cerchiamo di costruire percorsi che tengano conto della situazione concreta di ogni studentessa e di ogni studente.</p>
-        </div>
-
-        <div class="story-stage book-stage" aria-label="Red sfoglia un libro che mostra i principi del progetto">
-          <div class="stage-label">RED SFOGLIA IL LIBRO</div>
-          <div class="reading-scene">
-            <div class="wire-cat reader-red">Red</div>
-            <div class="open-book" id="principle-book">
-              <div class="book-page book-page-left">
-                <span class="book-kicker">Reddito Math</span>
-                <div class="book-doodle">∑ · π · x²</div>
-              </div>
-              <div class="book-page book-page-right">
-                <span class="book-step" id="book-step">1 / 3</span>
-                <h3 id="book-title">Bisogni reali</h3>
-                <p id="book-copy">Si parte dalla situazione concreta di chi studia, non da un percorso preconfezionato.</p>
+            <div class="rm-scene rm-book-scene" aria-label="Red sfoglia un libro con i principi del progetto">
+              <div class="rm-book-wrap">
+                <div class="rm-reader">Red</div>
+                <div class="rm-book">
+                  <div class="rm-page left" role="button" tabindex="0" aria-label="Pagina precedente">
+                    <small>Reddito Math</small>
+                    <div class="rm-book-doodle">∑ · π · x²</div>
+                  </div>
+                  <div class="rm-page right" role="button" tabindex="0" aria-label="Pagina successiva">
+                    <small data-book-step>1 / 3</small>
+                    <h3 data-book-title>Bisogni reali</h3>
+                    <p data-book-copy>Si parte dalla situazione concreta di chi studia, non da un percorso preconfezionato.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="scene-controls" aria-label="Sfoglia i principi del progetto">
-            <button class="scene-arrow" id="book-prev" type="button" aria-label="Pagina precedente">←</button>
-            <div class="scene-dots" id="book-dots">
-              <button class="scene-dot active" type="button" data-book-index="0" aria-label="Bisogni reali"></button>
-              <button class="scene-dot" type="button" data-book-index="1" aria-label="Didattica adattabile"></button>
-              <button class="scene-dot" type="button" data-book-index="2" aria-label="Autonomia"></button>
+        </section>
+
+        <section class="rm-slide" aria-label="Cosa facciamo">
+          <div class="rm-slide-inner">
+            <div class="rm-slide-copy">
+              <div class="rm-eyebrow">Cosa facciamo</div>
+              <h1>Un supporto costruito intorno a ciò che serve.</h1>
+              <p>Offriamo <strong>lezioni in presenza e online</strong>, supporto allo studio e percorsi di accompagnamento nelle materie scientifiche e negli altri ambiti in cui possiamo mettere a disposizione le nostre competenze.</p>
+              <p>Il supporto può riguardare una difficoltà specifica oppure proseguire nel tempo, seguendo l’evoluzione del percorso scolastico o universitario.</p>
             </div>
-            <button class="scene-arrow" id="book-next" type="button" aria-label="Pagina successiva">→</button>
+
+            <div class="rm-scene rm-card-scene">
+              <article class="rm-info-card"><span class="n">01</span><h3>Capire meglio</h3><p>Riprendere un argomento poco chiaro e ricostruire i passaggi che mancano.</p></article>
+              <article class="rm-info-card"><span class="n">02</span><h3>Prepararsi</h3><p>Affrontare verifiche, esami ed esercizi complessi con maggiore sicurezza.</p></article>
+              <article class="rm-info-card"><span class="n">03</span><h3>Consolidare</h3><p>Rafforzare le basi e trasformare conoscenze fragili in strumenti più stabili.</p></article>
+              <article class="rm-info-card"><span class="n">04</span><h3>Costruire metodo</h3><p>Organizzare il lavoro e trovare strategie di studio più efficaci e autonome.</p></article>
+            </div>
           </div>
-        </div>
+        </section>
+
+        <section class="rm-slide" aria-label="Come lavoriamo">
+          <div class="rm-slide-inner">
+            <div class="rm-slide-copy">
+              <div class="rm-eyebrow">Come lavoriamo</div>
+              <h1>Prima di spiegare, capiamo da dove partire.</h1>
+              <p>Prima di iniziare cerchiamo di capire da dove nasce la difficoltà e quale possa essere il modo più utile per affrontarla.</p>
+              <p>A volte il problema riguarda un concetto non ancora compreso, altre volte basi poco solide, un procedimento imparato in modo meccanico, un metodo di studio poco efficace oppure semplicemente la necessità di una spiegazione diversa.</p>
+              <p><strong>L’obiettivo non è soltanto arrivare alla soluzione di un esercizio o superare la verifica successiva, ma aiutare chi studia a comprendere meglio ciò che sta facendo, acquisire metodo e diventare progressivamente più autonomo.</strong></p>
+            </div>
+
+            <div class="rm-scene rm-classroom">
+              <div class="rm-board" role="button" tabindex="0" aria-label="Clicca per mostrare il passaggio successivo">
+                <small data-board-step>PASSO 01</small>
+                <h3 data-board-title>Individuare il punto di partenza</h3>
+                <p data-board-copy>Capire se la difficoltà nasce da un concetto non compreso, da basi poco solide, da un procedimento meccanico o dalla necessità di una spiegazione diversa.</p>
+                <span class="chalk">x → ? → ✓</span>
+              </div>
+              <div class="rm-morgana">Morgana</div>
+              <div class="rm-students"><div class="rm-student red">Red</div><div class="rm-student bj">Bjorne</div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="rm-slide" aria-label="Oltre le lezioni">
+          <div class="rm-slide-inner">
+            <div class="rm-slide-copy">
+              <div class="rm-eyebrow">Oltre le lezioni</div>
+              <h1>Continuare a imparare anche fuori dalla lezione.</h1>
+              <p><strong>Reddito Math è un progetto in continua evoluzione.</strong></p>
+              <p>Accanto alle lezioni stiamo sviluppando uno spazio digitale pensato per raccogliere nel tempo lezioni, materiali, esercitazioni, laboratori interattivi e strumenti utili allo studio.</p>
+              <p>L’obiettivo è creare un ambiente che studentesse e studenti possano utilizzare anche al di fuori delle lezioni, per ripassare, esercitarsi, approfondire un argomento o provare a comprenderlo da un punto di vista diverso.</p>
+            </div>
+
+            <div class="rm-scene rm-whisper" role="button" tabindex="0" aria-label="Clicca per vedere la risorsa successiva">
+              <div class="rm-whisper-cat red">Red</div>
+              <div class="rm-whisper-cat bj">Bjorne</div>
+              <div class="rm-balloon">
+                <small>Stiamo costruendo...</small>
+                <h3 data-resource-title>Lezioni</h3>
+                <p data-resource-copy>Contenuti e spiegazioni da riprendere quando serve.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="rm-slide" aria-label="A chi ci rivolgiamo">
+          <div class="rm-slide-inner">
+            <div class="rm-slide-copy">
+              <div class="rm-eyebrow">A chi ci rivolgiamo</div>
+              <h1>Per chi vuole fare un passo avanti nello studio.</h1>
+              <p>Ci rivolgiamo a <strong>tutte le studentesse e a tutti gli studenti che vogliono migliorare il proprio percorso di studio e affrontarlo con maggiore consapevolezza e sicurezza</strong>, che si tratti di rafforzare la preparazione, comprendere meglio ciò che stanno studiando, sviluppare nuove competenze o acquisire un metodo più efficace.</p>
+              <p>Non è necessario avere già chiaro quale sia la difficoltà o da dove cominciare: <strong>individuare insieme i punti su cui lavorare può essere già una parte importante del percorso.</strong></p>
+              <div class="rm-inline-cta">
+                <p><strong>Vuoi capire se Reddito Math può esserti utile?</strong><br>Raccontaci cosa stai studiando e in cosa vorresti ricevere supporto.</p>
+                <a class="rm-btn" href="contatti.html">Contattaci</a>
+              </div>
+            </div>
+
+            <div class="rm-scene rm-devices" aria-label="Segnaposto per la futura scena dei gattini felici che studiano con strumenti diversi">
+              <div class="rm-device-col"><div class="rm-device-cat morgana">Morgana</div><div class="rm-device">⌨</div><div class="rm-device-label">computer</div></div>
+              <div class="rm-device-col"><div class="rm-device-cat red">Red</div><div class="rm-device">∫</div><div class="rm-device-label">tablet</div></div>
+              <div class="rm-device-col"><div class="rm-device-cat bj">Bjorne</div><div class="rm-device">A²</div><div class="rm-device-label">libro / quaderno</div></div>
+            </div>
+          </div>
+        </section>
+
       </div>
-    </section>
+    </div>
 
-    <!-- COSA FACCIAMO -->
-    <section class="rm-section" id="cosa-facciamo">
-      <div class="rm-shell">
-        <div class="rm-section-head">
-          <div class="rm-eyebrow">Cosa facciamo</div>
-          <h2>Un supporto costruito intorno a ciò che serve.</h2>
-          <p>Offriamo <strong>lezioni in presenza e online</strong>, supporto allo studio e percorsi di accompagnamento nelle materie scientifiche e negli altri ambiti in cui possiamo mettere a disposizione le nostre competenze.</p>
-        </div>
-
-        <div class="rm-card-grid narrative-cards">
-          <article class="rm-mini-card">
-            <span class="num">01</span>
-            <h3>Capire meglio</h3>
-            <p>Riprendere un argomento poco chiaro e ricostruire i passaggi che mancano.</p>
-          </article>
-          <article class="rm-mini-card">
-            <span class="num">02</span>
-            <h3>Prepararsi</h3>
-            <p>Affrontare verifiche, esami ed esercizi complessi con maggiore sicurezza.</p>
-          </article>
-          <article class="rm-mini-card">
-            <span class="num">03</span>
-            <h3>Consolidare</h3>
-            <p>Rafforzare le basi e trasformare conoscenze fragili in strumenti più stabili.</p>
-          </article>
-          <article class="rm-mini-card">
-            <span class="num">04</span>
-            <h3>Costruire metodo</h3>
-            <p>Organizzare il lavoro e trovare strategie di studio più efficaci e autonome.</p>
-          </article>
-        </div>
-
-        <div class="rm-note-band">
-          Il supporto può riguardare una difficoltà specifica oppure proseguire nel tempo, seguendo l’evoluzione del percorso scolastico o universitario.
-        </div>
+    <div class="rm-slide-controls" aria-label="Controlli presentazione">
+      <button class="rm-slide-arrow" data-slide-prev aria-label="Slide precedente">←</button>
+      <div class="rm-slide-dots">
+        <button class="rm-slide-dot active" aria-label="Chi siamo"></button>
+        <button class="rm-slide-dot" aria-label="Cosa facciamo"></button>
+        <button class="rm-slide-dot" aria-label="Come lavoriamo"></button>
+        <button class="rm-slide-dot" aria-label="Oltre le lezioni"></button>
+        <button class="rm-slide-dot" aria-label="A chi ci rivolgiamo"></button>
       </div>
-    </section>
-
-    <!-- COME LAVORIAMO -->
-    <section class="rm-section soft" id="come-lavoriamo">
-      <div class="rm-shell">
-        <div class="rm-section-head">
-          <div class="rm-eyebrow">Come lavoriamo</div>
-          <h2>Prima di spiegare, capiamo da dove partire.</h2>
-          <p>Prima di iniziare cerchiamo di capire da dove nasce la difficoltà e quale possa essere il modo più utile per affrontarla.</p>
-        </div>
-
-        <div class="story-stage classroom-stage" aria-label="Morgana alla lavagna mostra a Red e Bjorne i passaggi del metodo">
-          <div class="stage-label">MORGANA ALLA LAVAGNA</div>
-          <div class="classroom-scene">
-            <div class="blackboard">
-              <span class="chalk-step" id="board-step">PASSO 01</span>
-              <h3 id="board-title">Individuare il punto di partenza</h3>
-              <p id="board-copy">Capire se la difficoltà nasce da un concetto non compreso, da basi poco solide, da un procedimento meccanico o dalla necessità di una spiegazione diversa.</p>
-              <div class="chalk-line"></div>
-              <div class="chalk-formula">x → ? → ✓</div>
-            </div>
-            <div class="wire-cat teacher-morgana">Morgana</div>
-            <div class="students-row">
-              <div class="wire-cat student-red">Red</div>
-              <div class="wire-cat student-bjorne">Bjorne</div>
-            </div>
-          </div>
-          <div class="board-tabs" aria-label="Passaggi del metodo">
-            <button class="board-tab active" type="button" data-board-index="0">1 · Partire</button>
-            <button class="board-tab" type="button" data-board-index="1">2 · Scegliere</button>
-            <button class="board-tab" type="button" data-board-index="2">3 · Adattare</button>
-          </div>
-        </div>
-
-        <div class="rm-goal">
-          L’obiettivo non è soltanto arrivare alla soluzione di un esercizio o superare la verifica successiva, ma aiutare chi studia a <strong>comprendere meglio ciò che sta facendo, acquisire metodo e diventare progressivamente più autonomo</strong>.
-        </div>
-      </div>
-    </section>
-
-    <!-- OLTRE LE LEZIONI -->
-    <section class="rm-section" id="oltre-le-lezioni">
-      <div class="rm-shell narrative-split narrative-split-reverse">
-        <div class="rm-prose">
-          <div class="rm-eyebrow">Oltre le lezioni</div>
-          <div class="rm-section-head">
-            <h2>Continuare a imparare anche fuori dalla lezione.</h2>
-          </div>
-          <p><strong>Reddito Math è un progetto in continua evoluzione.</strong></p>
-          <p>Accanto alle lezioni stiamo sviluppando uno spazio digitale pensato per raccogliere nel tempo lezioni, materiali, esercitazioni, laboratori interattivi e strumenti utili allo studio.</p>
-          <p>L’obiettivo è creare un ambiente che studentesse e studenti possano utilizzare anche al di fuori delle lezioni, per ripassare, esercitarsi, approfondire un argomento o provare a comprenderlo da un punto di vista diverso.</p>
-          <p>Con la crescita del progetto cresceranno anche le risorse disponibili, così da rendere questo spazio sempre più ampio e utile.</p>
-        </div>
-
-        <div class="story-stage whisper-stage" aria-label="Red e Bjorne confabulano sui contenuti dello spazio digitale">
-          <div class="stage-label">RED + BJORNE CONFABULANO</div>
-          <div class="whisper-scene">
-            <div class="wire-cat whisper-red">Red</div>
-            <div class="wire-cat whisper-bjorne">Bjorne</div>
-            <div class="speech-cloud" id="resource-cloud">
-              <span class="speech-kicker">Stiamo costruendo...</span>
-              <h3 id="resource-title">Lezioni</h3>
-              <p id="resource-copy">Contenuti e spiegazioni da riprendere quando serve.</p>
-            </div>
-          </div>
-          <div class="resource-pills" aria-label="Risorse dello spazio digitale">
-            <button class="resource-pill active" type="button" data-resource-index="0">Lezioni</button>
-            <button class="resource-pill" type="button" data-resource-index="1">Materiali</button>
-            <button class="resource-pill" type="button" data-resource-index="2">Esercitazioni</button>
-            <button class="resource-pill" type="button" data-resource-index="3">Laboratori</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- A CHI CI RIVOLGIAMO -->
-    <section class="rm-section soft" id="a-chi-ci-rivolgiamo">
-      <div class="rm-shell narrative-split">
-        <div class="rm-prose audience-copy">
-          <div class="rm-eyebrow">A chi ci rivolgiamo</div>
-          <div class="rm-section-head">
-            <h2>Per chi vuole fare un passo avanti nello studio.</h2>
-          </div>
-          <p>Ci rivolgiamo a <strong>tutte le studentesse e a tutti gli studenti che vogliono migliorare il proprio percorso di studio e affrontarlo con maggiore consapevolezza e sicurezza</strong>, che si tratti di rafforzare la preparazione, comprendere meglio ciò che stanno studiando, sviluppare nuove competenze o acquisire un metodo più efficace.</p>
-          <p>Non è necessario avere già chiaro quale sia la difficoltà o da dove cominciare: <strong>individuare insieme i punti su cui lavorare può essere già una parte importante del percorso.</strong></p>
-        </div>
-
-        <div class="story-stage devices-stage" aria-label="Scena decorativa con i gattini felici che studiano usando dispositivi e strumenti diversi">
-          <div class="stage-label">SCENA FINALE</div>
-          <div class="devices-scene">
-            <div class="device-cluster laptop-cluster">
-              <div class="wire-cat device-morgana">Morgana</div>
-              <div class="device laptop">⌨</div>
-              <span>computer</span>
-            </div>
-            <div class="device-cluster tablet-cluster">
-              <div class="wire-cat device-red">Red</div>
-              <div class="device tablet">∫</div>
-              <span>tablet</span>
-            </div>
-            <div class="device-cluster book-cluster">
-              <div class="wire-cat device-bjorne">Bjorne</div>
-              <div class="device notebook">A²</div>
-              <span>libro / quaderno</span>
-            </div>
-          </div>
-          <p class="stage-note">Qui l'illustrazione sarà più quieta: i tre gattini studiano sereni con strumenti diversi, senza aggiungere altro testo da leggere.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="rm-cta">
-      <div class="rm-shell">
-        <div class="rm-cta-box">
-          <div>
-            <h2>Vuoi capire se possiamo esserti utili?</h2>
-            <p>Raccontaci cosa stai studiando, quale percorso frequenti e in cosa vorresti ricevere supporto. Possiamo capire insieme da dove cominciare.</p>
-          </div>
-          <a class="rm-action" href="contatti.html">Vai ai contatti</a>
-        </div>
-      </div>
-    </section>
+      <span class="rm-slide-count">1 / 5</span>
+      <button class="rm-slide-arrow" data-slide-next aria-label="Slide successiva">→</button>
+    </div>
   </main>
-
-  <footer class="rm-footer">
-    <div class="rm-shell">© 2026 Reddito Math · prototipo della nuova piattaforma didattica</div>
-  </footer>
 </body>
 </html>
