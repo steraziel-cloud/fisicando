@@ -1,4 +1,7 @@
 window.addEventListener("DOMContentLoaded", () => {
+  // Le etichette interne servono solo durante la progettazione e non devono comparire nel prototipo visivo.
+  document.querySelectorAll(".stage-label, .stage-note").forEach(el => el.style.display = "none");
+
   const bookPages = [
     {
       title: "Bisogni reali",
