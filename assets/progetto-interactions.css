@@ -81,3 +81,57 @@
   .rm-slide-about{padding-bottom:78px}
 }
 @media(prefers-reduced-motion:reduce){.rm-interaction-hint{animation:none}.rm-book-scene-real.turn-next .rm-book-overlay-right,.rm-book-scene-real.turn-prev .rm-book-overlay-left{animation:none}}
+
+
+/* Slide 1 layout reset: artwork is not a card and project navigation stays independent */
+.rm-slide-about .rm-slide-inner-about{
+  width:min(1380px,calc(100% - 64px))!important;
+  grid-template-columns:minmax(340px,38%) minmax(0,62%)!important;
+  gap:28px!important;
+  align-items:center!important;
+}
+.rm-slide-about .rm-book-scene-real{
+  position:relative!important;
+  width:100%!important;
+  max-width:none!important;
+  height:auto!important;
+  min-height:0!important;
+  aspect-ratio:3/2!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:none!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+.rm-slide-about .rm-red-book-image{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+}
+.rm-slide-about .rm-about-title em{font-style:normal!important;color:var(--rm-accent)!important}
+.rm-slide-about .rm-about-title span{font-style:normal!important;color:var(--rm-text)!important}
+.rm-slide-about .rm-book-dots{display:none!important}
+
+@media(max-width:1100px){
+  .rm-slide-about .rm-slide-inner-about{
+    width:min(1040px,calc(100% - 40px))!important;
+    grid-template-columns:minmax(300px,40%) minmax(0,60%)!important;
+    gap:18px!important;
+  }
+}
+@media(max-width:760px){
+  .rm-slide-about .rm-slide-inner-about{
+    grid-template-columns:1fr!important;
+    gap:8px!important;
+  }
+  .rm-slide-about .rm-book-scene-real{
+    width:min(720px,100%)!important;
+    margin:0 auto!important;
+  }
+}
