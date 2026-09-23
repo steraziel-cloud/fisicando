@@ -105,7 +105,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     });
   }
 
-  // Libro di Red
+  // Libro di Red: una sola direzione di sfoglio, da destra verso sinistra.
   const bookData=[
     ['Bisogni reali','Partiamo dalla situazione concreta di chi studia.'],
     ['Didattica adattabile','Strumenti e spiegazioni cambiano insieme al percorso.'],
@@ -118,13 +118,10 @@ window.addEventListener('DOMContentLoaded',()=>{
   const bookTitle=document.querySelector('[data-book-title]');
   const bookCopy=document.querySelector('[data-book-copy]');
   const bookStep=document.querySelector('[data-book-step]');
-  const bookPrev=document.querySelector('[data-book-prev]');
   const bookNext=document.querySelector('[data-book-next]');
   const bookRed=document.querySelector('[data-book-red]');
-  const bookDots=[...document.querySelectorAll('[data-book-index]')];
 
   function updateBookControls(){
-    bookDots.forEach((dot,i)=>dot.classList.toggle('active',i===bookIndex));
     if(bookScene) bookScene.dataset.bookPage=String(bookIndex+1);
   }
 
@@ -137,21 +134,18 @@ window.addEventListener('DOMContentLoaded',()=>{
     return Math.max(0,parseFloat(raw)||640);
   }
 
-  function showBook(nextIndex,direction='next',user=true){
+  function nextBookPage(user=true){
     if(bookFlipping) return;
 
-    const targetIndex=(nextIndex+bookData.length)%bookData.length;
-    if(targetIndex===bookIndex) return;
-
+    const targetIndex=(bookIndex+1)%bookData.length;
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
     const duration=reduced?0:getBookFlipDuration();
     const contentDelay=duration*.50;
-    const animClass=direction==='prev'?'turn-prev':'turn-next';
 
     bookFlipping=true;
-    bookScene?.classList.remove('turn-prev','turn-next');
+    bookScene?.classList.remove('turn-next');
     void bookScene?.offsetWidth;
-    bookScene?.classList.add(animClass);
+    bookScene?.classList.add('turn-next');
 
     setTimeout(()=>{
       bookIndex=targetIndex;
@@ -162,25 +156,16 @@ window.addEventListener('DOMContentLoaded',()=>{
     },contentDelay);
 
     setTimeout(()=>{
-      bookScene?.classList.remove(animClass);
+      bookScene?.classList.remove('turn-next');
       bookFlipping=false;
     },duration+40);
 
     if(user) registerActivity();
   }
 
-  function nextBookPage(){
-    showBook(bookIndex+1,'next');
-  }
-
-  bookPrev?.addEventListener('click',()=>showBook(bookIndex-1,'prev'));
   bookNext?.addEventListener('click',()=>nextBookPage());
   bookRed?.addEventListener('click',()=>nextBookPage());
   activateWithKeyboard(bookRed,()=>nextBookPage());
-  bookDots.forEach(dot=>dot.addEventListener('click',()=>{
-    const target=Number(dot.dataset.bookIndex);
-    showBook(target,target<bookIndex?'prev':'next');
-  }));
 
   // Lavagna di Morgana
   const boardData=[
