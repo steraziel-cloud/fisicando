@@ -113,12 +113,14 @@ window.addEventListener('DOMContentLoaded',()=>{
   ];
 
   let bookIndex=0;
+  let bookFlipping=false;
   const bookScene=document.querySelector('.rm-book-scene-real');
   const bookTitle=document.querySelector('[data-book-title]');
   const bookCopy=document.querySelector('[data-book-copy]');
   const bookStep=document.querySelector('[data-book-step]');
   const bookPrev=document.querySelector('[data-book-prev]');
   const bookNext=document.querySelector('[data-book-next]');
+  const bookRed=document.querySelector('[data-book-red]');
   const bookDots=[...document.querySelectorAll('[data-book-index]')];
 
   function updateBookControls(){
@@ -126,24 +128,55 @@ window.addEventListener('DOMContentLoaded',()=>{
     if(bookScene) bookScene.dataset.bookPage=String(bookIndex+1);
   }
 
+  function getBookFlipDuration(){
+    if(!bookScene) return 640;
+    const raw=getComputedStyle(bookScene).getPropertyValue('--book-flip-duration').trim();
+    if(!raw) return 640;
+    if(raw.endsWith('ms')) return Math.max(0,parseFloat(raw)||640);
+    if(raw.endsWith('s')) return Math.max(0,(parseFloat(raw)||.64)*1000);
+    return Math.max(0,parseFloat(raw)||640);
+  }
+
   function showBook(nextIndex,direction='next',user=true){
-    bookIndex=(nextIndex+bookData.length)%bookData.length;
+    if(bookFlipping) return;
+
+    const targetIndex=(nextIndex+bookData.length)%bookData.length;
+    if(targetIndex===bookIndex) return;
+
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const duration=reduced?0:getBookFlipDuration();
+    const contentDelay=duration*.50;
     const animClass=direction==='prev'?'turn-prev':'turn-next';
+
+    bookFlipping=true;
     bookScene?.classList.remove('turn-prev','turn-next');
     void bookScene?.offsetWidth;
     bookScene?.classList.add(animClass);
+
     setTimeout(()=>{
+      bookIndex=targetIndex;
       if(bookTitle) bookTitle.textContent=bookData[bookIndex][0];
       if(bookCopy) bookCopy.textContent=bookData[bookIndex][1];
       if(bookStep) bookStep.textContent=`${bookIndex+1} / ${bookData.length}`;
       updateBookControls();
-    },170);
-    setTimeout(()=>bookScene?.classList.remove(animClass),500);
+    },contentDelay);
+
+    setTimeout(()=>{
+      bookScene?.classList.remove(animClass);
+      bookFlipping=false;
+    },duration+40);
+
     if(user) registerActivity();
   }
 
+  function nextBookPage(){
+    showBook(bookIndex+1,'next');
+  }
+
   bookPrev?.addEventListener('click',()=>showBook(bookIndex-1,'prev'));
-  bookNext?.addEventListener('click',()=>showBook(bookIndex+1,'next'));
+  bookNext?.addEventListener('click',()=>nextBookPage());
+  bookRed?.addEventListener('click',()=>nextBookPage());
+  activateWithKeyboard(bookRed,()=>nextBookPage());
   bookDots.forEach(dot=>dot.addEventListener('click',()=>{
     const target=Number(dot.dataset.bookIndex);
     showBook(target,target<bookIndex?'prev':'next');
