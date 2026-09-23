@@ -1,59 +1,71 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap');
 
-/* Rifinitura dedicata al libro di Red.
-   Caricato dopo progetto-interactions.css così da tenere separati i test sul libro. */
+/* Libro di Red — v4
+   La pagina illustrata non e' perfettamente piana: invece di inclinare un unico
+   rettangolo HTML, numero, titolo e testo seguono separatamente la pendenza
+   della pagina. */
 .rm-book-overlay-right{
-  left:67.1%!important;
-  top:28.55%!important;
-  width:22.7%!important;
-  height:34.9%!important;
-  padding:3.3% 1.15% 2.5%!important;
-  transform:perspective(850px) rotateY(-5.5deg) rotateX(1deg) rotateZ(-2.15deg) skewY(-.7deg)!important;
-  transform-origin:left center!important;
-  display:flex!important;
-  flex-direction:column!important;
-  align-items:center!important;
-  justify-content:flex-start!important;
+  left:67.55%!important;
+  top:27.8%!important;
+  width:22.2%!important;
+  height:35.2%!important;
+  padding:0!important;
+  transform:none!important;
+  transform-origin:center!important;
+  display:block!important;
   text-align:center!important;
   text-shadow:none!important;
+  overflow:visible!important;
 }
 
-.rm-book-overlay-right small{
-  margin:0 0 7%!important;
+.rm-book-overlay-right small,
+.rm-book-overlay-right h3,
+.rm-book-overlay-right p{
+  position:absolute!important;
+  left:50%!important;
+  margin:0!important;
   font-family:"Cormorant Garamond", Georgia, serif!important;
+  transform-origin:center center!important;
+}
+
+/* La costa superiore della pagina sale leggermente verso destra. */
+.rm-book-overlay-right small{
+  top:5%!important;
+  width:64%!important;
   font-size:clamp(10px,.72vw,12px)!important;
   font-weight:700!important;
   letter-spacing:.14em!important;
-  color:#8f6c39!important;
   line-height:1!important;
+  color:#8f6c39!important;
+  transform:translateX(-50%) rotate(-3.15deg) skewX(-2.2deg)!important;
 }
 
 .rm-book-overlay-right h3{
-  width:100%!important;
+  top:17%!important;
+  width:95%!important;
   max-width:none!important;
-  margin:0 0 7%!important;
-  font-family:"Cormorant Garamond", Georgia, serif!important;
   font-size:clamp(24px,2.05vw,33px)!important;
   font-weight:700!important;
   line-height:.93!important;
   letter-spacing:-.025em!important;
   color:#2e3542!important;
+  transform:translateX(-52%) rotate(-3.15deg) skewX(-2.8deg) scaleX(.97)!important;
 }
 
 .rm-book-overlay-right p{
-  width:94%!important;
+  top:43%!important;
+  width:86%!important;
   max-width:none!important;
-  margin:0 auto!important;
-  font-family:"Cormorant Garamond", Georgia, serif!important;
   font-size:clamp(13px,1.08vw,17px)!important;
   font-weight:500!important;
   font-style:italic!important;
   line-height:1.23!important;
   letter-spacing:.002em!important;
   color:#6d655b!important;
+  transform:translateX(-54%) rotate(-3.05deg) skewX(-2deg) scaleX(.96)!important;
 }
 
-/* La pagina sinistra resta quasi vuota: solo un piccolo fregio. */
+/* Pagina sinistra quasi vuota: solo un fregio discreto. */
 .rm-book-overlay-left{
   left:51.7%!important;
   top:29.4%!important;
@@ -63,7 +75,7 @@
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
-  transform:perspective(1000px) rotateY(2deg) rotateZ(1deg) skewY(1deg)!important;
+  transform:rotate(1deg)!important;
 }
 .rm-book-overlay-left .rm-book-mini-mark{
   margin:0!important;
@@ -73,22 +85,22 @@
   color:rgba(201,151,57,.58)!important;
 }
 
-/* Aree cliccabili coerenti con le due pagine. */
+/* Aree cliccabili delle pagine. */
 .rm-book-hit-left{left:49.2%!important;top:21.5%!important;width:20.2%!important;height:49%!important}
-.rm-book-hit-right{left:67.35%!important;top:20.8%!important;width:24.1%!important;height:50%!important;transform:rotate(-2deg)!important}
+.rm-book-hit-right{left:67.2%!important;top:20.5%!important;width:24.4%!important;height:50.5%!important;transform:rotate(-2deg)!important}
 
-/* Sfoglio appena accennato: deve suggerire il gesto, non diventare protagonista. */
-.rm-book-scene-real.turn-next .rm-book-overlay-right{animation:rm-book-v3-next .46s ease both!important}
-.rm-book-scene-real.turn-prev .rm-book-overlay-left{animation:rm-book-v3-prev .46s ease both!important}
-@keyframes rm-book-v3-next{
-  0%{opacity:1;transform:perspective(850px) rotateY(-5.5deg) rotateX(1deg) rotateZ(-2.15deg) skewY(-.7deg)}
-  48%{opacity:.16;transform:perspective(850px) rotateY(-17deg) rotateX(1deg) rotateZ(-2.15deg) skewY(-.7deg)}
-  100%{opacity:1;transform:perspective(850px) rotateY(-5.5deg) rotateX(1deg) rotateZ(-2.15deg) skewY(-.7deg)}
+/* Sfoglio leggero: l'overlay si sposta appena durante il cambio contenuto. */
+.rm-book-scene-real.turn-next .rm-book-overlay-right{animation:rm-book-v4-next .46s ease both!important}
+.rm-book-scene-real.turn-prev .rm-book-overlay-left{animation:rm-book-v4-prev .46s ease both!important}
+@keyframes rm-book-v4-next{
+  0%{opacity:1;translate:0 0}
+  48%{opacity:.12;translate:-7px 1px}
+  100%{opacity:1;translate:0 0}
 }
-@keyframes rm-book-v3-prev{
-  0%{opacity:1;transform:perspective(1000px) rotateY(2deg) rotateZ(1deg) skewY(1deg)}
-  48%{opacity:.16;transform:perspective(1000px) rotateY(14deg) rotateZ(1deg) skewY(1deg)}
-  100%{opacity:1;transform:perspective(1000px) rotateY(2deg) rotateZ(1deg) skewY(1deg)}
+@keyframes rm-book-v4-prev{
+  0%{opacity:1;translate:0 0}
+  48%{opacity:.12;translate:7px 1px}
+  100%{opacity:1;translate:0 0}
 }
 
 @media(max-width:760px){
