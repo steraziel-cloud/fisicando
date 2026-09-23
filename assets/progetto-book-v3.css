@@ -38,7 +38,7 @@
   --book-copy-line-height: 1.18;
 
   /*
-    SFOGLIO — tutti questi valori sono regolabili a occhio.
+    SFOGLIO IN AVANTI — valori approvati e regolabili a occhio.
     Per cambiare solo la velocità basta modificare --book-flip-duration.
   */
   --book-flip-duration: 640ms;
@@ -54,13 +54,6 @@
   --book-flip-next-width: 30.0%;
   --book-flip-next-height: 57.0%;
   --book-flip-next-rotate: 0deg;
-
-  /* foglio che parte dalla pagina sinistra e torna verso destra */
-  --book-flip-prev-left: 47.2%;
-  --book-flip-prev-top: 21.0%;
-  --book-flip-prev-width: 18.6%;
-  --book-flip-prev-height: 46.5%;
-  --book-flip-prev-rotate: 0deg;
 
   /* zona cliccabile sopra Red: serve per andare alla pagina successiva */
   --book-red-hit-left: 24%;
@@ -207,15 +200,7 @@
   color:rgba(201,151,57,.55)!important;
 }
 
-/* Aree cliccabili delle pagine. */
-.rm-book-hit-left{
-  left:45.8%!important;
-  top:20.5%!important;
-  width:21.2%!important;
-  height:48.5%!important;
-  transform:none!important;
-  z-index:8!important;
-}
+/* Area cliccabile della pagina destra. */
 .rm-book-hit-right{
   left:65.5%!important;
   top:20.3%!important;
@@ -276,19 +261,9 @@
   transform-origin:left center;
   animation:rm-book-page-next var(--book-flip-duration) cubic-bezier(.42,.05,.18,.98) both;
 }
-.rm-book-scene-real.turn-prev .rm-book-flip-sheet{
-  display:block;
-  left:var(--book-flip-prev-left);
-  top:var(--book-flip-prev-top);
-  width:var(--book-flip-prev-width);
-  height:var(--book-flip-prev-height);
-  transform-origin:right center;
-  animation:rm-book-page-prev var(--book-flip-duration) cubic-bezier(.42,.05,.18,.98) both;
-}
 
 /* Durante lo sfoglio il testo si attenua: il nuovo contenuto compare a metà gesto. */
-.rm-book-scene-real.turn-next .rm-book-overlay-right,
-.rm-book-scene-real.turn-prev .rm-book-overlay-right{
+.rm-book-scene-real.turn-next .rm-book-overlay-right{
   animation:rm-book-text-change var(--book-flip-duration) ease both!important;
 }
 
@@ -314,28 +289,6 @@
   }
 }
 
-@keyframes rm-book-page-prev{
-  0%{
-    opacity:0;
-    transform:rotate(var(--book-flip-prev-rotate)) rotateY(178deg) skewY(0deg);
-  }
-  42%{
-    opacity:.94;
-    transform:rotate(var(--book-flip-prev-rotate)) rotateY(108deg) skewY(-1.2deg);
-    box-shadow:-12px 10px 20px rgba(49,40,28,.24),var(--book-flip-glow);
-  }
-  58%{
-    opacity:1;
-    transform:rotate(var(--book-flip-prev-rotate)) rotateY(72deg) skewY(1.2deg);
-    box-shadow:14px 10px 24px rgba(49,40,28,.30),var(--book-flip-glow);
-  }
-  100%{
-    opacity:.98;
-    transform:rotate(var(--book-flip-prev-rotate)) rotateY(0deg) skewY(0deg);
-    box-shadow:var(--book-flip-shadow),var(--book-flip-glow);
-  }
-}
-
 @keyframes rm-book-text-change{
   0%,30%{opacity:1}
   46%,54%{opacity:0}
@@ -343,13 +296,11 @@
 }
 
 @media(prefers-reduced-motion:reduce){
-  .rm-book-scene-real.turn-next .rm-book-flip-sheet,
-  .rm-book-scene-real.turn-prev .rm-book-flip-sheet{
+  .rm-book-scene-real.turn-next .rm-book-flip-sheet{
     animation:none!important;
     display:none!important;
   }
-  .rm-book-scene-real.turn-next .rm-book-overlay-right,
-  .rm-book-scene-real.turn-prev .rm-book-overlay-right{
+  .rm-book-scene-real.turn-next .rm-book-overlay-right{
     animation:none!important;
   }
 }
