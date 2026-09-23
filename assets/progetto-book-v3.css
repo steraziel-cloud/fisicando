@@ -36,6 +36,40 @@
   --book-copy-width: 88%;
   --book-copy-size: clamp(13px,1vw,18px);
   --book-copy-line-height: 1.18;
+
+  /*
+    SFOGLIO — tutti questi valori sono regolabili a occhio.
+    Per cambiare solo la velocità basta modificare --book-flip-duration.
+  */
+  --book-flip-duration: 640ms;
+  --book-flip-perspective: 1100px;
+  --book-flip-paper: #f4e7c7;
+  --book-flip-paper-edge: rgba(143,108,57,.24);
+  --book-flip-shadow: 0 10px 22px rgba(49,40,28,.24);
+  --book-flip-glow: inset 0 0 22px rgba(255,255,255,.42);
+
+  /* foglio che parte dalla pagina destra e gira verso sinistra */
+  --book-flip-next-left: 65.2%;
+  --book-flip-next-top: 21.0%;
+  --book-flip-next-width: 23.0%;
+  --book-flip-next-height: 46.5%;
+  --book-flip-next-rotate: 0deg;
+
+  /* foglio che parte dalla pagina sinistra e torna verso destra */
+  --book-flip-prev-left: 47.2%;
+  --book-flip-prev-top: 21.0%;
+  --book-flip-prev-width: 18.6%;
+  --book-flip-prev-height: 46.5%;
+  --book-flip-prev-rotate: 0deg;
+
+  /* zona cliccabile sopra Red: serve per andare alla pagina successiva */
+  --book-red-hit-left: 24%;
+  --book-red-hit-top: 13%;
+  --book-red-hit-width: 24%;
+  --book-red-hit-height: 58%;
+
+  position:relative;
+  perspective:var(--book-flip-perspective);
 }
 
 /*
@@ -101,6 +135,7 @@
   text-align:center!important;
   text-shadow:none!important;
   overflow:visible!important;
+  z-index:4!important;
 }
 
 .rm-book-overlay-right small{
@@ -162,6 +197,7 @@
   align-items:center!important;
   justify-content:center!important;
   transform:none!important;
+  z-index:3!important;
 }
 .rm-book-overlay-left .rm-book-mini-mark{
   margin:0!important;
@@ -178,6 +214,7 @@
   width:21.2%!important;
   height:48.5%!important;
   transform:none!important;
+  z-index:8!important;
 }
 .rm-book-hit-right{
   left:65.5%!important;
@@ -185,20 +222,136 @@
   width:24.8%!important;
   height:49%!important;
   transform:none!important;
+  z-index:8!important;
 }
 
-/* Sfoglio volutamente minimo. */
-.rm-book-scene-real.turn-next .rm-book-overlay-right{animation:rm-book-front-next .42s ease both!important}
-.rm-book-scene-real.turn-prev .rm-book-overlay-left{animation:rm-book-front-prev .42s ease both!important}
-@keyframes rm-book-front-next{
-  0%{opacity:1;transform:rotate(var(--book-text-rotate)) translateX(0)}
-  48%{opacity:.16;transform:rotate(var(--book-text-rotate)) translateX(-5px)}
-  100%{opacity:1;transform:rotate(var(--book-text-rotate)) translateX(0)}
+/* Zona invisibile sopra Red: clic = pagina successiva. */
+.rm-book-hit-red{
+  position:absolute!important;
+  left:var(--book-red-hit-left)!important;
+  top:var(--book-red-hit-top)!important;
+  width:var(--book-red-hit-width)!important;
+  height:var(--book-red-hit-height)!important;
+  border:0!important;
+  padding:0!important;
+  background:transparent!important;
+  cursor:pointer!important;
+  z-index:7!important;
 }
-@keyframes rm-book-front-prev{
-  0%{opacity:1;transform:translateX(0)}
-  48%{opacity:.16;transform:translateX(5px)}
-  100%{opacity:1;transform:translateX(0)}
+.rm-book-hit-red:focus-visible{
+  outline:2px dashed rgba(15,118,110,.65)!important;
+  outline-offset:3px!important;
+  border-radius:42%!important;
+}
+
+/* Foglio artificiale usato per simulare lo sfoglio sopra il PNG. */
+.rm-book-flip-sheet{
+  position:absolute;
+  display:none;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(121,89,46,.10),transparent 12%,rgba(255,255,255,.16) 72%,rgba(121,89,46,.08)),
+    var(--book-flip-paper);
+  border:1px solid var(--book-flip-paper-edge);
+  box-shadow:var(--book-flip-shadow),var(--book-flip-glow);
+  backface-visibility:hidden;
+  transform-style:preserve-3d;
+  z-index:12;
+}
+.rm-book-flip-sheet::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(79,57,31,.16),transparent 18%,rgba(255,255,255,.18) 76%,rgba(79,57,31,.08));
+  opacity:.55;
+  pointer-events:none;
+}
+
+.rm-book-scene-real.turn-next .rm-book-flip-sheet{
+  display:block;
+  left:var(--book-flip-next-left);
+  top:var(--book-flip-next-top);
+  width:var(--book-flip-next-width);
+  height:var(--book-flip-next-height);
+  transform-origin:left center;
+  animation:rm-book-page-next var(--book-flip-duration) cubic-bezier(.42,.05,.18,.98) both;
+}
+.rm-book-scene-real.turn-prev .rm-book-flip-sheet{
+  display:block;
+  left:var(--book-flip-prev-left);
+  top:var(--book-flip-prev-top);
+  width:var(--book-flip-prev-width);
+  height:var(--book-flip-prev-height);
+  transform-origin:right center;
+  animation:rm-book-page-prev var(--book-flip-duration) cubic-bezier(.42,.05,.18,.98) both;
+}
+
+/* Durante lo sfoglio il testo si attenua: il nuovo contenuto compare a metà gesto. */
+.rm-book-scene-real.turn-next .rm-book-overlay-right,
+.rm-book-scene-real.turn-prev .rm-book-overlay-right{
+  animation:rm-book-text-change var(--book-flip-duration) ease both!important;
+}
+
+@keyframes rm-book-page-next{
+  0%{
+    opacity:.98;
+    transform:rotate(var(--book-flip-next-rotate)) rotateY(0deg) skewY(0deg);
+    box-shadow:var(--book-flip-shadow),var(--book-flip-glow);
+  }
+  42%{
+    opacity:1;
+    transform:rotate(var(--book-flip-next-rotate)) rotateY(-72deg) skewY(-1.2deg);
+    box-shadow:-14px 10px 24px rgba(49,40,28,.30),var(--book-flip-glow);
+  }
+  58%{
+    opacity:.94;
+    transform:rotate(var(--book-flip-next-rotate)) rotateY(-108deg) skewY(1.2deg);
+    box-shadow:12px 10px 20px rgba(49,40,28,.24),var(--book-flip-glow);
+  }
+  100%{
+    opacity:0;
+    transform:rotate(var(--book-flip-next-rotate)) rotateY(-178deg) skewY(0deg);
+  }
+}
+
+@keyframes rm-book-page-prev{
+  0%{
+    opacity:0;
+    transform:rotate(var(--book-flip-prev-rotate)) rotateY(178deg) skewY(0deg);
+  }
+  42%{
+    opacity:.94;
+    transform:rotate(var(--book-flip-prev-rotate)) rotateY(108deg) skewY(-1.2deg);
+    box-shadow:-12px 10px 20px rgba(49,40,28,.24),var(--book-flip-glow);
+  }
+  58%{
+    opacity:1;
+    transform:rotate(var(--book-flip-prev-rotate)) rotateY(72deg) skewY(1.2deg);
+    box-shadow:14px 10px 24px rgba(49,40,28,.30),var(--book-flip-glow);
+  }
+  100%{
+    opacity:.98;
+    transform:rotate(var(--book-flip-prev-rotate)) rotateY(0deg) skewY(0deg);
+    box-shadow:var(--book-flip-shadow),var(--book-flip-glow);
+  }
+}
+
+@keyframes rm-book-text-change{
+  0%,30%{opacity:1}
+  46%,54%{opacity:0}
+  72%,100%{opacity:1}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .rm-book-scene-real.turn-next .rm-book-flip-sheet,
+  .rm-book-scene-real.turn-prev .rm-book-flip-sheet{
+    animation:none!important;
+    display:none!important;
+  }
+  .rm-book-scene-real.turn-next .rm-book-overlay-right,
+  .rm-book-scene-real.turn-prev .rm-book-overlay-right{
+    animation:none!important;
+  }
 }
 
 @media(max-width:760px){
