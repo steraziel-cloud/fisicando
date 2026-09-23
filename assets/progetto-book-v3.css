@@ -3,12 +3,12 @@
 /* Rifinitura dedicata al libro di Red.
    Caricato dopo progetto-interactions.css così da tenere separati i test sul libro. */
 .rm-book-overlay-right{
-  left:68.85%!important;
-  top:27.25%!important;
-  width:22.65%!important;
-  height:35.8%!important;
-  padding:3.55% 1.15% 2.8%!important;
-  transform:perspective(1100px) rotateY(-2.2deg) rotateZ(-.45deg) skewY(-.55deg)!important;
+  left:67.1%!important;
+  top:28.55%!important;
+  width:22.7%!important;
+  height:34.9%!important;
+  padding:3.3% 1.15% 2.5%!important;
+  transform:perspective(850px) rotateY(-5.5deg) rotateX(1deg) rotateZ(-2.15deg) skewY(-.7deg)!important;
   transform-origin:left center!important;
   display:flex!important;
   flex-direction:column!important;
@@ -75,15 +75,15 @@
 
 /* Aree cliccabili coerenti con le due pagine. */
 .rm-book-hit-left{left:49.2%!important;top:21.5%!important;width:20.2%!important;height:49%!important}
-.rm-book-hit-right{left:68.15%!important;top:20.8%!important;width:23.8%!important;height:50%!important}
+.rm-book-hit-right{left:67.35%!important;top:20.8%!important;width:24.1%!important;height:50%!important;transform:rotate(-2deg)!important}
 
 /* Sfoglio appena accennato: deve suggerire il gesto, non diventare protagonista. */
 .rm-book-scene-real.turn-next .rm-book-overlay-right{animation:rm-book-v3-next .46s ease both!important}
 .rm-book-scene-real.turn-prev .rm-book-overlay-left{animation:rm-book-v3-prev .46s ease both!important}
 @keyframes rm-book-v3-next{
-  0%{opacity:1;transform:perspective(1100px) rotateY(-2.2deg) rotateZ(-.45deg) skewY(-.55deg)}
-  48%{opacity:.16;transform:perspective(1100px) rotateY(-15deg) rotateZ(-.45deg) skewY(-.55deg)}
-  100%{opacity:1;transform:perspective(1100px) rotateY(-2.2deg) rotateZ(-.45deg) skewY(-.55deg)}
+  0%{opacity:1;transform:perspective(850px) rotateY(-5.5deg) rotateX(1deg) rotateZ(-2.15deg) skewY(-.7deg)}
+  48%{opacity:.16;transform:perspective(850px) rotateY(-17deg) rotateX(1deg) rotateZ(-2.15deg) skewY(-.7deg)}
+  100%{opacity:1;transform:perspective(850px) rotateY(-5.5deg) rotateX(1deg) rotateZ(-2.15deg) skewY(-.7deg)}
 }
 @keyframes rm-book-v3-prev{
   0%{opacity:1;transform:perspective(1000px) rotateY(2deg) rotateZ(1deg) skewY(1deg)}
