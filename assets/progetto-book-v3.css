@@ -4,14 +4,16 @@
    I valori qui sotto sono volutamente raccolti in variabili: se vuoi rifinirli
    a mano, ti basta cambiare questi numeri senza cercare le regole più sotto. */
 .rm-book-scene-real{
-  --book-text-left: 67.2%;
+
+  --book-text-left: 60.0%;
   --book-text-top: 26.8%;
   --book-text-width: 21.2%;
   --book-text-height: 30.0%;
   --book-text-rotate: 0deg;
-  --book-step-size: clamp(9px,.62vw,11px);
-  --book-title-size: clamp(23px,2.55vw,38px);
-  --book-copy-size: clamp(12px,.9vw,16px);
+  --book-step-size: clamp(10px,.68vw,12px);
+  --book-title-size: clamp(26px,3vw,45px);
+  --book-copy-size: clamp(13px,1vw,18px);
+
 }
 
 .rm-book-overlay-right{
