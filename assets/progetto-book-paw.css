@@ -1,0 +1,145 @@
+/*
+  ZAMPA DI RED — livello animato ricavato dallo stesso PNG del libro.
+  ---------------------------------------------------------------
+  Tutti i valori qui sotto sono volutamente parametrizzati per poterli
+  rifinire rapidamente sul server locale con Ctrl+S -> Ctrl+R.
+
+  Il livello mostra soltanto una porzione del PNG originale tramite clip-path.
+  Se la zampa non coincide perfettamente, lavora prima sui quattro valori CLIP.
+*/
+.rm-book-scene-real{
+  /* Ritaglio della zampa/avambraccio destro di Red.
+     inset(top right bottom left): aumenta un valore per tagliare di più da quel lato. */
+  --book-paw-clip-top: 48%;
+  --book-paw-clip-right: 37%;
+  --book-paw-clip-bottom: 19%;
+  --book-paw-clip-left: 50%;
+
+  /* Punto attorno a cui ruota il gesto della zampa. */
+  --book-paw-origin-x: 54%;
+  --book-paw-origin-y: 64%;
+
+  /* Durata e ritardo del gesto. Può essere diversa dallo sfoglio della pagina. */
+  --book-paw-duration: 640ms;
+  --book-paw-delay: 0ms;
+
+  /* Movimento AVANTI: la zampa sale verso il bordo della pagina e accompagna lo sfoglio. */
+  --book-paw-next-start-x: 0px;
+  --book-paw-next-start-y: 0px;
+  --book-paw-next-start-rotate: 0deg;
+
+  --book-paw-next-touch-x: 16px;
+  --book-paw-next-touch-y: -13px;
+  --book-paw-next-touch-rotate: -8deg;
+
+  --book-paw-next-sweep-x: -22px;
+  --book-paw-next-sweep-y: -17px;
+  --book-paw-next-sweep-rotate: -17deg;
+
+  --book-paw-next-end-x: 0px;
+  --book-paw-next-end-y: 0px;
+  --book-paw-next-end-rotate: 0deg;
+
+  /* Movimento INDIETRO: gesto più piccolo e inverso. */
+  --book-paw-prev-touch-x: -13px;
+  --book-paw-prev-touch-y: -10px;
+  --book-paw-prev-touch-rotate: 7deg;
+
+  --book-paw-prev-sweep-x: 17px;
+  --book-paw-prev-sweep-y: -14px;
+  --book-paw-prev-sweep-rotate: 14deg;
+}
+
+.rm-book-paw-layer{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  pointer-events:none!important;
+  user-select:none!important;
+  opacity:0;
+  z-index:14!important;
+  clip-path:inset(
+    var(--book-paw-clip-top)
+    var(--book-paw-clip-right)
+    var(--book-paw-clip-bottom)
+    var(--book-paw-clip-left)
+  );
+  transform-origin:var(--book-paw-origin-x) var(--book-paw-origin-y);
+  will-change:transform,opacity;
+}
+
+/* Avanti */
+.rm-book-scene-real.turn-next .rm-book-paw-layer{
+  animation:rm-book-paw-next var(--book-paw-duration) cubic-bezier(.35,.02,.2,1) var(--book-paw-delay) both;
+}
+
+/* Indietro */
+.rm-book-scene-real.turn-prev .rm-book-paw-layer{
+  animation:rm-book-paw-prev var(--book-paw-duration) cubic-bezier(.35,.02,.2,1) var(--book-paw-delay) both;
+}
+
+@keyframes rm-book-paw-next{
+  0%{
+    opacity:0;
+    transform:translate(var(--book-paw-next-start-x),var(--book-paw-next-start-y)) rotate(var(--book-paw-next-start-rotate));
+  }
+  8%{
+    opacity:1;
+    transform:translate(var(--book-paw-next-start-x),var(--book-paw-next-start-y)) rotate(var(--book-paw-next-start-rotate));
+  }
+  32%{
+    opacity:1;
+    transform:translate(var(--book-paw-next-touch-x),var(--book-paw-next-touch-y)) rotate(var(--book-paw-next-touch-rotate));
+  }
+  60%{
+    opacity:1;
+    transform:translate(var(--book-paw-next-sweep-x),var(--book-paw-next-sweep-y)) rotate(var(--book-paw-next-sweep-rotate));
+  }
+  88%{
+    opacity:1;
+    transform:translate(var(--book-paw-next-end-x),var(--book-paw-next-end-y)) rotate(var(--book-paw-next-end-rotate));
+  }
+  100%{
+    opacity:0;
+    transform:translate(var(--book-paw-next-end-x),var(--book-paw-next-end-y)) rotate(var(--book-paw-next-end-rotate));
+  }
+}
+
+@keyframes rm-book-paw-prev{
+  0%{
+    opacity:0;
+    transform:translate(0,0) rotate(0deg);
+  }
+  8%{
+    opacity:1;
+    transform:translate(0,0) rotate(0deg);
+  }
+  35%{
+    opacity:1;
+    transform:translate(var(--book-paw-prev-touch-x),var(--book-paw-prev-touch-y)) rotate(var(--book-paw-prev-touch-rotate));
+  }
+  62%{
+    opacity:1;
+    transform:translate(var(--book-paw-prev-sweep-x),var(--book-paw-prev-sweep-y)) rotate(var(--book-paw-prev-sweep-rotate));
+  }
+  90%{
+    opacity:1;
+    transform:translate(0,0) rotate(0deg);
+  }
+  100%{
+    opacity:0;
+    transform:translate(0,0) rotate(0deg);
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .rm-book-scene-real.turn-next .rm-book-paw-layer,
+  .rm-book-scene-real.turn-prev .rm-book-paw-layer{
+    animation:none!important;
+    opacity:0!important;
+  }
+}
