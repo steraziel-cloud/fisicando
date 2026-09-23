@@ -8,10 +8,10 @@
   --book-text-top: 29.0%;
   --book-text-width: 23.6%;
   --book-text-height: 31.5%;
-  --book-text-rotate: 0deg;
+  --book-text-rotate: -15deg;
   --book-step-size: clamp(11px,.78vw,13px);
-  --book-title-size: clamp(31px,2.45vw,41px);
-  --book-copy-size: clamp(15px,1.22vw,20px);
+  --book-title-size: clamp(50px,2.45vw,41px);
+  --book-copy-size: clamp(30px,1.22vw,20px);
 }
 
 .rm-book-overlay-right{
