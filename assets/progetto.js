@@ -117,7 +117,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   const bookTitle=document.querySelector('[data-book-title]');
   const bookCopy=document.querySelector('[data-book-copy]');
   const bookStep=document.querySelector('[data-book-step]');
-  const bookKicker=document.querySelector('[data-book-kicker]');
   const bookPrev=document.querySelector('[data-book-prev]');
   const bookNext=document.querySelector('[data-book-next]');
   const bookDots=[...document.querySelectorAll('[data-book-index]')];
@@ -136,7 +135,6 @@ window.addEventListener('DOMContentLoaded',()=>{
       if(bookTitle) bookTitle.textContent=bookData[bookIndex][0];
       if(bookCopy) bookCopy.textContent=bookData[bookIndex][1];
       if(bookStep) bookStep.textContent=`${bookIndex+1} / ${bookData.length}`;
-      if(bookKicker) bookKicker.textContent=`0${bookIndex+1} · ${bookData[bookIndex][0]}`;
       updateBookControls();
     },170);
     setTimeout(()=>bookScene?.classList.remove(animClass),500);
