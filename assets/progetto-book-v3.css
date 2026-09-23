@@ -8,10 +8,10 @@
   --book-text-top: 29.0%;
   --book-text-width: 23.6%;
   --book-text-height: 31.5%;
-  --book-text-rotate: -2deg;
-  --book-step-size: clamp(11px,.78vw,15px);
-  --book-title-size: clamp(31px,4vw,61px);
-  --book-copy-size: clamp(15px,1.22vw,40px);
+  --book-text-rotate: 2deg;
+  --book-step-size: clamp(10px,.68vw,12px);
+  --book-title-size: clamp(26px,3vw,45px);
+  --book-copy-size: clamp(13px,1vw,18px);
 }
 
 .rm-book-overlay-right{
@@ -125,7 +125,7 @@
 
 @media(max-width:760px){
   .rm-book-scene-real{
-    --book-title-size:clamp(25px,5vw,34px);
-    --book-copy-size:clamp(13px,2.8vw,17px);
+    --book-title-size:clamp(23px,4.4vw,31px);
+    --book-copy-size:clamp(12px,2.5vw,15px);
   }
 }
