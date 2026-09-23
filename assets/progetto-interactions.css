@@ -18,5 +18,66 @@
 .rm-students{bottom:62px}
 .rm-whisper-cat{bottom:76px}
 .rm-balloon{top:44px}
-@media(max-width:640px){.rm-micro-controls{bottom:9px;gap:7px;padding:5px 7px}.rm-micro-arrow{width:31px;height:31px;font-size:15px}.rm-interaction-hint{top:10px;right:10px;font-size:9px;padding:5px 8px}.rm-students{bottom:56px}.rm-whisper-cat{bottom:70px}}
-@media(prefers-reduced-motion:reduce){.rm-interaction-hint{animation:none}}
+
+/* Project navigation inspired by the approved mockup */
+.rm-project-nav{position:absolute;left:50%;bottom:15px;transform:translateX(-50%);z-index:80;width:min(1180px,calc(100% - 36px));display:grid;grid-template-columns:52px 1fr 52px;align-items:center;gap:18px;padding:0 2px}
+.rm-project-nav-arrow{width:46px;height:46px;border-radius:50%;border:1px solid var(--rm-line);background:color-mix(in srgb,var(--rm-card) 88%,transparent);color:var(--rm-text);font-size:34px;line-height:1;cursor:pointer;box-shadow:0 8px 22px rgba(20,34,48,.07);backdrop-filter:blur(12px)}
+.rm-project-steps{position:relative;display:grid;grid-template-columns:repeat(5,1fr);align-items:start}
+.rm-project-steps::before{content:"";position:absolute;left:10%;right:10%;top:7px;height:1px;background:var(--rm-line)}
+.rm-project-step{position:relative;z-index:1;border:0;background:transparent;color:var(--rm-muted);display:grid;justify-items:center;gap:8px;padding:0 8px;font:inherit;cursor:pointer}
+.rm-project-step span{width:13px;height:13px;border-radius:50%;background:#b7c6d6;border:2px solid var(--rm-bg);box-shadow:0 0 0 1px color-mix(in srgb,var(--rm-line) 72%,transparent);transition:.2s ease}
+.rm-project-step em{font-style:normal;font-size:11px;font-weight:700;white-space:nowrap;transition:.2s ease}
+.rm-project-step.active{color:var(--rm-text)}
+.rm-project-step.active span{background:var(--rm-accent);transform:scale(1.08)}
+.rm-project-step.active em{font-weight:900}
+
+/* Slide 1: approved title hierarchy + real Red/book artwork */
+.rm-slide-about{padding-bottom:100px}
+.rm-slide-inner-about{grid-template-columns:minmax(320px,.72fr) minmax(620px,1.28fr);gap:18px}
+.rm-about-copy{align-self:center;max-width:430px}
+.rm-about-copy .rm-eyebrow{margin-bottom:8px}
+.rm-about-title{font-size:clamp(48px,5vw,72px)!important;line-height:.98!important;letter-spacing:-.055em!important;margin:0 0 20px!important;white-space:normal!important}
+.rm-about-title span{color:var(--rm-text)}
+.rm-about-title em{font-style:normal;color:var(--rm-accent)}
+.rm-about-copy p{font-size:15px;line-height:1.62;margin-bottom:13px}
+.rm-book-scene-real{min-height:0;border:0;background:transparent;box-shadow:none;overflow:visible;padding:0;align-self:center;aspect-ratio:3/2}
+.rm-red-book-image{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 18px 24px rgba(20,34,48,.10));pointer-events:none;user-select:none}
+.rm-book-overlay{position:absolute;z-index:6;color:#26354a;pointer-events:none;transform-origin:center center}
+.rm-book-overlay-left{left:49.1%;top:30.4%;width:19.8%;height:28.5%;transform:rotate(1.6deg) skewY(.7deg);display:grid;align-content:start;justify-items:center;text-align:center;padding:7% 5%}
+.rm-book-overlay-right{left:68.9%;top:28.7%;width:22.1%;height:34%;transform:rotate(-1.1deg) skewY(-.5deg);padding:3.6% 4.2%;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.rm-book-overlay small{display:block;color:#8c6e3d;font-size:clamp(8px,.72vw,11px);font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.rm-book-overlay-left small{max-width:92%;line-height:1.4}
+.rm-book-mini-mark{margin-top:18%;font-size:clamp(18px,2vw,28px);color:#d9a745}
+.rm-book-overlay-right h3{margin:8px 0 7px;font-size:clamp(16px,1.8vw,25px);line-height:1.05;color:#1f2e44;letter-spacing:-.025em}
+.rm-book-overlay-right p{margin:0;font-size:clamp(9px,.92vw,13px);line-height:1.4;color:#59677a}
+.rm-book-hit{position:absolute;z-index:10;border:0;background:transparent;cursor:pointer;padding:0;border-radius:18px}
+.rm-book-hit-left{left:47.5%;top:22%;width:22%;height:48%;transform:rotate(2deg)}
+.rm-book-hit-right{left:68.3%;top:21%;width:24%;height:49%;transform:rotate(-1.4deg)}
+.rm-book-hit:focus-visible{outline:3px solid color-mix(in srgb,var(--rm-accent) 72%,white);outline-offset:4px}
+.rm-book-hit:hover{background:color-mix(in srgb,var(--rm-accent) 4%,transparent)}
+.rm-book-scene-real.turn-next .rm-book-overlay-right{animation:rm-page-right .46s ease both}
+.rm-book-scene-real.turn-prev .rm-book-overlay-left{animation:rm-page-left .46s ease both}
+@keyframes rm-page-right{0%{transform:rotate(-1.1deg) skewY(-.5deg);opacity:1}46%{transform:perspective(650px) rotateY(-18deg) rotate(-1.1deg);opacity:.25}100%{transform:rotate(-1.1deg) skewY(-.5deg);opacity:1}}
+@keyframes rm-page-left{0%{transform:rotate(1.6deg) skewY(.7deg);opacity:1}46%{transform:perspective(650px) rotateY(18deg) rotate(1.6deg);opacity:.25}100%{transform:rotate(1.6deg) skewY(.7deg);opacity:1}}
+.rm-book-dots{position:absolute;z-index:12;left:71%;bottom:11.5%;display:flex;gap:7px;align-items:center}
+.rm-book-dot{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:color-mix(in srgb,var(--rm-muted) 38%,transparent);cursor:pointer}
+.rm-book-dot.active{background:var(--rm-accent);transform:scale(1.18)}
+
+@media(max-width:980px){
+  .rm-slide-inner-about{grid-template-columns:1fr;gap:12px;align-content:center}
+  .rm-about-copy{max-width:none}
+  .rm-about-title{font-size:clamp(42px,8vw,60px)!important}
+  .rm-book-scene-real{width:min(760px,100%);margin:0 auto}
+  .rm-slide-about{padding-top:18px}
+  .rm-project-nav{grid-template-columns:44px 1fr 44px;gap:8px}
+  .rm-project-nav-arrow{width:40px;height:40px;font-size:28px}
+  .rm-project-step em{font-size:9px}
+}
+@media(max-width:640px){
+  .rm-micro-controls{bottom:9px;gap:7px;padding:5px 7px}.rm-micro-arrow{width:31px;height:31px;font-size:15px}.rm-interaction-hint{top:10px;right:10px;font-size:9px;padding:5px 8px}.rm-students{bottom:56px}.rm-whisper-cat{bottom:70px}
+  .rm-project-nav{bottom:8px;width:calc(100% - 18px);grid-template-columns:38px 1fr 38px;gap:4px}
+  .rm-project-nav-arrow{width:34px;height:34px;font-size:24px}
+  .rm-project-step{padding:0 2px;gap:5px}.rm-project-step span{width:10px;height:10px}.rm-project-step em{font-size:7px;white-space:normal;line-height:1.1;text-align:center}
+  .rm-slide-about{padding-bottom:78px}
+}
+@media(prefers-reduced-motion:reduce){.rm-interaction-hint{animation:none}.rm-book-scene-real.turn-next .rm-book-overlay-right,.rm-book-scene-real.turn-prev .rm-book-overlay-left{animation:none}}
