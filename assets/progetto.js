@@ -123,6 +123,7 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   function updateBookControls(){
     bookDots.forEach((dot,i)=>dot.classList.toggle('active',i===bookIndex));
+    if(bookScene) bookScene.dataset.bookPage=String(bookIndex+1);
   }
 
   function showBook(nextIndex,direction='next',user=true){
@@ -242,12 +243,13 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   function showResource(nextIndex,user=true){
     resourceIndex=(nextIndex+resourceData.length)%resourceData.length;
+    const data=resourceData[resourceIndex];
     balloon?.classList.remove('pulse');
     void balloon?.offsetWidth;
     balloon?.classList.add('pulse');
     setTimeout(()=>{
-      if(resourceTitle) resourceTitle.textContent=resourceData[resourceIndex][0];
-      if(resourceCopy) resourceCopy.textContent=resourceData[resourceIndex][1];
+      if(resourceTitle) resourceTitle.textContent=data[0];
+      if(resourceCopy) resourceCopy.textContent=data[1];
       updateResourceControls();
     },110);
     if(user) registerActivity();
