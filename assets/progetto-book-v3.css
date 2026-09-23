@@ -17,7 +17,7 @@
 
   /* Regolazioni indipendenti: non spostano il testo descrittivo sotto. */
   --book-step-x: 0px;
-  --book-step-y: -3px;
+  --book-step-y: 0px;
   --book-title-x: 0px;
   --book-title-y: -1px;
 
