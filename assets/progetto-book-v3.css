@@ -12,7 +12,7 @@
 */
 .rm-book-scene-real{
   /* Area generale del testo sulla pagina destra */
-  --book-text-left: 61.8%;
+  --book-text-left: 60.6%;
   --book-text-top: 26.8%;
   --book-text-width: 21.2%;
   --book-text-height: 30.0%;
@@ -45,10 +45,10 @@
 */
 .rm-book-scene-real[data-book-page="1"]{
   --book-step-x: 0px;
-  --book-step-y: 30px;
+  --book-step-y: -30px;
 
   --book-title-x: 0px;
-  --book-title-y: -1px;
+  --book-title-y: -25px;
   --book-title-width: 100%;
   --book-title-size: clamp(26px,3vw,45px);
 
@@ -59,10 +59,10 @@
 
 .rm-book-scene-real[data-book-page="2"]{
   --book-step-x: 0px;
-  --book-step-y: 30px;
+  --book-step-y: -30px;
 
   --book-title-x: 0px;
-  --book-title-y: -1px;
+  --book-title-y: -25px;
   --book-title-width: 100%;
   --book-title-size: clamp(26px,3vw,45px);
 
@@ -73,11 +73,11 @@
 
 .rm-book-scene-real[data-book-page="3"]{
   --book-step-x: 0px;
-  --book-step-y: 30px;
+  --book-step-y: -30px;
 
   /* Autonomia: regolazione indipendente */
   --book-title-x: -10px;
-  --book-title-y: -1px;
+  --book-title-y: -25px;
   --book-title-width: 100%;
   --book-title-size: clamp(26px,3vw,45px);
 
