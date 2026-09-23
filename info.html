@@ -28,41 +28,37 @@
     <div class="rm-slider" aria-label="Presentazione del progetto Reddito Math">
       <div class="rm-track">
 
-        <section class="rm-slide" aria-label="Chi siamo">
-          <div class="rm-slide-inner">
-            <div class="rm-slide-copy">
-              <div class="rm-eyebrow">Chi siamo</div>
-              <h1>Un progetto educativo nato sul campo.</h1>
+        <section class="rm-slide rm-slide-about" aria-label="Chi siamo">
+          <div class="rm-slide-inner rm-slide-inner-about">
+            <div class="rm-slide-copy rm-about-copy">
+              <div class="rm-eyebrow">Il progetto</div>
+              <h1 class="rm-about-title"><span>Chi</span> <em>siamo</em></h1>
               <p><strong>Reddito Math è un progetto educativo nato dal lavoro diretto con studentesse e studenti.</strong></p>
               <p>Unisce competenze e sensibilità diverse nel campo dell'educazione e dell'insegnamento, mettendo insieme <strong>competenze didattiche e attenzione educativa ai bisogni di chi studia</strong>.</p>
               <p>L’idea alla base del progetto è semplice: non tutte le difficoltà dipendono dallo stesso motivo e non tutte le persone imparano allo stesso modo. Per questo cerchiamo di costruire percorsi che tengano conto della situazione concreta di ogni studentessa e di ogni studente.</p>
             </div>
 
-            <div class="rm-scene rm-book-scene" aria-label="Red sfoglia un libro con i principi del progetto">
-              <div class="rm-interaction-hint">☝ clicca / tocca</div>
-              <div class="rm-book-wrap">
-                <div class="rm-reader" role="button" tabindex="0" aria-label="Red: pagina successiva">Red</div>
-                <div class="rm-book">
-                  <div class="rm-page left" role="button" tabindex="0" aria-label="Pagina precedente">
-                    <small>Reddito Math</small>
-                    <div class="rm-book-doodle">∑ · π · x²</div>
-                  </div>
-                  <div class="rm-page right" role="button" tabindex="0" aria-label="Pagina successiva">
-                    <small data-book-step>1 / 3</small>
-                    <h3 data-book-title>Bisogni reali</h3>
-                    <p data-book-copy>Si parte dalla situazione concreta di chi studia, non da un percorso preconfezionato.</p>
-                  </div>
-                </div>
+            <div class="rm-scene rm-book-scene rm-book-scene-real" aria-label="Red sfoglia un libro con i principi del progetto">
+              <img class="rm-red-book-image" src="assets/images/red-libro.png" alt="Red visto di spalle mentre legge un grande libro aperto">
+
+              <button class="rm-book-hit rm-book-hit-left" type="button" data-book-prev aria-label="Pagina precedente"></button>
+              <button class="rm-book-hit rm-book-hit-right" type="button" data-book-next aria-label="Pagina successiva"></button>
+
+              <div class="rm-book-overlay rm-book-overlay-left" aria-hidden="true">
+                <small data-book-kicker>01 · Bisogni reali</small>
+                <div class="rm-book-mini-mark">✦</div>
               </div>
-              <div class="rm-micro-controls" aria-label="Controlli libro">
-                <button class="rm-micro-arrow" data-book-prev aria-label="Pagina precedente">←</button>
-                <div class="rm-micro-dots">
-                  <button class="rm-micro-dot active" data-book-index="0" aria-label="Bisogni reali"></button>
-                  <button class="rm-micro-dot" data-book-index="1" aria-label="Didattica adattabile"></button>
-                  <button class="rm-micro-dot" data-book-index="2" aria-label="Autonomia"></button>
-                </div>
-                <span class="rm-micro-count" data-book-count>1 / 3</span>
-                <button class="rm-micro-arrow" data-book-next aria-label="Pagina successiva">→</button>
+
+              <div class="rm-book-overlay rm-book-overlay-right" aria-live="polite">
+                <small data-book-step>1 / 3</small>
+                <h3 data-book-title>Bisogni reali</h3>
+                <p data-book-copy>Si parte dalla situazione concreta di chi studia, non da un percorso preconfezionato.</p>
+              </div>
+
+              <div class="rm-book-dots" aria-label="Pagine del libro">
+                <button class="rm-book-dot active" type="button" data-book-index="0" aria-label="Bisogni reali"></button>
+                <button class="rm-book-dot" type="button" data-book-index="1" aria-label="Didattica adattabile"></button>
+                <button class="rm-book-dot" type="button" data-book-index="2" aria-label="Autonomia"></button>
               </div>
             </div>
           </div>
@@ -178,9 +174,16 @@
       </div>
     </div>
 
-    <div class="rm-slide-controls rm-slide-controls-arrows" aria-label="Cambio slide">
-      <button class="rm-slide-arrow" data-slide-prev aria-label="Slide precedente">←</button>
-      <button class="rm-slide-arrow" data-slide-next aria-label="Slide successiva">→</button>
+    <div class="rm-project-nav" aria-label="Sezioni del progetto">
+      <button class="rm-project-nav-arrow" type="button" data-slide-prev aria-label="Slide precedente">‹</button>
+      <div class="rm-project-steps">
+        <button class="rm-project-step active" type="button" data-slide-index="0"><span></span><em>Chi siamo</em></button>
+        <button class="rm-project-step" type="button" data-slide-index="1"><span></span><em>Cosa facciamo</em></button>
+        <button class="rm-project-step" type="button" data-slide-index="2"><span></span><em>Come lavoriamo</em></button>
+        <button class="rm-project-step" type="button" data-slide-index="3"><span></span><em>Oltre le lezioni</em></button>
+        <button class="rm-project-step" type="button" data-slide-index="4"><span></span><em>A chi ci rivolgiamo</em></button>
+      </div>
+      <button class="rm-project-nav-arrow" type="button" data-slide-next aria-label="Slide successiva">›</button>
     </div>
   </main>
 </body>
