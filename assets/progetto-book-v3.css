@@ -10,9 +10,16 @@
   --book-text-width: 21.2%;
   --book-text-height: 30.0%;
   --book-text-rotate: 0deg;
+
   --book-step-size: clamp(10px,.68vw,12px);
   --book-title-size: clamp(26px,3vw,45px);
   --book-copy-size: clamp(13px,1vw,18px);
+
+  /* Regolazioni indipendenti: non spostano il testo descrittivo sotto. */
+  --book-step-x: 0px;
+  --book-step-y: -3px;
+  --book-title-x: 0px;
+  --book-title-y: -1px;
 
 }
 
@@ -34,7 +41,9 @@
 }
 
 .rm-book-overlay-right small{
-  position:static!important;
+  position:relative!important;
+  left:var(--book-step-x)!important;
+  top:var(--book-step-y)!important;
   width:auto!important;
   margin:0 0 6.5%!important;
   font-family:"Cormorant Garamond", Georgia, serif!important;
@@ -47,7 +56,9 @@
 }
 
 .rm-book-overlay-right h3{
-  position:static!important;
+  position:relative!important;
+  left:var(--book-title-x)!important;
+  top:var(--book-title-y)!important;
   width:100%!important;
   max-width:none!important;
   margin:0 0 6%!important;
