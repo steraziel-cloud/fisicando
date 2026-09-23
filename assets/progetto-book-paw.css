@@ -10,10 +10,10 @@
 .rm-book-scene-real{
   /* Ritaglio della zampa/avambraccio destro di Red.
      inset(top right bottom left): aumenta un valore per tagliare di più da quel lato. */
-  --book-paw-clip-top: 48%;
-  --book-paw-clip-right: 37%;
-  --book-paw-clip-bottom: 19%;
-  --book-paw-clip-left: 50%;
+  --book-paw-clip-top: 55%;
+  --book-paw-clip-right: 48%;
+  --book-paw-clip-bottom: 28%;
+  --book-paw-clip-left: 42%;
 
   /* Punto attorno a cui ruota il gesto della zampa. */
   --book-paw-origin-x: 54%;

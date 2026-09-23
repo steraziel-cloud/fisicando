@@ -49,10 +49,10 @@
   --book-flip-glow: inset 0 0 22px rgba(255,255,255,.42);
 
   /* foglio che parte dalla pagina destra e gira verso sinistra */
-  --book-flip-next-left: 65.2%;
-  --book-flip-next-top: 21.0%;
-  --book-flip-next-width: 23.0%;
-  --book-flip-next-height: 46.5%;
+  --book-flip-next-left: 56.2%;
+  --book-flip-next-top: 18.0%;
+  --book-flip-next-width: 30.0%;
+  --book-flip-next-height: 57.0%;
   --book-flip-next-rotate: 0deg;
 
   /* foglio che parte dalla pagina sinistra e torna verso destra */
@@ -300,12 +300,12 @@
   }
   42%{
     opacity:1;
-    transform:rotate(var(--book-flip-next-rotate)) rotateY(-72deg) skewY(-1.2deg);
+    transform:rotate(var(--book-flip-next-rotate)) rotateY(-98deg) skewY(-1.2deg);
     box-shadow:-14px 10px 24px rgba(49,40,28,.30),var(--book-flip-glow);
   }
   58%{
     opacity:.94;
-    transform:rotate(var(--book-flip-next-rotate)) rotateY(-108deg) skewY(1.2deg);
+    transform:rotate(var(--book-flip-next-rotate)) rotateY(-125deg) skewY(1.2deg);
     box-shadow:12px 10px 20px rgba(49,40,28,.24),var(--book-flip-glow);
   }
   100%{
