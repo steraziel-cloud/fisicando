@@ -1,15 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap');
 
 /* Libro di Red — versione frontale.
-   La nuova illustrazione ha pagine quasi frontali: il testo resta quindi
-   sostanzialmente piano, con una sola lievissima rotazione ottica. */
+   I valori qui sotto sono volutamente raccolti in variabili: se vuoi rifinirli
+   a mano, ti basta cambiare questi numeri senza cercare le regole più sotto. */
+.rm-book-scene-real{
+  --book-text-left: 66.0%;
+  --book-text-top: 29.0%;
+  --book-text-width: 23.6%;
+  --book-text-height: 31.5%;
+  --book-text-rotate: 0deg;
+  --book-step-size: clamp(11px,.78vw,13px);
+  --book-title-size: clamp(31px,2.45vw,41px);
+  --book-copy-size: clamp(15px,1.22vw,20px);
+}
+
 .rm-book-overlay-right{
-  left:67.2%!important;
-  top:25.6%!important;
-  width:20.4%!important;
-  height:34.8%!important;
-  padding:2.8% 1.4% 2.2%!important;
-  transform:rotate(-.35deg)!important;
+  left:var(--book-text-left)!important;
+  top:var(--book-text-top)!important;
+  width:var(--book-text-width)!important;
+  height:var(--book-text-height)!important;
+  padding:1.2% .55% 1%!important;
+  transform:rotate(var(--book-text-rotate))!important;
   transform-origin:center center!important;
   display:flex!important;
   flex-direction:column!important;
@@ -23,11 +34,11 @@
 .rm-book-overlay-right small{
   position:static!important;
   width:auto!important;
-  margin:0 0 8%!important;
+  margin:0 0 6.5%!important;
   font-family:"Cormorant Garamond", Georgia, serif!important;
-  font-size:clamp(10px,.72vw,12px)!important;
+  font-size:var(--book-step-size)!important;
   font-weight:700!important;
-  letter-spacing:.15em!important;
+  letter-spacing:.16em!important;
   line-height:1!important;
   color:#8f6c39!important;
   transform:none!important;
@@ -37,11 +48,11 @@
   position:static!important;
   width:100%!important;
   max-width:none!important;
-  margin:0 0 8%!important;
+  margin:0 0 6%!important;
   font-family:"Cormorant Garamond", Georgia, serif!important;
-  font-size:clamp(25px,2.05vw,33px)!important;
+  font-size:var(--book-title-size)!important;
   font-weight:700!important;
-  line-height:.95!important;
+  line-height:.92!important;
   letter-spacing:-.025em!important;
   color:#2e3542!important;
   transform:none!important;
@@ -49,20 +60,20 @@
 
 .rm-book-overlay-right p{
   position:static!important;
-  width:96%!important;
+  width:90%!important;
   max-width:none!important;
   margin:0 auto!important;
   font-family:"Cormorant Garamond", Georgia, serif!important;
-  font-size:clamp(13px,1.08vw,17px)!important;
+  font-size:var(--book-copy-size)!important;
   font-weight:500!important;
   font-style:italic!important;
-  line-height:1.24!important;
-  letter-spacing:.002em!important;
+  line-height:1.16!important;
+  letter-spacing:.001em!important;
   color:#6d655b!important;
   transform:none!important;
 }
 
-/* Pagina sinistra: solo un piccolo fregio, centrato nella zona libera. */
+/* Pagina sinistra: resta quasi vuota, solo con il piccolo fregio. */
 .rm-book-overlay-left{
   left:47.3%!important;
   top:25.8%!important;
@@ -72,7 +83,7 @@
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
-  transform:rotate(.25deg)!important;
+  transform:none!important;
 }
 .rm-book-overlay-left .rm-book-mini-mark{
   margin:0!important;
@@ -82,37 +93,39 @@
   color:rgba(201,151,57,.55)!important;
 }
 
-/* Aree cliccabili delle due pagine, ora quasi rettangolari. */
+/* Aree cliccabili delle due pagine. */
 .rm-book-hit-left{
   left:45.8%!important;
   top:20.5%!important;
   width:21.2%!important;
   height:48.5%!important;
-  transform:rotate(.25deg)!important;
+  transform:none!important;
 }
 .rm-book-hit-right{
-  left:66.4%!important;
+  left:65.5%!important;
   top:20.3%!important;
-  width:22.9%!important;
+  width:24.8%!important;
   height:49%!important;
-  transform:rotate(-.35deg)!important;
+  transform:none!important;
 }
 
 /* Sfoglio volutamente minimo. */
 .rm-book-scene-real.turn-next .rm-book-overlay-right{animation:rm-book-front-next .42s ease both!important}
 .rm-book-scene-real.turn-prev .rm-book-overlay-left{animation:rm-book-front-prev .42s ease both!important}
 @keyframes rm-book-front-next{
-  0%{opacity:1;transform:rotate(-.35deg) translateX(0)}
-  48%{opacity:.16;transform:rotate(-.35deg) translateX(-5px)}
-  100%{opacity:1;transform:rotate(-.35deg) translateX(0)}
+  0%{opacity:1;transform:rotate(var(--book-text-rotate)) translateX(0)}
+  48%{opacity:.16;transform:rotate(var(--book-text-rotate)) translateX(-5px)}
+  100%{opacity:1;transform:rotate(var(--book-text-rotate)) translateX(0)}
 }
 @keyframes rm-book-front-prev{
-  0%{opacity:1;transform:rotate(.25deg) translateX(0)}
-  48%{opacity:.16;transform:rotate(.25deg) translateX(5px)}
-  100%{opacity:1;transform:rotate(.25deg) translateX(0)}
+  0%{opacity:1;transform:translateX(0)}
+  48%{opacity:.16;transform:translateX(5px)}
+  100%{opacity:1;transform:translateX(0)}
 }
 
 @media(max-width:760px){
-  .rm-book-overlay-right h3{font-size:clamp(20px,4.4vw,29px)!important}
-  .rm-book-overlay-right p{font-size:clamp(11px,2.5vw,15px)!important}
+  .rm-book-scene-real{
+    --book-title-size:clamp(25px,5vw,34px);
+    --book-copy-size:clamp(13px,2.8vw,17px);
+  }
 }
