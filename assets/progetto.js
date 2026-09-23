@@ -107,9 +107,9 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   // Libro di Red
   const bookData=[
-    ['Bisogni reali','Si parte dalla situazione concreta di chi studia, non da un percorso preconfezionato.'],
-    ['Didattica adattabile','Spiegazioni, esercizi e strumenti possono cambiare insieme al percorso.'],
-    ['Autonomia','L’obiettivo è capire meglio e acquisire metodo, non soltanto arrivare alla risposta.']
+    ['Bisogni reali','Partiamo dalla situazione concreta di chi studia.'],
+    ['Didattica adattabile','Strumenti e spiegazioni cambiano insieme al percorso.'],
+    ['Autonomia','Capire, acquisire metodo e imparare a procedere da soli.']
   ];
 
   let bookIndex=0;
