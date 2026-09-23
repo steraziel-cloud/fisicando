@@ -4,11 +4,11 @@
    I valori qui sotto sono volutamente raccolti in variabili: se vuoi rifinirli
    a mano, ti basta cambiare questi numeri senza cercare le regole più sotto. */
 .rm-book-scene-real{
-  --book-text-left: 65.0%;
+  --book-text-left: 68.5%;
   --book-text-top: 29.0%;
   --book-text-width: 23.6%;
   --book-text-height: 31.5%;
-  --book-text-rotate: -3deg;
+  --book-text-rotate: -2deg;
   --book-step-size: clamp(11px,.78vw,15px);
   --book-title-size: clamp(31px,4vw,61px);
   --book-copy-size: clamp(15px,1.22vw,40px);
