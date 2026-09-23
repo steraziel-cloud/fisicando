@@ -6,6 +6,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   const prev=document.querySelector('[data-slide-prev]');
   const next=document.querySelector('[data-slide-next]');
   const slider=document.querySelector('.rm-slider');
+  const projectSteps=[...document.querySelectorAll('[data-slide-index]')];
 
   let index=0;
   let slideTimer=null;
@@ -19,6 +20,7 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   function render(){
     track.style.transform=`translateX(-${index*100}%)`;
+    projectSteps.forEach((step,i)=>step.classList.toggle('active',i===index));
   }
 
   function resetSlideTimer(){
@@ -28,9 +30,7 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   function resetMicroTimer(){
     clearInterval(microTimer);
-    if(index===0){
-      microTimer=setInterval(()=>showBook(bookIndex+1,rightPage,false),MICRO_MS);
-    }else if(index===2){
+    if(index===2){
       microTimer=setInterval(()=>advanceBoard(false),MICRO_MS);
     }else if(index===3){
       microTimer=setInterval(()=>advanceResource(false),MICRO_MS);
@@ -51,6 +51,7 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   prev?.addEventListener('click',()=>go(index-1));
   next?.addEventListener('click',()=>go(index+1));
+  projectSteps.forEach(step=>step.addEventListener('click',()=>go(Number(step.dataset.slideIndex))));
 
   document.addEventListener('keydown',e=>{
     if(e.key==='ArrowRight') go(index+1);
@@ -58,7 +59,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   });
 
   slider?.addEventListener('pointerdown',e=>{
-    if(e.target.closest('button,a,.rm-page,.rm-board,.rm-reader,.rm-morgana,.rm-whisper')) return;
+    if(e.target.closest('button,a,.rm-board,.rm-morgana,.rm-whisper')) return;
     pointerStartX=e.clientX;
     pointerStartY=e.clientY;
   });
@@ -112,44 +113,42 @@ window.addEventListener('DOMContentLoaded',()=>{
   ];
 
   let bookIndex=0;
+  const bookScene=document.querySelector('.rm-book-scene-real');
   const bookTitle=document.querySelector('[data-book-title]');
   const bookCopy=document.querySelector('[data-book-copy]');
   const bookStep=document.querySelector('[data-book-step]');
-  const leftPage=document.querySelector('.rm-page.left');
-  const rightPage=document.querySelector('.rm-page.right');
-  const reader=document.querySelector('.rm-reader');
+  const bookKicker=document.querySelector('[data-book-kicker]');
   const bookPrev=document.querySelector('[data-book-prev]');
   const bookNext=document.querySelector('[data-book-next]');
   const bookDots=[...document.querySelectorAll('[data-book-index]')];
-  const bookCount=document.querySelector('[data-book-count]');
 
   function updateBookControls(){
     bookDots.forEach((dot,i)=>dot.classList.toggle('active',i===bookIndex));
-    if(bookCount) bookCount.textContent=`${bookIndex+1} / ${bookData.length}`;
   }
 
-  function showBook(nextIndex,page=rightPage,user=true){
+  function showBook(nextIndex,direction='next',user=true){
     bookIndex=(nextIndex+bookData.length)%bookData.length;
-    page?.classList.add('turn');
+    const animClass=direction==='prev'?'turn-prev':'turn-next';
+    bookScene?.classList.remove('turn-prev','turn-next');
+    void bookScene?.offsetWidth;
+    bookScene?.classList.add(animClass);
     setTimeout(()=>{
       if(bookTitle) bookTitle.textContent=bookData[bookIndex][0];
       if(bookCopy) bookCopy.textContent=bookData[bookIndex][1];
       if(bookStep) bookStep.textContent=`${bookIndex+1} / ${bookData.length}`;
+      if(bookKicker) bookKicker.textContent=`0${bookIndex+1} · ${bookData[bookIndex][0]}`;
       updateBookControls();
-      page?.classList.remove('turn');
-    },130);
+    },170);
+    setTimeout(()=>bookScene?.classList.remove(animClass),500);
     if(user) registerActivity();
   }
 
-  leftPage?.addEventListener('click',()=>showBook(bookIndex-1,leftPage));
-  rightPage?.addEventListener('click',()=>showBook(bookIndex+1,rightPage));
-  reader?.addEventListener('click',()=>showBook(bookIndex+1,rightPage));
-  bookPrev?.addEventListener('click',()=>showBook(bookIndex-1,leftPage));
-  bookNext?.addEventListener('click',()=>showBook(bookIndex+1,rightPage));
-  bookDots.forEach(dot=>dot.addEventListener('click',()=>showBook(Number(dot.dataset.bookIndex),rightPage)));
-  activateWithKeyboard(leftPage,()=>showBook(bookIndex-1,leftPage));
-  activateWithKeyboard(rightPage,()=>showBook(bookIndex+1,rightPage));
-  activateWithKeyboard(reader,()=>showBook(bookIndex+1,rightPage));
+  bookPrev?.addEventListener('click',()=>showBook(bookIndex-1,'prev'));
+  bookNext?.addEventListener('click',()=>showBook(bookIndex+1,'next'));
+  bookDots.forEach(dot=>dot.addEventListener('click',()=>{
+    const target=Number(dot.dataset.bookIndex);
+    showBook(target,target<bookIndex?'prev':'next');
+  }));
 
   // Lavagna di Morgana
   const boardData=[
