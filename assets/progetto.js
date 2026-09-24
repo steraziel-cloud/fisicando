@@ -28,9 +28,7 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   function resetSlideTimer(){
     clearInterval(slideTimer);
-    // TEMPORANEAMENTE DISATTIVATO DURANTE LO SVILUPPO SLIDE-PER-SLIDE.
-    // Quando tutte le slide saranno pronte, riattivare la riga seguente:
-    // slideTimer=setInterval(()=>go(index+1,false),AUTO_MS);
+    slideTimer=setInterval(()=>go(index+1,false),AUTO_MS);
   }
 
   function resetMicroTimer(){
