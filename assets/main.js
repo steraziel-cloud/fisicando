@@ -28,18 +28,206 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // Se il bottone non esiste, non aggiungo il listener ma il tema resta applicato
-  if (!btn) return;
+  if (btn) {
+    btn.addEventListener("click", () => {
+      const isDark = document.body.getAttribute("data-theme") === "dark";
+      if (isDark) {
+        document.body.removeAttribute("data-theme");
+        btn.textContent = "🌙";
+        localStorage.setItem("theme", "light");
+      } else {
+        document.body.setAttribute("data-theme", "dark");
+        btn.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+      }
+    });
+  }
 
-  btn.addEventListener("click", () => {
-    const isDark = document.body.getAttribute("data-theme") === "dark";
-    if (isDark) {
-      document.body.removeAttribute("data-theme");
-      btn.textContent = "🌙";
-      localStorage.setItem("theme", "light");
-    } else {
-      document.body.setAttribute("data-theme", "dark");
-      btn.textContent = "☀️";
-      localStorage.setItem("theme", "dark");
+  // ------------------------------------------------------------
+  // Slide "Come lavoriamo" — animazione a frame della scena aula
+  // ------------------------------------------------------------
+  const classroom = document.querySelector(".rm-classroom-v2");
+  if (!classroom) return;
+
+  const morgana = classroom.querySelector(".rm-classroom-morgana");
+  const red = classroom.querySelector(".rm-classroom-red");
+  const bjorne = classroom.querySelector(".rm-classroom-bjorne");
+  const chalkSteps = [...classroom.querySelectorAll(".rm-chalk-step")];
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const base = "assets/images/morgana-classroom/";
+  const morganaFrames = {
+    A: `${base}morgana-a.png`,
+    B: `${base}morgana-b.png`,
+    C: `${base}morgana-c.png`,
+    D: `${base}morgana-d.png`,
+    E: `${base}morgana-e.png`,
+    F: `${base}morgana-f.png`
+  };
+  const redFrames = [
+    `${base}red-01.png`,
+    `${base}red-02.png`,
+    `${base}red-03.png`
+  ];
+  const bjorneFrames = [
+    `${base}bjorne-01.png`,
+    `${base}bjorne-02.png`,
+    `${base}bjorne-03.png`
+  ];
+
+  Object.values(morganaFrames)
+    .concat(redFrames, bjorneFrames)
+    .forEach(src => {
+      const preload = new Image();
+      preload.decoding = "async";
+      preload.src = src;
+    });
+
+  const animStyle = document.createElement("style");
+  animStyle.textContent = `
+    .rm-classroom-v2.rm-classroom-animated .rm-chalk-step {
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+      transform: translateX(-5px);
+      transition:
+        opacity .34s ease,
+        clip-path 1.05s cubic-bezier(.22,.61,.36,1),
+        transform .45s ease;
+    }
+    .rm-classroom-v2.rm-classroom-animated .rm-chalk-step.is-written {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
+      transform: translateX(0);
+    }
+    .rm-classroom-v2.rm-classroom-animated .rm-classroom-morgana,
+    .rm-classroom-v2.rm-classroom-animated .rm-classroom-red,
+    .rm-classroom-v2.rm-classroom-animated .rm-classroom-bjorne {
+      transition: filter .18s ease;
+      will-change: contents;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .rm-classroom-v2.rm-classroom-animated .rm-chalk-step {
+        opacity: 1;
+        clip-path: none;
+        transform: none;
+        transition: none;
+      }
+    }
+  `;
+  document.head.appendChild(animStyle);
+
+  let timers = [];
+  let isVisible = false;
+  let cycleNumber = 0;
+
+  function clearTimers() {
+    timers.forEach(clearTimeout);
+    timers = [];
+  }
+
+  function later(fn, delay) {
+    const id = setTimeout(() => {
+      if (!isVisible) return;
+      fn();
+    }, delay);
+    timers.push(id);
+  }
+
+  function setMorgana(frame) {
+    if (morgana) morgana.src = morganaFrames[frame];
+  }
+
+  function setStudents(redIndex, bjorneIndex) {
+    if (red) red.src = redFrames[redIndex];
+    if (bjorne) bjorne.src = bjorneFrames[bjorneIndex];
+  }
+
+  function hideWriting() {
+    chalkSteps.forEach(step => step.classList.remove("is-written"));
+  }
+
+  function writeStep(index) {
+    chalkSteps[index]?.classList.add("is-written");
+  }
+
+  function resetScene() {
+    clearTimers();
+    setMorgana("A");
+    setStudents(0, 0);
+    hideWriting();
+  }
+
+  function writingPass(stepIndex, startAt, returnFrame, studentState) {
+    later(() => setMorgana("B"), startAt);
+    later(() => setMorgana("C"), startAt + 230);
+    later(() => {
+      setMorgana("D");
+      writeStep(stepIndex);
+    }, startAt + 470);
+    later(() => setMorgana("C"), startAt + 1420);
+    later(() => setMorgana("B"), startAt + 1640);
+    later(() => setMorgana(returnFrame), startAt + 1860);
+    later(() => {
+      setMorgana("A");
+      setStudents(studentState[0], studentState[1]);
+    }, startAt + 2200);
+  }
+
+  function runCycle() {
+    if (!isVisible) return;
+    resetScene();
+    classroom.classList.add("rm-classroom-animated");
+
+    if (reducedMotion) {
+      chalkSteps.forEach(step => step.classList.add("is-written"));
+      setStudents(2, 2);
+      return;
+    }
+
+    // Tre spiegazioni successive: le scritte si accumulano sulla lavagna.
+    // E/F alternano la posa di rientro di Morgana, così il loop non è identico.
+    writingPass(0, 650, cycleNumber % 2 === 0 ? "E" : "F", [1, 1]);
+    writingPass(1, 3850, cycleNumber % 2 === 0 ? "F" : "E", [2, 1]);
+    writingPass(2, 7050, cycleNumber % 2 === 0 ? "E" : "F", [2, 2]);
+
+    later(() => {
+      cycleNumber += 1;
+      runCycle();
+    }, 11200);
+  }
+
+  function startScene() {
+    if (isVisible) return;
+    isVisible = true;
+    runCycle();
+  }
+
+  function stopScene() {
+    if (!isVisible) return;
+    isVisible = false;
+    clearTimers();
+    classroom.classList.remove("rm-classroom-animated");
+    setMorgana("A");
+    setStudents(0, 0);
+    chalkSteps.forEach(step => step.classList.add("is-written"));
+  }
+
+  // L'animazione parte solo quando la slide e davvero visibile.
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.target !== classroom) return;
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.55) startScene();
+      else stopScene();
+    });
+  }, { threshold: [0, 0.55, 0.8] });
+
+  observer.observe(classroom);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      clearTimers();
+    } else if (isVisible) {
+      runCycle();
     }
   });
 });
