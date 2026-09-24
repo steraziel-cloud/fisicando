@@ -277,15 +277,17 @@
   --board-width:82%;
   --board-left:9%;
   --board-top:4%;
-  --morgana-width:30%;
-  --morgana-left:-1%;
-  --morgana-bottom:0%;
-  --red-width:18%;
-  --red-right:2%;
-  --red-bottom:9%;
-  --bjorne-width:22%;
-  --bjorne-right:17%;
-  --bjorne-bottom:-2%;
+  /* profondità: Morgana resta più vicina alla lavagna e più indietro */
+  --morgana-width:27.5%;
+  --morgana-left:0%;
+  --morgana-bottom:8%;
+  /* Red e Bjorne sono in primo piano: più bassi e appena più grandi */
+  --red-width:19.5%;
+  --red-right:1.5%;
+  --red-bottom:2%;
+  --bjorne-width:24.5%;
+  --bjorne-right:16%;
+  --bjorne-bottom:-8%;
   --chalk-left:22%;
   --chalk-top:17%;
   --chalk-width:59%;
@@ -392,13 +394,14 @@
   width:var(--morgana-width);
   left:var(--morgana-left);
   bottom:var(--morgana-bottom);
+  z-index:3;
 }
 
 .rm-classroom-red{
   width:var(--red-width);
   right:var(--red-right);
   bottom:var(--red-bottom);
-  z-index:5;
+  z-index:6;
 }
 
 .rm-classroom-bjorne{
@@ -440,9 +443,12 @@
     --scene-height:430px;
     --board-width:88%;
     --board-left:6%;
-    --morgana-width:30%;
-    --red-width:18%;
-    --bjorne-width:23%;
+    --morgana-width:28%;
+    --morgana-bottom:7%;
+    --red-width:19%;
+    --red-bottom:1%;
+    --bjorne-width:24%;
+    --bjorne-bottom:-7%;
     --chalk-left:21%;
     --chalk-top:17%;
     --chalk-width:61%;
