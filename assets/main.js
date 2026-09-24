@@ -27,7 +27,6 @@ window.addEventListener("DOMContentLoaded", () => {
     if (btn) btn.textContent = "🌙";
   }
 
-  // Se il bottone non esiste, non aggiungo il listener ma il tema resta applicato
   if (btn) {
     btn.addEventListener("click", () => {
       const isDark = document.body.getAttribute("data-theme") === "dark";
@@ -75,13 +74,21 @@ window.addEventListener("DOMContentLoaded", () => {
     `${base}bjorne-03.png`
   ];
 
-  Object.values(morganaFrames)
-    .concat(redFrames, bjorneFrames)
-    .forEach(src => {
-      const preload = new Image();
-      preload.decoding = "async";
-      preload.src = src;
-    });
+  // Precarico e decodifico davvero tutti i PNG prima di far partire la scena.
+  // Questo evita il lampo nero che può comparire quando un frame viene mostrato
+  // prima che il browser abbia terminato la decodifica dell'immagine.
+  const allClassroomFrames = Object.values(morganaFrames).concat(redFrames, bjorneFrames);
+  const frameCache = new Map();
+  const framesReady = Promise.all(allClassroomFrames.map(src => new Promise(resolve => {
+    const preload = new Image();
+    frameCache.set(src, preload);
+    preload.onload = () => {
+      if (preload.decode) preload.decode().catch(() => {}).finally(resolve);
+      else resolve();
+    };
+    preload.onerror = resolve;
+    preload.src = src;
+  })));
 
   const animStyle = document.createElement("style");
   animStyle.textContent = `
@@ -90,9 +97,9 @@ window.addEventListener("DOMContentLoaded", () => {
       clip-path: inset(0 100% 0 0);
       transform: translateX(-5px);
       transition:
-        opacity .34s ease,
-        clip-path 1.05s cubic-bezier(.22,.61,.36,1),
-        transform .45s ease;
+        opacity .22s ease,
+        clip-path .78s cubic-bezier(.22,.61,.36,1),
+        transform .32s ease;
     }
     .rm-classroom-v2.rm-classroom-animated .rm-chalk-step.is-written {
       opacity: 1;
@@ -102,7 +109,7 @@ window.addEventListener("DOMContentLoaded", () => {
     .rm-classroom-v2.rm-classroom-animated .rm-classroom-morgana,
     .rm-classroom-v2.rm-classroom-animated .rm-classroom-red,
     .rm-classroom-v2.rm-classroom-animated .rm-classroom-bjorne {
-      transition: filter .18s ease;
+      transition: filter .12s ease;
       will-change: contents;
     }
     @media (prefers-reduced-motion: reduce) {
@@ -119,6 +126,12 @@ window.addEventListener("DOMContentLoaded", () => {
   let timers = [];
   let isVisible = false;
   let cycleNumber = 0;
+  let framesAreReady = false;
+
+  framesReady.then(() => {
+    framesAreReady = true;
+    if (isVisible) runCycle();
+  });
 
   function clearTimers() {
     timers.forEach(clearTimeout);
@@ -157,24 +170,28 @@ window.addEventListener("DOMContentLoaded", () => {
     hideWriting();
   }
 
+  // Rotazione volutamente rapida: i frame B e C devono essere percepiti
+  // come fotogrammi intermedi, non come pose su cui Morgana si ferma.
   function writingPass(stepIndex, startAt, returnFrame, studentState) {
     later(() => setMorgana("B"), startAt);
-    later(() => setMorgana("C"), startAt + 230);
+    later(() => setMorgana("C"), startAt + 125);
     later(() => {
       setMorgana("D");
       writeStep(stepIndex);
-    }, startAt + 470);
-    later(() => setMorgana("C"), startAt + 1420);
-    later(() => setMorgana("B"), startAt + 1640);
-    later(() => setMorgana(returnFrame), startAt + 1860);
+    }, startAt + 250);
+
+    // D resta visibile mentre la frase viene "scritta".
+    later(() => setMorgana("C"), startAt + 1080);
+    later(() => setMorgana("B"), startAt + 1205);
+    later(() => setMorgana(returnFrame), startAt + 1330);
     later(() => {
       setMorgana("A");
       setStudents(studentState[0], studentState[1]);
-    }, startAt + 2200);
+    }, startAt + 1510);
   }
 
   function runCycle() {
-    if (!isVisible) return;
+    if (!isVisible || !framesAreReady) return;
     resetScene();
     classroom.classList.add("rm-classroom-animated");
 
@@ -184,22 +201,21 @@ window.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Tre spiegazioni successive: le scritte si accumulano sulla lavagna.
-    // E/F alternano la posa di rientro di Morgana, così il loop non è identico.
-    writingPass(0, 650, cycleNumber % 2 === 0 ? "E" : "F", [1, 1]);
-    writingPass(1, 3850, cycleNumber % 2 === 0 ? "F" : "E", [2, 1]);
-    writingPass(2, 7050, cycleNumber % 2 === 0 ? "E" : "F", [2, 2]);
+    // Le tre scritte si accumulano; E/F alternano il rientro di Morgana.
+    writingPass(0, 500, cycleNumber % 2 === 0 ? "E" : "F", [1, 1]);
+    writingPass(1, 3050, cycleNumber % 2 === 0 ? "F" : "E", [2, 1]);
+    writingPass(2, 5600, cycleNumber % 2 === 0 ? "E" : "F", [2, 2]);
 
     later(() => {
       cycleNumber += 1;
       runCycle();
-    }, 11200);
+    }, 9000);
   }
 
   function startScene() {
     if (isVisible) return;
     isVisible = true;
-    runCycle();
+    if (framesAreReady) runCycle();
   }
 
   function stopScene() {
@@ -212,7 +228,6 @@ window.addEventListener("DOMContentLoaded", () => {
     chalkSteps.forEach(step => step.classList.add("is-written"));
   }
 
-  // L'animazione parte solo quando la slide e davvero visibile.
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.target !== classroom) return;
@@ -226,7 +241,7 @@ window.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
       clearTimers();
-    } else if (isVisible) {
+    } else if (isVisible && framesAreReady) {
       runCycle();
     }
   });
