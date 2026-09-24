@@ -109,18 +109,18 @@ window.addEventListener('DOMContentLoaded',()=>{
   // 01, 03, 05 = pagine ferme; 02, 04, 06 = passaggi intermedi.
   const bookFrames=[
     {
-      rest:'assets/images/red-flip-frame-01.png',
-      turn:'assets/images/red-flip-frame-02.png',
+      rest:'assets/images/red-flip-aligned/red-flip-frame-01.png',
+      turn:'assets/images/red-flip-aligned/red-flip-frame-02.png',
       title:'Bisogni reali'
     },
     {
-      rest:'assets/images/red-flip-frame-03.png',
-      turn:'assets/images/red-flip-frame-04.png',
+      rest:'assets/images/red-flip-aligned/red-flip-frame-03.png',
+      turn:'assets/images/red-flip-aligned/red-flip-frame-04.png',
       title:'Didattica adattabile'
     },
     {
-      rest:'assets/images/red-flip-frame-05.png',
-      turn:'assets/images/red-flip-frame-06.png',
+      rest:'assets/images/red-flip-aligned/red-flip-frame-05.png',
+      turn:'assets/images/red-flip-aligned/red-flip-frame-06.png',
       title:'Autonomia'
     }
   ];
