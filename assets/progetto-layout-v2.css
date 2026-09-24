@@ -123,6 +123,16 @@
   font-weight:800;
 }
 
+.rm-services-panel .rm-card-icon svg{
+  width:30px;
+  height:30px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2.15;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
 .rm-services-panel .rm-info-card .n{
   position:absolute;
   top:24px;
