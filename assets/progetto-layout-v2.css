@@ -222,3 +222,39 @@
     grid-template-columns:1fr!important;
   }
 }
+
+
+/* COME LAVORIAMO — stessa gerarchia editoriale delle prime due slide */
+.rm-slide-work .rm-work-copy{
+  max-width:660px;
+}
+
+.rm-slide-work .rm-work-copy .rm-eyebrow{
+  margin-bottom:10px;
+}
+
+.rm-section-title{
+  margin:0 0 16px!important;
+  font-family:"Manrope",sans-serif!important;
+  font-size:clamp(48px,5vw,72px)!important;
+  line-height:.98!important;
+  letter-spacing:-.055em!important;
+  font-weight:800!important;
+}
+
+.rm-section-title span{
+  color:var(--rm-text);
+}
+
+.rm-section-title em{
+  font-style:normal;
+  color:var(--rm-accent);
+}
+
+.rm-slide-work .rm-project-subtitle{
+  max-width:650px;
+}
+
+.rm-slide-work .rm-work-copy p{
+  max-width:650px;
+}
