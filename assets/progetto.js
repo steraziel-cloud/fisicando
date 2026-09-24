@@ -105,58 +105,90 @@ window.addEventListener('DOMContentLoaded',()=>{
     });
   }
 
-  // Libro di Red: una sola direzione di sfoglio, da destra verso sinistra.
-  const bookData=[
-    ['Bisogni reali','Partiamo dalla situazione concreta di chi studia.'],
-    ['Didattica adattabile','Strumenti e spiegazioni cambiano insieme al percorso.'],
-    ['Autonomia','Capire, acquisire metodo e imparare a procedere da soli.']
+  // Libro di Red: animazione a sei PNG.
+  // 01, 03, 05 = pagine ferme; 02, 04, 06 = passaggi intermedi.
+  const bookFrames=[
+    {
+      rest:'assets/images/red-flip-frame-01.png',
+      turn:'assets/images/red-flip-frame-02.png',
+      title:'Bisogni reali'
+    },
+    {
+      rest:'assets/images/red-flip-frame-03.png',
+      turn:'assets/images/red-flip-frame-04.png',
+      title:'Didattica adattabile'
+    },
+    {
+      rest:'assets/images/red-flip-frame-05.png',
+      turn:'assets/images/red-flip-frame-06.png',
+      title:'Autonomia'
+    }
   ];
 
   let bookIndex=0;
   let bookFlipping=false;
   const bookScene=document.querySelector('.rm-book-scene-real');
-  const bookTitle=document.querySelector('[data-book-title]');
-  const bookCopy=document.querySelector('[data-book-copy]');
-  const bookStep=document.querySelector('[data-book-step]');
+  const bookImage=document.querySelector('[data-red-book-frame]');
   const bookNext=document.querySelector('[data-book-next]');
   const bookRed=document.querySelector('[data-book-red]');
 
-  function updateBookControls(){
-    if(bookScene) bookScene.dataset.bookPage=String(bookIndex+1);
+  // Precarica tutti i frame per evitare lampeggi quando cambia il src.
+  bookFrames.flatMap(frame=>[frame.rest,frame.turn]).forEach(src=>{
+    const preload=new Image();
+    preload.decoding='async';
+    preload.src=src;
+  });
+
+  function getBookFrameDuration(){
+    if(!bookScene) return 280;
+    const raw=getComputedStyle(bookScene).getPropertyValue('--book-frame-duration').trim();
+    if(!raw) return 280;
+    if(raw.endsWith('ms')) return Math.max(0,parseFloat(raw)||280);
+    if(raw.endsWith('s')) return Math.max(0,(parseFloat(raw)||.28)*1000);
+    return Math.max(0,parseFloat(raw)||280);
   }
 
-  function getBookFlipDuration(){
-    if(!bookScene) return 640;
-    const raw=getComputedStyle(bookScene).getPropertyValue('--book-flip-duration').trim();
-    if(!raw) return 640;
-    if(raw.endsWith('ms')) return Math.max(0,parseFloat(raw)||640);
-    if(raw.endsWith('s')) return Math.max(0,(parseFloat(raw)||.64)*1000);
-    return Math.max(0,parseFloat(raw)||640);
+  function updateBookA11y(){
+    const page=bookIndex+1;
+    const title=bookFrames[bookIndex].title;
+    if(bookImage) bookImage.alt=`Red sfoglia il libro, pagina ${page} di ${bookFrames.length}: ${title}`;
+    if(bookScene) bookScene.setAttribute('aria-label',`Red sfoglia il libro con i principi del progetto. Pagina ${page} di ${bookFrames.length}: ${title}.`);
+  }
+
+  function showBookFrame(src){
+    if(bookImage) bookImage.src=src;
   }
 
   function nextBookPage(user=true){
-    if(bookFlipping) return;
+    if(bookFlipping || !bookImage) return;
 
-    const targetIndex=(bookIndex+1)%bookData.length;
+    const nextIndex=(bookIndex+1)%bookFrames.length;
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const duration=reduced?0:getBookFlipDuration();
-    const contentDelay=duration*.50;
 
+    if(reduced){
+      bookIndex=nextIndex;
+      showBookFrame(bookFrames[bookIndex].rest);
+      updateBookA11y();
+      if(user) registerActivity();
+      return;
+    }
+
+    const duration=getBookFrameDuration();
     bookFlipping=true;
-    bookScene?.classList.remove('turn-next');
-    void bookScene?.offsetWidth;
-    bookScene?.classList.add('turn-next');
+    bookScene?.classList.add('is-turning');
+
+    // Prima mostra il PNG con zampa + pagina in movimento...
+    showBookFrame(bookFrames[bookIndex].turn);
+
+    // ...poi atterra direttamente sulla pagina successiva.
+    setTimeout(()=>{
+      bookIndex=nextIndex;
+      showBookFrame(bookFrames[bookIndex].rest);
+      updateBookA11y();
+    },duration);
 
     setTimeout(()=>{
-      bookIndex=targetIndex;
-      if(bookTitle) bookTitle.textContent=bookData[bookIndex][0];
-      if(bookCopy) bookCopy.textContent=bookData[bookIndex][1];
-      if(bookStep) bookStep.textContent=`${bookIndex+1} / ${bookData.length}`;
-      updateBookControls();
-    },contentDelay);
-
-    setTimeout(()=>{
-      bookScene?.classList.remove('turn-next');
+      bookScene?.classList.remove('is-turning');
       bookFlipping=false;
     },duration+40);
 
@@ -286,7 +318,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   resourceDots.forEach(dot=>dot.addEventListener('click',e=>{e.stopPropagation();showResource(Number(dot.dataset.resourceIndex),true)}));
   activateWithKeyboard(whisper,()=>advanceResource(true));
 
-  updateBookControls();
+  updateBookA11y();
   updateBoardControls();
   updateResourceControls();
   render();
