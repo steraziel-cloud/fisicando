@@ -11,12 +11,15 @@ window.addEventListener('DOMContentLoaded',()=>{
   let index=0;
   let slideTimer=null;
   let microTimer=null;
+  let bookAutoTimer=null;
   let pointerStartX=null;
   let pointerStartY=null;
   let wheelLocked=false;
 
   const AUTO_MS=20000;
   const MICRO_MS=6500;
+  // Sei fasi distribuite nei 20 s della slide: 20 / 6 ≈ 3,33 s per fase.
+  const BOOK_AUTO_MS=AUTO_MS/6;
 
   function render(){
     track.style.transform=`translateX(-${index*100}%)`;
@@ -30,7 +33,11 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   function resetMicroTimer(){
     clearInterval(microTimer);
-    if(index===2){
+    clearInterval(bookAutoTimer);
+    if(index===0){
+      // Red sfoglia automaticamente mentre la slide "Chi siamo" è visibile.
+      bookAutoTimer=setInterval(()=>nextBookPage(false),BOOK_AUTO_MS);
+    }else if(index===2){
       microTimer=setInterval(()=>advanceBoard(false),MICRO_MS);
     }else if(index===3){
       microTimer=setInterval(()=>advanceResource(false),MICRO_MS);
@@ -90,6 +97,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     if(document.hidden){
       clearInterval(slideTimer);
       clearInterval(microTimer);
+      clearInterval(bookAutoTimer);
     }else{
       resetSlideTimer();
       resetMicroTimer();
