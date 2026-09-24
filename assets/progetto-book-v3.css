@@ -1,313 +1,120 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap');
-
 /*
-  LIBRO DI RED — PARAMETRI DI REGOLAZIONE
-  ---------------------------------------
-  Regola generale per questo tipo di composizione:
-  ogni elemento sovrapposto al PNG deve poter essere regolato con numeri
-  indipendenti, sia globalmente sia per la singola pagina.
+  RED + LIBRO — ANIMAZIONE A FRAME PNG
+  ------------------------------------
+  Il testo e il movimento della pagina sono incorporati nei PNG.
+  I frame stabili sono 01, 03, 05; i frame di transizione sono 02, 04, 06.
 
-  x: positivo = destra, negativo = sinistra
-  y: positivo = basso, negativo = alto
+  Regola di lavoro: quando una scena PNG deve muoversi, l'animazione viene
+  progettata prima e resa con asset dedicati, invece di deformare un PNG unico.
 */
+
 .rm-book-scene-real{
-  /* Area generale del testo sulla pagina destra */
-  --book-text-left: 60.6%;
-  --book-text-top: 26.8%;
-  --book-text-width: 21.2%;
-  --book-text-height: 30.0%;
-  --book-text-rotate: 0deg;
+  /* Durata per cui resta visibile il frame intermedio dello sfoglio. */
+  --book-frame-duration: 280ms;
 
-  /* INDICE: 1 / 3, 2 / 3, 3 / 3 */
-  --book-step-x: 0px;
-  --book-step-y: 30px;
-  --book-step-size: clamp(10px,.68vw,12px);
+  /* Dimensioni/posizione dell'intera scena: regolabili a occhio. */
+  --book-frame-height: min(72vh, 720px);
+  --book-frame-x: 0px;
+  --book-frame-y: 0px;
 
-  /* TITOLO */
-  --book-title-x: 0px;
-  --book-title-y: -1px;
-  --book-title-width: 100%;
-  --book-title-size: clamp(26px,3vw,45px);
-  --book-title-line-height: .94;
+  /* Area cliccabile della pagina destra. */
+  --book-page-hit-left: 59%;
+  --book-page-hit-top: 38%;
+  --book-page-hit-width: 38%;
+  --book-page-hit-height: 40%;
 
-  /* PARAGRAFO */
-  --book-copy-x: 0px;
-  --book-copy-y: 0px;
-  --book-copy-width: 88%;
-  --book-copy-size: clamp(13px,1vw,18px);
-  --book-copy-line-height: 1.18;
+  /* Area cliccabile sopra Red. */
+  --book-red-hit-left: 5%;
+  --book-red-hit-top: 5%;
+  --book-red-hit-width: 61%;
+  --book-red-hit-height: 82%;
 
-  /*
-    SFOGLIO IN AVANTI — valori approvati e regolabili a occhio.
-    Per cambiare solo la velocità basta modificare --book-flip-duration.
-  */
-  --book-flip-duration: 640ms;
-  --book-flip-perspective: 1100px;
-  --book-flip-paper: #f4e7c7;
-  --book-flip-paper-edge: rgba(143,108,57,.24);
-  --book-flip-shadow: 0 10px 22px rgba(49,40,28,.24);
-  --book-flip-glow: inset 0 0 22px rgba(255,255,255,.42);
+  position:relative!important;
+  justify-self:center!important;
+  align-self:center!important;
+  width:auto!important;
+  height:var(--book-frame-height)!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  aspect-ratio:1122 / 1402!important;
+  margin:0 auto!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:none!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  transform:translate(var(--book-frame-x),var(--book-frame-y));
+}
 
-  /* foglio che parte dalla pagina destra e gira verso sinistra */
-  --book-flip-next-left: 56.2%;
-  --book-flip-next-top: 18.0%;
-  --book-flip-next-width: 30.0%;
-  --book-flip-next-height: 57.0%;
-  --book-flip-next-rotate: 0deg;
-
-  /* zona cliccabile sopra Red: serve per andare alla pagina successiva */
-  --book-red-hit-left: 24%;
-  --book-red-hit-top: 13%;
-  --book-red-hit-width: 24%;
-  --book-red-hit-height: 58%;
-
-  position:relative;
-  perspective:var(--book-flip-perspective);
+.rm-book-scene-real .rm-red-book-image{
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  filter:drop-shadow(0 18px 24px rgba(20,34,48,.10));
+  pointer-events:none!important;
+  user-select:none!important;
+  -webkit-user-drag:none;
 }
 
 /*
-  OVERRIDE PER SINGOLA PAGINA
-  Puoi cambiare qui SOLO il contenuto della pagina interessata.
-  Se un valore non serve, lascialo uguale al valore generale sopra.
+  Le aree di click restano invisibili. Sono separate così possiamo continuare
+  a far avanzare il libro cliccando sia Red sia la pagina destra.
 */
-.rm-book-scene-real[data-book-page="1"]{
-  --book-step-x: 0px;
-  --book-step-y: -30px;
-
-  --book-title-x: 0px;
-  --book-title-y: -25px;
-  --book-title-width: 100%;
-  --book-title-size: clamp(26px,3vw,45px);
-
-  --book-copy-x: 0px;
-  --book-copy-y: 0px;
-  --book-copy-width: 88%;
-}
-
-.rm-book-scene-real[data-book-page="2"]{
-  --book-step-x: 0px;
-  --book-step-y: -30px;
-
-  --book-title-x: 0px;
-  --book-title-y: -25px;
-  --book-title-width: 100%;
-  --book-title-size: clamp(26px,3vw,45px);
-
-  --book-copy-x: 0px;
-  --book-copy-y: 0px;
-  --book-copy-width: 88%;
-}
-
-.rm-book-scene-real[data-book-page="3"]{
-  --book-step-x: 0px;
-  --book-step-y: -30px;
-
-  /* Autonomia: regolazione indipendente */
-  --book-title-x: -10px;
-  --book-title-y: -25px;
-  --book-title-width: 100%;
-  --book-title-size: clamp(26px,3vw,45px);
-
-  --book-copy-x: 0px;
-  --book-copy-y: 0px;
-  --book-copy-width: 88%;
-}
-
-.rm-book-overlay-right{
-  left:var(--book-text-left)!important;
-  top:var(--book-text-top)!important;
-  width:var(--book-text-width)!important;
-  height:var(--book-text-height)!important;
-  padding:1.2% .55% 1%!important;
-  transform:rotate(var(--book-text-rotate))!important;
-  transform-origin:center center!important;
-  display:flex!important;
-  flex-direction:column!important;
-  align-items:center!important;
-  justify-content:flex-start!important;
-  text-align:center!important;
-  text-shadow:none!important;
-  overflow:visible!important;
-  z-index:4!important;
-}
-
-.rm-book-overlay-right small{
-  position:relative!important;
-  left:var(--book-step-x)!important;
-  top:var(--book-step-y)!important;
-  width:auto!important;
-  margin:0 0 6.5%!important;
-  font-family:"Cormorant Garamond", Georgia, serif!important;
-  font-size:var(--book-step-size)!important;
-  font-weight:700!important;
-  letter-spacing:.16em!important;
-  line-height:1!important;
-  color:#8f6c39!important;
-  transform:none!important;
-}
-
-.rm-book-overlay-right h3{
-  position:relative!important;
-  left:var(--book-title-x)!important;
-  top:var(--book-title-y)!important;
-  width:var(--book-title-width)!important;
-  max-width:none!important;
-  margin:0 auto 6%!important;
-  font-family:"Cormorant Garamond", Georgia, serif!important;
-  font-size:var(--book-title-size)!important;
-  font-weight:700!important;
-  line-height:var(--book-title-line-height)!important;
-  letter-spacing:-.02em!important;
-  color:#2e3542!important;
-  transform:none!important;
-}
-
-.rm-book-overlay-right p{
-  position:relative!important;
-  left:var(--book-copy-x)!important;
-  top:var(--book-copy-y)!important;
-  width:var(--book-copy-width)!important;
-  max-width:none!important;
-  margin:0 auto!important;
-  font-family:"Cormorant Garamond", Georgia, serif!important;
-  font-size:var(--book-copy-size)!important;
-  font-weight:500!important;
-  font-style:italic!important;
-  line-height:var(--book-copy-line-height)!important;
-  letter-spacing:.001em!important;
-  color:#6d655b!important;
-  transform:none!important;
-}
-
-/* Pagina sinistra: resta quasi vuota, solo con il piccolo fregio. */
-.rm-book-overlay-left{
-  left:47.3%!important;
-  top:25.8%!important;
-  width:18.2%!important;
-  height:35%!important;
-  padding:0!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  transform:none!important;
-  z-index:3!important;
-}
-.rm-book-overlay-left .rm-book-mini-mark{
-  margin:0!important;
-  transform:none!important;
-  font-family:"Cormorant Garamond", Georgia, serif!important;
-  font-size:clamp(18px,1.5vw,24px)!important;
-  color:rgba(201,151,57,.55)!important;
-}
-
-/* Area cliccabile della pagina destra. */
-.rm-book-hit-right{
-  left:65.5%!important;
-  top:20.3%!important;
-  width:24.8%!important;
-  height:49%!important;
-  transform:none!important;
-  z-index:8!important;
-}
-
-/* Zona invisibile sopra Red: clic = pagina successiva. */
-.rm-book-hit-red{
+.rm-book-scene-real .rm-book-hit{
   position:absolute!important;
-  left:var(--book-red-hit-left)!important;
-  top:var(--book-red-hit-top)!important;
-  width:var(--book-red-hit-width)!important;
-  height:var(--book-red-hit-height)!important;
   border:0!important;
   padding:0!important;
   background:transparent!important;
   cursor:pointer!important;
-  z-index:7!important;
+  z-index:8!important;
 }
-.rm-book-hit-red:focus-visible{
+
+.rm-book-scene-real .rm-book-hit-right{
+  left:var(--book-page-hit-left)!important;
+  top:var(--book-page-hit-top)!important;
+  width:var(--book-page-hit-width)!important;
+  height:var(--book-page-hit-height)!important;
+  transform:none!important;
+}
+
+.rm-book-scene-real .rm-book-hit-red{
+  left:var(--book-red-hit-left)!important;
+  top:var(--book-red-hit-top)!important;
+  width:var(--book-red-hit-width)!important;
+  height:var(--book-red-hit-height)!important;
+  transform:none!important;
+}
+
+.rm-book-scene-real .rm-book-hit:hover{
+  background:transparent!important;
+  filter:none!important;
+}
+
+.rm-book-scene-real .rm-book-hit:focus-visible{
   outline:2px dashed rgba(15,118,110,.65)!important;
   outline-offset:3px!important;
-  border-radius:42%!important;
+  border-radius:18px!important;
 }
 
-/* Foglio artificiale usato per simulare lo sfoglio sopra il PNG. */
-.rm-book-flip-sheet{
-  position:absolute;
-  display:none;
-  pointer-events:none;
-  background:
-    linear-gradient(90deg,rgba(121,89,46,.10),transparent 12%,rgba(255,255,255,.16) 72%,rgba(121,89,46,.08)),
-    var(--book-flip-paper);
-  border:1px solid var(--book-flip-paper-edge);
-  box-shadow:var(--book-flip-shadow),var(--book-flip-glow);
-  backface-visibility:hidden;
-  transform-style:preserve-3d;
-  z-index:12;
-}
-.rm-book-flip-sheet::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(90deg,rgba(79,57,31,.16),transparent 18%,rgba(255,255,255,.18) 76%,rgba(79,57,31,.08));
-  opacity:.55;
-  pointer-events:none;
+/* Durante i pochi millisecondi dello sfoglio impediamo doppi click. */
+.rm-book-scene-real.is-turning .rm-book-hit{
+  pointer-events:none!important;
 }
 
-.rm-book-scene-real.turn-next .rm-book-flip-sheet{
-  display:block;
-  left:var(--book-flip-next-left);
-  top:var(--book-flip-next-top);
-  width:var(--book-flip-next-width);
-  height:var(--book-flip-next-height);
-  transform-origin:left center;
-  animation:rm-book-page-next var(--book-flip-duration) cubic-bezier(.42,.05,.18,.98) both;
-}
-
-/* Durante lo sfoglio il testo si attenua: il nuovo contenuto compare a metà gesto. */
-.rm-book-scene-real.turn-next .rm-book-overlay-right{
-  animation:rm-book-text-change var(--book-flip-duration) ease both!important;
-}
-
-@keyframes rm-book-page-next{
-  0%{
-    opacity:.98;
-    transform:rotate(var(--book-flip-next-rotate)) rotateY(0deg) skewY(0deg);
-    box-shadow:var(--book-flip-shadow),var(--book-flip-glow);
-  }
-  42%{
-    opacity:1;
-    transform:rotate(var(--book-flip-next-rotate)) rotateY(-98deg) skewY(-1.2deg);
-    box-shadow:-14px 10px 24px rgba(49,40,28,.30),var(--book-flip-glow);
-  }
-  58%{
-    opacity:.94;
-    transform:rotate(var(--book-flip-next-rotate)) rotateY(-125deg) skewY(1.2deg);
-    box-shadow:12px 10px 20px rgba(49,40,28,.24),var(--book-flip-glow);
-  }
-  100%{
-    opacity:0;
-    transform:rotate(var(--book-flip-next-rotate)) rotateY(-178deg) skewY(0deg);
-  }
-}
-
-@keyframes rm-book-text-change{
-  0%,30%{opacity:1}
-  46%,54%{opacity:0}
-  72%,100%{opacity:1}
-}
-
-@media(prefers-reduced-motion:reduce){
-  .rm-book-scene-real.turn-next .rm-book-flip-sheet{
-    animation:none!important;
-    display:none!important;
-  }
-  .rm-book-scene-real.turn-next .rm-book-overlay-right{
-    animation:none!important;
+@media(max-width:1100px){
+  .rm-book-scene-real{
+    --book-frame-height:min(64vh,650px);
   }
 }
 
 @media(max-width:760px){
   .rm-book-scene-real{
-    --book-title-size:clamp(21px,4vw,29px);
-    --book-copy-size:clamp(11px,2.3vw,14px);
+    --book-frame-height:min(46vh,520px);
   }
 }
