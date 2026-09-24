@@ -75,8 +75,6 @@ window.addEventListener("DOMContentLoaded", () => {
   ];
 
   // Precarico e decodifico davvero tutti i PNG prima di far partire la scena.
-  // Questo evita il lampo nero che può comparire quando un frame viene mostrato
-  // prima che il browser abbia terminato la decodifica dell'immagine.
   const allClassroomFrames = Object.values(morganaFrames).concat(redFrames, bjorneFrames);
   const frameCache = new Map();
   const framesReady = Promise.all(allClassroomFrames.map(src => new Promise(resolve => {
@@ -109,9 +107,31 @@ window.addEventListener("DOMContentLoaded", () => {
     .rm-classroom-v2.rm-classroom-animated .rm-classroom-morgana,
     .rm-classroom-v2.rm-classroom-animated .rm-classroom-red,
     .rm-classroom-v2.rm-classroom-animated .rm-classroom-bjorne {
-      transition: filter .12s ease;
+      transition: filter .08s ease;
       will-change: contents;
     }
+
+    /* I PNG di Morgana non hanno tutti lo stesso ingombro ottico.
+       Normalizzo soprattutto C e D mantenendo i piedi come punto di appoggio,
+       cosi la rotazione non sembra farla crescere in altezza. */
+    .rm-classroom-morgana {
+      transform-origin: 50% 100%;
+    }
+    .rm-classroom-morgana[data-morgana-frame="A"],
+    .rm-classroom-morgana[data-morgana-frame="E"],
+    .rm-classroom-morgana[data-morgana-frame="F"] {
+      transform: scale(1);
+    }
+    .rm-classroom-morgana[data-morgana-frame="B"] {
+      transform: scale(.985);
+    }
+    .rm-classroom-morgana[data-morgana-frame="C"] {
+      transform: scale(.955);
+    }
+    .rm-classroom-morgana[data-morgana-frame="D"] {
+      transform: scale(.91);
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .rm-classroom-v2.rm-classroom-animated .rm-chalk-step {
         opacity: 1;
@@ -147,7 +167,9 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   function setMorgana(frame) {
-    if (morgana) morgana.src = morganaFrames[frame];
+    if (!morgana) return;
+    morgana.dataset.morganaFrame = frame;
+    morgana.src = morganaFrames[frame];
   }
 
   function setStudents(redIndex, bjorneIndex) {
@@ -170,24 +192,23 @@ window.addEventListener("DOMContentLoaded", () => {
     hideWriting();
   }
 
-  // Rotazione volutamente rapida: i frame B e C devono essere percepiti
-  // come fotogrammi intermedi, non come pose su cui Morgana si ferma.
+  // Rotazione molto rapida: B e C funzionano come veri fotogrammi intermedi.
   function writingPass(stepIndex, startAt, returnFrame, studentState) {
     later(() => setMorgana("B"), startAt);
-    later(() => setMorgana("C"), startAt + 125);
+    later(() => setMorgana("C"), startAt + 80);
     later(() => {
       setMorgana("D");
       writeStep(stepIndex);
-    }, startAt + 250);
+    }, startAt + 160);
 
-    // D resta visibile mentre la frase viene "scritta".
-    later(() => setMorgana("C"), startAt + 1080);
-    later(() => setMorgana("B"), startAt + 1205);
-    later(() => setMorgana(returnFrame), startAt + 1330);
+    // D resta abbastanza a lungo da far leggere la fase di scrittura.
+    later(() => setMorgana("C"), startAt + 900);
+    later(() => setMorgana("B"), startAt + 980);
+    later(() => setMorgana(returnFrame), startAt + 1060);
     later(() => {
       setMorgana("A");
       setStudents(studentState[0], studentState[1]);
-    }, startAt + 1510);
+    }, startAt + 1160);
   }
 
   function runCycle() {
@@ -202,14 +223,14 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     // Le tre scritte si accumulano; E/F alternano il rientro di Morgana.
-    writingPass(0, 500, cycleNumber % 2 === 0 ? "E" : "F", [1, 1]);
-    writingPass(1, 3050, cycleNumber % 2 === 0 ? "F" : "E", [2, 1]);
-    writingPass(2, 5600, cycleNumber % 2 === 0 ? "E" : "F", [2, 2]);
+    writingPass(0, 450, cycleNumber % 2 === 0 ? "E" : "F", [1, 1]);
+    writingPass(1, 2800, cycleNumber % 2 === 0 ? "F" : "E", [2, 1]);
+    writingPass(2, 5150, cycleNumber % 2 === 0 ? "E" : "F", [2, 2]);
 
     later(() => {
       cycleNumber += 1;
       runCycle();
-    }, 9000);
+    }, 8300);
   }
 
   function startScene() {
