@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="assets/reddito.css">
   <link rel="stylesheet" href="assets/progetto-interactions.css?v=6">
   <link rel="stylesheet" href="assets/progetto-book-v3.css?v=10">
-  <link rel="stylesheet" href="assets/progetto-layout-v2.css?v=3">
+  <link rel="stylesheet" href="assets/progetto-layout-v2.css?v=4">
   <script src="assets/main.js" defer></script>
   <script src="assets/progetto.js?v=11" defer></script>
 </head>
@@ -86,7 +86,7 @@
         </section>
 
         <section class="rm-slide rm-slide-work" aria-label="Come lavoriamo">
-          <div class="rm-slide-inner">
+          <div class="rm-slide-inner rm-slide-inner-work">
             <div class="rm-slide-copy rm-work-copy">
               <div class="rm-eyebrow">Il progetto</div>
               <h1 class="rm-section-title"><span>Come</span> <em>lavoriamo</em></h1>
@@ -96,26 +96,37 @@
               <p><strong>L’obiettivo non è soltanto arrivare alla soluzione di un esercizio o superare la verifica successiva, ma aiutare chi studia a comprendere meglio ciò che sta facendo, acquisire metodo e diventare progressivamente più autonomo.</strong></p>
             </div>
 
-            <div class="rm-scene rm-classroom">
-              <div class="rm-interaction-hint">☝ clicca Morgana o la lavagna</div>
-              <div class="rm-board" role="button" tabindex="0" aria-label="Clicca per mostrare il passaggio successivo">
-                <small data-board-step>PASSO 01</small>
-                <h3 data-board-title>Individuare il punto di partenza</h3>
-                <p data-board-copy>Capire se la difficoltà nasce da un concetto non compreso, da basi poco solide, da un procedimento meccanico o dalla necessità di una spiegazione diversa.</p>
-                <span class="chalk">x → ? → ✓</span>
-              </div>
-              <div class="rm-morgana" role="button" tabindex="0" aria-label="Morgana: passaggio successivo">Morgana</div>
-              <div class="rm-students"><div class="rm-student red">Red</div><div class="rm-student bj">Bjorne</div></div>
-              <div class="rm-micro-controls" aria-label="Controlli lavagna">
-                <button class="rm-micro-arrow" data-board-prev aria-label="Passaggio precedente">←</button>
-                <div class="rm-micro-dots">
-                  <button class="rm-micro-dot active" data-board-index="0" aria-label="Punto di partenza"></button>
-                  <button class="rm-micro-dot" data-board-index="1" aria-label="Strumenti e spiegazioni"></button>
-                  <button class="rm-micro-dot" data-board-index="2" aria-label="Adattare il lavoro"></button>
+            <div class="rm-scene rm-classroom-v2" aria-label="Morgana spiega il metodo di lavoro a Red e Bjorne davanti alla lavagna">
+              <div class="rm-classroom-board-wrap">
+                <img class="rm-classroom-board" src="assets/images/morgana-classroom/chalkboard.png" alt="Lavagna verde">
+                <div class="rm-chalk-copy" aria-label="I tre passaggi del metodo di lavoro">
+                  <section class="rm-chalk-step">
+                    <span class="rm-chalk-number">01</span>
+                    <div>
+                      <h3>Capire da dove partire</h3>
+                      <p>Individuiamo le difficoltà, le basi da rafforzare e gli obiettivi da raggiungere.</p>
+                    </div>
+                  </section>
+                  <section class="rm-chalk-step">
+                    <span class="rm-chalk-number">02</span>
+                    <div>
+                      <h3>Scegliere come procedere</h3>
+                      <p>Adattiamo spiegazioni, strumenti ed esercizi a ogni situazione.</p>
+                    </div>
+                  </section>
+                  <section class="rm-chalk-step">
+                    <span class="rm-chalk-number">03</span>
+                    <div>
+                      <h3>Adattare il percorso</h3>
+                      <p>Il lavoro cambia insieme ai progressi di chi studia.</p>
+                    </div>
+                  </section>
                 </div>
-                <span class="rm-micro-count" data-board-count>1 / 3</span>
-                <button class="rm-micro-arrow" data-board-next aria-label="Passaggio successivo">→</button>
               </div>
+
+              <img class="rm-classroom-morgana" src="assets/images/morgana-classroom/morgana-a.png" alt="Morgana mentre spiega">
+              <img class="rm-classroom-red" src="assets/images/morgana-classroom/red-01.png" alt="Red ascolta la spiegazione">
+              <img class="rm-classroom-bjorne" src="assets/images/morgana-classroom/bjorne-01.png" alt="Bjorne ascolta dalla sua scatola">
             </div>
           </div>
         </section>
