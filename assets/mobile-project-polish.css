@@ -15,12 +15,18 @@
   text-shadow:none!important;
 }
 
-/* Invisible hit areas must remain invisible on touch devices. */
+/* Invisible hit areas and tappable mascots must remain visually clean on touch devices. */
 .rm-book-hit,
 .rm-beyond-red-hit,
-.rm-beyond-bjorne-hit{
+.rm-beyond-bjorne-hit,
+.rm-classroom-morgana{
   -webkit-tap-highlight-color:transparent!important;
   tap-highlight-color:transparent;
+}
+
+.rm-classroom-morgana{
+  -webkit-user-drag:none;
+  user-select:none;
 }
 
 @media (hover:none) and (pointer:coarse){
@@ -29,7 +35,9 @@
   .rm-beyond-red-hit:focus,
   .rm-beyond-red-hit:active,
   .rm-beyond-bjorne-hit:focus,
-  .rm-beyond-bjorne-hit:active{
+  .rm-beyond-bjorne-hit:active,
+  .rm-classroom-morgana:focus,
+  .rm-classroom-morgana:active{
     outline:none!important;
     box-shadow:none!important;
     background:transparent!important;
@@ -39,6 +47,12 @@
   .rm-book-hit:active{
     background:transparent!important;
     filter:none!important;
+  }
+
+  .rm-classroom-morgana:hover,
+  .rm-classroom-morgana:active{
+    outline:none!important;
+    box-shadow:none!important;
   }
 }
 
