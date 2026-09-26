@@ -3,7 +3,9 @@ window.addEventListener('DOMContentLoaded',()=>{
   if(!scene) return;
 
   const redButton=scene.querySelector('[data-beyond-red]');
+  const bjorneButton=scene.querySelector('[data-beyond-bjorne]');
   const balloon=scene.querySelector('.rm-beyond-balloon');
+  const thought=scene.querySelector('[data-beyond-thought]');
   const icon=scene.querySelector('[data-beyond-icon]');
   const title=scene.querySelector('[data-beyond-title]');
   const copy=scene.querySelector('[data-beyond-copy]');
@@ -17,32 +19,62 @@ window.addEventListener('DOMContentLoaded',()=>{
   ];
 
   const AUTO_MS=4300;
+  const BJORNE_LINE_MS=2800;
+  const RED_REPLY_MS=2700;
+  const THOUGHT_MS=4300;
+
   let stateIndex=0;
   let autoTimer=null;
   let changeTimer=null;
   let active=false;
+  let easterRunning=false;
+  let easterTimers=[];
+
+  function clearEasterTimers(){
+    easterTimers.forEach(clearTimeout);
+    easterTimers=[];
+  }
+
+  function later(fn,ms){
+    const id=setTimeout(fn,ms);
+    easterTimers.push(id);
+    return id;
+  }
+
+  function cleanBalloonModes(){
+    balloon?.classList.remove('is-dialogue','is-bjorne-dialogue','is-easter-hidden','is-changing');
+  }
 
   function renderState(nextIndex,{animate=true}={}){
     stateIndex=(nextIndex+states.length)%states.length;
     const state=states[stateIndex];
 
     clearTimeout(changeTimer);
-    if(animate && !matchMedia('(prefers-reduced-motion: reduce)').matches){
-      balloon?.classList.add('is-changing');
-      changeTimer=setTimeout(()=>{
-        if(icon) icon.textContent=state.icon;
-        if(title) title.textContent=state.title;
-        if(copy) copy.textContent=state.copy;
-        dots.forEach((dot,i)=>dot.classList.toggle('is-active',i===stateIndex));
-        balloon?.classList.remove('is-changing');
-      },135);
-    }else{
+    cleanBalloonModes();
+
+    const applyState=()=>{
       if(icon) icon.textContent=state.icon;
       if(title) title.textContent=state.title;
       if(copy) copy.textContent=state.copy;
       dots.forEach((dot,i)=>dot.classList.toggle('is-active',i===stateIndex));
       balloon?.classList.remove('is-changing');
+    };
+
+    if(animate && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+      balloon?.classList.add('is-changing');
+      changeTimer=setTimeout(applyState,135);
+    }else{
+      applyState();
     }
+  }
+
+  function showDialogue(speaker,text,{bjorne=false}={}){
+    clearTimeout(changeTimer);
+    cleanBalloonModes();
+    balloon?.classList.add('is-dialogue');
+    if(bjorne) balloon?.classList.add('is-bjorne-dialogue');
+    if(title) title.textContent=speaker;
+    if(copy) copy.textContent=text;
   }
 
   function stopAuto(){
@@ -52,18 +84,56 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   function startAuto(){
     stopAuto();
-    if(!active) return;
+    if(!active || easterRunning) return;
     autoTimer=setInterval(()=>renderState(stateIndex+1),AUTO_MS);
   }
 
   function advanceByUser(){
+    if(easterRunning) return;
     renderState(stateIndex+1);
     startAuto();
+  }
+
+  function finishEaster(){
+    clearEasterTimers();
+    thought?.classList.remove('is-visible');
+    scene.classList.remove('is-easter-running');
+    easterRunning=false;
+    renderState(stateIndex,{animate:false});
+    startAuto();
+  }
+
+  function startBjorneEaster(){
+    if(easterRunning) return;
+
+    easterRunning=true;
+    clearEasterTimers();
+    stopAuto();
+    scene.classList.add('is-easter-running');
+    thought?.classList.remove('is-visible');
+
+    showDialogue('Bjorne','Red... ma le scatoline? Le faremo prima o poi?',{bjorne:true});
+
+    later(()=>{
+      showDialogue('Red','Sì, Bjorne. Magari un giorno faremo anche le scatoline.');
+    },BJORNE_LINE_MS);
+
+    later(()=>{
+      balloon?.classList.add('is-easter-hidden');
+      thought?.classList.add('is-visible');
+    },BJORNE_LINE_MS+RED_REPLY_MS);
+
+    later(finishEaster,BJORNE_LINE_MS+RED_REPLY_MS+THOUGHT_MS);
   }
 
   redButton?.addEventListener('click',e=>{
     e.stopPropagation();
     advanceByUser();
+  });
+
+  bjorneButton?.addEventListener('click',e=>{
+    e.stopPropagation();
+    startBjorneEaster();
   });
 
   const observer=new IntersectionObserver(entries=>{
