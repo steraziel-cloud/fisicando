@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", () => {
     document.head.appendChild(projectTitleFix);
   }
 
-  // Applica sempre il tema salvato, anche se il bottone non esiste
+  // Applica sempre il tema salvato, anche se il bottone non esiste.
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
     document.body.setAttribute("data-theme", "dark");
@@ -43,26 +43,20 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // ------------------------------------------------------------
-  // Slide "Come lavoriamo" — animazione a frame della scena aula
+  // Slide "Come lavoriamo"
+  // Questo file gestisce SOLO scritte sulla lavagna + Red/Bjorne.
+  // Morgana viene gestita esclusivamente da progetto.js, cosi non ci sono
+  // piu due animazioni concorrenti sullo stesso <img>.
   // ------------------------------------------------------------
   const classroom = document.querySelector(".rm-classroom-v2");
   if (!classroom) return;
 
-  const morgana = classroom.querySelector(".rm-classroom-morgana");
   const red = classroom.querySelector(".rm-classroom-red");
   const bjorne = classroom.querySelector(".rm-classroom-bjorne");
   const chalkSteps = [...classroom.querySelectorAll(".rm-chalk-step")];
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const base = "assets/images/morgana-classroom/";
-  const morganaFrames = {
-    A: `${base}morgana-a.png`,
-    B: `${base}morgana-b.png`,
-    C: `${base}morgana-c.png`,
-    D: `${base}morgana-d.png`,
-    E: `${base}morgana-e.png`,
-    F: `${base}morgana-f.png`
-  };
   const redFrames = [
     `${base}red-01.png`,
     `${base}red-02.png`,
@@ -74,12 +68,11 @@ window.addEventListener("DOMContentLoaded", () => {
     `${base}bjorne-03.png`
   ];
 
-  // Precarico e decodifico davvero tutti i PNG prima di far partire la scena.
-  const allClassroomFrames = Object.values(morganaFrames).concat(redFrames, bjorneFrames);
-  const frameCache = new Map();
+  // Precarico soltanto i frame degli studenti. I frame di Morgana sono
+  // precaricati e gestiti da progetto.js.
+  const allClassroomFrames = redFrames.concat(bjorneFrames);
   const framesReady = Promise.all(allClassroomFrames.map(src => new Promise(resolve => {
     const preload = new Image();
-    frameCache.set(src, preload);
     preload.onload = () => {
       if (preload.decode) preload.decode().catch(() => {}).finally(resolve);
       else resolve();
@@ -104,32 +97,10 @@ window.addEventListener("DOMContentLoaded", () => {
       clip-path: inset(0 0 0 0);
       transform: translateX(0);
     }
-    .rm-classroom-v2.rm-classroom-animated .rm-classroom-morgana,
     .rm-classroom-v2.rm-classroom-animated .rm-classroom-red,
     .rm-classroom-v2.rm-classroom-animated .rm-classroom-bjorne {
       transition: filter .08s ease;
       will-change: contents;
-    }
-
-    /* I PNG di Morgana non hanno tutti lo stesso ingombro ottico.
-       Normalizzo soprattutto C e D mantenendo i piedi come punto di appoggio,
-       cosi la rotazione non sembra farla crescere in altezza. */
-    .rm-classroom-morgana {
-      transform-origin: 50% 100%;
-    }
-    .rm-classroom-morgana[data-morgana-frame="A"],
-    .rm-classroom-morgana[data-morgana-frame="E"],
-    .rm-classroom-morgana[data-morgana-frame="F"] {
-      transform: scale(1);
-    }
-    .rm-classroom-morgana[data-morgana-frame="B"] {
-      transform: scale(.985);
-    }
-    .rm-classroom-morgana[data-morgana-frame="C"] {
-      transform: scale(.955);
-    }
-    .rm-classroom-morgana[data-morgana-frame="D"] {
-      transform: scale(.91);
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -145,7 +116,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   let timers = [];
   let isVisible = false;
-  let cycleNumber = 0;
   let framesAreReady = false;
 
   framesReady.then(() => {
@@ -166,12 +136,6 @@ window.addEventListener("DOMContentLoaded", () => {
     timers.push(id);
   }
 
-  function setMorgana(frame) {
-    if (!morgana) return;
-    morgana.dataset.morganaFrame = frame;
-    morgana.src = morganaFrames[frame];
-  }
-
   function setStudents(redIndex, bjorneIndex) {
     if (red) red.src = redFrames[redIndex];
     if (bjorne) bjorne.src = bjorneFrames[bjorneIndex];
@@ -187,28 +151,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function resetScene() {
     clearTimers();
-    setMorgana("A");
     setStudents(0, 0);
     hideWriting();
   }
 
-  // Rotazione molto rapida: B e C funzionano come veri fotogrammi intermedi.
-  function writingPass(stepIndex, startAt, returnFrame, studentState) {
-    later(() => setMorgana("B"), startAt);
-    later(() => setMorgana("C"), startAt + 80);
-    later(() => {
-      setMorgana("D");
-      writeStep(stepIndex);
-    }, startAt + 160);
-
-    // D resta abbastanza a lungo da far leggere la fase di scrittura.
-    later(() => setMorgana("C"), startAt + 900);
-    later(() => setMorgana("B"), startAt + 980);
-    later(() => setMorgana(returnFrame), startAt + 1060);
-    later(() => {
-      setMorgana("A");
-      setStudents(studentState[0], studentState[1]);
-    }, startAt + 1160);
+  // Manteniamo il timing approvato delle tre scritte, ma senza piu toccare Morgana.
+  function writingPass(stepIndex, startAt, studentState) {
+    later(() => writeStep(stepIndex), startAt + 160);
+    later(() => setStudents(studentState[0], studentState[1]), startAt + 1160);
   }
 
   function runCycle() {
@@ -222,15 +172,11 @@ window.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Le tre scritte si accumulano; E/F alternano il rientro di Morgana.
-    writingPass(0, 450, cycleNumber % 2 === 0 ? "E" : "F", [1, 1]);
-    writingPass(1, 2800, cycleNumber % 2 === 0 ? "F" : "E", [2, 1]);
-    writingPass(2, 5150, cycleNumber % 2 === 0 ? "E" : "F", [2, 2]);
+    writingPass(0, 450, [1, 1]);
+    writingPass(1, 2800, [2, 1]);
+    writingPass(2, 5150, [2, 2]);
 
-    later(() => {
-      cycleNumber += 1;
-      runCycle();
-    }, 8300);
+    later(() => runCycle(), 8300);
   }
 
   function startScene() {
@@ -244,7 +190,6 @@ window.addEventListener("DOMContentLoaded", () => {
     isVisible = false;
     clearTimers();
     classroom.classList.remove("rm-classroom-animated");
-    setMorgana("A");
     setStudents(0, 0);
     chalkSteps.forEach(step => step.classList.add("is-written"));
   }
