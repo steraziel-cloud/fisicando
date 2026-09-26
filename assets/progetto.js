@@ -185,7 +185,7 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   const classroom=document.querySelector('.rm-classroom-v2');
   const classroomMorgana=document.querySelector('.rm-classroom-morgana');
-  const MORGANA_FRAME_MS=125;
+  const MORGANA_FRAME_MS=85;
   let morganaFrameTimer=null;
   let morganaTurnPlaying=false;
 
@@ -194,8 +194,8 @@ window.addEventListener('DOMContentLoaded',()=>{
   const morganaStyle=document.createElement('style');
   morganaStyle.textContent=`
     .rm-classroom-v2 .rm-classroom-morgana{
-      width:41%!important;
-      left:-5%!important;
+      width:58%!important;
+      left:-13%!important;
       bottom:5%!important;
       pointer-events:auto!important;
       cursor:pointer!important;
@@ -210,8 +210,8 @@ window.addEventListener('DOMContentLoaded',()=>{
     }
     @media(max-width:760px){
       .rm-classroom-v2 .rm-classroom-morgana{
-        width:42%!important;
-        left:-6%!important;
+        width:58%!important;
+        left:-13%!important;
         bottom:5%!important;
       }
     }
