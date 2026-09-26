@@ -2,10 +2,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   const scene=document.querySelector('.rm-beyond-scene');
   if(!scene) return;
 
-  /*
-    Il markup base resta semplice: qui trasformiamo Bjorne in un vero target
-    interattivo e aggiungiamo la nuvoletta del pensiero solo per questa scena.
-  */
   const bjorneImage=scene.querySelector('.rm-beyond-bjorne');
   let bjorneButton=scene.querySelector('[data-beyond-bjorne]');
   if(!bjorneButton && bjorneImage){
@@ -96,12 +92,12 @@ window.addEventListener('DOMContentLoaded',()=>{
     }
   }
 
-  function showDialogue(speaker,text,{bjorne=false}={}){
+  function showDialogue(text,{bjorne=false}={}){
     clearTimeout(changeTimer);
     cleanBalloonModes();
     balloon?.classList.add('is-dialogue');
     if(bjorne) balloon?.classList.add('is-bjorne-dialogue');
-    if(title) title.textContent=speaker;
+    if(title) title.textContent='';
     if(copy) copy.textContent=text;
   }
 
@@ -142,10 +138,10 @@ window.addEventListener('DOMContentLoaded',()=>{
     scene.classList.add('is-easter-running');
     thought?.classList.remove('is-visible');
 
-    showDialogue('Bjorne','Red... ma le scatoline? Le faremo prima o poi?',{bjorne:true});
+    showDialogue('Red... ma le scatoline? Le faremo prima o poi?',{bjorne:true});
 
     later(()=>{
-      showDialogue('Red','Sì, Bjorne. Magari un giorno faremo anche le scatoline.');
+      showDialogue('Sì, Bjorne. Magari un giorno faremo anche le scatoline.');
     },BJORNE_LINE_MS);
 
     later(()=>{
