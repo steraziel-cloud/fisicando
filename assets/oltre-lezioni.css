@@ -105,7 +105,7 @@
 
 .rm-beyond-balloon.is-bjorne-dialogue{
   left:auto;
-  right:5%;
+  right:10%;
   top:-6px;
   width:min(405px,74%);
 }
@@ -236,7 +236,7 @@
 @media(max-width:980px){
   .rm-beyond-scene{min-height:390px;width:min(650px,100%);margin:0 auto}
   .rm-beyond-balloon{left:26%;top:-84px;width:min(445px,84%)}
-  .rm-beyond-balloon.is-bjorne-dialogue{right:6%;top:2px;width:min(385px,73%)}
+  .rm-beyond-balloon.is-bjorne-dialogue{right:10%;top:2px;width:min(385px,73%)}
   .rm-beyond-red-hit{left:-3%;width:60%;height:73%}
   .rm-beyond-bjorne-hit{right:-4%;width:64%;height:65%}
   .rm-beyond-thought{right:7%;top:-112px;width:min(520px,94%)}
@@ -246,7 +246,7 @@
   .rm-beyond-scene{min-height:330px}
   .rm-beyond-balloon{top:-65px;left:19%;width:88%}
   .rm-beyond-balloon-content{left:10%;right:9%;top:18%;bottom:31%}
-  .rm-beyond-balloon.is-bjorne-dialogue{right:3%;top:6px;width:82%}
+  .rm-beyond-balloon.is-bjorne-dialogue{right:7%;top:6px;width:82%}
   .rm-beyond-balloon h3{font-size:19px}
   .rm-beyond-balloon p{font-size:11px;line-height:1.45}
   .rm-beyond-balloon.is-dialogue p{font-size:11.5px;line-height:1.38}
