@@ -7,14 +7,13 @@
 }
 
 /*
-  Il fumetto ora usa un PNG dedicato: la forma e la coda non vengono piu
-  simulate in CSS. Il testo resta HTML, quindi puo continuare a cambiare
-  automaticamente e al click su Red.
+  Il fumetto usa un PNG dedicato: la forma e la coda non vengono simulate in CSS.
+  Il testo resta HTML, quindi puo continuare a cambiare automaticamente e al click su Red.
 */
 .rm-beyond-balloon{
   position:absolute;
   z-index:6;
-  left:8%;
+  left:18%;
   top:-112px;
   width:min(480px,86%);
   aspect-ratio:1448 / 1086;
@@ -81,24 +80,9 @@
   line-height:1.55;
   max-width:92%;
 }
-.rm-beyond-progress{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  margin-top:auto;
-  padding-bottom:3px;
-}
-.rm-beyond-dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:color-mix(in srgb,var(--rm-muted) 32%,transparent);
-  transition:transform .18s ease,background .18s ease;
-}
-.rm-beyond-dot.is-active{
-  background:var(--rm-accent);
-  transform:scale(1.3);
-}
+
+/* I pallini di avanzamento non servono: il contenuto cambia gia da solo e al click su Red. */
+.rm-beyond-progress{display:none!important}
 
 .rm-beyond-red-hit{
   position:absolute;
@@ -175,21 +159,19 @@
 
 @media(max-width:980px){
   .rm-beyond-scene{min-height:390px;width:min(650px,100%);margin:0 auto}
-  .rm-beyond-balloon{left:9%;top:-92px;width:min(445px,84%)}
+  .rm-beyond-balloon{left:17%;top:-92px;width:min(445px,84%)}
   .rm-beyond-red-hit{left:-3%;width:60%;height:73%}
   .rm-beyond-bjorne{right:-4%;width:64%;height:65%}
 }
 
 @media(max-width:640px){
   .rm-beyond-scene{min-height:330px}
-  .rm-beyond-balloon{top:-74px;left:5%;width:91%}
+  .rm-beyond-balloon{top:-74px;left:12%;width:88%}
   .rm-beyond-balloon-content{left:10%;right:9%;top:18%;bottom:31%}
   .rm-beyond-balloon h3{font-size:19px}
   .rm-beyond-balloon p{font-size:11px;line-height:1.45}
   .rm-beyond-kicker{font-size:9px;margin-bottom:5px;gap:7px}
   .rm-beyond-icon{width:28px;height:28px;flex-basis:28px;font-size:15px}
-  .rm-beyond-progress{gap:5px;padding-bottom:0}
-  .rm-beyond-dot{width:6px;height:6px}
   .rm-beyond-red-hit{left:-7%;bottom:0;width:64%;height:63%}
   .rm-beyond-bjorne{right:-6%;bottom:0;width:68%;height:59%}
 }
