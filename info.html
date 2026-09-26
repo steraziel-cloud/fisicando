@@ -9,8 +9,10 @@
   <link rel="stylesheet" href="assets/progetto-interactions.css?v=6">
   <link rel="stylesheet" href="assets/progetto-book-v3.css?v=10">
   <link rel="stylesheet" href="assets/progetto-layout-v2.css?v=5">
+  <link rel="stylesheet" href="assets/oltre-lezioni.css?v=1">
   <script src="assets/main.js?v=12" defer></script>
   <script src="assets/progetto.js?v=14" defer></script>
+  <script src="assets/oltre-lezioni.js?v=1" defer></script>
 </head>
 <body class="rm-lock">
   <header class="rm-topbar">
@@ -131,26 +133,24 @@
               <p>L’idea è permettere a chi studia di continuare a esplorare anche fuori dalla lezione: ripassare, esercitarsi, approfondire un argomento oppure provare a comprenderlo attraverso strumenti e punti di vista diversi.</p>
             </div>
 
-            <div class="rm-scene rm-whisper" role="button" tabindex="0" aria-label="Clicca per vedere la risorsa successiva">
-              <div class="rm-interaction-hint">☝ clicca Red, Bjorne o il fumetto</div>
-              <div class="rm-whisper-cat red">Red</div>
-              <div class="rm-whisper-cat bj">Bjorne</div>
-              <div class="rm-balloon">
-                <small>Stiamo costruendo...</small>
-                <h3 data-resource-title>Lezioni</h3>
-                <p data-resource-copy>Contenuti e spiegazioni da riprendere quando serve.</p>
-              </div>
-              <div class="rm-micro-controls" aria-label="Controlli risorse">
-                <button class="rm-micro-arrow" data-resource-prev aria-label="Risorsa precedente">←</button>
-                <div class="rm-micro-dots">
-                  <button class="rm-micro-dot active" data-resource-index="0" aria-label="Lezioni"></button>
-                  <button class="rm-micro-dot" data-resource-index="1" aria-label="Materiali"></button>
-                  <button class="rm-micro-dot" data-resource-index="2" aria-label="Esercitazioni"></button>
-                  <button class="rm-micro-dot" data-resource-index="3" aria-label="Laboratori"></button>
+            <div class="rm-beyond-scene" aria-label="Red racconta a Bjorne come crescerà il progetto">
+              <div class="rm-beyond-balloon" aria-live="polite">
+                <div class="rm-beyond-kicker"><span class="rm-beyond-icon" data-beyond-icon>📖</span><span>Stiamo costruendo...</span></div>
+                <h3 data-beyond-title>Lezioni</h3>
+                <p data-beyond-copy>Contenuti e spiegazioni da riprendere quando serve.</p>
+                <div class="rm-beyond-progress" aria-hidden="true">
+                  <span class="rm-beyond-dot is-active"></span>
+                  <span class="rm-beyond-dot"></span>
+                  <span class="rm-beyond-dot"></span>
+                  <span class="rm-beyond-dot"></span>
                 </div>
-                <span class="rm-micro-count" data-resource-count>1 / 4</span>
-                <button class="rm-micro-arrow" data-resource-next aria-label="Risorsa successiva">→</button>
               </div>
+
+              <button class="rm-beyond-red-hit" type="button" data-beyond-red aria-label="Red: mostra il prossimo elemento del progetto">
+                <img class="rm-beyond-red" src="assets/images/oltre-lezioni/red-confab-01.png" alt="Red parla con entusiasmo a Bjorne">
+              </button>
+              <img class="rm-beyond-bjorne" src="assets/images/oltre-lezioni/bjorne-box-01.png" alt="Bjorne ascolta Red dalla sua scatola">
+              <div class="rm-beyond-hint">☝ clicca Red per continuare</div>
             </div>
           </div>
         </section>
