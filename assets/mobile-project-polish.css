@@ -1,0 +1,255 @@
+/* Mobile-first polish for the project slideshow.
+   Loaded after the scene-specific styles so it can tune the phone layout
+   without changing the approved desktop composition. */
+
+/* The speech-balloon artwork stays light in both themes, so its text must
+   not inherit the light text colour used by dark mode. */
+.rm-beyond-balloon h3{
+  color:#142230!important;
+}
+.rm-beyond-balloon p{
+  color:#59677a!important;
+}
+.rm-beyond-balloon.is-dialogue p{
+  color:#142230!important;
+  text-shadow:none!important;
+}
+
+/* Invisible hit areas must remain invisible on touch devices. */
+.rm-book-hit,
+.rm-beyond-red-hit,
+.rm-beyond-bjorne-hit{
+  -webkit-tap-highlight-color:transparent!important;
+  tap-highlight-color:transparent;
+}
+
+@media (hover:none) and (pointer:coarse){
+  .rm-book-hit:focus,
+  .rm-book-hit:active,
+  .rm-beyond-red-hit:focus,
+  .rm-beyond-red-hit:active,
+  .rm-beyond-bjorne-hit:focus,
+  .rm-beyond-bjorne-hit:active{
+    outline:none!important;
+    box-shadow:none!important;
+    background:transparent!important;
+  }
+
+  .rm-book-hit:hover,
+  .rm-book-hit:active{
+    background:transparent!important;
+    filter:none!important;
+  }
+}
+
+@media (max-width:760px){
+  /* On phones the illustration is part of the opening of every slide:
+     eyebrow -> title -> subtitle -> scene -> explanatory copy. */
+  .rm-project-main .rm-slide{
+    padding-top:18px!important;
+    padding-bottom:82px!important;
+    overflow-y:auto!important;
+    -webkit-overflow-scrolling:touch;
+    scroll-padding-bottom:86px;
+  }
+
+  .rm-project-main .rm-slide-inner,
+  .rm-project-main .rm-slide-inner-about,
+  .rm-project-main .rm-slide-inner-services,
+  .rm-project-main .rm-slide-inner-work{
+    width:min(100% - 24px,680px)!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:0!important;
+    align-content:start!important;
+    align-items:start!important;
+  }
+
+  /* display:contents lets the scene sit between the editorial intro and
+     the longer paragraphs without duplicating any HTML. */
+  .rm-project-main .rm-slide-copy{
+    display:contents!important;
+  }
+
+  .rm-project-main .rm-slide-copy > .rm-eyebrow{
+    order:1;
+    margin:0 0 7px!important;
+  }
+
+  .rm-project-main .rm-slide-copy > h1{
+    order:2;
+    margin:0 0 9px!important;
+  }
+
+  .rm-project-main .rm-slide-copy > .rm-project-subtitle{
+    order:3;
+    margin:0 0 10px!important;
+  }
+
+  .rm-project-main .rm-slide-inner > .rm-scene,
+  .rm-project-main .rm-slide-inner > .rm-beyond-scene,
+  .rm-project-main .rm-slide-inner > .rm-audience-scene,
+  .rm-project-main .rm-slide-inner-about > .rm-book-scene-real,
+  .rm-project-main .rm-slide-inner-services > .rm-services-panel,
+  .rm-project-main .rm-slide-inner-work > .rm-classroom-v2{
+    order:4!important;
+    margin:0 auto 12px!important;
+  }
+
+  .rm-project-main .rm-slide-copy > p{
+    order:5;
+    width:100%;
+    max-width:none!important;
+    font-size:13.5px!important;
+    line-height:1.58!important;
+    margin:0 0 12px!important;
+  }
+
+  .rm-project-main .rm-slide-copy > .rm-inline-cta{
+    order:6;
+    width:100%;
+    margin-top:4px!important;
+  }
+
+  /* Compact editorial opening: enough room to see the characters in the
+     first phone viewport instead of hiding them below all the copy. */
+  .rm-project-main .rm-eyebrow{
+    font-size:10px!important;
+    letter-spacing:.11em!important;
+  }
+  .rm-project-main .rm-eyebrow::before{width:22px!important}
+
+  .rm-project-main .rm-about-title,
+  .rm-project-main .rm-services-title,
+  .rm-project-main .rm-section-title{
+    font-size:clamp(32px,10vw,42px)!important;
+    line-height:.96!important;
+    letter-spacing:-.05em!important;
+  }
+
+  .rm-project-main .rm-project-subtitle{
+    font-size:clamp(19px,5.5vw,24px)!important;
+    line-height:1.08!important;
+    letter-spacing:-.035em!important;
+    max-width:none!important;
+  }
+
+  /* Slide 1 — Red and the book become the visual cover of the slide. */
+  .rm-slide-about .rm-book-scene-real{
+    width:100%!important;
+    height:auto!important;
+    min-height:0!important;
+    aspect-ratio:3/2!important;
+  }
+
+  /* Slide 2 — keep the four cards visually present, but much denser. */
+  .rm-slide-services .rm-services-panel{
+    width:100%!important;
+    min-height:0!important;
+    padding:12px!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+  .rm-services-panel .rm-info-card{
+    min-height:0!important;
+    padding:12px 11px!important;
+    border-radius:15px!important;
+  }
+  .rm-services-panel .rm-card-icon{
+    width:34px!important;
+    height:34px!important;
+    margin-bottom:8px!important;
+    border-radius:10px!important;
+  }
+  .rm-services-panel .rm-card-icon svg{width:20px!important;height:20px!important}
+  .rm-services-panel .rm-info-card .n{
+    top:10px!important;
+    right:10px!important;
+    width:27px!important;
+    height:27px!important;
+    font-size:9px!important;
+  }
+  .rm-services-panel .rm-info-card h3{
+    font-size:14px!important;
+    margin-bottom:4px!important;
+  }
+  .rm-services-panel .rm-info-card p{
+    font-size:10.5px!important;
+    line-height:1.35!important;
+  }
+
+  /* Slide 3 — the classroom remains readable, but no longer consumes a
+     whole screen before the reader sees the rest of the copy. */
+  .rm-slide-work .rm-classroom-v2{
+    --scene-height:300px!important;
+    width:100%!important;
+  }
+  .rm-slide-work .rm-chalk-copy{gap:6px!important}
+  .rm-slide-work .rm-chalk-step{grid-template-columns:22px 1fr!important;gap:6px!important}
+  .rm-slide-work .rm-chalk-number{width:20px!important;height:20px!important;font-size:7px!important}
+  .rm-slide-work .rm-chalk-step h3{font-size:11px!important}
+  .rm-slide-work .rm-chalk-step p{font-size:7.5px!important;line-height:1.25!important}
+
+  /* Slide 4 — preserve enough vertical room for balloons and the easter egg. */
+  .rm-project-main .rm-beyond-scene{
+    width:100%!important;
+    min-height:295px!important;
+  }
+  .rm-project-main .rm-beyond-balloon{
+    top:-42px!important;
+    left:18%!important;
+    width:82%!important;
+  }
+  .rm-project-main .rm-beyond-balloon.is-bjorne-dialogue{
+    left:auto!important;
+    right:7%!important;
+    top:-16px!important;
+    width:80%!important;
+  }
+  .rm-project-main .rm-beyond-thought{
+    right:5%!important;
+    top:-68px!important;
+    width:94%!important;
+  }
+
+  /* Slide 5 — the final group illustration appears immediately after the
+     manifesto line. */
+  .rm-project-main .rm-audience-scene{
+    width:100%!important;
+    min-height:245px!important;
+  }
+  .rm-project-main .rm-audience-image{
+    width:106%!important;
+    max-width:none!important;
+  }
+
+  /* Mobile slide navigation: large touch arrows + visual progress dots. */
+  .rm-project-nav{
+    padding-bottom:max(0px,env(safe-area-inset-bottom));
+  }
+  .rm-project-step{
+    min-height:34px;
+    display:grid!important;
+    place-items:center!important;
+  }
+  .rm-project-step em{display:none!important}
+  .rm-project-step span{
+    width:11px!important;
+    height:11px!important;
+  }
+}
+
+@media (max-width:430px){
+  .rm-project-main .rm-slide-inner,
+  .rm-project-main .rm-slide-inner-about,
+  .rm-project-main .rm-slide-inner-services,
+  .rm-project-main .rm-slide-inner-work{
+    width:calc(100% - 20px)!important;
+  }
+
+  .rm-project-main .rm-slide-work .rm-classroom-v2{
+    --scene-height:270px!important;
+  }
+  .rm-project-main .rm-beyond-scene{min-height:275px!important}
+  .rm-project-main .rm-audience-scene{min-height:225px!important}
+}
