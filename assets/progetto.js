@@ -201,27 +201,90 @@ window.addEventListener('DOMContentLoaded',()=>{
   let morganaFrameTimer=null;
   let morganaTurnPlaying=false;
 
+  // I PNG hanno tutti lo stesso canvas, ma la sagoma di Morgana non occupa
+  // sempre la stessa porzione trasparente. Normalizziamo quindi la sagoma
+  // visibile rispetto al frame idle, invece di fidarci della sola width CSS.
+  const morganaFrameMetrics=new Map();
+
+  function measureMorganaFrame(img){
+    const canvas=document.createElement('canvas');
+    canvas.width=img.naturalWidth;
+    canvas.height=img.naturalHeight;
+    const ctx=canvas.getContext('2d',{willReadFrequently:true});
+    ctx.drawImage(img,0,0);
+    const {data}=ctx.getImageData(0,0,canvas.width,canvas.height);
+    let left=canvas.width,top=canvas.height,right=-1,bottom=-1;
+
+    for(let y=0;y<canvas.height;y+=2){
+      for(let x=0;x<canvas.width;x+=2){
+        if(data[(y*canvas.width+x)*4+3]>12){
+          if(x<left) left=x;
+          if(x>right) right=x;
+          if(y<top) top=y;
+          if(y>bottom) bottom=y;
+        }
+      }
+    }
+
+    if(right<left || bottom<top) return null;
+    return {
+      left,top,right,bottom,
+      width:right-left,
+      height:bottom-top,
+      centerX:(left+right)/2
+    };
+  }
+
   [...new Set(morganaTurnFrames)].forEach(src=>{
     const preload=new Image();
     preload.decoding='async';
+    preload.onload=()=>{
+      try{
+        morganaFrameMetrics.set(src,measureMorganaFrame(preload));
+      }catch(error){
+        console.warn('Impossibile misurare il frame di Morgana',src,error);
+      }
+    };
     preload.src=src;
   });
 
+  function showMorganaFrame(src){
+    if(!classroomMorgana) return;
+    classroomMorgana.src=src;
+
+    const normalize=()=>{
+      const current=morganaFrameMetrics.get(src);
+      const reference=morganaFrameMetrics.get(MORGANA_IDLE_FRAME);
+      if(!current || !reference || !classroomMorgana.naturalWidth) return;
+
+      const scale=reference.height/current.height;
+      const displayScale=classroomMorgana.clientWidth/classroomMorgana.naturalWidth;
+      const tx=(reference.centerX-scale*current.centerX)*displayScale;
+      const ty=(reference.bottom-scale*current.bottom)*displayScale;
+
+      classroomMorgana.style.transformOrigin='0 0';
+      classroomMorgana.style.transform=`matrix(${scale},0,0,${scale},${tx},${ty})`;
+    };
+
+    if(classroomMorgana.complete) requestAnimationFrame(normalize);
+    else classroomMorgana.addEventListener('load',()=>requestAnimationFrame(normalize),{once:true});
+  }
+
   // Impostiamo subito la posa coerente, prima che partano i timer della slide.
-  if(classroomMorgana) classroomMorgana.src=MORGANA_IDLE_FRAME;
+  showMorganaFrame(MORGANA_IDLE_FRAME);
 
   function resetMorganaTurn(){
     clearTimeout(morganaFrameTimer);
     morganaFrameTimer=null;
     morganaTurnPlaying=false;
-    if(classroomMorgana) classroomMorgana.src=MORGANA_IDLE_FRAME;
+    if(classroomMorgana) showMorganaFrame(MORGANA_IDLE_FRAME);
   }
 
   function playMorganaTurn(){
     if(!classroomMorgana || morganaTurnPlaying) return;
 
     if(matchMedia('(prefers-reduced-motion: reduce)').matches){
-      classroomMorgana.src=MORGANA_IDLE_FRAME;
+      showMorganaFrame(MORGANA_IDLE_FRAME);
       return;
     }
 
@@ -229,7 +292,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     let frameIndex=0;
 
     const showNextFrame=()=>{
-      classroomMorgana.src=morganaTurnFrames[frameIndex];
+      showMorganaFrame(morganaTurnFrames[frameIndex]);
 
       if(frameIndex<morganaTurnFrames.length-1){
         frameIndex+=1;
@@ -238,7 +301,7 @@ window.addEventListener('DOMContentLoaded',()=>{
       }
 
       morganaFrameTimer=setTimeout(()=>{
-        classroomMorgana.src=MORGANA_IDLE_FRAME;
+        showMorganaFrame(MORGANA_IDLE_FRAME);
         morganaTurnPlaying=false;
         morganaFrameTimer=null;
       },MORGANA_FRAME_MS);
