@@ -18,7 +18,6 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   const AUTO_MS=20000;
   const MICRO_MS=6500;
-  // Sei fasi distribuite nei 20 s della slide: 20 / 6 ≈ 3,33 s per fase.
   const BOOK_AUTO_MS=AUTO_MS/6;
 
   function render(){
@@ -29,22 +28,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   function resetSlideTimer(){
     clearInterval(slideTimer);
     slideTimer=setInterval(()=>go(index+1,false),AUTO_MS);
-  }
-
-  function resetMicroTimer(){
-    clearInterval(microTimer);
-    clearInterval(bookAutoTimer);
-    resetMorganaTurn();
-    if(index===0){
-      // Red sfoglia automaticamente mentre la slide "Chi siamo" è visibile.
-      bookAutoTimer=setInterval(()=>nextBookPage(false),BOOK_AUTO_MS);
-    }else if(index===2){
-      // Morgana esegue la rotazione completa verso la lavagna e ritorna.
-      playMorganaTurn();
-      microTimer=setInterval(()=>playMorganaTurn(),MICRO_MS);
-    }else if(index===3){
-      microTimer=setInterval(()=>advanceResource(false),MICRO_MS);
-    }
   }
 
   function registerActivity(){
@@ -69,7 +52,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   });
 
   slider?.addEventListener('pointerdown',e=>{
-    if(e.target.closest('button,a,.rm-board,.rm-morgana,.rm-whisper')) return;
+    if(e.target.closest('button,a,.rm-whisper')) return;
     pointerStartX=e.clientX;
     pointerStartY=e.clientY;
   });
@@ -96,18 +79,6 @@ window.addEventListener('DOMContentLoaded',()=>{
     setTimeout(()=>wheelLocked=false,850);
   },{passive:false});
 
-  document.addEventListener('visibilitychange',()=>{
-    if(document.hidden){
-      clearInterval(slideTimer);
-      clearInterval(microTimer);
-      clearInterval(bookAutoTimer);
-      resetMorganaTurn();
-    }else{
-      resetSlideTimer();
-      resetMicroTimer();
-    }
-  });
-
   function activateWithKeyboard(el,fn){
     el?.addEventListener('keydown',e=>{
       if(e.key==='Enter' || e.key===' '){
@@ -117,8 +88,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     });
   }
 
-  // Libro di Red: animazione a sei PNG.
-  // 01, 03, 05 = pagine ferme; 02, 04, 06 = passaggi intermedi.
+  // Libro di Red
   const bookFrames=[
     {
       rest:'assets/images/red-flip-aligned/red-flip-frame-01.png',
@@ -144,7 +114,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   const bookNext=document.querySelector('[data-book-next]');
   const bookRed=document.querySelector('[data-book-red]');
 
-  // Precarica tutti i frame per evitare lampeggi quando cambia il src.
   bookFrames.flatMap(frame=>[frame.rest,frame.turn]).forEach(src=>{
     const preload=new Image();
     preload.decoding='async';
@@ -188,11 +157,8 @@ window.addEventListener('DOMContentLoaded',()=>{
     const duration=getBookFrameDuration();
     bookFlipping=true;
     bookScene?.classList.add('is-turning');
-
-    // Prima mostra il PNG con zampa + pagina in movimento...
     showBookFrame(bookFrames[bookIndex].turn);
 
-    // ...poi atterra direttamente sulla pagina successiva.
     setTimeout(()=>{
       bookIndex=nextIndex;
       showBookFrame(bookFrames[bookIndex].rest);
@@ -211,35 +177,51 @@ window.addEventListener('DOMContentLoaded',()=>{
   bookRed?.addEventListener('click',()=>nextBookPage());
   activateWithKeyboard(bookRed,()=>nextBookPage());
 
-  // Morgana: sequenza a 10 PNG derivata dall'animazione del manichino.
-  // I dieci frame coprono l'intero gesto: rotazione verso la lavagna,
-  // posa di scrittura e ritorno alla posizione iniziale.
-  const morganaTurnFrames=Array.from({length:10},(_,i)=>
-    `assets/images/morgana-classroom/morgana-turn-${String(i+1).padStart(2,'0')}.png`
-  );
+  // Morgana
+  // Il vecchio frame 01 e' escluso intenzionalmente: e' stato generato
+  // con un canvas/aspect ratio diverso e causava il salto di scala.
+  // Il frame 10 e' una posa neutra compatibile con i frame 02-09,
+  // quindi viene usato come posa di riposo, partenza e arrivo.
+  const MORGANA_IDLE_FRAME='assets/images/morgana-classroom/morgana-turn-10.png';
+  const morganaTurnFrames=[
+    MORGANA_IDLE_FRAME,
+    'assets/images/morgana-classroom/morgana-turn-02.png',
+    'assets/images/morgana-classroom/morgana-turn-03.png',
+    'assets/images/morgana-classroom/morgana-turn-04.png',
+    'assets/images/morgana-classroom/morgana-turn-05.png',
+    'assets/images/morgana-classroom/morgana-turn-06.png',
+    'assets/images/morgana-classroom/morgana-turn-07.png',
+    'assets/images/morgana-classroom/morgana-turn-08.png',
+    'assets/images/morgana-classroom/morgana-turn-09.png',
+    MORGANA_IDLE_FRAME
+  ];
+
   const classroomMorgana=document.querySelector('.rm-classroom-morgana');
   const MORGANA_FRAME_MS=125;
   let morganaFrameTimer=null;
   let morganaTurnPlaying=false;
 
-  morganaTurnFrames.forEach(src=>{
+  [...new Set(morganaTurnFrames)].forEach(src=>{
     const preload=new Image();
     preload.decoding='async';
     preload.src=src;
   });
 
+  // Impostiamo subito la posa coerente, prima che partano i timer della slide.
+  if(classroomMorgana) classroomMorgana.src=MORGANA_IDLE_FRAME;
+
   function resetMorganaTurn(){
     clearTimeout(morganaFrameTimer);
     morganaFrameTimer=null;
     morganaTurnPlaying=false;
-    if(classroomMorgana) classroomMorgana.src=morganaTurnFrames[0];
+    if(classroomMorgana) classroomMorgana.src=MORGANA_IDLE_FRAME;
   }
 
   function playMorganaTurn(){
     if(!classroomMorgana || morganaTurnPlaying) return;
 
     if(matchMedia('(prefers-reduced-motion: reduce)').matches){
-      classroomMorgana.src=morganaTurnFrames[0];
+      classroomMorgana.src=MORGANA_IDLE_FRAME;
       return;
     }
 
@@ -255,10 +237,8 @@ window.addEventListener('DOMContentLoaded',()=>{
         return;
       }
 
-      // L'ultimo PNG rappresenta già il ritorno: lo lasciamo respirare
-      // per un frame, poi riportiamo Morgana sul primo fotogramma.
       morganaFrameTimer=setTimeout(()=>{
-        classroomMorgana.src=morganaTurnFrames[0];
+        classroomMorgana.src=MORGANA_IDLE_FRAME;
         morganaTurnPlaying=false;
         morganaFrameTimer=null;
       },MORGANA_FRAME_MS);
@@ -267,80 +247,11 @@ window.addEventListener('DOMContentLoaded',()=>{
     showNextFrame();
   }
 
-  // Lavagna di Morgana
-  const boardData=[
-    ['PASSO 01','Individuare il punto di partenza','Capire se la difficoltà nasce da un concetto non compreso, da basi poco solide, da un procedimento meccanico o dalla necessità di una spiegazione diversa.'],
-    ['PASSO 02','Scegliere strumenti e spiegazioni','Spiegazioni, strumenti ed esercizi vengono scelti in base alla situazione e agli obiettivi, senza proporre lo stesso percorso a tutte e tutti.'],
-    ['PASSO 03','Adattare il lavoro nel tempo','Il percorso può cambiare insieme ai progressi che emergono, senza restare bloccato in uno schema deciso in partenza.']
-  ];
-
-  let boardIndex=0;
-  const board=document.querySelector('.rm-board');
-  const boardStep=document.querySelector('[data-board-step]');
-  const boardTitle=document.querySelector('[data-board-title]');
-  const boardCopy=document.querySelector('[data-board-copy]');
-  const morgana=document.querySelector('.rm-morgana');
-  const boardPrev=document.querySelector('[data-board-prev]');
-  const boardNext=document.querySelector('[data-board-next]');
-  const boardDots=[...document.querySelectorAll('[data-board-index]')];
-  const boardCount=document.querySelector('[data-board-count]');
-  let typeTimer=null;
-
-  function typeText(el,text){
-    if(!el) return;
-    clearInterval(typeTimer);
-    if(matchMedia('(prefers-reduced-motion: reduce)').matches){
-      el.textContent=text;
-      return;
-    }
-    el.textContent='';
-    let i=0;
-    typeTimer=setInterval(()=>{
-      el.textContent+=text[i++]||'';
-      if(i>=text.length) clearInterval(typeTimer);
-    },7);
-  }
-
-  function updateBoardControls(){
-    boardDots.forEach((dot,i)=>dot.classList.toggle('active',i===boardIndex));
-    if(boardCount) boardCount.textContent=`${boardIndex+1} / ${boardData.length}`;
-  }
-
-  function showBoard(nextIndex,user=true){
-    boardIndex=(nextIndex+boardData.length)%boardData.length;
-    const data=boardData[boardIndex];
-    morgana?.classList.remove('writing');
-    void morgana?.offsetWidth;
-    morgana?.classList.add('writing');
-    if(boardStep) boardStep.textContent=data[0];
-    if(boardTitle){
-      boardTitle.classList.remove('rm-fade-write');
-      void boardTitle.offsetWidth;
-      boardTitle.textContent=data[1];
-      boardTitle.classList.add('rm-fade-write');
-    }
-    typeText(boardCopy,data[2]);
-    updateBoardControls();
-    if(user) registerActivity();
-  }
-
-  function advanceBoard(user=true){
-    showBoard(boardIndex+1,user);
-  }
-
-  board?.addEventListener('click',()=>advanceBoard(true));
-  morgana?.addEventListener('click',()=>advanceBoard(true));
-  boardPrev?.addEventListener('click',()=>showBoard(boardIndex-1,true));
-  boardNext?.addEventListener('click',()=>showBoard(boardIndex+1,true));
-  boardDots.forEach(dot=>dot.addEventListener('click',()=>showBoard(Number(dot.dataset.boardIndex),true)));
-  activateWithKeyboard(board,()=>advanceBoard(true));
-  activateWithKeyboard(morgana,()=>advanceBoard(true));
-
-  // Red + Bjorne
+  // Risorse della slide "Oltre le lezioni"
   const resourceData=[
     ['Lezioni','Contenuti e spiegazioni da riprendere quando serve.'],
     ['Materiali','Schemi, approfondimenti e strumenti utili per organizzare lo studio.'],
-    ['Esercitazioni','Attività per allenarsi e mettere alla prova ciò che si è capito.'],
+    ['Esercitazioni','Attivita per allenarsi e mettere alla prova cio che si e capito.'],
     ['Laboratori','Strumenti interattivi per osservare, provare e ragionare sui concetti.']
   ];
 
@@ -386,8 +297,34 @@ window.addEventListener('DOMContentLoaded',()=>{
   resourceDots.forEach(dot=>dot.addEventListener('click',e=>{e.stopPropagation();showResource(Number(dot.dataset.resourceIndex),true)}));
   activateWithKeyboard(whisper,()=>advanceResource(true));
 
+  function resetMicroTimer(){
+    clearInterval(microTimer);
+    clearInterval(bookAutoTimer);
+    resetMorganaTurn();
+
+    if(index===0){
+      bookAutoTimer=setInterval(()=>nextBookPage(false),BOOK_AUTO_MS);
+    }else if(index===2){
+      playMorganaTurn();
+      microTimer=setInterval(()=>playMorganaTurn(),MICRO_MS);
+    }else if(index===3){
+      microTimer=setInterval(()=>advanceResource(false),MICRO_MS);
+    }
+  }
+
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden){
+      clearInterval(slideTimer);
+      clearInterval(microTimer);
+      clearInterval(bookAutoTimer);
+      resetMorganaTurn();
+    }else{
+      resetSlideTimer();
+      resetMicroTimer();
+    }
+  });
+
   updateBookA11y();
-  updateBoardControls();
   updateResourceControls();
   render();
   resetSlideTimer();
