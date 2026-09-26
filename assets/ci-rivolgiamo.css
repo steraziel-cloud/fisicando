@@ -59,3 +59,179 @@
   .rm-audience-scene{min-height:330px}
   .rm-audience-image{width:104%}
 }
+
+/* Mobile project mode: vertical reading, compact navigation, scenes scaled to the viewport. */
+@media(max-width:760px){
+  body.rm-lock{overflow:hidden}
+  .rm-project-main{height:calc(100dvh - var(--rm-header-h));min-height:0;overflow:hidden}
+  .rm-slider,.rm-track{height:100%}
+  .rm-slide{
+    height:100%;
+    min-height:0;
+    overflow-x:hidden;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-y:contain;
+    align-items:start;
+    padding:22px 0 calc(92px + env(safe-area-inset-bottom));
+    scroll-padding-bottom:110px;
+  }
+  .rm-slide-inner,
+  .rm-slide-about .rm-slide-inner-about,
+  .rm-slide-services .rm-slide-inner-services,
+  .rm-slide-work .rm-slide-inner-work{
+    width:min(100% - 28px,680px)!important;
+    grid-template-columns:1fr!important;
+    gap:20px!important;
+    align-items:start!important;
+    align-content:start!important;
+  }
+  .rm-slide-copy,.rm-about-copy,.rm-services-copy,.rm-work-copy,.rm-audience-copy{
+    width:100%;max-width:none!important
+  }
+  .rm-slide-copy .rm-eyebrow{margin-bottom:8px}
+  .rm-slide-copy h1,
+  .rm-about-title,
+  .rm-services-title,
+  .rm-section-title{
+    font-size:clamp(38px,10.8vw,52px)!important;
+    line-height:.99!important;
+    letter-spacing:-.05em!important;
+    margin-bottom:13px!important;
+    white-space:normal!important;
+  }
+  .rm-project-subtitle{
+    max-width:none!important;
+    font-size:clamp(22px,6.6vw,30px)!important;
+    line-height:1.08!important;
+    margin-bottom:17px!important;
+  }
+  .rm-slide-copy p,.rm-about-copy p,.rm-services-copy p,.rm-work-copy p{
+    max-width:none!important;
+    font-size:14px!important;
+    line-height:1.58!important;
+    margin-bottom:12px!important;
+  }
+
+  /* Slide 1 */
+  .rm-slide-about{padding-top:20px!important;padding-bottom:88px!important}
+  .rm-slide-about .rm-book-scene-real{
+    width:calc(100% + 12px)!important;
+    margin:0 -6px!important;
+    aspect-ratio:3/2!important;
+    min-height:0!important;
+  }
+
+  /* Slide 2 */
+  .rm-slide-services{padding-bottom:92px!important}
+  .rm-services-panel{
+    min-height:0!important;
+    padding:13px!important;
+    gap:10px!important;
+    grid-template-columns:1fr 1fr!important;
+    border-radius:22px!important;
+  }
+  .rm-services-panel .rm-info-card{
+    min-height:0!important;
+    padding:16px 14px!important;
+    border-radius:16px!important;
+  }
+  .rm-services-panel .rm-card-icon{width:42px;height:42px;margin-bottom:12px;border-radius:12px}
+  .rm-services-panel .rm-card-icon svg{width:24px;height:24px}
+  .rm-services-panel .rm-info-card .n{top:14px!important;right:13px!important;width:31px!important;height:31px!important}
+  .rm-services-panel .rm-info-card h3{font-size:17px!important}
+  .rm-services-panel .rm-info-card p{font-size:12px!important;line-height:1.42!important}
+
+  /* Slide 3 */
+  .rm-slide-work{padding-bottom:92px!important}
+  .rm-classroom-v2{
+    --scene-height:clamp(300px,86vw,430px)!important;
+    --board-width:92%;
+    --board-left:4%;
+    --morgana-width:29%;
+    --morgana-left:-1%;
+    --red-width:20%;
+    --red-right:0%;
+    --bjorne-width:25%;
+    --bjorne-right:15%;
+    width:100%!important;
+    margin:0 auto!important;
+  }
+  .rm-chalk-copy{gap:8px!important}
+  .rm-chalk-step{grid-template-columns:24px 1fr!important;gap:7px!important}
+  .rm-chalk-number{width:22px!important;height:22px!important;font-size:8px!important}
+  .rm-chalk-step h3{font-size:clamp(11px,3.4vw,15px)!important;margin-bottom:2px!important}
+  .rm-chalk-step p{font-size:clamp(7px,2.2vw,10px)!important;line-height:1.25!important}
+
+  /* Slide 4 */
+  .rm-beyond-scene{
+    width:100%!important;
+    min-height:clamp(310px,82vw,390px)!important;
+    margin:22px auto 0!important;
+  }
+  .rm-beyond-balloon{
+    top:-36px!important;
+    left:17%!important;
+    width:86%!important;
+  }
+  .rm-beyond-balloon.is-bjorne-dialogue{
+    left:auto!important;
+    right:8%!important;
+    top:-2px!important;
+    width:80%!important;
+  }
+  .rm-beyond-balloon.is-dialogue p{font-size:11.5px!important;line-height:1.35!important}
+  .rm-beyond-red-hit{left:-7%!important;bottom:0!important;width:64%!important;height:62%!important}
+  .rm-beyond-bjorne-hit{right:-5%!important;bottom:0!important;width:68%!important;height:59%!important}
+  .rm-beyond-thought{right:7%!important;top:-74px!important;width:94%!important}
+
+  /* Slide 5 */
+  .rm-audience-scene{min-height:clamp(280px,78vw,370px)!important;width:100%!important;margin:2px auto 0!important}
+  .rm-audience-image{width:108%!important;max-width:none!important}
+  .rm-inline-cta{margin-top:18px!important;padding:16px!important;gap:12px!important;border-radius:16px!important}
+  .rm-inline-cta .rm-btn{width:100%;margin:0!important}
+
+  /* Navigation: on phone the dots matter more than five tiny labels. */
+  .rm-project-nav{
+    position:absolute!important;
+    bottom:calc(8px + env(safe-area-inset-bottom))!important;
+    width:min(100% - 18px,520px)!important;
+    grid-template-columns:42px 1fr 42px!important;
+    gap:7px!important;
+    padding:7px 9px!important;
+    border:1px solid color-mix(in srgb,var(--rm-line) 86%,transparent);
+    border-radius:999px;
+    background:color-mix(in srgb,var(--rm-bg) 88%,transparent);
+    box-shadow:0 10px 28px rgba(20,34,48,.10);
+    backdrop-filter:blur(16px);
+  }
+  .rm-project-nav-arrow{width:40px!important;height:40px!important;font-size:27px!important}
+  .rm-project-steps{align-items:center!important}
+  .rm-project-steps::before{left:10%!important;right:10%!important;top:50%!important;transform:translateY(-50%)}
+  .rm-project-step{min-height:34px!important;padding:0 2px!important;display:grid!important;place-items:center!important;gap:0!important}
+  .rm-project-step span{width:11px!important;height:11px!important}
+  .rm-project-step em{display:none!important}
+}
+
+@media(max-width:480px){
+  .rm-slide-inner,
+  .rm-slide-about .rm-slide-inner-about,
+  .rm-slide-services .rm-slide-inner-services,
+  .rm-slide-work .rm-slide-inner-work{width:min(100% - 22px,680px)!important}
+  .rm-slide-copy h1,.rm-about-title,.rm-services-title,.rm-section-title{font-size:clamp(35px,10.6vw,44px)!important}
+  .rm-project-subtitle{font-size:clamp(21px,6.4vw,27px)!important}
+  .rm-services-panel{grid-template-columns:1fr!important}
+  .rm-services-panel .rm-info-card{display:grid;grid-template-columns:44px 1fr;column-gap:12px;align-items:start}
+  .rm-services-panel .rm-card-icon{grid-row:1/3;margin:0!important}
+  .rm-services-panel .rm-info-card .n{display:none!important}
+  .rm-services-panel .rm-info-card h3{margin-top:1px!important}
+  .rm-services-panel .rm-info-card p{grid-column:2}
+  .rm-beyond-scene{min-height:305px!important}
+  .rm-audience-scene{min-height:270px!important}
+}
+
+@media(hover:none),(pointer:coarse){
+  .rm-beyond-red-hit:hover .rm-beyond-red,
+  .rm-beyond-bjorne-hit:hover .rm-beyond-bjorne,
+  .rm-classroom-morgana:hover{transform:none!important;translate:none!important}
+}
