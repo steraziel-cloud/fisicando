@@ -1,0 +1,61 @@
+/* Slide "A chi ci rivolgiamo": scena finale con Morgana, Red e Bjorne */
+.rm-slide-audience .rm-slide-inner{
+  align-items:center;
+}
+
+.rm-audience-copy{
+  position:relative;
+  z-index:2;
+}
+
+.rm-audience-scene{
+  position:relative;
+  min-height:455px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:visible;
+}
+
+.rm-audience-image{
+  display:block;
+  width:min(760px,112%);
+  max-width:none;
+  height:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 24px 34px rgba(20,34,48,.10));
+  user-select:none;
+  pointer-events:none;
+
+  /* La scena si dissolve gradualmente nello sfondo della slide, come nell'hero. */
+  -webkit-mask-image:radial-gradient(ellipse at center,
+    #000 0%,
+    #000 66%,
+    rgba(0,0,0,.96) 75%,
+    rgba(0,0,0,.72) 84%,
+    rgba(0,0,0,.34) 92%,
+    transparent 100%);
+  mask-image:radial-gradient(ellipse at center,
+    #000 0%,
+    #000 66%,
+    rgba(0,0,0,.96) 75%,
+    rgba(0,0,0,.72) 84%,
+    rgba(0,0,0,.34) 92%,
+    transparent 100%);
+}
+
+@media(max-width:980px){
+  .rm-audience-scene{
+    min-height:390px;
+    width:min(720px,100%);
+    margin:0 auto;
+  }
+  .rm-audience-image{
+    width:min(690px,108%);
+  }
+}
+
+@media(max-width:640px){
+  .rm-audience-scene{min-height:330px}
+  .rm-audience-image{width:104%}
+}
