@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   });
 
   slider?.addEventListener('pointerdown',e=>{
-    if(e.target.closest('button,a,.rm-whisper')) return;
+    if(e.target.closest('button,a,.rm-whisper,.rm-classroom-morgana')) return;
     pointerStartX=e.clientX;
     pointerStartY=e.clientY;
   });
@@ -88,23 +88,13 @@ window.addEventListener('DOMContentLoaded',()=>{
     });
   }
 
+  // ------------------------------------------------------------
   // Libro di Red
+  // ------------------------------------------------------------
   const bookFrames=[
-    {
-      rest:'assets/images/red-flip-aligned/red-flip-frame-01.png',
-      turn:'assets/images/red-flip-aligned/red-flip-frame-02.png',
-      title:'Bisogni reali'
-    },
-    {
-      rest:'assets/images/red-flip-aligned/red-flip-frame-03.png',
-      turn:'assets/images/red-flip-aligned/red-flip-frame-04.png',
-      title:'Didattica adattabile'
-    },
-    {
-      rest:'assets/images/red-flip-aligned/red-flip-frame-05.png',
-      turn:'assets/images/red-flip-aligned/red-flip-frame-06.png',
-      title:'Autonomia'
-    }
+    {rest:'assets/images/red-flip-aligned/red-flip-frame-01.png',turn:'assets/images/red-flip-aligned/red-flip-frame-02.png',title:'Bisogni reali'},
+    {rest:'assets/images/red-flip-aligned/red-flip-frame-03.png',turn:'assets/images/red-flip-aligned/red-flip-frame-04.png',title:'Didattica adattabile'},
+    {rest:'assets/images/red-flip-aligned/red-flip-frame-05.png',turn:'assets/images/red-flip-aligned/red-flip-frame-06.png',title:'Autonomia'}
   ];
 
   let bookIndex=0;
@@ -142,7 +132,6 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   function nextBookPage(user=true){
     if(bookFlipping || !bookImage) return;
-
     const nextIndex=(bookIndex+1)%bookFrames.length;
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -177,11 +166,9 @@ window.addEventListener('DOMContentLoaded',()=>{
   bookRed?.addEventListener('click',()=>nextBookPage());
   activateWithKeyboard(bookRed,()=>nextBookPage());
 
-  // Morgana
-  // Il vecchio frame 01 e' escluso intenzionalmente: e' stato generato
-  // con un canvas/aspect ratio diverso e causava il salto di scala.
-  // Il frame 10 e' una posa neutra compatibile con i frame 02-09,
-  // quindi viene usato come posa di riposo, partenza e arrivo.
+  // ------------------------------------------------------------
+  // Morgana — unica animazione attiva
+  // ------------------------------------------------------------
   const MORGANA_IDLE_FRAME='assets/images/morgana-classroom/morgana-turn-10.png';
   const morganaTurnFrames=[
     MORGANA_IDLE_FRAME,
@@ -196,14 +183,41 @@ window.addEventListener('DOMContentLoaded',()=>{
     MORGANA_IDLE_FRAME
   ];
 
+  const classroom=document.querySelector('.rm-classroom-v2');
   const classroomMorgana=document.querySelector('.rm-classroom-morgana');
   const MORGANA_FRAME_MS=125;
   let morganaFrameTimer=null;
   let morganaTurnPlaying=false;
 
-  // I PNG hanno tutti lo stesso canvas, ma la sagoma di Morgana non occupa
-  // sempre la stessa porzione trasparente. Normalizziamo quindi la sagoma
-  // visibile rispetto al frame idle, invece di fidarci della sola width CSS.
+  // Dimensione corretta per i nuovi PNG. I frame nuovi hanno molto piu spazio
+  // trasparente rispetto ai vecchi A-F, quindi la width del box deve essere maggiore.
+  const morganaStyle=document.createElement('style');
+  morganaStyle.textContent=`
+    .rm-classroom-v2 .rm-classroom-morgana{
+      width:41%!important;
+      left:-5%!important;
+      bottom:5%!important;
+      pointer-events:auto!important;
+      cursor:pointer!important;
+      touch-action:manipulation;
+    }
+    .rm-classroom-v2 .rm-classroom-morgana:hover{
+      filter:drop-shadow(0 16px 20px rgba(20,34,48,.12)) brightness(1.035);
+    }
+    .rm-classroom-v2 .rm-classroom-morgana:focus-visible{
+      outline:3px solid color-mix(in srgb,var(--rm-accent) 70%,white);
+      outline-offset:4px;
+    }
+    @media(max-width:760px){
+      .rm-classroom-v2 .rm-classroom-morgana{
+        width:42%!important;
+        left:-6%!important;
+        bottom:5%!important;
+      }
+    }
+  `;
+  document.head.appendChild(morganaStyle);
+
   const morganaFrameMetrics=new Map();
 
   function measureMorganaFrame(img){
@@ -270,9 +284,6 @@ window.addEventListener('DOMContentLoaded',()=>{
     else classroomMorgana.addEventListener('load',()=>requestAnimationFrame(normalize),{once:true});
   }
 
-  // Impostiamo subito la posa coerente, prima che partano i timer della slide.
-  showMorganaFrame(MORGANA_IDLE_FRAME);
-
   function resetMorganaTurn(){
     clearTimeout(morganaFrameTimer);
     morganaFrameTimer=null;
@@ -280,8 +291,12 @@ window.addEventListener('DOMContentLoaded',()=>{
     if(classroomMorgana) showMorganaFrame(MORGANA_IDLE_FRAME);
   }
 
-  function playMorganaTurn(){
-    if(!classroomMorgana || morganaTurnPlaying) return;
+  function playMorganaTurn({restart=false}={}){
+    if(!classroomMorgana) return;
+    if(morganaTurnPlaying){
+      if(!restart) return;
+      resetMorganaTurn();
+    }
 
     if(matchMedia('(prefers-reduced-motion: reduce)').matches){
       showMorganaFrame(MORGANA_IDLE_FRAME);
@@ -310,7 +325,33 @@ window.addEventListener('DOMContentLoaded',()=>{
     showNextFrame();
   }
 
+  showMorganaFrame(MORGANA_IDLE_FRAME);
+
+  if(classroomMorgana){
+    classroomMorgana.tabIndex=0;
+    classroomMorgana.setAttribute('role','button');
+    classroomMorgana.setAttribute('aria-label','Morgana: passa al momento successivo della spiegazione');
+
+    const advanceClassroom=()=>{
+      if(index!==2) return;
+      classroom?.dispatchEvent(new CustomEvent('rm:classroom-advance-request',{bubbles:true}));
+      resetSlideTimer();
+    };
+
+    classroomMorgana.addEventListener('click',e=>{
+      e.stopPropagation();
+      advanceClassroom();
+    });
+    activateWithKeyboard(classroomMorgana,advanceClassroom);
+  }
+
+  // La timeline della lavagna (main.js) decide quando deve partire Morgana.
+  classroom?.addEventListener('rm:classroom-step-start',()=>playMorganaTurn({restart:true}));
+  classroom?.addEventListener('rm:classroom-reset',()=>resetMorganaTurn());
+
+  // ------------------------------------------------------------
   // Risorse della slide "Oltre le lezioni"
+  // ------------------------------------------------------------
   const resourceData=[
     ['Lezioni','Contenuti e spiegazioni da riprendere quando serve.'],
     ['Materiali','Schemi, approfondimenti e strumenti utili per organizzare lo studio.'],
@@ -363,13 +404,11 @@ window.addEventListener('DOMContentLoaded',()=>{
   function resetMicroTimer(){
     clearInterval(microTimer);
     clearInterval(bookAutoTimer);
-    resetMorganaTurn();
+
+    if(index!==2) resetMorganaTurn();
 
     if(index===0){
       bookAutoTimer=setInterval(()=>nextBookPage(false),BOOK_AUTO_MS);
-    }else if(index===2){
-      playMorganaTurn();
-      microTimer=setInterval(()=>playMorganaTurn(),MICRO_MS);
     }else if(index===3){
       microTimer=setInterval(()=>advanceResource(false),MICRO_MS);
     }
