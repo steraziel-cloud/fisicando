@@ -34,11 +34,14 @@ window.addEventListener('DOMContentLoaded',()=>{
   function resetMicroTimer(){
     clearInterval(microTimer);
     clearInterval(bookAutoTimer);
+    resetMorganaTurn();
     if(index===0){
       // Red sfoglia automaticamente mentre la slide "Chi siamo" è visibile.
       bookAutoTimer=setInterval(()=>nextBookPage(false),BOOK_AUTO_MS);
     }else if(index===2){
-      microTimer=setInterval(()=>advanceBoard(false),MICRO_MS);
+      // Morgana esegue la rotazione completa verso la lavagna e ritorna.
+      playMorganaTurn();
+      microTimer=setInterval(()=>playMorganaTurn(),MICRO_MS);
     }else if(index===3){
       microTimer=setInterval(()=>advanceResource(false),MICRO_MS);
     }
@@ -98,6 +101,7 @@ window.addEventListener('DOMContentLoaded',()=>{
       clearInterval(slideTimer);
       clearInterval(microTimer);
       clearInterval(bookAutoTimer);
+      resetMorganaTurn();
     }else{
       resetSlideTimer();
       resetMicroTimer();
@@ -206,6 +210,62 @@ window.addEventListener('DOMContentLoaded',()=>{
   bookNext?.addEventListener('click',()=>nextBookPage());
   bookRed?.addEventListener('click',()=>nextBookPage());
   activateWithKeyboard(bookRed,()=>nextBookPage());
+
+  // Morgana: sequenza a 10 PNG derivata dall'animazione del manichino.
+  // I dieci frame coprono l'intero gesto: rotazione verso la lavagna,
+  // posa di scrittura e ritorno alla posizione iniziale.
+  const morganaTurnFrames=Array.from({length:10},(_,i)=>
+    `assets/images/morgana-classroom/morgana-turn-${String(i+1).padStart(2,'0')}.png`
+  );
+  const classroomMorgana=document.querySelector('.rm-classroom-morgana');
+  const MORGANA_FRAME_MS=125;
+  let morganaFrameTimer=null;
+  let morganaTurnPlaying=false;
+
+  morganaTurnFrames.forEach(src=>{
+    const preload=new Image();
+    preload.decoding='async';
+    preload.src=src;
+  });
+
+  function resetMorganaTurn(){
+    clearTimeout(morganaFrameTimer);
+    morganaFrameTimer=null;
+    morganaTurnPlaying=false;
+    if(classroomMorgana) classroomMorgana.src=morganaTurnFrames[0];
+  }
+
+  function playMorganaTurn(){
+    if(!classroomMorgana || morganaTurnPlaying) return;
+
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+      classroomMorgana.src=morganaTurnFrames[0];
+      return;
+    }
+
+    morganaTurnPlaying=true;
+    let frameIndex=0;
+
+    const showNextFrame=()=>{
+      classroomMorgana.src=morganaTurnFrames[frameIndex];
+
+      if(frameIndex<morganaTurnFrames.length-1){
+        frameIndex+=1;
+        morganaFrameTimer=setTimeout(showNextFrame,MORGANA_FRAME_MS);
+        return;
+      }
+
+      // L'ultimo PNG rappresenta già il ritorno: lo lasciamo respirare
+      // per un frame, poi riportiamo Morgana sul primo fotogramma.
+      morganaFrameTimer=setTimeout(()=>{
+        classroomMorgana.src=morganaTurnFrames[0];
+        morganaTurnPlaying=false;
+        morganaFrameTimer=null;
+      },MORGANA_FRAME_MS);
+    };
+
+    showNextFrame();
+  }
 
   // Lavagna di Morgana
   const boardData=[
