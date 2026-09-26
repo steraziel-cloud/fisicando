@@ -54,6 +54,10 @@ window.addEventListener('DOMContentLoaded',()=>{
   let easterRunning=false;
   let easterTimers=[];
 
+  function signalProjectActivity(){
+    document.dispatchEvent(new CustomEvent('rm:project-activity'));
+  }
+
   function clearEasterTimers(){
     easterTimers.forEach(clearTimeout);
     easterTimers=[];
@@ -114,6 +118,7 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   function advanceByUser(){
     if(easterRunning) return;
+    signalProjectActivity();
     renderState(stateIndex+1);
     startAuto();
   }
@@ -130,6 +135,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   function startBjorneEaster(){
     if(easterRunning) return;
 
+    signalProjectActivity();
     easterRunning=true;
     clearEasterTimers();
     stopAuto();
