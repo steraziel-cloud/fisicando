@@ -82,25 +82,17 @@
   max-width:92%;
 }
 
-/* I pallini di avanzamento non servono: il contenuto cambia gia da solo e al click su Red. */
 .rm-beyond-progress{display:none!important}
 
-/* Dialoghi temporanei dell'easter egg di Bjorne. */
+/* Dialoghi dell'easter egg: la posizione del balloon identifica gia chi parla. */
 .rm-beyond-balloon.is-dialogue .rm-beyond-kicker{display:none}
 .rm-beyond-balloon.is-dialogue .rm-beyond-balloon-content{
-  top:22%;
-  bottom:32%;
+  top:20%;
+  bottom:30%;
   justify-content:center;
   font-family:"Space Grotesk","Manrope",sans-serif;
 }
-.rm-beyond-balloon.is-dialogue h3{
-  color:var(--rm-accent);
-  font-family:"Space Grotesk","Manrope",sans-serif;
-  font-size:16px;
-  font-weight:800;
-  letter-spacing:-.02em;
-  margin-bottom:8px;
-}
+.rm-beyond-balloon.is-dialogue h3{display:none}
 .rm-beyond-balloon.is-dialogue p{
   color:var(--rm-text);
   font-family:"Space Grotesk","Manrope",sans-serif;
@@ -111,10 +103,6 @@
   max-width:100%;
 }
 
-/*
-  Il balloon di Bjorne viene portato piu in basso e leggermente a sinistra:
-  dopo lo specchio, la coda arriva visivamente verso il suo musetto.
-*/
 .rm-beyond-balloon.is-bjorne-dialogue{
   left:auto;
   right:5%;
@@ -194,15 +182,14 @@
 .rm-beyond-bjorne-hit:active .rm-beyond-bjorne{transform:translateY(0) scale(.992)}
 
 /*
-  Nuvoletta del pensiero: il PNG originale ha i pallini a sinistra, quindi viene
-  specchiato. E' un po' piu compatto e piu basso: la catena di pallini parte
-  adesso dalla zona sopra la testa di Bjorne invece di galleggiare separata.
+  Il thought balloon viene portato piu in alto e piu a sinistra:
+  i pallini specchiati risultano cosi piu coerenti con la testa di Bjorne.
 */
 .rm-beyond-thought{
   position:absolute;
   z-index:8;
-  right:-1%;
-  top:-92px;
+  right:8%;
+  top:-145px;
   width:min(560px,96%);
   height:auto;
   object-fit:contain;
@@ -223,7 +210,6 @@
   pointer-events:none;
 }
 
-/* La stessa micro-reazione al passaggio del mouse viene estesa alle altre scene interattive. */
 .rm-classroom-morgana{
   transition:translate .18s ease,filter .18s ease!important;
 }
@@ -253,7 +239,7 @@
   .rm-beyond-balloon.is-bjorne-dialogue{right:6%;top:2px;width:min(385px,73%)}
   .rm-beyond-red-hit{left:-3%;width:60%;height:73%}
   .rm-beyond-bjorne-hit{right:-4%;width:64%;height:65%}
-  .rm-beyond-thought{right:0;top:-72px;width:min(520px,94%)}
+  .rm-beyond-thought{right:7%;top:-112px;width:min(520px,94%)}
 }
 
 @media(max-width:640px){
@@ -263,13 +249,12 @@
   .rm-beyond-balloon.is-bjorne-dialogue{right:3%;top:6px;width:82%}
   .rm-beyond-balloon h3{font-size:19px}
   .rm-beyond-balloon p{font-size:11px;line-height:1.45}
-  .rm-beyond-balloon.is-dialogue h3{font-size:13px}
   .rm-beyond-balloon.is-dialogue p{font-size:11.5px;line-height:1.38}
   .rm-beyond-kicker{font-size:9px;margin-bottom:5px;gap:7px}
   .rm-beyond-icon{width:28px;height:28px;flex-basis:28px;font-size:15px}
   .rm-beyond-red-hit{left:-7%;bottom:0;width:64%;height:63%}
   .rm-beyond-bjorne-hit{right:-6%;bottom:0;width:68%;height:59%}
-  .rm-beyond-thought{right:-1%;top:-42px;width:96%}
+  .rm-beyond-thought{right:5%;top:-78px;width:96%}
 }
 
 @media(prefers-reduced-motion:reduce){
