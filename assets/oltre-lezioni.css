@@ -1,0 +1,263 @@
+/* Slide "Oltre le lezioni": scena narrativa Red + Bjorne */
+.rm-beyond-scene{
+  position:relative;
+  min-height:455px;
+  overflow:visible;
+  align-self:center;
+}
+
+/*
+  Il fumetto usa un PNG dedicato: la forma e la coda non vengono simulate in CSS.
+  Il testo resta HTML, quindi puo continuare a cambiare automaticamente e al click su Red.
+*/
+.rm-beyond-balloon{
+  position:absolute;
+  z-index:6;
+  left:27%;
+  top:-100px;
+  width:min(480px,86%);
+  aspect-ratio:1448 / 1086;
+  transition:transform .22s ease,opacity .22s ease,left .25s ease,right .25s ease,top .25s ease;
+  pointer-events:none;
+}
+.rm-beyond-balloon-art{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  filter:drop-shadow(0 18px 30px rgba(20,34,48,.10));
+  user-select:none;
+  pointer-events:none;
+  transition:transform .25s ease;
+}
+.rm-beyond-balloon-content{
+  position:absolute;
+  z-index:2;
+  left:10.5%;
+  right:9.5%;
+  top:18.5%;
+  bottom:31%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  min-width:0;
+}
+.rm-beyond-balloon.is-changing{
+  transform:translateY(-3px) scale(.985);
+  opacity:.62;
+}
+.rm-beyond-kicker{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--rm-accent);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.rm-beyond-icon{
+  display:grid;
+  place-items:center;
+  width:34px;
+  height:34px;
+  flex:0 0 34px;
+  border-radius:11px;
+  background:color-mix(in srgb,var(--rm-accent) 12%,var(--rm-card));
+  font-size:18px;
+}
+.rm-beyond-balloon h3{
+  margin:0 0 7px;
+  color:var(--rm-text);
+  font-size:24px;
+  line-height:1.08;
+}
+.rm-beyond-balloon p{
+  margin:0;
+  color:var(--rm-muted);
+  font-size:13px;
+  line-height:1.55;
+  max-width:92%;
+}
+
+.rm-beyond-progress{display:none!important}
+
+/* Dialoghi dell'easter egg: la posizione del balloon identifica gia chi parla. */
+.rm-beyond-balloon.is-dialogue .rm-beyond-kicker{display:none}
+.rm-beyond-balloon.is-dialogue .rm-beyond-balloon-content{
+  top:20%;
+  bottom:30%;
+  justify-content:center;
+  font-family:"Space Grotesk","Manrope",sans-serif;
+}
+.rm-beyond-balloon.is-dialogue h3{display:none}
+.rm-beyond-balloon.is-dialogue p{
+  color:var(--rm-text);
+  font-family:"Space Grotesk","Manrope",sans-serif;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:-.018em;
+  line-height:1.42;
+  max-width:100%;
+}
+
+.rm-beyond-balloon.is-bjorne-dialogue{
+  left:auto;
+  right:10%;
+  top:-6px;
+  width:min(405px,74%);
+}
+.rm-beyond-balloon.is-bjorne-dialogue .rm-beyond-balloon-art{
+  transform:scaleX(-1);
+}
+.rm-beyond-balloon.is-easter-hidden{
+  opacity:0;
+  transform:translateY(-8px) scale(.96);
+}
+
+.rm-beyond-red-hit,
+.rm-beyond-bjorne-hit{
+  position:absolute;
+  padding:0;
+  border:0;
+  background:transparent;
+  -webkit-tap-highlight-color:transparent;
+}
+.rm-beyond-red-hit{
+  z-index:4;
+  left:-7%;
+  bottom:-1%;
+  width:63%;
+  height:77%;
+  cursor:pointer;
+}
+.rm-beyond-red{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:left bottom;
+  filter:drop-shadow(0 18px 20px rgba(20,34,48,.10));
+  transition:transform .18s ease,filter .18s ease;
+  pointer-events:none;
+  user-select:none;
+}
+.rm-beyond-red-hit:hover .rm-beyond-red,
+.rm-beyond-red-hit:focus-visible .rm-beyond-red{
+  transform:translateY(-4px) rotate(-.6deg);
+  filter:drop-shadow(0 21px 23px rgba(20,34,48,.15)) brightness(1.03);
+}
+.rm-beyond-red-hit:active .rm-beyond-red{transform:translateY(0) scale(.99)}
+.rm-beyond-red-hit:focus-visible,
+.rm-beyond-bjorne-hit:focus-visible{
+  outline:3px solid color-mix(in srgb,var(--rm-accent) 70%,white);
+  outline-offset:4px;
+  border-radius:28px;
+}
+
+.rm-beyond-bjorne-hit{
+  z-index:5;
+  right:-10%;
+  bottom:-2%;
+  width:68%;
+  height:68%;
+  cursor:pointer;
+}
+.rm-beyond-bjorne{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:right bottom;
+  filter:drop-shadow(0 18px 20px rgba(20,34,48,.10));
+  user-select:none;
+  pointer-events:none;
+  transition:transform .18s ease,filter .18s ease;
+}
+.rm-beyond-bjorne-hit:hover .rm-beyond-bjorne,
+.rm-beyond-bjorne-hit:focus-visible .rm-beyond-bjorne{
+  transform:translateY(-3px) rotate(.35deg);
+  filter:drop-shadow(0 20px 22px rgba(20,34,48,.14)) brightness(1.025);
+}
+.rm-beyond-bjorne-hit:active .rm-beyond-bjorne{transform:translateY(0) scale(.992)}
+
+/*
+  Il thought balloon viene portato piu in alto e piu a sinistra:
+  i pallini specchiati risultano cosi piu coerenti con la testa di Bjorne.
+*/
+.rm-beyond-thought{
+  position:absolute;
+  z-index:8;
+  right:8%;
+  top:-145px;
+  width:min(560px,96%);
+  height:auto;
+  object-fit:contain;
+  transform:scaleX(-1) translateY(8px) scale(.96);
+  transform-origin:center;
+  opacity:0;
+  pointer-events:none;
+  user-select:none;
+  filter:drop-shadow(0 20px 30px rgba(20,34,48,.12));
+  transition:opacity .28s ease,transform .32s ease;
+}
+.rm-beyond-thought.is-visible{
+  opacity:1;
+  transform:scaleX(-1) translateY(0) scale(1);
+}
+.rm-beyond-scene.is-easter-running .rm-beyond-red-hit,
+.rm-beyond-scene.is-easter-running .rm-beyond-bjorne-hit{
+  pointer-events:none;
+}
+
+.rm-classroom-morgana{
+  transition:translate .18s ease,filter .18s ease!important;
+}
+.rm-classroom-morgana:hover,
+.rm-classroom-morgana:focus-visible{
+  translate:0 -4px;
+}
+.rm-book-scene-real{
+  --rm-book-hover-shift:0px;
+}
+.rm-book-scene-real .rm-red-book-image{
+  translate:0 var(--rm-book-hover-shift);
+  transition:translate .18s ease,filter .18s ease!important;
+}
+.rm-book-scene-real:has(.rm-book-hit-red:hover),
+.rm-book-scene-real:has(.rm-book-hit-red:focus-visible){
+  --rm-book-hover-shift:-3px;
+}
+.rm-book-scene-real:has(.rm-book-hit-red:hover) .rm-red-book-image,
+.rm-book-scene-real:has(.rm-book-hit-red:focus-visible) .rm-red-book-image{
+  filter:drop-shadow(0 20px 26px rgba(20,34,48,.14)) brightness(1.02);
+}
+
+@media(max-width:980px){
+  .rm-beyond-scene{min-height:390px;width:min(650px,100%);margin:0 auto}
+  .rm-beyond-balloon{left:26%;top:-84px;width:min(445px,84%)}
+  .rm-beyond-balloon.is-bjorne-dialogue{right:10%;top:2px;width:min(385px,73%)}
+  .rm-beyond-red-hit{left:-3%;width:60%;height:73%}
+  .rm-beyond-bjorne-hit{right:-4%;width:64%;height:65%}
+  .rm-beyond-thought{right:7%;top:-112px;width:min(520px,94%)}
+}
+
+@media(max-width:640px){
+  .rm-beyond-scene{min-height:330px}
+  .rm-beyond-balloon{top:-65px;left:19%;width:88%}
+  .rm-beyond-balloon-content{left:10%;right:9%;top:18%;bottom:31%}
+  .rm-beyond-balloon.is-bjorne-dialogue{right:7%;top:6px;width:82%}
+  .rm-beyond-balloon h3{font-size:19px}
+  .rm-beyond-balloon p{font-size:11px;line-height:1.45}
+  .rm-beyond-balloon.is-dialogue p{font-size:11.5px;line-height:1.38}
+  .rm-beyond-kicker{font-size:9px;margin-bottom:5px;gap:7px}
+  .rm-beyond-icon{width:28px;height:28px;flex-basis:28px;font-size:15px}
+  .rm-beyond-red-hit{left:-7%;bottom:0;width:64%;height:63%}
+  .rm-beyond-bjorne-hit{right:-6%;bottom:0;width:68%;height:59%}
+  .rm-beyond-thought{right:5%;top:-78px;width:96%}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .rm-beyond-balloon,.rm-beyond-red,.rm-beyond-bjorne,.rm-beyond-thought,.rm-classroom-morgana,.rm-red-book-image{transition:none!important}
+  .rm-classroom-morgana{translate:none!important}
+}

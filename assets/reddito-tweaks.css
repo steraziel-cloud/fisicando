@@ -1,0 +1,220 @@
+/* Iteration refinements */
+@media (min-width:1120px){
+  .rm-home-main{
+    padding:20px 0;
+  }
+
+  .rm-home-grid{
+    grid-template-columns:minmax(500px,.86fr) minmax(680px,1.14fr);
+    gap:0;
+    align-items:center;
+    overflow:visible;
+  }
+
+  .rm-home-copy-wrap{
+    position:relative;
+    z-index:3;
+    max-width:660px;
+  }
+
+  .rm-home-title{
+    font-size:clamp(46px,3.7vw,60px);
+    line-height:1.02;
+    white-space:normal;
+    max-width:none;
+    margin-bottom:24px;
+  }
+
+  .rm-home-title span,
+  .rm-home-title em{
+    display:block;
+    white-space:nowrap;
+  }
+
+  .rm-home-copy{
+    max-width:590px;
+    font-size:clamp(17px,1.25vw,20px);
+    line-height:1.7;
+  }
+
+  .rm-home-actions{
+    justify-content:flex-start;
+    margin-top:28px;
+  }
+
+  .rm-slide-inner{grid-template-columns:minmax(0,1.25fr) minmax(360px,.75fr);gap:48px}
+  .rm-slide-copy h1{font-size:clamp(26px,2.15vw,31px);white-space:normal;text-wrap:balance;max-width:100%}
+}
+
+/* Home highlights */
+.rm-home-highlights{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  margin-top:42px;
+  flex-wrap:nowrap;
+}
+
+.rm-home-highlight{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--rm-muted);
+  font-size:13.5px;
+  line-height:1.3;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.rm-home-highlight-icon{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  flex:0 0 46px;
+  font-size:22px;
+  background:color-mix(in srgb,var(--rm-accent) 12%,var(--rm-card));
+  border:1px solid color-mix(in srgb,var(--rm-accent) 15%,var(--rm-line));
+}
+
+.rm-home-highlight:nth-child(2) .rm-home-highlight-icon{
+  background:color-mix(in srgb,#34d399 14%,var(--rm-card));
+}
+
+.rm-home-highlight:nth-child(3) .rm-home-highlight-icon{
+  background:color-mix(in srgb,#60a5fa 14%,var(--rm-card));
+}
+
+/* Home hero artwork */
+.rm-home-art-final{
+  position:relative;
+  min-height:0;
+  aspect-ratio:3 / 2;
+  padding:0;
+  overflow:visible;
+  background:transparent;
+  border:none;
+  border-radius:0;
+  box-shadow:none;
+}
+
+.rm-home-hero-image{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  border-radius:0;
+  box-shadow:none;
+
+  /* Fade forte a sinistra, morbido sul resto del contorno */
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0,0,0,.06) 8%,
+      rgba(0,0,0,.38) 15%,
+      rgba(0,0,0,.76) 22%,
+      #000 30%,
+      #000 100%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0,0,0,.70) 7%,
+      #000 12%,
+      #000 81%,
+      rgba(0,0,0,.70) 89%,
+      rgba(0,0,0,.30) 95%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to left,
+      transparent 0%,
+      rgba(0,0,0,.68) 6%,
+      #000 11%,
+      #000 100%
+    );
+  -webkit-mask-composite:source-in, source-in;
+
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0,0,0,.06) 8%,
+      rgba(0,0,0,.38) 15%,
+      rgba(0,0,0,.76) 22%,
+      #000 30%,
+      #000 100%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0,0,0,.70) 7%,
+      #000 12%,
+      #000 81%,
+      rgba(0,0,0,.70) 89%,
+      rgba(0,0,0,.30) 95%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to left,
+      transparent 0%,
+      rgba(0,0,0,.68) 6%,
+      #000 11%,
+      #000 100%
+    );
+  mask-composite:intersect, intersect;
+}
+
+@media (min-width:1120px){
+  .rm-home-art-final{
+    height:560px;
+    aspect-ratio:auto;
+    z-index:1;
+  }
+
+  .rm-home-hero-image{
+    position:absolute;
+    top:calc(50% - 34px);
+    left:-165px;
+    width:1070px;
+    max-width:none;
+    transform:translateY(-50%);
+    transform-origin:center;
+  }
+}
+
+@media (min-width:1450px){
+  .rm-home-art-final{
+    height:590px;
+  }
+
+  .rm-home-hero-image{
+    top:calc(50% - 38px);
+    left:-185px;
+    width:1140px;
+  }
+}
+
+@media (max-width:1119px){
+  .rm-home-art-final{
+    min-height:0;
+    aspect-ratio:3 / 2;
+  }
+
+  .rm-home-hero-image{
+    width:100%;
+    max-width:100%;
+    transform:none;
+  }
+
+  .rm-home-highlights{
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  .rm-home-highlight{
+    white-space:normal;
+  }
+}

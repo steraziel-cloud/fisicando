@@ -1,0 +1,120 @@
+/*
+  RED + LIBRO — ANIMAZIONE A FRAME PNG
+  ------------------------------------
+  Il testo e il movimento della pagina sono incorporati nei PNG.
+  I frame stabili sono 01, 03, 05; i frame di transizione sono 02, 04, 06.
+
+  Regola di lavoro: quando una scena PNG deve muoversi, l'animazione viene
+  progettata prima e resa con asset dedicati, invece di deformare un PNG unico.
+*/
+
+.rm-book-scene-real{
+  /* Durata per cui resta visibile il frame intermedio dello sfoglio. */
+  --book-frame-duration: 280ms;
+
+  /* Dimensioni/posizione dell'intera scena: regolabili a occhio. */
+  --book-frame-height: min(72vh, 720px);
+  --book-frame-x: 0px;
+  --book-frame-y: 0px;
+
+  /* Area cliccabile della pagina destra. */
+  --book-page-hit-left: 59%;
+  --book-page-hit-top: 38%;
+  --book-page-hit-width: 38%;
+  --book-page-hit-height: 40%;
+
+  /* Area cliccabile sopra Red. */
+  --book-red-hit-left: 5%;
+  --book-red-hit-top: 5%;
+  --book-red-hit-width: 61%;
+  --book-red-hit-height: 82%;
+
+  position:relative!important;
+  justify-self:center!important;
+  align-self:center!important;
+  width:auto!important;
+  height:var(--book-frame-height)!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  aspect-ratio:1122 / 1402!important;
+  margin:0 auto!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:none!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  transform:translate(var(--book-frame-x),var(--book-frame-y));
+}
+
+.rm-book-scene-real .rm-red-book-image{
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  filter:drop-shadow(0 18px 24px rgba(20,34,48,.10));
+  pointer-events:none!important;
+  user-select:none!important;
+  -webkit-user-drag:none;
+}
+
+/*
+  Le aree di click restano invisibili. Sono separate così possiamo continuare
+  a far avanzare il libro cliccando sia Red sia la pagina destra.
+*/
+.rm-book-scene-real .rm-book-hit{
+  position:absolute!important;
+  border:0!important;
+  padding:0!important;
+  background:transparent!important;
+  cursor:pointer!important;
+  z-index:8!important;
+}
+
+.rm-book-scene-real .rm-book-hit-right{
+  left:var(--book-page-hit-left)!important;
+  top:var(--book-page-hit-top)!important;
+  width:var(--book-page-hit-width)!important;
+  height:var(--book-page-hit-height)!important;
+  transform:none!important;
+}
+
+.rm-book-scene-real .rm-book-hit-red{
+  left:var(--book-red-hit-left)!important;
+  top:var(--book-red-hit-top)!important;
+  width:var(--book-red-hit-width)!important;
+  height:var(--book-red-hit-height)!important;
+  transform:none!important;
+}
+
+.rm-book-scene-real .rm-book-hit:hover{
+  background:transparent!important;
+  filter:none!important;
+}
+
+.rm-book-scene-real .rm-book-hit:focus-visible{
+  outline:2px dashed rgba(15,118,110,.65)!important;
+  outline-offset:3px!important;
+  border-radius:18px!important;
+}
+
+/* Durante i pochi millisecondi dello sfoglio impediamo doppi click. */
+.rm-book-scene-real.is-turning .rm-book-hit{
+  pointer-events:none!important;
+}
+
+@media(max-width:1100px){
+  .rm-book-scene-real{
+    --book-frame-height:min(64vh,650px);
+  }
+}
+
+@media(max-width:760px){
+  .rm-book-scene-real{
+    --book-frame-height:min(46vh,520px);
+  }
+}
