@@ -194,7 +194,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   const morganaStyle=document.createElement('style');
   morganaStyle.textContent=`
     .rm-classroom-v2 .rm-classroom-morgana{
-      width:58%!important;
+      width:70%!important;
       left:-13%!important;
       bottom:5%!important;
       pointer-events:auto!important;
@@ -210,7 +210,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     }
     @media(max-width:760px){
       .rm-classroom-v2 .rm-classroom-morgana{
-        width:58%!important;
+        width:70%!important;
         left:-13%!important;
         bottom:5%!important;
       }
