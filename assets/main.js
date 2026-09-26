@@ -1,8 +1,7 @@
 window.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("theme-toggle");
 
-  // Correzione layout per la pagina "Il progetto": i titoli possono andare su piu righe
-  // e restano sempre dentro la colonna di testo senza finire dietro la scena illustrata.
+  // Correzione layout per la pagina "Il progetto": i titoli possono andare su piu righe.
   if (document.body.classList.contains("rm-lock")) {
     const projectTitleFix = document.createElement("style");
     projectTitleFix.textContent = `
@@ -17,7 +16,7 @@ window.addEventListener("DOMContentLoaded", () => {
     document.head.appendChild(projectTitleFix);
   }
 
-  // Applica sempre il tema salvato, anche se il bottone non esiste.
+  // Tema.
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
     document.body.setAttribute("data-theme", "dark");
@@ -44,9 +43,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // ------------------------------------------------------------
   // Slide "Come lavoriamo"
-  // Questo file gestisce SOLO scritte sulla lavagna + Red/Bjorne.
-  // Morgana viene gestita esclusivamente da progetto.js, cosi non ci sono
-  // piu due animazioni concorrenti sullo stesso <img>.
+  // main.js e' il regista del ciclo: lavagna + studenti + timing.
+  // progetto.js gestisce esclusivamente i PNG di Morgana e reagisce agli
+  // eventi emessi qui. In questo modo una sola timeline governa la scena.
   // ------------------------------------------------------------
   const classroom = document.querySelector(".rm-classroom-v2");
   if (!classroom) return;
@@ -68,10 +67,7 @@ window.addEventListener("DOMContentLoaded", () => {
     `${base}bjorne-03.png`
   ];
 
-  // Precarico soltanto i frame degli studenti. I frame di Morgana sono
-  // precaricati e gestiti da progetto.js.
-  const allClassroomFrames = redFrames.concat(bjorneFrames);
-  const framesReady = Promise.all(allClassroomFrames.map(src => new Promise(resolve => {
+  const framesReady = Promise.all(redFrames.concat(bjorneFrames).map(src => new Promise(resolve => {
     const preload = new Image();
     preload.onload = () => {
       if (preload.decode) preload.decode().catch(() => {}).finally(resolve);
@@ -102,7 +98,6 @@ window.addEventListener("DOMContentLoaded", () => {
       transition: filter .08s ease;
       will-change: contents;
     }
-
     @media (prefers-reduced-motion: reduce) {
       .rm-classroom-v2.rm-classroom-animated .rm-chalk-step {
         opacity: 1;
@@ -114,14 +109,18 @@ window.addEventListener("DOMContentLoaded", () => {
   `;
   document.head.appendChild(animStyle);
 
+  // Timing condiviso. Ogni passaggio dura 2.35 s; la scritta compare mentre
+  // Morgana e' circa a meta della rotazione dei 10 frame.
+  const FIRST_STEP_DELAY = 450;
+  const WRITE_DELAY = 560;
+  const STUDENT_DELAY = 1160;
+  const STEP_GAP = 2350;
+  const END_PAUSE = 3150;
+
   let timers = [];
   let isVisible = false;
   let framesAreReady = false;
-
-  framesReady.then(() => {
-    framesAreReady = true;
-    if (isVisible) runCycle();
-  });
+  let currentStep = -1;
 
   function clearTimers() {
     timers.forEach(clearTimeout);
@@ -134,6 +133,7 @@ window.addEventListener("DOMContentLoaded", () => {
       fn();
     }, delay);
     timers.push(id);
+    return id;
   }
 
   function setStudents(redIndex, bjorneIndex) {
@@ -149,16 +149,47 @@ window.addEventListener("DOMContentLoaded", () => {
     chalkSteps[index]?.classList.add("is-written");
   }
 
-  function resetScene() {
-    clearTimers();
-    setStudents(0, 0);
-    hideWriting();
+  function emit(name, detail = {}) {
+    classroom.dispatchEvent(new CustomEvent(name, { bubbles: true, detail }));
   }
 
-  // Manteniamo il timing approvato delle tre scritte, ma senza piu toccare Morgana.
-  function writingPass(stepIndex, startAt, studentState) {
-    later(() => writeStep(stepIndex), startAt + 160);
-    later(() => setStudents(studentState[0], studentState[1]), startAt + 1160);
+  function resetScene({ keepTimers = false } = {}) {
+    if (!keepTimers) clearTimers();
+    currentStep = -1;
+    setStudents(0, 0);
+    hideWriting();
+    emit("rm:classroom-reset");
+  }
+
+  function studentStateFor(stepIndex) {
+    if (stepIndex === 0) return [1, 1];
+    if (stepIndex === 1) return [2, 1];
+    return [2, 2];
+  }
+
+  function performStep(stepIndex, { scheduleNext = true } = {}) {
+    if (!isVisible || reducedMotion) return;
+
+    currentStep = stepIndex;
+    const studentState = studentStateFor(stepIndex);
+
+    // Morgana parte esattamente insieme allo stato del loop.
+    emit("rm:classroom-step-start", { stepIndex });
+
+    // La scritta entra quando la rotazione di Morgana e' gia ben avviata.
+    later(() => writeStep(stepIndex), WRITE_DELAY);
+    later(() => setStudents(studentState[0], studentState[1]), STUDENT_DELAY);
+
+    if (!scheduleNext) return;
+
+    if (stepIndex < 2) {
+      later(() => performStep(stepIndex + 1), STEP_GAP);
+    } else {
+      later(() => {
+        resetScene();
+        later(() => performStep(0), FIRST_STEP_DELAY);
+      }, END_PAUSE);
+    }
   }
 
   function runCycle() {
@@ -172,12 +203,23 @@ window.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    writingPass(0, 450, [1, 1]);
-    writingPass(1, 2800, [2, 1]);
-    writingPass(2, 5150, [2, 2]);
-
-    later(() => runCycle(), 8300);
+    later(() => performStep(0), FIRST_STEP_DELAY);
   }
+
+  // Tocco/click su Morgana: passa subito allo stato successivo del loop.
+  // Interrompiamo soltanto i timer futuri della scena e ripartiamo da uno
+  // stato definito, evitando sovrapposizioni di animazioni.
+  classroom.addEventListener("rm:classroom-advance-request", () => {
+    if (!isVisible || reducedMotion) return;
+    clearTimers();
+
+    if (currentStep < 2) {
+      performStep(currentStep + 1);
+    } else {
+      resetScene();
+      performStep(0);
+    }
+  });
 
   function startScene() {
     if (isVisible) return;
@@ -190,9 +232,16 @@ window.addEventListener("DOMContentLoaded", () => {
     isVisible = false;
     clearTimers();
     classroom.classList.remove("rm-classroom-animated");
+    currentStep = -1;
     setStudents(0, 0);
     chalkSteps.forEach(step => step.classList.add("is-written"));
+    emit("rm:classroom-reset");
   }
+
+  framesReady.then(() => {
+    framesAreReady = true;
+    if (isVisible) runCycle();
+  });
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
