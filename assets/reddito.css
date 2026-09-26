@@ -200,3 +200,57 @@ a{color:inherit}
 }
 
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Mobile header polish: keep theme toggle on the same row as navigation. */
+.rm-theme{
+  -webkit-tap-highlight-color:transparent;
+}
+@media(max-width:760px){
+  :root{--rm-header-h:106px}
+  .rm-topbar-inner{
+    grid-template-columns:1fr auto;
+    grid-template-rows:auto auto;
+    gap:7px 8px;
+  }
+  .rm-logo{
+    grid-column:1/-1;
+    grid-row:1;
+  }
+  .rm-nav{
+    grid-column:1;
+    grid-row:2;
+    min-width:0;
+    gap:2px;
+    padding:0!important;
+  }
+  .rm-nav a{
+    padding:7px 8px;
+    font-size:11.5px;
+  }
+  .rm-theme{
+    grid-column:2;
+    grid-row:2;
+    align-self:center;
+    justify-self:end;
+    width:34px!important;
+    height:34px!important;
+    min-width:34px!important;
+    min-height:34px!important;
+    font-size:15px!important;
+    line-height:1;
+    padding:0;
+    outline:none;
+  }
+}
+@media(max-width:430px){
+  .rm-nav a{font-size:11px;padding:7px 6px}
+  .rm-theme{width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important;font-size:14px!important}
+}
+@media(hover:none) and (pointer:coarse){
+  .rm-theme:focus,
+  .rm-theme:active{
+    outline:none!important;
+    box-shadow:none!important;
+    -webkit-tap-highlight-color:transparent!important;
+  }
+}
