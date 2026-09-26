@@ -284,19 +284,37 @@
 
   .rm-home-copy-wrap > .rm-home-highlights{
     width:100%;
-    justify-content:flex-start!important;
-    gap:12px 16px!important;
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
     margin-top:24px!important;
+    align-items:stretch!important;
   }
 
   .rm-home-highlight{
-    font-size:12px;
+    min-width:0;
+    min-height:92px;
+    padding:13px 12px;
+    gap:10px;
+    border:1px solid color-mix(in srgb,var(--rm-line) 88%,transparent);
+    border-radius:18px;
+    background:color-mix(in srgb,var(--rm-card) 72%,transparent);
+    box-shadow:0 10px 24px rgba(20,34,48,.05);
+    font-size:12.5px;
+    line-height:1.25;
+    color:var(--rm-text);
+    white-space:normal!important;
+  }
+
+  .rm-home-highlight:nth-child(3){
+    grid-column:1/-1;
+    min-height:78px;
   }
 
   .rm-home-highlight-icon{
-    width:40px;
-    height:40px;
-    flex-basis:40px;
+    width:42px;
+    height:42px;
+    flex-basis:42px;
     font-size:19px;
   }
 }
@@ -317,5 +335,15 @@
     width:100%;
     padding:0 12px;
     font-size:13px;
+  }
+
+  .rm-home-highlight{
+    min-height:88px;
+    padding:12px 10px;
+    font-size:12px;
+  }
+
+  .rm-home-highlight:nth-child(3){
+    min-height:74px;
   }
 }
