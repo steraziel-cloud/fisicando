@@ -2,10 +2,34 @@ window.addEventListener('DOMContentLoaded',()=>{
   const scene=document.querySelector('.rm-beyond-scene');
   if(!scene) return;
 
+  /*
+    Il markup base resta semplice: qui trasformiamo Bjorne in un vero target
+    interattivo e aggiungiamo la nuvoletta del pensiero solo per questa scena.
+  */
+  const bjorneImage=scene.querySelector('.rm-beyond-bjorne');
+  let bjorneButton=scene.querySelector('[data-beyond-bjorne]');
+  if(!bjorneButton && bjorneImage){
+    bjorneButton=document.createElement('button');
+    bjorneButton.type='button';
+    bjorneButton.className='rm-beyond-bjorne-hit';
+    bjorneButton.dataset.beyondBjorne='';
+    bjorneButton.setAttribute('aria-label','Bjorne: scopri il suo pensiero sulle scatoline');
+    bjorneImage.before(bjorneButton);
+    bjorneButton.appendChild(bjorneImage);
+  }
+
+  let thought=scene.querySelector('[data-beyond-thought]');
+  if(!thought){
+    thought=document.createElement('img');
+    thought.className='rm-beyond-thought';
+    thought.dataset.beyondThought='';
+    thought.src='assets/images/oltre-lezioni/bjorne-thought-boxes-01.png';
+    thought.alt='Bjorne immagina una scatola di cartone trasformarsi in un motore a pistone, un treno di ingranaggi e un sistema di sollevamento';
+    scene.appendChild(thought);
+  }
+
   const redButton=scene.querySelector('[data-beyond-red]');
-  const bjorneButton=scene.querySelector('[data-beyond-bjorne]');
   const balloon=scene.querySelector('.rm-beyond-balloon');
-  const thought=scene.querySelector('[data-beyond-thought]');
   const icon=scene.querySelector('[data-beyond-icon]');
   const title=scene.querySelector('[data-beyond-title]');
   const copy=scene.querySelector('[data-beyond-copy]');
