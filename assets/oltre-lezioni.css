@@ -91,23 +91,35 @@
   top:22%;
   bottom:32%;
   justify-content:center;
+  font-family:"Space Grotesk","Manrope",sans-serif;
 }
 .rm-beyond-balloon.is-dialogue h3{
   color:var(--rm-accent);
+  font-family:"Space Grotesk","Manrope",sans-serif;
   font-size:16px;
+  font-weight:800;
+  letter-spacing:-.02em;
   margin-bottom:8px;
 }
 .rm-beyond-balloon.is-dialogue p{
   color:var(--rm-text);
-  font-size:16px;
-  line-height:1.38;
+  font-family:"Space Grotesk","Manrope",sans-serif;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:-.018em;
+  line-height:1.42;
   max-width:100%;
 }
+
+/*
+  Il balloon di Bjorne viene portato piu in basso e leggermente a sinistra:
+  dopo lo specchio, la coda arriva visivamente verso il suo musetto.
+*/
 .rm-beyond-balloon.is-bjorne-dialogue{
   left:auto;
-  right:-2%;
-  top:-72px;
-  width:min(430px,78%);
+  right:5%;
+  top:-6px;
+  width:min(405px,74%);
 }
 .rm-beyond-balloon.is-bjorne-dialogue .rm-beyond-balloon-art{
   transform:scaleX(-1);
@@ -181,13 +193,17 @@
 }
 .rm-beyond-bjorne-hit:active .rm-beyond-bjorne{transform:translateY(0) scale(.992)}
 
-/* Nuvoletta del pensiero: il PNG originale ha i pallini a sinistra, quindi qui viene specchiato. */
+/*
+  Nuvoletta del pensiero: il PNG originale ha i pallini a sinistra, quindi viene
+  specchiato. E' un po' piu compatto e piu basso: la catena di pallini parte
+  adesso dalla zona sopra la testa di Bjorne invece di galleggiare separata.
+*/
 .rm-beyond-thought{
   position:absolute;
   z-index:8;
-  right:-8%;
-  top:-118px;
-  width:min(610px,104%);
+  right:-1%;
+  top:-92px;
+  width:min(560px,96%);
   height:auto;
   object-fit:contain;
   transform:scaleX(-1) translateY(8px) scale(.96);
@@ -234,26 +250,26 @@
 @media(max-width:980px){
   .rm-beyond-scene{min-height:390px;width:min(650px,100%);margin:0 auto}
   .rm-beyond-balloon{left:26%;top:-84px;width:min(445px,84%)}
-  .rm-beyond-balloon.is-bjorne-dialogue{right:-1%;top:-60px;width:min(405px,77%)}
+  .rm-beyond-balloon.is-bjorne-dialogue{right:6%;top:2px;width:min(385px,73%)}
   .rm-beyond-red-hit{left:-3%;width:60%;height:73%}
   .rm-beyond-bjorne-hit{right:-4%;width:64%;height:65%}
-  .rm-beyond-thought{right:-4%;top:-96px;width:min(560px,100%)}
+  .rm-beyond-thought{right:0;top:-72px;width:min(520px,94%)}
 }
 
 @media(max-width:640px){
   .rm-beyond-scene{min-height:330px}
   .rm-beyond-balloon{top:-65px;left:19%;width:88%}
   .rm-beyond-balloon-content{left:10%;right:9%;top:18%;bottom:31%}
-  .rm-beyond-balloon.is-bjorne-dialogue{right:-3%;top:-46px;width:86%}
+  .rm-beyond-balloon.is-bjorne-dialogue{right:3%;top:6px;width:82%}
   .rm-beyond-balloon h3{font-size:19px}
   .rm-beyond-balloon p{font-size:11px;line-height:1.45}
   .rm-beyond-balloon.is-dialogue h3{font-size:13px}
-  .rm-beyond-balloon.is-dialogue p{font-size:12px;line-height:1.35}
+  .rm-beyond-balloon.is-dialogue p{font-size:11.5px;line-height:1.38}
   .rm-beyond-kicker{font-size:9px;margin-bottom:5px;gap:7px}
   .rm-beyond-icon{width:28px;height:28px;flex-basis:28px;font-size:15px}
   .rm-beyond-red-hit{left:-7%;bottom:0;width:64%;height:63%}
   .rm-beyond-bjorne-hit{right:-6%;bottom:0;width:68%;height:59%}
-  .rm-beyond-thought{right:-7%;top:-62px;width:103%}
+  .rm-beyond-thought{right:-1%;top:-42px;width:96%}
 }
 
 @media(prefers-reduced-motion:reduce){
