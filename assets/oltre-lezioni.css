@@ -13,11 +13,11 @@
 .rm-beyond-balloon{
   position:absolute;
   z-index:6;
-  left:23%;
-  top:-82px;
+  left:27%;
+  top:-100px;
   width:min(480px,86%);
   aspect-ratio:1448 / 1086;
-  transition:transform .22s ease,opacity .22s ease;
+  transition:transform .22s ease,opacity .22s ease,left .25s ease,right .25s ease,top .25s ease;
   pointer-events:none;
 }
 .rm-beyond-balloon-art{
@@ -29,6 +29,7 @@
   filter:drop-shadow(0 18px 30px rgba(20,34,48,.10));
   user-select:none;
   pointer-events:none;
+  transition:transform .25s ease;
 }
 .rm-beyond-balloon-content{
   position:absolute;
@@ -84,18 +85,53 @@
 /* I pallini di avanzamento non servono: il contenuto cambia gia da solo e al click su Red. */
 .rm-beyond-progress{display:none!important}
 
-.rm-beyond-red-hit{
+/* Dialoghi temporanei dell'easter egg di Bjorne. */
+.rm-beyond-balloon.is-dialogue .rm-beyond-kicker{display:none}
+.rm-beyond-balloon.is-dialogue .rm-beyond-balloon-content{
+  top:22%;
+  bottom:32%;
+  justify-content:center;
+}
+.rm-beyond-balloon.is-dialogue h3{
+  color:var(--rm-accent);
+  font-size:16px;
+  margin-bottom:8px;
+}
+.rm-beyond-balloon.is-dialogue p{
+  color:var(--rm-text);
+  font-size:16px;
+  line-height:1.38;
+  max-width:100%;
+}
+.rm-beyond-balloon.is-bjorne-dialogue{
+  left:auto;
+  right:-2%;
+  top:-72px;
+  width:min(430px,78%);
+}
+.rm-beyond-balloon.is-bjorne-dialogue .rm-beyond-balloon-art{
+  transform:scaleX(-1);
+}
+.rm-beyond-balloon.is-easter-hidden{
+  opacity:0;
+  transform:translateY(-8px) scale(.96);
+}
+
+.rm-beyond-red-hit,
+.rm-beyond-bjorne-hit{
   position:absolute;
+  padding:0;
+  border:0;
+  background:transparent;
+  -webkit-tap-highlight-color:transparent;
+}
+.rm-beyond-red-hit{
   z-index:4;
   left:-7%;
   bottom:-1%;
   width:63%;
   height:77%;
-  padding:0;
-  border:0;
-  background:transparent;
   cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
 }
 .rm-beyond-red{
   width:100%;
@@ -113,23 +149,61 @@
   filter:drop-shadow(0 21px 23px rgba(20,34,48,.15)) brightness(1.03);
 }
 .rm-beyond-red-hit:active .rm-beyond-red{transform:translateY(0) scale(.99)}
-.rm-beyond-red-hit:focus-visible{
+.rm-beyond-red-hit:focus-visible,
+.rm-beyond-bjorne-hit:focus-visible{
   outline:3px solid color-mix(in srgb,var(--rm-accent) 70%,white);
   outline-offset:4px;
   border-radius:28px;
 }
 
-.rm-beyond-bjorne{
-  position:absolute;
-  z-index:3;
+.rm-beyond-bjorne-hit{
+  z-index:5;
   right:-10%;
   bottom:-2%;
   width:68%;
   height:68%;
+  cursor:pointer;
+}
+.rm-beyond-bjorne{
+  width:100%;
+  height:100%;
   object-fit:contain;
   object-position:right bottom;
   filter:drop-shadow(0 18px 20px rgba(20,34,48,.10));
   user-select:none;
+  pointer-events:none;
+  transition:transform .18s ease,filter .18s ease;
+}
+.rm-beyond-bjorne-hit:hover .rm-beyond-bjorne,
+.rm-beyond-bjorne-hit:focus-visible .rm-beyond-bjorne{
+  transform:translateY(-3px) rotate(.35deg);
+  filter:drop-shadow(0 20px 22px rgba(20,34,48,.14)) brightness(1.025);
+}
+.rm-beyond-bjorne-hit:active .rm-beyond-bjorne{transform:translateY(0) scale(.992)}
+
+/* Nuvoletta del pensiero: il PNG originale ha i pallini a sinistra, quindi qui viene specchiato. */
+.rm-beyond-thought{
+  position:absolute;
+  z-index:8;
+  right:-8%;
+  top:-118px;
+  width:min(610px,104%);
+  height:auto;
+  object-fit:contain;
+  transform:scaleX(-1) translateY(8px) scale(.96);
+  transform-origin:center;
+  opacity:0;
+  pointer-events:none;
+  user-select:none;
+  filter:drop-shadow(0 20px 30px rgba(20,34,48,.12));
+  transition:opacity .28s ease,transform .32s ease;
+}
+.rm-beyond-thought.is-visible{
+  opacity:1;
+  transform:scaleX(-1) translateY(0) scale(1);
+}
+.rm-beyond-scene.is-easter-running .rm-beyond-red-hit,
+.rm-beyond-scene.is-easter-running .rm-beyond-bjorne-hit{
   pointer-events:none;
 }
 
@@ -159,24 +233,30 @@
 
 @media(max-width:980px){
   .rm-beyond-scene{min-height:390px;width:min(650px,100%);margin:0 auto}
-  .rm-beyond-balloon{left:22%;top:-66px;width:min(445px,84%)}
+  .rm-beyond-balloon{left:26%;top:-84px;width:min(445px,84%)}
+  .rm-beyond-balloon.is-bjorne-dialogue{right:-1%;top:-60px;width:min(405px,77%)}
   .rm-beyond-red-hit{left:-3%;width:60%;height:73%}
-  .rm-beyond-bjorne{right:-4%;width:64%;height:65%}
+  .rm-beyond-bjorne-hit{right:-4%;width:64%;height:65%}
+  .rm-beyond-thought{right:-4%;top:-96px;width:min(560px,100%)}
 }
 
 @media(max-width:640px){
   .rm-beyond-scene{min-height:330px}
-  .rm-beyond-balloon{top:-52px;left:16%;width:88%}
+  .rm-beyond-balloon{top:-65px;left:19%;width:88%}
   .rm-beyond-balloon-content{left:10%;right:9%;top:18%;bottom:31%}
+  .rm-beyond-balloon.is-bjorne-dialogue{right:-3%;top:-46px;width:86%}
   .rm-beyond-balloon h3{font-size:19px}
   .rm-beyond-balloon p{font-size:11px;line-height:1.45}
+  .rm-beyond-balloon.is-dialogue h3{font-size:13px}
+  .rm-beyond-balloon.is-dialogue p{font-size:12px;line-height:1.35}
   .rm-beyond-kicker{font-size:9px;margin-bottom:5px;gap:7px}
   .rm-beyond-icon{width:28px;height:28px;flex-basis:28px;font-size:15px}
   .rm-beyond-red-hit{left:-7%;bottom:0;width:64%;height:63%}
-  .rm-beyond-bjorne{right:-6%;bottom:0;width:68%;height:59%}
+  .rm-beyond-bjorne-hit{right:-6%;bottom:0;width:68%;height:59%}
+  .rm-beyond-thought{right:-7%;top:-62px;width:103%}
 }
 
 @media(prefers-reduced-motion:reduce){
-  .rm-beyond-balloon,.rm-beyond-red,.rm-classroom-morgana,.rm-red-book-image{transition:none!important}
+  .rm-beyond-balloon,.rm-beyond-red,.rm-beyond-bjorne,.rm-beyond-thought,.rm-classroom-morgana,.rm-red-book-image{transition:none!important}
   .rm-classroom-morgana{translate:none!important}
 }
