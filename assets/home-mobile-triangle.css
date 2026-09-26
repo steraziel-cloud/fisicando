@@ -1,4 +1,4 @@
-/* Mobile home composition: hero artwork followed by a triangular group of the three study highlights. */
+/* Mobile home composition: hero artwork followed by the three study highlights in one compact row. */
 @media (max-width:760px){
   .rm-home-copy-wrap{
     display:grid!important;
@@ -13,57 +13,51 @@
   .rm-home-copy-wrap > .rm-home-copy{order:5}
   .rm-home-copy-wrap > .rm-home-actions{order:6}
 
-  /* The three highlights are not cards on mobile: two sit on the upper row
-     and the third is centred below, forming a visual triangle. */
+  /* Three compact icon groups on the same row, directly under the hero image. */
   .rm-home-copy-wrap > .rm-home-highlights{
-    width:min(100%,520px)!important;
-    margin:4px auto 24px!important;
+    width:100%!important;
+    margin:2px auto 24px!important;
     display:grid!important;
-    grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    column-gap:30px!important;
-    row-gap:14px!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:8px!important;
     align-items:start!important;
     justify-items:center!important;
   }
 
-  .rm-home-highlight{
+  .rm-home-highlight,
+  .rm-home-highlight:nth-child(3){
     width:100%!important;
+    max-width:none!important;
     min-width:0!important;
     min-height:0!important;
-    padding:0!important;
+    padding:0 2px!important;
     margin:0!important;
+    grid-column:auto!important;
     display:flex!important;
     flex-direction:column!important;
     align-items:center!important;
     justify-content:flex-start!important;
-    gap:8px!important;
+    gap:6px!important;
     border:0!important;
     border-radius:0!important;
     background:transparent!important;
     box-shadow:none!important;
     color:var(--rm-muted)!important;
-    font-size:12.5px!important;
-    line-height:1.22!important;
+    font-size:11px!important;
+    line-height:1.15!important;
     font-weight:800!important;
     text-align:center!important;
     white-space:normal!important;
   }
 
-  .rm-home-highlight:nth-child(3){
-    grid-column:1 / -1!important;
-    width:50%!important;
-    max-width:210px!important;
-    justify-self:center!important;
-  }
-
   .rm-home-highlight-icon{
-    width:56px!important;
-    height:56px!important;
-    flex:0 0 56px!important;
+    width:46px!important;
+    height:46px!important;
+    flex:0 0 46px!important;
     border-radius:50%!important;
     display:grid!important;
     place-items:center!important;
-    font-size:25px!important;
+    font-size:21px!important;
     border:1px solid color-mix(in srgb,var(--rm-accent) 22%,var(--rm-line))!important;
     background:color-mix(in srgb,var(--rm-accent) 13%,var(--rm-card))!important;
     box-shadow:0 8px 20px rgba(20,34,48,.08)!important;
@@ -88,25 +82,23 @@
 
 @media (max-width:430px){
   .rm-home-copy-wrap > .rm-home-highlights{
-    width:92%!important;
-    column-gap:24px!important;
-    row-gap:12px!important;
-    margin-top:2px!important;
-    margin-bottom:22px!important;
+    gap:4px!important;
+    margin-top:0!important;
+    margin-bottom:20px!important;
   }
 
-  .rm-home-highlight{
-    font-size:12px!important;
+  .rm-home-highlight,
+  .rm-home-highlight:nth-child(3){
+    padding:0 1px!important;
+    gap:5px!important;
+    font-size:10.5px!important;
+    line-height:1.12!important;
   }
 
   .rm-home-highlight-icon{
-    width:52px!important;
-    height:52px!important;
-    flex-basis:52px!important;
-    font-size:23px!important;
-  }
-
-  .rm-home-highlight:nth-child(3){
-    width:56%!important;
+    width:42px!important;
+    height:42px!important;
+    flex-basis:42px!important;
+    font-size:19px!important;
   }
 }
