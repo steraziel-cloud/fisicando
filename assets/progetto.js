@@ -16,9 +16,11 @@ window.addEventListener('DOMContentLoaded',()=>{
   let pointerStartY=null;
   let wheelLocked=false;
 
-  const AUTO_MS=20000;
+  /* Le slide restano ora visibili 15 secondi in piu: 20s -> 35s. */
+  const AUTO_MS=35000;
   const MICRO_MS=6500;
-  const BOOK_AUTO_MS=AUTO_MS/6;
+  /* Manteniamo invariata la velocita dello sfoglio automatico del libro. */
+  const BOOK_AUTO_MS=20000/6;
 
   function render(){
     track.style.transform=`translateX(-${index*100}%)`;
@@ -45,6 +47,9 @@ window.addEventListener('DOMContentLoaded',()=>{
   prev?.addEventListener('click',()=>go(index-1));
   next?.addEventListener('click',()=>go(index+1));
   projectSteps.forEach(step=>step.addEventListener('click',()=>go(Number(step.dataset.slideIndex))));
+
+  /* Le interazioni gestite da moduli separati possono riavviare il timer della slide. */
+  document.addEventListener('rm:project-activity',registerActivity);
 
   document.addEventListener('keydown',e=>{
     if(e.key==='ArrowRight') go(index+1);
