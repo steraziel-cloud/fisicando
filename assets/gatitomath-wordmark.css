@@ -33,12 +33,6 @@
   height:52px;
   max-width:100%;
   object-fit:contain;
-  mix-blend-mode:darken;
-}
-[data-theme="dark"] .rm-logo-image{
-  mix-blend-mode:normal;
-  background:#edf4fa;
-  border-radius:7px;
 }
 @media(max-width:760px){
   .rm-logo-image{height:40px}
