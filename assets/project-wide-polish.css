@@ -27,6 +27,17 @@
 }
 
 @media (min-width:1120px){
+  /* Slightly larger editorial copy across all project slides. */
+  .rm-project-main .rm-slide-copy p,
+  .rm-project-main .rm-about-copy p,
+  .rm-project-main .rm-services-copy p,
+  .rm-project-main .rm-work-copy p,
+  .rm-project-main .rm-audience-copy p{
+    font-size:17px!important;
+    line-height:1.68!important;
+  }
+
+  /* SLIDE 1 — Chi siamo: new transparent decorative background behind Red. */
   .rm-slide-about .rm-book-scene-real{
     isolation:isolate;
   }
@@ -36,19 +47,21 @@
     position:absolute;
     left:50%;
     top:50%;
-    width:112%;
-    height:108%;
+    width:118%;
+    height:114%;
     transform:translate(-50%,-50%);
-    background:url("images/red-scene-decor.svg") center/contain no-repeat;
-    opacity:.98;
+    background:url("images/red-flip-aligned/sfondo-blob.png") center/contain no-repeat;
+    opacity:1;
     z-index:0;
     pointer-events:none;
   }
 
   .rm-slide-about .rm-red-book-image{
+    position:relative;
     z-index:1;
   }
 
+  /* SLIDE 2 — Cosa facciamo */
   .rm-slide-services .rm-slide-inner-services{
     width:min(1560px,calc(100% - 72px))!important;
     grid-template-columns:minmax(520px,.84fr) minmax(760px,1.16fr)!important;
@@ -72,6 +85,100 @@
 
   .rm-slide-services .rm-services-image{
     width:min(820px,100%);
+  }
+
+  /* SLIDE 3 — Come lavoriamo: same wide composition as the finished slides. */
+  .rm-slide-work .rm-slide-inner-work{
+    width:min(1560px,calc(100% - 72px))!important;
+    grid-template-columns:minmax(540px,.84fr) minmax(760px,1.16fr)!important;
+    gap:28px!important;
+    align-items:center!important;
+  }
+
+  .rm-slide-work .rm-work-copy{
+    max-width:670px!important;
+  }
+
+  .rm-slide-work .rm-project-subtitle,
+  .rm-slide-work .rm-work-copy p{
+    max-width:640px!important;
+  }
+
+  .rm-slide-work .rm-classroom-v2{
+    isolation:isolate;
+    overflow:visible!important;
+  }
+
+  .rm-slide-work .rm-classroom-v2::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:112%;
+    height:112%;
+    transform:translate(-50%,-50%);
+    background:url("images/morgana-classroom/sfondo-classe-blob.png") center/contain no-repeat;
+    z-index:0;
+    pointer-events:none;
+  }
+
+  /* SLIDE 4 — Oltre le lezioni: wider copy + transparent decorative setting. */
+  .rm-slide:has(.rm-beyond-scene) .rm-slide-inner{
+    width:min(1560px,calc(100% - 72px))!important;
+    grid-template-columns:minmax(540px,.84fr) minmax(760px,1.16fr)!important;
+    gap:28px!important;
+    align-items:center!important;
+  }
+
+  .rm-slide:has(.rm-beyond-scene) .rm-slide-copy{
+    max-width:670px!important;
+  }
+
+  .rm-slide:has(.rm-beyond-scene) .rm-project-subtitle,
+  .rm-slide:has(.rm-beyond-scene) .rm-slide-copy p{
+    max-width:640px!important;
+  }
+
+  .rm-beyond-scene{
+    isolation:isolate;
+  }
+
+  .rm-beyond-scene::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:118%;
+    height:116%;
+    transform:translate(-50%,-46%);
+    background:url("images/oltre-lezioni/sfondo-blob-oltre-le-lezioni.png") center/contain no-repeat;
+    z-index:0;
+    pointer-events:none;
+  }
+
+  /* SLIDE 5 — A chi ci rivolgiamo: wider composition and softer image edges. */
+  .rm-slide-audience .rm-slide-inner{
+    width:min(1560px,calc(100% - 72px))!important;
+    grid-template-columns:minmax(540px,.84fr) minmax(760px,1.16fr)!important;
+    gap:28px!important;
+    align-items:center!important;
+  }
+
+  .rm-slide-audience .rm-audience-copy{
+    max-width:680px!important;
+  }
+
+  .rm-slide-audience .rm-project-subtitle,
+  .rm-slide-audience .rm-audience-copy > p{
+    max-width:650px!important;
+  }
+
+  .rm-slide-audience .rm-audience-scene{
+    min-height:520px;
+  }
+
+  .rm-slide-audience .rm-audience-image{
+    width:min(840px,116%)!important;
   }
 }
 
