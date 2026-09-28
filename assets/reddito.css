@@ -268,3 +268,36 @@ a{color:inherit}
 @media(max-width:430px){
   .rm-logo-paw{width:21px;height:21px}
 }
+
+
+/* GatitoMath identity pattern — shared page background */
+.rm-home-main,
+.rm-contact-main{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+}
+.rm-home-main::before,
+.rm-contact-main::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background-image:url("images/gatitomath-pattern.svg");
+  background-size:760px 520px;
+  background-position:center 18px;
+  opacity:.72;
+}
+.rm-home-main > .rm-shell,
+.rm-contact-main > .rm-shell{
+  position:relative;
+  z-index:1;
+}
+@media(max-width:760px){
+  .rm-home-main::before,
+  .rm-contact-main::before{
+    background-size:570px 390px;
+    opacity:.52;
+  }
+}
