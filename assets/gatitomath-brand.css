@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&display=swap');
+
+.rm-logo{
+  font-family:"Nunito","Manrope",sans-serif!important;
+  font-weight:900!important;
+  font-size:34px!important;
+  letter-spacing:-1.5px!important;
+  gap:7px!important;
+  line-height:1!important;
+}
+
+.rm-logo span{
+  color:var(--rm-accent)!important;
+}
+
+.rm-logo-paw{
+  width:31px!important;
+  height:31px!important;
+  transform:rotate(18deg)!important;
+}
+
+@media(max-width:760px){
+  .rm-logo{
+    font-size:28px!important;
+    letter-spacing:-1px!important;
+  }
+  .rm-logo-paw{
+    width:25px!important;
+    height:25px!important;
+  }
+}
+
+@media(max-width:430px){
+  .rm-logo{font-size:25px!important}
+  .rm-logo-paw{width:22px!important;height:22px!important}
+}
