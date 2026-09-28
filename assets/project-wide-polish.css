@@ -174,13 +174,14 @@
   }
 
   .rm-beyond-balloon{
-    left:22%!important;
-    top:-55px!important;
+    left:27%!important;
+    top:-37px!important;
+    width:min(410px,76%)!important;
   }
 
   .rm-beyond-balloon.is-dialogue:not(.is-bjorne-dialogue){
-    left:22%!important;
-    top:-55px!important;
+    left:27%!important;
+    top:-37px!important;
   }
 
   .rm-beyond-balloon.is-bjorne-dialogue{
@@ -191,7 +192,8 @@
 
   .rm-beyond-thought{
     right:24%!important;
-    top:-76px!important;
+    top:16px!important;
+    width:min(400px,72%)!important;
   }
 
   /* SLIDE 5 — A chi ci rivolgiamo: larger final static scene. */
