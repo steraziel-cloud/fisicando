@@ -30,13 +30,18 @@
 .rm-logo-image{
   display:block;
   width:auto;
-  height:52px;
+  height:60px;
   max-width:100%;
   object-fit:contain;
 }
+[data-theme="dark"] .rm-logo:has(.rm-logo-image){
+  background:#e8eef5;
+  border-radius:9px;
+  padding:2px 6px;
+}
 @media(max-width:760px){
-  .rm-logo-image{height:40px}
+  .rm-logo-image{height:44px}
 }
 @media(max-width:430px){
-  .rm-logo-image{height:35px}
+  .rm-logo-image{height:39px}
 }
