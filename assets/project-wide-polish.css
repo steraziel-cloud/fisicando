@@ -21,4 +21,149 @@
   .rm-slide-about .rm-red-book-image{
     z-index:1;
   }
+
+  /* COSA FACCIAMO — composizione libera come nel mockup approvato */
+  .rm-slide-services .rm-slide-inner-services{
+    width:min(1560px,calc(100% - 64px))!important;
+    grid-template-columns:minmax(520px,.82fr) minmax(760px,1.18fr)!important;
+    gap:26px!important;
+  }
+
+  .rm-slide-services .rm-services-copy{
+    max-width:650px!important;
+  }
+
+  .rm-slide-services .rm-services-panel{
+    position:relative!important;
+    display:block!important;
+    width:100%!important;
+    min-height:620px!important;
+    padding:0!important;
+    border:0!important;
+    border-radius:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+    overflow:visible!important;
+    isolation:isolate;
+  }
+
+  .rm-slide-services .rm-services-panel::before{
+    content:"";
+    position:absolute;
+    inset:-8% -6% -10% -8%;
+    background:url("images/services-panel-decor.svg") center/100% 100% no-repeat;
+    opacity:1;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .rm-slide-services .rm-info-card{
+    position:absolute!important;
+    width:43%!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:28px 26px 24px!important;
+    border-radius:28px!important;
+    box-shadow:0 18px 36px rgba(31,51,75,.14)!important;
+    overflow:visible!important;
+    z-index:2;
+    backdrop-filter:blur(2px);
+  }
+
+  .rm-slide-services .rm-info-card:nth-child(1){
+    left:3%;
+    top:9%;
+    transform:rotate(-3deg);
+    background:linear-gradient(180deg,#fff 0%,#fbfeff 100%)!important;
+    border:1.5px solid rgba(47,184,219,.30)!important;
+  }
+
+  .rm-slide-services .rm-info-card:nth-child(2){
+    right:1%;
+    top:12%;
+    transform:rotate(3.4deg);
+    background:linear-gradient(180deg,#fffdf8 0%,#fffaf0 100%)!important;
+    border:1.5px solid rgba(245,158,11,.34)!important;
+  }
+
+  .rm-slide-services .rm-info-card:nth-child(3){
+    left:5%;
+    bottom:8%;
+    transform:rotate(-2deg);
+    background:linear-gradient(180deg,#fefcff 0%,#fbf8ff 100%)!important;
+    border:1.5px solid rgba(124,92,229,.27)!important;
+  }
+
+  .rm-slide-services .rm-info-card:nth-child(4){
+    right:2%;
+    bottom:7%;
+    transform:rotate(2.4deg);
+    background:linear-gradient(180deg,#fbfffc 0%,#f5fff8 100%)!important;
+    border:1.5px solid rgba(47,158,68,.27)!important;
+  }
+
+  .rm-slide-services .rm-card-icon{
+    width:72px!important;
+    height:72px!important;
+    margin:0 0 24px!important;
+    border-radius:50%!important;
+  }
+
+  .rm-slide-services .rm-card-icon svg{
+    width:38px!important;
+    height:38px!important;
+    stroke-width:2.35!important;
+  }
+
+  .rm-slide-services .rm-info-card .n{
+    top:22px!important;
+    right:22px!important;
+    width:50px!important;
+    height:50px!important;
+    border-radius:16px!important;
+    font-size:16px!important;
+    font-weight:900!important;
+  }
+
+  .rm-slide-services .rm-info-card h3{
+    margin:0 0 10px!important;
+    font-size:28px!important;
+    line-height:1.08!important;
+    letter-spacing:-.035em!important;
+  }
+
+  .rm-slide-services .rm-info-card p{
+    margin:0!important;
+    max-width:92%!important;
+    font-size:16px!important;
+    line-height:1.48!important;
+  }
+
+  /* piccoli raggi colorati vicino alle icone, come nel mockup */
+  .rm-slide-services .rm-info-card::after{
+    content:"";
+    position:absolute;
+    width:42px;
+    height:34px;
+    left:82px;
+    top:30px;
+    opacity:.9;
+    background:
+      linear-gradient(currentColor,currentColor) 5px 2px/5px 15px no-repeat,
+      linear-gradient(currentColor,currentColor) 20px 5px/5px 13px no-repeat,
+      linear-gradient(currentColor,currentColor) 33px 12px/5px 11px no-repeat;
+    transform:rotate(28deg);
+    border-radius:999px;
+    pointer-events:none;
+  }
+
+  .rm-slide-services .rm-info-card:nth-child(1){color:#0ea5b0}
+  .rm-slide-services .rm-info-card:nth-child(2){color:#f59e0b}
+  .rm-slide-services .rm-info-card:nth-child(3){color:#7c5ce5}
+  .rm-slide-services .rm-info-card:nth-child(4){color:#2f9e44}
+
+  .rm-slide-services .rm-info-card h3,
+  .rm-slide-services .rm-info-card p{
+    color:var(--rm-text)!important;
+  }
 }
