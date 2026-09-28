@@ -21,21 +21,4 @@
   .rm-slide-about .rm-red-book-image{
     z-index:1;
   }
-
-  .rm-slide-about .rm-about-copy{
-    position:relative;
-    padding-bottom:84px;
-  }
-
-  .rm-slide-about .rm-about-copy::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:0;
-    width:min(500px,92%);
-    height:88px;
-    background:url("images/chi-siamo-swoosh.svg") left bottom/contain no-repeat;
-    pointer-events:none;
-    opacity:.95;
-  }
 }
