@@ -36,7 +36,7 @@ a{color:inherit}
 .rm-logo{margin-right:auto;text-decoration:none;font-family:"Space Grotesk",sans-serif;font-weight:800;font-size:31px;letter-spacing:-1px;white-space:nowrap}
 .rm-logo span{color:var(--rm-accent)}
 .rm-logo{display:inline-flex;align-items:center;gap:8px}
-.rm-logo-paw{width:30px;height:30px;display:block;flex:0 0 auto}
+.rm-logo-paw{width:30px;height:30px;display:block;flex:0 0 auto;transform:rotate(14deg);transform-origin:center}
 @media(max-width:760px){.rm-logo-paw{width:25px;height:25px}}
 @media(max-width:430px){.rm-logo-paw{width:23px;height:23px}}
 .rm-nav{display:flex;align-items:center;gap:6px}
