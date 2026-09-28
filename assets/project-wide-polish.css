@@ -187,7 +187,8 @@
   .rm-beyond-balloon.is-bjorne-dialogue{
     left:auto!important;
     right:19%!important;
-    top:40px!important;
+    top:75px!important;
+    width:min(300px,56%)!important;
   }
 
   .rm-beyond-thought{
