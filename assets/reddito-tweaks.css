@@ -399,3 +399,15 @@
     max-width:640px;
   }
 }
+
+
+/* Desktop wide layout pass v3: lower composition and hide image edge */
+@media (min-width:1120px){
+  .rm-home-main{
+    padding-top:72px;
+  }
+
+  .rm-home-hero-image{
+    clip-path:inset(0 0 3px 0);
+  }
+}
