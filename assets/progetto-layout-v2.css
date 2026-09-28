@@ -475,6 +475,14 @@
   position:relative;
   z-index:1;
 }
+
+/* Keep the identity doodles quieter behind the editorial titles/copy. */
+@media(min-width:761px){
+  .rm-project-main::before{
+    -webkit-mask-image:radial-gradient(ellipse 35% 40% at 24% 42%,rgba(0,0,0,.26) 0%,rgba(0,0,0,.42) 38%,#000 76%);
+    mask-image:radial-gradient(ellipse 35% 40% at 24% 42%,rgba(0,0,0,.26) 0%,rgba(0,0,0,.42) 38%,#000 76%);
+  }
+}
 @media(max-width:760px){
   .rm-project-main::before{
     background-size:570px 390px;
