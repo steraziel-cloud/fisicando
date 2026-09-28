@@ -25,3 +25,10 @@
   .rm-logo{font-size:25px!important}
   .rm-logo-paw{width:22px!important;height:22px!important}
 }
+
+/* Desktop tuning — slide 3 Morgana */
+@media(min-width:1120px){
+  .rm-slide-work .rm-classroom-v2{
+    --morgana-bottom:45%!important;
+  }
+}
