@@ -489,3 +489,32 @@
     opacity:.64;
   }
 }
+
+/* Project desktop wide pass — slide 1 first */
+@media(min-width:1120px){
+  .rm-topbar .rm-shell{
+    width:min(1600px,calc(100% - 48px));
+  }
+
+  .rm-slide-about .rm-slide-inner-about{
+    width:min(1560px,calc(100% - 72px))!important;
+    grid-template-columns:minmax(520px,.88fr) minmax(720px,1.12fr)!important;
+    gap:18px!important;
+  }
+
+  .rm-slide-about .rm-about-copy{
+    max-width:650px;
+  }
+
+  .rm-slide-about .rm-project-subtitle{
+    max-width:620px;
+  }
+
+  .rm-slide-about .rm-about-copy p{
+    max-width:610px;
+  }
+
+  .rm-project-nav{
+    width:min(1500px,calc(100% - 64px));
+  }
+}
