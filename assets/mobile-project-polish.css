@@ -211,18 +211,24 @@
   }
   .rm-project-main .rm-beyond-balloon{
     top:-42px!important;
-    left:18%!important;
+    left:12%!important;
     width:82%!important;
+  }
+  .rm-project-main .rm-beyond-balloon.is-dialogue:not(.is-bjorne-dialogue){
+    left:4%!important;
+    top:-24px!important;
   }
   .rm-project-main .rm-beyond-balloon.is-bjorne-dialogue{
     left:auto!important;
-    right:7%!important;
-    top:-16px!important;
+    right:0!important;
+    top:-4px!important;
     width:80%!important;
   }
+  .rm-project-main .rm-beyond-red-hit{left:3%!important;bottom:0!important}
+  .rm-project-main .rm-beyond-bjorne-hit{right:3%!important;bottom:0!important}
   .rm-project-main .rm-beyond-thought{
-    right:5%!important;
-    top:-68px!important;
+    right:10%!important;
+    top:-58px!important;
     width:94%!important;
   }
 

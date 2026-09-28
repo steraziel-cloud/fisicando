@@ -1,47 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&display=swap');
 
-/* Shared GatitoMath wordmark */
-.rm-logo{
-  font-family:"Nunito","Manrope",sans-serif!important;
-  font-weight:900!important;
-  font-size:34px!important;
-  letter-spacing:-1.45px!important;
-  line-height:1!important;
-  gap:6px!important;
+/* The icon is Red; the lettering follows the site's light/dark palette. */
+.rm-logo-art{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-right:auto;
+  font-family:"Nunito","Manrope",sans-serif;
+  font-weight:900;
+  font-size:33px;
+  line-height:1;
+  letter-spacing:-1.4px;
+  color:var(--rm-text);
+  text-decoration:none;
+  white-space:nowrap;
 }
-.rm-logo span{color:var(--rm-accent)!important}
-.rm-logo-paw{
-  width:31px!important;
-  height:31px!important;
-  transform:rotate(18deg)!important;
-  transform-origin:center!important;
-}
-
-@media(max-width:760px){
-  .rm-logo{font-size:28px!important;letter-spacing:-1px!important;gap:4px!important}
-  .rm-logo-paw{width:25px!important;height:25px!important}
-}
-@media(max-width:430px){
-  .rm-logo{font-size:25px!important}
-  .rm-logo-paw{width:22px!important;height:22px!important}
-}
-
-/* Mockup wordmark used on Home, Il progetto and Contatti. */
-.rm-logo-image{
+.rm-logo-art .rm-logo-red{
   display:block;
-  width:auto;
-  height:60px;
-  max-width:100%;
+  width:49px;
+  height:53px;
   object-fit:contain;
+  flex:none;
 }
-[data-theme="dark"] .rm-logo:has(.rm-logo-image){
-  background:#e8eef5;
-  border-radius:9px;
-  padding:2px 6px;
-}
+.rm-logo-art .rm-logo-name,
+body.rm-lock .rm-logo-art .rm-logo-name{color:var(--rm-text)!important}
+.rm-logo-art .rm-logo-name > span,
+body.rm-lock .rm-logo-art .rm-logo-name > span{color:var(--rm-accent)!important}
+.rm-contact-card a.rm-status{color:var(--rm-accent-2);text-decoration:none;font-size:14px}
+.rm-contact-card a.rm-status:hover{text-decoration:underline}
+.rm-contact-card a.rm-status:focus-visible{outline:2px solid var(--rm-accent);outline-offset:2px}
 @media(max-width:760px){
-  .rm-logo-image{height:44px}
+  .rm-logo-art{font-size:26px;gap:4px;letter-spacing:-1px}
+  .rm-logo-art .rm-logo-red{width:40px;height:43px}
 }
 @media(max-width:430px){
-  .rm-logo-image{height:39px}
+  .rm-logo-art{font-size:23px}
+  .rm-logo-art .rm-logo-red{width:35px;height:38px}
 }

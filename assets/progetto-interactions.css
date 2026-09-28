@@ -30,6 +30,8 @@
 .rm-project-step.active{color:var(--rm-text)}
 .rm-project-step.active span{background:var(--rm-accent);transform:scale(1.08)}
 .rm-project-step.active em{font-weight:900}
+.rm-project-step.active span{box-shadow:0 0 0 5px color-mix(in srgb,var(--rm-accent) 20%,transparent)}
+.rm-project-nav-arrow:focus-visible,.rm-project-step:focus-visible{outline:3px solid var(--rm-accent);outline-offset:3px}
 
 /* Slide 1: approved title hierarchy + real Red/book artwork */
 .rm-slide-about{padding-bottom:100px}

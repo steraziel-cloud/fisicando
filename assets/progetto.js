@@ -10,15 +10,13 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   let index=0;
   let slideTimer=null;
-  let microTimer=null;
   let bookAutoTimer=null;
   let pointerStartX=null;
   let pointerStartY=null;
   let wheelLocked=false;
 
-  /* Le slide restano ora visibili 15 secondi in piu: 20s -> 35s. */
-  const AUTO_MS=35000;
-  const MICRO_MS=6500;
+  /* Tempo di lettura per i contenuti delle slide. */
+  const AUTO_MS=60000;
   /* Manteniamo invariata la velocita dello sfoglio automatico del libro. */
   const BOOK_AUTO_MS=20000/6;
 
@@ -34,13 +32,13 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   function registerActivity(){
     resetSlideTimer();
-    resetMicroTimer();
+    resetSceneTimers();
   }
 
   function go(i,user=true){
     index=(i+slides.length)%slides.length;
     render();
-    resetMicroTimer();
+    resetSceneTimers();
     if(user) resetSlideTimer();
   }
 
@@ -57,7 +55,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   });
 
   slider?.addEventListener('pointerdown',e=>{
-    if(e.target.closest('button,a,.rm-whisper,.rm-classroom-morgana')) return;
+    if(e.target.closest('button,a,.rm-classroom-morgana')) return;
     pointerStartX=e.clientX;
     pointerStartY=e.clientY;
   });
@@ -325,86 +323,29 @@ window.addEventListener('DOMContentLoaded',()=>{
   classroom?.addEventListener('rm:classroom-step-start',()=>playMorganaTurn({restart:true}));
   classroom?.addEventListener('rm:classroom-reset',()=>resetMorganaTurn());
 
-  // ------------------------------------------------------------
-  // Risorse della slide "Oltre le lezioni"
-  // ------------------------------------------------------------
-  const resourceData=[
-    ['Lezioni','Contenuti e spiegazioni da riprendere quando serve.'],
-    ['Materiali','Schemi, approfondimenti e strumenti utili per organizzare lo studio.'],
-    ['Esercitazioni','Attivita per allenarsi e mettere alla prova cio che si e capito.'],
-    ['Laboratori','Strumenti interattivi per osservare, provare e ragionare sui concetti.']
-  ];
-
-  let resourceIndex=0;
-  const whisper=document.querySelector('.rm-whisper');
-  const balloon=document.querySelector('.rm-balloon');
-  const resourceTitle=document.querySelector('[data-resource-title]');
-  const resourceCopy=document.querySelector('[data-resource-copy]');
-  const resourcePrev=document.querySelector('[data-resource-prev]');
-  const resourceNext=document.querySelector('[data-resource-next]');
-  const resourceDots=[...document.querySelectorAll('[data-resource-index]')];
-  const resourceCount=document.querySelector('[data-resource-count]');
-
-  function updateResourceControls(){
-    resourceDots.forEach((dot,i)=>dot.classList.toggle('active',i===resourceIndex));
-    if(resourceCount) resourceCount.textContent=`${resourceIndex+1} / ${resourceData.length}`;
-  }
-
-  function showResource(nextIndex,user=true){
-    resourceIndex=(nextIndex+resourceData.length)%resourceData.length;
-    const data=resourceData[resourceIndex];
-    balloon?.classList.remove('pulse');
-    void balloon?.offsetWidth;
-    balloon?.classList.add('pulse');
-    setTimeout(()=>{
-      if(resourceTitle) resourceTitle.textContent=data[0];
-      if(resourceCopy) resourceCopy.textContent=data[1];
-      updateResourceControls();
-    },110);
-    if(user) registerActivity();
-  }
-
-  function advanceResource(user=true){
-    showResource(resourceIndex+1,user);
-  }
-
-  whisper?.addEventListener('click',e=>{
-    if(e.target.closest('.rm-micro-controls')) return;
-    advanceResource(true);
-  });
-  resourcePrev?.addEventListener('click',e=>{e.stopPropagation();showResource(resourceIndex-1,true)});
-  resourceNext?.addEventListener('click',e=>{e.stopPropagation();showResource(resourceIndex+1,true)});
-  resourceDots.forEach(dot=>dot.addEventListener('click',e=>{e.stopPropagation();showResource(Number(dot.dataset.resourceIndex),true)}));
-  activateWithKeyboard(whisper,()=>advanceResource(true));
-
-  function resetMicroTimer(){
-    clearInterval(microTimer);
+  function resetSceneTimers(){
     clearInterval(bookAutoTimer);
 
     if(index!==2) resetMorganaTurn();
 
     if(index===0){
       bookAutoTimer=setInterval(()=>nextBookPage(false),BOOK_AUTO_MS);
-    }else if(index===3){
-      microTimer=setInterval(()=>advanceResource(false),MICRO_MS);
     }
   }
 
   document.addEventListener('visibilitychange',()=>{
     if(document.hidden){
       clearInterval(slideTimer);
-      clearInterval(microTimer);
       clearInterval(bookAutoTimer);
       resetMorganaTurn();
     }else{
       resetSlideTimer();
-      resetMicroTimer();
+      resetSceneTimers();
     }
   });
 
   updateBookA11y();
-  updateResourceControls();
   render();
   resetSlideTimer();
-  resetMicroTimer();
+  resetSceneTimers();
 });
