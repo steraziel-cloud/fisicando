@@ -191,15 +191,9 @@
   }
 
   .rm-beyond-thought{
-    right:24%!important;
-    top:0!important;
-    width:min(400px,72%)!important;
-    transform-origin:16% 88%!important;
-    transform:scaleX(-1) rotate(-14deg) translateY(8px) scale(.96)!important;
-  }
-
-  .rm-beyond-thought.is-visible{
-    transform:scaleX(-1) rotate(-14deg) translateY(0) scale(1)!important;
+    right:22%!important;
+    top:60px!important;
+    width:min(270px,52%)!important;
   }
 
   /* SLIDE 5 — A chi ci rivolgiamo: larger final static scene. */
