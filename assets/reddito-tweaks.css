@@ -411,3 +411,15 @@
     clip-path:inset(0 0 3px 0);
   }
 }
+
+
+/* Desktop wide layout pass v4: final vertical polish */
+@media (min-width:1120px){
+  .rm-home-copy-wrap{
+    transform:translateY(6px);
+  }
+
+  .rm-home-hero-image{
+    top:calc(50% + 14px);
+  }
+}
