@@ -278,9 +278,9 @@
   --board-left:9%;
   --board-top:4%;
   /* profondità: Morgana resta più vicina alla lavagna e più indietro */
-  --morgana-width:27.5%;
-  --morgana-left:0%;
-  --morgana-bottom:8%;
+  --morgana-width:70%;
+  --morgana-left:-18%;
+  --morgana-bottom:5%;
   /* Red e Bjorne sono in primo piano: più bassi e appena più grandi */
   --red-width:19.5%;
   --red-right:1.5%;
@@ -395,6 +395,18 @@
   left:var(--morgana-left);
   bottom:var(--morgana-bottom);
   z-index:3;
+  pointer-events:auto;
+  cursor:pointer;
+  touch-action:manipulation;
+}
+
+.rm-classroom-morgana:hover{
+  filter:drop-shadow(0 16px 20px rgba(20,34,48,.12)) brightness(1.035);
+}
+
+.rm-classroom-morgana:focus-visible{
+  outline:3px solid color-mix(in srgb,var(--rm-accent) 70%,white);
+  outline-offset:4px;
 }
 
 .rm-classroom-red{
@@ -443,8 +455,8 @@
     --scene-height:430px;
     --board-width:88%;
     --board-left:6%;
-    --morgana-width:28%;
-    --morgana-bottom:7%;
+    --morgana-width:70%;
+    --morgana-bottom:5%;
     --red-width:19%;
     --red-bottom:1%;
     --bjorne-width:24%;
