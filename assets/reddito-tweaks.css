@@ -356,3 +356,46 @@
     width:min(1440px,calc(100% - 72px));
   }
 }
+
+
+/* Desktop wide layout pass v2 */
+@media (min-width:1120px){
+  .rm-topbar .rm-shell,
+  .rm-home-main > .rm-shell{
+    width:min(1600px,calc(100% - 48px));
+  }
+
+  .rm-home-main{
+    align-items:start;
+    padding-top:38px;
+  }
+
+  .rm-home-grid{
+    grid-template-columns:minmax(520px,.82fr) minmax(760px,1.18fr);
+  }
+
+  .rm-home-copy-wrap{
+    max-width:700px;
+    padding-top:105px;
+  }
+
+  .rm-home-art-final{
+    height:640px;
+  }
+
+  .rm-home-hero-image{
+    top:50%;
+    left:-185px;
+    width:1190px;
+  }
+}
+
+@media (min-width:1600px){
+  .rm-home-title{
+    font-size:clamp(52px,3.55vw,64px);
+  }
+
+  .rm-home-copy{
+    max-width:640px;
+  }
+}
