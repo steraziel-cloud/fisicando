@@ -54,7 +54,7 @@ body.rm-lock .rm-logo-paw{
   .rm-project-main .rm-services-copy p,
   .rm-project-main .rm-work-copy p,
   .rm-project-main .rm-audience-copy p{
-    font-size:17px!important;
+    font-size:17.5px!important;
     line-height:1.68!important;
   }
 
@@ -108,7 +108,7 @@ body.rm-lock .rm-logo-paw{
     width:min(820px,100%);
   }
 
-  /* SLIDE 3 — Come lavoriamo: same wide composition as the finished slides. */
+  /* SLIDE 3 — Come lavoriamo: wide composition + illustrated classroom. */
   .rm-slide-work .rm-slide-inner-work{
     width:min(1560px,calc(100% - 72px))!important;
     grid-template-columns:minmax(540px,.84fr) minmax(760px,1.16fr)!important;
@@ -128,6 +128,9 @@ body.rm-lock .rm-logo-paw{
   .rm-slide-work .rm-classroom-v2{
     isolation:isolate;
     overflow:visible!important;
+    --morgana-bottom:25%;
+    --red-bottom:7%;
+    --bjorne-bottom:-1%;
   }
 
   .rm-slide-work .rm-classroom-v2::before{
@@ -143,7 +146,7 @@ body.rm-lock .rm-logo-paw{
     pointer-events:none;
   }
 
-  /* SLIDE 4 — Oltre le lezioni: wider copy + transparent decorative setting. */
+  /* SLIDE 4 — Oltre le lezioni: compact cats over a larger illustrated setting. */
   .rm-slide:has(.rm-beyond-scene) .rm-slide-inner{
     width:min(1560px,calc(100% - 72px))!important;
     grid-template-columns:minmax(540px,.84fr) minmax(760px,1.16fr)!important;
@@ -169,15 +172,31 @@ body.rm-lock .rm-logo-paw{
     position:absolute;
     left:50%;
     top:50%;
-    width:118%;
-    height:116%;
-    transform:translate(-50%,-46%);
+    width:134%;
+    height:130%;
+    transform:translate(-50%,-45%);
     background:url("images/oltre-lezioni/sfondo-blob-oltre-le-lezioni.png") center/contain no-repeat;
     z-index:0;
     pointer-events:none;
   }
 
-  /* SLIDE 5 — A chi ci rivolgiamo: wider composition and softer image edges. */
+  .rm-beyond-red-hit{
+    left:0!important;
+    width:59%!important;
+    bottom:1%!important;
+  }
+
+  .rm-beyond-bjorne-hit{
+    right:1%!important;
+    width:64%!important;
+    bottom:0!important;
+  }
+
+  .rm-beyond-balloon{
+    left:25%!important;
+  }
+
+  /* SLIDE 5 — A chi ci rivolgiamo: larger final static scene. */
   .rm-slide-audience .rm-slide-inner{
     width:min(1560px,calc(100% - 72px))!important;
     grid-template-columns:minmax(540px,.84fr) minmax(760px,1.16fr)!important;
@@ -195,11 +214,11 @@ body.rm-lock .rm-logo-paw{
   }
 
   .rm-slide-audience .rm-audience-scene{
-    min-height:520px;
+    min-height:560px!important;
   }
 
   .rm-slide-audience .rm-audience-image{
-    width:min(840px,116%)!important;
+    width:min(940px,130%)!important;
   }
 }
 
