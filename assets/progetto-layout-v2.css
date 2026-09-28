@@ -468,7 +468,7 @@
   background-image:url("images/gatitomath-pattern.svg");
   background-size:760px 520px;
   background-position:center 20px;
-  opacity:.72;
+  opacity:.84;
   z-index:0;
 }
 .rm-project-main .rm-slider{
@@ -478,6 +478,6 @@
 @media(max-width:760px){
   .rm-project-main::before{
     background-size:570px 390px;
-    opacity:.52;
+    opacity:.64;
   }
 }
