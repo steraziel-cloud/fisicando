@@ -194,35 +194,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   let morganaFrameTimer=null;
   let morganaTurnPlaying=false;
 
-  // Dimensione corretta per i nuovi PNG. I frame nuovi hanno molto piu spazio
-  // trasparente rispetto ai vecchi A-F, quindi la width del box deve essere maggiore.
-  const morganaStyle=document.createElement('style');
-  morganaStyle.textContent=`
-    .rm-classroom-v2 .rm-classroom-morgana{
-      width:70%!important;
-      left:-18%!important;
-      bottom:5%!important;
-      pointer-events:auto!important;
-      cursor:pointer!important;
-      touch-action:manipulation;
-    }
-    .rm-classroom-v2 .rm-classroom-morgana:hover{
-      filter:drop-shadow(0 16px 20px rgba(20,34,48,.12)) brightness(1.035);
-    }
-    .rm-classroom-v2 .rm-classroom-morgana:focus-visible{
-      outline:3px solid color-mix(in srgb,var(--rm-accent) 70%,white);
-      outline-offset:4px;
-    }
-    @media(max-width:760px){
-      .rm-classroom-v2 .rm-classroom-morgana{
-        width:70%!important;
-        left:-18%!important;
-        bottom:5%!important;
-      }
-    }
-  `;
-  document.head.appendChild(morganaStyle);
-
   const morganaFrameMetrics=new Map();
 
   function measureMorganaFrame(img){
