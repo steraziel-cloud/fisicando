@@ -1,59 +1,66 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="620" viewBox="0 0 900 620">
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="700" viewBox="0 0 980 700">
   <defs>
-    <radialGradient id="blobA" cx="35%" cy="35%" r="70%">
-      <stop offset="0" stop-color="#79d7ea" stop-opacity=".62"/>
-      <stop offset=".72" stop-color="#4fc3df" stop-opacity=".34"/>
-      <stop offset="1" stop-color="#4fc3df" stop-opacity="0"/>
+    <linearGradient id="blueA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#bfeefa" stop-opacity=".96"/>
+      <stop offset="1" stop-color="#86d8ee" stop-opacity=".88"/>
+    </linearGradient>
+    <linearGradient id="blueB" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8ddff2" stop-opacity=".92"/>
+      <stop offset="1" stop-color="#58c7e7" stop-opacity=".82"/>
+    </linearGradient>
+    <radialGradient id="warm" cx="50%" cy="45%" r="60%">
+      <stop offset="0" stop-color="#fff3c8" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#ffe7a7" stop-opacity=".18"/>
     </radialGradient>
-    <radialGradient id="blobB" cx="70%" cy="45%" r="62%">
-      <stop offset="0" stop-color="#b9e9f4" stop-opacity=".58"/>
-      <stop offset="1" stop-color="#b9e9f4" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="warm" cx="60%" cy="45%" r="58%">
-      <stop offset="0" stop-color="#ffe5a8" stop-opacity=".5"/>
-      <stop offset="1" stop-color="#ffe5a8" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="soft"><feGaussianBlur stdDeviation="2"/></filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="3"/></filter>
   </defs>
 
-  <!-- layered organic backdrop -->
-  <path d="M115 330C95 225 165 125 290 91c110-30 174 15 247 31 91 20 181-13 233 58 63 87 17 187-24 255-56 93-149 130-268 125-145-6-301 1-350-83-23-40-7-91-13-147Z" fill="url(#blobA)"/>
-  <path d="M259 98c109-36 201-2 261 29 58 30 120 13 171 49 73 52 95 155 55 239-39 82-126 128-224 122-110-6-223 6-305-51-75-52-91-154-49-235 22-43 49-114 91-153Z" fill="url(#blobB)"/>
-  <path d="M520 121c86-25 174 14 215 70 45 60 37 147 6 210-31 64-93 111-172 120-55 6-108-14-142-51-49-54-58-137-22-202 28-51 57-130 115-147Z" fill="url(#warm)"/>
+  <!-- large layered editorial blobs -->
+  <path d="M164 395C105 292 126 181 223 112c83-59 191-55 278-20 70 28 133 16 201 43 113 46 183 146 165 258-17 108-112 196-225 229-120 36-294 21-397-44-70-44-118-109-81-183Z" fill="url(#blueA)"/>
+  <path d="M281 160c91-75 215-85 315-43 78 33 166 21 224 83 65 70 71 180 20 267-51 86-150 139-257 142-115 4-245-31-320-105-76-75-83-189-32-275 15-25 30-47 50-69Z" fill="url(#blueB)" opacity=".92"/>
+  <path d="M616 114c88-7 176 36 218 99 42 65 42 153 5 219-35 63-103 112-177 126-49 9-101 4-141-24-68-48-98-138-75-218 19-66 82-194 170-202Z" fill="url(#warm)"/>
 
-  <!-- swoosh line -->
-  <path d="M168 406c90-149 369-223 560-119 62 34 90 87 84 137" fill="none" stroke="#fff" stroke-opacity=".62" stroke-width="8" stroke-linecap="round"/>
-  <path d="M196 426c83-118 267-179 426-133" fill="none" stroke="#22b8cf" stroke-opacity=".45" stroke-width="4" stroke-dasharray="10 18" stroke-linecap="round"/>
+  <!-- swooshes, closer to the chosen mockup -->
+  <path d="M184 438C300 250 585 188 800 302c66 35 112 88 131 145" fill="none" stroke="#fff" stroke-opacity=".82" stroke-width="8" stroke-linecap="round"/>
+  <path d="M233 498C386 404 598 395 782 470" fill="none" stroke="#dff8ff" stroke-opacity=".92" stroke-width="6" stroke-linecap="round"/>
+  <path d="M205 445c89-112 236-160 379-136" fill="none" stroke="#32bad8" stroke-opacity=".72" stroke-width="4" stroke-dasharray="12 18" stroke-linecap="round"/>
 
-  <!-- papers -->
-  <g opacity=".9">
-    <g transform="translate(118 208) rotate(-14)">
-      <rect x="0" y="0" width="105" height="78" rx="8" fill="#fff7ea"/>
-      <path d="M23 25h58M23 39h46M23 53h54" stroke="#d3a86a" stroke-width="4" stroke-linecap="round" opacity=".65"/>
+  <!-- floating paper notes -->
+  <g opacity=".98">
+    <g transform="translate(122 247) rotate(-17)">
+      <path d="M0 7Q0 0 7 0h101q8 0 8 8v76q0 8-8 8H7q-7 0-7-7Z" fill="#fff6e8"/>
+      <path d="M25 29h61M25 45h49M25 61h58" stroke="#d9aa68" stroke-width="4" stroke-linecap="round" opacity=".78"/>
     </g>
-    <g transform="translate(694 192) rotate(13)">
-      <rect x="0" y="0" width="106" height="80" rx="8" fill="#fff7ea"/>
-      <path d="M52 17 79 58H25Z" fill="none" stroke="#6ba9d7" stroke-width="4"/>
-      <path d="M40 52h25M52 31v22" stroke="#6ba9d7" stroke-width="3" opacity=".7"/>
+    <g transform="translate(770 214) rotate(14)">
+      <path d="M0 7Q0 0 7 0h105q8 0 8 8v82q0 8-8 8H7q-7 0-7-7Z" fill="#fff6e8"/>
+      <path d="M59 18 91 64H28Z" fill="none" stroke="#6aa9d7" stroke-width="4.5"/>
+      <path d="M45 58h28M59 33v29" stroke="#6aa9d7" stroke-width="3.5" opacity=".8"/>
+      <path d="M18 18l8 4M99 18l-8 4" stroke="#87bfe4" stroke-width="3" stroke-linecap="round"/>
     </g>
-    <g transform="translate(703 405) rotate(-10)">
-      <rect x="0" y="0" width="96" height="68" rx="8" fill="#fff7ea"/>
-      <path d="M25 23h46M25 37h34" stroke="#d3a86a" stroke-width="4" stroke-linecap="round" opacity=".65"/>
+    <g transform="translate(801 438) rotate(-11)">
+      <path d="M0 7Q0 0 7 0h103q8 0 8 8v75q0 8-8 8H7q-7 0-7-7Z" fill="#fff6e8"/>
+      <path d="M26 28h54M26 44h42" stroke="#d9aa68" stroke-width="4" stroke-linecap="round" opacity=".78"/>
+    </g>
+    <g transform="translate(174 355) rotate(12)">
+      <path d="M0 6Q0 0 6 0h82q7 0 7 7v65q0 7-7 7H6q-6 0-6-6Z" fill="#fff6e8"/>
+      <path d="M46 14c14 0 24 10 24 22 0 10-7 16-13 20v9H36v-9c-7-4-13-10-13-20 0-12 9-22 23-22Z" fill="none" stroke="#7bbbe6" stroke-width="3.5"/>
+      <path d="M38 70h17" stroke="#7bbbe6" stroke-width="3.5" stroke-linecap="round"/>
     </g>
   </g>
 
-  <!-- sparkles -->
-  <g fill="#ffc247" opacity=".95">
-    <path d="M270 164l8 18 18 8-18 8-8 18-8-18-18-8 18-8Z"/>
-    <path d="M753 322l7 15 15 7-15 7-7 15-7-15-15-7 15-7Z"/>
-    <path d="M630 118l6 13 13 6-13 6-6 13-6-13-13-6 13-6Z"/>
+  <!-- sparkles and small paw accents -->
+  <g fill="#ffc247">
+    <path d="M284 177l8 19 19 8-19 8-8 19-8-19-19-8 19-8Z"/>
+    <path d="M824 356l8 19 19 8-19 8-8 19-8-19-19-8 19-8Z"/>
+    <path d="M686 134l7 16 16 7-16 7-7 16-7-16-16-7 16-7Z"/>
+    <path d="M722 520l6 14 14 6-14 6-6 14-6-14-14-6 14-6Z"/>
   </g>
-  <g fill="#74d7e6" opacity=".9">
-    <path d="M205 354l6 14 14 6-14 6-6 14-6-14-14-6 14-6Z"/>
-    <circle cx="795" cy="171" r="7"/>
-    <circle cx="153" cy="319" r="5"/>
+  <g fill="#ffffff" opacity=".9">
+    <circle cx="192" cy="514" r="5"/><circle cx="192" cy="496" r="4"/><circle cx="180" cy="501" r="4"/><circle cx="204" cy="501" r="4"/>
+    <circle cx="741" cy="190" r="5"/><circle cx="741" cy="172" r="4"/><circle cx="729" cy="177" r="4"/><circle cx="753" cy="177" r="4"/>
   </g>
 
-  <!-- baseline shadow -->
-  <ellipse cx="500" cy="535" rx="265" ry="46" fill="#76b9dc" opacity=".22" filter="url(#soft)"/>
+  <!-- ground -->
+  <ellipse cx="528" cy="607" rx="330" ry="54" fill="#68b8df" opacity=".28" filter="url(#soft)"/>
+  <ellipse cx="528" cy="594" rx="292" ry="35" fill="#bfeefa" opacity=".34"/>
 </svg>
