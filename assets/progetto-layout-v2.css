@@ -466,7 +466,7 @@
   inset:0;
   pointer-events:none;
   background-image:url("images/gatitomath-pattern.svg");
-  background-size:640px 420px;
+  background-size:760px 520px;
   background-position:center 20px;
   opacity:.72;
   z-index:0;
@@ -477,7 +477,7 @@
 }
 @media(max-width:760px){
   .rm-project-main::before{
-    background-size:480px 315px;
+    background-size:570px 390px;
     opacity:.52;
   }
 }
