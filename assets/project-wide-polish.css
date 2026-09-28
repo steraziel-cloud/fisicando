@@ -170,7 +170,7 @@
   .rm-beyond-bjorne-hit{
     right:12%!important;
     width:64%!important;
-    bottom:-9%!important;
+    bottom:-15%!important;
   }
 
   .rm-beyond-balloon{
@@ -179,18 +179,18 @@
   }
 
   .rm-beyond-balloon.is-dialogue:not(.is-bjorne-dialogue){
-    left:11%!important;
-    top:-34px!important;
+    left:22%!important;
+    top:-55px!important;
   }
 
   .rm-beyond-balloon.is-bjorne-dialogue{
     left:auto!important;
-    right:0!important;
+    right:19%!important;
     top:40px!important;
   }
 
   .rm-beyond-thought{
-    right:16%!important;
+    right:24%!important;
     top:-76px!important;
   }
 
