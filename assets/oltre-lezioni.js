@@ -14,6 +14,29 @@ window.addEventListener('DOMContentLoaded',()=>{
     bjorneButton.appendChild(bjorneImage);
   }
 
+  const redButton=scene.querySelector('[data-beyond-red]');
+
+  /*
+    Le immagini dei due personaggi devono poter restare grandi e sovrapporsi
+    visivamente, ma le aree cliccabili non devono sovrapporsi. I due piccoli
+    hotspot interni separano quindi nettamente Red (sinistra) e Bjorne (destra)
+    senza alterare la composizione grafica.
+  */
+  function ensureHitCore(button,kind){
+    if(!button) return null;
+    let core=button.querySelector('.rm-beyond-hit-core');
+    if(!core){
+      core=document.createElement('span');
+      core.className=`rm-beyond-hit-core rm-beyond-hit-core-${kind}`;
+      core.setAttribute('aria-hidden','true');
+      button.appendChild(core);
+    }
+    return core;
+  }
+
+  ensureHitCore(redButton,'red');
+  ensureHitCore(bjorneButton,'bjorne');
+
   let thought=scene.querySelector('[data-beyond-thought]');
   if(!thought){
     thought=document.createElement('img');
@@ -24,7 +47,6 @@ window.addEventListener('DOMContentLoaded',()=>{
     scene.appendChild(thought);
   }
 
-  const redButton=scene.querySelector('[data-beyond-red]');
   const balloon=scene.querySelector('.rm-beyond-balloon');
   const icon=scene.querySelector('[data-beyond-icon]');
   const title=scene.querySelector('[data-beyond-title]');
@@ -65,8 +87,18 @@ window.addEventListener('DOMContentLoaded',()=>{
     return id;
   }
 
+  const stateClasses=states.map((_,i)=>`is-state-${i}`);
+
   function cleanBalloonModes(){
-    balloon?.classList.remove('is-dialogue','is-bjorne-dialogue','is-easter-hidden','is-changing');
+    balloon?.classList.remove(
+      'is-dialogue','is-bjorne-dialogue','is-red-dialogue',
+      'is-easter-hidden','is-changing',...stateClasses
+    );
+  }
+
+  function setStateClass(index){
+    balloon?.classList.remove(...stateClasses);
+    balloon?.classList.add(`is-state-${index}`);
   }
 
   function renderState(nextIndex,{animate=true}={}){
@@ -75,6 +107,7 @@ window.addEventListener('DOMContentLoaded',()=>{
 
     clearTimeout(changeTimer);
     cleanBalloonModes();
+    setStateClass(stateIndex);
 
     const applyState=()=>{
       if(icon) icon.textContent=state.icon;
@@ -96,7 +129,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     clearTimeout(changeTimer);
     cleanBalloonModes();
     balloon?.classList.add('is-dialogue');
-    if(bjorne) balloon?.classList.add('is-bjorne-dialogue');
+    balloon?.classList.add(bjorne?'is-bjorne-dialogue':'is-red-dialogue');
     if(title) title.textContent='';
     if(copy) copy.textContent=text;
   }
