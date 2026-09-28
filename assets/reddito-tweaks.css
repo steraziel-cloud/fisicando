@@ -347,3 +347,12 @@
     min-height:74px;
   }
 }
+
+
+/* Desktop wide layout pass: use more of the viewport without touching mobile */
+@media (min-width:1120px){
+  .rm-topbar .rm-shell,
+  .rm-home-main > .rm-shell{
+    width:min(1440px,calc(100% - 72px));
+  }
+}
