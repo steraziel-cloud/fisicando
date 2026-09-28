@@ -1,5 +1,4 @@
 @import url("project-wide-polish.css");
-@import url("services-slide-polish.css");
 
 /* Slide "A chi ci rivolgiamo": scena finale con Morgana, Red e Bjorne */
 .rm-slide-audience .rm-slide-inner{
@@ -30,20 +29,20 @@
   user-select:none;
   pointer-events:none;
 
-  /* La scena si dissolve gradualmente nello sfondo della slide, come nell'hero. */
-  -webkit-mask-image:radial-gradient(ellipse at center,
+  /* The complete PNG is softly blended into the shared page background. */
+  -webkit-mask-image:radial-gradient(ellipse 52% 48% at center,
     #000 0%,
-    #000 66%,
-    rgba(0,0,0,.96) 75%,
-    rgba(0,0,0,.72) 84%,
-    rgba(0,0,0,.34) 92%,
+    #000 62%,
+    rgba(0,0,0,.97) 72%,
+    rgba(0,0,0,.78) 82%,
+    rgba(0,0,0,.38) 92%,
     transparent 100%);
-  mask-image:radial-gradient(ellipse at center,
+  mask-image:radial-gradient(ellipse 52% 48% at center,
     #000 0%,
-    #000 66%,
-    rgba(0,0,0,.96) 75%,
-    rgba(0,0,0,.72) 84%,
-    rgba(0,0,0,.34) 92%,
+    #000 62%,
+    rgba(0,0,0,.97) 72%,
+    rgba(0,0,0,.78) 82%,
+    rgba(0,0,0,.38) 92%,
     transparent 100%);
 }
 
@@ -127,23 +126,6 @@
 
   /* Slide 2 */
   .rm-slide-services{padding-bottom:92px!important}
-  .rm-services-panel{
-    min-height:0!important;
-    padding:13px!important;
-    gap:10px!important;
-    grid-template-columns:1fr 1fr!important;
-    border-radius:22px!important;
-  }
-  .rm-services-panel .rm-info-card{
-    min-height:0!important;
-    padding:16px 14px!important;
-    border-radius:16px!important;
-  }
-  .rm-services-panel .rm-card-icon{width:42px;height:42px;margin-bottom:12px;border-radius:12px}
-  .rm-services-panel .rm-card-icon svg{width:24px;height:24px}
-  .rm-services-panel .rm-info-card .n{top:14px!important;right:13px!important;width:31px!important;height:31px!important}
-  .rm-services-panel .rm-info-card h3{font-size:17px!important}
-  .rm-services-panel .rm-info-card p{font-size:12px!important;line-height:1.42!important}
 
   /* Slide 3 */
   .rm-slide-work{padding-bottom:92px!important}
@@ -223,12 +205,6 @@
   .rm-slide-work .rm-slide-inner-work{width:min(100% - 22px,680px)!important}
   .rm-slide-copy h1,.rm-about-title,.rm-services-title,.rm-section-title{font-size:clamp(35px,10.6vw,44px)!important}
   .rm-project-subtitle{font-size:clamp(21px,6.4vw,27px)!important}
-  .rm-services-panel{grid-template-columns:1fr!important}
-  .rm-services-panel .rm-info-card{display:grid;grid-template-columns:44px 1fr;column-gap:12px;align-items:start}
-  .rm-services-panel .rm-card-icon{grid-row:1/3;margin:0!important}
-  .rm-services-panel .rm-info-card .n{display:none!important}
-  .rm-services-panel .rm-info-card h3{margin-top:1px!important}
-  .rm-services-panel .rm-info-card p{grid-column:2}
   .rm-beyond-scene{min-height:305px!important}
   .rm-audience-scene{min-height:270px!important}
 }
