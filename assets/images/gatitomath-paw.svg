@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Zampina GatitoMath</title>
+  <g fill="#22d3ee">
+    <ellipse cx="25" cy="42" rx="15" ry="20" transform="rotate(-28 25 42)"/>
+    <ellipse cx="50" cy="25" rx="15" ry="20" transform="rotate(-8 50 25)"/>
+    <ellipse cx="78" cy="25" rx="15" ry="20" transform="rotate(8 78 25)"/>
+    <ellipse cx="103" cy="42" rx="15" ry="20" transform="rotate(28 103 42)"/>
+    <path d="M64 49c-20 0-39 20-39 41 0 17 12 27 27 27 7 0 10-4 12-4s5 4 12 4c15 0 27-10 27-27 0-21-19-41-39-41Z"/>
+  </g>
+</svg>
