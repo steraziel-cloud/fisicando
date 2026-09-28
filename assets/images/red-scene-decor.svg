@@ -22,19 +22,15 @@
     </filter>
   </defs>
 
-  <!-- large layered editorial blobs -->
   <path d="M164 395C105 292 126 181 223 112c83-59 191-55 278-20 70 28 133 16 201 43 113 46 183 146 165 258-17 108-112 196-225 229-120 36-294 21-397-44-70-44-118-109-81-183Z" fill="url(#blueA)"/>
   <path d="M281 160c91-75 215-85 315-43 78 33 166 21 224 83 65 70 71 180 20 267-51 86-150 139-257 142-115 4-245-31-320-105-76-75-83-189-32-275 15-25 30-47 50-69Z" fill="url(#blueB)" opacity=".92"/>
   <path d="M616 114c88-7 176 36 218 99 42 65 42 153 5 219-35 63-103 112-177 126-49 9-101 4-141-24-68-48-98-138-75-218 19-66 82-194 170-202Z" fill="url(#warm)"/>
 
-  <!-- motion lines -->
   <path d="M184 438C300 250 585 188 800 302c66 35 112 88 131 145" fill="none" stroke="#fff" stroke-opacity=".82" stroke-width="8" stroke-linecap="round"/>
   <path d="M233 498C386 404 598 395 782 470" fill="none" stroke="#dff8ff" stroke-opacity=".92" stroke-width="6" stroke-linecap="round"/>
   <path d="M205 445c89-112 236-160 379-136" fill="none" stroke="#32bad8" stroke-opacity=".72" stroke-width="4" stroke-dasharray="12 18" stroke-linecap="round"/>
 
-  <!-- realistic floating study notes -->
   <g filter="url(#paperShadow)">
-    <!-- Fisica / lampadina con formula di potenza -->
     <g transform="translate(108 230) rotate(-13)">
       <path d="M8 0h110c8 0 12 5 12 12v94c0 8-5 12-12 12H8c-8 0-12-5-12-12V12C-4 5 0 0 8 0Z" fill="url(#paper)" stroke="#ead9bd"/>
       <g transform="translate(62 43)">
@@ -45,20 +41,18 @@
       <text x="63" y="100" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-size="13" font-weight="800" fill="#71869c">P = V·I</text>
     </g>
 
-    <!-- Geometria / teorema di Pitagora -->
     <g transform="translate(770 205) rotate(11)">
       <path d="M7 0h116c8 0 12 5 12 12v100c0 8-5 12-12 12H7c-8 0-12-5-12-12V12C-5 5 0 0 7 0Z" fill="url(#paper)" stroke="#ead9bd"/>
-      <g transform="translate(69 58)" fill="none" stroke="#659ed3" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(69 53)" fill="none" stroke="#659ed3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M-38 28H31L-38-29Z" stroke-width="4.5"/>
         <path d="M-38 15h13v13" stroke-width="3"/>
-        <text x="-48" y="4" font-family="Manrope,Arial,sans-serif" font-size="12" font-weight="800" fill="#71869c" stroke="none">b</text>
-        <text x="-6" y="42" font-family="Manrope,Arial,sans-serif" font-size="12" font-weight="800" fill="#71869c" stroke="none">a</text>
-        <text x="4" y="-5" font-family="Manrope,Arial,sans-serif" font-size="12" font-weight="800" fill="#71869c" stroke="none">c</text>
+        <text x="-50" y="4" font-family="Manrope,Arial,sans-serif" font-size="12" font-weight="800" fill="#71869c" stroke="none">b</text>
+        <text x="-4" y="36" font-family="Manrope,Arial,sans-serif" font-size="12" font-weight="800" fill="#71869c" stroke="none">a</text>
+        <text x="6" y="-6" font-family="Manrope,Arial,sans-serif" font-size="12" font-weight="800" fill="#71869c" stroke="none">c</text>
       </g>
-      <text x="67" y="108" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-size="12.5" font-weight="800" fill="#71869c">a² + b² = c²</text>
+      <text x="67" y="114" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-size="12.5" font-weight="800" fill="#71869c">a² + b² = c²</text>
     </g>
 
-    <!-- Grafico cartesiano pulito -->
     <g transform="translate(806 430) rotate(-9)">
       <path d="M8 0h104c8 0 12 5 12 12v86c0 8-5 12-12 12H8c-8 0-12-5-12-12V12C-4 5 0 0 8 0Z" fill="url(#paper)" stroke="#ead9bd"/>
       <path d="M24 80V25M24 80h72" stroke="#6aa9d7" stroke-width="3.5" stroke-linecap="round"/>
@@ -67,7 +61,6 @@
       <circle cx="74" cy="32" r="3.6" fill="#5dc5dc"/>
     </g>
 
-    <!-- Chimica / modello atomico di Bohr: configurazione 2,8,1 -->
     <g transform="translate(166 350) rotate(9)">
       <path d="M7 0h108c8 0 12 5 12 12v92c0 8-5 12-12 12H7c-8 0-12-5-12-12V12C-5 5 0 0 7 0Z" fill="url(#paper)" stroke="#ead9bd"/>
       <g transform="translate(60 51)" fill="none" stroke="#6aa9d7">
@@ -75,10 +68,8 @@
         <circle r="18" stroke-width="2.2"/>
         <circle r="29" stroke-width="2.2"/>
         <circle r="40" stroke-width="2.2"/>
-        <!-- 1st shell: 2 -->
         <circle cx="18" cy="0" r="3.4" fill="#5dc5dc" stroke="none"/>
         <circle cx="-18" cy="0" r="3.4" fill="#5dc5dc" stroke="none"/>
-        <!-- 2nd shell: 8 -->
         <circle cx="29" cy="0" r="3" fill="#5dc5dc" stroke="none"/>
         <circle cx="-29" cy="0" r="3" fill="#5dc5dc" stroke="none"/>
         <circle cx="0" cy="29" r="3" fill="#5dc5dc" stroke="none"/>
@@ -87,14 +78,12 @@
         <circle cx="-20.5" cy="20.5" r="3" fill="#5dc5dc" stroke="none"/>
         <circle cx="20.5" cy="-20.5" r="3" fill="#5dc5dc" stroke="none"/>
         <circle cx="-20.5" cy="-20.5" r="3" fill="#5dc5dc" stroke="none"/>
-        <!-- 3rd shell: 1 -->
         <circle cx="40" cy="0" r="3.5" fill="#f0b54a" stroke="none"/>
       </g>
       <text x="61" y="105" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-size="12.5" font-weight="800" fill="#71869c">2 · 8 · 1</text>
     </g>
   </g>
 
-  <!-- sparkles and small paw accents -->
   <g fill="#ffc247">
     <path d="M284 177l8 19 19 8-19 8-8 19-8-19-19-8 19-8Z"/>
     <path d="M824 356l8 19 19 8-19 8-8 19-8-19-19-8 19-8Z"/>
@@ -106,7 +95,6 @@
     <circle cx="741" cy="190" r="5"/><circle cx="741" cy="172" r="4"/><circle cx="729" cy="177" r="4"/><circle cx="753" cy="177" r="4"/>
   </g>
 
-  <!-- ground -->
   <ellipse cx="528" cy="607" rx="330" ry="54" fill="#68b8df" opacity=".28" filter="url(#soft)"/>
   <ellipse cx="528" cy="594" rx="292" ry="35" fill="#bfeefa" opacity=".34"/>
 </svg>
