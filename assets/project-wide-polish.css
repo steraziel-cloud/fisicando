@@ -128,7 +128,7 @@ body.rm-lock .rm-logo-paw{
   .rm-slide-work .rm-classroom-v2{
     isolation:isolate;
     overflow:visible!important;
-    --morgana-bottom:32%;
+    --morgana-bottom:25%;
     --red-bottom:7%;
     --bjorne-bottom:-1%;
   }
@@ -183,17 +183,26 @@ body.rm-lock .rm-logo-paw{
   .rm-beyond-red-hit{
     left:0!important;
     width:59%!important;
-    bottom:1%!important;
+    bottom:-7%!important;
   }
 
   .rm-beyond-bjorne-hit{
     right:1%!important;
     width:64%!important;
-    bottom:0!important;
+    bottom:-9%!important;
   }
 
   .rm-beyond-balloon{
     left:25%!important;
+    top:-55px!important;
+  }
+
+  .rm-beyond-balloon.is-bjorne-dialogue{
+    top:35px!important;
+  }
+
+  .rm-beyond-thought{
+    top:-100px!important;
   }
 
   /* SLIDE 5 — A chi ci rivolgiamo: larger final static scene. */
