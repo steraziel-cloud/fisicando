@@ -128,7 +128,7 @@ body.rm-lock .rm-logo-paw{
   .rm-slide-work .rm-classroom-v2{
     isolation:isolate;
     overflow:visible!important;
-    --morgana-bottom:25%;
+    --morgana-bottom:20%;
     --red-bottom:7%;
     --bjorne-bottom:-1%;
   }
