@@ -25,3 +25,24 @@
   .rm-logo{font-size:25px!important}
   .rm-logo-paw{width:22px!important;height:22px!important}
 }
+
+/* Mockup wordmark used on Home, Il progetto and Contatti. */
+.rm-logo-image{
+  display:block;
+  width:auto;
+  height:52px;
+  max-width:100%;
+  object-fit:contain;
+  mix-blend-mode:multiply;
+}
+[data-theme="dark"] .rm-logo-image{
+  mix-blend-mode:normal;
+  background:#edf4fa;
+  border-radius:7px;
+}
+@media(max-width:760px){
+  .rm-logo-image{height:40px}
+}
+@media(max-width:430px){
+  .rm-logo-image{height:35px}
+}
