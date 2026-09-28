@@ -17,7 +17,7 @@
   top:-100px;
   width:min(480px,86%);
   aspect-ratio:1448 / 1086;
-  transition:transform .22s ease,opacity .22s ease,left .25s ease,right .25s ease,top .25s ease;
+  transition:transform .22s ease,opacity .22s ease,left .25s ease,right .25s ease,top .25s ease,width .25s ease;
   pointer-events:none;
 }
 .rm-beyond-balloon-art{
@@ -112,6 +112,11 @@
 .rm-beyond-balloon.is-bjorne-dialogue .rm-beyond-balloon-art{
   transform:scaleX(-1);
 }
+.rm-beyond-balloon.is-red-dialogue{
+  left:27%;
+  top:-36px;
+  width:min(360px,70%);
+}
 .rm-beyond-balloon.is-easter-hidden{
   opacity:0;
   transform:translateY(-8px) scale(.96);
@@ -124,6 +129,8 @@
   border:0;
   background:transparent;
   -webkit-tap-highlight-color:transparent;
+  /* La grafica puo sovrapporsi, l'hit-test no: i click passano solo dagli hotspot interni. */
+  pointer-events:none;
 }
 .rm-beyond-red-hit{
   z-index:4;
@@ -182,6 +189,30 @@
 .rm-beyond-bjorne-hit:active .rm-beyond-bjorne{transform:translateY(0) scale(.992)}
 
 /*
+  Le immagini possono restare grandi e sovrapporsi, ma ciascun personaggio
+  riceve un hotspot interno separato. In questo modo Bjorne non intercetta
+  piu i click fatti sul lato destro di Red.
+*/
+.rm-beyond-hit-core{
+  position:absolute;
+  z-index:10;
+  bottom:0;
+  display:block;
+  pointer-events:auto;
+  cursor:pointer;
+}
+.rm-beyond-hit-core-red{
+  left:0;
+  width:54%;
+  height:92%;
+}
+.rm-beyond-hit-core-bjorne{
+  right:0;
+  width:54%;
+  height:94%;
+}
+
+/*
   Il thought balloon viene portato piu in alto e piu a sinistra:
   i pallini specchiati risultano cosi piu coerenti con la testa di Bjorne.
 */
@@ -205,8 +236,7 @@
   opacity:1;
   transform:scaleX(-1) translateY(0) scale(1);
 }
-.rm-beyond-scene.is-easter-running .rm-beyond-red-hit,
-.rm-beyond-scene.is-easter-running .rm-beyond-bjorne-hit{
+.rm-beyond-scene.is-easter-running .rm-beyond-hit-core{
   pointer-events:none;
 }
 
@@ -236,7 +266,8 @@
 @media(max-width:980px){
   .rm-beyond-scene{min-height:390px;width:min(650px,100%);margin:0 auto}
   .rm-beyond-balloon{left:26%;top:-84px;width:min(445px,84%)}
-  .rm-beyond-balloon.is-bjorne-dialogue{right:10%;top:2px;width:min(385px,73%)}
+  .rm-beyond-balloon.is-bjorne-dialogue{right:10%;top:2px;width:min(350px,68%)}
+  .rm-beyond-balloon.is-red-dialogue{left:28%;top:-42px;width:min(340px,68%)}
   .rm-beyond-red-hit{left:-3%;width:60%;height:73%}
   .rm-beyond-bjorne-hit{right:-4%;width:64%;height:65%}
   .rm-beyond-thought{right:7%;top:-112px;width:min(520px,94%)}
@@ -246,7 +277,8 @@
   .rm-beyond-scene{min-height:330px}
   .rm-beyond-balloon{top:-65px;left:19%;width:88%}
   .rm-beyond-balloon-content{left:10%;right:9%;top:18%;bottom:31%}
-  .rm-beyond-balloon.is-bjorne-dialogue{right:7%;top:6px;width:82%}
+  .rm-beyond-balloon.is-bjorne-dialogue{right:7%;top:6px;width:78%}
+  .rm-beyond-balloon.is-red-dialogue{left:21%;top:-18px;width:76%}
   .rm-beyond-balloon h3{font-size:19px}
   .rm-beyond-balloon p{font-size:11px;line-height:1.45}
   .rm-beyond-balloon.is-dialogue p{font-size:11.5px;line-height:1.38}
