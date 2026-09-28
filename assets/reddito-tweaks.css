@@ -408,7 +408,7 @@
   }
 
   .rm-home-hero-image{
-    clip-path:inset(0 0 3px 0);
+    clip-path:inset(3px 0 3px 0);
   }
 }
 
