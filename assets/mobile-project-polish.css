@@ -215,19 +215,19 @@
     width:82%!important;
   }
   .rm-project-main .rm-beyond-balloon.is-dialogue:not(.is-bjorne-dialogue){
-    left:4%!important;
-    top:-24px!important;
+    left:12%!important;
+    top:-42px!important;
   }
   .rm-project-main .rm-beyond-balloon.is-bjorne-dialogue{
     left:auto!important;
-    right:0!important;
+    right:15%!important;
     top:-4px!important;
     width:80%!important;
   }
   .rm-project-main .rm-beyond-red-hit{left:3%!important;bottom:0!important}
-  .rm-project-main .rm-beyond-bjorne-hit{right:3%!important;bottom:0!important}
+  .rm-project-main .rm-beyond-bjorne-hit{right:3%!important;bottom:-5%!important}
   .rm-project-main .rm-beyond-thought{
-    right:10%!important;
+    right:18%!important;
     top:-58px!important;
     width:94%!important;
   }
