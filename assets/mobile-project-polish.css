@@ -248,9 +248,9 @@
   .rm-project-main .rm-beyond-red-hit{left:3%!important;bottom:0!important}
   .rm-project-main .rm-beyond-bjorne-hit{right:3%!important;bottom:-5%!important}
   .rm-project-main .rm-beyond-thought{
-    right:18%!important;
-    top:-48px!important;
-    width:72%!important;
+    right:0!important;
+    top:-30px!important;
+    width:56%!important;
   }
 
   /* Slide 5 — the final group illustration appears immediately after the
