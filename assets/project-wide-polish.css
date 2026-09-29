@@ -180,8 +180,8 @@
     righe invece di allargare inutilmente il balloon sopra i personaggi.
   */
   .rm-beyond-balloon{
-    left:29%!important;
-    top:-37px!important;
+    left:32%!important;
+    top:-27px!important;
     width:min(370px,70%)!important;
   }
 
@@ -203,7 +203,7 @@
 
   .rm-beyond-balloon.is-dialogue:not(.is-bjorne-dialogue){
     left:30%!important;
-    top:-24px!important;
+    top:-14px!important;
   }
 
   .rm-beyond-balloon.is-red-dialogue{
@@ -212,15 +212,15 @@
 
   .rm-beyond-balloon.is-bjorne-dialogue{
     left:auto!important;
-    right:19%!important;
+    right:24%!important;
     top:75px!important;
     width:min(280px,53%)!important;
   }
 
   /* Il pensiero torna leggibile, ma resta ancorato a destra per non coprire Red. */
   .rm-beyond-thought{
-    right:13%!important;
-    top:34px!important;
+    right:19%!important;
+    top:21px!important;
     width:min(345px,61%)!important;
   }
 
