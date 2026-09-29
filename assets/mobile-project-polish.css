@@ -58,8 +58,10 @@
 
 @media (max-width:760px){
   .rm-slide-about .rm-book-scene-real,
+  .rm-slide-work .rm-classroom-v2,
   .rm-project-main .rm-beyond-scene{isolation:isolate}
   .rm-slide-about .rm-book-scene-real::before,
+  .rm-slide-work .rm-classroom-v2::before,
   .rm-project-main .rm-beyond-scene::before{
     content:"";
     position:absolute;
@@ -74,6 +76,10 @@
     background-image:url("images/red-flip-aligned/sfondo-blob.png");
   }
   .rm-slide-about .rm-red-book-image{z-index:1}
+  .rm-slide-work .rm-classroom-v2::before{
+    inset:-4% -6%;
+    background-image:url("images/morgana-classroom/sfondo-classe-blob.png");
+  }
   .rm-project-main .rm-beyond-scene::before{
     inset:-8% -18% -3%;
     background-image:url("images/oltre-lezioni/sfondo-blob-oltre-le-lezioni.png?v=2");
@@ -217,6 +223,8 @@
      whole screen before the reader sees the rest of the copy. */
   .rm-slide-work .rm-classroom-v2{
     --scene-height:300px!important;
+    --morgana-width:42%!important;
+    --morgana-left:-4%!important;
     width:100%!important;
   }
   .rm-slide-work .rm-chalk-copy{gap:6px!important}
@@ -231,27 +239,29 @@
     min-height:295px!important;
   }
   .rm-project-main .rm-beyond-balloon{
-    top:-42px!important;
-    left:12%!important;
-    width:82%!important;
+    top:-24px!important;
+    left:15%!important;
+    width:78%!important;
   }
   .rm-project-main .rm-beyond-balloon.is-dialogue:not(.is-bjorne-dialogue){
-    left:12%!important;
-    top:-42px!important;
+    left:14%!important;
+    top:-22px!important;
   }
   .rm-project-main .rm-beyond-balloon.is-bjorne-dialogue{
     left:auto!important;
-    right:9%!important;
-    top:-10px!important;
-    width:66%!important;
+    right:12%!important;
+    top:12px!important;
+    width:70%!important;
   }
   .rm-project-main .rm-beyond-red-hit{left:3%!important;bottom:0!important}
   .rm-project-main .rm-beyond-bjorne-hit{right:3%!important;bottom:-5%!important}
   .rm-project-main .rm-beyond-thought{
-    right:0!important;
-    top:-30px!important;
-    width:56%!important;
+    right:10%!important;
+    top:-5px!important;
+    width:50%!important;
+    transform:translateY(8px) scale(.96)!important;
   }
+  .rm-project-main .rm-beyond-thought.is-visible{transform:none!important}
 
   /* Slide 5 — the final group illustration appears immediately after the
      manifesto line. */
