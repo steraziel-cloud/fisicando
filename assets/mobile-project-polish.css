@@ -242,9 +242,9 @@
   }
   .rm-project-main .rm-beyond-balloon{
     top:-20px!important;
-    left:15%!important;
+    left:18%!important;
     right:auto!important;
-    width:80%!important;
+    width:79%!important;
     aspect-ratio:auto!important;
     min-height:0;
     padding:14px 15px 15px;
@@ -265,7 +265,7 @@
   .rm-project-main .rm-beyond-balloon::after{
     content:"";
     position:absolute;
-    left:32%;
+    left:29%;
     bottom:-57px;
     width:42px;
     height:61px;
@@ -282,9 +282,9 @@
     width:62%!important;
   }
   .rm-project-main .rm-beyond-balloon.is-dialogue:not(.is-bjorne-dialogue)::after{
-    left:12%;
-    bottom:-75px;
-    height:79px;
+    left:16%;
+    bottom:-84px;
+    height:88px;
   }
   .rm-project-main .rm-beyond-balloon.is-bjorne-dialogue{
     left:14%!important;
@@ -293,9 +293,9 @@
   }
   .rm-project-main .rm-beyond-balloon.is-bjorne-dialogue::after{
     left:auto;
-    right:30%;
-    bottom:-75px;
-    height:79px;
+    right:41%;
+    bottom:-88px;
+    height:92px;
     border-left:0;
     border-right:1px solid #75d5df;
     clip-path:polygon(0 0,100% 0,100% 100%);
