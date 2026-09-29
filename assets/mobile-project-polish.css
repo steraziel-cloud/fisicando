@@ -225,7 +225,7 @@
     --scene-height:300px!important;
     --morgana-width:62%!important;
     --morgana-left:-11%!important;
-    --morgana-bottom:22%!important;
+    --morgana-bottom:18%!important;
     width:100%!important;
   }
   .rm-slide-work .rm-chalk-copy{gap:6px!important}
@@ -240,7 +240,7 @@
     min-height:295px!important;
   }
   .rm-project-main .rm-beyond-balloon{
-    top:-24px!important;
+    top:-38px!important;
     left:15%!important;
     width:78%!important;
     aspect-ratio:1448 / 1086!important;
@@ -256,12 +256,13 @@
   }
   .rm-project-main .rm-beyond-balloon.is-dialogue:not(.is-bjorne-dialogue){
     left:24%!important;
-    top:38px!important;
+    top:30px!important;
+    width:74%!important;
   }
   .rm-project-main .rm-beyond-balloon.is-bjorne-dialogue{
     left:18%!important;
     right:auto!important;
-    top:42px!important;
+    top:28px!important;
     width:72%!important;
     aspect-ratio:1500 / 654!important;
   }
