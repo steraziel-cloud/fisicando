@@ -55,7 +55,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   [redMobileArt,bjorneMobileArt].forEach(src=>{const image=new Image();image.src=src});
   function updateBalloonArt(){
     if(!balloonArt) return;
-    const src=mobileBalloon.matches
+    const src=mobileBalloon.matches && balloon?.classList.contains('is-dialogue')
       ? (balloon?.classList.contains('is-bjorne-dialogue')?bjorneMobileArt:redMobileArt)
       : 'assets/images/oltre-lezioni/baloon-01.png';
     if(balloonArt.getAttribute('src')!==src) balloonArt.src=src;
