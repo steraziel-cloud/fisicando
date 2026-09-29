@@ -48,6 +48,19 @@ window.addEventListener('DOMContentLoaded',()=>{
   }
 
   const balloon=scene.querySelector('.rm-beyond-balloon');
+  const balloonArt=scene.querySelector('.rm-beyond-balloon-art');
+  const mobileBalloon=matchMedia('(max-width:760px)');
+  const redMobileArt='assets/images/oltre-lezioni/baloon-red-02.png';
+  const bjorneMobileArt='assets/images/oltre-lezioni/baloon-bjorne-02.png';
+  [redMobileArt,bjorneMobileArt].forEach(src=>{const image=new Image();image.src=src});
+  function updateBalloonArt(){
+    if(!balloonArt) return;
+    const src=mobileBalloon.matches
+      ? (balloon?.classList.contains('is-bjorne-dialogue')?bjorneMobileArt:redMobileArt)
+      : 'assets/images/oltre-lezioni/baloon-01.png';
+    if(balloonArt.getAttribute('src')!==src) balloonArt.src=src;
+  }
+  mobileBalloon.addEventListener('change',updateBalloonArt);
   const icon=scene.querySelector('[data-beyond-icon]');
   const title=scene.querySelector('[data-beyond-title]');
   const copy=scene.querySelector('[data-beyond-copy]');
@@ -108,6 +121,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     clearTimeout(changeTimer);
     cleanBalloonModes();
     setStateClass(stateIndex);
+    updateBalloonArt();
 
     const applyState=()=>{
       if(icon) icon.textContent=state.icon;
@@ -130,6 +144,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     cleanBalloonModes();
     balloon?.classList.add('is-dialogue');
     balloon?.classList.add(bjorne?'is-bjorne-dialogue':'is-red-dialogue');
+    updateBalloonArt();
     if(title) title.textContent='';
     if(copy) copy.textContent=text;
   }
