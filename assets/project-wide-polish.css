@@ -219,9 +219,9 @@
 
   /* Il pensiero torna leggibile, ma resta ancorato a destra per non coprire Red. */
   .rm-beyond-thought{
-    right:24%!important;
-    top:5px!important;
-    width:min(390px,66%)!important;
+    right:20%!important;
+    top:-90px!important;
+    width:min(370px,63%)!important;
   }
 
   /* SLIDE 5 — A chi ci rivolgiamo: larger final static scene. */
