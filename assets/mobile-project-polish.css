@@ -223,8 +223,8 @@
      whole screen before the reader sees the rest of the copy. */
   .rm-slide-work .rm-classroom-v2{
     --scene-height:300px!important;
-    --morgana-width:42%!important;
-    --morgana-left:-4%!important;
+    --morgana-width:62%!important;
+    --morgana-left:-6%!important;
     width:100%!important;
   }
   .rm-slide-work .rm-chalk-copy{gap:6px!important}
@@ -239,19 +239,52 @@
     min-height:295px!important;
   }
   .rm-project-main .rm-beyond-balloon{
-    top:-24px!important;
-    left:15%!important;
-    width:78%!important;
+    top:38px!important;
+    left:28%!important;
+    width:74%!important;
+    aspect-ratio:1500 / 667!important;
+  }
+  .rm-project-main .rm-beyond-balloon-content{
+    left:30%!important;
+    right:15%!important;
+    top:10%!important;
+    bottom:34%!important;
+  }
+  .rm-project-main .rm-beyond-kicker{
+    font-size:8px!important;
+    gap:4px!important;
+    margin-bottom:2px!important;
+  }
+  .rm-project-main .rm-beyond-icon{
+    width:18px!important;
+    height:18px!important;
+    flex-basis:18px!important;
+    border-radius:6px!important;
+    font-size:11px!important;
+  }
+  .rm-project-main .rm-beyond-balloon h3{font-size:16px!important;margin-bottom:2px!important}
+  .rm-project-main .rm-beyond-balloon p{font-size:10px!important;line-height:1.25!important}
+  .rm-project-main .rm-beyond-balloon.is-dialogue .rm-beyond-balloon-content{
+    top:9%!important;
+    bottom:35%!important;
   }
   .rm-project-main .rm-beyond-balloon.is-dialogue:not(.is-bjorne-dialogue){
-    left:14%!important;
-    top:-22px!important;
+    left:28%!important;
+    top:38px!important;
   }
   .rm-project-main .rm-beyond-balloon.is-bjorne-dialogue{
-    left:auto!important;
-    right:12%!important;
-    top:12px!important;
-    width:70%!important;
+    left:18%!important;
+    right:auto!important;
+    top:22px!important;
+    width:72%!important;
+    aspect-ratio:1500 / 654!important;
+  }
+  .rm-project-main .rm-beyond-balloon.is-bjorne-dialogue .rm-beyond-balloon-art{transform:none!important}
+  .rm-project-main .rm-beyond-balloon.is-bjorne-dialogue .rm-beyond-balloon-content{
+    left:12%!important;
+    right:10%!important;
+    top:10%!important;
+    bottom:36%!important;
   }
   .rm-project-main .rm-beyond-red-hit{left:3%!important;bottom:0!important}
   .rm-project-main .rm-beyond-bjorne-hit{right:3%!important;bottom:-5%!important}
