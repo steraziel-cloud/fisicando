@@ -181,7 +181,7 @@
   */
   .rm-beyond-balloon{
     left:32%!important;
-    top:-27px!important;
+    top:-10px!important;
     width:min(370px,70%)!important;
   }
 
@@ -203,7 +203,7 @@
 
   .rm-beyond-balloon.is-dialogue:not(.is-bjorne-dialogue){
     left:30%!important;
-    top:-14px!important;
+    top:4px!important;
   }
 
   .rm-beyond-balloon.is-red-dialogue{
@@ -212,16 +212,16 @@
 
   .rm-beyond-balloon.is-bjorne-dialogue{
     left:auto!important;
-    right:24%!important;
-    top:75px!important;
+    right:30%!important;
+    top:110px!important;
     width:min(280px,53%)!important;
   }
 
   /* Il pensiero torna leggibile, ma resta ancorato a destra per non coprire Red. */
   .rm-beyond-thought{
-    right:19%!important;
-    top:21px!important;
-    width:min(345px,61%)!important;
+    right:24%!important;
+    top:5px!important;
+    width:min(390px,66%)!important;
   }
 
   /* SLIDE 5 — A chi ci rivolgiamo: larger final static scene. */
