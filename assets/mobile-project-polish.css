@@ -57,6 +57,27 @@
 }
 
 @media (max-width:760px){
+  .rm-slide-about .rm-book-scene-real,
+  .rm-project-main .rm-beyond-scene{isolation:isolate}
+  .rm-slide-about .rm-book-scene-real::before,
+  .rm-project-main .rm-beyond-scene::before{
+    content:"";
+    position:absolute;
+    z-index:0;
+    pointer-events:none;
+    background-position:center;
+    background-size:contain;
+    background-repeat:no-repeat;
+  }
+  .rm-slide-about .rm-book-scene-real::before{
+    inset:-7% -9%;
+    background-image:url("images/red-flip-aligned/sfondo-blob.png");
+  }
+  .rm-slide-about .rm-red-book-image{z-index:1}
+  .rm-project-main .rm-beyond-scene::before{
+    inset:-8% -18% -3%;
+    background-image:url("images/oltre-lezioni/sfondo-blob-oltre-le-lezioni.png?v=2");
+  }
   /* On phones the illustration is part of the opening of every slide:
      eyebrow -> title -> subtitle -> scene -> explanatory copy. */
   .rm-project-main .rm-slide{
