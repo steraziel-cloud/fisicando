@@ -238,6 +238,7 @@
   .rm-project-main .rm-beyond-scene{
     width:100%!important;
     min-height:295px!important;
+    margin-top:58px!important;
   }
   .rm-project-main .rm-beyond-balloon{
     top:-20px!important;
@@ -264,10 +265,10 @@
   .rm-project-main .rm-beyond-balloon::after{
     content:"";
     position:absolute;
-    left:17%;
-    bottom:-49px;
+    left:32%;
+    bottom:-57px;
     width:42px;
-    height:53px;
+    height:61px;
     background:#fff;
     border-left:1px solid #75d5df;
     border-bottom:1px solid #75d5df;
@@ -277,18 +278,24 @@
   }
   .rm-project-main .rm-beyond-balloon.is-dialogue:not(.is-bjorne-dialogue){
     left:34%!important;
-    top:6px!important;
+    top:12px!important;
     width:62%!important;
   }
-  .rm-project-main .rm-beyond-balloon.is-dialogue:not(.is-bjorne-dialogue)::after{left:4%}
+  .rm-project-main .rm-beyond-balloon.is-dialogue:not(.is-bjorne-dialogue)::after{
+    left:12%;
+    bottom:-75px;
+    height:79px;
+  }
   .rm-project-main .rm-beyond-balloon.is-bjorne-dialogue{
     left:14%!important;
-    top:4px!important;
+    top:26px!important;
     width:78%!important;
   }
   .rm-project-main .rm-beyond-balloon.is-bjorne-dialogue::after{
     left:auto;
-    right:17%;
+    right:30%;
+    bottom:-75px;
+    height:79px;
     border-left:0;
     border-right:1px solid #75d5df;
     clip-path:polygon(0 0,100% 0,100% 100%);
