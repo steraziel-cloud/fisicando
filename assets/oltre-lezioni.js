@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     thought=document.createElement('img');
     thought.className='rm-beyond-thought';
     thought.dataset.beyondThought='';
-    thought.src='assets/images/oltre-lezioni/bjorne-thought-boxes-01.png';
+    thought.src='assets/images/oltre-lezioni/bjorne-thought-boxes-02.png';
     thought.alt='Bjorne immagina una scatola di cartone trasformarsi in un motore a pistone, un treno di ingranaggi e un sistema di sollevamento';
     scene.appendChild(thought);
   }
