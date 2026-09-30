@@ -302,6 +302,19 @@
     transform:skewX(22deg);
     transform-origin:top right;
   }
+  .rm-project-main .rm-beyond-balloon{transition:opacity .22s ease!important}
+  .rm-project-main .rm-beyond-balloon.is-changing{transform:none}
+  .rm-project-main .rm-beyond-balloon.has-anchored-tail::after{
+    left:var(--tail-left)!important;
+    right:auto!important;
+    top:calc(100% - 2px)!important;
+    bottom:auto!important;
+    width:var(--tail-width)!important;
+    height:var(--tail-height)!important;
+    border:0!important;
+    transform:none!important;
+    clip-path:var(--tail-shape)!important;
+  }
   .rm-project-main .rm-beyond-balloon.is-dialogue p{font-size:10.5px!important;line-height:1.3!important}
   .rm-project-main .rm-beyond-red-hit{left:3%!important;bottom:0!important}
   .rm-project-main .rm-beyond-bjorne-hit{right:3%!important;bottom:-5%!important}

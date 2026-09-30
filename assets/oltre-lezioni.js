@@ -73,6 +73,44 @@ window.addEventListener('DOMContentLoaded',()=>{
     {icon:'⚗️',title:'Laboratori',copy:'Strumenti interattivi per osservare, sperimentare e ragionare sui concetti.'}
   ];
 
+  // Mobile speech tips follow fixed points in the character artwork,
+  // independently of the amount of text and of the speaker's balloon box.
+  function updateMobileTail(){
+    if(!balloon || !mobileBalloon.matches) return;
+    const bjorne=balloon.classList.contains('is-bjorne-dialogue');
+    const img=bjorne?bjorneImage:scene.querySelector('.rm-beyond-red');
+    if(!img?.naturalWidth || !img.naturalHeight) return;
+    const sceneRect=scene.getBoundingClientRect();
+    const imageRect=img.getBoundingClientRect();
+    const scale=Math.min(imageRect.width/img.naturalWidth,imageRect.height/img.naturalHeight);
+    const width=img.naturalWidth*scale;
+    const height=img.naturalHeight*scale;
+    // object-position: Red left bottom, Bjorne right bottom.
+    const imageX=imageRect.left-sceneRect.left+(bjorne?imageRect.width-width:0);
+    const imageY=imageRect.bottom-sceneRect.top-height;
+    const tipX=imageX+width*(bjorne?-.05:.97);
+    const tipY=imageY+height*(bjorne?.43:.28);
+    const top=balloon.offsetHeight-2;
+    const targetX=tipX-balloon.offsetLeft;
+    const targetY=tipY-balloon.offsetTop-top;
+    if(targetY<=0) return;
+    const base=Math.max(25,Math.min(balloon.offsetWidth-25,targetX+30));
+    const left=Math.min(base-21,targetX);
+    const right=Math.max(base+21,targetX);
+    balloon.style.setProperty('--tail-left',`${left}px`);
+    balloon.style.setProperty('--tail-width',`${right-left}px`);
+    balloon.style.setProperty('--tail-height',`${targetY}px`);
+    balloon.style.setProperty('--tail-shape',`polygon(${base-21-left}px 0,${base+21-left}px 0,${targetX-left}px 100%)`);
+    balloon.classList.add('has-anchored-tail');
+  }
+  const tailObserver=new ResizeObserver(updateMobileTail);
+  if(balloon) tailObserver.observe(balloon);
+  tailObserver.observe(scene);
+  scene.querySelectorAll('.rm-beyond-red,.rm-beyond-bjorne').forEach(img=>{
+    img.addEventListener('load',updateMobileTail);
+  });
+  mobileBalloon.addEventListener('change',updateMobileTail);
+
   const AUTO_MS=4300;
   const BJORNE_LINE_MS=2800;
   const RED_REPLY_MS=2700;
@@ -129,6 +167,7 @@ window.addEventListener('DOMContentLoaded',()=>{
       if(copy) copy.textContent=state.copy;
       dots.forEach((dot,i)=>dot.classList.toggle('is-active',i===stateIndex));
       balloon?.classList.remove('is-changing');
+      updateMobileTail();
     };
 
     if(animate && !matchMedia('(prefers-reduced-motion: reduce)').matches){
@@ -147,6 +186,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     updateBalloonArt();
     if(title) title.textContent='';
     if(copy) copy.textContent=text;
+    updateMobileTail();
   }
 
   function stopAuto(){

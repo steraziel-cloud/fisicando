@@ -192,49 +192,128 @@ window.addEventListener('DOMContentLoaded',()=>{
   let morganaFrameTimer=null;
   let morganaTurnPlaying=false;
 
-  const morganaFrameMetrics=new Map();
-
-  function measureMorganaFrame(img){
-    const canvas=document.createElement('canvas');
-    canvas.width=img.naturalWidth;
-    canvas.height=img.naturalHeight;
-    const ctx=canvas.getContext('2d',{willReadFrequently:true});
-    ctx.drawImage(img,0,0);
-    const {data}=ctx.getImageData(0,0,canvas.width,canvas.height);
-    let left=canvas.width,top=canvas.height,right=-1,bottom=-1;
-
-    for(let y=0;y<canvas.height;y+=2){
-      for(let x=0;x<canvas.width;x+=2){
-        if(data[(y*canvas.width+x)*4+3]>12){
-          if(x<left) left=x;
-          if(x>right) right=x;
-          if(y<top) top=y;
-          if(y>bottom) bottom=y;
-        }
-      }
+  // Alpha bounds computed from the shipped PNGs, using the same two-pixel
+  // sampling as before. Avoid scanning nine full canvases on every phone visit.
+  const morganaFrameMetrics=new Map([
+  [
+    "assets/images/morgana-classroom/morgana-turn-10.png",
+    {
+      "left": 432,
+      "top": 18,
+      "right": 1112,
+      "bottom": 922,
+      "width": 680,
+      "height": 904,
+      "centerX": 772.0
     }
-
-    if(right<left || bottom<top) return null;
-    return {
-      left,top,right,bottom,
-      width:right-left,
-      height:bottom-top,
-      centerX:(left+right)/2
-    };
+  ],
+  [
+    "assets/images/morgana-classroom/morgana-turn-02.png",
+    {
+      "left": 456,
+      "top": 18,
+      "right": 1150,
+      "bottom": 924,
+      "width": 694,
+      "height": 906,
+      "centerX": 803.0
+    }
+  ],
+  [
+    "assets/images/morgana-classroom/morgana-turn-03.png",
+    {
+      "left": 446,
+      "top": 8,
+      "right": 1166,
+      "bottom": 924,
+      "width": 720,
+      "height": 916,
+      "centerX": 806.0
+    }
+  ],
+  [
+    "assets/images/morgana-classroom/morgana-turn-04.png",
+    {
+      "left": 432,
+      "top": 16,
+      "right": 1226,
+      "bottom": 926,
+      "width": 794,
+      "height": 910,
+      "centerX": 829.0
+    }
+  ],
+  [
+    "assets/images/morgana-classroom/morgana-turn-05.png",
+    {
+      "left": 444,
+      "top": 16,
+      "right": 1202,
+      "bottom": 926,
+      "width": 758,
+      "height": 910,
+      "centerX": 823.0
+    }
+  ],
+  [
+    "assets/images/morgana-classroom/morgana-turn-06.png",
+    {
+      "left": 408,
+      "top": 8,
+      "right": 1216,
+      "bottom": 934,
+      "width": 808,
+      "height": 926,
+      "centerX": 812.0
+    }
+  ],
+  [
+    "assets/images/morgana-classroom/morgana-turn-07.png",
+    {
+      "left": 418,
+      "top": 2,
+      "right": 1214,
+      "bottom": 936,
+      "width": 796,
+      "height": 934,
+      "centerX": 816.0
+    }
+  ],
+  [
+    "assets/images/morgana-classroom/morgana-turn-08.png",
+    {
+      "left": 454,
+      "top": 14,
+      "right": 1164,
+      "bottom": 930,
+      "width": 710,
+      "height": 916,
+      "centerX": 809.0
+    }
+  ],
+  [
+    "assets/images/morgana-classroom/morgana-turn-09.png",
+    {
+      "left": 450,
+      "top": 14,
+      "right": 1178,
+      "bottom": 924,
+      "width": 728,
+      "height": 910,
+      "centerX": 814.0
+    }
+  ]
+]);
+  let morganaFramesPrepared=false;
+  function prepareMorganaFrames(){
+    if(morganaFramesPrepared) return;
+    morganaFramesPrepared=true;
+    [...new Set(morganaTurnFrames)].forEach(src=>{
+      const preload=new Image();
+      preload.decoding='async';
+      preload.src=src;
+    });
   }
-
-  [...new Set(morganaTurnFrames)].forEach(src=>{
-    const preload=new Image();
-    preload.decoding='async';
-    preload.onload=()=>{
-      try{
-        morganaFrameMetrics.set(src,measureMorganaFrame(preload));
-      }catch(error){
-        console.warn('Impossibile misurare il frame di Morgana',src,error);
-      }
-    };
-    preload.src=src;
-  });
 
   function showMorganaFrame(src){
     if(!classroomMorgana) return;
@@ -327,6 +406,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     clearInterval(bookAutoTimer);
 
     if(index!==2) resetMorganaTurn();
+    else prepareMorganaFrames();
 
     if(index===0){
       bookAutoTimer=setInterval(()=>nextBookPage(false),BOOK_AUTO_MS);
