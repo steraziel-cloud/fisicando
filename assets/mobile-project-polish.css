@@ -265,10 +265,10 @@
   .rm-project-main .rm-beyond-balloon::after{
     content:"";
     position:absolute;
-    left:21%;
-    bottom:-53px;
+    left:26%;
+    bottom:-33px;
     width:42px;
-    height:57px;
+    height:37px;
     background:#fff;
     border-left:1px solid #75d5df;
     border-bottom:1px solid #75d5df;
