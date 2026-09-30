@@ -94,7 +94,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     const targetX=tipX-balloon.offsetLeft;
     const targetY=tipY-balloon.offsetTop-top;
     if(targetY<=0) return;
-    const base=Math.max(25,Math.min(balloon.offsetWidth-25,targetX+30));
+    const base=Math.max(25,Math.min(balloon.offsetWidth-25,targetX+(bjorne?-30:30)));
     const left=Math.min(base-21,targetX);
     const right=Math.max(base+21,targetX);
     balloon.style.setProperty('--tail-left',`${left}px`);
