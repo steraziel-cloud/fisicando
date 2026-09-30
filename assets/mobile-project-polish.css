@@ -241,10 +241,10 @@
     margin-top:58px!important;
   }
   .rm-project-main .rm-beyond-balloon{
-    top:-20px!important;
-    left:18%!important;
+    top:-10px!important;
+    left:26%!important;
     right:auto!important;
-    width:79%!important;
+    width:67%!important;
     aspect-ratio:auto!important;
     min-height:0;
     padding:14px 15px 15px;
@@ -265,10 +265,10 @@
   .rm-project-main .rm-beyond-balloon::after{
     content:"";
     position:absolute;
-    left:29%;
-    bottom:-57px;
+    left:21%;
+    bottom:-53px;
     width:42px;
-    height:61px;
+    height:57px;
     background:#fff;
     border-left:1px solid #75d5df;
     border-bottom:1px solid #75d5df;
