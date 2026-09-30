@@ -1,0 +1,6 @@
+# File generati dal sistema operativo e da Python durante il lavoro locale.
+.DS_Store
+Thumbs.db
+Desktop.ini
+__pycache__/
+*.py[cod]
