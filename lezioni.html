@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>GatitoMath – Lezioni online</title>
   <link rel="icon" type="image/png" href="assets/images/red-logo-head.png">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Esplora i materiali di matematica e fisica di GatitoMath: teoria, esercizi e laboratori interattivi.">
   <link rel="stylesheet" href="assets/reddito.css?v=5">
   <link rel="stylesheet" href="assets/gatitomath-wordmark.css?v=7">
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/lezioni.css?v=1">
   <script src="assets/content.js" defer></script>
   <script src="assets/site.js" defer></script>
+  <script src="assets/percorsi.js" defer></script>
   <script src="assets/main.js" defer></script>
 </head>
-<body>
+<body class="rm-lessons-page">
   <header class="rm-topbar">
     <div class="rm-shell rm-topbar-inner">
       <a class="rm-logo rm-logo-art" href="index.html" aria-label="GatitoMath, Home"><img class="rm-logo-red" src="assets/images/red-logo-head.png" alt="" width="640" height="585" aria-hidden="true"><span class="rm-logo-name">Gatito<span>Math</span></span></a>
@@ -21,22 +22,38 @@
         <a href="index.html">Home</a>
         <a href="info.html">Il progetto</a>
         <a href="contatti.html">Contatti</a>
-        <a class="active" href="lezioni.html">Lezioni online</a>
+        <a class="active" href="percorsi.html">Lezioni online</a>
       </nav>
       <button id="theme-toggle" class="rm-theme" aria-label="Cambia tema">🌙</button>
     </div>
   </header>
-  <div class="container">
-    <div class="layout">
-      <aside class="sidebar" id="sidebar"></aside>
-      <main class="main" id="main">
-        <section class="card" id="welcome">
-          <h2>Lezioni online</h2>
-          <p class="muted">Questa è, per ora, la struttura didattica ereditata da Fisicando. Verrà progressivamente integrata nella nuova piattaforma GatitoMath.</p>
+  <main class="rm-lessons-main" id="main">
+    <div class="rm-shell">
+      <div class="rm-eyebrow">Lezioni online</div>
+      <h1 class="rm-lessons-title">Uno spazio per <span>imparare.</span></h1>
+      <p class="rm-lessons-lead">Esplora i materiali di matematica e fisica: spiegazioni, esercizi e laboratori per mettere in pratica quello che studi.</p>
+
+      <p class="rm-selected-path" id="selected-path" hidden><span></span> <a href="percorsi.html">Cambia percorso</a></p>
+      <div class="rm-lessons-layout">
+        <aside class="sidebar" aria-labelledby="topics-title">
+          <h2 id="topics-title">Argomenti</h2>
+          <p class="rm-topics-hint">Scegli un percorso e apri un argomento.</p>
+          <nav id="sidebar" aria-label="Indice dei materiali didattici"></nav>
+        </aside>
+
+        <section class="rm-lessons-content" id="welcome" aria-labelledby="materials-title">
+          <h2 id="materials-title">Come vuoi iniziare?</h2>
+          <div class="rm-material-grid">
+            <article class="rm-material-card"><span class="rm-material-label">01 · Teoria</span><h3>Capire i concetti</h3><p>Definizioni, spiegazioni ed esempi per orientarti nell’argomento.</p></article>
+            <article class="rm-material-card"><span class="rm-material-label">02 · Esercizi</span><h3>Metterti alla prova</h3><p>Esercizi per applicare i concetti e allenare il ragionamento.</p></article>
+            <article class="rm-material-card"><span class="rm-material-label">03 · Laboratorio</span><h3>Esplorare e sperimentare</h3><p>Strumenti interattivi per osservare e lavorare direttamente sui concetti.</p></article>
+          </div>
+          <p class="rm-lessons-note">Questa raccolta è in crescita: nuovi materiali e strumenti verranno aggiunti nel tempo.</p>
+          <a class="rm-btn secondary" href="contatti.html">Cerchi una lezione con noi? Parliamone</a>
         </section>
-      </main>
+      </div>
+      <footer class="rm-lessons-footer"><small>© 2026 – GatitoMath</small></footer>
     </div>
-    <footer class="muted" style="margin-top:14px;"><small>© 2026 – GatitoMath</small></footer>
-  </div>
+  </main>
 </body>
 </html>

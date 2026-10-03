@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GatitoMath – Scegli il tuo percorso</title>
+  <meta name="description" content="Scegli il tuo ruolo e il livello di studio per entrare nei materiali didattici di GatitoMath.">
+  <link rel="icon" type="image/png" href="assets/images/red-logo-head.png">
+  <link rel="stylesheet" href="assets/reddito.css?v=5">
+  <link rel="stylesheet" href="assets/gatitomath-wordmark.css?v=7">
+  <link rel="stylesheet" href="assets/lezioni.css?v=1">
+  <script src="assets/main.js" defer></script>
+  <script src="assets/percorsi.js" defer></script>
+</head>
+<body class="rm-lessons-page">
+  <header class="rm-topbar">
+    <div class="rm-shell rm-topbar-inner">
+      <a class="rm-logo rm-logo-art" href="index.html" aria-label="GatitoMath, Home"><img class="rm-logo-red" src="assets/images/red-logo-head.png" alt="" width="640" height="585" aria-hidden="true"><span class="rm-logo-name">Gatito<span>Math</span></span></a>
+      <nav class="rm-nav" aria-label="Navigazione principale">
+        <a href="index.html">Home</a>
+        <a href="info.html">Il progetto</a>
+        <a href="contatti.html">Contatti</a>
+        <a class="active" href="percorsi.html">Lezioni online</a>
+      </nav>
+      <button id="theme-toggle" class="rm-theme" aria-label="Cambia tema">🌙</button>
+    </div>
+  </header>
+  <main class="rm-lessons-main">
+    <div class="rm-shell">
+      <div class="rm-eyebrow">Lezioni online</div>
+      <h1 class="rm-lessons-title">Da dove <span>partiamo?</span></h1>
+      <p class="rm-lessons-lead">Raccontaci come ti avvicini a GatitoMath e quale livello di studio ti interessa.</p>
+      <form class="rm-path-form" action="lezioni.html" method="get">
+        <fieldset>
+          <legend>1. Chi sei?</legend>
+          <div class="rm-choice-grid rm-role-grid">
+          <label class="rm-choice"><input type="radio" name="ruolo" value="studente" required><span>Studente / studentessa</span></label>
+          <label class="rm-choice"><input type="radio" name="ruolo" value="docente" required><span>Docente</span></label>
+          <label class="rm-choice"><input type="radio" name="ruolo" value="genitore" required><span>Genitore</span></label>
+          <label class="rm-choice"><input type="radio" name="ruolo" value="altro" required><span>Altro</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>2. Quale livello ti interessa?</legend>
+          <div class="rm-choice-grid rm-level-grid">
+          <label class="rm-choice"><input type="radio" name="livello" value="elementari" required><span>Elementari</span></label>
+          <label class="rm-choice"><input type="radio" name="livello" value="medie" required><span>Medie</span></label>
+          <label class="rm-choice"><input type="radio" name="livello" value="biennio" required><span>Biennio superiori</span></label>
+          <label class="rm-choice"><input type="radio" name="livello" value="triennio" required><span>Triennio superiori</span></label>
+          <label class="rm-choice"><input type="radio" name="livello" value="universita" required><span>Università</span></label>
+          </div>
+        </fieldset>
+        <div class="rm-path-actions">
+          <button class="rm-btn primary" type="submit">Esplora i materiali <span aria-hidden="true">→</span></button>
+          <a href="lezioni.html">Esplora tutta la raccolta</a>
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
+</html>
