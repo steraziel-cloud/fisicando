@@ -1,0 +1,11 @@
+/* Welcome artwork stays beside both selection steps. */
+.rm-path-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,76px);align-items:center;margin-top:34px}
+.rm-path-layout .rm-path-form{width:100%;max-width:560px;margin-top:0;min-width:0}
+.rm-path-art{position:relative;isolation:isolate;min-width:0;max-width:540px;width:100%;justify-self:end}
+.rm-path-art::before{content:"";position:absolute;inset:12% 0 5%;border-radius:46% 54% 58% 42% / 44% 40% 60% 56%;background:var(--rm-accent);opacity:.12;z-index:-1;transform:rotate(-7deg)}
+.rm-path-art img{display:block;width:100%;height:auto}
+@media(max-width:760px){
+  .rm-path-layout{grid-template-columns:1fr;gap:28px;margin-top:26px}
+  .rm-path-layout .rm-path-form{max-width:none}
+  .rm-path-art{width:min(76%,340px);justify-self:center}
+}
