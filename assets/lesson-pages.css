@@ -1,0 +1,76 @@
+/* Shared shell for existing theory, exercise and standalone laboratory pages. */
+body.rm-learning-page{
+  --bg:var(--rm-bg);--panel:var(--rm-panel);--card:var(--rm-card);
+  --text:var(--rm-text);--muted:var(--rm-muted);--accent:var(--rm-accent);
+  --accent-2:var(--rm-accent-2);--font:"Manrope",sans-serif;
+  --border-color:var(--rm-line);--card-bg:var(--rm-panel);--accent-color:var(--rm-accent-2);
+  height:auto;min-height:100dvh;font:16px/1.7 var(--font);
+  background:var(--rm-bg);color:var(--rm-text);
+}
+.rm-learning-page .rm-topbar{height:var(--rm-header-h)}
+.rm-learning-page .rm-logo{background:none;border:0;padding:0}
+.rm-learning-page .container{width:min(1240px,calc(100% - 40px));max-width:none;margin:0 auto;padding:38px 0;background:none}
+.rm-learning-page .rm-learning-intro{margin-bottom:28px}
+.rm-learning-page .rm-learning-intro h1{font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-.04em;margin:14px 0 0;font-weight:800}
+.rm-learning-page .rm-learning-back{display:inline-block;color:var(--rm-accent-2);font-size:14px;font-weight:700;text-underline-offset:4px;padding:4px 0}
+.rm-learning-page .layout{grid-template-columns:minmax(230px,280px) minmax(0,1fr);gap:30px;align-items:start;background:none}
+.rm-learning-page .main{min-width:0;gap:22px}
+.rm-learning-page .sidebar{background:var(--rm-panel);border:1px solid var(--rm-line);border-radius:22px;padding:22px;position:sticky;top:calc(var(--rm-header-h) + 22px)}
+.rm-learning-page .side-group + .side-group{border-top:1px solid var(--rm-line);padding-top:12px;margin-top:12px}
+.rm-learning-page .side-title{font:800 15px/1.5 var(--font);min-height:48px;padding:10px 0;color:var(--rm-text)}
+.rm-learning-page .side-item>a{min-height:44px;padding:10px 12px;font-size:14px;border-radius:10px;line-height:1.5}
+.rm-learning-page .side-sub{padding:4px 0 8px 12px}
+.rm-learning-page .side-sub a{min-height:44px;padding:10px 12px;border-left:2px solid var(--rm-line);font-size:14px;line-height:1.5;text-decoration:none}
+.rm-learning-page .side-sub a.active{border-color:var(--rm-accent)}
+.rm-learning-page .side-item a:hover{background:var(--rm-card);color:var(--rm-accent-2)}
+.rm-learning-page .card{padding:28px;border:1px solid var(--rm-line);border-radius:22px;background:var(--rm-card);box-shadow:none;min-width:0}
+.rm-learning-page h2{font-size:clamp(23px,2vw,29px);line-height:1.3;letter-spacing:-.025em;margin:0 0 18px}
+.rm-learning-page h3{font-size:19px;line-height:1.4;margin:24px 0 12px}
+.rm-learning-page .theory>section + section{border-top:1px solid var(--rm-line);margin-top:34px;padding-top:28px}
+.rm-learning-page p,.rm-learning-page li{overflow-wrap:break-word}
+.rm-learning-page .main p{margin:14px 0;line-height:1.8}
+.rm-learning-page details.approfondimento{border-color:var(--rm-line);background:var(--rm-panel);border-radius:14px;padding:16px 18px}
+.rm-learning-page details summary{color:var(--rm-accent-2);line-height:1.5}
+.rm-learning-page .lab-card{padding:22px 0;border-bottom:1px solid var(--rm-line)}
+.rm-learning-page .lab-card:first-child{padding-top:0}
+.rm-learning-page .lab-card:last-child{border-bottom:0}
+.rm-learning-page .solution{background:var(--rm-panel);padding:18px;border-radius:14px;color:var(--rm-text)!important}
+.rm-learning-page .btn{font-family:var(--font);font-size:14px;font-weight:700;min-height:44px;padding:10px 16px;border-radius:12px;background:var(--rm-accent-2);color:#fff;line-height:1.35}
+.rm-learning-page .btn.small{font-size:13px;min-height:40px;padding:8px 11px}
+.rm-learning-page .btn.secondary{background:var(--rm-panel);color:var(--rm-text);border:1px solid var(--rm-line)}
+.rm-learning-page .btn.danger{background:#ba3343;color:#fff}
+.rm-learning-page .btn:disabled{opacity:.45;cursor:not-allowed}
+.rm-learning-page :is(button,a,input,select,summary):focus-visible{outline:2px solid var(--rm-accent);outline-offset:3px}
+.rm-learning-page :is(input,select){font:inherit;color:var(--rm-text);background:var(--rm-card);border:1px solid var(--rm-line);border-radius:8px;padding:7px 8px;min-width:0;min-height:40px}
+.rm-learning-page input[type=radio],.rm-learning-page input[type=checkbox]{min-height:0;accent-color:var(--rm-accent-2)}
+.rm-learning-page .row{gap:8px}
+.rm-learning-page .row label{font-size:14px}
+.rm-learning-page .row :is(input,select){font-size:14px}
+.rm-learning-page footer{border-top:1px solid var(--rm-line);margin-top:32px;padding-top:18px;color:var(--rm-muted)}
+.rm-learning-page mjx-container[display="true"]{max-width:100%;overflow-x:auto;overflow-y:hidden;padding:8px 0}
+.rm-learning-page .rm-table-scroll{max-width:100%;overflow-x:auto;margin:22px 0}
+.rm-learning-page table{min-width:520px}
+.rm-learning-page .laboratorio-standalone{width:min(1480px,calc(100% - 40px))}
+.rm-learning-page .lab-grid{grid-template-columns:minmax(280px,340px) minmax(0,1fr);gap:28px}
+.rm-learning-page .lab-controls{max-width:none!important;min-width:0}
+.rm-learning-page .lab-controls h3{font-size:17px;margin:8px 0 12px}
+.rm-learning-page .lab-controls>div[id]{border:1px solid var(--rm-line);background:var(--rm-panel)!important}
+.rm-learning-page #lab-canvas{height:clamp(400px,62dvh,720px);border:1px solid var(--rm-line);border-radius:16px}
+.rm-learning-page .vector-list{font-size:14px;border-color:var(--rm-line);max-height:240px}
+.rm-learning-page :is(#motorModal,#springModal,#frictionModal,#constraintModal){z-index:1100!important}
+.rm-learning-page :is(#motorModalPanel,#springModalPanel,#frictionModalPanel,#constraintModalPanel){background:var(--rm-card)!important;color:var(--rm-text)!important;max-height:80dvh;overflow:auto!important;max-width:calc(100vw - 32px)}
+.rm-learning-page :is(#motorModalHandle,#springModalHandle,#frictionModalHandle,#constraintModalHandle){background:var(--rm-panel)!important;border-color:var(--rm-line)!important}
+@media(max-width:1000px){
+  .rm-learning-page .layout{grid-template-columns:1fr}
+  .rm-learning-page .sidebar{position:static}
+  .rm-learning-page .lab-grid{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .rm-learning-page .container,.rm-learning-page .laboratorio-standalone{width:calc(100% - 32px);padding:28px 0}
+  .rm-learning-page .card,.rm-learning-page .sidebar{padding:19px;border-radius:17px}
+  .rm-learning-page .rm-learning-intro{margin-bottom:22px}
+  .rm-learning-page .layout{gap:22px}
+  .rm-learning-page #lab-canvas{height:400px}
+  .rm-learning-page .lab-controls>div{max-width:100%}
+  .rm-learning-page :is(#motorModalPanel,#springModalPanel,#frictionModalPanel,#constraintModalPanel){left:16px!important;top:16px!important;width:calc(100vw - 32px)!important;transform:none!important}
+}
