@@ -30,4 +30,4 @@
 .rm-welcome-small-star{right:2%;top:16%;font-size:28px;color:#e7b94f;opacity:.85}
 @media(max-width:760px){.rm-path-art{transform:none}.rm-welcome-book{width:32px}.rm-welcome-pi{font-size:30px}.rm-welcome-star{font-size:28px}.rm-welcome-small-star{font-size:20px}}
 
-@media(min-width:1120px){.rm-path-layout .rm-path-form{transform:translateY(-24px)}}
+@media(min-width:1120px){.rm-path-layout .rm-path-form{transform:translateY(-48px)}}
