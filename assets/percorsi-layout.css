@@ -1,7 +1,7 @@
 /* Welcome artwork stays beside both selection steps. */
 .rm-path-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,76px);align-items:center;margin-top:34px}
 .rm-path-layout .rm-path-form{width:100%;max-width:650px;margin-top:0;min-width:0;padding:30px;border:1px solid var(--rm-line);border-radius:28px;background:linear-gradient(135deg,var(--rm-panel),var(--rm-card));box-shadow:0 18px 48px rgba(0,0,0,.06)}
-.rm-path-art{position:relative;isolation:isolate;min-width:0;max-width:640px;width:100%;justify-self:center;transform:translateX(-32px)}
+.rm-path-art{position:relative;isolation:isolate;min-width:0;max-width:640px;width:100%;justify-self:center;transform:translate(-32px,var(--path-art-offset,0px))}
 .rm-path-art::before{content:"";position:absolute;inset:6% -1% 7%;border-radius:46% 54% 58% 42% / 44% 40% 60% 56%;background:linear-gradient(135deg,color-mix(in srgb,#8ce9ef 34%,var(--rm-bg)),color-mix(in srgb,var(--rm-accent) 22%,var(--rm-bg)));z-index:-1;transform:rotate(-7deg)}
 .rm-path-art img{position:relative;z-index:2;display:block;width:100%;height:auto}
 @media(max-width:760px){

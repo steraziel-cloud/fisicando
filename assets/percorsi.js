@@ -98,4 +98,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!roles[roleInput.value]) { event.preventDefault(); showStep(false, ""); }
   });
   restoreStep();
+  // Center the artwork against the full left-hand copy, not only the menu row.
+  const pathLayout = document.querySelector(".rm-path-layout");
+  const pathIntro = document.querySelector(".rm-lessons-main .rm-eyebrow");
+  const pathShell = pathLayout.closest(".rm-shell");
+  function alignWelcomeArt() {
+    let offset = 0;
+    if (window.matchMedia("(min-width:1120px)").matches) {
+      const row = pathLayout.getBoundingClientRect();
+      const intro = pathIntro.getBoundingClientRect();
+      const menu = form.getBoundingClientRect();
+      offset = (intro.top + menu.bottom) / 2 - (row.top + row.height / 2);
+    }
+    const value = `${Math.round(offset)}px`;
+    if (pathLayout.style.getPropertyValue("--path-art-offset") !== value) {
+      pathLayout.style.setProperty("--path-art-offset", value);
+    }
+  }
+  alignWelcomeArt();
+  if ("ResizeObserver" in window) {
+    const artAlignment = new ResizeObserver(alignWelcomeArt);
+    artAlignment.observe(pathShell);
+    artAlignment.observe(form);
+  }
+  window.addEventListener("resize", alignWelcomeArt, {passive:true});
 });
