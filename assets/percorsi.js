@@ -25,23 +25,72 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
-  const roles = {studente:"Studente / studentessa", docente:"Docente", genitore:"Genitore", altro:"Altro"};
+  const roles = {studente:"Studentessa/studente", altro:"Altro"};
   const levels = {elementari:"Elementari", medie:"Medie", biennio:"Biennio superiori", triennio:"Triennio superiori", universita:"Università"};
   const params = new URLSearchParams(location.search);
   const role = params.get("ruolo");
   const level = params.get("livello");
   const selected = document.getElementById("selected-path");
-  if (selected && roles[role] && levels[level]) {
-    selected.querySelector("span").textContent = `${roles[role]} · ${levels[level]}`;
+  if (selected && levels[level]) {
+    selected.querySelector("span").textContent = `${roles[role] ? roles[role] + " · " : ""}${levels[level]}`;
     const change = new URL("percorsi.html", location.href);
-    change.search = params.toString();
+    if (roles[role]) change.searchParams.set("ruolo", role);
+    change.searchParams.set("livello", level);
     selected.querySelector("a").href = change.href;
     selected.hidden = false;
+    const introductions = {
+      elementari:"Un percorso per avvicinarti alla matematica, capire le idee e imparare con curiosità.",
+      medie:"Uno spazio per consolidare le basi, ragionare sui problemi e prepararti al passo successivo.",
+      biennio:"Esplora i laboratori per lavorare su vettori, forze ed equilibrio e dare forma ai concetti che studi.",
+      triennio:"Approfondisci matematica e fisica con spiegazioni, esercizi e laboratori interattivi.",
+      universita:"Riprendi e approfondisci vettori e meccanica del punto materiale con teoria, esercizi e strumenti interattivi."
+    };
+    document.getElementById("lessons-lead").textContent = introductions[level];
+    document.title = `GatitoMath – Lezioni · ${levels[level]}`;
+  }
+  const empty = document.getElementById("topics-empty");
+  if (empty && window.SITE_MAP && !window.SITE_MAP.length) {
+    empty.hidden = false;
+    document.getElementById("topics-hint").hidden = true;
+    document.getElementById("materials-title").textContent = "Cosa troverai in questo percorso";
   }
   const form = document.querySelector(".rm-path-form");
   if (!form) return;
-  // Restore the choices when the visitor follows “Cambia percorso”.
-  for (const input of form.querySelectorAll('input[type="radio"]')) {
-    input.checked = input.value === params.get(input.name);
+  const roleStep = document.getElementById("role-step");
+  const levelStep = document.getElementById("level-step");
+  const roleInput = document.getElementById("path-role");
+  function showStep(second, chosenRole, focus = true) {
+    roleInput.value = roles[chosenRole] ? chosenRole : "";
+    const showLevel = second && !!roleInput.value;
+    roleStep.hidden = showLevel;
+    levelStep.hidden = !showLevel;
+    document.getElementById("path-role-label").textContent = roles[chosenRole] || "";
+    if (focus) document.getElementById(showLevel ? "level-title" : "role-title").focus();
   }
+  function selectRole(chosenRole) {
+    const url = new URL(location.href);
+    url.searchParams.set("ruolo", chosenRole);
+    url.searchParams.set("passo", "livello");
+    url.searchParams.delete("livello");
+    history.pushState(null, "", url);
+    showStep(true, chosenRole);
+  }
+  for (const button of form.querySelectorAll("[data-role]")) {
+    button.addEventListener("click", () => selectRole(button.dataset.role));
+  }
+  document.getElementById("path-back").addEventListener("click", () => {
+    const url = new URL(location.href);
+    url.search = "";
+    history.pushState(null, "", url);
+    showStep(false, "");
+  });
+  function restoreStep(focus = false) {
+    const current = new URLSearchParams(location.search);
+    showStep(current.get("passo") === "livello" || !!levels[current.get("livello")], current.get("ruolo"), focus);
+  }
+  window.addEventListener("popstate", () => restoreStep(true));
+  form.addEventListener("submit", event => {
+    if (!roles[roleInput.value]) { event.preventDefault(); showStep(false, ""); }
+  });
+  restoreStep();
 });

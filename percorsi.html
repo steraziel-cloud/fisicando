@@ -8,9 +8,9 @@
   <link rel="icon" type="image/png" href="assets/images/red-logo-head.png">
   <link rel="stylesheet" href="assets/reddito.css?v=5">
   <link rel="stylesheet" href="assets/gatitomath-wordmark.css?v=7">
-  <link rel="stylesheet" href="assets/lezioni.css?v=1">
+  <link rel="stylesheet" href="assets/lezioni.css?v=2">
   <script src="assets/main.js" defer></script>
-  <script src="assets/percorsi.js" defer></script>
+  <script src="assets/percorsi.js?v=2" defer></script>
 </head>
 <body class="rm-lessons-page">
   <header class="rm-topbar">
@@ -31,29 +31,27 @@
       <h1 class="rm-lessons-title">Da dove <span>partiamo?</span></h1>
       <p class="rm-lessons-lead">Raccontaci come ti avvicini a GatitoMath e quale livello di studio ti interessa.</p>
       <form class="rm-path-form" action="lezioni.html" method="get">
-        <fieldset>
-          <legend>1. Chi sei?</legend>
-          <div class="rm-choice-grid rm-role-grid">
-          <label class="rm-choice"><input type="radio" name="ruolo" value="studente" required><span>Studente / studentessa</span></label>
-          <label class="rm-choice"><input type="radio" name="ruolo" value="docente" required><span>Docente</span></label>
-          <label class="rm-choice"><input type="radio" name="ruolo" value="genitore" required><span>Genitore</span></label>
-          <label class="rm-choice"><input type="radio" name="ruolo" value="altro" required><span>Altro</span></label>
+        <input type="hidden" name="ruolo" id="path-role" value="">
+        <section class="rm-path-step" id="role-step" aria-labelledby="role-title">
+          <h2 id="role-title" tabindex="-1">Chi sei?</h2>
+          <div class="rm-choice-grid">
+            <button class="rm-choice" type="button" data-role="studente">Studentessa/studente <span aria-hidden="true">→</span></button>
+            <button class="rm-choice" type="button" data-role="altro">Altro <span aria-hidden="true">→</span></button>
           </div>
-        </fieldset>
-        <fieldset>
-          <legend>2. Quale livello ti interessa?</legend>
-          <div class="rm-choice-grid rm-level-grid">
-          <label class="rm-choice"><input type="radio" name="livello" value="elementari" required><span>Elementari</span></label>
-          <label class="rm-choice"><input type="radio" name="livello" value="medie" required><span>Medie</span></label>
-          <label class="rm-choice"><input type="radio" name="livello" value="biennio" required><span>Biennio superiori</span></label>
-          <label class="rm-choice"><input type="radio" name="livello" value="triennio" required><span>Triennio superiori</span></label>
-          <label class="rm-choice"><input type="radio" name="livello" value="universita" required><span>Università</span></label>
+        </section>
+        <section class="rm-path-step" id="level-step" aria-labelledby="level-title" hidden>
+          <button class="rm-path-back" type="button" id="path-back"><span aria-hidden="true">←</span> Indietro</button>
+          <h2 id="level-title" tabindex="-1">Quale grado di studio ti interessa?</h2>
+          <p class="rm-path-role" id="path-role-label"></p>
+          <div class="rm-choice-grid">
+            <button class="rm-choice" type="submit" name="livello" value="elementari">Elementari <span aria-hidden="true">→</span></button>
+            <button class="rm-choice" type="submit" name="livello" value="medie">Medie <span aria-hidden="true">→</span></button>
+            <button class="rm-choice" type="submit" name="livello" value="biennio">Biennio superiori <span aria-hidden="true">→</span></button>
+            <button class="rm-choice" type="submit" name="livello" value="triennio">Triennio superiori <span aria-hidden="true">→</span></button>
+            <button class="rm-choice" type="submit" name="livello" value="universita">Università <span aria-hidden="true">→</span></button>
           </div>
-        </fieldset>
-        <div class="rm-path-actions">
-          <button class="rm-btn primary" type="submit">Esplora i materiali <span aria-hidden="true">→</span></button>
-          <a href="lezioni.html">Esplora tutta la raccolta</a>
-        </div>
+        </section>
+        <noscript><p>Per scegliere il percorso, attiva JavaScript oppure <a href="lezioni.html">esplora tutta la raccolta</a>.</p></noscript>
       </form>
     </div>
   </main>

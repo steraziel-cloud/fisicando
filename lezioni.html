@@ -8,10 +8,10 @@
   <meta name="description" content="Esplora i materiali di matematica e fisica di GatitoMath: teoria, esercizi e laboratori interattivi.">
   <link rel="stylesheet" href="assets/reddito.css?v=5">
   <link rel="stylesheet" href="assets/gatitomath-wordmark.css?v=7">
-  <link rel="stylesheet" href="assets/lezioni.css?v=1">
-  <script src="assets/content.js" defer></script>
+  <link rel="stylesheet" href="assets/lezioni.css?v=2">
+  <script src="assets/lesson-catalog.js?v=1" defer></script>
   <script src="assets/site.js" defer></script>
-  <script src="assets/percorsi.js" defer></script>
+  <script src="assets/percorsi.js?v=2" defer></script>
   <script src="assets/main.js" defer></script>
 </head>
 <body class="rm-lessons-page">
@@ -31,13 +31,14 @@
     <div class="rm-shell">
       <div class="rm-eyebrow">Lezioni online</div>
       <h1 class="rm-lessons-title">Uno spazio per <span>imparare.</span></h1>
-      <p class="rm-lessons-lead">Esplora i materiali di matematica e fisica: spiegazioni, esercizi e laboratori per mettere in pratica quello che studi.</p>
+      <p class="rm-lessons-lead" id="lessons-lead">Esplora i materiali di matematica e fisica: spiegazioni, esercizi e laboratori per mettere in pratica quello che studi.</p>
 
       <p class="rm-selected-path" id="selected-path" hidden><span></span> <a href="percorsi.html">Cambia percorso</a></p>
       <div class="rm-lessons-layout">
         <aside class="sidebar" aria-labelledby="topics-title">
           <h2 id="topics-title">Argomenti</h2>
-          <p class="rm-topics-hint">Scegli un percorso e apri un argomento.</p>
+          <p class="rm-topics-hint" id="topics-hint">Scegli un percorso e apri un argomento.</p>
+          <p id="topics-empty" class="rm-topics-hint" hidden>Stiamo preparando i primi materiali per questo livello. Torna a trovarci!</p>
           <nav id="sidebar" aria-label="Indice dei materiali didattici"></nav>
         </aside>
 
