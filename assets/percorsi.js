@@ -64,6 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const showLevel = second && !!roleInput.value;
     roleStep.hidden = showLevel;
     levelStep.hidden = !showLevel;
+    form.querySelectorAll("[data-path-progress]").forEach(item => {
+      const active = item.dataset.pathProgress === (showLevel ? "level" : "role");
+      if (active) item.setAttribute("aria-current", "step");
+      else item.removeAttribute("aria-current");
+    });
     document.getElementById("path-role-label").textContent = roles[chosenRole] || "";
     if (focus) document.getElementById(showLevel ? "level-title" : "role-title").focus();
   }

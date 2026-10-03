@@ -1,0 +1,17 @@
+/* One content frame for the path, material index, theory, exercises and labs. */
+:is(.rm-lessons-page,.rm-learning-page){--learning-width:1240px;--learning-gutter:20px;--learning-header-width:1240px;--learning-header-gutter:20px}
+:is(.rm-lessons-page,.rm-learning-page) .rm-topbar .rm-shell{width:min(var(--learning-header-width),calc(100% - 2*var(--learning-header-gutter)))}
+.rm-lessons-page .rm-lessons-main>.rm-shell,
+.rm-learning-page .container,
+.rm-learning-page .laboratorio-standalone{width:min(var(--learning-width),calc(100% - 2*var(--learning-gutter)));max-width:none;margin-inline:auto}
+@media(min-width:1120px){
+  :is(.rm-lessons-page,.rm-learning-page){--learning-width:1560px;--learning-gutter:36px;--learning-header-width:1600px;--learning-header-gutter:24px}
+}
+@media(max-width:760px){
+  :is(.rm-lessons-page,.rm-learning-page){--learning-gutter:14px;--learning-header-gutter:14px}
+  body.rm-learning-page>.container{width:calc(100% - 2*var(--learning-gutter))!important;max-width:none!important;padding:28px 0!important}
+  body.rm-learning-page>.container .layout{gap:22px!important}
+}
+@media(max-width:420px){
+  :is(.rm-lessons-page,.rm-learning-page){--learning-gutter:11px;--learning-header-gutter:11px}
+}

@@ -1,11 +1,21 @@
 /* Welcome artwork stays beside both selection steps. */
 .rm-path-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,76px);align-items:center;margin-top:34px}
-.rm-path-layout .rm-path-form{width:100%;max-width:560px;margin-top:0;min-width:0}
-.rm-path-art{position:relative;isolation:isolate;min-width:0;max-width:540px;width:100%;justify-self:end}
+.rm-path-layout .rm-path-form{width:100%;max-width:650px;margin-top:0;min-width:0;padding:30px;border:1px solid var(--rm-line);border-radius:28px;background:linear-gradient(135deg,var(--rm-panel),var(--rm-card));box-shadow:0 18px 48px rgba(0,0,0,.06)}
+.rm-path-art{position:relative;isolation:isolate;min-width:0;max-width:640px;width:100%;justify-self:end}
 .rm-path-art::before{content:"";position:absolute;inset:12% 0 5%;border-radius:46% 54% 58% 42% / 44% 40% 60% 56%;background:var(--rm-accent);opacity:.12;z-index:-1;transform:rotate(-7deg)}
 .rm-path-art img{display:block;width:100%;height:auto}
 @media(max-width:760px){
   .rm-path-layout{grid-template-columns:1fr;gap:28px;margin-top:26px}
-  .rm-path-layout .rm-path-form{max-width:none}
+  .rm-path-layout .rm-path-form{max-width:none;padding:22px 18px;border-radius:22px}
   .rm-path-art{width:min(76%,340px);justify-self:center}
 }
+
+.rm-path-progress{display:flex;flex-wrap:wrap;gap:10px 22px;list-style:none;padding:0;margin:0 0 30px;color:var(--rm-muted);font-size:13px;font-weight:700}
+.rm-path-progress li{display:flex;gap:9px;align-items:center}
+.rm-path-progress li>span{display:grid;place-items:center;width:28px;height:28px;border:1px solid var(--rm-line);border-radius:50%;background:var(--rm-card)}
+.rm-path-progress [aria-current=step]{color:var(--rm-accent-2)}
+.rm-path-progress [aria-current=step]>span{background:var(--rm-accent-2);border-color:var(--rm-accent-2);color:#fff}
+.rm-choice-icon{display:grid;place-items:center;width:38px;height:38px;flex:none;border-radius:12px;background:var(--rm-panel);color:var(--rm-accent-2)}
+.rm-choice-icon svg{width:24px;height:24px}
+.rm-choice .rm-choice-label{flex:1;color:var(--rm-text);font-size:inherit}
+@media(max-width:760px){.rm-path-progress{margin-bottom:24px;gap:10px 16px}.rm-path-form .rm-choice{gap:12px;padding:14px}.rm-path-art{width:min(84%,360px)}}

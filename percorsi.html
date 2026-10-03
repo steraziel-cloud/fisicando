@@ -8,10 +8,11 @@
   <link rel="icon" type="image/png" href="assets/images/red-logo-head.png">
   <link rel="stylesheet" href="assets/reddito.css?v=5">
   <link rel="stylesheet" href="assets/gatitomath-wordmark.css?v=7">
+  <link rel="stylesheet" href="assets/learning-shell.css?v=1">
   <link rel="stylesheet" href="assets/lezioni.css?v=2">
-  <link rel="stylesheet" href="assets/percorsi-layout.css?v=1">
+  <link rel="stylesheet" href="assets/percorsi-layout.css?v=2">
   <script src="assets/main.js" defer></script>
-  <script src="assets/percorsi.js?v=2" defer></script>
+  <script src="assets/percorsi.js?v=3" defer></script>
 </head>
 <body class="rm-lessons-page">
   <header class="rm-topbar">
@@ -33,12 +34,16 @@
       <p class="rm-lessons-lead">Raccontaci come ti avvicini a GatitoMath e quale livello di studio ti interessa.</p>
       <div class="rm-path-layout">
       <form class="rm-path-form" action="lezioni.html" method="get">
+        <ol class="rm-path-progress" aria-label="Passaggi del percorso">
+          <li data-path-progress="role" aria-current="step"><span aria-hidden="true">1</span> Chi sei</li>
+          <li data-path-progress="level"><span aria-hidden="true">2</span> Grado di studio</li>
+        </ol>
         <input type="hidden" name="ruolo" id="path-role" value="">
         <section class="rm-path-step" id="role-step" aria-labelledby="role-title">
           <h2 id="role-title" tabindex="-1">Chi sei?</h2>
           <div class="rm-choice-grid">
-            <button class="rm-choice" type="button" data-role="studente">Studentessa/studente <span aria-hidden="true">→</span></button>
-            <button class="rm-choice" type="button" data-role="altro">Altro <span aria-hidden="true">→</span></button>
+            <button class="rm-choice" type="button" data-role="studente"><span class="rm-choice-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg></span><span class="rm-choice-label">Studentessa/studente</span> <span aria-hidden="true">→</span></button>
+            <button class="rm-choice" type="button" data-role="altro"><span class="rm-choice-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m16 8-2 6-6 2 2-6z"/></svg></span><span class="rm-choice-label">Altro</span> <span aria-hidden="true">→</span></button>
           </div>
         </section>
         <section class="rm-path-step" id="level-step" aria-labelledby="level-title" hidden>

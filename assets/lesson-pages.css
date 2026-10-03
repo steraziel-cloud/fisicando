@@ -9,7 +9,7 @@ body.rm-learning-page{
 }
 .rm-learning-page .rm-topbar{height:var(--rm-header-h)}
 .rm-learning-page .rm-logo{background:none;border:0;padding:0}
-.rm-learning-page .container{width:min(1240px,calc(100% - 40px));max-width:none;margin:0 auto;padding:38px 0;background:none}
+.rm-learning-page .container{width:min(var(--learning-width),calc(100% - 2*var(--learning-gutter)));max-width:none;margin:0 auto;padding:38px 0;background:none}
 .rm-learning-page .rm-learning-intro{margin-bottom:28px}
 .rm-learning-page .rm-learning-intro h1{font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-.04em;margin:14px 0 0;font-weight:800}
 .rm-learning-page .rm-learning-back{display:inline-block;color:var(--rm-accent-2);font-size:14px;font-weight:700;text-underline-offset:4px;padding:4px 0}
@@ -35,7 +35,7 @@ body.rm-learning-page{
 .rm-learning-page .lab-card:first-child{padding-top:0}
 .rm-learning-page .lab-card:last-child{border-bottom:0}
 .rm-learning-page .solution{background:var(--rm-panel);padding:18px;border-radius:14px;color:var(--rm-text)!important}
-.rm-learning-page .btn{font-family:var(--font);font-size:14px;font-weight:700;min-height:44px;padding:10px 16px;border-radius:12px;background:var(--rm-accent-2);color:#fff;line-height:1.35}
+.rm-learning-page .btn,.rm-learning-page .lab-card button{font-family:var(--font);font-size:14px;font-weight:700;min-height:44px;padding:10px 16px;border-radius:12px;background:var(--rm-accent-2);color:#fff;line-height:1.35;border:0;cursor:pointer}
 .rm-learning-page .btn.small{font-size:13px;min-height:40px;padding:8px 11px}
 .rm-learning-page .btn.secondary{background:var(--rm-panel);color:var(--rm-text);border:1px solid var(--rm-line)}
 .rm-learning-page .btn.danger{background:#ba3343;color:#fff}
@@ -50,7 +50,7 @@ body.rm-learning-page{
 .rm-learning-page mjx-container[display="true"]{max-width:100%;overflow-x:auto;overflow-y:hidden;padding:8px 0}
 .rm-learning-page .rm-table-scroll{max-width:100%;overflow-x:auto;margin:22px 0}
 .rm-learning-page table{min-width:520px}
-.rm-learning-page .laboratorio-standalone{width:min(1480px,calc(100% - 40px))}
+.rm-learning-page .laboratorio-standalone{width:min(var(--learning-width),calc(100% - 2*var(--learning-gutter)))}
 .rm-learning-page .lab-grid{grid-template-columns:minmax(280px,340px) minmax(0,1fr);gap:28px}
 .rm-learning-page .lab-controls{max-width:none!important;min-width:0}
 .rm-learning-page .lab-controls h3{font-size:17px;margin:8px 0 12px}
@@ -66,7 +66,7 @@ body.rm-learning-page{
   .rm-learning-page .lab-grid{grid-template-columns:1fr}
 }
 @media(max-width:760px){
-  .rm-learning-page .container,.rm-learning-page .laboratorio-standalone{width:calc(100% - 32px);padding:28px 0}
+  .rm-learning-page .container,.rm-learning-page .laboratorio-standalone{width:calc(100% - 2*var(--learning-gutter));padding:28px 0}
   .rm-learning-page .card,.rm-learning-page .sidebar{padding:19px;border-radius:17px}
   .rm-learning-page .rm-learning-intro{margin-bottom:22px}
   .rm-learning-page .layout{gap:22px}
