@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  $('reader-glossary').addEventListener('click',e=>{if(e.target===$('reader-glossary'))$('reader-glossary').close();});
  function trainPicture(box){
   const picture=el('div','rm-reference-scene');
-  picture.innerHTML='<img class="rm-train-illustration" src="assets/images/reader/red-bjorne-treno-v1.webp" alt="Red resta seduto sul sedile di una carrozza; Bjorne lo saluta dalla banchina della stazione." width="960" height="640"><div class="rm-reference-labels"><span><i aria-hidden="true">●</i> Red · sul treno</span><span><i aria-hidden="true">●</i> Bjorne · in stazione</span></div>';
+  picture.innerHTML='<img class="rm-train-illustration" src="assets/images/reader/red-bjorne-treno-v2.webp" alt="Red resta seduto sul sedile di una carrozza; Bjorne lo saluta dalla banchina della stazione." width="960" height="640"><div class="rm-reference-labels"><span><i aria-hidden="true">●</i> Red · sul treno</span><span><i aria-hidden="true">●</i> Bjorne · in stazione</span></div>';
   box.append(picture);
  }
  function referenceExercise(box,interactive=true){

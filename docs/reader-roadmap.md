@@ -82,3 +82,5 @@ Non ogni termine tecnico è interattivo: scegliere le keyword che servono nella 
 - Circuito del trenino con rotaie, traversine, locomotiva e vagone; laboratorio compatto con cronometro radar e campo misura.
 - Feedback positivo con Red e festeggiamento breve, rispettando le preferenze di movimento ridotto.
 - Asset generato con strumento immagini integrato, da riferimenti del sito; scena treno senza testi, formule o dati, ottimizzata WebP. Prompt completo registrato in docs/reader-art-direction.md.
+
+- Revisione estetica: finestrino normale al posto dello spaccato e sfondo leggero con cielo e colline.
