@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const introductions = {
       elementari:"Un percorso per avvicinarti alla matematica, capire le idee e imparare con curiosità.",
       medie:"Uno spazio per consolidare le basi, ragionare sui problemi e prepararti al passo successivo.",
-      biennio:"Esplora i laboratori per lavorare su vettori, forze ed equilibrio e dare forma ai concetti che studi.",
+      biennio:"Esplora il percorso di matematica e fisica del biennio: concetti, grafici, moti e strumenti per imparare.",
       triennio:"Approfondisci matematica e fisica con spiegazioni, esercizi e laboratori interattivi.",
       universita:"Riprendi e approfondisci vettori e meccanica del punto materiale con teoria, esercizi e strumenti interattivi."
     };

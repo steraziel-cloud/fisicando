@@ -10,10 +10,11 @@
   <link rel="stylesheet" href="assets/gatitomath-wordmark.css?v=7">
   <link rel="stylesheet" href="assets/learning-shell.css?v=1">
   <link rel="stylesheet" href="assets/lezioni.css?v=2">
-  <script src="assets/lesson-catalog.js?v=1" defer></script>
-  <script src="assets/site.js" defer></script>
-  <script src="assets/lesson-pages.js?v=1" defer></script>
-  <script src="assets/percorsi.js?v=2" defer></script>
+  <script src="assets/study-catalog.js?v=1" defer></script>
+  <script src="assets/catalog-menu.js?v=1" defer></script>
+
+  <script src="assets/percorsi.js?v=5" defer></script>
+  <link rel="stylesheet" href="assets/catalog-menu.css?v=1">
   <script src="assets/main.js" defer></script>
 </head>
 <body class="rm-lessons-page">
@@ -36,12 +37,21 @@
       <p class="rm-lessons-lead" id="lessons-lead">Esplora i materiali di matematica e fisica: spiegazioni, esercizi e laboratori per mettere in pratica quello che studi.</p>
 
       <p class="rm-selected-path" id="selected-path" hidden><span></span> <a href="percorsi.html">Cambia percorso</a></p>
+      <form class="rm-catalog-filters" id="catalog-filters" role="search" aria-label="Cerca nei materiali">
+        <div class="rm-search-field"><label for="lesson-search">Cerca una lezione o un argomento</label><input id="lesson-search" type="search" placeholder="Es. velocità, frazioni, MRU…" autocomplete="off"></div>
+        <div><label for="subject-filter">Materia</label><select id="subject-filter"><option value="">Tutte le materie</option><option value="matematica">Matematica</option><option value="fisica">Fisica</option></select></div>
+        <div><label for="area-filter">Macroarea</label><select id="area-filter"><option value="">Tutte le macroaree</option></select></div>
+        <div class="rm-filter-options"><label><input type="checkbox" id="available-filter"> Solo materiali disponibili</label><label><input type="checkbox" id="all-levels-filter"> Cerca anche negli altri livelli</label></div>
+        <button type="button" id="reset-filters">Azzera filtri</button>
+      </form>
+      <p id="catalog-count" class="rm-catalog-count" role="status" aria-live="polite"></p>
       <div class="rm-lessons-layout">
         <aside class="sidebar" aria-labelledby="topics-title">
           <h2 id="topics-title">Argomenti</h2>
-          <p class="rm-topics-hint" id="topics-hint">Scegli un percorso e apri un argomento.</p>
-          <p id="topics-empty" class="rm-topics-hint" hidden>Stiamo preparando i primi materiali per questo livello. Torna a trovarci!</p>
+          <p class="rm-topics-hint" id="topics-hint">Apri materia, macroarea e argomento per trovare le lezioni.</p>
+          <p id="topics-empty" class="rm-topics-hint" hidden>Nessun risultato con questi filtri. Prova un’altra ricerca o includi gli altri livelli.</p>
           <nav id="sidebar" aria-label="Indice dei materiali didattici"></nav>
+          <noscript>Attiva JavaScript per usare il catalogo e la ricerca.</noscript>
         </aside>
 
         <section class="rm-lessons-content" id="welcome" aria-labelledby="materials-title">
@@ -51,7 +61,7 @@
             <article class="rm-material-card"><span class="rm-material-label">02 · Esercizi</span><h3>Metterti alla prova</h3><p>Esercizi per applicare i concetti e allenare il ragionamento.</p></article>
             <article class="rm-material-card"><span class="rm-material-label">03 · Laboratorio</span><h3>Esplorare e sperimentare</h3><p>Strumenti interattivi per osservare e lavorare direttamente sui concetti.</p></article>
           </div>
-          <p class="rm-lessons-note">Questa raccolta è in crescita: nuovi materiali e strumenti verranno aggiunti nel tempo.</p>
+          <p class="rm-lessons-note">Le voci “Da preparare” mostrano la struttura del percorso. I materiali già disponibili si aprono dai collegamenti nel menu.</p>
           <a class="rm-btn secondary" href="contatti.html">Cerchi una lezione con noi? Parliamone</a>
         </section>
       </div>
