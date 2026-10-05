@@ -1,0 +1,2 @@
+/* Shared by path selection and the searchable catalog; legacy URLs still work. */
+window.STUDY_LEVELS={elementari:'Elementari',medie:'Medie',biennio:'Biennio superiori','terzo-quarto':'Terzo e quarto anno','ultimo-altro':'Ultimo anno · altri indirizzi',analisi1:'Ultimo anno liceo scientifico e primo anno università','universita-avanzata':'Anni successivi università',triennio:'Triennio superiori',universita:'Università'};

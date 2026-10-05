@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const catalog = window.LESSON_CATALOG;
   const nav = document.getElementById('sidebar');
   if (!catalog || !nav) return;
-  const levels = {elementari:'Elementari',medie:'Medie',biennio:'Biennio',triennio:'Triennio',universita:'Università'};
+  const levels = window.STUDY_LEVELS;
   const params = new URLSearchParams(location.search);
   const level = Object.hasOwn(levels, params.get('livello')) ? params.get('livello') : null;
   const search = document.getElementById('lesson-search');

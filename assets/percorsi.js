@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   const roles = {studente:"Studentessa/studente", altro:"Altro"};
-  const levels = {elementari:"Elementari", medie:"Medie", biennio:"Biennio superiori", triennio:"Triennio superiori", universita:"Università"};
+  const levels = window.STUDY_LEVELS;
   const params = new URLSearchParams(location.search);
   const role = params.get("ruolo");
   const level = params.get("livello");
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       triennio:"Approfondisci matematica e fisica con spiegazioni, esercizi e laboratori interattivi.",
       universita:"Riprendi e approfondisci vettori e meccanica del punto materiale con teoria, esercizi e strumenti interattivi."
     };
-    document.getElementById("lessons-lead").textContent = introductions[level];
+    document.getElementById("lessons-lead").textContent = introductions[level] || 'Esplora matematica e fisica: concetti, esercizi e laboratori del tuo percorso.';
     document.title = `GatitoMath – Lezioni · ${levels[level]}`;
   }
   const empty = document.getElementById("topics-empty");

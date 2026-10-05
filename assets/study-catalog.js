@@ -18,7 +18,11 @@ window.LESSON_CATALOG = [
                   "elementari",
                   "medie",
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -28,7 +32,11 @@ window.LESSON_CATALOG = [
                   "elementari",
                   "medie",
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -38,7 +46,11 @@ window.LESSON_CATALOG = [
                   "elementari",
                   "medie",
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -48,7 +60,11 @@ window.LESSON_CATALOG = [
                   "elementari",
                   "medie",
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               }
@@ -62,7 +78,11 @@ window.LESSON_CATALOG = [
                 "title": "Espressioni letterali e valore di un’espressione",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -70,7 +90,11 @@ window.LESSON_CATALOG = [
                 "title": "Monomi e polinomi",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -78,7 +102,11 @@ window.LESSON_CATALOG = [
                 "title": "Prodotti notevoli",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -86,7 +114,11 @@ window.LESSON_CATALOG = [
                 "title": "Scomposizione in fattori",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               }
@@ -100,7 +132,11 @@ window.LESSON_CATALOG = [
                 "title": "Uguaglianze e principi di equivalenza",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -108,7 +144,11 @@ window.LESSON_CATALOG = [
                 "title": "Equazioni di primo grado",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -116,7 +156,11 @@ window.LESSON_CATALOG = [
                 "title": "Sistemi di equazioni di primo grado",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -124,7 +168,11 @@ window.LESSON_CATALOG = [
                 "title": "Equazioni di secondo grado",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               }
@@ -145,7 +193,11 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "medie",
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -154,7 +206,11 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "medie",
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -163,7 +219,11 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "medie",
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -172,7 +232,11 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "medie",
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               }
@@ -186,7 +250,11 @@ window.LESSON_CATALOG = [
                 "title": "Coordinate e piano cartesiano",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -194,7 +262,11 @@ window.LESSON_CATALOG = [
                 "title": "Distanza tra punti e punto medio",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -202,7 +274,11 @@ window.LESSON_CATALOG = [
                 "title": "La retta: equazione e significato dei coefficienti",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -210,7 +286,11 @@ window.LESSON_CATALOG = [
                 "title": "Intersezioni tra rette",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               }
@@ -231,7 +311,11 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "medie",
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -240,7 +324,11 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "medie",
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -249,7 +337,11 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "medie",
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               }
@@ -263,7 +355,11 @@ window.LESSON_CATALOG = [
                 "title": "Variabili e concetto di funzione",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -271,7 +367,11 @@ window.LESSON_CATALOG = [
                 "title": "Leggere un grafico",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -279,7 +379,11 @@ window.LESSON_CATALOG = [
                 "title": "Proporzionalità diretta e inversa",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -287,7 +391,11 @@ window.LESSON_CATALOG = [
                 "title": "Funzioni lineari",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               }
@@ -307,7 +415,11 @@ window.LESSON_CATALOG = [
                 "title": "Grandezze scalari e vettoriali",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -315,7 +427,11 @@ window.LESSON_CATALOG = [
                 "title": "Componenti cartesiane",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -323,7 +439,11 @@ window.LESSON_CATALOG = [
                 "title": "Somma e differenza di vettori",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -331,21 +451,33 @@ window.LESSON_CATALOG = [
                 "title": "Moltiplicazione per uno scalare",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
               {
                 "title": "Prodotti scalare e vettoriale",
                 "levels": [
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
               {
                 "title": "Algebra dei vettori · Dispensa completa",
                 "levels": [
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ],
                 "url": "pillole/vettori/teoria.html",
@@ -354,7 +486,11 @@ window.LESSON_CATALOG = [
               {
                 "title": "Algebra dei vettori · Esercizi",
                 "levels": [
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ],
                 "url": "pillole/vettori/esercizi.html",
@@ -364,7 +500,11 @@ window.LESSON_CATALOG = [
                 "title": "Laboratorio vettori",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ],
                 "url": "pillole/vettori/laboratorio.html",
@@ -394,7 +534,11 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "medie",
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -403,7 +547,11 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "medie",
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -412,7 +560,11 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "medie",
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -421,7 +573,11 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "medie",
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               }
@@ -434,7 +590,7 @@ window.LESSON_CATALOG = [
         "icon": "gear",
         "topics": [
           {
-            "title": "Cinematica scalare del punto materiale",
+            "title": "Cinematica scalare",
             "aliases": [
               "MRU",
               "MRUA",
@@ -444,7 +600,7 @@ window.LESSON_CATALOG = [
             ],
             "lessons": [
               {
-                "title": "Introduzione alla cinematica",
+                "title": "Introduzione alla cinematica scalare",
                 "levels": [
                   "biennio"
                 ],
@@ -456,7 +612,11 @@ window.LESSON_CATALOG = [
                 "title": "Tempo, posizione, spostamento e distanza percorsa",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -464,7 +624,11 @@ window.LESSON_CATALOG = [
                 "title": "Velocità media e velocità istantanea",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -472,7 +636,11 @@ window.LESSON_CATALOG = [
                 "title": "Moto rettilineo uniforme",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -480,7 +648,11 @@ window.LESSON_CATALOG = [
                 "title": "Accelerazione media e accelerazione istantanea",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -488,7 +660,11 @@ window.LESSON_CATALOG = [
                 "title": "Moto rettilineo uniformemente accelerato",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -496,14 +672,18 @@ window.LESSON_CATALOG = [
                 "title": "Caduta libera e lancio verticale",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               }
             ]
           },
           {
-            "title": "Cinematica vettoriale del punto materiale",
+            "title": "Cinematica vettoriale",
             "aliases": [
               "MCU",
               "lancio obliquo"
@@ -512,35 +692,51 @@ window.LESSON_CATALOG = [
               {
                 "title": "Vettori posizione, spostamento e velocità",
                 "levels": [
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
               {
                 "title": "Vettore accelerazione",
                 "levels": [
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
               {
                 "title": "Moto parabolico",
                 "levels": [
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
               {
                 "title": "Moto circolare uniforme",
                 "levels": [
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               }
             ]
           },
           {
-            "title": "Cinematica · Percorso universitario",
+            "title": "Cinematica",
             "aliases": [
               "fisica 1",
               "medicina"
@@ -549,6 +745,8 @@ window.LESSON_CATALOG = [
               {
                 "title": "Cinematica · Dispensa completa",
                 "levels": [
+                  "analisi1",
+                  "universita-avanzata",
                   "universita"
                 ],
                 "url": "meccanica_punto_materiale/cinematica/teoria.html",
@@ -557,6 +755,8 @@ window.LESSON_CATALOG = [
               {
                 "title": "Cinematica · Esercizi",
                 "levels": [
+                  "analisi1",
+                  "universita-avanzata",
                   "universita"
                 ],
                 "url": "meccanica_punto_materiale/cinematica/esercizi.html",
@@ -572,7 +772,11 @@ window.LESSON_CATALOG = [
                 "title": "Forze e loro rappresentazione",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -580,7 +784,11 @@ window.LESSON_CATALOG = [
                 "title": "Risultante ed equilibrio",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -588,7 +796,11 @@ window.LESSON_CATALOG = [
                 "title": "Vincoli e reazione normale",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -596,7 +808,11 @@ window.LESSON_CATALOG = [
                 "title": "Attrito statico",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -604,7 +820,11 @@ window.LESSON_CATALOG = [
                 "title": "Equilibrio sul piano inclinato",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -612,7 +832,11 @@ window.LESSON_CATALOG = [
                 "title": "Laboratorio di statica",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ],
                 "url": "meccanica_punto_materiale/statica/laboratorio.html",
@@ -630,7 +854,11 @@ window.LESSON_CATALOG = [
                 "title": "Primo principio e sistemi inerziali",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -638,7 +866,11 @@ window.LESSON_CATALOG = [
                 "title": "Secondo principio della dinamica",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -646,7 +878,11 @@ window.LESSON_CATALOG = [
                 "title": "Terzo principio della dinamica",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -654,7 +890,11 @@ window.LESSON_CATALOG = [
                 "title": "Applicare i principi: diagramma delle forze",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -662,13 +902,19 @@ window.LESSON_CATALOG = [
                 "title": "Attrito dinamico",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
               {
                 "title": "Dinamica · Dispensa completa",
                 "levels": [
+                  "analisi1",
+                  "universita-avanzata",
                   "universita"
                 ],
                 "url": "meccanica_punto_materiale/dinamica/teoria.html",
@@ -677,6 +923,8 @@ window.LESSON_CATALOG = [
               {
                 "title": "Dinamica · Esercizi",
                 "levels": [
+                  "analisi1",
+                  "universita-avanzata",
                   "universita"
                 ],
                 "url": "meccanica_punto_materiale/dinamica/esercizi.html",
@@ -692,7 +940,11 @@ window.LESSON_CATALOG = [
                 "title": "Lavoro di una forza",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -700,7 +952,11 @@ window.LESSON_CATALOG = [
                 "title": "Energia cinetica e teorema del lavoro",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -708,7 +964,11 @@ window.LESSON_CATALOG = [
                 "title": "Energia potenziale",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -716,7 +976,11 @@ window.LESSON_CATALOG = [
                 "title": "Conservazione dell’energia meccanica",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               }
@@ -736,7 +1000,11 @@ window.LESSON_CATALOG = [
                 "title": "Temperatura ed equilibrio termico",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -744,7 +1012,11 @@ window.LESSON_CATALOG = [
                 "title": "Calore e capacità termica",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
@@ -752,7 +1024,11 @@ window.LESSON_CATALOG = [
                 "title": "Passaggi di stato",
                 "levels": [
                   "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               }
@@ -771,28 +1047,44 @@ window.LESSON_CATALOG = [
               {
                 "title": "Corrente, tensione e resistenza",
                 "levels": [
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
               {
                 "title": "Legge di Ohm",
                 "levels": [
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
               {
                 "title": "Resistori in serie e in parallelo",
                 "levels": [
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               },
               {
                 "title": "Potenza elettrica",
                 "levels": [
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
                   "triennio",
+                  "universita-avanzata",
                   "universita"
                 ]
               }
