@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    const distance=(reference-phase*length+length)%length,p=track.getPointAtLength(distance),ahead=track.getPointAtLength((distance-3+length)%length);
    const heading=Math.atan2((ahead.y-p.y)/.58,ahead.x-p.x),frame=((Math.round(heading/(Math.PI*2)*16)%16)+16)%16;
    if(frame!==lastFrame&&frames[frame].complete&&frames[frame].naturalWidth){train.src=frames[frame].src;lastFrame=frame;}
-   train.style.left=(p.x/1536*100)+'%';train.style.top=((p.y-22)/1024*100)+'%';train.style.setProperty('--train-scale',String(.83+.3*p.y/1024));
+   train.style.left=(p.x/1536*100)+'%';train.style.top=(p.y/1024*100)+'%';train.style.setProperty('--train-scale',String(.45+.65*p.y/1024));
    raf=requestAnimationFrame(animate);
   }raf=requestAnimationFrame(animate);
   const answerBox=el('div','rm-period-answer'),answerLabel=el('label');
