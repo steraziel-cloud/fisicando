@@ -133,12 +133,12 @@ window.READER_LESSONS = {
                 "html": "La coordinata <span class=\"rm-formula\">s</span>, chiamata <button type=\"button\" class=\"rm-keyword\" data-term=\"ascissa\">ascissa curvilinea</button>, indica la posizione lungo la traiettoria rispetto all’origine. Sposta il punto con il cursore: le posizioni possono assumere anche valori intermedi, come <span class=\"rm-formula\">1,84 m</span>."
               },
               {
-                "title": "Il segno indica il verso rispetto all’origine",
-                "html": "<span class=\"rm-formula\">s = −2 m</span> significa che il punto si trova a 2 m dall’origine, misurati lungo la traiettoria nel verso negativo. Il segno meno <strong>non indica da solo il verso del movimento</strong>."
+                "title": "Il segno indica la posizione rispetto all’origine",
+                "html": "<span class=\"rm-formula\">s = −2 m</span> significa che il punto si trova a 2 m dall’origine, lungo la traiettoria nel verso negativo. Il segno della posizione ci dice <strong>dove si trova il corpo</strong>: da lì può muoversi sia nel verso positivo sia nel verso negativo, oppure restare fermo."
               },
               {
                 "title": "Posizione e distanza dall’origine",
-                "html": "La distanza dall’origine <strong>misurata lungo questa traiettoria</strong> è <button type=\"button\" class=\"rm-keyword\" data-term=\"valore-assoluto\">|s|</button>. Le posizioni <span class=\"rm-formula\">+3 m</span> e <span class=\"rm-formula\">−3 m</span> sono diverse, ma si trovano entrambe a 3 m dall’origine lungo il percorso."
+                "html": "La distanza dall’origine <strong>misurata lungo questa traiettoria</strong> è <button type=\"button\" class=\"rm-keyword\" data-term=\"valore-assoluto\">|s|</button>. <span class=\"rm-position-example\" aria-live=\"polite\"></span>"
               }
             ],
             "board": "position"
@@ -148,11 +148,7 @@ window.READER_LESSONS = {
             "steps": [
               {
                 "title": "Una posizione per ogni istante",
-                "html": "A ogni istante <span class=\"rm-formula\">t</span> associamo la posizione <span class=\"rm-formula\">s</span> del punto materiale lungo la traiettoria. Questa relazione si chiama <button type=\"button\" class=\"rm-keyword\" data-term=\"legge-oraria\">legge oraria</button> e si scrive <span class=\"rm-formula\">s = s(t)</span>: la posizione è una <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button> del tempo. Studieremo i suoi grafici nelle lezioni sui singoli moti."
-              },
-              {
-                "title": "Ricomponiamo il sistema di riferimento",
-                "html": "Ora possiamo precisare come è fatto il nostro <button type=\"button\" class=\"rm-keyword\" data-term=\"riferimento\">sistema di riferimento</button>: un orologio per assegnare i tempi e un sistema di coordinate per individuare le posizioni. Sulla traiettoria nota abbiamo fissato origine, verso positivo e unità di misura."
+                "html": "La <button type=\"button\" class=\"rm-keyword\" data-term=\"legge-oraria\">legge oraria</button> descrive come cambia la posizione del punto materiale nel tempo. È una <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button> che associa a ogni istante <span class=\"rm-formula\">t</span> la corrispondente posizione <span class=\"rm-formula\">s</span> lungo la traiettoria. Si scrive <span class=\"rm-formula\">s = s(t)</span> e permette di sapere dove si trova il corpo all’istante considerato."
               }
             ]
           }

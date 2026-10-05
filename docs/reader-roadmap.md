@@ -54,3 +54,10 @@ Non ogni termine tecnico è interattivo: scegliere le keyword che servono nella 
 - [x] Testo teorico sull’intervallo separato dalle istruzioni compatte del widget.
 - [x] Δt mostrato anche nella verifica del periodo; tolto il calcolo manuale richiesto nella precedente versione. Pulsante «Verifica la misura» evidenziato.
 - [x] Periodo: definizione generale nel glossario, priva di riferimento al trenino.
+
+### Revisione della sezione Spazio e posizione
+- Chiarita la distinzione tra segno della posizione e verso del moto.
+- Glossario del valore assoluto generale, con variabile x.
+- Esempio della distanza sincronizzato con la posizione della lavagna.
+- Riscritta la legge oraria ed eliminata la slide riepilogativa del riferimento.
+- Il quiz usa il pulsante Verifica con sfondo e bordo visibili già corretti.

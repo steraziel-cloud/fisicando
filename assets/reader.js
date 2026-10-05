@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const st=state[current],board=el('div','rm-reader-board');
   board.innerHTML='<h4>Lavagna · Un punto lungo la traiettoria</h4><svg viewBox="0 0 640 285" role="img" aria-label="Traiettoria curva graduata da meno cinque a più cinque metri"><path class="rm-trajectory" d="M50 186 C118 58 191 55 269 144 S432 249 590 93" fill="none" stroke="currentColor" stroke-width="3"/><g class="rm-metric"></g><g class="rm-origin"></g><path class="rm-positive-arrow" fill="none" stroke="var(--rm-accent)" stroke-width="3"/><circle class="rm-start-point" r="7" fill="#e7b94f"/><circle class="rm-moving-point" r="9" fill="var(--rm-accent)"/><g class="rm-point-label"><rect x="-59" y="-24" width="118" height="29" rx="10" fill="var(--rm-panel)" stroke="var(--rm-accent)"/><text text-anchor="middle" y="-5" fill="currentColor" font-size="16"></text></g></svg><label>Posizione <span class="rm-coordinate-name">s</span>: <output></output><input type="range" min="-5" max="5" step="0.01" aria-label="Posizione lungo la traiettoria"></label><p class="rm-board-description"></p>';
   const input=board.querySelector('input');input.value=st.position;
-  box.append(board);
+  box.insertBefore(board,box.querySelector('.rm-card-title').nextSibling);
   const svg=board.querySelector('svg'),path=svg.querySelector('.rm-trajectory'),length=path.getTotalLength(),ns='http://www.w3.org/2000/svg';
   const at=s=>path.getPointAtLength((s+5)/10*length);
   const make=(tag,attrs,text)=>{const n=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));if(text!==undefined)n.textContent=text;return n;};
@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    const point=svg.querySelector('.rm-moving-point');point.setAttribute('cx',p.x);point.setAttribute('cy',p.y);board.querySelector('output').textContent=format(s)+' m';
    input.setAttribute('aria-valuetext',format(s)+' metri');
    board.querySelector('.rm-board-description').textContent=kind==='displacement'?`Partenza s₁ = 1,00 m · Arrivo s₂ = ${format(s)} m · Δs = ${format(s-1)} m`:`Posizione s = ${format(s)} m`+(showDistance?` · Distanza dall’origine lungo la traiettoria |s| = ${format(Math.abs(s))} m`:'');
+   const example=box.querySelector('.rm-position-example');if(example)example.textContent=`Sulla lavagna la posizione è s = ${format(s)} m: la distanza dall’origine lungo la traiettoria è |s| = ${format(Math.abs(s))} m. Sposta il punto per osservare come cambiano questi valori.`;
   }input.addEventListener('input',update);update();
  }
  function stopwatch(box,lab=false){
@@ -156,9 +157,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   }else $('reader-steps').append(box);
   box.append(el('h3','rm-card-title',card.title));
   if(card.board==='train-reference')trainPicture(box);
-  if(card.board==='position'||card.board==='displacement')positionBoard(box,card.board,steps.length>=3);
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
   steps.forEach(step=>{const article=el('div','rm-reader-step');article.append(el('h4','',step.title));const p=el('p');p.innerHTML=step.html;article.append(p);if(step.interaction==='train-reference')referenceExercise(article,!archived);box.append(article);});
+  if(card.board==='position'||card.board==='displacement')positionBoard(box,card.board,steps.length>=3);
  }
  function render(){
   disposeWidget();disposeWidget=()=>{};$('reader-steps').replaceChildren();$('reader-checkpoint').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';

@@ -27,7 +27,7 @@ window.READER_GLOSSARY = {
   },
   "valore-assoluto": {
     "title": "Valore assoluto",
-    "text": "Il valore assoluto di un numero è la sua distanza da zero sulla retta dei numeri: |3| = 3 e |−3| = 3. È sempre non negativo. Per la coordinata s, |s| dà la distanza dall’origine lungo la traiettoria; |s₂ − s₁| dà la lunghezza del tratto tra le due coordinate, senza inversioni di verso.",
+    "text": "Il valore assoluto di un numero reale x, indicato con |x|, è la sua distanza da zero sulla retta dei numeri. Vale x se x è positivo o nullo e −x se x è negativo. Per esempio, |3| = 3 e |−3| = 3. È sempre non negativo e vale zero soltanto quando x = 0.",
     "kind": "Riprendi la matematica"
   },
   "funzione": {
