@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const st=state[current].lab;
   const intro=el('p');intro.innerHTML='Il <button class="rm-keyword" data-term="periodo" type="button">periodo</button> è la durata di un giro completo. Avvia il cronometro, poi registra t₁ quando il trenino attraversa il segno giallo e t₂ al passaggio successivo, dopo un giro. La differenza Δt mostra la durata misurata: scrivi il valore che leggi nel riquadro qui sotto e premi «Verifica la misura».';box.append(intro);
   const scene=el('div','rm-period-scene');scene.innerHTML='<h4>Il circuito di Red e Bjorne</h4><div class="rm-room-stage"><img class="rm-room-backdrop" src="assets/images/reader/period-lab/room-v1.webp" width="1200" height="800" alt="Red e Bjorne con i radiocomandi al centro dei binari; il semaforo vicino alla stazione indica il punto di misura."><svg class="rm-room-path" viewBox="0 0 1200 800" aria-hidden="true"><path/><circle class="rm-track-anchor" r="5"/></svg><div class="rm-room-train-anchor"><img class="rm-room-train" src="assets/images/reader/period-lab/locomotive-00.webp" alt="Locomotiva in movimento"></div><img class="rm-room-balloon rm-red-balloon" src="assets/images/reader/period-lab/red-balloon-v1.png" alt="Più veloce!!! Meow" hidden><img class="rm-room-balloon rm-bjorne-balloon" src="assets/images/reader/period-lab/bjorne-balloon-v1.png" alt="Piano. Piano." hidden></div>';
-  const room=scene.querySelector('.rm-room-stage'),train=scene.querySelector('.rm-room-train');
+  const room=scene.querySelector('.rm-room-stage');
   let balloonTimer;
   function speak(cat){scene.querySelectorAll('.rm-room-balloon').forEach(b=>b.hidden=true);const balloon=scene.querySelector('.rm-'+cat+'-balloon');balloon.hidden=false;clearTimeout(balloonTimer);balloonTimer=setTimeout(()=>balloon.hidden=true,3000);}
   const controls=el('div','rm-lab-controls');
@@ -150,15 +150,18 @@ document.addEventListener('DOMContentLoaded',()=>{
   const clock=stopwatch(box,true),clockDispose=disposeWidget;const bench=el('div','rm-lab-workbench');box.insertBefore(bench,stage);bench.append(stage,clock.board);
   const track=window.READER_TRAIN_TRACK,anchor=scene.querySelector('.rm-room-train-anchor'),marker=scene.querySelector('.rm-track-anchor');
   scene.querySelector('.rm-room-path path').setAttribute('d',track.path);
-  function setFrameAnchor(index){const a=track.spriteAnchors[index];train.style.setProperty('--anchor-x',(a.x*100)+'%');train.style.setProperty('--anchor-y',(a.y*100)+'%');}
-  setFrameAnchor(0);
+  anchor.setAttribute('role','img');anchor.setAttribute('aria-label','Locomotiva in movimento');
   if(new URLSearchParams(location.search).has('trainDebug'))room.classList.add('rm-room-stage--debug');
-  const frames=Array.from({length:16},(_,i)=>{const image=new Image();image.src='assets/images/reader/period-lab/locomotive-'+String(i).padStart(2,'0')+'.webp';return image;});
-  let phase=0,previous=performance.now(),raf,lastFrame=-1;
+  const frames=Array.from({length:16},(_,i)=>{const image=new Image();image.src='assets/images/reader/period-lab/locomotive-'+String(i).padStart(2,'0')+'.webp';image.className='rm-room-train';image.alt='';image.setAttribute('aria-hidden','true');const a=track.spriteAnchors[i];image.style.setProperty('--anchor-x',(a.x*100)+'%');image.style.setProperty('--anchor-y',(a.y*100)+'%');image.style.opacity=i===0?'1':'0';return image;});
+  anchor.replaceChildren(...frames);
+  let phase=0,previous=performance.now(),raf;
   function animate(now){
    phase=(phase+(now-previous)/1000/st.period)%1;previous=now;
-   const p=track.pose(phase),frame=((Math.round(p.heading/(Math.PI*2)*16)%16)+16)%16;
-   if(frame!==lastFrame&&frames[frame].complete&&frames[frame].naturalWidth){train.src=frames[frame].src;setFrameAnchor(frame);lastFrame=frame;}
+   const p=track.pose(phase),blend=track.frameBlend(p.heading);
+   if(frames[blend.a].complete&&frames[blend.a].naturalWidth&&frames[blend.b].complete&&frames[blend.b].naturalWidth){
+    frames.forEach((image,i)=>image.style.opacity=i===blend.a?String(1-blend.mix):i===blend.b?String(blend.mix):'0');
+    anchor.dataset.views=blend.a+','+blend.b;anchor.dataset.mix=String(blend.mix);
+   }
    anchor.style.left=(p.x/track.width*100)+'%';anchor.style.top=(p.y/track.height*100)+'%';anchor.style.setProperty('--train-scale',String(track.perspectiveScale(p.u)));
    marker.setAttribute('cx',p.x);marker.setAttribute('cy',p.y);
    raf=requestAnimationFrame(animate);

@@ -38,7 +38,9 @@
  function railGauge(t){const a=railAt(innerRail,t),b=railAt(outerRail,t);return Math.hypot(a.x-b.x,a.y-b.y);}
  const frontGauge=railGauge(12/16);
  const perspectiveScale=t=>railGauge(t)/frontGauge;
- const model=Object.freeze({width:1200,height:800,innerRail,outerRail,points,at,atDistance,pose,path,length:total,origin,spriteAnchors,railAt,railGauge,frontGauge,perspectiveScale});
+ // Continuous weights remove hard swaps between separately illustrated directional views.
+ function frameBlend(heading){const q=wrap(heading/(2*Math.PI))*16,a=Math.floor(q),f=q-a,z=Math.max(0,Math.min(1,(f-.25)/.5)),mix=z*z*(3-2*z);return {a,b:(a+1)%16,mix};}
+ const model=Object.freeze({width:1200,height:800,innerRail,outerRail,points,at,atDistance,pose,path,length:total,origin,spriteAnchors,railAt,railGauge,frontGauge,perspectiveScale,frameBlend});
  root.READER_TRAIN_TRACK=model;
  if(typeof module!=='undefined'&&module.exports)module.exports=model;
 })(typeof window!=='undefined'?window:globalThis);
