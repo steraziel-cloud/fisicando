@@ -14,7 +14,7 @@ Il banco di prova è Introduzione alla cinematica scalare, per il biennio. Il co
 - [x] Punto materiale, traiettoria nota, origine e verso positivo prima delle grandezze.
 - [x] Glossario fisico e recupero matematico: punto materiale con massa, riferimento con coordinate/orologi, orologio, traiettoria, ascissa curvilinea, valore assoluto, funzione, legge oraria, periodo.
 - [x] Tempo: card istante + card intervalli con quattro sviluppi e cronometro condiviso sopra il testo.
-- [x] Primo laboratorio funzionante: trenino ellittico, Red/Bjorne cambiano velocità, t₁/t₂, durata inserita dallo studente, verifica con tolleranza. Velocità bloccata mentre sono registrate letture; nuova misura se si lascia il laboratorio prima di completarlo.
+- [x] Primo laboratorio funzionante: trenino ellittico, Red/Bjorne cambiano velocità, t₁/t₂, Δt calcolato e mostrato dal widget, verifica con tolleranza. Velocità bloccata mentre sono registrate letture; nuova misura se si lascia il laboratorio prima di completarlo.
 - [x] Posizione su curva aperta: tacche a distanza uguale lungo la curva, origine evidenziata, coordinata mobile con passo 0,01 m e lettura decimale. Distanza dall’origine esplicitamente lungo il percorso.
 - [x] Legge oraria come relazione s(t); grafici rinviati ai singoli moti. Ricomposizione del riferimento dopo le grandezze.
 - [x] Δs lungo traiettoria, |Δs| per tratti senza inversioni, distanza totale come somma dei tratti; andata/ritorno.
@@ -46,3 +46,11 @@ Non ogni termine tecnico è interattivo: scegliere le keyword che servono nella 
 - [x] Esempio sul moto relativo compresso e riapribile durante la card del punto materiale.
 - [x] Definizione di traiettoria riscritta; eliminata l’anticipazione «zero delle posizioni».
 - [x] Ripristinata la riconoscibilità visiva delle azioni secondarie; verifica del quiz evidenziata.
+
+## Correzioni della seconda sezione dopo la prova
+
+- [x] Istante: lettura come valore numerico, testo introduttivo riscritto.
+- [x] Cronometro inizialmente fermo: Avvia, poi registra t₁ e t₂; «Ferma e azzera» arresta e riporta a zero quadrante e letture; cancellazione delle sole letture mantiene il conteggio.
+- [x] Testo teorico sull’intervallo separato dalle istruzioni compatte del widget.
+- [x] Δt mostrato anche nella verifica del periodo; tolto il calcolo manuale richiesto nella precedente versione. Pulsante «Verifica la misura» evidenziato.
+- [x] Periodo: definizione generale nel glossario, priva di riferimento al trenino.

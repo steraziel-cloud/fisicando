@@ -27,3 +27,7 @@
 .rm-reader-recap[open] summary:before{content:'▾'}.rm-recap-toggle{margin-left:auto;color:var(--rm-accent-2);font-size:13px}
 .rm-reader-recap .rm-reader-card{margin:0;border:0;border-radius:0 0 14px 14px}.rm-reader-recap .rm-card-title{display:none}
 .rm-reader-recap summary:focus-visible{outline:2px solid var(--rm-accent);outline-offset:3px}
+
+.rm-clock-controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.rm-clock-help{color:var(--rm-muted);font-size:13px!important;text-align:center;line-height:1.6}
+.rm-clock-marks .rm-formula{font-size:19px;font-weight:700;color:var(--rm-accent-2)}

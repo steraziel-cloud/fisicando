@@ -91,21 +91,33 @@ document.addEventListener('DOMContentLoaded',()=>{
   }input.addEventListener('input',update);update();
  }
  function stopwatch(box,lab=false){
-  const st=lab?state[current].lab:state[current].clock;if(st.started===null)st.started=performance.now();
+  const st=lab?state[current].lab:state[current].clock;
   const board=el('div','rm-reader-board rm-stopwatch-board');
-  const currentTime=()=> (performance.now()-st.started)/1000;
-  board.innerHTML='<h4>'+ (lab?'Misura un giro completo':'Lavagna · Il cronometro')+'</h4><div class="rm-clock"><button type="button" class="rm-clock-top" aria-label="Registra la lettura del cronometro">Registra</button><div class="rm-clock-face"><span>CRONOMETRO</span><strong class="rm-clock-reading"></strong><span class="rm-clock-unit">secondi</span></div></div><div class="rm-clock-marks" aria-live="polite"></div>';
+  const currentTime=()=>st.started===null?0:(performance.now()-st.started)/1000;
+  board.innerHTML='<h4>'+ (lab?'Misura un giro completo':'Lavagna · Il cronometro')+'</h4><div class="rm-clock"><button type="button" class="rm-clock-top">Avvia</button><div class="rm-clock-face"><span>CRONOMETRO</span><strong class="rm-clock-reading"></strong><span class="rm-clock-unit">secondi</span></div></div><div class="rm-clock-marks" aria-live="polite"></div><div class="rm-clock-controls"></div><p class="rm-clock-help">Avvia il cronometro con il pulsante superiore; poi premi lo stesso pulsante per registrare t₁ e t₂.</p>';
   const marks=board.querySelector('.rm-clock-marks'),record=board.querySelector('.rm-clock-top');
-  function show(){marks.replaceChildren();marks.append(el('p','',`t₁ = ${st.marks.length?format(st.marks[0])+' s':'—'} · t₂ = ${st.marks.length>1?format(st.marks[1])+' s':'—'}`));if(!lab&&st.marks.length===2)marks.append(el('p','rm-formula','Δt = '+format(st.marks[1]-st.marks[0])+' s'));record.disabled=st.marks.length===2||st.verified;if(lab)board.dispatchEvent(new Event('measurement'));}
-  record.addEventListener('click',()=>{if(st.marks.length<2){st.marks.push(Number(currentTime().toFixed(2)));show();}});
-  board.append(button('Cancella le letture',()=>{st.marks=[];if(lab){st.verified=false;$('reader-feedback').textContent='';}show();}));
+  function show(){
+   marks.replaceChildren();marks.append(el('p','',`t₁ = ${st.marks.length?format(st.marks[0])+' s':'—'} · t₂ = ${st.marks.length>1?format(st.marks[1])+' s':'—'}`));
+   marks.append(el('p','rm-formula','Δt = '+(st.marks.length===2?format(st.marks[1]-st.marks[0])+' s':'—')));
+   record.textContent=st.started===null?'Avvia':st.marks.length===0?'Registra t₁':'Registra t₂';
+   record.setAttribute('aria-label',st.started===null?'Avvia il cronometro':st.marks.length===0?'Registra il primo istante':'Registra il secondo istante');
+   record.disabled=st.marks.length===2||st.verified;
+   if(lab)board.dispatchEvent(new Event('measurement'));
+  }
+  record.addEventListener('click',()=>{
+   if(st.started===null){st.started=performance.now();}
+   else if(st.marks.length<2)st.marks.push(Number(currentTime().toFixed(2)));
+   show();tick();
+  });
+  const clear=reset=>{st.marks=[];if(reset)st.started=null;if(lab){st.verified=false;$('reader-feedback').textContent='';}show();tick();};
+  board.querySelector('.rm-clock-controls').append(button('Cancella le letture',()=>clear(false)),button('Ferma e azzera',()=>clear(true)));
   box.append(board);show();
   function tick(){board.querySelector('.rm-clock-reading').textContent=format(currentTime());}
   tick();const timer=setInterval(tick,50);disposeWidget=()=>clearInterval(timer);return {board,st,show};
  }
  function periodLab(box){
   const st=state[current].lab;
-  const intro=el('p');intro.innerHTML='Il <button class="rm-keyword" data-term="periodo" type="button">periodo</button> è la durata di un giro completo. Registra t₁ quando il trenino attraversa il segno giallo e t₂ quando lo attraversa di nuovo, dopo un giro. Calcola la durata e inseriscila sotto.';box.append(intro);
+  const intro=el('p');intro.innerHTML='Il <button class="rm-keyword" data-term="periodo" type="button">periodo</button> è la durata di un giro completo. Avvia il cronometro, poi registra t₁ quando il trenino attraversa il segno giallo e t₂ al passaggio successivo, dopo un giro. La differenza Δt mostra la durata misurata: premi «Verifica la misura» per controllarla.';box.append(intro);
   const scene=el('div','rm-period-scene');scene.innerHTML='<svg viewBox="0 0 640 275" role="img" aria-label="Un trenino percorre un circuito ellittico. Il segno giallo indica il punto in cui prendere le due letture."><ellipse cx="320" cy="138" rx="245" ry="95" fill="none" stroke="var(--rm-muted)" stroke-width="13"/><ellipse cx="320" cy="138" rx="245" ry="95" fill="none" stroke="var(--rm-panel)" stroke-width="5"/><path d="M554 111h23" stroke="#e7b94f" stroke-width="6"/><text x="486" y="84" fill="currentColor" font-size="14">Misura qui ↓</text><g class="rm-toy-train"><rect x="-19" y="-12" width="38" height="24" rx="6" fill="var(--rm-accent)" stroke="var(--rm-panel)" stroke-width="3"/><path d="M2-8v16" stroke="var(--rm-panel)" stroke-width="3"/><circle cx="12" cy="0" r="4" fill="#e7b94f"/></g><image href="assets/images/red-logo-head.png" x="222" y="89" width="77" height="72"/><image href="assets/images/oltre-lezioni/bjorne-box-01.png" x="342" y="82" width="83" height="85"/></svg>';
   const controls=el('div','rm-lab-controls');
   const change=delta=>{if(st.marks.length){$('reader-feedback').textContent='Cancella prima le letture per cambiare la velocità.';return;}st.period=Math.max(4,Math.min(14,st.period+delta));st.verified=false;$('reader-feedback').textContent=delta<0?'Red accelera il trenino. Misura il nuovo periodo.':'Bjorne rallenta il trenino. Misura il nuovo periodo.';};
@@ -114,13 +126,13 @@ document.addEventListener('DOMContentLoaded',()=>{
   let phase=0,previous=performance.now(),raf;
   const train=scene.querySelector('.rm-toy-train');
   function animate(now){phase=(phase+(now-previous)/1000/st.period*2*Math.PI)%(2*Math.PI);previous=now;const x=320+245*Math.cos(phase),y=138+95*Math.sin(phase),angle=Math.atan2(95*Math.cos(phase),-245*Math.sin(phase))*180/Math.PI;train.setAttribute('transform',`translate(${x} ${y}) rotate(${angle})`);raf=requestAnimationFrame(animate);}raf=requestAnimationFrame(animate);
-  const form=el('form','rm-period-answer'),label=el('label','','Quanto dura un giro? '),input=el('input');input.type='text';input.inputMode='decimal';input.placeholder='Secondi';input.required=true;input.setAttribute('aria-label','Durata di un giro in secondi');label.append(input,el('span','',' s'));form.append(label);const verify=el('button','rm-btn secondary','Verifica la misura');verify.type='submit';form.append(verify);box.append(form);
-  const sync=()=>{red.disabled=bjorne.disabled=st.marks.length>0;verify.disabled=st.marks.length!==2;};clock.board.addEventListener('measurement',sync);sync();
-  form.addEventListener('submit',e=>{e.preventDefault();const value=Number(input.value.trim().replace(',','.'));if(!Number.isFinite(value)||value<=0){$('reader-feedback').textContent='Inserisci una durata positiva in secondi.';return;}
-   const measured=st.marks[1]-st.marks[0];if(Math.abs(value-measured)>.12){$('reader-feedback').textContent='Calcola prima t₂ − t₁ usando le due letture registrate.';return;}
-   const tolerance=Math.max(.6,st.period*.08);if(Math.abs(measured-st.period)>tolerance){$('reader-feedback').textContent='Il calcolo è coerente con le letture. Ora riprova la misura: registra due passaggi consecutivi sul segno giallo, dopo un giro completo. Una piccola differenza dovuta al tempo di reazione va bene.';return;}
-   st.verified=true;clock.show();finish('Misura riuscita! Hai registrato due istanti e ricavato il periodo: '+format(value)+' s.');
-  });
+  const verify=button('Verifica la misura',()=>{
+   if(st.marks.length!==2){$('reader-feedback').textContent='Registra i due istanti prima di verificare.';return;}
+   const measured=st.marks[1]-st.marks[0],tolerance=Math.max(.6,st.period*.08);
+   if(Math.abs(measured-st.period)>tolerance){$('reader-feedback').textContent='La durata misurata non corrisponde a un giro completo. Cancella le letture e riprova: registra due passaggi consecutivi sul segno giallo. Una piccola differenza dovuta al tempo di reazione va bene.';return;}
+   st.verified=true;clock.show();finish('Misura riuscita! Il periodo misurato è Δt = '+format(measured)+' s.');
+  },'rm-btn primary');box.append(verify);
+  const sync=()=>{red.disabled=bjorne.disabled=st.marks.length>0;verify.disabled=st.marks.length!==2||st.verified;};clock.board.addEventListener('measurement',sync);sync();
   disposeWidget=()=>{clockDispose();cancelAnimationFrame(raf);if(!st.verified)st.marks=[];};
  }
  function checkpoint(){

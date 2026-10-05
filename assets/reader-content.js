@@ -81,7 +81,7 @@ window.READER_LESSONS = {
             "steps": [
               {
                 "title": "Leggere il cronometro",
-                "html": "Per misurare il tempo usiamo un <button type=\"button\" class=\"rm-keyword\" data-term=\"orologio\">orologio</button>; nel nostro laboratorio useremo un <strong>cronometro</strong>. La sua lettura assegna un valore <span class=\"rm-formula\">t</span> all’istante in cui osserviamo un evento. Possiamo scegliere <span class=\"rm-formula\">t = 0 s</span> quando iniziamo a osservare: non deve coincidere con l’inizio del movimento."
+                "html": "Un <button type=\"button\" class=\"rm-keyword\" data-term=\"orologio\">orologio</button> permette di misurare il tempo. Il cronometro che useremo è uno strumento di questo tipo: la sua lettura assegna un <strong>valore numerico</strong> all’istante in cui osserviamo un evento. Indichiamo questo valore con <span class=\"rm-formula\">t</span>. Possiamo scegliere <span class=\"rm-formula\">t = 0 s</span> quando iniziamo a osservare: non deve coincidere con l’inizio del movimento."
               }
             ]
           },
@@ -90,7 +90,7 @@ window.READER_LESSONS = {
             "steps": [
               {
                 "title": "Un intervallo è una durata",
-                "html": "Registra due letture con il pulsante superiore del cronometro. La prima è <span class=\"rm-formula\">t₁</span>, la seconda è <span class=\"rm-formula\">t₂</span>. La durata tra le osservazioni è <span class=\"rm-formula\">Δt = t₂ − t₁</span>."
+                "html": "Un <strong>intervallo di tempo</strong> è la durata compresa tra due istanti. Se un evento inizia all’istante <span class=\"rm-formula\">t₁</span> e termina all’istante <span class=\"rm-formula\">t₂</span>, la sua durata è la differenza <span class=\"rm-formula\">Δt = t₂ − t₁</span>. Per esempio, tra <span class=\"rm-formula\">t₁ = 2 s</span> e <span class=\"rm-formula\">t₂ = 7 s</span> trascorrono <span class=\"rm-formula\">5 s</span>."
               },
               {
                 "title": "Il simbolo Δ",

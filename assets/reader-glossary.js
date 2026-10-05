@@ -42,7 +42,7 @@ window.READER_GLOSSARY = {
   },
   "periodo": {
     "title": "Periodo",
-    "text": "La durata di una ripetizione completa di un fenomeno periodico. Per il trenino a velocità costante è il tempo tra due passaggi consecutivi nello stesso punto, nello stesso verso. Si misura in secondi.",
+    "text": "Il periodo è la durata di un ciclo completo di un fenomeno che si ripete regolarmente nel tempo. È il più piccolo intervallo di tempo dopo il quale il fenomeno torna nelle stesse condizioni e ricomincia a ripetersi nello stesso modo. Si indica generalmente con T e, nel Sistema Internazionale, si misura in secondi (s).",
     "kind": "Definizione di fisica"
   }
 };
