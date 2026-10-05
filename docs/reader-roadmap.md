@@ -61,3 +61,8 @@ Non ogni termine tecnico è interattivo: scegliere le keyword che servono nella 
 - Esempio della distanza sincronizzato con la posizione della lavagna.
 - Riscritta la legge oraria ed eliminata la slide riepilogativa del riferimento.
 - Il quiz usa il pulsante Verifica con sfondo e bordo visibili già corretti.
+
+### Revisione della sezione Spostamento e percorso
+- Due cursori indipendenti s₁ e s₂, con etichette sulla curva.
+- Calcolo e interpretazione del segno di Δs sincronizzati con entrambi i cursori.
+- Verifica finale con pulsante visibile.

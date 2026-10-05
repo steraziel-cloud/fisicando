@@ -173,11 +173,11 @@ window.READER_LESSONS = {
             "steps": [
               {
                 "title": "La variazione della posizione",
-                "html": "Lo <strong>spostamento lungo la traiettoria</strong> è la variazione dell’ascissa curvilinea: <span class=\"rm-formula\">Δs = s₂ − s₁</span>. Se parti da <span class=\"rm-formula\">s₁ = 1 m</span> e arrivi a <span class=\"rm-formula\">s₂ = 4 m</span>, ottieni <span class=\"rm-formula\">Δs = +3 m</span>."
+                "html": "Lo <strong>spostamento lungo la traiettoria</strong> è la variazione dell’ascissa curvilinea: <span class=\"rm-formula\">Δs = s₂ − s₁</span>. <span class=\"rm-displacement-example\" aria-live=\"polite\"></span>"
               },
               {
                 "title": "Il segno dello spostamento",
-                "html": "Se parti da <span class=\"rm-formula\">s₁ = 1 m</span> e arrivi a <span class=\"rm-formula\">s₂ = −2 m</span>, ottieni <span class=\"rm-formula\">Δs = −3 m</span>. Nella lavagna la posizione iniziale resta a 1 m: sposta quella finale e osserva la differenza."
+                "html": "<span class=\"rm-displacement-sign\" aria-live=\"polite\"></span> Sposta entrambe le posizioni con i cursori e osserva come cambia la differenza."
               }
             ],
             "board": "displacement"

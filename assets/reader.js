@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   frame.addEventListener('load',()=>{try{const doc=frame.contentDocument;doc.querySelectorAll('header,.sidebar,.rm-learning-back').forEach(e=>e.style.display='none');const headings=[...doc.querySelectorAll('.main h2,.main h3')];headings.forEach((h,i)=>{const b=document.createElement('button');b.textContent=h.textContent;b.addEventListener('click',()=>h.scrollIntoView({behavior:'auto',block:'start'}));$('reader-parts').append(b);});}catch{}});return;
  }
  // Learning progress belongs to this visit only. Deep links never unlock a part.
- const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},lab:{started:null,period:8,marks:[],verified:false}}));
+ const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},lab:{started:null,period:8,marks:[],verified:false}}));
  let current=0,allMode=false,disposeWidget=()=>{};
  const flat=s=>s.cards.flatMap((card,ci)=>card.steps.map((step,si)=>({card,ci,step,si})));
  const format=n=>Number(n).toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -70,6 +70,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   const st=state[current],board=el('div','rm-reader-board');
   board.innerHTML='<h4>Lavagna · Un punto lungo la traiettoria</h4><svg viewBox="0 0 640 285" role="img" aria-label="Traiettoria curva graduata da meno cinque a più cinque metri"><path class="rm-trajectory" d="M50 186 C118 58 191 55 269 144 S432 249 590 93" fill="none" stroke="currentColor" stroke-width="3"/><g class="rm-metric"></g><g class="rm-origin"></g><path class="rm-positive-arrow" fill="none" stroke="var(--rm-accent)" stroke-width="3"/><circle class="rm-start-point" r="7" fill="#e7b94f"/><circle class="rm-moving-point" r="9" fill="var(--rm-accent)"/><g class="rm-point-label"><rect x="-59" y="-24" width="118" height="29" rx="10" fill="var(--rm-panel)" stroke="var(--rm-accent)"/><text text-anchor="middle" y="-5" fill="currentColor" font-size="16"></text></g></svg><label>Posizione <span class="rm-coordinate-name">s</span>: <output></output><input type="range" min="-5" max="5" step="0.01" aria-label="Posizione lungo la traiettoria"></label><p class="rm-board-description"></p>';
   const input=board.querySelector('input');input.value=st.position;
+  let initialInput=null,initialOutput=null;
+  if(kind==='displacement'){
+   const initial=el('label');initial.innerHTML='Posizione iniziale s₁: <output></output><input type="range" min="-5" max="5" step="0.01" aria-label="Posizione iniziale lungo la traiettoria">';
+   board.insertBefore(initial,input.parentElement);initialInput=initial.querySelector('input');initialInput.value=st.startPosition;initialOutput=initial.querySelector('output');
+   input.setAttribute('aria-label','Posizione finale lungo la traiettoria');
+  }
   box.insertBefore(board,box.querySelector('.rm-card-title').nextSibling);
   const svg=board.querySelector('svg'),path=svg.querySelector('.rm-trajectory'),length=path.getTotalLength(),ns='http://www.w3.org/2000/svg';
   const at=s=>path.getPointAtLength((s+5)/10*length);
@@ -81,15 +87,21 @@ document.addEventListener('DOMContentLoaded',()=>{
   const origin=at(0);svg.querySelector('.rm-origin').append(make('circle',{cx:origin.x,cy:origin.y,r:14,fill:'var(--rm-panel)',stroke:'var(--rm-accent)','stroke-width':3}),make('text',{x:origin.x,y:origin.y+5,'text-anchor':'middle',fill:'currentColor','font-size':14},'O'));
   const a=at(4.5),b=at(4.7),angle=Math.atan2(b.y-a.y,b.x-a.x);svg.querySelector('.rm-positive-arrow').setAttribute('d',`M${a.x} ${a.y-19}L${b.x} ${b.y-19}m${-9*Math.cos(angle-.5)} ${-9*Math.sin(angle-.5)}L${b.x} ${b.y-19}l${-9*Math.cos(angle+.5)} ${-9*Math.sin(angle+.5)}`);
   svg.append(make('text',{x:b.x,y:b.y-35,fill:'var(--rm-accent)','font-size':13},'verso +'));
-  const start=at(1),startPoint=svg.querySelector('.rm-start-point');startPoint.setAttribute('cx',start.x);startPoint.setAttribute('cy',start.y);startPoint.style.display=kind==='displacement'?'':'none';
+  const startPoint=svg.querySelector('.rm-start-point');startPoint.style.display=kind==='displacement'?'':'none';
+  let initialLabel=null;
+  if(kind==='displacement'){initialLabel=svg.querySelector('.rm-point-label').cloneNode(true);initialLabel.setAttribute('class','rm-initial-label');initialLabel.querySelector('rect').setAttribute('stroke','#e7b94f');svg.append(initialLabel);}
   board.querySelector('.rm-coordinate-name').textContent=kind==='displacement'?'finale s₂':'s';
   function update(){
-   const s=Number(input.value),p=at(s);st.position=s;const label=svg.querySelector('.rm-point-label');label.setAttribute('transform',`translate(${p.x},${p.y-32})`);label.querySelector('text').textContent='s = '+format(s)+' m';
-   const point=svg.querySelector('.rm-moving-point');point.setAttribute('cx',p.x);point.setAttribute('cy',p.y);board.querySelector('output').textContent=format(s)+' m';
+   const s=Number(input.value),p=at(s);st.position=s;const label=svg.querySelector('.rm-point-label');label.setAttribute('transform',`translate(${p.x},${p.y-32})`);label.querySelector('text').textContent=(kind==='displacement'?'s₂':'s')+' = '+format(s)+' m';
+   const point=svg.querySelector('.rm-moving-point');point.setAttribute('cx',p.x);point.setAttribute('cy',p.y);input.parentElement.querySelector('output').textContent=format(s)+' m';
    input.setAttribute('aria-valuetext',format(s)+' metri');
-   board.querySelector('.rm-board-description').textContent=kind==='displacement'?`Partenza s₁ = 1,00 m · Arrivo s₂ = ${format(s)} m · Δs = ${format(s-1)} m`:`Posizione s = ${format(s)} m`+(showDistance?` · Distanza dall’origine lungo la traiettoria |s| = ${format(Math.abs(s))} m`:'');
+   const s1=initialInput?Number(initialInput.value):1,delta=s-s1;
+   if(initialInput){st.startPosition=s1;const start=at(s1);startPoint.setAttribute('cx',start.x);startPoint.setAttribute('cy',start.y);initialLabel.setAttribute('transform',`translate(${start.x},${start.y+48})`);initialLabel.querySelector('text').textContent='s₁ = '+format(s1)+' m';initialOutput.textContent=format(s1)+' m';initialInput.setAttribute('aria-valuetext',format(s1)+' metri');}
+   board.querySelector('.rm-board-description').textContent=kind==='displacement'?`Partenza s₁ = ${format(s1)} m · Arrivo s₂ = ${format(s)} m · Δs = ${format(delta)} m`:`Posizione s = ${format(s)} m`+(showDistance?` · Distanza dall’origine lungo la traiettoria |s| = ${format(Math.abs(s))} m`:'');
+   const displacement=box.querySelector('.rm-displacement-example');if(displacement)displacement.textContent=`Sulla lavagna parti da s₁ = ${format(s1)} m e arrivi a s₂ = ${format(s)} m: Δs = ${format(s)} m − (${format(s1)} m) = ${format(delta)} m.`;
+   const sign=box.querySelector('.rm-displacement-sign');if(sign)sign.textContent=delta>0?`Qui Δs = +${format(delta)} m: la posizione finale si trova nel verso positivo rispetto a quella iniziale.`:delta<0?`Qui Δs = ${format(delta)} m: la posizione finale si trova nel verso negativo rispetto a quella iniziale.`:'Qui Δs = 0,00 m: le posizioni iniziale e finale coincidono, anche se il corpo potrebbe essersi mosso e poi essere tornato al punto di partenza.';
    const example=box.querySelector('.rm-position-example');if(example)example.textContent=`Sulla lavagna la posizione è s = ${format(s)} m: la distanza dall’origine lungo la traiettoria è |s| = ${format(Math.abs(s))} m. Sposta il punto per osservare come cambiano questi valori.`;
-  }input.addEventListener('input',update);update();
+  }input.addEventListener('input',update);if(initialInput)initialInput.addEventListener('input',update);update();
  }
  function stopwatch(box,lab=false){
   const st=lab?state[current].lab:state[current].clock;
