@@ -16,14 +16,14 @@ Il banco di prova è Introduzione alla cinematica scalare, per il biennio. Il co
 - [x] Tempo: card istante + card intervalli con quattro sviluppi e cronometro condiviso sopra il testo.
 - [x] Primo laboratorio funzionante: trenino ellittico, Red/Bjorne cambiano velocità, t₁/t₂, Δt calcolato e mostrato dal widget, verifica con tolleranza. Velocità bloccata mentre sono registrate letture; nuova misura se si lascia il laboratorio prima di completarlo.
 - [x] Posizione su curva aperta: tacche a distanza uguale lungo la curva, origine evidenziata, coordinata mobile con passo 0,01 m e lettura decimale. Distanza dall’origine esplicitamente lungo il percorso.
-- [x] Legge oraria come relazione s(t); grafici rinviati ai singoli moti. Ricomposizione del riferimento dopo le grandezze.
+- [x] Legge oraria come funzione che associa la posizione a ogni istante; tolto il riepilogo del riferimento.
 - [x] Δs lungo traiettoria, |Δs| per tratti senza inversioni, distanza totale come somma dei tratti; andata/ritorno.
-- [x] Quiz conservati nelle altre tre sezioni, in box autonomo; mostra tutto disponibile al completamento senza alterare la progressione.
+- [x] Quiz conservati nelle altre tre sezioni, in box autonomo; mostra tutto disponibile subito per revisione, con sblocco della navigazione e senza segnare le parti svolte.
 
 ## Prossimi aggiornamenti
 
-- [ ] Illustrazione PNG dedicata del treno con i personaggi e rifinitura della scena del trenino: prima versione usa schemi SVG e asset esistenti.
-- [ ] Celebrazione delle risposte con sticker/animazioni dei gattini (fase cosmetica).
+- [x] Illustrazione dedicata del treno con Red e Bjorne, ottimizzata WebP; circuito del trenino e cronometro rifiniti.
+- [x] Celebrazione delle risposte con Red, breve animazione e coriandoli; movimento ridotto rispettato.
 - [ ] Lettura ad alta voce con pausa/ripresa e indicatore separato; testi pronunciabili delle formule; futuro doppiaggio.
 - [ ] Esportazione/stampa PDF da LaTeX con impaginazione curata, sostituti statici delle interazioni e rimando alla lezione online.
 - [ ] Prova con le studentesse; tarare tolleranza della misura e dimensioni della lavagna su telefono.
