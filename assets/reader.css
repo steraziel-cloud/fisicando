@@ -91,8 +91,8 @@
 @media(prefers-reduced-motion:reduce){.rm-celebration,.rm-celebration-cat,.rm-celebration-stars i{animation:none}.rm-celebration-stars{display:none}.rm-total-progress>span{transition:none}}
 
 /* Illustrated period laboratory: layered scene, directional locomotive, accessible cat controls. */
-.rm-room-stage{position:relative;isolation:isolate;width:100%;aspect-ratio:3/2;overflow:hidden;border-radius:13px}
-.rm-room-backdrop{display:block;width:100%;height:100%;object-fit:contain}
+.rm-room-stage{position:relative;isolation:isolate;width:100%;aspect-ratio:3/2;overflow:visible}
+.rm-room-backdrop{display:block;width:100%;height:100%;object-fit:contain;-webkit-mask:url("images/reader/train-soft-mask.svg") center/100% 100% no-repeat;mask:url("images/reader/train-soft-mask.svg") center/100% 100% no-repeat}
 .rm-room-path{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;background:none!important}
 .rm-room-path path{fill:none;stroke:none}
 .rm-room-train-anchor{position:absolute;width:15%;aspect-ratio:1;transform:scale(var(--train-scale,1));transform-origin:0 0;pointer-events:none;z-index:2}
@@ -100,7 +100,7 @@
 .rm-track-anchor{display:none}.rm-room-stage--debug .rm-room-path{z-index:5}.rm-room-stage--debug .rm-room-path path{stroke:#3cffff;stroke-width:3;fill:none}.rm-room-stage--debug .rm-track-anchor{display:block;fill:#ff345a;stroke:#fff;stroke-width:2}
 .rm-reader-column .rm-cat-hotspot{position:absolute;background:transparent;border:0;box-shadow:none;min-height:0;margin:0;padding:0;border-radius:40%;z-index:3;cursor:pointer}
 .rm-red-hotspot{left:22%;top:16%;width:26%;height:41%}.rm-bjorne-hotspot{left:49%;top:20%;width:30%;height:40%}
-.rm-reader-column .rm-cat-hotspot:hover:not(:disabled){background:#ffffff0a;box-shadow:inset 0 0 0 2px #ffffff80}
+.rm-reader-column .rm-cat-hotspot:hover:not(:disabled),.rm-reader-column .rm-cat-hotspot:active{background:transparent;box-shadow:none;outline:none}
 .rm-reader-column .rm-cat-hotspot:focus-visible{outline:3px solid #fff;outline-offset:-3px}
 .rm-cat-hotspot:disabled{cursor:default}
 .rm-room-balloon{position:absolute;width:31%;height:auto;z-index:4;pointer-events:none;animation:reader-enter .2s ease-out}
@@ -108,3 +108,5 @@
 .rm-lab-workbench:has(.rm-room-stage){grid-template-columns:1fr}.rm-lab-workbench:has(.rm-room-stage) .rm-stopwatch-board{display:grid;grid-template-columns:200px minmax(0,1fr);align-items:center;text-align:left;padding:16px}
 .rm-lab-workbench:has(.rm-room-stage) .rm-stopwatch-board h4{grid-column:1/-1}.rm-lab-workbench:has(.rm-room-stage) .rm-clock{grid-row:2/5;grid-column:1}.rm-lab-workbench:has(.rm-room-stage) .rm-clock-help{grid-column:1/-1}
 @media(max-width:480px){.rm-lab-workbench:has(.rm-room-stage) .rm-stopwatch-board{display:block;text-align:center}.rm-room-balloon{width:36%}.rm-red-balloon{left:7%}.rm-bjorne-balloon{right:7%}}
+
+.rm-lab-stage:has(.rm-room-stage){background:transparent;border:0;border-radius:0;padding:0}.rm-period-scene:has(.rm-room-stage){padding:0}
