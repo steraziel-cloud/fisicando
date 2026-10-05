@@ -71,3 +71,7 @@ Non ogni termine tecnico è interattivo: scegliere le keyword che servono nella 
 - Frase di benvenuto sostituita con il testo esatto richiesto.
 - Mostra tutto disponibile subito sotto il menù: apre il testo integrale e sblocca la navigazione per revisione, senza segnare le parti come completate.
 - Lo sblocco di revisione vale solo per la visita corrente e si azzera ricaricando.
+
+### Misura riportata dallo studente
+- Ripristinato il campo per riportare il periodo letto sul cronometro, con virgola o punto decimale.
+- La verifica valuta il valore inserito: controlla la lettura di Δt e la misura del giro, mantenendo la tolleranza del tempo di reazione.

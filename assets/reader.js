@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   frame.addEventListener('load',()=>{try{const doc=frame.contentDocument;doc.querySelectorAll('header,.sidebar,.rm-learning-back').forEach(e=>e.style.display='none');const headings=[...doc.querySelectorAll('.main h2,.main h3')];headings.forEach((h,i)=>{const b=document.createElement('button');b.textContent=h.textContent;b.addEventListener('click',()=>h.scrollIntoView({behavior:'auto',block:'start'}));$('reader-parts').append(b);});}catch{}});return;
  }
  // Learning progress belongs to this visit only. Deep links never unlock a part.
- const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},lab:{started:null,period:8,marks:[],verified:false}}));
+ const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},lab:{started:null,period:8,marks:[],verified:false,answer:''}}));
  let current=0,allMode=false,reviewAccess=false,disposeWidget=()=>{};
  const flat=s=>s.cards.flatMap((card,ci)=>card.steps.map((step,si)=>({card,ci,step,si})));
  const format=n=>Number(n).toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    else if(st.marks.length<2)st.marks.push(Number(currentTime().toFixed(2)));
    show();tick();
   });
-  const clear=reset=>{st.marks=[];if(reset)st.started=null;if(lab){st.verified=false;$('reader-feedback').textContent='';}show();tick();};
+  const clear=reset=>{st.marks=[];if(reset)st.started=null;if(lab){st.verified=false;st.answer='';const answer=box.querySelector('.rm-period-answer input');if(answer)answer.value='';$('reader-feedback').textContent='';}show();tick();};
   board.querySelector('.rm-clock-controls').append(button('Cancella le letture',()=>clear(false)),button('Ferma e azzera',()=>clear(true)));
   box.append(board);show();
   function tick(){board.querySelector('.rm-clock-reading').textContent=format(currentTime());}
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  function periodLab(box){
   const st=state[current].lab;
-  const intro=el('p');intro.innerHTML='Il <button class="rm-keyword" data-term="periodo" type="button">periodo</button> è la durata di un giro completo. Avvia il cronometro, poi registra t₁ quando il trenino attraversa il segno giallo e t₂ al passaggio successivo, dopo un giro. La differenza Δt mostra la durata misurata: premi «Verifica la misura» per controllarla.';box.append(intro);
+  const intro=el('p');intro.innerHTML='Il <button class="rm-keyword" data-term="periodo" type="button">periodo</button> è la durata di un giro completo. Avvia il cronometro, poi registra t₁ quando il trenino attraversa il segno giallo e t₂ al passaggio successivo, dopo un giro. La differenza Δt mostra la durata misurata: scrivi il valore che leggi nel riquadro qui sotto e premi «Verifica la misura».';box.append(intro);
   const scene=el('div','rm-period-scene');scene.innerHTML='<svg viewBox="0 0 640 275" role="img" aria-label="Un trenino percorre un circuito ellittico. Il segno giallo indica il punto in cui prendere le due letture."><ellipse cx="320" cy="138" rx="245" ry="95" fill="none" stroke="var(--rm-muted)" stroke-width="13"/><ellipse cx="320" cy="138" rx="245" ry="95" fill="none" stroke="var(--rm-panel)" stroke-width="5"/><path d="M554 111h23" stroke="#e7b94f" stroke-width="6"/><text x="486" y="84" fill="currentColor" font-size="14">Misura qui ↓</text><g class="rm-toy-train"><rect x="-19" y="-12" width="38" height="24" rx="6" fill="var(--rm-accent)" stroke="var(--rm-panel)" stroke-width="3"/><path d="M2-8v16" stroke="var(--rm-panel)" stroke-width="3"/><circle cx="12" cy="0" r="4" fill="#e7b94f"/></g><image href="assets/images/red-logo-head.png" x="222" y="89" width="77" height="72"/><image href="assets/images/oltre-lezioni/bjorne-box-01.png" x="342" y="82" width="83" height="85"/></svg>';
   const controls=el('div','rm-lab-controls');
   const change=delta=>{if(st.marks.length){$('reader-feedback').textContent='Cancella prima le letture per cambiare la velocità.';return;}st.period=Math.max(4,Math.min(14,st.period+delta));st.verified=false;$('reader-feedback').textContent=delta<0?'Red accelera il trenino. Misura il nuovo periodo.':'Bjorne rallenta il trenino. Misura il nuovo periodo.';};
@@ -139,11 +139,17 @@ document.addEventListener('DOMContentLoaded',()=>{
   let phase=0,previous=performance.now(),raf;
   const train=scene.querySelector('.rm-toy-train');
   function animate(now){phase=(phase+(now-previous)/1000/st.period*2*Math.PI)%(2*Math.PI);previous=now;const x=320+245*Math.cos(phase),y=138+95*Math.sin(phase),angle=Math.atan2(95*Math.cos(phase),-245*Math.sin(phase))*180/Math.PI;train.setAttribute('transform',`translate(${x} ${y}) rotate(${angle})`);raf=requestAnimationFrame(animate);}raf=requestAnimationFrame(animate);
+  const answerBox=el('div','rm-period-answer'),answerLabel=el('label');
+  answerLabel.append(el('span','','Periodo misurato: '));const answer=el('input');answer.type='text';answer.inputMode='decimal';answer.setAttribute('aria-label','Periodo misurato in secondi');answer.setAttribute('autocomplete','off');answer.value=st.answer;answerLabel.append(answer,el('span','','s'));answerBox.append(answerLabel);box.append(answerBox);
+  answer.addEventListener('input',()=>{st.answer=answer.value;st.verified=false;$('reader-feedback').textContent='';sync();});
   const verify=button('Verifica la misura',()=>{
    if(st.marks.length!==2){$('reader-feedback').textContent='Registra i due istanti prima di verificare.';return;}
+   const value=answer.value.trim().replace(',','.');const reported=Number(value);
+   if(!value||!Number.isFinite(reported)||reported<=0){$('reader-feedback').textContent='Inserisci la misura del periodo in secondi, per esempio 8,12.';return;}
    const measured=st.marks[1]-st.marks[0],tolerance=Math.max(.6,st.period*.08);
-   if(Math.abs(measured-st.period)>tolerance){$('reader-feedback').textContent='La durata misurata non corrisponde a un giro completo. Cancella le letture e riprova: registra due passaggi consecutivi sul segno giallo. Una piccola differenza dovuta al tempo di reazione va bene.';return;}
-   st.verified=true;clock.show();finish('Misura riuscita! Il periodo misurato è Δt = '+format(measured)+' s.');
+   if(Math.abs(reported-measured)>.05){$('reader-feedback').textContent='Il valore inserito non coincide con Δt sul cronometro. Controlla la lettura e riportala nel riquadro in secondi.';return;}
+   if(Math.abs(reported-st.period)>tolerance){$('reader-feedback').textContent='La durata misurata non corrisponde a un giro completo. Cancella le letture e riprova: registra due passaggi consecutivi sul segno giallo. Una piccola differenza dovuta al tempo di reazione va bene.';return;}
+   st.verified=true;clock.show();finish('Misura riuscita! Il periodo misurato è Δt = '+format(reported)+' s.');
   },'rm-btn primary');box.append(verify);
   const sync=()=>{red.disabled=bjorne.disabled=st.marks.length>0;verify.disabled=st.marks.length!==2||st.verified;};clock.board.addEventListener('measurement',sync);sync();
   disposeWidget=()=>{clockDispose();cancelAnimationFrame(raf);if(!st.verified)st.marks=[];};
