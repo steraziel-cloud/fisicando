@@ -13,3 +13,6 @@ Asset attivo: `assets/images/reader/red-bjorne-treno-v2.webp`. Finestrino normal
 
 Prompt finestrino: replace the large cutaway with a normal passenger window, rounded corners and clear-glass reflections; show only Red’s head, shoulders and waving paw; hide his body with solid turquoise carriage wall; preserve Bjorne, station and composition.
 Prompt sfondo: fill transparent areas with soft pale blue evening sky, subtle clouds, distant green rolling hills and a few soft-focus trees; preserve all foreground objects, characters and normal window exactly; no extra characters, foreground objects or text.
+
+### Illustrazione integrata nella pagina
+Rimossa la fascia con i nomi e la cornice rettangolare. La stessa scena usa una maschera SVG con curva chiusa irregolare e una sfumatura breve ai bordi, che lascia leggibili personaggi e finestrino su entrambi i temi.

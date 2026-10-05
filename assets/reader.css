@@ -47,8 +47,8 @@
 .rm-welcome-card{min-height:190px;overflow:hidden;border-top:3px solid var(--rm-accent)}
 .rm-welcome-cat{float:right;object-fit:contain;width:130px;height:166px;margin:0 0 14px 24px;filter:drop-shadow(0 8px 8px #b66a2620)}
 .rm-welcome-card .rm-reader-step{padding-top:6px}.rm-welcome-card .rm-reader-step+.rm-reader-step{padding-top:15px;clear:both}
-.rm-reference-scene{padding:0;background:var(--rm-panel);overflow:hidden;border:1px solid var(--rm-line);border-radius:17px;margin-bottom:22px}
-.rm-train-illustration{display:block;width:100%;height:auto;max-height:310px;object-fit:cover;object-position:50% 46%}
+.rm-reference-scene{padding:0;background:transparent;border:0;margin:0 -8px 22px}
+.rm-train-illustration{display:block;width:100%;height:auto;max-height:340px;object-fit:cover;object-position:50% 46%;-webkit-mask:url("images/reader/train-soft-mask.svg") center/100% 100% no-repeat;mask:url("images/reader/train-soft-mask.svg") center/100% 100% no-repeat}
 .rm-reference-labels{display:flex;justify-content:space-between;gap:12px;padding:11px 17px;font-size:12px;font-weight:650}.rm-reference-labels span:first-child i{color:#dc9349}.rm-reference-labels span:last-child i{color:var(--rm-accent)}.rm-reference-labels i{font-style:normal;margin-right:5px}
 .rm-inline-exercise{background:var(--rm-panel);border:1px solid var(--rm-line);border-radius:15px;padding:8px 18px 18px}
 .rm-sentence{font-size:16px}.rm-sentence select{font-weight:650;min-width:145px}.rm-inline-exercise .rm-btn{margin-top:8px}
