@@ -20,7 +20,7 @@
 
 /* Secondary actions must remain distinct inside cards of the same color. */
 .rm-reader-column .rm-btn.secondary{background:var(--rm-panel);border-color:var(--rm-line)}
-.rm-reader-checkpoint>.rm-btn{background:var(--rm-accent);border-color:var(--rm-accent);color:#fff}
+.rm-reader-column .rm-reader-checkpoint>.rm-btn{background:var(--rm-accent);border-color:var(--rm-accent);color:#fff}
 .rm-reader-recap{margin-bottom:18px;border:1px solid var(--rm-line);border-radius:14px;background:var(--rm-panel)}
 .rm-reader-recap summary{display:flex;align-items:center;gap:12px;padding:15px 20px;cursor:pointer;font-size:14px;font-weight:600;list-style:none}
 .rm-reader-recap summary::-webkit-details-marker{display:none}.rm-reader-recap summary:before{content:'▸';color:var(--rm-accent-2)}
