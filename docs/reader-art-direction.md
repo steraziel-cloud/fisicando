@@ -16,3 +16,6 @@ Prompt sfondo: fill transparent areas with soft pale blue evening sky, subtle cl
 
 ### Illustrazione integrata nella pagina
 Rimossa la fascia con i nomi e la cornice rettangolare. La stessa scena usa una maschera SVG con curva chiusa irregolare e una sfumatura breve ai bordi, che lascia leggibili personaggi e finestrino su entrambi i temi.
+
+### Benvenuto con Red e Bjorne
+Asset: `assets/images/reader/red-bjorne-benvenuto-v1.png`, PNG RGBA trasparente, 720×480. Generato con lo strumento integrato imagegen a partire dalle identità originali dei personaggi. Red saluta con entusiasmo; Bjorne, senza scatola, sorride e alza una zampina. Composizione compatta orizzontale, adatta alla card e a entrambi i temi.
