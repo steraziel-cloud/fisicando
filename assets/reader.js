@@ -28,10 +28,17 @@ document.addEventListener('DOMContentLoaded',()=>{
    dot.style.setProperty('--part-progress',Math.round(state[i].reached/flat(s).length*100)+'%');dot.setAttribute('aria-hidden','true');
    b.append(dot,el('span','',s.title));b.setAttribute('aria-label',s.title+' · '+(state[i].complete?'completata':unlocked(i)?'disponibile':'da sbloccare'));$('reader-parts').append(b);
   });
-  $('reader-progress').textContent=state.filter(s=>s.complete).length+' di '+state.length+' parti completate';
+  const completed=state.filter(s=>s.complete).length;
+  $('reader-progress').replaceChildren(el('span','',completed+' di '+state.length+' parti completate'));
+  const track=el('span','rm-total-progress');track.setAttribute('aria-hidden','true');const fill=el('span');fill.style.width=completed/state.length*100+'%';track.append(fill);$('reader-progress').append(track);
   $('reader-show-all').hidden=false;
  }
- function finish(message){state[current].complete=true;state[current].reached=flat(lesson.sections[current]).length;index();$('reader-feedback').textContent=message;actions();}
+ function celebrate(target,message,title='Ottimo lavoro!'){
+  const card=el('span','rm-celebration'),cat=el('img','rm-celebration-cat');cat.src='assets/images/oltre-lezioni/red-confab-01.png';cat.alt='Red festeggia la risposta corretta';cat.width=94;cat.height=110;
+  const copy=el('span','rm-celebration-copy');copy.append(el('strong','',title),el('span','',message));card.append(cat,copy);
+  const stars=el('span','rm-celebration-stars');stars.setAttribute('aria-hidden','true');for(let i=0;i<5;i++)stars.append(el('i'));card.append(stars);target.replaceChildren(card);
+ }
+ function finish(message){const first=!state[current].complete;state[current].complete=true;state[current].reached=flat(lesson.sections[current]).length;index();celebrate($('reader-feedback'),message,first?'Una parte in più, ci sei!':'Perfetto!');actions();}
  function actions(){
   const count=flat(lesson.sections[current]).length,st=state[current];
   $('reader-prev').hidden=allMode||st.cursor===0;$('reader-next').hidden=allMode;
@@ -45,7 +52,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  $('reader-glossary').addEventListener('click',e=>{if(e.target===$('reader-glossary'))$('reader-glossary').close();});
  function trainPicture(box){
   const picture=el('div','rm-reference-scene');
-  picture.innerHTML='<svg viewBox="0 0 600 215" role="img" aria-label="Un gattino viaggia sul sedile del treno; un altro osserva dalla stazione"><path d="M20 172H580" stroke="currentColor" stroke-width="4"/><rect x="32" y="38" width="350" height="123" rx="20" fill="var(--rm-card)" stroke="var(--rm-accent)" stroke-width="3"/><rect x="60" y="58" width="90" height="66" rx="8" fill="var(--rm-panel)"/><path d="M173 120h130v20H173v-20m0 0V80" stroke="#e7b94f" stroke-width="7" fill="none"/><image href="assets/images/red-logo-head.png" x="202" y="58" width="65" height="62"/><circle cx="100" cy="166" r="14" fill="var(--rm-muted)"/><circle cx="310" cy="166" r="14" fill="var(--rm-muted)"/><path d="M335 27h38m-10-7 10 7-10 7" stroke="var(--rm-accent)" stroke-width="3" fill="none"/><path d="M427 160V46h110" stroke="currentColor" stroke-width="3" fill="none"/><text x="454" y="38" fill="currentColor" font-size="15">Stazione</text><image href="assets/images/oltre-lezioni/bjorne-box-01.png" x="435" y="74" width="92" height="83"/><text x="230" y="201" text-anchor="middle" fill="currentColor" font-size="15">Il sedile viaggia con il treno</text></svg>';
+  picture.innerHTML='<img class="rm-train-illustration" src="assets/images/reader/red-bjorne-treno-v1.webp" alt="Red resta seduto sul sedile di una carrozza; Bjorne lo saluta dalla banchina della stazione." width="960" height="640"><div class="rm-reference-labels"><span><i aria-hidden="true">●</i> Red · sul treno</span><span><i aria-hidden="true">●</i> Bjorne · in stazione</span></div>';
   box.append(picture);
  }
  function referenceExercise(box,interactive=true){
@@ -56,7 +63,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    select.value=st.values[i];select.disabled=st.done||!interactive;select.addEventListener('change',()=>st.values[i]=select.value);line.append(select);exercise.append(line);
   });
   const feedback=el('p','rm-inline-feedback');feedback.setAttribute('role','status');
-  const explanation=()=>{feedback.textContent=(st.assisted?'Completiamo insieme: rispetto alla stazione ti muovi; rispetto al sedile non ti muovi. ':'')+'Le due descrizioni possono essere entrambe corrette: cambia il riferimento. Uno stesso corpo può essere in movimento rispetto a un riferimento e fermo rispetto a un altro.';};
+  const explanation=()=>{feedback.textContent=(st.assisted?'Completiamo insieme: rispetto alla stazione ti muovi; rispetto al sedile non ti muovi. ':'')+'Le due descrizioni possono essere entrambe corrette: cambia il riferimento. Uno stesso corpo può essere in movimento rispetto a un riferimento e fermo rispetto a un altro.';if(!st.assisted)celebrate(feedback,feedback.textContent,'Esatto, cambia il riferimento!');};
   if(st.done)explanation();else if(interactive)exercise.append(button('Verifica le due frasi',()=>{
    if(st.values.includes('')){feedback.textContent='Completa entrambe le frasi prima di verificare.';return;}
    if(st.values[0]==='moto'&&st.values[1]==='fermo'){st.done=true;exercise.querySelectorAll('select').forEach(x=>x.disabled=true);check.hidden=true;explanation();actions();}
@@ -131,14 +138,16 @@ document.addEventListener('DOMContentLoaded',()=>{
  function periodLab(box){
   const st=state[current].lab;
   const intro=el('p');intro.innerHTML='Il <button class="rm-keyword" data-term="periodo" type="button">periodo</button> è la durata di un giro completo. Avvia il cronometro, poi registra t₁ quando il trenino attraversa il segno giallo e t₂ al passaggio successivo, dopo un giro. La differenza Δt mostra la durata misurata: scrivi il valore che leggi nel riquadro qui sotto e premi «Verifica la misura».';box.append(intro);
-  const scene=el('div','rm-period-scene');scene.innerHTML='<svg viewBox="0 0 640 275" role="img" aria-label="Un trenino percorre un circuito ellittico. Il segno giallo indica il punto in cui prendere le due letture."><ellipse cx="320" cy="138" rx="245" ry="95" fill="none" stroke="var(--rm-muted)" stroke-width="13"/><ellipse cx="320" cy="138" rx="245" ry="95" fill="none" stroke="var(--rm-panel)" stroke-width="5"/><path d="M554 111h23" stroke="#e7b94f" stroke-width="6"/><text x="486" y="84" fill="currentColor" font-size="14">Misura qui ↓</text><g class="rm-toy-train"><rect x="-19" y="-12" width="38" height="24" rx="6" fill="var(--rm-accent)" stroke="var(--rm-panel)" stroke-width="3"/><path d="M2-8v16" stroke="var(--rm-panel)" stroke-width="3"/><circle cx="12" cy="0" r="4" fill="#e7b94f"/></g><image href="assets/images/red-logo-head.png" x="222" y="89" width="77" height="72"/><image href="assets/images/oltre-lezioni/bjorne-box-01.png" x="342" y="82" width="83" height="85"/></svg>';
+  const scene=el('div','rm-period-scene');scene.innerHTML='<h4>Il circuito di Red e Bjorne</h4><svg viewBox="0 0 640 330" role="img" aria-label="Red e Bjorne giocano con un trenino su un circuito ellittico. Il segno giallo indica dove registrare i due passaggi."><ellipse cx="320" cy="168" rx="245" ry="95" fill="none" stroke="var(--rm-muted)" stroke-width="18"/><g class="rm-track-sleepers"></g><ellipse cx="320" cy="168" rx="249" ry="99" fill="none" stroke="#afc4c4" stroke-width="3"/><ellipse cx="320" cy="168" rx="240" ry="90" fill="none" stroke="#afc4c4" stroke-width="3"/><path d="M552 141h25" stroke="#e7b94f" stroke-width="9"/><circle cx="564" cy="112" r="15" fill="#e7b94f"/><path d="m558 110 6 7 6-7" stroke="#183639" stroke-width="3" fill="none"/><text x="489" y="87" fill="currentColor" font-size="17">Misura qui</text><image href="assets/images/oltre-lezioni/red-confab-01.png" x="215" y="94" width="90" height="122"/><image href="assets/images/oltre-lezioni/bjorne-box-01.png" x="328" y="105" width="111" height="112"/><g class="rm-toy-wagon"><rect x="-16" y="-11" width="32" height="22" rx="5" fill="#e7b94f" stroke="#8c652c" stroke-width="2"/><path d="M-8-7v14M2-7v14" stroke="#fff5d3" stroke-width="3"/></g><g class="rm-toy-train"><rect x="-22" y="-14" width="38" height="28" rx="5" fill="#108f98" stroke="#174951" stroke-width="2"/><rect x="-18" y="-10" width="11" height="20" rx="2" fill="#d5f1ee"/><rect x="4" y="-9" width="15" height="18" rx="5" fill="#e7b94f"/><circle cx="12" cy="0" r="5" fill="#96652a"/><path d="M21-10l7 10-7 10" fill="#f2cf76" stroke="#96652a" stroke-width="2"/></g></svg>';
+  const ns='http://www.w3.org/2000/svg',sleepers=scene.querySelector('.rm-track-sleepers');for(let i=0;i<64;i++){const phi=i/64*Math.PI*2,x=320+245*Math.cos(phi),y=168+95*Math.sin(phi),deg=Math.atan2(95*Math.cos(phi),-245*Math.sin(phi))*180/Math.PI;const tie=document.createElementNS(ns,'rect');Object.entries({x:-3,y:-13,width:6,height:26,rx:2,fill:'#9b7859',transform:`translate(${x} ${y}) rotate(${deg})`}).forEach(([k,v])=>tie.setAttribute(k,v));sleepers.append(tie);}
   const controls=el('div','rm-lab-controls');
   const change=delta=>{if(st.marks.length){$('reader-feedback').textContent='Cancella prima le letture per cambiare la velocità.';return;}st.period=Math.max(4,Math.min(14,st.period+delta));st.verified=false;$('reader-feedback').textContent=delta<0?'Red accelera il trenino. Misura il nuovo periodo.':'Bjorne rallenta il trenino. Misura il nuovo periodo.';};
-  const red=button('Red · Più veloce',()=>change(-2)),bjorne=button('Bjorne · Più lento',()=>change(2));controls.append(red,bjorne);box.append(scene,controls);
-  const clock=stopwatch(box,true),clockDispose=disposeWidget;
+  const red=button('Red · Più veloce',()=>change(-2)),bjorne=button('Bjorne · Più lento',()=>change(2));red.classList.add('rm-cat-control','rm-red-control');bjorne.classList.add('rm-cat-control','rm-bjorne-control');
+  controls.append(red,bjorne);const stage=el('div','rm-lab-stage');stage.append(scene,controls);box.append(stage);
+  const clock=stopwatch(box,true),clockDispose=disposeWidget;const bench=el('div','rm-lab-workbench');box.insertBefore(bench,stage);bench.append(stage,clock.board);
   let phase=0,previous=performance.now(),raf;
   const train=scene.querySelector('.rm-toy-train');
-  function animate(now){phase=(phase+(now-previous)/1000/st.period*2*Math.PI)%(2*Math.PI);previous=now;const x=320+245*Math.cos(phase),y=138+95*Math.sin(phase),angle=Math.atan2(95*Math.cos(phase),-245*Math.sin(phase))*180/Math.PI;train.setAttribute('transform',`translate(${x} ${y}) rotate(${angle})`);raf=requestAnimationFrame(animate);}raf=requestAnimationFrame(animate);
+  function animate(now){phase=(phase+(now-previous)/1000/st.period*2*Math.PI)%(2*Math.PI);previous=now;const x=320+245*Math.cos(phase),y=168+95*Math.sin(phase),angle=Math.atan2(95*Math.cos(phase),-245*Math.sin(phase))*180/Math.PI;train.setAttribute('transform',`translate(${x} ${y}) rotate(${angle})`);const wp=phase-.19,wx=320+245*Math.cos(wp),wy=168+95*Math.sin(wp),wa=Math.atan2(95*Math.cos(wp),-245*Math.sin(wp))*180/Math.PI;scene.querySelector('.rm-toy-wagon').setAttribute('transform',`translate(${wx} ${wy}) rotate(${wa})`);raf=requestAnimationFrame(animate);}raf=requestAnimationFrame(animate);
   const answerBox=el('div','rm-period-answer'),answerLabel=el('label');
   answerLabel.append(el('span','','Periodo misurato: '));const answer=el('input');answer.type='text';answer.inputMode='decimal';answer.setAttribute('aria-label','Periodo misurato in secondi');answer.setAttribute('autocomplete','off');answer.value=st.answer;answerLabel.append(answer,el('span','','s'));answerBox.append(answerLabel);box.append(answerBox);
   answer.addEventListener('input',()=>{st.answer=answer.value;st.verified=false;$('reader-feedback').textContent='';sync();});
@@ -174,6 +183,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    details.addEventListener('toggle',()=>summary.querySelector('.rm-recap-toggle').textContent=details.open?'Comprimi':'Rivedi');
   }else $('reader-steps').append(box);
   box.append(el('h3','rm-card-title',card.title));
+  if(card.title==='Benvenuta, benvenuto!'){box.classList.add('rm-welcome-card');const cat=el('img','rm-welcome-cat');cat.src='assets/images/oltre-lezioni/red-confab-01.png';cat.alt='Red ti dà il benvenuto';cat.width=140;cat.height=172;box.append(cat);}
   if(card.board==='train-reference')trainPicture(box);
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
   steps.forEach(step=>{const article=el('div','rm-reader-step');article.append(el('h4','',step.title));const p=el('p');p.innerHTML=step.html;article.append(p);if(step.interaction==='train-reference')referenceExercise(article,!archived);box.append(article);});

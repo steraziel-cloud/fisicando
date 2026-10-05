@@ -75,3 +75,10 @@ Non ogni termine tecnico è interattivo: scegliere le keyword che servono nella 
 ### Misura riportata dallo studente
 - Ripristinato il campo per riportare il periodo letto sul cronometro, con virgola o punto decimale.
 - La verifica valuta il valore inserito: controlla la lettura di Δt e la misura del giro, mantenendo la tolleranza del tempo di reazione.
+
+### Finitura estetica della lezione pilota
+- Scena illustrata dedicata di Red sul treno e Bjorne in stazione, coerente con i personaggi esistenti.
+- Accoglienza con Red; gerarchia del testo, lavagne, controlli e selezioni armonizzati nei temi giorno/notte.
+- Circuito del trenino con rotaie, traversine, locomotiva e vagone; laboratorio compatto con cronometro radar e campo misura.
+- Feedback positivo con Red e festeggiamento breve, rispettando le preferenze di movimento ridotto.
+- Asset generato con strumento immagini integrato, da riferimenti del sito; scena treno senza testi, formule o dati, ottimizzata WebP. Prompt completo registrato in docs/reader-art-direction.md.
