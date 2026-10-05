@@ -150,15 +150,16 @@ document.addEventListener('DOMContentLoaded',()=>{
   const clock=stopwatch(box,true),clockDispose=disposeWidget;const bench=el('div','rm-lab-workbench');box.insertBefore(bench,stage);bench.append(stage,clock.board);
   const track=window.READER_TRAIN_TRACK,anchor=scene.querySelector('.rm-room-train-anchor'),marker=scene.querySelector('.rm-track-anchor');
   scene.querySelector('.rm-room-path path').setAttribute('d',track.path);
-  train.style.setProperty('--anchor-x',(track.spriteAnchor.x*100)+'%');train.style.setProperty('--anchor-y',(track.spriteAnchor.y*100)+'%');
+  function setFrameAnchor(index){const a=track.spriteAnchors[index];train.style.setProperty('--anchor-x',(a.x*100)+'%');train.style.setProperty('--anchor-y',(a.y*100)+'%');}
+  setFrameAnchor(0);
   if(new URLSearchParams(location.search).has('trainDebug'))room.classList.add('rm-room-stage--debug');
   const frames=Array.from({length:16},(_,i)=>{const image=new Image();image.src='assets/images/reader/period-lab/locomotive-'+String(i).padStart(2,'0')+'.webp';return image;});
   let phase=0,previous=performance.now(),raf,lastFrame=-1;
   function animate(now){
    phase=(phase+(now-previous)/1000/st.period)%1;previous=now;
    const p=track.pose(phase),frame=((Math.round(p.heading/(Math.PI*2)*16)%16)+16)%16;
-   if(frame!==lastFrame&&frames[frame].complete&&frames[frame].naturalWidth){train.src=frames[frame].src;lastFrame=frame;}
-   anchor.style.left=(p.x/track.width*100)+'%';anchor.style.top=(p.y/track.height*100)+'%';anchor.style.setProperty('--train-scale',String(.45+.65*p.y/track.height));
+   if(frame!==lastFrame&&frames[frame].complete&&frames[frame].naturalWidth){train.src=frames[frame].src;setFrameAnchor(frame);lastFrame=frame;}
+   anchor.style.left=(p.x/track.width*100)+'%';anchor.style.top=(p.y/track.height*100)+'%';anchor.style.setProperty('--train-scale',String(track.perspectiveScale(p.y)));
    marker.setAttribute('cx',p.x);marker.setAttribute('cy',p.y);
    raf=requestAnimationFrame(animate);
   }raf=requestAnimationFrame(animate);

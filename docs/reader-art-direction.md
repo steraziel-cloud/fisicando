@@ -27,3 +27,6 @@ Stanza senza locomotiva e balloon incorporati; 16 fotogrammi direzionali della l
 Il percorso è una spline chiusa periodica Catmull–Rom su 16 punti centrali fra le rotaie nella scena nativa 1200×800. Le cubiche di Bézier corrispondenti definiscono la curva; una tabella di lunghezza d’arco di 2048 campioni parametrizza la progressione. La tangente determina il fotogramma. Il punto sulla curva coincide con l’ancora (128,236) sul fotogramma 256×256. Un contenitore con origine di trasformazione (0,0) conserva questo vincolo anche cambiando scala prospettica. La diagnostica `trainDebug` mostra curva e ancora; nessun controllo aggiuntivo nel percorso dello studente.
 
 La scena del periodo usa la medesima maschera curva sfumata della scena in stazione; rimossa la cornice del riquadro. Le aree cliccabili di Red e Bjorne rimangono trasparenti al passaggio e al clic del mouse; il focus da tastiera conserva un indicatore accessibile.
+
+### Mediana esplicita e centro di appoggio
+La curva è definita come media punto per punto delle due spline delle rotaie, ricavate da 16 coppie di riferimenti corrispondenti. Le ancore dei 16 fotogrammi sono calibrate sul centro di appoggio delle ruote, distinto dal margine inferiore della tela. La scala va da 0,78 sul fondo a 1,00 sul tratto anteriore, con vincolo conservato attorno al punto di ancoraggio.

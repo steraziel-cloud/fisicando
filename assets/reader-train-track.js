@@ -1,8 +1,11 @@
 (function(root){
  'use strict';
- // Ground centreline traced between the rails in the 1200 × 800 room image.
- // A closed, periodic Catmull–Rom spline becomes cubic Bézier segments.
- const points=[[1030,335],[1009,245],[915,163],[765,107],[560,80],[363,107],[218,164],[119,247],[81,340],[107,445],[205,543],[378,610],[575,635],[775,612],[922,544],[1003,445]];
+ // Corresponding rail landmarks in the native 1200 × 800 image.
+ // Their pointwise mean defines the median: gamma(u) = (inner(u)+outer(u))/2.
+ // Periodic cubic interpolation is linear, so averaging the knots also averages the splines.
+ const innerRail=[[1007,335],[986,254],[900,179],[758,129],[560,101],[371,128],[232,181],[140,256],[104,340],[129,436],[220,525],[386,588],[575,610],[767,590],[907,526],[981,436]];
+ const outerRail=[[1052,335],[1032,236],[930,147],[772,85],[560,59],[355,86],[204,147],[98,238],[58,340],[85,454],[190,561],[370,632],[575,660],[783,634],[937,562],[1025,454]];
+ const points=innerRail.map((p,i)=>[(p[0]+outerRail[i][0])/2,(p[1]+outerRail[i][1])/2]);
  const n=points.length,wrap=x=>((x%1)+1)%1;
  const segments=points.map((p,i)=>{
   const before=points[(i+n-1)%n],next=points[(i+1)%n],after=points[(i+2)%n];
@@ -24,7 +27,12 @@
  for(let i=0;i<samples;i++){const p=atDistance(i/samples),e=(p.x-1012)**2+(p.y-445)**2;if(e<error){error=e;origin=i/samples;}}
  function pose(phase){const p=atDistance(origin-phase);return {...p,heading:Math.atan2(-p.dy/.58,-p.dx)};}
  const path='M'+points[0].join(' ')+' '+segments.map(([,b,c,d])=>'C'+b.join(' ')+' '+c.join(' ')+' '+d.join(' ')).join(' ')+' Z';
- const model=Object.freeze({width:1200,height:800,points,at,atDistance,pose,path,length:total,origin,spriteAnchor:{x:.5,y:236/256}});
+ // Midpoint of the ground footprint, calibrated per directional sprite (256 × 256).
+ // The PNG canvas bottom is not the wheel contact point, particularly in frontal views.
+ const groundAnchors=[[128,222],[130,194],[130,185],[130,184],[128,197],[126,184],[126,187],[126,204],[128,222],[127,194],[128,190],[128,184],[128,195],[130,186],[130,189],[130,205]];
+ const spriteAnchors=groundAnchors.map(([x,y])=>({x:x/256,y:y/256}));
+ const perspectiveScale=y=>.78+.22*Math.max(0,Math.min(1,(y-80)/(635-80)));
+ const model=Object.freeze({width:1200,height:800,innerRail,outerRail,points,at,atDistance,pose,path,length:total,origin,spriteAnchors,perspectiveScale});
  root.READER_TRAIN_TRACK=model;
  if(typeof module!=='undefined'&&module.exports)module.exports=model;
 })(typeof window!=='undefined'?window:globalThis);
