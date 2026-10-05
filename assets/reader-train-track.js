@@ -13,7 +13,7 @@
  });
  function at(t){
   const q=wrap(t)*n,i=Math.floor(q),u=q-i,v=1-u,[a,b,c,d]=segments[i];
-  return {x:v*v*v*a[0]+3*v*v*u*b[0]+3*v*u*u*c[0]+u*u*u*d[0],y:v*v*v*a[1]+3*v*v*u*b[1]+3*v*u*u*c[1]+u*u*u*d[1],dx:3*v*v*(b[0]-a[0])+6*v*u*(c[0]-b[0])+3*u*u*(d[0]-c[0]),dy:3*v*v*(b[1]-a[1])+6*v*u*(c[1]-b[1])+3*u*u*(d[1]-c[1])};
+  return {u:wrap(t),x:v*v*v*a[0]+3*v*v*u*b[0]+3*v*u*u*c[0]+u*u*u*d[0],y:v*v*v*a[1]+3*v*v*u*b[1]+3*v*u*u*c[1]+u*u*u*d[1],dx:3*v*v*(b[0]-a[0])+6*v*u*(c[0]-b[0])+3*u*u*(d[0]-c[0]),dy:3*v*v*(b[1]-a[1])+6*v*u*(c[1]-b[1])+3*u*u*(d[1]-c[1])};
  }
  const samples=2048,arc=[0];let prev=at(0),total=0;
  for(let i=1;i<=samples;i++){const p=at(i/samples);total+=Math.hypot(p.x-prev.x,p.y-prev.y);arc.push(total);prev=p;}
@@ -31,8 +31,14 @@
  // The PNG canvas bottom is not the wheel contact point, particularly in frontal views.
  const groundAnchors=[[128,222],[130,194],[130,185],[130,184],[128,197],[126,184],[126,187],[126,204],[128,222],[127,194],[128,190],[128,184],[128,195],[130,186],[130,189],[130,205]];
  const spriteAnchors=groundAnchors.map(([x,y])=>({x:x/256,y:y/256}));
- const perspectiveScale=y=>.78+.22*Math.max(0,Math.min(1,(y-80)/(635-80)));
- const model=Object.freeze({width:1200,height:800,innerRail,outerRail,points,at,atDistance,pose,path,length:total,origin,spriteAnchors,perspectiveScale});
+ function railAt(knots,t){
+  const q=wrap(t)*n,i=Math.floor(q),u=q-i,v=1-u,a=knots[i],d=knots[(i+1)%n],before=knots[(i+n-1)%n],after=knots[(i+2)%n],b=[a[0]+(d[0]-before[0])/6,a[1]+(d[1]-before[1])/6],c=[d[0]-(after[0]-a[0])/6,d[1]-(after[1]-a[1])/6];
+  return {x:v*v*v*a[0]+3*v*v*u*b[0]+3*v*u*u*c[0]+u*u*u*d[0],y:v*v*v*a[1]+3*v*v*u*b[1]+3*v*u*u*c[1]+u*u*u*d[1]};
+ }
+ function railGauge(t){const a=railAt(innerRail,t),b=railAt(outerRail,t);return Math.hypot(a.x-b.x,a.y-b.y);}
+ const frontGauge=railGauge(12/16);
+ const perspectiveScale=t=>railGauge(t)/frontGauge;
+ const model=Object.freeze({width:1200,height:800,innerRail,outerRail,points,at,atDistance,pose,path,length:total,origin,spriteAnchors,railAt,railGauge,frontGauge,perspectiveScale});
  root.READER_TRAIN_TRACK=model;
  if(typeof module!=='undefined'&&module.exports)module.exports=model;
 })(typeof window!=='undefined'?window:globalThis);

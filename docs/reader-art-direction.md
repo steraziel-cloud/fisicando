@@ -30,3 +30,5 @@ La scena del periodo usa la medesima maschera curva sfumata della scena in stazi
 
 ### Mediana esplicita e centro di appoggio
 La curva è definita come media punto per punto delle due spline delle rotaie, ricavate da 16 coppie di riferimenti corrispondenti. Le ancore dei 16 fotogrammi sono calibrate sul centro di appoggio delle ruote, distinto dal margine inferiore della tela. La scala va da 0,78 sul fondo a 1,00 sul tratto anteriore, con vincolo conservato attorno al punto di ancoraggio.
+
+La scala prospettica è ora il rapporto fra la distanza locale delle due rotaie corrispondenti e la distanza sul tratto anteriore: k(u)=|R_est(u)−R_int(u)|/g_anteriore. La profondità verticale non determina più la scala. Con la calibrazione attuale il tratto posteriore conserva circa l’84% della dimensione anteriore.

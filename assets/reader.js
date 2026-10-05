@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    phase=(phase+(now-previous)/1000/st.period)%1;previous=now;
    const p=track.pose(phase),frame=((Math.round(p.heading/(Math.PI*2)*16)%16)+16)%16;
    if(frame!==lastFrame&&frames[frame].complete&&frames[frame].naturalWidth){train.src=frames[frame].src;setFrameAnchor(frame);lastFrame=frame;}
-   anchor.style.left=(p.x/track.width*100)+'%';anchor.style.top=(p.y/track.height*100)+'%';anchor.style.setProperty('--train-scale',String(track.perspectiveScale(p.y)));
+   anchor.style.left=(p.x/track.width*100)+'%';anchor.style.top=(p.y/track.height*100)+'%';anchor.style.setProperty('--train-scale',String(track.perspectiveScale(p.u)));
    marker.setAttribute('cx',p.x);marker.setAttribute('cy',p.y);
    raf=requestAnimationFrame(animate);
   }raf=requestAnimationFrame(animate);
