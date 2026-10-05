@@ -84,3 +84,5 @@ Non ogni termine tecnico è interattivo: scegliere le keyword che servono nella 
 - Asset generato con strumento immagini integrato, da riferimenti del sito; scena treno senza testi, formule o dati, ottimizzata WebP. Prompt completo registrato in docs/reader-art-direction.md.
 
 - Revisione estetica: finestrino normale al posto dello spaccato e sfondo leggero con cielo e colline.
+
+- Completato: laboratorio del periodo con stanza illustrata, locomotiva a 16 viste direzionali, semaforo di riferimento, Red/Bjorne cliccabili e balloon temporanei separati.

@@ -19,3 +19,6 @@ Rimossa la fascia con i nomi e la cornice rettangolare. La stessa scena usa una 
 
 ### Benvenuto con Red e Bjorne
 Asset: `assets/images/reader/red-bjorne-benvenuto-v1.png`, PNG RGBA trasparente, 720×480. Generato con lo strumento integrato imagegen a partire dalle identità originali dei personaggi. Red saluta con entusiasmo; Bjorne, senza scatola, sorride e alza una zampina. Composizione compatta orizzontale, adatta alla card e a entrambi i temi.
+
+### Laboratorio del periodo illustrato
+Stanza senza locomotiva e balloon incorporati; 16 fotogrammi direzionali della locomotiva (passi nominali di 22,5°), movimento continuo sul tracciato curvo calibrato ai binari. La posizione di misura coincide con il semaforo accanto alla stazione. Asset in `assets/images/reader/period-lab/`: `room-v1.webp`, `locomotive-00.webp` … `locomotive-15.webp`, `red-balloon-v1.png`, `bjorne-balloon-v1.png`. Immagini create con imagegen integrato, identità e scena approvate come riferimenti. Balloon visibili per tre secondi; gattini cliccabili e azionabili da tastiera; cambio velocità bloccato durante le letture. Nessuna carrozza.
