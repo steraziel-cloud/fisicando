@@ -38,3 +38,11 @@ Posizione: ipotesi/coordinate (1), posizione/segno/valore assoluto (3, lavagna c
 Spostamento: differenza/segno (2, stessa lavagna), distanza/ritorno (2), raccordo velocità (1), quiz.
 
 Non ogni termine tecnico è interattivo: scegliere le keyword che servono nella card. La loro riconoscibilità deve avere un segnale oltre al colore. I testi nuovi restano da revisionare con Stefano.
+
+## Correzioni della prima sezione dopo la prova
+
+- [x] Eliminata la ripetizione nella distinzione cinematica/dinamica.
+- [x] Glossario estratto in una fonte condivisa; definizione generale del riferimento senza ipotesi di traiettoria nota.
+- [x] Esempio sul moto relativo compresso e riapribile durante la card del punto materiale.
+- [x] Definizione di traiettoria riscritta; eliminata l’anticipazione «zero delle posizioni».
+- [x] Ripristinata la riconoscibilità visiva delle azioni secondarie; verifica del quiz evidenziata.

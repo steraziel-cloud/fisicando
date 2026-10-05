@@ -17,7 +17,7 @@ window.READER_LESSONS = {
               },
               {
                 "title": "Che cosa studieremo",
-                "html": "Studieremo il movimento <strong>senza studiarne le cause</strong>. Le cause, come le forze, saranno il tema della dinamica."
+                "html": "Ci concentreremo su <strong>come avviene il movimento</strong>. Per comprenderne le cause e il ruolo delle forze, studieremo la dinamica."
               }
             ]
           },
@@ -44,7 +44,8 @@ window.READER_LESSONS = {
                 "html": "Per descrivere il viaggio possiamo rappresentare il treno con un punto, se le sue dimensioni non sono importanti per ciò che vogliamo studiare. Questa rappresentazione semplificata del corpo si chiama <strong>modello del <button type=\"button\" class=\"rm-keyword\" data-term=\"punto\">punto materiale</button></strong>."
               }
             ],
-            "retainPrevious": true
+            "retainPrevious": false,
+            "collapsePrevious": true
           },
           {
             "title": "Una traiettoria che conosciamo",
@@ -55,7 +56,7 @@ window.READER_LESSONS = {
               },
               {
                 "title": "Due scelte sul percorso",
-                "html": "Su questa linea scegliamo un’<strong>origine</strong>, che sarà lo zero delle posizioni, e un <strong>verso positivo</strong> di percorrenza. Tra poco vedremo perché queste scelte ci permettono di indicare la posizione del corpo."
+                "html": "Su questa linea scegliamo un’<strong>origine</strong> e un <strong>verso positivo</strong> di percorrenza. Tra poco vedremo come usare queste scelte per indicare la posizione del corpo."
               }
             ]
           }
@@ -219,53 +220,6 @@ window.READER_LESSONS = {
           "feedback": "Lo spostamento confronta partenza e arrivo: 0 − 0 = 0 m. La distanza somma andata e ritorno: 5 + 5 = 10 m."
         }
       }
-    ],
-    "glossary": {
-      "riferimento": {
-        "title": "Sistema di riferimento",
-        "text": "L’insieme degli strumenti e delle convenzioni con cui assegniamo una posizione e un tempo agli eventi. Comprende un sistema di coordinate e orologi. Nel nostro studio di una traiettoria nota scegliamo un’origine, un verso positivo e un’unità di lunghezza.",
-        "kind": "Definizione di fisica"
-      },
-      "punto": {
-        "title": "Punto materiale",
-        "text": "Un modello che rappresenta un corpo con un punto dotato della massa del corpo. Ne trascuriamo forma e dimensioni quando non sono rilevanti per il fenomeno studiato. Lo stesso corpo può essere trattato come punto materiale per un problema e richiedere un modello diverso per un altro.",
-        "kind": "Definizione di fisica"
-      },
-      "traiettoria": {
-        "title": "Traiettoria",
-        "text": "La linea descritta dalle posizioni occupate nel tempo dal punto materiale, rispetto al riferimento scelto. Può essere rettilinea o curva. Conoscerla non significa sapere con quale velocità il corpo la percorre.",
-        "kind": "Definizione di fisica"
-      },
-      "orologio": {
-        "title": "Orologio e cronometro",
-        "text": "Un orologio misura il tempo contando le ripetizioni di un fenomeno periodico di durata nota. Un cronometro permette di leggere il tempo trascorso a partire da un avvio scelto. Due letture consentono di ricavare la durata tra due osservazioni.",
-        "kind": "Definizione di fisica"
-      },
-      "ascissa": {
-        "title": "Ascissa curvilinea",
-        "text": "La coordinata s assegnata lungo una traiettoria orientata. A partire dall’origine misuriamo la lunghezza lungo la curva: il segno è positivo nel verso scelto e negativo nel verso opposto. Nel caso rettilineo coincide con una coordinata lungo l’asse. Su un circuito chiuso occorre anche tenere conto dei giri.",
-        "kind": "Definizione di fisica"
-      },
-      "valore-assoluto": {
-        "title": "Valore assoluto",
-        "text": "Il valore assoluto di un numero è la sua distanza da zero sulla retta dei numeri: |3| = 3 e |−3| = 3. È sempre non negativo. Per la coordinata s, |s| dà la distanza dall’origine lungo la traiettoria; |s₂ − s₁| dà la lunghezza del tratto tra le due coordinate, senza inversioni di verso.",
-        "kind": "Riprendi la matematica"
-      },
-      "funzione": {
-        "title": "Funzione",
-        "text": "Una funzione associa a ogni valore ammesso in ingresso un solo valore in uscita. Nella legge oraria l’ingresso è l’istante t e l’uscita è la posizione s. Istanti diversi possono avere la stessa posizione, per esempio se il corpo torna in un punto già visitato.",
-        "kind": "Riprendi la matematica"
-      },
-      "legge-oraria": {
-        "title": "Legge oraria",
-        "text": "La relazione s = s(t) che assegna la posizione lungo la traiettoria a ogni istante di tempo. Può essere descritta con una formula, una tabella o un grafico. La sola traiettoria non basta a determinarla.",
-        "kind": "Definizione di fisica"
-      },
-      "periodo": {
-        "title": "Periodo",
-        "text": "La durata di una ripetizione completa di un fenomeno periodico. Per il trenino a velocità costante è il tempo tra due passaggi consecutivi nello stesso punto, nello stesso verso. Si misura in secondi.",
-        "kind": "Definizione di fisica"
-      }
-    }
+    ]
   }
 };

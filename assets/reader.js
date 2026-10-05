@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('reader-next').textContent=st.cursor<count-1?'Continua →':st.cursor<count?'Controlla l’idea →':current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione';
   $('reader-step-count').textContent=allMode?'':st.cursor<count?'Passaggio '+(st.cursor+1)+' di '+count:'Verifica finale';
  }
- function showGlossary(id){const term=lesson.glossary[id];if(!term)return;$('glossary-title').textContent=term.title;$('glossary-kind').textContent=term.kind;$('glossary-text').textContent=term.text;$('reader-glossary').showModal();}
+ function showGlossary(id){const term=window.READER_GLOSSARY[id];if(!term)return;$('glossary-title').textContent=term.title;$('glossary-kind').textContent=term.kind;$('glossary-text').textContent=term.text;$('reader-glossary').showModal();}
  document.addEventListener('click',e=>{const term=e.target.closest('[data-term]');if(term)showGlossary(term.dataset.term);});
  $('reader-glossary').addEventListener('click',e=>{if(e.target===$('reader-glossary'))$('reader-glossary').close();});
  function trainPicture(box){
@@ -134,9 +134,15 @@ document.addEventListener('DOMContentLoaded',()=>{
   }));
   if(state[current].complete)$('reader-feedback').textContent='Questa parte è già completata. Puoi rivedere il quiz o proseguire.';
  }
- function renderCard(card,steps,archived=false){
+ function renderCard(card,steps,archived=false,collapsed=false){
   const box=el('article','rm-reader-card'+(archived?' rm-reader-card-previous':''));
-  box.append(el('h3','rm-card-title',card.title));$('reader-steps').append(box);
+  if(collapsed){
+   const details=el('details','rm-reader-recap'),summary=el('summary');
+   summary.append(el('span','',card.title),el('span','rm-recap-toggle','Rivedi'));
+   details.append(summary,box);$('reader-steps').append(details);
+   details.addEventListener('toggle',()=>summary.querySelector('.rm-recap-toggle').textContent=details.open?'Comprimi':'Rivedi');
+  }else $('reader-steps').append(box);
+  box.append(el('h3','rm-card-title',card.title));
   if(card.board==='train-reference')trainPicture(box);
   if(card.board==='position'||card.board==='displacement')positionBoard(box,card.board,steps.length>=3);
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
@@ -146,7 +152,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   disposeWidget();disposeWidget=()=>{};$('reader-steps').replaceChildren();$('reader-checkpoint').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';
   const s=lesson.sections[current],st=state[current],items=flat(s);$('reader-section-title').textContent=s.title;
   if(st.cursor===items.length){checkpoint();}else{
-   const item=items[st.cursor];if(item.card.retainPrevious&&item.ci>0)renderCard(s.cards[item.ci-1],s.cards[item.ci-1].steps,true);
+   const item=items[st.cursor];if((item.card.retainPrevious||item.card.collapsePrevious)&&item.ci>0)renderCard(s.cards[item.ci-1],s.cards[item.ci-1].steps,true,!!item.card.collapsePrevious);
    renderCard(item.card,item.card.steps.slice(0,item.si+1));
   }index();actions();
  }
