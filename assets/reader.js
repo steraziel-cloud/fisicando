@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  function periodLab(box){
   const st=state[current].lab;
   const intro=el('p');intro.innerHTML='Il <button class="rm-keyword" data-term="periodo" type="button">periodo</button> è la durata di un giro completo. Avvia il cronometro, poi registra t₁ quando il trenino attraversa il segno giallo e t₂ al passaggio successivo, dopo un giro. La differenza Δt mostra la durata misurata: scrivi il valore che leggi nel riquadro qui sotto e premi «Verifica la misura».';box.append(intro);
-  const scene=el('div','rm-period-scene');scene.innerHTML='<h4>Il circuito di Red e Bjorne</h4><div class="rm-room-stage"><img class="rm-room-backdrop" src="assets/images/reader/period-lab/room-v1.webp" width="1200" height="800" alt="Red e Bjorne con i radiocomandi al centro dei binari; il semaforo vicino alla stazione indica il punto di misura."><svg class="rm-room-path" viewBox="0 0 1536 1024" aria-hidden="true"><path d="M1320 454 C1348 651 1070 816 740 806 C365 801 75 638 85 455 C75 250 340 83 705 97 C1040 80 1298 220 1320 454"/></svg><img class="rm-room-train" src="assets/images/reader/period-lab/locomotive-00.webp" alt="Locomotiva in movimento"><img class="rm-room-balloon rm-red-balloon" src="assets/images/reader/period-lab/red-balloon-v1.png" alt="Più veloce!!! Meow" hidden><img class="rm-room-balloon rm-bjorne-balloon" src="assets/images/reader/period-lab/bjorne-balloon-v1.png" alt="Piano. Piano." hidden></div>';
+  const scene=el('div','rm-period-scene');scene.innerHTML='<h4>Il circuito di Red e Bjorne</h4><div class="rm-room-stage"><img class="rm-room-backdrop" src="assets/images/reader/period-lab/room-v1.webp" width="1200" height="800" alt="Red e Bjorne con i radiocomandi al centro dei binari; il semaforo vicino alla stazione indica il punto di misura."><svg class="rm-room-path" viewBox="0 0 1200 800" aria-hidden="true"><path/><circle class="rm-track-anchor" r="5"/></svg><div class="rm-room-train-anchor"><img class="rm-room-train" src="assets/images/reader/period-lab/locomotive-00.webp" alt="Locomotiva in movimento"></div><img class="rm-room-balloon rm-red-balloon" src="assets/images/reader/period-lab/red-balloon-v1.png" alt="Più veloce!!! Meow" hidden><img class="rm-room-balloon rm-bjorne-balloon" src="assets/images/reader/period-lab/bjorne-balloon-v1.png" alt="Piano. Piano." hidden></div>';
   const room=scene.querySelector('.rm-room-stage'),train=scene.querySelector('.rm-room-train');
   let balloonTimer;
   function speak(cat){scene.querySelectorAll('.rm-room-balloon').forEach(b=>b.hidden=true);const balloon=scene.querySelector('.rm-'+cat+'-balloon');balloon.hidden=false;clearTimeout(balloonTimer);balloonTimer=setTimeout(()=>balloon.hidden=true,3000);}
@@ -148,16 +148,18 @@ document.addEventListener('DOMContentLoaded',()=>{
   const redHit=button('',()=>red.click()),bjorneHit=button('',()=>bjorne.click());redHit.className='rm-cat-hotspot rm-red-hotspot';bjorneHit.className='rm-cat-hotspot rm-bjorne-hotspot';redHit.setAttribute('aria-label','Red: aumenta la velocità del trenino');bjorneHit.setAttribute('aria-label','Bjorne: diminuisci la velocità del trenino');room.append(redHit,bjorneHit);
   controls.append(red,bjorne);const stage=el('div','rm-lab-stage');stage.append(scene,controls);box.append(stage);
   const clock=stopwatch(box,true),clockDispose=disposeWidget;const bench=el('div','rm-lab-workbench');box.insertBefore(bench,stage);bench.append(stage,clock.board);
-  const track=scene.querySelector('.rm-room-path path'),length=track.getTotalLength();
-  let reference=0,closest=Infinity;for(let i=0;i<1000;i++){const distance=i/1000*length,p=track.getPointAtLength(distance),d=(p.x-1290)**2+(p.y-570)**2;if(d<closest){closest=d;reference=distance;}}
+  const track=window.READER_TRAIN_TRACK,anchor=scene.querySelector('.rm-room-train-anchor'),marker=scene.querySelector('.rm-track-anchor');
+  scene.querySelector('.rm-room-path path').setAttribute('d',track.path);
+  train.style.setProperty('--anchor-x',(track.spriteAnchor.x*100)+'%');train.style.setProperty('--anchor-y',(track.spriteAnchor.y*100)+'%');
+  if(new URLSearchParams(location.search).has('trainDebug'))room.classList.add('rm-room-stage--debug');
   const frames=Array.from({length:16},(_,i)=>{const image=new Image();image.src='assets/images/reader/period-lab/locomotive-'+String(i).padStart(2,'0')+'.webp';return image;});
   let phase=0,previous=performance.now(),raf,lastFrame=-1;
   function animate(now){
    phase=(phase+(now-previous)/1000/st.period)%1;previous=now;
-   const distance=(reference-phase*length+length)%length,p=track.getPointAtLength(distance),ahead=track.getPointAtLength((distance-3+length)%length);
-   const heading=Math.atan2((ahead.y-p.y)/.58,ahead.x-p.x),frame=((Math.round(heading/(Math.PI*2)*16)%16)+16)%16;
+   const p=track.pose(phase),frame=((Math.round(p.heading/(Math.PI*2)*16)%16)+16)%16;
    if(frame!==lastFrame&&frames[frame].complete&&frames[frame].naturalWidth){train.src=frames[frame].src;lastFrame=frame;}
-   train.style.left=(p.x/1536*100)+'%';train.style.top=(p.y/1024*100)+'%';train.style.setProperty('--train-scale',String(.45+.65*p.y/1024));
+   anchor.style.left=(p.x/track.width*100)+'%';anchor.style.top=(p.y/track.height*100)+'%';anchor.style.setProperty('--train-scale',String(.45+.65*p.y/track.height));
+   marker.setAttribute('cx',p.x);marker.setAttribute('cy',p.y);
    raf=requestAnimationFrame(animate);
   }raf=requestAnimationFrame(animate);
   const answerBox=el('div','rm-period-answer'),answerLabel=el('label');
