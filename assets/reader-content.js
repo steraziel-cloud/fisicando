@@ -17,7 +17,7 @@ window.READER_LESSONS = {
               },
               {
                 "title": "Che cosa studieremo",
-                "html": "Ci concentreremo su <strong>come avviene il movimento</strong>. Per comprenderne le cause e il ruolo delle forze, studieremo la dinamica."
+                "html": "Ci concentreremo su come descrivere il movimento senza badare alle cause che lo determinano."
               }
             ]
           },

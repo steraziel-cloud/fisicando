@@ -66,3 +66,8 @@ Non ogni termine tecnico è interattivo: scegliere le keyword che servono nella 
 - Due cursori indipendenti s₁ e s₂, con etichette sulla curva.
 - Calcolo e interpretazione del segno di Δs sincronizzati con entrambi i cursori.
 - Verifica finale con pulsante visibile.
+
+### Accesso per revisione
+- Frase di benvenuto sostituita con il testo esatto richiesto.
+- Mostra tutto disponibile subito sotto il menù: apre il testo integrale e sblocca la navigazione per revisione, senza segnare le parti come completate.
+- Lo sblocco di revisione vale solo per la visita corrente e si azzera ricaricando.

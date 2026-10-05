@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  // Learning progress belongs to this visit only. Deep links never unlock a part.
  const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},lab:{started:null,period:8,marks:[],verified:false}}));
- let current=0,allMode=false,disposeWidget=()=>{};
+ let current=0,allMode=false,reviewAccess=false,disposeWidget=()=>{};
  const flat=s=>s.cards.flatMap((card,ci)=>card.steps.map((step,si)=>({card,ci,step,si})));
  const format=n=>Number(n).toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2});
  const el=(tag,cls,text)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node;};
  const button=(text,fn,cls='rm-btn secondary')=>{const b=el('button',cls,text);b.type='button';b.addEventListener('click',fn);return b;};
- const unlocked=i=>i===0||state[i-1].complete;
+ const unlocked=i=>reviewAccess||i===0||state[i-1].complete;
  $('reader-title').textContent=lesson.title;$('reader-subtitle').textContent=lesson.subtitle;document.title='GatitoMath – '+lesson.title;
  // BFCache can restore a departed page without executing DOMContentLoaded again.
  window.addEventListener('pageshow',e=>{if(e.persisted)location.reload();});
@@ -29,14 +29,14 @@ document.addEventListener('DOMContentLoaded',()=>{
    b.append(dot,el('span','',s.title));b.setAttribute('aria-label',s.title+' · '+(state[i].complete?'completata':unlocked(i)?'disponibile':'da sbloccare'));$('reader-parts').append(b);
   });
   $('reader-progress').textContent=state.filter(s=>s.complete).length+' di '+state.length+' parti completate';
-  $('reader-show-all').hidden=!state.every(s=>s.complete);
+  $('reader-show-all').hidden=false;
  }
  function finish(message){state[current].complete=true;state[current].reached=flat(lesson.sections[current]).length;index();$('reader-feedback').textContent=message;actions();}
  function actions(){
   const count=flat(lesson.sections[current]).length,st=state[current];
   $('reader-prev').hidden=allMode||st.cursor===0;$('reader-next').hidden=allMode;
-  let blocked=false;if(st.cursor<count){const item=flat(lesson.sections[current])[st.cursor];blocked=item.step.interaction==='train-reference'&&!st.reference.done;}
-  $('reader-next').disabled=blocked||(st.cursor===count&&!st.complete);
+  let blocked=false;if(st.cursor<count){const item=flat(lesson.sections[current])[st.cursor];blocked=!reviewAccess&&item.step.interaction==='train-reference'&&!st.reference.done;}
+  $('reader-next').disabled=blocked||(st.cursor===count&&!st.complete&&!reviewAccess);
   $('reader-next').textContent=st.cursor<count-1?'Continua →':st.cursor<count?'Controlla l’idea →':current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione';
   $('reader-step-count').textContent=allMode?'':st.cursor<count?'Passaggio '+(st.cursor+1)+' di '+count:'Verifica finale';
  }
@@ -185,9 +185,9 @@ document.addEventListener('DOMContentLoaded',()=>{
  function open(i,focus=false){if(!unlocked(i))return;allMode=false;current=i;render();history.replaceState(null,'','#'+lesson.sections[i].id);if(focus)top();}
  $('reader-next').addEventListener('click',()=>{
   const st=state[current],items=flat(lesson.sections[current]);
-  if(st.cursor<items.length){const item=items[st.cursor];if(item.step.interaction==='train-reference'&&!st.reference.done)return;
+  if(st.cursor<items.length){const item=items[st.cursor];if(!reviewAccess&&item.step.interaction==='train-reference'&&!st.reference.done)return;
    st.cursor++;st.reached=Math.max(st.reached,st.cursor);const replaces=st.cursor===items.length||items[st.cursor].ci!==item.ci;render();if(replaces)top();
-  }else if(st.complete){if(current<state.length-1)open(current+1,true);else{$('reader-feedback').textContent='Lezione completata! Nell’indice puoi rivedere le parti o scegliere «Mostra tutto».';$('reader-next').hidden=true;}}
+  }else if(st.complete||reviewAccess){if(current<state.length-1)open(current+1,true);else{$('reader-feedback').textContent='Lezione completata! Nell’indice puoi rivedere le parti o scegliere «Mostra tutto».';$('reader-next').hidden=true;}}
  });
  $('reader-prev').addEventListener('click',()=>{if(state[current].cursor>0){state[current].cursor--;render();top();}});
  // Horizontal swipes navigate only the already unlocked learning path.
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  column.addEventListener('touchstart',e=>{if(e.target.closest('input,select,button,.rm-reader-board'))return;const p=e.changedTouches[0];touch={x:p.clientX,y:p.clientY};},{passive:true});
  column.addEventListener('touchend',e=>{if(!touch)return;const p=e.changedTouches[0],dx=p.clientX-touch.x,dy=p.clientY-touch.y;touch=null;if(Math.abs(dx)<75||Math.abs(dy)>50)return;const b=dx>0?$('reader-prev'):$('reader-next');if(!b.hidden&&!b.disabled)b.click();},{passive:true});
  $('reader-show-all').addEventListener('click',()=>{
-  if(!state.every(s=>s.complete))return;disposeWidget();disposeWidget=()=>{};allMode=true;$('reader-section-title').textContent='La lezione completa';$('reader-steps').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';
+  reviewAccess=true;disposeWidget();disposeWidget=()=>{};allMode=true;$('reader-section-title').textContent='La lezione completa';$('reader-steps').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';
   lesson.sections.forEach((s,i)=>{current=i;$('reader-steps').append(el('h2','rm-all-section',s.title));s.cards.forEach(card=>renderCard(card,card.steps,true));});actions();index();top();
  });
  // Old localStorage entries from reader v1 are intentionally never read.
