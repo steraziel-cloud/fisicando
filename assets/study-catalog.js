@@ -1,4 +1,3 @@
-/* One catalog; study levels select the visible branches. Planned lessons have no URL. */
 window.LESSON_CATALOG = [
   {
     "id": "matematica",
@@ -444,6 +443,15 @@ window.LESSON_CATALOG = [
               "spazio tempo"
             ],
             "lessons": [
+              {
+                "title": "Introduzione alla cinematica",
+                "levels": [
+                  "biennio"
+                ],
+                "url": "reader.html?lezione=cinematica-introduzione",
+                "kind": "Teoria",
+                "id": "cinematica-introduzione"
+              },
               {
                 "title": "Tempo, posizione, spostamento e distanza percorsa",
                 "levels": [

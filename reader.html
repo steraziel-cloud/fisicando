@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GatitoMath – Reader</title>
+  <link rel="icon" type="image/png" href="assets/images/red-logo-head.png">
+  <meta name="description" content="Esplora i materiali di matematica e fisica di GatitoMath: teoria, esercizi e laboratori interattivi.">
+  <link rel="stylesheet" href="assets/reddito.css?v=5">
+  <link rel="stylesheet" href="assets/gatitomath-wordmark.css?v=7">
+  <link rel="stylesheet" href="assets/learning-shell.css?v=1">
+  <link rel="stylesheet" href="assets/lezioni.css?v=2">
+  <script src="assets/reader-content.js?v=1" defer></script>
+  <script src="assets/reader.js?v=1" defer></script>
+
+
+  <link rel="stylesheet" href="assets/reader.css?v=1">
+  <script src="assets/main.js" defer></script>
+</head>
+<body class="rm-lessons-page">
+  <header class="rm-topbar">
+    <div class="rm-shell rm-topbar-inner">
+      <a class="rm-logo rm-logo-art" href="index.html" aria-label="GatitoMath, Home"><img class="rm-logo-red" src="assets/images/red-logo-head.png" alt="" width="640" height="585" aria-hidden="true"><span class="rm-logo-name">Gatito<span>Math</span></span></a>
+      <nav class="rm-nav" aria-label="Navigazione principale">
+        <a href="index.html">Home</a>
+        <a href="info.html">Il progetto</a>
+        <a href="contatti.html">Contatti</a>
+        <a class="active" href="percorsi.html">Lezioni online</a>
+      </nav>
+      <button id="theme-toggle" class="rm-theme" aria-label="Cambia tema">🌙</button>
+    </div>
+  </header>
+  <main class="rm-lessons-main rm-reader-main"><div class="rm-shell">
+    <a class="rm-reader-back" id="reader-back" href="lezioni.html">← Torna alle lezioni</a>
+    <p class="rm-eyebrow" id="reader-subtitle">Reader</p><h1 class="rm-reader-title" id="reader-title">La tua lezione</h1>
+    <div class="rm-reader-layout"><aside class="rm-reader-index" aria-labelledby="parts-title"><h2 id="parts-title">Parti della lezione</h2><p id="reader-progress" role="status"></p><nav id="reader-parts" aria-label="Parti della lezione"></nav><p class="rm-reader-save-note">L’avanzamento si conserva in questo browser.</p></aside>
+    <section class="rm-reader-page" aria-labelledby="reader-section-title"><h2 id="reader-section-title" tabindex="-1"></h2><div id="reader-steps"></div>
+      <div class="rm-reader-board" id="reader-board" hidden><h3>Lavagna · Un punto lungo l’asse</h3><label for="point-position">Posizione finale: <output id="position-output">2 m</output></label><input id="point-position" type="range" min="-5" max="5" step="1" value="2"><svg id="position-board" viewBox="0 0 600 140" role="img" aria-label="Asse delle posizioni in metri"><path d="M40 80H565l-10-5m10 5-10 5" fill="none" stroke="currentColor"/><g id="board-ticks"></g><circle id="board-start" cx="348" cy="80" r="6" fill="#e7b94f"/><circle id="board-point" cx="396" cy="80" r="9" fill="var(--rm-accent)"/></svg><p id="board-description"></p></div>
+      <div id="reader-checkpoint" class="rm-reader-checkpoint" hidden></div><p id="reader-feedback" role="status"></p>
+      <div class="rm-reader-actions"><button class="rm-btn primary" id="reader-next" type="button">Continua</button></div>
+    </section></div><noscript>Attiva JavaScript per leggere la lezione interattiva.</noscript>
+  </div></main></body></html>

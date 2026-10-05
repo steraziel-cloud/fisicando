@@ -10,11 +10,11 @@
   <link rel="stylesheet" href="assets/gatitomath-wordmark.css?v=7">
   <link rel="stylesheet" href="assets/learning-shell.css?v=1">
   <link rel="stylesheet" href="assets/lezioni.css?v=2">
-  <script src="assets/study-catalog.js?v=1" defer></script>
-  <script src="assets/catalog-menu.js?v=1" defer></script>
+  <script src="assets/study-catalog.js?v=2" defer></script>
+  <script src="assets/catalog-menu.js?v=2" defer></script>
 
   <script src="assets/percorsi.js?v=5" defer></script>
-  <link rel="stylesheet" href="assets/catalog-menu.css?v=1">
+  <link rel="stylesheet" href="assets/catalog-menu.css?v=2">
   <script src="assets/main.js" defer></script>
 </head>
 <body class="rm-lessons-page">
@@ -55,14 +55,8 @@
         </aside>
 
         <section class="rm-lessons-content" id="welcome" aria-labelledby="materials-title">
-          <h2 id="materials-title">Come vuoi iniziare?</h2>
-          <div class="rm-material-grid">
-            <article class="rm-material-card"><span class="rm-material-label">01 · Teoria</span><h3>Capire i concetti</h3><p>Definizioni, spiegazioni ed esempi per orientarti nell’argomento.</p></article>
-            <article class="rm-material-card"><span class="rm-material-label">02 · Esercizi</span><h3>Metterti alla prova</h3><p>Esercizi per applicare i concetti e allenare il ragionamento.</p></article>
-            <article class="rm-material-card"><span class="rm-material-label">03 · Laboratorio</span><h3>Esplorare e sperimentare</h3><p>Strumenti interattivi per osservare e lavorare direttamente sui concetti.</p></article>
-          </div>
-          <p class="rm-lessons-note">Le voci “Da preparare” mostrano la struttura del percorso. I materiali già disponibili si aprono dai collegamenti nel menu.</p>
-          <a class="rm-btn secondary" href="contatti.html">Cerchi una lezione con noi? Parliamone</a>
+          <div id="selection-prompt" class="rm-selection-prompt"><span class="rm-material-label">Il tuo percorso</span><h2>Scegli una lezione</h2><p>Apri un argomento nel menu e seleziona la lezione che ti interessa. Qui compariranno teoria, esercizi e laboratori collegati.</p></div>
+          <div id="lesson-options" hidden><p class="rm-material-label" id="selected-lesson-path"></p><h2 id="materials-title" tabindex="-1"></h2><p id="selected-lesson-note"></p><div class="rm-material-grid" id="lesson-cards"></div></div>
         </section>
       </div>
       <footer class="rm-lessons-footer"><small>© 2026 – GatitoMath</small></footer>

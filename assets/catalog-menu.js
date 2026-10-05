@@ -43,6 +43,34 @@ document.addEventListener('DOMContentLoaded', () => {
     catalog.filter(s=>!subject.value || s.id===subject.value).forEach(s=>s.areas.forEach(a=>area.add(new Option(a.title,s.id+'/'+a.title))));
     if ([...area.options].some(o=>o.value===previous))area.value=previous;
   }
+  let selectedKey = null;
+  function selectLesson(l, topic, subjectTitle, areaTitle, key) {
+    selectedKey = key;
+    nav.querySelectorAll('button.rm-catalog-lesson').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lessonKey === key)));
+    document.getElementById('selection-prompt').hidden = true;
+    const pane = document.getElementById('lesson-options');
+    pane.hidden = false; pane.classList.remove('rm-options-enter'); void pane.offsetWidth; pane.classList.add('rm-options-enter');
+    document.getElementById('materials-title').textContent = l.title;
+    document.getElementById('selected-lesson-path').textContent = `${subjectTitle} · ${areaTitle} · ${topic.title}`;
+    document.getElementById('selected-lesson-note').textContent = l.url ? 'Scegli il materiale disponibile per questa lezione.' : 'Questa lezione è da preparare. I materiali verranno aggiunti qui.';
+    const cards = document.getElementById('lesson-cards'); cards.replaceChildren();
+    const types = [['Teoria','Capire i concetti','Leggi la spiegazione nel reader.'],['Esercizi','Metterti alla prova','Applica i concetti e allena il ragionamento.'],['Laboratorio','Esplorare e sperimentare','Osserva e manipola i fenomeni.']];
+    types.forEach(([kind,title,description],i) => {
+      const active = l.url && l.kind === kind;
+      const card = document.createElement(active ? 'a' : 'div'); card.className = 'rm-material-card rm-choice-card' + (active ? ' rm-choice-card-ready' : ' rm-choice-card-disabled');
+      if (active) {
+        const url = new URL(kind === 'Teoria' && !l.id ? 'reader.html' : l.url, location.href);
+        if (kind === 'Teoria' && !l.id) url.searchParams.set('materiale', l.url);
+        url.searchParams.set('livello',level && l.levels.includes(level) ? level : l.levels[0]);
+        if (['studente','altro'].includes(params.get('ruolo'))) url.searchParams.set('ruolo',params.get('ruolo'));
+        card.href = url.href;
+      } else card.setAttribute('aria-disabled','true');
+      const label = document.createElement('span'); label.className = 'rm-material-label';label.textContent = `0${i+1} · ${kind}`;
+      const heading = document.createElement('h3');heading.textContent = title;
+      const text = document.createElement('p');text.textContent = active ? description : 'Non ancora disponibile per questa lezione.';
+      card.append(label,heading,text);cards.append(card);
+    });
+  }
   function render() {
     const tokens=normalize(search.value.trim()).split(/\s+/).filter(Boolean);
     const filtering=!!(tokens.length || subject.value || area.value || available.checked || all.checked);
@@ -62,12 +90,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return tokens.every(token=>haystack.includes(token));
           });
           if(!lessons.length)return;
-          const td=branch(t.title,s.id+'/'+ai+'/'+ti,null,filtering);td.classList.add('rm-catalog-topic');
+          const td=branch(t.title,s.id+'/'+ai+'/'+ti,null,tokens.length > 0 || available.checked);td.classList.add('rm-catalog-topic');
           const list=document.createElement('ul');
           lessons.forEach(l=> {
             count++;if(l.url)ready++;
-            const li=document.createElement('li');const label=document.createElement(l.url?'a':'span');label.className='rm-catalog-lesson';
-            if(l.url){ const url=new URL(l.url,location.href);const actualLevel=level && l.levels.includes(level)?level:l.levels[0];url.searchParams.set('livello',actualLevel);if(['studente','altro'].includes(params.get('ruolo')))url.searchParams.set('ruolo',params.get('ruolo'));label.href=url.href;}
+            const li=document.createElement('li');const label=document.createElement('button');label.type='button';label.className='rm-catalog-lesson';
+            const key = `${s.id}/${ai}/${ti}/${t.lessons.indexOf(l)}`;
+            label.dataset.lessonKey = key; label.setAttribute('aria-pressed',String(selectedKey === key));
+            label.addEventListener('click',()=>selectLesson(l,t,s.title,a.title,key));
             const title=document.createElement('span');title.textContent=l.title;label.append(title);
             const status=document.createElement('small');status.textContent=l.url?l.kind || 'Disponibile':'Da preparare';status.className=l.url?'rm-lesson-ready':'rm-lesson-planned';label.append(status);
             if(all.checked || !level){const tags=document.createElement('small');tags.className='rm-lesson-levels';tags.textContent=l.levels.map(k=>levels[k]).join(' · ');label.append(tags);}
