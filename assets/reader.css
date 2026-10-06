@@ -103,10 +103,10 @@
 .rm-reader-column .rm-cat-hotspot:focus-visible{outline:3px solid #fff;outline-offset:-3px}
 .rm-cat-hotspot:disabled{cursor:default}
 .rm-room-balloon{position:absolute;width:31%;height:auto;z-index:4;pointer-events:none;animation:reader-enter .2s ease-out}
-.rm-room-balloon[hidden]{display:none}.rm-red-balloon{left:12%;top:5%}.rm-bjorne-balloon{right:12%;top:8%}
+.rm-room-balloon[hidden]{display:none}.rm-red-balloon{left:22%;top:5%}.rm-bjorne-balloon{right:12%;top:8%}
 .rm-lab-workbench:has(.rm-room-stage){grid-template-columns:1fr}.rm-lab-workbench:has(.rm-room-stage) .rm-stopwatch-board{display:grid;grid-template-columns:200px minmax(0,1fr);align-items:center;text-align:left;padding:16px}
 .rm-lab-workbench:has(.rm-room-stage) .rm-stopwatch-board h4{grid-column:1/-1}.rm-lab-workbench:has(.rm-room-stage) .rm-clock{grid-row:2/5;grid-column:1}.rm-lab-workbench:has(.rm-room-stage) .rm-clock-help{grid-column:1/-1}
-@media(max-width:480px){.rm-lab-workbench:has(.rm-room-stage) .rm-stopwatch-board{display:block;text-align:center}.rm-room-balloon{width:36%}.rm-red-balloon{left:7%}.rm-bjorne-balloon{right:7%}}
+@media(max-width:480px){.rm-lab-workbench:has(.rm-room-stage) .rm-stopwatch-board{display:block;text-align:center}.rm-room-balloon{width:36%}.rm-red-balloon{left:19.5%}.rm-bjorne-balloon{right:7%}}
 
 .rm-lab-stage:has(.rm-room-stage){background:transparent;border:0;border-radius:0;padding:0}.rm-period-scene:has(.rm-room-stage){padding:0}
 
