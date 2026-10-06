@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  function periodLab(box){
   const st=state[current].lab;
   const intro=el('p');intro.innerHTML='Il <button class="rm-keyword" data-term="periodo" type="button">periodo</button> è la durata di un giro completo. Avvia il cronometro, poi registra t₁ quando il trenino attraversa il segno giallo e t₂ al passaggio successivo, dopo un giro. La differenza Δt mostra la durata misurata: scrivi il valore che leggi nel riquadro qui sotto e premi «Verifica la misura».';box.append(intro);
-  const scene=el('div','rm-period-scene');scene.innerHTML='<div class="rm-room-stage rm-room-stage--debug"><img class="rm-room-backdrop" src="assets/images/reader/period-lab/room-v1.webp" width="1200" height="800" alt="Red e Bjorne con i radiocomandi al centro dei binari; il semaforo vicino alla stazione indica il punto di misura."><svg class="rm-room-path" viewBox="0 0 1200 800" aria-hidden="true"><path/><circle class="rm-track-anchor" r="8"/></svg><div class="rm-room-train-anchor"><img class="rm-room-train" src="assets/images/reader/period-lab/locomotive-00.webp" alt="Locomotiva in movimento"></div><img class="rm-room-balloon rm-red-balloon" src="assets/images/reader/period-lab/red-balloon-v1.png" alt="Più veloce!!! Meow" hidden><img class="rm-room-balloon rm-bjorne-balloon" src="assets/images/reader/period-lab/bjorne-balloon-v1.png" alt="Piano. Piano." hidden></div>';
+  const scene=el('div','rm-period-scene');scene.innerHTML='<div class="rm-room-stage rm-room-stage--debug"><img class="rm-room-backdrop" src="assets/images/reader/period-lab/room-v1.webp" width="1200" height="800" alt="Red e Bjorne con i radiocomandi al centro dei binari; il semaforo vicino alla stazione indica il punto di misura."><svg class="rm-room-path" viewBox="0 0 1200 800" aria-hidden="true"><path class="rm-rail-inner"/><path class="rm-rail-outer"/><path class="rm-rail-median"/><line class="rm-rail-midpoint-link"/><circle class="rm-inner-contact" r="4"/><circle class="rm-outer-contact" r="4"/><circle class="rm-track-anchor" r="8"/></svg><div class="rm-room-train-anchor"><img class="rm-room-train" src="assets/images/reader/period-lab/locomotive-00.webp" alt="Locomotiva in movimento"></div><img class="rm-room-balloon rm-red-balloon" src="assets/images/reader/period-lab/red-balloon-v1.png" alt="Più veloce!!! Meow" hidden><img class="rm-room-balloon rm-bjorne-balloon" src="assets/images/reader/period-lab/bjorne-balloon-v1.png" alt="Piano. Piano." hidden></div>';
   const room=scene.querySelector('.rm-room-stage');
   let balloonTimer;
   function speak(cat){scene.querySelectorAll('.rm-room-balloon').forEach(b=>b.hidden=true);const balloon=scene.querySelector('.rm-'+cat+'-balloon');balloon.hidden=false;clearTimeout(balloonTimer);balloonTimer=setTimeout(()=>balloon.hidden=true,3000);}
@@ -147,7 +147,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   const stage=el('div','rm-lab-stage');stage.append(scene);box.append(stage);
   const clock=stopwatch(box,true),clockDispose=disposeWidget;const bench=el('div','rm-lab-workbench');box.insertBefore(bench,stage);bench.append(stage,clock.board);
   const track=window.READER_TRAIN_TRACK,anchor=scene.querySelector('.rm-room-train-anchor'),marker=scene.querySelector('.rm-track-anchor');
-  scene.querySelector('.rm-room-path path').setAttribute('d',track.path);
+  scene.querySelector('.rm-rail-median').setAttribute('d',track.path);
+  scene.querySelector('.rm-rail-inner').setAttribute('d',track.innerPath);scene.querySelector('.rm-rail-outer').setAttribute('d',track.outerPath);
+  const legend=el('p','rm-rail-legend');legend.innerHTML='<span class="rm-legend-inner">Viola: rotaia interna</span> · <span class="rm-legend-outer">Arancione: rotaia esterna</span> · <span class="rm-legend-median">Turchese: curva media</span>';stage.append(legend);
   anchor.setAttribute('role','img');anchor.setAttribute('aria-label','Locomotiva in movimento');
   anchor.hidden=true;
   const showTrain=button('Mostra locomotiva',()=>{anchor.hidden=!anchor.hidden;showTrain.textContent=anchor.hidden?'Mostra locomotiva':'Nascondi locomotiva';showTrain.setAttribute('aria-pressed',String(!anchor.hidden));});showTrain.setAttribute('aria-pressed','false');stage.append(showTrain);
@@ -163,6 +165,9 @@ document.addEventListener('DOMContentLoaded',()=>{
    }
    anchor.style.left=(p.x/track.width*100)+'%';anchor.style.top=(p.y/track.height*100)+'%';anchor.style.setProperty('--train-scale',String(track.perspectiveScale(p.u)));
    marker.setAttribute('cx',p.x);marker.setAttribute('cy',p.y);
+   const inner=track.railAt(track.innerRail,p.u),outer=track.railAt(track.outerRail,p.u),link=scene.querySelector('.rm-rail-midpoint-link');
+   link.setAttribute('x1',inner.x);link.setAttribute('y1',inner.y);link.setAttribute('x2',outer.x);link.setAttribute('y2',outer.y);
+   for(const [selector,point] of [['.rm-inner-contact',inner],['.rm-outer-contact',outer]]){const circle=scene.querySelector(selector);circle.setAttribute('cx',point.x);circle.setAttribute('cy',point.y);}
    raf=requestAnimationFrame(animate);
   }raf=requestAnimationFrame(animate);
   const answerBox=el('div','rm-period-answer'),answerLabel=el('label');

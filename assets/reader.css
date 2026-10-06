@@ -115,3 +115,9 @@
 .rm-room-train-anchor[hidden]{display:none}
 .rm-room-stage--debug .rm-room-path path{stroke-width:3;filter:drop-shadow(0 1px 1px #000a)}
 .rm-room-stage--debug .rm-track-anchor{stroke-width:3}
+
+.rm-room-stage--debug .rm-room-path .rm-rail-inner{stroke:#ac50ff;stroke-width:2.5}
+.rm-room-stage--debug .rm-room-path .rm-rail-outer{stroke:#ff8500;stroke-width:2.5}
+.rm-rail-midpoint-link{stroke:#fff;stroke-width:2;filter:drop-shadow(0 1px 1px #000)}
+.rm-inner-contact{fill:#ac50ff;stroke:#fff;stroke-width:1.5}.rm-outer-contact{fill:#ff8500;stroke:#fff;stroke-width:1.5}
+.rm-rail-legend{font-size:12px!important;margin:8px 0!important;line-height:1.6!important}.rm-legend-inner{color:#8e30d3}.rm-legend-outer{color:#b95c00}.rm-legend-median{color:#087d85}
