@@ -55,33 +55,31 @@
  ];
  const spriteFootprints=visibleWheelPairs.map(([rx,ry,fx,fy,isOuter],i)=>{
   const dx=fx-rx,dy=fy-ry,nx=-dy/(groundAspect*groundAspect),ny=dx,norm=Math.hypot(nx,ny),vx=nx/norm*spriteGauges[i],vy=ny/norm*spriteGauges[i];
-  const projectedGauge=i===0||i===8?44:82*Math.hypot(Math.sin(Math.atan2(dy/groundAspect,dx)),groundAspect*Math.cos(Math.atan2(dy/groundAspect,dx)));
+  const sourceLength=Math.hypot(dx,dy/groundAspect),sourceWidth=sourceLength*((44/groundAspect)/104),projectedGauge=sourceWidth*Math.hypot(Math.sin(Math.atan2(dy/groundAspect,dx)),groundAspect*Math.cos(Math.atan2(dy/groundAspect,dx)));
   const ratio=projectedGauge/spriteGauges[i],rear={x:rx,y:ry},front={x:fx,y:fy},shift=(p,k)=>({x:p.x+k*vx*ratio,y:p.y+k*vy*ratio});
   return isOuter?[shift(rear,-1),shift(front,-1),front,rear]:[rear,front,shift(front,1),shift(rear,1)];
  });
- // Each axle is a line perpendicular to the direction of travel in the ground
- // plane. Its two endpoints are solved on the actual inner/outer rail curves.
- function wheelFootprint(p){
-  let tx=-p.dx,ty=-p.dy/groundAspect,norm=Math.hypot(tx,ty);tx/=norm;ty/=norm;
-  function axle(sign){const c={x:p.x+sign*wheelbase/2*tx,y:p.y+sign*wheelbase/2*ty*groundAspect};
-   return [innerRail,outerRail].map(rail=>{let u=p.u;for(let i=0;i<14;i++){const q=railAt(rail,u),f=(q.x-c.x)*tx+(q.y-c.y)*ty/groundAspect,df=2*Math.PI*(q.dx*tx+q.dy*ty/groundAspect);if(Math.abs(df)<1e-9)break;u-=f/df;}return railAt(rail,u);});}
-  const rear=axle(-1),front=axle(1);return [rear[0],front[0],front[1],rear[1]];
- }
- // Bilinear coordinates map all four contacts exactly, including the small
- // trapezoidal deviation caused by curvature. The roof is carried by the same map.
- function footprintMap(p,index){
-  const source=spriteFootprints[index],target=wheelFootprint(p),o=source[0],ux=source[1].x-o.x,uy=source[1].y-o.y,vx=source[3].x-o.x,vy=source[3].y-o.y,det=ux*vy-uy*vx;
-  const du={x:target[1].x-target[0].x,y:target[1].y-target[0].y},dv={x:target[3].x-target[0].x,y:target[3].y-target[0].y},curve={x:target[2].x-target[1].x-target[3].x+target[0].x,y:target[2].y-target[1].y-target[3].y+target[0].y};
-  const baseline=Math.min(...source.map(q=>q.y)),area=points=>Math.abs(points.reduce((sum,q,i)=>{const n=points[(i+1)%4];return sum+q.x*n.y-q.y*n.x;},0))/2,liftScale=Math.sqrt(area(target)/area(source));
-  function groundMap(x,y){const a=((x-o.x)*vy-(y-o.y)*vx)/det,b=(ux*(y-o.y)-uy*(x-o.x))/det;const bend=Math.max(0,Math.min(1,a))*Math.max(0,Math.min(1,b));return {x:target[0].x+a*du.x+b*dv.x+bend*curve.x,y:target[0].y+a*du.y+b*dv.y+bend*curve.y};}
-  // Pixels above every wheel contact belong to the upright body, not the floor.
-  // Lift them vertically rather than shearing the roof into the ground plane.
-  function map(x,y){if(y>=baseline)return groundMap(x,y);const q=groundMap(x,baseline);return {x:q.x,y:q.y+(y-baseline)*liftScale};}
-  return {source,target,map,baseline,liftScale};
+ // Perspective rectification fitted jointly to both rail curves as concentric
+ // circles. It supplies one coherent camera, instead of treating raw gauge as zoom.
+ const camera={a:.898482475311688,b:-.022633743696856983,d:.948022997981651,cx:-.004784920406586971,cy:-.14446956068280964,px:.02245540115145794,py:.13262778880280218};
+ const innerRadius=.8956680163508953,rigidWidth=1-innerRadius,rigidLength=rigidWidth/((44/groundAspect)/104);
+ function toGround(p){const x=(p.x-557)/450-camera.cx,y=(p.y-352)/275-camera.cy,den=1+camera.px*x+camera.py*y;return {x:(camera.a*x+camera.b*y)/den,y:camera.d*y/den};}
+ function toScreen(p){const y=p.y/camera.d,x=(p.x-camera.b*y)/camera.a,den=1-camera.px*x-camera.py*y;return {x:557+450*(x/den+camera.cx),y:352+275*(y/den+camera.cy)};}
+ // Keep the approved median motion. A constant rectangle in the reconstructed
+ // ground plane is projected as a whole; guide deviations never bend the PNG.
+ function wheelFootprint(p){const c=toGround(p),r=Math.hypot(c.x,c.y),nx=c.x/r,ny=c.y/r,tx=ny,ty=-nx;
+  return [[-1,-1],[1,-1],[1,1],[-1,1]].map(([long,cross])=>toScreen({x:c.x+long*rigidLength/2*tx+cross*rigidWidth/2*nx,y:c.y+long*rigidLength/2*ty+cross*rigidWidth/2*ny}));}
+ // Weighted Procrustes fit: a single scale + rotation + translation. Visible
+ // wheel contacts have weight 1; inferred hidden contacts have weight .2.
+ function rigidSpriteFit(p,index){
+  const source=spriteFootprints[index],target=wheelFootprint(p),outerVisible=visibleWheelPairs[index][4],weights=source.map((_,i)=>(outerVisible?i>=2:i<2)?1:.2),sum=weights.reduce((a,b)=>a+b,0),centroid=points=>({x:points.reduce((s,q,i)=>s+weights[i]*q.x,0)/sum,y:points.reduce((s,q,i)=>s+weights[i]*q.y,0)/sum}),u=centroid(source),v=centroid(target);
+  let dot=0,cross=0,den=0;for(let i=0;i<4;i++){const sx=source[i].x-u.x,sy=source[i].y-u.y,tx=target[i].x-v.x,ty=target[i].y-v.y;dot+=weights[i]*(sx*tx+sy*ty);cross+=weights[i]*(sx*ty-sy*tx);den+=weights[i]*(sx*sx+sy*sy);}
+  const a=dot/den,b=cross/den,matrix={a,b,c:-b,d:a,e:v.x-a*u.x+b*u.y,f:v.y-b*u.x-a*u.y,scale:Math.hypot(a,b)},map=(x,y)=>({x:matrix.a*x+matrix.c*y+matrix.e,y:matrix.b*x+matrix.d*y+matrix.f}),rendered=source.map(q=>map(q.x,q.y));
+  return {source,target,matrix,map,rendered,weights};
  }
  function railGauge(t){return crossSection(t).width;}
  const frontGauge=railGauge(1/4),perspectiveScale=t=>railGauge(t)/frontGauge;
- const model=Object.freeze({width:1200,height:800,center,axes,innerPath,outerPath,innerRail,outerRail,points,at,atDistance,pose,path,length:total,origin,spriteAnchors,railAt,railGauge,frontGauge,perspectiveScale,crossSection,spriteHeadings,spriteGauges,spriteBounds,groundAspect,wheelbase,spriteFootprints,wheelFootprint,footprintMap,nearestFrame});
+ const model=Object.freeze({width:1200,height:800,center,axes,innerPath,outerPath,innerRail,outerRail,points,at,atDistance,pose,path,length:total,origin,spriteAnchors,railAt,railGauge,frontGauge,perspectiveScale,crossSection,spriteHeadings,spriteGauges,spriteBounds,groundAspect,wheelbase,spriteFootprints,rigidWidth,rigidLength,toGround,toScreen,wheelFootprint,rigidSpriteFit,nearestFrame});
  root.READER_TRAIN_TRACK=model;
  if(typeof module!=='undefined'&&module.exports)module.exports=model;
 })(typeof window!=='undefined'?window:globalThis);
