@@ -43,16 +43,41 @@
  const spriteBounds=[[14,99,242,238],[44,55,242,238],[19,10,237,238],[42,10,213,238],[79,10,177,238],[20,10,236,238],[14,11,242,238],[14,45,242,238],[14,54,242,192],[41,51,242,238],[20,10,235,238],[35,10,221,238],[67,10,189,238],[14,18,242,238],[14,26,242,238],[14,42,242,238]];
  const angleDelta=a=>Math.atan2(Math.sin(a),Math.cos(a));
  function nearestFrame(p,previous){const angle=Math.atan2(-p.dy,-p.dx);let selected=0,best=Infinity;for(let i=0;i<16;i++){const e=Math.abs(angleDelta(angle-spriteHeadings[i]));if(e<best){best=e;selected=i;}}if(previous>=0&&Math.abs(angleDelta(angle-spriteHeadings[previous]))<=best+.035)return previous;return selected;}
- // The user's approved side view (frame 00 at .975) defines the common
- // floor-to-roof height. Each source drawing is normalized to that reference;
- // neither depth nor apparent rail width changes the locomotive's size.
- const spriteScale=.975;
- const spriteHeights=spriteAnchors.map((anchor,i)=>anchor.y-spriteBounds[i][1]);
- const referenceHeight=spriteHeights[0]*spriteScale;
- function spriteMatrix(p,index){const turn=Math.max(-.21,Math.min(.21,angleDelta(Math.atan2(-p.dy,-p.dx)-spriteHeadings[index]))),scale=referenceHeight/spriteHeights[index],a=scale*Math.cos(turn),b=scale*Math.sin(turn),c=-b,d=a,anchor=spriteAnchors[index];return {a,b,c,d,e:p.x-a*anchor.x-c*anchor.y,f:p.y-b*anchor.x-d*anchor.y,scale};}
+ // Four wheel/rail contacts in each native drawing. The visible first/last
+ // wheels are measured; opposite hidden contacts are inferred in the ground plane.
+ // source near side: rear, front, and whether it is the outside of the clockwise loop.
+ const groundAspect=.58,wheelbase=104*.975;
+ const visibleWheelPairs=[
+  [67,232,171,232,true],[82,185,156,220,true],[54,165,130,218,true],[72,154,125,207,true],
+  [88,135,88,207,true],[196,169,118,217,false],[197,173,110,225,false],[199,193,111,229,false],
+  [188,187,90,187,false],[149,233,80,178,false],[125,232,57,154,false],[117,237,65,156,false],
+  [88,232,88,148,false],[122,233,197,174,true],[116,235,195,175,true],[99,236,187,191,true]
+ ];
+ const spriteFootprints=visibleWheelPairs.map(([rx,ry,fx,fy,isOuter],i)=>{
+  const dx=fx-rx,dy=fy-ry,nx=-dy/(groundAspect*groundAspect),ny=dx,norm=Math.hypot(nx,ny),vx=nx/norm*spriteGauges[i],vy=ny/norm*spriteGauges[i];
+  const projectedGauge=i===0||i===8?44:82*Math.hypot(Math.sin(Math.atan2(dy/groundAspect,dx)),groundAspect*Math.cos(Math.atan2(dy/groundAspect,dx)));
+  const ratio=projectedGauge/spriteGauges[i],rear={x:rx,y:ry},front={x:fx,y:fy},shift=(p,k)=>({x:p.x+k*vx*ratio,y:p.y+k*vy*ratio});
+  return isOuter?[shift(rear,-1),shift(front,-1),front,rear]:[rear,front,shift(front,1),shift(rear,1)];
+ });
+ // Each axle is a line perpendicular to the direction of travel in the ground
+ // plane. Its two endpoints are solved on the actual inner/outer rail curves.
+ function wheelFootprint(p){
+  let tx=-p.dx,ty=-p.dy/groundAspect,norm=Math.hypot(tx,ty);tx/=norm;ty/=norm;
+  function axle(sign){const c={x:p.x+sign*wheelbase/2*tx,y:p.y+sign*wheelbase/2*ty*groundAspect};
+   return [innerRail,outerRail].map(rail=>{let u=p.u;for(let i=0;i<14;i++){const q=railAt(rail,u),f=(q.x-c.x)*tx+(q.y-c.y)*ty/groundAspect,df=2*Math.PI*(q.dx*tx+q.dy*ty/groundAspect);if(Math.abs(df)<1e-9)break;u-=f/df;}return railAt(rail,u);});}
+  const rear=axle(-1),front=axle(1);return [rear[0],front[0],front[1],rear[1]];
+ }
+ // Bilinear coordinates map all four contacts exactly, including the small
+ // trapezoidal deviation caused by curvature. The roof is carried by the same map.
+ function footprintMap(p,index){
+  const source=spriteFootprints[index],target=wheelFootprint(p),o=source[0],ux=source[1].x-o.x,uy=source[1].y-o.y,vx=source[3].x-o.x,vy=source[3].y-o.y,det=ux*vy-uy*vx;
+  const du={x:target[1].x-target[0].x,y:target[1].y-target[0].y},dv={x:target[3].x-target[0].x,y:target[3].y-target[0].y},curve={x:target[2].x-target[1].x-target[3].x+target[0].x,y:target[2].y-target[1].y-target[3].y+target[0].y};
+  function map(x,y){const a=((x-o.x)*vy-(y-o.y)*vx)/det,b=(ux*(y-o.y)-uy*(x-o.x))/det;const bend=Math.max(0,Math.min(1,a))*Math.max(0,Math.min(1,b));return {x:target[0].x+a*du.x+b*dv.x+bend*curve.x,y:target[0].y+a*du.y+b*dv.y+bend*curve.y};}
+  return {source,target,map};
+ }
  function railGauge(t){return crossSection(t).width;}
  const frontGauge=railGauge(1/4),perspectiveScale=t=>railGauge(t)/frontGauge;
- const model=Object.freeze({width:1200,height:800,center,axes,innerPath,outerPath,innerRail,outerRail,points,at,atDistance,pose,path,length:total,origin,spriteAnchors,railAt,railGauge,frontGauge,perspectiveScale,crossSection,spriteHeadings,spriteGauges,spriteBounds,spriteScale,spriteHeights,referenceHeight,nearestFrame,spriteMatrix});
+ const model=Object.freeze({width:1200,height:800,center,axes,innerPath,outerPath,innerRail,outerRail,points,at,atDistance,pose,path,length:total,origin,spriteAnchors,railAt,railGauge,frontGauge,perspectiveScale,crossSection,spriteHeadings,spriteGauges,spriteBounds,groundAspect,wheelbase,spriteFootprints,wheelFootprint,footprintMap,nearestFrame});
  root.READER_TRAIN_TRACK=model;
  if(typeof module!=='undefined'&&module.exports)module.exports=model;
 })(typeof window!=='undefined'?window:globalThis);

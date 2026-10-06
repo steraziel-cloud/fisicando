@@ -158,6 +158,19 @@ document.addEventListener('DOMContentLoaded',()=>{
   anchor.hidden=false;
   const context=anchor.getContext('2d');
   const frames=Array.from({length:16},(_,i)=>{const image=new Image();image.src='assets/images/reader/period-lab/locomotive-'+String(i).padStart(2,'0')+'.webp';return image;});
+  const showGuides=new URLSearchParams(location.search).get('guide')==='ruote';
+  let guide;
+  if(showGuides){guide=document.createElementNS('http://www.w3.org/2000/svg','svg');guide.setAttribute('viewBox','0 0 1200 800');guide.setAttribute('class','rm-room-wheel-guides');guide.setAttribute('aria-hidden','true');guide.innerHTML=`<path d="${track.innerPath}" fill="none" stroke="#ac50ff" stroke-width="2"/><path d="${track.outerPath}" fill="none" stroke="#ff8500" stroke-width="2"/><polygon fill="#26ffff22" stroke="#26ffff" stroke-width="2"/><g>${[0,1,2,3].map(i=>`<circle r="5" fill="${i<2?'#ac50ff':'#ff8500'}" stroke="white" stroke-width="2"/>`).join('')}</g>`;room.append(guide);}
+  function drawTriangle(image,source,target){
+   const [s0,s1,s2]=source,[t0,t1,t2]=target,ux=s1.x-s0.x,uy=s1.y-s0.y,vx=s2.x-s0.x,vy=s2.y-s0.y,det=ux*vy-uy*vx;
+   const ax=t1.x-t0.x,ay=t1.y-t0.y,bx=t2.x-t0.x,by=t2.y-t0.y,a=(ax*vy-bx*uy)/det,c=(bx*ux-ax*vx)/det,b=(ay*vy-by*uy)/det,d=(by*ux-ay*vx)/det;
+   context.save();context.beginPath();for(let i=0;i<3;i++){const t=target[i],cx=(t0.x+t1.x+t2.x)/3,cy=(t0.y+t1.y+t2.y)/3,dist=Math.hypot(t.x-cx,t.y-cy),x=t.x+.45*(t.x-cx)/dist,y=t.y+.45*(t.y-cy)/dist;if(i)context.lineTo(x,y);else context.moveTo(x,y);}context.closePath();context.clip();context.setTransform(a,b,c,d,t0.x-a*s0.x-c*s0.y,t0.y-b*s0.x-d*s0.y);context.drawImage(image,0,0,256,256);context.restore();
+  }
+  function drawLocomotive(image,fit,bounds){
+   const [left,top,right,bottom]=bounds,xs=[...new Set([...Array.from({length:7},(_,i)=>left+(right-left)*i/6),...fit.source.map(q=>q.x).filter(x=>x>left&&x<right)])].sort((a,b)=>a-b),ys=[...new Set([...Array.from({length:7},(_,i)=>top+(bottom-top)*i/6),...fit.source.map(q=>q.y).filter(y=>y>top&&y<bottom)])].sort((a,b)=>a-b),cols=xs.length-1,rows=ys.length-1,grid=ys.map(y=>xs.map(x=>{const source={x,y};return {source,target:fit.map(x,y)};}));
+   context.setTransform(1,0,0,1,0,0);context.clearRect(0,0,1200,800);
+   for(let j=0;j<rows;j++)for(let i=0;i<cols;i++){const a=grid[j][i],b=grid[j][i+1],c=grid[j+1][i+1],d=grid[j+1][i];for(const triangle of [[a,b,c],[a,c,d]])drawTriangle(image,triangle.map(v=>v.source),triangle.map(v=>v.target));}
+  }
   let phase=0,previous=performance.now(),raf,selected;
   function animate(now){
    phase=(phase+(now-previous)/1000/st.period)%1;previous=now;
@@ -165,11 +178,9 @@ document.addEventListener('DOMContentLoaded',()=>{
    if(frames[candidate].complete&&frames[candidate].naturalWidth)selected=candidate;
    if(selected===undefined)selected=frames.findIndex(image=>image.complete&&image.naturalWidth>0);
    if(selected>=0&&frames[selected].complete&&frames[selected].naturalWidth){
-    const matrix=track.spriteMatrix(p,selected),[left,top,right,bottom]=track.spriteBounds[selected];
-    context.setTransform(1,0,0,1,0,0);context.clearRect(0,0,1200,800);
-    context.save();context.setTransform(matrix.a,matrix.b,matrix.c,matrix.d,matrix.e,matrix.f);
-    context.beginPath();context.rect(left,top,right-left,bottom-top);context.clip();context.drawImage(frames[selected],0,0,256,256);context.restore();
-    anchor.dataset.frame=String(selected);anchor.dataset.matrix=JSON.stringify(matrix);anchor.dataset.point=JSON.stringify({x:p.x,y:p.y});
+    const fit=track.footprintMap(p,selected);drawLocomotive(frames[selected],fit,track.spriteBounds[selected]);
+    anchor.dataset.frame=String(selected);anchor.dataset.footprint=JSON.stringify(fit.target.map(q=>({x:q.x,y:q.y,u:q.u})));anchor.dataset.point=JSON.stringify({x:p.x,y:p.y});
+    if(guide){guide.querySelector('polygon').setAttribute('points',fit.target.map(q=>q.x+','+q.y).join(' '));guide.querySelectorAll('circle').forEach((circle,i)=>{circle.setAttribute('cx',fit.target[i].x);circle.setAttribute('cy',fit.target[i].y);});}
    }
    raf=requestAnimationFrame(animate);
   }raf=requestAnimationFrame(animate);
