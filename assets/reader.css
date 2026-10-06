@@ -124,3 +124,10 @@
 .rm-room-timing-line{position:absolute;inset:0;width:100%;height:100%;max-height:none!important;pointer-events:none;background:none!important;z-index:1}
 
 .rm-room-wheel-guides{position:absolute;inset:0;width:100%;height:100%;max-height:none!important;pointer-events:none;background:none!important;z-index:5}
+
+
+/* Pure overhead lab: the background, rails and sprite share one coordinate system. */
+.rm-room-stage--topdown .rm-room-rails{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;z-index:1;background:none;border:0}
+.rm-room-stage--topdown .rm-room-train-anchor{left:0;top:0;width:100%;height:100%}
+.rm-room-stage--topdown .rm-red-hotspot{left:27%;top:30%;width:21%;height:30%}
+.rm-room-stage--topdown .rm-bjorne-hotspot{left:49%;top:30%;width:20%;height:32%}

@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  function periodLab(box){
   const st=state[current].lab;
   const intro=el('p');intro.innerHTML='Il <button class="rm-keyword" data-term="periodo" type="button">periodo</button> è la durata di un giro completo. Avvia il cronometro, poi registra t₁ quando la parte anteriore della locomotiva attraversa la fascia gialla e nera accanto al semaforo e t₂ al passaggio successivo, dopo un giro. La differenza Δt mostra la durata misurata: scrivi il valore che leggi nel riquadro qui sotto e premi «Verifica la misura».';box.append(intro);
-  const scene=el('div','rm-period-scene');scene.innerHTML='<div class="rm-room-stage"><img class="rm-room-backdrop" src="assets/images/reader/period-lab/room-v1.webp" width="1200" height="800" alt="Red e Bjorne con i radiocomandi al centro dei binari; la traversina gialla e nera vicino al semaforo indica il punto di misura."><canvas class="rm-room-train-anchor" width="1200" height="900" role="img" aria-label="Locomotiva in movimento"></canvas><img class="rm-room-balloon rm-red-balloon" src="assets/images/reader/period-lab/red-balloon-v1.png" alt="Più veloce!!! Meow" hidden><img class="rm-room-balloon rm-bjorne-balloon" src="assets/images/reader/period-lab/bjorne-balloon-v1.png" alt="Piano. Piano." hidden></div>';
+  const scene=el('div','rm-period-scene');scene.innerHTML='<div class="rm-room-stage rm-room-stage--topdown"><img class="rm-room-backdrop" src="assets/images/reader/period-lab/room-topdown-v2.webp" width="1536" height="1024" alt="Red e Bjorne con i radiocomandi al centro dei binari; la traversina gialla e nera vicino al semaforo indica il punto di misura."><img class="rm-room-rails" src="assets/images/reader/period-lab/track-topdown-v1.webp" width="1536" height="1024" alt="Circuito ovale a rotaie equidistanti; traversina gialla e nera accanto alla stazione."><canvas class="rm-room-train-anchor" width="1536" height="1024" role="img" aria-label="Locomotiva in movimento"></canvas><img class="rm-room-balloon rm-red-balloon" src="assets/images/reader/period-lab/red-balloon-v1.png" alt="Più veloce!!! Meow" hidden><img class="rm-room-balloon rm-bjorne-balloon" src="assets/images/reader/period-lab/bjorne-balloon-v1.png" alt="Piano. Piano." hidden></div>';
   const room=scene.querySelector('.rm-room-stage');
   let balloonTimer;
   function speak(cat){scene.querySelectorAll('.rm-room-balloon').forEach(b=>b.hidden=true);const balloon=scene.querySelector('.rm-'+cat+'-balloon');balloon.hidden=false;clearTimeout(balloonTimer);balloonTimer=setTimeout(()=>balloon.hidden=true,3000);}
@@ -146,87 +146,24 @@ document.addEventListener('DOMContentLoaded',()=>{
   const redHit=button('',()=>{change(-2);speak('red');}),bjorneHit=button('',()=>{change(2);speak('bjorne');});redHit.className='rm-cat-hotspot rm-red-hotspot';bjorneHit.className='rm-cat-hotspot rm-bjorne-hotspot';redHit.setAttribute('aria-label','Red: aumenta la velocità del trenino');bjorneHit.setAttribute('aria-label','Bjorne: diminuisci la velocità del trenino');room.append(redHit,bjorneHit);
   const stage=el('div','rm-lab-stage');stage.append(scene);box.append(stage);
   const clock=stopwatch(box,true),clockDispose=disposeWidget;const bench=el('div','rm-lab-workbench');box.insertBefore(bench,stage);bench.append(stage,clock.board);
-  const track=window.READER_TRAIN_TRACK,anchor=scene.querySelector('.rm-room-train-anchor');
-  // Paint one sleeper at the timing origin; keep it beneath the moving locomotive.
-  const finish=track.crossSection(track.pose(0).u),nx=(finish.outer.x-finish.inner.x)/finish.width,ny=(finish.outer.y-finish.inner.y)/finish.width;
-  const startX=finish.inner.x-8*nx,startY=finish.inner.y-8*ny,endX=finish.outer.x+8*nx,endY=finish.outer.y+8*ny;
-  const timingLine=document.createElementNS('http://www.w3.org/2000/svg','svg');timingLine.setAttribute('viewBox','0 0 1200 800');timingLine.setAttribute('class','rm-room-timing-line');timingLine.setAttribute('role','img');timingLine.setAttribute('aria-label','Linea di partenza e traguardo: traversina gialla e nera accanto al semaforo');
-  timingLine.innerHTML=`<line x1="${startX}" y1="${startY}" x2="${endX}" y2="${endY}" stroke="#2b241c" stroke-width="20" stroke-linecap="square"/><line x1="${startX}" y1="${startY}" x2="${endX}" y2="${endY}" stroke="#ffdc36" stroke-width="14"/><line x1="${startX}" y1="${startY}" x2="${endX}" y2="${endY}" stroke="#292721" stroke-width="14" stroke-dasharray="6 8"/>`;room.append(timingLine);
-
-
-  anchor.setAttribute('role','img');anchor.setAttribute('aria-label','Locomotiva in movimento');
-  anchor.hidden=false;
-  const context=anchor.getContext('2d');
-  const frames=track.spriteMetadata.map(sprite=>{const image=new Image();image.decoding='async';image.src=sprite.url;return image;});
-  const showGuides=new URLSearchParams(location.search).get('guide')==='ruote';
-  let guide;
-  if(showGuides){guide=document.createElementNS('http://www.w3.org/2000/svg','svg');guide.setAttribute('viewBox','0 0 1200 800');guide.setAttribute('class','rm-room-wheel-guides');guide.setAttribute('aria-hidden','true');guide.innerHTML=`<path d="${track.innerPath}" fill="none" stroke="#ac50ff" stroke-width="2"/><path d="${track.outerPath}" fill="none" stroke="#ff8500" stroke-width="2"/><polygon fill="#26ffff22" stroke="#26ffff" stroke-width="2"/><g>${[0,1,2,3].map(i=>`<circle r="5" fill="${i<2?'#ac50ff':'#ff8500'}" stroke="white" stroke-width="2"/>`).join('')}</g><g class="rm-contact-residuals">${[0,1,2,3].map(()=>'<line stroke="#4aff84" stroke-width="2"/><circle r="3" fill="#4aff84"/>').join('')}</g>`;room.append(guide);}
-  const guidePolygon=guide?.querySelector('polygon'),guideTargets=guide?Array.from(guide.querySelectorAll('g:first-of-type circle')):[],guideLines=guide?Array.from(guide.querySelectorAll('.rm-contact-residuals line')):[],guideContacts=guide?Array.from(guide.querySelectorAll('.rm-contact-residuals circle')):[];
-  // Regolazioni finali validate nel debugger del 6 ottobre 2026.
-  // Ogni intervallo conserva il frame e le correzioni scelte manualmente.
-  const trainSequences=[
-   {start:-0.03759765625,end:0.0016,frame:11,scale:1,rotation:-4,dx:2,dy:0},
-   {start:0.0016,end:0.0242,frame:11,scale:1,rotation:-4,dx:3,dy:0},
-   {start:0.0242,end:0.0469,frame:6,scale:1.36,rotation:0,dx:7,dy:0},
-   {start:0.0469,end:0.074310302734375,frame:14,scale:1.35,rotation:0,dx:6,dy:0},
-   {start:0.074310302734375,end:0.1379,frame:10,scale:1,rotation:0,dx:0,dy:0},
-   {start:0.1379,end:0.2181,frame:5,scale:1,rotation:0,dx:0,dy:-9},
-   {start:0.2181,end:0.3396,frame:4,scale:1.07,rotation:0,dx:0,dy:-5},
-   {start:0.3396,end:0.4637451171875,frame:9,scale:1.02,rotation:0,dx:0,dy:0},
-   {start:0.4637451171875,end:0.482421875,frame:17,scale:1.08,rotation:0,dx:-2,dy:0},
-   {start:0.482421875,end:0.511138916015625,frame:17,scale:1.08,rotation:-2.5,dx:0,dy:0},
-   {start:0.511138916015625,end:0.53387451171875,frame:13,scale:1,rotation:0,dx:2,dy:0},
-   {start:0.53387451171875,end:0.546356201171875,frame:2,scale:1.38,rotation:0,dx:12,dy:0},
-   {start:0.546356201171875,end:0.6059,frame:12,scale:1,rotation:0,dx:0,dy:0},
-   {start:0.6059,end:0.6482,frame:16,scale:1,rotation:0,dx:0,dy:0},
-   {start:0.6482,end:0.6682,frame:8,scale:.95,rotation:0,dx:0,dy:0},
-   {start:0.6682,end:0.75,frame:8,scale:.95,rotation:3.5,dx:0,dy:2},
-   {start:0.75,end:0.85,frame:0,scale:1.02,rotation:2,dx:0,dy:3},
-   // Complete the last arc up to the first arc's start on the following lap.
-   {start:0.85,end:0.96240234375,frame:7,scale:1.11,rotation:0,dx:0,dy:-11}
-  ];
-  const trainSequenceLengths=trainSequences.map(s=>s.end-s.start);
-  const trainSequenceSpan=trainSequenceLengths.reduce((sum,length)=>sum+length,0);
-  function trainSample(cycle){
-   let distance=((cycle%1)+1)%1*trainSequenceSpan;
-   for(let i=0;i<trainSequences.length;i++){
-    const length=trainSequenceLengths[i];
-    if(distance<length||i===trainSequences.length-1){
-     const sequence=trainSequences[i],local=length?Math.min(distance/length,.999999):0;
-     return {sequence,index:i,phase:sequence.start+length*local};
-    }
-    distance-=length;
-   }
-  }
-  function drawLocomotive(image,fit,bounds,params,p){
-   const [left,top,right,bottom]=bounds,m=fit.matrix,angle=params.rotation*Math.PI/180,c=Math.cos(angle)*params.scale,s=Math.sin(angle)*params.scale;
-   const a=c*m.a-s*m.b,b=s*m.a+c*m.b;
-   const tx=p.x+params.dx+c*(m.e-p.x)-s*(m.f-p.y),ty=p.y+params.dy+s*(m.e-p.x)+c*(m.f-p.y);
-   context.save();context.globalAlpha=1;context.globalCompositeOperation='source-over';context.setTransform(a,b,-b,a,tx,ty+50);context.beginPath();context.rect(left,top,right-left,bottom-top);context.clip();context.drawImage(image,0,0,256,256);context.restore();
-   return {a,b,e:tx,f:ty};
-  }
+  const track=window.READER_TRAIN_TOPDOWN,anchor=scene.querySelector('.rm-room-train-anchor');
+  const context=anchor.getContext('2d'),locomotive=new Image();
+  locomotive.decoding='async';locomotive.src='assets/images/reader/period-lab/locomotive-topdown-v1.webp';
+  // Fixed wheel gauge in the overhead sprite: no perspective zoom, warping, or frame changes.
+  const spriteScale=track.gauge/506,spriteAnchor={x:887,y:431};
   let cycle=0,previous=performance.now(),raf,disposed=false;
   function animate(now){
    cycle=(cycle+(now-previous)/1000/st.period)%1;previous=now;
-   const sample=trainSample(cycle),params=sample.sequence,p=track.pose(sample.phase),fit=track.rigidSpriteFit(p,params.frame),image=frames[params.frame];
-   context.setTransform(1,0,0,1,0,0);context.clearRect(0,0,1200,900);
-   anchor.dataset.phase=String(sample.phase);
-   let adjusted=null;
-   if(image.complete&&image.naturalWidth)adjusted=drawLocomotive(image,fit,track.spriteBounds[params.frame],params,p);
-   anchor.dataset.sequence=String(sample.index+1);anchor.dataset.frame=String(params.frame);
-   if(guide&&adjusted){
-    anchor.dataset.matrix=JSON.stringify(adjusted);anchor.dataset.footprint=JSON.stringify(fit.target);
-    guidePolygon.setAttribute('points',fit.target.map(q=>q.x+','+q.y).join(' '));
-    guideTargets.forEach((circle,i)=>{circle.setAttribute('cx',fit.target[i].x);circle.setAttribute('cy',fit.target[i].y);});
-    const rendered=fit.source.map(q=>({x:adjusted.a*q.x-adjusted.b*q.y+adjusted.e,y:adjusted.b*q.x+adjusted.a*q.y+adjusted.f}));
-    anchor.dataset.renderedContacts=JSON.stringify(rendered);
-    guideLines.forEach((line,i)=>{line.setAttribute('x1',fit.target[i].x);line.setAttribute('y1',fit.target[i].y);line.setAttribute('x2',rendered[i].x);line.setAttribute('y2',rendered[i].y);});
-    guideContacts.forEach((circle,i)=>{circle.setAttribute('cx',rendered[i].x);circle.setAttribute('cy',rendered[i].y);});
-   }
+   const p=track.pose(cycle);
+   context.setTransform(1,0,0,1,0,0);context.clearRect(0,0,track.width,track.height);
+   context.save();context.translate(p.x,p.y);context.rotate(p.heading);context.scale(spriteScale,spriteScale);
+   context.drawImage(locomotive,-spriteAnchor.x,-spriteAnchor.y,1774,887);context.restore();
+   anchor.dataset.phase=String(cycle);anchor.dataset.heading=String(p.heading);anchor.dataset.scale=String(spriteScale);anchor.dataset.period=String(st.period);
    raf=requestAnimationFrame(animate);
   }
-  // Decode all views before starting, so a first visit cannot skip an unloaded frame.
-  Promise.all(frames.map(image=>image.decode().catch(()=>null))).then(()=>{if(disposed)return;previous=performance.now();raf=requestAnimationFrame(animate);});
+  locomotive.decode().then(()=>{if(disposed)return;previous=performance.now();raf=requestAnimationFrame(animate);}).catch(()=>{
+   if(!disposed)$('reader-feedback').textContent='La locomotiva non è stata caricata. Riapri questa parte della lezione.';
+  });
   const answerBox=el('div','rm-period-answer'),answerLabel=el('label');
   answerLabel.append(el('span','','Periodo misurato: '));const answer=el('input');answer.type='text';answer.inputMode='decimal';answer.setAttribute('aria-label','Periodo misurato in secondi');answer.setAttribute('autocomplete','off');answer.value=st.answer;answerLabel.append(answer,el('span','','s'));answerBox.append(answerLabel);box.append(answerBox);
   answer.addEventListener('input',()=>{st.answer=answer.value;st.verified=false;$('reader-feedback').textContent='';sync();});

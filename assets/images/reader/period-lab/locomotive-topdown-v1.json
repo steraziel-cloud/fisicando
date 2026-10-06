@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "width": 1774,
+  "height": 887,
+  "headingDegrees": 0,
+  "nose": "right",
+  "opaqueBounds": [
+    63,
+    153,
+    1711,
+    709
+  ],
+  "rotationAnchor": [
+    887.0,
+    431.0
+  ],
+  "notes": "Single rigid sprite. Constant scale; rotate heading to median tangent. No frame transitions or perspective zoom."
+}
