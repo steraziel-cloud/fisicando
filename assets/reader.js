@@ -182,7 +182,8 @@ document.addEventListener('DOMContentLoaded',()=>{
    {start:0.6482,end:0.6682,frame:8,scale:.95,rotation:0,dx:0,dy:0},
    {start:0.6682,end:0.75,frame:8,scale:.95,rotation:3.5,dx:0,dy:2},
    {start:0.75,end:0.85,frame:0,scale:1.02,rotation:2,dx:0,dy:3},
-   {start:0.85,end:0.9369,frame:7,scale:1.11,rotation:0,dx:0,dy:-11}
+   // Complete the last arc up to the first arc's start on the following lap.
+   {start:0.85,end:0.96240234375,frame:7,scale:1.11,rotation:0,dx:0,dy:-11}
   ];
   const trainSequenceLengths=trainSequences.map(s=>s.end-s.start);
   const trainSequenceSpan=trainSequenceLengths.reduce((sum,length)=>sum+length,0);
