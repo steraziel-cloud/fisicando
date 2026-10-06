@@ -43,12 +43,13 @@
  const spriteBounds=[[14,99,242,238],[44,55,242,238],[19,10,237,238],[42,10,213,238],[79,10,177,238],[20,10,236,238],[14,11,242,238],[14,45,242,238],[14,54,242,192],[41,51,242,238],[20,10,235,238],[35,10,221,238],[67,10,189,238],[14,18,242,238],[14,26,242,238],[14,42,242,238]];
  const angleDelta=a=>Math.atan2(Math.sin(a),Math.cos(a));
  function nearestFrame(p,previous){const angle=Math.atan2(-p.dy,-p.dx);let selected=0,best=Infinity;for(let i=0;i<16;i++){const e=Math.abs(angleDelta(angle-spriteHeadings[i]));if(e<best){best=e;selected=i;}}if(previous>=0&&Math.abs(angleDelta(angle-spriteHeadings[previous]))<=best+.035)return previous;return selected;}
- // Fixed native-image zoom for this visual trial, identical for all frames and positions.
+ // Fixed zoom throughout the circuit; compensate only for undersized source drawings.
  const spriteScale=.65;
- function spriteMatrix(p,index){const turn=Math.max(-.21,Math.min(.21,angleDelta(Math.atan2(-p.dy,-p.dx)-spriteHeadings[index]))),scale=spriteScale,a=scale*Math.cos(turn),b=scale*Math.sin(turn),c=-b,d=a,anchor=spriteAnchors[index];return {a,b,c,d,e:p.x-a*anchor.x-c*anchor.y,f:p.y-b*anchor.x-d*anchor.y,scale};}
+ const spriteSizeCorrections=[1.5,1.15,1,1,1,1,1,1,1.4,1,1,1,1,1,1,1];
+ function spriteMatrix(p,index){const turn=Math.max(-.21,Math.min(.21,angleDelta(Math.atan2(-p.dy,-p.dx)-spriteHeadings[index]))),scale=spriteScale*spriteSizeCorrections[index],a=scale*Math.cos(turn),b=scale*Math.sin(turn),c=-b,d=a,anchor=spriteAnchors[index];return {a,b,c,d,e:p.x-a*anchor.x-c*anchor.y,f:p.y-b*anchor.x-d*anchor.y,scale};}
  function railGauge(t){return crossSection(t).width;}
  const frontGauge=railGauge(1/4),perspectiveScale=t=>railGauge(t)/frontGauge;
- const model=Object.freeze({width:1200,height:800,center,axes,innerPath,outerPath,innerRail,outerRail,points,at,atDistance,pose,path,length:total,origin,spriteAnchors,railAt,railGauge,frontGauge,perspectiveScale,crossSection,spriteHeadings,spriteGauges,spriteBounds,spriteScale,nearestFrame,spriteMatrix});
+ const model=Object.freeze({width:1200,height:800,center,axes,innerPath,outerPath,innerRail,outerRail,points,at,atDistance,pose,path,length:total,origin,spriteAnchors,railAt,railGauge,frontGauge,perspectiveScale,crossSection,spriteHeadings,spriteGauges,spriteBounds,spriteScale,spriteSizeCorrections,nearestFrame,spriteMatrix});
  root.READER_TRAIN_TRACK=model;
  if(typeof module!=='undefined'&&module.exports)module.exports=model;
 })(typeof window!=='undefined'?window:globalThis);
