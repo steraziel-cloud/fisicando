@@ -162,18 +162,67 @@ document.addEventListener('DOMContentLoaded',()=>{
   let guide;
   if(showGuides){guide=document.createElementNS('http://www.w3.org/2000/svg','svg');guide.setAttribute('viewBox','0 0 1200 800');guide.setAttribute('class','rm-room-wheel-guides');guide.setAttribute('aria-hidden','true');guide.innerHTML=`<path d="${track.innerPath}" fill="none" stroke="#ac50ff" stroke-width="2"/><path d="${track.outerPath}" fill="none" stroke="#ff8500" stroke-width="2"/><polygon fill="#26ffff22" stroke="#26ffff" stroke-width="2"/><g>${[0,1,2,3].map(i=>`<circle r="5" fill="${i<2?'#ac50ff':'#ff8500'}" stroke="white" stroke-width="2"/>`).join('')}</g><g class="rm-contact-residuals">${[0,1,2,3].map(()=>'<line stroke="#4aff84" stroke-width="2"/><circle r="3" fill="#4aff84"/>').join('')}</g>`;room.append(guide);}
   const guidePolygon=guide?.querySelector('polygon'),guideTargets=guide?Array.from(guide.querySelectorAll('g:first-of-type circle')):[],guideLines=guide?Array.from(guide.querySelectorAll('.rm-contact-residuals line')):[],guideContacts=guide?Array.from(guide.querySelectorAll('.rm-contact-residuals circle')):[];
-  function drawLocomotive(image,fit,bounds){const [left,top,right,bottom]=bounds,m=fit.matrix;
-   context.save();context.globalAlpha=1;context.globalCompositeOperation='source-over';context.setTransform(m.a,m.b,m.c,m.d,m.e,m.f+50);context.beginPath();context.rect(left,top,right-left,bottom-top);context.clip();context.drawImage(image,0,0,256,256);context.restore();
+  // Regolazioni finali validate nel debugger del 6 ottobre 2026.
+  // Ogni intervallo conserva il frame e le correzioni scelte manualmente.
+  const trainSequences=[
+   {start:-0.03759765625,end:0.0016,frame:11,scale:1,rotation:-4,dx:2,dy:0},
+   {start:0.0016,end:0.0242,frame:11,scale:1,rotation:-4,dx:3,dy:0},
+   {start:0.0242,end:0.0469,frame:6,scale:1.36,rotation:0,dx:7,dy:0},
+   {start:0.0469,end:0.074310302734375,frame:14,scale:1.35,rotation:0,dx:6,dy:0},
+   {start:0.074310302734375,end:0.1379,frame:10,scale:1,rotation:0,dx:0,dy:0},
+   {start:0.1379,end:0.2181,frame:5,scale:1,rotation:0,dx:0,dy:-9},
+   {start:0.2181,end:0.3396,frame:4,scale:1.07,rotation:0,dx:0,dy:-5},
+   {start:0.3396,end:0.4637451171875,frame:9,scale:1.02,rotation:0,dx:0,dy:0},
+   {start:0.4637451171875,end:0.482421875,frame:17,scale:1.08,rotation:0,dx:-2,dy:0},
+   {start:0.482421875,end:0.511138916015625,frame:17,scale:1.08,rotation:-2.5,dx:0,dy:0},
+   {start:0.511138916015625,end:0.53387451171875,frame:13,scale:1,rotation:0,dx:2,dy:0},
+   {start:0.53387451171875,end:0.546356201171875,frame:2,scale:1.38,rotation:0,dx:12,dy:0},
+   {start:0.546356201171875,end:0.6059,frame:12,scale:1,rotation:0,dx:0,dy:0},
+   {start:0.6059,end:0.6482,frame:16,scale:1,rotation:0,dx:0,dy:0},
+   {start:0.6482,end:0.6682,frame:8,scale:.95,rotation:0,dx:0,dy:0},
+   {start:0.6682,end:0.75,frame:8,scale:.95,rotation:3.5,dx:0,dy:2},
+   {start:0.75,end:0.85,frame:0,scale:1.02,rotation:2,dx:0,dy:3},
+   {start:0.85,end:0.9369,frame:7,scale:1.11,rotation:0,dx:0,dy:-11}
+  ];
+  const trainSequenceLengths=trainSequences.map(s=>s.end-s.start);
+  const trainSequenceSpan=trainSequenceLengths.reduce((sum,length)=>sum+length,0);
+  function trainSample(cycle){
+   let distance=((cycle%1)+1)%1*trainSequenceSpan;
+   for(let i=0;i<trainSequences.length;i++){
+    const length=trainSequenceLengths[i];
+    if(distance<length||i===trainSequences.length-1){
+     const sequence=trainSequences[i],local=length?Math.min(distance/length,.999999):0;
+     return {sequence,index:i,phase:sequence.start+length*local};
+    }
+    distance-=length;
+   }
   }
-  let phase=0,previous=performance.now(),raf,disposed=false,selected;
+  function drawLocomotive(image,fit,bounds,params){
+   const [left,top,right,bottom]=bounds,m=fit.matrix,angle=params.rotation*Math.PI/180,c=Math.cos(angle)*params.scale,s=Math.sin(angle)*params.scale;
+   const a=c*m.a-s*m.b,b=s*m.a+c*m.b,e=fit.target[0]&&track.pose?fit.target:null;
+   const p=track.pose(anchor.dataset.phase?Number(anchor.dataset.phase):0);
+   const tx=p.x+params.dx+c*(m.e-p.x)-s*(m.f-p.y),ty=p.y+params.dy+s*(m.e-p.x)+c*(m.f-p.y);
+   context.save();context.globalAlpha=1;context.globalCompositeOperation='source-over';context.setTransform(a,b,-b,a,tx,ty+50);context.beginPath();context.rect(left,top,right-left,bottom-top);context.clip();context.drawImage(image,0,0,256,256);context.restore();
+   return {a,b,e:tx,f:ty};
+  }
+  let cycle=0,previous=performance.now(),raf,disposed=false;
   function animate(now){
-   phase=(phase+(now-previous)/1000/st.period)%1;previous=now;
-   const p=track.pose(phase);selected=track.nearestFrame(p,selected);const visible=[{index:selected,weight:1}].filter(f=>frames[f.index].complete&&frames[f.index].naturalWidth),sum=visible.reduce((s,f)=>s+f.weight,0);
+   cycle=(cycle+(now-previous)/1000/st.period)%1;previous=now;
+   const sample=trainSample(cycle),params=sample.sequence,p=track.pose(sample.phase),fit=track.rigidSpriteFit(p,params.frame),image=frames[params.frame];
    context.setTransform(1,0,0,1,0,0);context.clearRect(0,0,1200,900);
-   let mainFit,mainIndex=-1,bestWeight=-1;
-   visible.forEach((f,i)=>{const fit=track.rigidSpriteFit(p,f.index);drawLocomotive(frames[f.index],fit,track.spriteBounds[f.index]);if(f.weight>bestWeight){mainFit=fit;mainIndex=f.index;bestWeight=f.weight;}});
-   anchor.dataset.frame=String(mainIndex);
-   if(guide&&mainFit){const fit=mainFit;anchor.dataset.matrix=JSON.stringify(fit.matrix);anchor.dataset.renderedContacts=JSON.stringify(fit.rendered);anchor.dataset.footprint=JSON.stringify(fit.target);guidePolygon.setAttribute('points',fit.target.map(q=>q.x+','+q.y).join(' '));guideTargets.forEach((circle,i)=>{circle.setAttribute('cx',fit.target[i].x);circle.setAttribute('cy',fit.target[i].y);});guideLines.forEach((line,i)=>{line.setAttribute('x1',fit.target[i].x);line.setAttribute('y1',fit.target[i].y);line.setAttribute('x2',fit.rendered[i].x);line.setAttribute('y2',fit.rendered[i].y);});guideContacts.forEach((circle,i)=>{circle.setAttribute('cx',fit.rendered[i].x);circle.setAttribute('cy',fit.rendered[i].y);});}
+   anchor.dataset.phase=String(sample.phase);
+   let adjusted=null;
+   if(image.complete&&image.naturalWidth)adjusted=drawLocomotive(image,fit,track.spriteBounds[params.frame],params);
+   anchor.dataset.sequence=String(sample.index+1);anchor.dataset.frame=String(params.frame);
+   if(guide&&adjusted){
+    anchor.dataset.matrix=JSON.stringify(adjusted);anchor.dataset.footprint=JSON.stringify(fit.target);
+    guidePolygon.setAttribute('points',fit.target.map(q=>q.x+','+q.y).join(' '));
+    guideTargets.forEach((circle,i)=>{circle.setAttribute('cx',fit.target[i].x);circle.setAttribute('cy',fit.target[i].y);});
+    const rendered=fit.source.map(q=>({x:adjusted.a*q.x-adjusted.b*q.y+adjusted.e,y:adjusted.b*q.x+adjusted.a*q.y+adjusted.f}));
+    anchor.dataset.renderedContacts=JSON.stringify(rendered);
+    guideLines.forEach((line,i)=>{line.setAttribute('x1',fit.target[i].x);line.setAttribute('y1',fit.target[i].y);line.setAttribute('x2',rendered[i].x);line.setAttribute('y2',rendered[i].y);});
+    guideContacts.forEach((circle,i)=>{circle.setAttribute('cx',rendered[i].x);circle.setAttribute('cy',rendered[i].y);});
+   }
    raf=requestAnimationFrame(animate);
   }
   // Decode all views before starting, so a first visit cannot skip an unloaded frame.
