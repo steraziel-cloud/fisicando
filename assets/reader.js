@@ -138,20 +138,19 @@ document.addEventListener('DOMContentLoaded',()=>{
  function periodLab(box){
   const st=state[current].lab;
   const intro=el('p');intro.innerHTML='Il <button class="rm-keyword" data-term="periodo" type="button">periodo</button> è la durata di un giro completo. Avvia il cronometro, poi registra t₁ quando il trenino attraversa il segno giallo e t₂ al passaggio successivo, dopo un giro. La differenza Δt mostra la durata misurata: scrivi il valore che leggi nel riquadro qui sotto e premi «Verifica la misura».';box.append(intro);
-  const scene=el('div','rm-period-scene');scene.innerHTML='<h4>Il circuito di Red e Bjorne</h4><div class="rm-room-stage"><img class="rm-room-backdrop" src="assets/images/reader/period-lab/room-v1.webp" width="1200" height="800" alt="Red e Bjorne con i radiocomandi al centro dei binari; il semaforo vicino alla stazione indica il punto di misura."><svg class="rm-room-path" viewBox="0 0 1200 800" aria-hidden="true"><path/><circle class="rm-track-anchor" r="5"/></svg><div class="rm-room-train-anchor"><img class="rm-room-train" src="assets/images/reader/period-lab/locomotive-00.webp" alt="Locomotiva in movimento"></div><img class="rm-room-balloon rm-red-balloon" src="assets/images/reader/period-lab/red-balloon-v1.png" alt="Più veloce!!! Meow" hidden><img class="rm-room-balloon rm-bjorne-balloon" src="assets/images/reader/period-lab/bjorne-balloon-v1.png" alt="Piano. Piano." hidden></div>';
+  const scene=el('div','rm-period-scene');scene.innerHTML='<div class="rm-room-stage rm-room-stage--debug"><img class="rm-room-backdrop" src="assets/images/reader/period-lab/room-v1.webp" width="1200" height="800" alt="Red e Bjorne con i radiocomandi al centro dei binari; il semaforo vicino alla stazione indica il punto di misura."><svg class="rm-room-path" viewBox="0 0 1200 800" aria-hidden="true"><path/><circle class="rm-track-anchor" r="8"/></svg><div class="rm-room-train-anchor"><img class="rm-room-train" src="assets/images/reader/period-lab/locomotive-00.webp" alt="Locomotiva in movimento"></div><img class="rm-room-balloon rm-red-balloon" src="assets/images/reader/period-lab/red-balloon-v1.png" alt="Più veloce!!! Meow" hidden><img class="rm-room-balloon rm-bjorne-balloon" src="assets/images/reader/period-lab/bjorne-balloon-v1.png" alt="Piano. Piano." hidden></div>';
   const room=scene.querySelector('.rm-room-stage');
   let balloonTimer;
   function speak(cat){scene.querySelectorAll('.rm-room-balloon').forEach(b=>b.hidden=true);const balloon=scene.querySelector('.rm-'+cat+'-balloon');balloon.hidden=false;clearTimeout(balloonTimer);balloonTimer=setTimeout(()=>balloon.hidden=true,3000);}
-  const controls=el('div','rm-lab-controls');
   const change=delta=>{if(st.marks.length){$('reader-feedback').textContent='Cancella prima le letture per cambiare la velocità.';return;}st.period=Math.max(4,Math.min(14,st.period+delta));st.verified=false;$('reader-feedback').textContent=delta<0?'Red accelera il trenino. Misura il nuovo periodo.':'Bjorne rallenta il trenino. Misura il nuovo periodo.';};
-  const red=button('Red · Più veloce',()=>{if(!red.disabled){change(-2);speak('red');}}),bjorne=button('Bjorne · Più lento',()=>{if(!bjorne.disabled){change(2);speak('bjorne');}});red.classList.add('rm-cat-control','rm-red-control');bjorne.classList.add('rm-cat-control','rm-bjorne-control');
-  const redHit=button('',()=>red.click()),bjorneHit=button('',()=>bjorne.click());redHit.className='rm-cat-hotspot rm-red-hotspot';bjorneHit.className='rm-cat-hotspot rm-bjorne-hotspot';redHit.setAttribute('aria-label','Red: aumenta la velocità del trenino');bjorneHit.setAttribute('aria-label','Bjorne: diminuisci la velocità del trenino');room.append(redHit,bjorneHit);
-  controls.append(red,bjorne);const stage=el('div','rm-lab-stage');stage.append(scene,controls);box.append(stage);
+  const redHit=button('',()=>{change(-2);speak('red');}),bjorneHit=button('',()=>{change(2);speak('bjorne');});redHit.className='rm-cat-hotspot rm-red-hotspot';bjorneHit.className='rm-cat-hotspot rm-bjorne-hotspot';redHit.setAttribute('aria-label','Red: aumenta la velocità del trenino');bjorneHit.setAttribute('aria-label','Bjorne: diminuisci la velocità del trenino');room.append(redHit,bjorneHit);
+  const stage=el('div','rm-lab-stage');stage.append(scene);box.append(stage);
   const clock=stopwatch(box,true),clockDispose=disposeWidget;const bench=el('div','rm-lab-workbench');box.insertBefore(bench,stage);bench.append(stage,clock.board);
   const track=window.READER_TRAIN_TRACK,anchor=scene.querySelector('.rm-room-train-anchor'),marker=scene.querySelector('.rm-track-anchor');
   scene.querySelector('.rm-room-path path').setAttribute('d',track.path);
   anchor.setAttribute('role','img');anchor.setAttribute('aria-label','Locomotiva in movimento');
-  if(new URLSearchParams(location.search).has('trainDebug'))room.classList.add('rm-room-stage--debug');
+  anchor.hidden=true;
+  const showTrain=button('Mostra locomotiva',()=>{anchor.hidden=!anchor.hidden;showTrain.textContent=anchor.hidden?'Mostra locomotiva':'Nascondi locomotiva';showTrain.setAttribute('aria-pressed',String(!anchor.hidden));});showTrain.setAttribute('aria-pressed','false');stage.append(showTrain);
   const frames=Array.from({length:16},(_,i)=>{const image=new Image();image.src='assets/images/reader/period-lab/locomotive-'+String(i).padStart(2,'0')+'.webp';image.className='rm-room-train';image.alt='';image.setAttribute('aria-hidden','true');const a=track.spriteAnchors[i];image.style.setProperty('--anchor-x',(a.x*100)+'%');image.style.setProperty('--anchor-y',(a.y*100)+'%');image.style.opacity=i===0?'1':'0';return image;});
   anchor.replaceChildren(...frames);
   let phase=0,previous=performance.now(),raf;
@@ -178,7 +177,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    if(Math.abs(reported-st.period)>tolerance){$('reader-feedback').textContent='La durata misurata non corrisponde a un giro completo. Cancella le letture e riprova: registra due passaggi consecutivi sul segno giallo. Una piccola differenza dovuta al tempo di reazione va bene.';return;}
    st.verified=true;clock.show();finish('Misura riuscita! Il periodo misurato è Δt = '+format(reported)+' s.');
   },'rm-btn primary');box.append(verify);
-  const sync=()=>{red.disabled=bjorne.disabled=redHit.disabled=bjorneHit.disabled=st.marks.length>0;verify.disabled=st.marks.length!==2||st.verified;};clock.board.addEventListener('measurement',sync);sync();
+  const sync=()=>{redHit.disabled=bjorneHit.disabled=st.marks.length>0;verify.disabled=st.marks.length!==2||st.verified;};clock.board.addEventListener('measurement',sync);sync();
   disposeWidget=()=>{clockDispose();cancelAnimationFrame(raf);clearTimeout(balloonTimer);if(!st.verified)st.marks=[];};
  }
  function checkpoint(){
