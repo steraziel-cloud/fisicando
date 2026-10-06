@@ -1,6 +1,6 @@
 (function(root){
  'use strict';
- const width=1536,height=1024,cx=750,cy=500,a=550,b=355,gauge=28,TAU=2*Math.PI;
+ const width=1536,height=1024,cx=750,cy=500,a=510,b=320,gauge=40,TAU=2*Math.PI;
  function geometry(t){
   const ct=Math.cos(t),st=Math.sin(t),x=cx+a*ct,y=cy+b*st;
   const length=Math.hypot(b*ct,a*st),nx=b*ct/length,ny=a*st/length;
@@ -20,3 +20,4 @@
  root.READER_TRAIN_TOPDOWN=api;
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
 })(typeof window!=='undefined'?window:globalThis);
+

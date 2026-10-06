@@ -131,3 +131,8 @@
 .rm-room-stage--topdown .rm-room-train-anchor{left:0;top:0;width:100%;height:100%}
 .rm-room-stage--topdown .rm-red-hotspot{left:27%;top:30%;width:21%;height:30%}
 .rm-room-stage--topdown .rm-bjorne-hotspot{left:49%;top:30%;width:20%;height:32%}
+
+
+/* Bring each speech pointer close to its speaker in the overhead scene. */
+.rm-room-stage--topdown .rm-red-balloon{left:21%;right:auto;top:15%;width:31%}
+.rm-room-stage--topdown .rm-bjorne-balloon{left:42%;right:auto;top:17%;width:31%}
