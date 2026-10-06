@@ -38,19 +38,21 @@
  // Native-pixel floor contact center, projected axle separation and wheelbase direction.
  // Frame 08 has a different vertical placement in its file; never share its anchor with 00.
  const spriteAnchors=[[118,208],[131,184],[107,168],[125,163],[128,175],[138,179],[142,185],[145,193],[130,167],[131,182],[120,174],[122,190],[128,170],[142,181],[142,187],[137,194]].map(([x,y])=>({x,y}));
- const spriteMetadata=root.READER_TRAIN_SPRITES;
- const spriteHeadings=spriteMetadata.map(s=>s.heading),spriteBounds=spriteMetadata.map(s=>s.bounds),spriteGauges=spriteMetadata.map(()=>44);
+ const spriteHeadings=[0,23.6,35.6,52.4,90,144.5,149.6,157.4,180,213.1,232.8,244.5,270,325.6,328,331.3].map(d=>d*Math.PI/180);
+ const spriteGauges=[44,48,50,70,82,56,54,50,44,56,69,70,82,57,54,49];
+ const spriteBounds=[[14,99,242,238],[44,55,242,238],[19,10,237,238],[42,10,213,238],[79,10,177,238],[20,10,236,238],[14,11,242,238],[14,45,242,238],[14,54,242,192],[41,51,242,238],[20,10,235,238],[35,10,221,238],[67,10,189,238],[14,18,242,238],[14,26,242,238],[14,42,242,238]];
  const angleDelta=a=>Math.atan2(Math.sin(a),Math.cos(a));
- function nearestFrame(p,previous){const angle=Math.atan2(-p.dy,-p.dx);let selected=0,best=Infinity;for(let i=0;i<spriteHeadings.length;i++){const e=Math.abs(angleDelta(angle-spriteHeadings[i]));if(e<best){best=e;selected=i;}}return selected;}
- const orderedFrames=spriteHeadings.map((angle,index)=>({angle,index})).sort((a,b)=>a.angle-b.angle);
- // A short angular blend around each boundary, rather than an abrupt frame swap.
- function frameBlend(p){const angle=wrap(Math.atan2(-p.dy,-p.dx)/(2*Math.PI))*2*Math.PI;let j=orderedFrames.findIndex(f=>f.angle>angle);if(j<0)j=0;const hi=orderedFrames[j],lo=orderedFrames[(j+orderedFrames.length-1)%orderedFrames.length],gap=wrap((hi.angle-lo.angle)/(2*Math.PI))*2*Math.PI,offset=wrap((angle-lo.angle)/(2*Math.PI))*2*Math.PI,half=Math.min(.07,gap*.24),mid=gap/2;
-  if(offset<=mid-half)return [{index:lo.index,weight:1}];if(offset>=mid+half)return [{index:hi.index,weight:1}];const u=(offset-mid+half)/(2*half),v=u*u*(3-2*u);return [{index:lo.index,weight:1-v},{index:hi.index,weight:v}];}
+ function nearestFrame(p,previous){const angle=Math.atan2(-p.dy,-p.dx);let selected=0,best=Infinity;for(let i=0;i<16;i++){const e=Math.abs(angleDelta(angle-spriteHeadings[i]));if(e<best){best=e;selected=i;}}if(previous>=0&&Math.abs(angleDelta(angle-spriteHeadings[previous]))<=best+.035)return previous;return selected;}
  // Four wheel/rail contacts in each native drawing. The visible first/last
  // wheels are measured; opposite hidden contacts are inferred in the ground plane.
  // source near side: rear, front, and whether it is the outside of the clockwise loop.
  const groundAspect=.58,wheelbase=104*.975;
- const visibleWheelPairs=spriteMetadata.map(s=>s.pair);
+ const visibleWheelPairs=[
+  [67,232,171,232,true],[82,185,156,220,true],[54,165,130,218,true],[72,154,125,207,true],
+  [88,135,88,207,true],[196,169,118,217,false],[197,173,110,225,false],[199,193,111,229,false],
+  [188,187,90,187,false],[149,233,80,178,false],[125,232,57,154,false],[117,237,65,156,false],
+  [88,232,88,148,false],[122,233,197,174,true],[116,235,195,175,true],[99,236,187,191,true]
+ ];
  const spriteFootprints=visibleWheelPairs.map(([rx,ry,fx,fy,isOuter],i)=>{
   const dx=fx-rx,dy=fy-ry,nx=-dy/(groundAspect*groundAspect),ny=dx,norm=Math.hypot(nx,ny),vx=nx/norm*spriteGauges[i],vy=ny/norm*spriteGauges[i];
   const sourceLength=Math.hypot(dx,dy/groundAspect),sourceWidth=sourceLength*((44/groundAspect)/104),projectedGauge=sourceWidth*Math.hypot(Math.sin(Math.atan2(dy/groundAspect,dx)),groundAspect*Math.cos(Math.atan2(dy/groundAspect,dx)));
@@ -77,7 +79,7 @@
  }
  function railGauge(t){return crossSection(t).width;}
  const frontGauge=railGauge(1/4),perspectiveScale=t=>railGauge(t)/frontGauge;
- const model=Object.freeze({width:1200,height:800,center,axes,innerPath,outerPath,innerRail,outerRail,points,at,atDistance,pose,path,length:total,origin,spriteAnchors,railAt,railGauge,frontGauge,perspectiveScale,crossSection,spriteHeadings,spriteGauges,spriteBounds,groundAspect,wheelbase,spriteFootprints,rigidWidth,rigidLength,toGround,toScreen,wheelFootprint,rigidSpriteFit,nearestFrame,frameBlend,spriteMetadata});
+ const model=Object.freeze({width:1200,height:800,center,axes,innerPath,outerPath,innerRail,outerRail,points,at,atDistance,pose,path,length:total,origin,spriteAnchors,railAt,railGauge,frontGauge,perspectiveScale,crossSection,spriteHeadings,spriteGauges,spriteBounds,groundAspect,wheelbase,spriteFootprints,rigidWidth,rigidLength,toGround,toScreen,wheelFootprint,rigidSpriteFit,nearestFrame});
  root.READER_TRAIN_TRACK=model;
  if(typeof module!=='undefined'&&module.exports)module.exports=model;
 })(typeof window!=='undefined'?window:globalThis);

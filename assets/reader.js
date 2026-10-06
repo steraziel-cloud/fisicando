@@ -157,27 +157,26 @@ document.addEventListener('DOMContentLoaded',()=>{
   anchor.setAttribute('role','img');anchor.setAttribute('aria-label','Locomotiva in movimento');
   anchor.hidden=false;
   const context=anchor.getContext('2d');
-  const frames=track.spriteMetadata.map(sprite=>{const image=new Image();image.decoding='async';image.src=sprite.url;return image;});
+  const frames=Array.from({length:16},(_,i)=>{const image=new Image();image.src='assets/images/reader/period-lab/locomotive-'+String(i).padStart(2,'0')+'.webp';return image;});
   const showGuides=new URLSearchParams(location.search).get('guide')==='ruote';
   let guide;
   if(showGuides){guide=document.createElementNS('http://www.w3.org/2000/svg','svg');guide.setAttribute('viewBox','0 0 1200 800');guide.setAttribute('class','rm-room-wheel-guides');guide.setAttribute('aria-hidden','true');guide.innerHTML=`<path d="${track.innerPath}" fill="none" stroke="#ac50ff" stroke-width="2"/><path d="${track.outerPath}" fill="none" stroke="#ff8500" stroke-width="2"/><polygon fill="#26ffff22" stroke="#26ffff" stroke-width="2"/><g>${[0,1,2,3].map(i=>`<circle r="5" fill="${i<2?'#ac50ff':'#ff8500'}" stroke="white" stroke-width="2"/>`).join('')}</g><g class="rm-contact-residuals">${[0,1,2,3].map(()=>'<line stroke="#4aff84" stroke-width="2"/><circle r="3" fill="#4aff84"/>').join('')}</g>`;room.append(guide);}
-  const guidePolygon=guide?.querySelector('polygon'),guideTargets=guide?Array.from(guide.querySelectorAll('g:first-of-type circle')):[],guideLines=guide?Array.from(guide.querySelectorAll('.rm-contact-residuals line')):[],guideContacts=guide?Array.from(guide.querySelectorAll('.rm-contact-residuals circle')):[];
-  function drawLocomotive(image,fit,bounds,opacity,additive){const [left,top,right,bottom]=bounds,m=fit.matrix;
-   context.save();context.globalAlpha=opacity;context.globalCompositeOperation=additive?'lighter':'source-over';context.setTransform(m.a,m.b,m.c,m.d,m.e,m.f+50);context.beginPath();context.rect(left,top,right-left,bottom-top);context.clip();context.drawImage(image,0,0,256,256);context.restore();
+  function drawLocomotive(image,fit,bounds){const [left,top,right,bottom]=bounds,m=fit.matrix;
+   context.setTransform(1,0,0,1,0,0);context.clearRect(0,0,1200,900);context.save();context.setTransform(m.a,m.b,m.c,m.d,m.e,m.f+50);context.beginPath();context.rect(left,top,right-left,bottom-top);context.clip();context.drawImage(image,0,0,256,256);context.restore();
   }
-  let phase=0,previous=performance.now(),raf,disposed=false;
+  let phase=0,previous=performance.now(),raf,selected;
   function animate(now){
    phase=(phase+(now-previous)/1000/st.period)%1;previous=now;
-   const p=track.pose(phase),blend=track.frameBlend(p),visible=blend.filter(f=>frames[f.index].complete&&frames[f.index].naturalWidth),sum=visible.reduce((s,f)=>s+f.weight,0);
-   context.setTransform(1,0,0,1,0,0);context.clearRect(0,0,1200,900);
-   let mainFit,mainIndex=-1,bestWeight=-1;
-   visible.forEach((f,i)=>{const fit=track.rigidSpriteFit(p,f.index);drawLocomotive(frames[f.index],fit,track.spriteBounds[f.index],f.weight/sum,i>0);if(f.weight>bestWeight){mainFit=fit;mainIndex=f.index;bestWeight=f.weight;}});
-   anchor.dataset.frame=String(mainIndex);
-   if(guide&&mainFit){const fit=mainFit;anchor.dataset.matrix=JSON.stringify(fit.matrix);anchor.dataset.renderedContacts=JSON.stringify(fit.rendered);anchor.dataset.footprint=JSON.stringify(fit.target);guidePolygon.setAttribute('points',fit.target.map(q=>q.x+','+q.y).join(' '));guideTargets.forEach((circle,i)=>{circle.setAttribute('cx',fit.target[i].x);circle.setAttribute('cy',fit.target[i].y);});guideLines.forEach((line,i)=>{line.setAttribute('x1',fit.target[i].x);line.setAttribute('y1',fit.target[i].y);line.setAttribute('x2',fit.rendered[i].x);line.setAttribute('y2',fit.rendered[i].y);});guideContacts.forEach((circle,i)=>{circle.setAttribute('cx',fit.rendered[i].x);circle.setAttribute('cy',fit.rendered[i].y);});}
+   const p=track.pose(phase),candidate=track.nearestFrame(p,selected);
+   if(frames[candidate].complete&&frames[candidate].naturalWidth)selected=candidate;
+   if(selected===undefined)selected=frames.findIndex(image=>image.complete&&image.naturalWidth>0);
+   if(selected>=0&&frames[selected].complete&&frames[selected].naturalWidth){
+    const fit=track.rigidSpriteFit(p,selected);drawLocomotive(frames[selected],fit,track.spriteBounds[selected]);
+    anchor.dataset.frame=String(selected);anchor.dataset.matrix=JSON.stringify(fit.matrix);anchor.dataset.renderedContacts=JSON.stringify(fit.rendered);anchor.dataset.footprint=JSON.stringify(fit.target);anchor.dataset.point=JSON.stringify({x:p.x,y:p.y});
+    if(guide){guide.querySelector('polygon').setAttribute('points',fit.target.map(q=>q.x+','+q.y).join(' '));guide.querySelectorAll('g:first-of-type circle').forEach((circle,i)=>{circle.setAttribute('cx',fit.target[i].x);circle.setAttribute('cy',fit.target[i].y);});guide.querySelectorAll('.rm-contact-residuals line').forEach((line,i)=>{line.setAttribute('x1',fit.target[i].x);line.setAttribute('y1',fit.target[i].y);line.setAttribute('x2',fit.rendered[i].x);line.setAttribute('y2',fit.rendered[i].y);});guide.querySelectorAll('.rm-contact-residuals circle').forEach((circle,i)=>{circle.setAttribute('cx',fit.rendered[i].x);circle.setAttribute('cy',fit.rendered[i].y);});}
+   }
    raf=requestAnimationFrame(animate);
-  }
-  // Decode all views before starting, so a first visit cannot skip an unloaded frame.
-  Promise.all(frames.map(image=>image.decode().catch(()=>null))).then(()=>{if(disposed)return;previous=performance.now();raf=requestAnimationFrame(animate);});
+  }raf=requestAnimationFrame(animate);
   const answerBox=el('div','rm-period-answer'),answerLabel=el('label');
   answerLabel.append(el('span','','Periodo misurato: '));const answer=el('input');answer.type='text';answer.inputMode='decimal';answer.setAttribute('aria-label','Periodo misurato in secondi');answer.setAttribute('autocomplete','off');answer.value=st.answer;answerLabel.append(answer,el('span','','s'));answerBox.append(answerLabel);box.append(answerBox);
   answer.addEventListener('input',()=>{st.answer=answer.value;st.verified=false;$('reader-feedback').textContent='';sync();});
@@ -191,7 +190,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    st.verified=true;clock.show();finish('Misura riuscita! Il periodo misurato è Δt = '+format(reported)+' s.');
   },'rm-btn primary');box.append(verify);
   const sync=()=>{redHit.disabled=bjorneHit.disabled=st.marks.length>0;verify.disabled=st.marks.length!==2||st.verified;};clock.board.addEventListener('measurement',sync);sync();
-  disposeWidget=()=>{clockDispose();disposed=true;cancelAnimationFrame(raf);clearTimeout(balloonTimer);if(!st.verified)st.marks=[];};
+  disposeWidget=()=>{clockDispose();cancelAnimationFrame(raf);clearTimeout(balloonTimer);if(!st.verified)st.marks=[];};
  }
  function checkpoint(){
   const s=lesson.sections[current],box=$('reader-checkpoint');box.replaceChildren();box.hidden=false;box.append(el('h3','','Controlla l’idea'));
