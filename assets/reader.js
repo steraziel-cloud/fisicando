@@ -137,8 +137,8 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  function periodLab(box){
   const st=state[current].lab;
-  const intro=el('p');intro.innerHTML='Il <button class="rm-keyword" data-term="periodo" type="button">periodo</button> è la durata di un giro completo. Avvia il cronometro, poi registra t₁ quando il trenino attraversa il segno giallo e t₂ al passaggio successivo, dopo un giro. La differenza Δt mostra la durata misurata: scrivi il valore che leggi nel riquadro qui sotto e premi «Verifica la misura».';box.append(intro);
-  const scene=el('div','rm-period-scene');scene.innerHTML='<div class="rm-room-stage"><img class="rm-room-backdrop" src="assets/images/reader/period-lab/room-v1.webp" width="1200" height="800" alt="Red e Bjorne con i radiocomandi al centro dei binari; il semaforo vicino alla stazione indica il punto di misura."><canvas class="rm-room-train-anchor" width="1200" height="800" role="img" aria-label="Locomotiva in movimento"></canvas><img class="rm-room-balloon rm-red-balloon" src="assets/images/reader/period-lab/red-balloon-v1.png" alt="Più veloce!!! Meow" hidden><img class="rm-room-balloon rm-bjorne-balloon" src="assets/images/reader/period-lab/bjorne-balloon-v1.png" alt="Piano. Piano." hidden></div>';
+  const intro=el('p');intro.innerHTML='Il <button class="rm-keyword" data-term="periodo" type="button">periodo</button> è la durata di un giro completo. Avvia il cronometro, poi registra t₁ quando la parte anteriore della locomotiva attraversa la fascia gialla e nera accanto al semaforo e t₂ al passaggio successivo, dopo un giro. La differenza Δt mostra la durata misurata: scrivi il valore che leggi nel riquadro qui sotto e premi «Verifica la misura».';box.append(intro);
+  const scene=el('div','rm-period-scene');scene.innerHTML='<div class="rm-room-stage"><img class="rm-room-backdrop" src="assets/images/reader/period-lab/room-v1.webp" width="1200" height="800" alt="Red e Bjorne con i radiocomandi al centro dei binari; la traversina gialla e nera vicino al semaforo indica il punto di misura."><canvas class="rm-room-train-anchor" width="1200" height="800" role="img" aria-label="Locomotiva in movimento"></canvas><img class="rm-room-balloon rm-red-balloon" src="assets/images/reader/period-lab/red-balloon-v1.png" alt="Più veloce!!! Meow" hidden><img class="rm-room-balloon rm-bjorne-balloon" src="assets/images/reader/period-lab/bjorne-balloon-v1.png" alt="Piano. Piano." hidden></div>';
   const room=scene.querySelector('.rm-room-stage');
   let balloonTimer;
   function speak(cat){scene.querySelectorAll('.rm-room-balloon').forEach(b=>b.hidden=true);const balloon=scene.querySelector('.rm-'+cat+'-balloon');balloon.hidden=false;clearTimeout(balloonTimer);balloonTimer=setTimeout(()=>balloon.hidden=true,3000);}
@@ -147,6 +147,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   const stage=el('div','rm-lab-stage');stage.append(scene);box.append(stage);
   const clock=stopwatch(box,true),clockDispose=disposeWidget;const bench=el('div','rm-lab-workbench');box.insertBefore(bench,stage);bench.append(stage,clock.board);
   const track=window.READER_TRAIN_TRACK,anchor=scene.querySelector('.rm-room-train-anchor');
+  // Paint one sleeper at the timing origin; keep it beneath the moving locomotive.
+  const finish=track.crossSection(track.pose(0).u),nx=(finish.outer.x-finish.inner.x)/finish.width,ny=(finish.outer.y-finish.inner.y)/finish.width;
+  const startX=finish.inner.x-8*nx,startY=finish.inner.y-8*ny,endX=finish.outer.x+8*nx,endY=finish.outer.y+8*ny;
+  const timingLine=document.createElementNS('http://www.w3.org/2000/svg','svg');timingLine.setAttribute('viewBox','0 0 1200 800');timingLine.setAttribute('class','rm-room-timing-line');timingLine.setAttribute('role','img');timingLine.setAttribute('aria-label','Linea di partenza e traguardo: traversina gialla e nera accanto al semaforo');
+  timingLine.innerHTML=`<line x1="${startX}" y1="${startY}" x2="${endX}" y2="${endY}" stroke="#2b241c" stroke-width="20" stroke-linecap="square"/><line x1="${startX}" y1="${startY}" x2="${endX}" y2="${endY}" stroke="#ffdc36" stroke-width="14"/><line x1="${startX}" y1="${startY}" x2="${endX}" y2="${endY}" stroke="#292721" stroke-width="14" stroke-dasharray="6 8"/>`;room.append(timingLine);
+
 
   anchor.setAttribute('role','img');anchor.setAttribute('aria-label','Locomotiva in movimento');
   anchor.hidden=false;
