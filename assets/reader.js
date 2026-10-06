@@ -149,18 +149,18 @@ document.addEventListener('DOMContentLoaded',()=>{
   const track=window.READER_TRAIN_TRACK,anchor=scene.querySelector('.rm-room-train-anchor'),marker=scene.querySelector('.rm-track-anchor');
   scene.querySelector('.rm-rail-median').setAttribute('d',track.path);
   scene.querySelector('.rm-rail-inner').setAttribute('d',track.innerPath);scene.querySelector('.rm-rail-outer').setAttribute('d',track.outerPath);
-  const legend=el('p','rm-rail-legend');legend.innerHTML='<span class="rm-legend-inner">Viola: rotaia interna</span> · <span class="rm-legend-outer">Arancione: rotaia esterna</span> · <span class="rm-legend-median">Turchese: curva media</span>';stage.append(legend);
+
   anchor.setAttribute('role','img');anchor.setAttribute('aria-label','Locomotiva in movimento');
-  anchor.hidden=true;
-  const showTrain=button('Mostra locomotiva',()=>{anchor.hidden=!anchor.hidden;showTrain.textContent=anchor.hidden?'Mostra locomotiva':'Nascondi locomotiva';showTrain.setAttribute('aria-pressed',String(!anchor.hidden));});showTrain.setAttribute('aria-pressed','false');stage.append(showTrain);
-  const frames=Array.from({length:16},(_,i)=>{const image=new Image();image.src='assets/images/reader/period-lab/locomotive-'+String(i).padStart(2,'0')+'.webp';image.className='rm-room-train';image.alt='';image.setAttribute('aria-hidden','true');const a=track.spriteAnchors[i];image.style.setProperty('--anchor-x',(a.x*100)+'%');image.style.setProperty('--anchor-y',(a.y*100)+'%');image.style.opacity=i===0?'1':'0';return image;});
+  anchor.hidden=false;
+  const showTrain=button('Nascondi locomotiva',()=>{anchor.hidden=!anchor.hidden;showTrain.textContent=anchor.hidden?'Mostra locomotiva':'Nascondi locomotiva';showTrain.setAttribute('aria-pressed',String(!anchor.hidden));});showTrain.setAttribute('aria-pressed','true');stage.append(showTrain);
+  const frames=Array.from({length:16},(_,i)=>{const image=new Image();image.src='assets/images/reader/period-lab/locomotive-'+String(i).padStart(2,'0')+'.webp';image.className='rm-room-train';image.alt='';image.setAttribute('aria-hidden','true');const a=track.spriteAnchors[i];image.style.setProperty('--anchor-x',(a.x*100)+'%');image.style.setProperty('--anchor-y',(a.y*100)+'%');image.style.opacity=i===0?'1':'0';image.style.setProperty('--frame-size',String(track.spriteScales[i]));if(i===1)image.style.clipPath='inset(0 0 0 35px)';if(i===9)image.style.clipPath='inset(0 0 0 32px)';return image;});
   anchor.replaceChildren(...frames);
   let phase=0,previous=performance.now(),raf;
   function animate(now){
    phase=(phase+(now-previous)/1000/st.period)%1;previous=now;
    const p=track.pose(phase),blend=track.frameBlend(p.heading);
    if(frames[blend.a].complete&&frames[blend.a].naturalWidth&&frames[blend.b].complete&&frames[blend.b].naturalWidth){
-    frames.forEach((image,i)=>image.style.opacity=i===blend.a?String(1-blend.mix):i===blend.b?String(blend.mix):'0');
+    frames.forEach((image,i)=>{image.style.opacity=i===blend.a?String(1-blend.mix):i===blend.b?String(blend.mix):'0';if(i===blend.a||i===blend.b)image.style.setProperty('--frame-turn',track.spriteTurn(i,p)+'rad');});
     anchor.dataset.views=blend.a+','+blend.b;anchor.dataset.mix=String(blend.mix);
    }
    anchor.style.left=(p.x/track.width*100)+'%';anchor.style.top=(p.y/track.height*100)+'%';anchor.style.setProperty('--train-scale',String(track.perspectiveScale(p.u)));
