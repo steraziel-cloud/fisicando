@@ -134,5 +134,6 @@
 
 
 /* Bring each speech pointer close to its speaker in the overhead scene. */
+.rm-room-stage--topdown .rm-room-balloon{animation:none;opacity:1}
 .rm-room-stage--topdown .rm-red-balloon{left:21%;right:auto;top:15%;width:31%}
 .rm-room-stage--topdown .rm-bjorne-balloon{left:42%;right:auto;top:17%;width:31%}
