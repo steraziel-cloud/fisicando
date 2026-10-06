@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  function periodLab(box){
   const st=state[current].lab;
   const intro=el('p');intro.innerHTML='Il <button class="rm-keyword" data-term="periodo" type="button">periodo</button> è la durata di un giro completo. Avvia il cronometro, poi registra t₁ quando il trenino attraversa il segno giallo e t₂ al passaggio successivo, dopo un giro. La differenza Δt mostra la durata misurata: scrivi il valore che leggi nel riquadro qui sotto e premi «Verifica la misura».';box.append(intro);
-  const scene=el('div','rm-period-scene');scene.innerHTML='<div class="rm-room-stage rm-room-stage--debug"><img class="rm-room-backdrop" src="assets/images/reader/period-lab/room-v1.webp" width="1200" height="800" alt="Red e Bjorne con i radiocomandi al centro dei binari; il semaforo vicino alla stazione indica il punto di misura."><svg class="rm-room-path" viewBox="0 0 1200 800" aria-hidden="true"><path class="rm-rail-inner"/><path class="rm-rail-outer"/><path class="rm-rail-median"/><line class="rm-rail-midpoint-link"/><circle class="rm-inner-contact" r="4"/><circle class="rm-outer-contact" r="4"/><circle class="rm-track-anchor" r="8"/></svg><div class="rm-room-train-anchor"><img class="rm-room-train" src="assets/images/reader/period-lab/locomotive-00.webp" alt="Locomotiva in movimento"></div><img class="rm-room-balloon rm-red-balloon" src="assets/images/reader/period-lab/red-balloon-v1.png" alt="Più veloce!!! Meow" hidden><img class="rm-room-balloon rm-bjorne-balloon" src="assets/images/reader/period-lab/bjorne-balloon-v1.png" alt="Piano. Piano." hidden></div>';
+  const scene=el('div','rm-period-scene');scene.innerHTML='<div class="rm-room-stage rm-room-stage--debug"><img class="rm-room-backdrop" src="assets/images/reader/period-lab/room-v1.webp" width="1200" height="800" alt="Red e Bjorne con i radiocomandi al centro dei binari; il semaforo vicino alla stazione indica il punto di misura."><svg class="rm-room-path" viewBox="0 0 1200 800" aria-hidden="true"><path class="rm-rail-inner"/><path class="rm-rail-outer"/><path class="rm-rail-median"/><line class="rm-rail-midpoint-link"/><circle class="rm-inner-contact" r="4"/><circle class="rm-outer-contact" r="4"/><circle class="rm-track-anchor" r="8"/></svg><canvas class="rm-room-train-anchor" width="1200" height="800" role="img" aria-label="Locomotiva in movimento"></canvas><img class="rm-room-balloon rm-red-balloon" src="assets/images/reader/period-lab/red-balloon-v1.png" alt="Più veloce!!! Meow" hidden><img class="rm-room-balloon rm-bjorne-balloon" src="assets/images/reader/period-lab/bjorne-balloon-v1.png" alt="Piano. Piano." hidden></div>';
   const room=scene.querySelector('.rm-room-stage');
   let balloonTimer;
   function speak(cat){scene.querySelectorAll('.rm-room-balloon').forEach(b=>b.hidden=true);const balloon=scene.querySelector('.rm-'+cat+'-balloon');balloon.hidden=false;clearTimeout(balloonTimer);balloonTimer=setTimeout(()=>balloon.hidden=true,3000);}
@@ -153,19 +153,23 @@ document.addEventListener('DOMContentLoaded',()=>{
   anchor.setAttribute('role','img');anchor.setAttribute('aria-label','Locomotiva in movimento');
   anchor.hidden=false;
   const showTrain=button('Nascondi locomotiva',()=>{anchor.hidden=!anchor.hidden;showTrain.textContent=anchor.hidden?'Mostra locomotiva':'Nascondi locomotiva';showTrain.setAttribute('aria-pressed',String(!anchor.hidden));});showTrain.setAttribute('aria-pressed','true');stage.append(showTrain);
-  const frames=Array.from({length:16},(_,i)=>{const image=new Image();image.src='assets/images/reader/period-lab/locomotive-'+String(i).padStart(2,'0')+'.webp';image.className='rm-room-train';image.alt='';image.setAttribute('aria-hidden','true');const a=track.spriteAnchors[i];image.style.setProperty('--anchor-x',(a.x*100)+'%');image.style.setProperty('--anchor-y',(a.y*100)+'%');image.style.opacity=i===0?'1':'0';image.style.setProperty('--frame-size',String(track.spriteScales[i]));if(i===1)image.style.clipPath='inset(0 0 0 35px)';if(i===9)image.style.clipPath='inset(0 0 0 32px)';return image;});
-  anchor.replaceChildren(...frames);
-  let phase=0,previous=performance.now(),raf;
+  const context=anchor.getContext('2d');
+  const frames=Array.from({length:16},(_,i)=>{const image=new Image();image.src='assets/images/reader/period-lab/locomotive-'+String(i).padStart(2,'0')+'.webp';return image;});
+  let phase=0,previous=performance.now(),raf,selected;
   function animate(now){
    phase=(phase+(now-previous)/1000/st.period)%1;previous=now;
-   const p=track.pose(phase),blend=track.frameBlend(p.heading);
-   if(frames[blend.a].complete&&frames[blend.a].naturalWidth&&frames[blend.b].complete&&frames[blend.b].naturalWidth){
-    frames.forEach((image,i)=>{image.style.opacity=i===blend.a?String(1-blend.mix):i===blend.b?String(blend.mix):'0';if(i===blend.a||i===blend.b)image.style.setProperty('--frame-turn',track.spriteTurn(i,p)+'rad');});
-    anchor.dataset.views=blend.a+','+blend.b;anchor.dataset.mix=String(blend.mix);
+   const p=track.pose(phase),section=track.crossSection(p.u),candidate=track.nearestFrame(p,selected);
+   if(frames[candidate].complete&&frames[candidate].naturalWidth)selected=candidate;
+   if(selected===undefined)selected=frames.findIndex(image=>image.complete&&image.naturalWidth>0);
+   if(selected>=0&&frames[selected].complete&&frames[selected].naturalWidth){
+    const matrix=track.spriteMatrix(p,selected,section),[left,top,right,bottom]=track.spriteBounds[selected];
+    context.setTransform(1,0,0,1,0,0);context.clearRect(0,0,1200,800);
+    context.save();context.setTransform(matrix.a,matrix.b,matrix.c,matrix.d,matrix.e,matrix.f);
+    context.beginPath();context.rect(left,top,right-left,bottom-top);context.clip();context.drawImage(frames[selected],0,0,256,256);context.restore();
+    anchor.dataset.frame=String(selected);anchor.dataset.matrix=JSON.stringify(matrix);anchor.dataset.point=JSON.stringify({x:p.x,y:p.y});
    }
-   anchor.style.left=(p.x/track.width*100)+'%';anchor.style.top=(p.y/track.height*100)+'%';anchor.style.setProperty('--train-scale',String(track.perspectiveScale(p.u)));
    marker.setAttribute('cx',p.x);marker.setAttribute('cy',p.y);
-   const inner=track.railAt(track.innerRail,p.u),outer=track.railAt(track.outerRail,p.u),link=scene.querySelector('.rm-rail-midpoint-link');
+   const inner=section.inner,outer=section.outer,link=scene.querySelector('.rm-rail-midpoint-link');
    link.setAttribute('x1',inner.x);link.setAttribute('y1',inner.y);link.setAttribute('x2',outer.x);link.setAttribute('y2',outer.y);
    for(const [selector,point] of [['.rm-inner-contact',inner],['.rm-outer-contact',outer]]){const circle=scene.querySelector(selector);circle.setAttribute('cx',point.x);circle.setAttribute('cy',point.y);}
    raf=requestAnimationFrame(animate);

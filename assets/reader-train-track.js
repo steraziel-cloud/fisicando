@@ -30,25 +30,23 @@
  let origin=0,error=Infinity;
  for(let i=0;i<samples;i++){const p=atDistance(i/samples),e=(p.x-1012)**2+(p.y-445)**2;if(e<error){error=e;origin=i/samples;}}
  function pose(phase){const p=atDistance(origin-phase);return {...p,heading:Math.atan2(-p.dy/.58,-p.dx)};}
- // Midpoint of the ground footprint, calibrated per directional sprite (256 × 256).
- // The PNG canvas bottom is not the wheel contact point, particularly in frontal views.
- const groundAnchors=[[118,213],[125,185],[100,165],[108,170],[128,186],[146,180],[150,181],[148,193],[118,213],[124,188],[104,180],[103,187],[128,186],[150,180],[148,187],[142,194]];
- const spriteAnchors=groundAnchors.map(([x,y])=>({x:x/256,y:y/256}));
- function railGauge(t){const a=railAt(innerRail,t),b=railAt(outerRail,t);return Math.hypot(a.x-b.x,a.y-b.y);}
- const frontGauge=railGauge(1/4);
- const perspectiveScale=t=>railGauge(t)/frontGauge;
- // Wheelbase directions measured from the actual assets, rather than nominal 22.5° steps.
- const spriteHeadings=[0,37,53,65,90,129,135,142,180,228,246,254,270,310,313,317].map(d=>d*Math.PI/180);
- const spriteScales=[1,1.04,.83,.76,.88,.87,.91,.94,1,.98,.75,.98,.88,.80,.90,1.06];
- const angleDelta=a=>Math.atan2(Math.sin(a),Math.cos(a));
- function spriteTurn(i,pose){const yaw=spriteHeadings[i],native=Math.atan2(.58*Math.sin(yaw),Math.cos(yaw));return Math.max(-.21,Math.min(.21,angleDelta(Math.atan2(-pose.dy,-pose.dx)-native)));}
- function frameBlend(heading){
-  const h=wrap(heading/(2*Math.PI))*2*Math.PI;let a=15;
-  for(let i=0;i<15;i++)if(h>=spriteHeadings[i]&&h<spriteHeadings[i+1]){a=i;break;}
-  const b=(a+1)%16,start=spriteHeadings[a],end=b===0?2*Math.PI:spriteHeadings[b],f=(h-start)/(end-start),z=Math.max(0,Math.min(1,(f-.35)/.30)),mix=z*z*(3-2*z);
-  return {a,b,mix};
+ // Cross-track line through the approved median, normal to its screen-space tangent.
+ function crossSection(u){
+  const p=at(u),ends=[innerRail,outerRail].map(rail=>{let v=u;for(let i=0;i<8;i++){const q=railAt(rail,v),f=(q.x-p.x)*p.dx+(q.y-p.y)*p.dy,df=2*Math.PI*(q.dx*p.dx+q.dy*p.dy);if(Math.abs(df)<1e-8)break;v-=f/df;}return railAt(rail,v);});
+  return {p,inner:ends[0],outer:ends[1],width:Math.hypot(ends[1].x-ends[0].x,ends[1].y-ends[0].y)};
  }
- const model=Object.freeze({width:1200,height:800,center,axes,innerPath,outerPath,innerRail,outerRail,points,at,atDistance,pose,path,length:total,origin,spriteAnchors,railAt,railGauge,frontGauge,perspectiveScale,frameBlend,spriteHeadings,spriteScales,spriteTurn});
+ // Native-pixel floor contact center, projected axle separation and wheelbase direction.
+ // Frame 08 has a different vertical placement in its file; never share its anchor with 00.
+ const spriteAnchors=[[118,208],[131,184],[107,168],[125,163],[128,175],[138,179],[142,185],[145,193],[130,167],[131,182],[120,174],[122,190],[128,170],[142,181],[142,187],[137,194]].map(([x,y])=>({x,y}));
+ const spriteHeadings=[0,23.6,35.6,52.4,90,144.5,149.6,157.4,180,213.1,232.8,244.5,270,325.6,328,331.3].map(d=>d*Math.PI/180);
+ const spriteGauges=[44,48,50,70,82,56,54,50,44,56,69,70,82,57,54,49];
+ const spriteBounds=[[14,99,242,238],[44,55,242,238],[19,10,237,238],[42,10,213,238],[79,10,177,238],[20,10,236,238],[14,11,242,238],[14,45,242,238],[14,54,242,192],[41,51,242,238],[20,10,235,238],[35,10,221,238],[67,10,189,238],[14,18,242,238],[14,26,242,238],[14,42,242,238]];
+ const angleDelta=a=>Math.atan2(Math.sin(a),Math.cos(a));
+ function nearestFrame(p,previous){const angle=Math.atan2(-p.dy,-p.dx);let selected=0,best=Infinity;for(let i=0;i<16;i++){const e=Math.abs(angleDelta(angle-spriteHeadings[i]));if(e<best){best=e;selected=i;}}if(previous>=0&&Math.abs(angleDelta(angle-spriteHeadings[previous]))<=best+.035)return previous;return selected;}
+ function spriteMatrix(p,index,section){const turn=Math.max(-.21,Math.min(.21,angleDelta(Math.atan2(-p.dy,-p.dx)-spriteHeadings[index]))),scale=section.width/spriteGauges[index],a=scale*Math.cos(turn),b=scale*Math.sin(turn),c=-b,d=a,anchor=spriteAnchors[index];return {a,b,c,d,e:p.x-a*anchor.x-c*anchor.y,f:p.y-b*anchor.x-d*anchor.y,scale};}
+ function railGauge(t){return crossSection(t).width;}
+ const frontGauge=railGauge(1/4),perspectiveScale=t=>railGauge(t)/frontGauge;
+ const model=Object.freeze({width:1200,height:800,center,axes,innerPath,outerPath,innerRail,outerRail,points,at,atDistance,pose,path,length:total,origin,spriteAnchors,railAt,railGauge,frontGauge,perspectiveScale,crossSection,spriteHeadings,spriteGauges,spriteBounds,nearestFrame,spriteMatrix});
  root.READER_TRAIN_TRACK=model;
  if(typeof module!=='undefined'&&module.exports)module.exports=model;
 })(typeof window!=='undefined'?window:globalThis);
