@@ -95,7 +95,7 @@
 .rm-room-backdrop{display:block;width:100%;height:100%;object-fit:contain;-webkit-mask:url("images/reader/train-soft-mask.svg") center/100% 100% no-repeat;mask:url("images/reader/train-soft-mask.svg") center/100% 100% no-repeat}
 .rm-room-path{position:absolute;inset:0;width:100%;height:100%;max-height:none!important;pointer-events:none;background:none!important}
 .rm-room-path path{fill:none;stroke:none}
-.rm-room-train-anchor{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.rm-room-train-anchor{position:absolute;left:0;top:-6.25%;width:100%;height:112.5%;pointer-events:none;z-index:2}
 .rm-track-anchor{display:none}.rm-room-stage--debug .rm-room-path{z-index:5}.rm-room-stage--debug .rm-room-path path{stroke:#3cffff;stroke-width:3;fill:none}.rm-room-stage--debug .rm-track-anchor{display:block;fill:#ff345a;stroke:#fff;stroke-width:2}
 .rm-reader-column .rm-cat-hotspot{position:absolute;background:transparent;border:0;box-shadow:none;min-height:0;margin:0;padding:0;border-radius:40%;z-index:3;cursor:pointer}
 .rm-red-hotspot{left:22%;top:16%;width:26%;height:41%}.rm-bjorne-hotspot{left:49%;top:20%;width:30%;height:40%}

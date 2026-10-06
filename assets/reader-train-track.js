@@ -72,8 +72,12 @@
  function footprintMap(p,index){
   const source=spriteFootprints[index],target=wheelFootprint(p),o=source[0],ux=source[1].x-o.x,uy=source[1].y-o.y,vx=source[3].x-o.x,vy=source[3].y-o.y,det=ux*vy-uy*vx;
   const du={x:target[1].x-target[0].x,y:target[1].y-target[0].y},dv={x:target[3].x-target[0].x,y:target[3].y-target[0].y},curve={x:target[2].x-target[1].x-target[3].x+target[0].x,y:target[2].y-target[1].y-target[3].y+target[0].y};
-  function map(x,y){const a=((x-o.x)*vy-(y-o.y)*vx)/det,b=(ux*(y-o.y)-uy*(x-o.x))/det;const bend=Math.max(0,Math.min(1,a))*Math.max(0,Math.min(1,b));return {x:target[0].x+a*du.x+b*dv.x+bend*curve.x,y:target[0].y+a*du.y+b*dv.y+bend*curve.y};}
-  return {source,target,map};
+  const baseline=Math.min(...source.map(q=>q.y)),area=points=>Math.abs(points.reduce((sum,q,i)=>{const n=points[(i+1)%4];return sum+q.x*n.y-q.y*n.x;},0))/2,liftScale=Math.sqrt(area(target)/area(source));
+  function groundMap(x,y){const a=((x-o.x)*vy-(y-o.y)*vx)/det,b=(ux*(y-o.y)-uy*(x-o.x))/det;const bend=Math.max(0,Math.min(1,a))*Math.max(0,Math.min(1,b));return {x:target[0].x+a*du.x+b*dv.x+bend*curve.x,y:target[0].y+a*du.y+b*dv.y+bend*curve.y};}
+  // Pixels above every wheel contact belong to the upright body, not the floor.
+  // Lift them vertically rather than shearing the roof into the ground plane.
+  function map(x,y){if(y>=baseline)return groundMap(x,y);const q=groundMap(x,baseline);return {x:q.x,y:q.y+(y-baseline)*liftScale};}
+  return {source,target,map,baseline,liftScale};
  }
  function railGauge(t){return crossSection(t).width;}
  const frontGauge=railGauge(1/4),perspectiveScale=t=>railGauge(t)/frontGauge;
