@@ -197,10 +197,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     distance-=length;
    }
   }
-  function drawLocomotive(image,fit,bounds,params){
+  function drawLocomotive(image,fit,bounds,params,p){
    const [left,top,right,bottom]=bounds,m=fit.matrix,angle=params.rotation*Math.PI/180,c=Math.cos(angle)*params.scale,s=Math.sin(angle)*params.scale;
-   const a=c*m.a-s*m.b,b=s*m.a+c*m.b,e=fit.target[0]&&track.pose?fit.target:null;
-   const p=track.pose(anchor.dataset.phase?Number(anchor.dataset.phase):0);
+   const a=c*m.a-s*m.b,b=s*m.a+c*m.b;
    const tx=p.x+params.dx+c*(m.e-p.x)-s*(m.f-p.y),ty=p.y+params.dy+s*(m.e-p.x)+c*(m.f-p.y);
    context.save();context.globalAlpha=1;context.globalCompositeOperation='source-over';context.setTransform(a,b,-b,a,tx,ty+50);context.beginPath();context.rect(left,top,right-left,bottom-top);context.clip();context.drawImage(image,0,0,256,256);context.restore();
    return {a,b,e:tx,f:ty};
@@ -212,7 +211,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    context.setTransform(1,0,0,1,0,0);context.clearRect(0,0,1200,900);
    anchor.dataset.phase=String(sample.phase);
    let adjusted=null;
-   if(image.complete&&image.naturalWidth)adjusted=drawLocomotive(image,fit,track.spriteBounds[params.frame],params);
+   if(image.complete&&image.naturalWidth)adjusted=drawLocomotive(image,fit,track.spriteBounds[params.frame],params,p);
    anchor.dataset.sequence=String(sample.index+1);anchor.dataset.frame=String(params.frame);
    if(guide&&adjusted){
     anchor.dataset.matrix=JSON.stringify(adjusted);anchor.dataset.footprint=JSON.stringify(fit.target);
