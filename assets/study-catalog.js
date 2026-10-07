@@ -611,7 +611,6 @@ window.LESSON_CATALOG = [
               {
                 "title": "Tempo, posizione, spostamento e distanza percorsa",
                 "levels": [
-                  "biennio",
                   "terzo-quarto",
                   "ultimo-altro",
                   "analisi1",
