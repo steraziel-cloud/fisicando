@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  // Learning progress belongs to this visit only. Reference cards do not award progress.
  const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},lab:{started:null,period:8,marks:[],verified:false,answer:''}}));
- let current=0,allMode=false,reviewAccess=false,disposeWidget=()=>{};
+ let current=0,allMode=false,reviewAccess=false,referenceMode=false,disposeWidget=()=>{};
  const flat=s=>s.cards.flatMap((card,ci)=>card.steps.map((step,si)=>({card,ci,step,si})));
  const format=n=>Number(n).toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2});
  const el=(tag,cls,text)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node;};
@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  function finish(message){const first=!state[current].complete;state[current].complete=true;state[current].reached=flat(lesson.sections[current]).length;index();celebrate($('reader-feedback'),message,first?'Una parte in più, ci sei!':'Perfetto!');actions();}
  function actions(){
+  if(referenceMode){$('reader-prev').hidden=true;$('reader-next').hidden=true;return;}
   const count=flat(lesson.sections[current]).length,st=state[current];
   $('reader-prev').hidden=allMode||st.cursor===0;$('reader-next').hidden=allMode;
   let blocked=false;if(st.cursor<count){const item=flat(lesson.sections[current])[st.cursor];blocked=!reviewAccess&&item.step.interaction==='train-reference'&&!st.reference.done;}
@@ -224,7 +225,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   }index();actions();
  }
  function top(){const target=$('reader-section-title');target.focus({preventScroll:true});target.scrollIntoView({block:'start',behavior:'auto'});}
- function open(i,focus=false){if(!unlocked(i))return;allMode=false;current=i;if(!lesson.sections[i].quiz&&state[i].cursor===flat(lesson.sections[i]).length)state[i].cursor=0;render();history.replaceState(null,'','#'+lesson.sections[i].id);if(focus)top();}
+ function open(i,focus=false){if(!unlocked(i))return;allMode=false;referenceMode=false;current=i;if(!lesson.sections[i].quiz&&state[i].cursor===flat(lesson.sections[i]).length)state[i].cursor=0;render();history.replaceState(null,'','#'+lesson.sections[i].id);if(focus)top();}
  $('reader-next').addEventListener('click',()=>{
   const st=state[current],items=flat(lesson.sections[current]);
   if(st.cursor<items.length){const item=items[st.cursor];if(!reviewAccess&&item.step.interaction==='train-reference'&&!st.reference.done)return;
@@ -239,14 +240,14 @@ document.addEventListener('DOMContentLoaded',()=>{
  column.addEventListener('touchstart',e=>{if(e.target.closest('input,select,button,.rm-reader-board'))return;const p=e.changedTouches[0];touch={x:p.clientX,y:p.clientY};},{passive:true});
  column.addEventListener('touchend',e=>{if(!touch)return;const p=e.changedTouches[0],dx=p.clientX-touch.x,dy=p.clientY-touch.y;touch=null;if(Math.abs(dx)<75||Math.abs(dy)>50)return;const b=dx>0?$('reader-prev'):$('reader-next');if(!b.hidden&&!b.disabled)b.click();},{passive:true});
  $('reader-show-all').addEventListener('click',()=>{
-  reviewAccess=true;disposeWidget();disposeWidget=()=>{};allMode=true;$('reader-section-title').textContent='La lezione completa';$('reader-steps').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';
+  referenceMode=false;reviewAccess=true;disposeWidget();disposeWidget=()=>{};allMode=true;$('reader-section-title').textContent='La lezione completa';$('reader-steps').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';
   lesson.sections.forEach((s,i)=>{current=i;$('reader-steps').append(el('h2','rm-all-section',s.title));s.cards.forEach(card=>renderCard(card,card.steps,true));});actions();index();top();
  });
  // Old localStorage entries from reader v1 are intentionally never read.
  const referenceSection=lesson.sections.findIndex(s=>s.id===params.get('sezione'));
  const referenceCard=params.has('scheda')?Number(params.get('scheda')):NaN;
  if(referenceSection>=0&&Number.isInteger(referenceCard)&&referenceCard>=0&&referenceCard<lesson.sections[referenceSection].cards.length){
-  current=referenceSection;const section=lesson.sections[current],card=section.cards[referenceCard];
+  referenceMode=true;current=referenceSection;const section=lesson.sections[current],card=section.cards[referenceCard];
   $('reader-section-title').textContent=section.title+' · Richiamo';renderCard(card,card.steps);index();
   $('reader-prev').hidden=true;$('reader-next').hidden=true;$('reader-step-count').textContent='Scheda di riferimento';
   const restart=el('a','rm-btn secondary','Inizia la lezione dall’inizio');const url=new URL(location.href);url.searchParams.delete('sezione');url.searchParams.delete('scheda');url.hash='';restart.href=url.href;
