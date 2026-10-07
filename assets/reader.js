@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const frame=document.createElement('iframe');frame.className='rm-reader-legacy';frame.title=sources[source];frame.src=source;frame.setAttribute('sandbox','allow-scripts allow-same-origin');$('reader-steps').append(frame);
   frame.addEventListener('load',()=>{try{const doc=frame.contentDocument;doc.querySelectorAll('header,.sidebar,.rm-learning-back').forEach(e=>e.style.display='none');const headings=[...doc.querySelectorAll('.main h2,.main h3')];headings.forEach((h,i)=>{const b=document.createElement('button');b.textContent=h.textContent;b.addEventListener('click',()=>h.scrollIntoView({behavior:'auto',block:'start'}));$('reader-parts').append(b);});}catch{}});return;
  }
- // Learning progress belongs to this visit only. Deep links never unlock a part.
+ // Learning progress belongs to this visit only. Reference cards do not award progress.
  const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},lab:{started:null,period:8,marks:[],verified:false,answer:''}}));
  let current=0,allMode=false,reviewAccess=false,disposeWidget=()=>{};
  const flat=s=>s.cards.flatMap((card,ci)=>card.steps.map((step,si)=>({card,ci,step,si})));
@@ -44,10 +44,20 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('reader-prev').hidden=allMode||st.cursor===0;$('reader-next').hidden=allMode;
   let blocked=false;if(st.cursor<count){const item=flat(lesson.sections[current])[st.cursor];blocked=!reviewAccess&&item.step.interaction==='train-reference'&&!st.reference.done;}
   $('reader-next').disabled=blocked||(st.cursor===count&&!st.complete&&!reviewAccess);
-  $('reader-next').textContent=st.cursor<count-1?'Continua →':st.cursor<count?'Controlla l’idea →':current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione';
-  $('reader-step-count').textContent=allMode?'':st.cursor<count?'Passaggio '+(st.cursor+1)+' di '+count:'Verifica finale';
+  $('reader-next').textContent=st.cursor<count-1?'Continua →':st.cursor<count?(lesson.sections[current].quiz?'Controlla l’idea →':current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione'):current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione';
+  $('reader-step-count').textContent=allMode?'':st.cursor<count?'Passaggio '+(st.cursor+1)+' di '+count:lesson.sections[current].quiz?'Verifica finale':'Parte completata';
  }
- function showGlossary(id){const term=window.READER_GLOSSARY[id];if(!term)return;$('glossary-title').textContent=term.title;$('glossary-kind').textContent=term.kind;$('glossary-text').textContent=term.text;$('reader-glossary').showModal();}
+ function showGlossary(id){
+  const term=window.READER_GLOSSARY[id];if(!term)return;
+  $('glossary-title').textContent=term.title;$('glossary-kind').textContent=term.kind;$('glossary-text').textContent=term.text;
+  $('reader-glossary').querySelector('.rm-glossary-links')?.remove();
+  if(term.links?.length){const links=el('div','rm-glossary-links');term.links.forEach(ref=>{
+   const url=new URL('reader.html',location.href);url.searchParams.set('lezione',ref.lesson);url.searchParams.set('sezione',ref.section);url.searchParams.set('scheda',String(ref.card));
+   ['livello','ruolo'].forEach(k=>{if(params.has(k))url.searchParams.set(k,params.get(k));});
+   const line=el('p'),a=el('a','',ref.label+' ↗');a.href=url.href;a.target='_blank';a.rel='noopener';line.append(a);links.append(line);
+  });$('reader-glossary').append(links);}
+  $('reader-glossary').showModal();
+ }
  document.addEventListener('click',e=>{const term=e.target.closest('[data-term]');if(term)showGlossary(term.dataset.term);});
  $('reader-glossary').addEventListener('click',e=>{if(e.target===$('reader-glossary'))$('reader-glossary').close();});
  function trainPicture(box){
@@ -208,17 +218,19 @@ document.addEventListener('DOMContentLoaded',()=>{
  function render(){
   disposeWidget();disposeWidget=()=>{};$('reader-steps').replaceChildren();$('reader-checkpoint').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';
   const s=lesson.sections[current],st=state[current],items=flat(s);$('reader-section-title').textContent=s.title;
-  if(st.cursor===items.length){checkpoint();}else{
+  if(st.cursor===items.length){if(s.quiz)checkpoint();else $('reader-feedback').textContent='Lezione completata. Puoi rivedere le parti dall’indice o scegliere «Mostra tutto».';}else{
    const item=items[st.cursor];if((item.card.retainPrevious||item.card.collapsePrevious)&&item.ci>0)renderCard(s.cards[item.ci-1],s.cards[item.ci-1].steps,true,!!item.card.collapsePrevious);
-   renderCard(item.card,item.card.steps.slice(0,item.si+1));
+   renderCard(item.card,item.card.stepMode==='replace'?[item.step]:item.card.steps.slice(0,item.si+1));
   }index();actions();
  }
  function top(){const target=$('reader-section-title');target.focus({preventScroll:true});target.scrollIntoView({block:'start',behavior:'auto'});}
- function open(i,focus=false){if(!unlocked(i))return;allMode=false;current=i;render();history.replaceState(null,'','#'+lesson.sections[i].id);if(focus)top();}
+ function open(i,focus=false){if(!unlocked(i))return;allMode=false;current=i;if(!lesson.sections[i].quiz&&state[i].cursor===flat(lesson.sections[i]).length)state[i].cursor=0;render();history.replaceState(null,'','#'+lesson.sections[i].id);if(focus)top();}
  $('reader-next').addEventListener('click',()=>{
   const st=state[current],items=flat(lesson.sections[current]);
   if(st.cursor<items.length){const item=items[st.cursor];if(!reviewAccess&&item.step.interaction==='train-reference'&&!st.reference.done)return;
-   st.cursor++;st.reached=Math.max(st.reached,st.cursor);const replaces=st.cursor===items.length||items[st.cursor].ci!==item.ci;render();if(replaces)top();
+   st.cursor++;st.reached=Math.max(st.reached,st.cursor);
+   if(st.cursor===items.length&&!lesson.sections[current].quiz){state[current].complete=true;if(current<state.length-1){open(current+1,true);return;}render();$('reader-next').hidden=true;top();return;}
+   const replaces=st.cursor===items.length||items[st.cursor].ci!==item.ci||item.card.stepMode==='replace';render();if(replaces)top();
   }else if(st.complete||reviewAccess){if(current<state.length-1)open(current+1,true);else{$('reader-feedback').textContent='Lezione completata! Nell’indice puoi rivedere le parti o scegliere «Mostra tutto».';$('reader-next').hidden=true;}}
  });
  $('reader-prev').addEventListener('click',()=>{if(state[current].cursor>0){state[current].cursor--;render();top();}});
@@ -231,6 +243,13 @@ document.addEventListener('DOMContentLoaded',()=>{
   lesson.sections.forEach((s,i)=>{current=i;$('reader-steps').append(el('h2','rm-all-section',s.title));s.cards.forEach(card=>renderCard(card,card.steps,true));});actions();index();top();
  });
  // Old localStorage entries from reader v1 are intentionally never read.
- history.replaceState(null,'','#inizio');open(0);
+ const referenceSection=lesson.sections.findIndex(s=>s.id===params.get('sezione'));
+ const referenceCard=params.has('scheda')?Number(params.get('scheda')):NaN;
+ if(referenceSection>=0&&Number.isInteger(referenceCard)&&referenceCard>=0&&referenceCard<lesson.sections[referenceSection].cards.length){
+  current=referenceSection;const section=lesson.sections[current],card=section.cards[referenceCard];
+  $('reader-section-title').textContent=section.title+' · Richiamo';renderCard(card,card.steps);index();
+  $('reader-prev').hidden=true;$('reader-next').hidden=true;$('reader-step-count').textContent='Scheda di riferimento';
+  const restart=el('a','rm-btn secondary','Inizia la lezione dall’inizio');const url=new URL(location.href);url.searchParams.delete('sezione');url.searchParams.delete('scheda');url.hash='';restart.href=url.href;
+  const note=el('p','','Il richiamo si apre separatamente: puoi tornare alla scheda della lezione da cui sei arrivato.');$('reader-feedback').append(note,restart);
+ }else{history.replaceState(null,'','#inizio');open(0);}
 });
-

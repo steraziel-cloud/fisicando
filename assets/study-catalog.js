@@ -620,9 +620,17 @@ window.LESSON_CATALOG = [
                 ]
               },
               {
+                "title": "La velocità scalare",
+                "levels": [
+                  "biennio"
+                ],
+                "url": "reader.html?lezione=cinematica-velocita",
+                "kind": "Teoria",
+                "id": "cinematica-velocita"
+              },
+              {
                 "title": "Velocità media e velocità istantanea",
                 "levels": [
-                  "biennio",
                   "terzo-quarto",
                   "ultimo-altro",
                   "analisi1",

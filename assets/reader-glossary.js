@@ -44,5 +44,37 @@ window.READER_GLOSSARY = {
     "title": "Periodo",
     "text": "Il periodo è la durata di un ciclo completo di un fenomeno che si ripete regolarmente nel tempo. È il più piccolo intervallo di tempo dopo il quale il fenomeno torna nelle stesse condizioni e ricomincia a ripetersi nello stesso modo. Si indica generalmente con T e, nel Sistema Internazionale, si misura in secondi (s).",
     "kind": "Definizione di fisica"
+  },
+  "riferimento-scalare": {
+    "title": "Sistema di riferimento nella cinematica scalare",
+    "kind": "Definizione di fisica",
+    "text": "Per descrivere il moto scegliamo rispetto a che cosa osservare le posizioni e misuriamo il tempo con un orologio. Su una traiettoria nota, anche curva, fissiamo un’origine, un verso positivo e un’unità di lunghezza. La coordinata s misura la posizione lungo il percorso.",
+    "links": [
+      {
+        "label": "Richiamo: il sistema di riferimento",
+        "lesson": "cinematica-introduzione",
+        "section": "inizio",
+        "card": 1
+      },
+      {
+        "label": "Richiamo: la coordinata lungo il percorso",
+        "lesson": "cinematica-introduzione",
+        "section": "posizione",
+        "card": 0
+      }
+    ]
+  },
+  "delta": {
+    "title": "Il simbolo Δ",
+    "kind": "Riprendi la matematica",
+    "text": "La lettera greca maiuscola delta indica una variazione, calcolata come valore finale meno valore iniziale. Per una grandezza q: Δq = q₂ − q₁. I due valori devono essere espressi nella stessa unità di misura. Il simbolo non indica una moltiplicazione.",
+    "links": [
+      {
+        "label": "Richiamo: gli intervalli di tempo",
+        "lesson": "cinematica-introduzione",
+        "section": "tempo",
+        "card": 1
+      }
+    ]
   }
 };
