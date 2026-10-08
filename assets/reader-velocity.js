@@ -72,6 +72,21 @@ window.READER_LESSONS["cinematica-velocita"] = {
       "title": "Che cosa ci dice la velocità media",
       "cards": [
         {
+          "title": "Mettiamoci alla prova",
+          "stepMode": "replace",
+          "illustration": {
+            "src": "assets/images/reader/velocity-measuring-cats-v1.png",
+            "alt": "Morgana è pronta a misurare il tempo con un cronometro; Red tiene una rollina metrica per misurare le lunghezze.",
+            "width": 720,
+            "height": 300
+          },
+          "steps": [
+            {
+              "html": "La <strong>velocità scalare media</strong> è il rapporto tra lo spostamento e l’intervallo di tempo in cui avviene:<br><br><span class=\"rm-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" displaystyle=\"true\"><mrow><msub><mi>v</mi><mi>m</mi></msub><mo>=</mo><mfrac><mrow><mi>Δ</mi><mi>s</mi></mrow><mrow><mi>Δ</mi><mi>t</mi></mrow></mfrac></mrow></math></span><br>Ci dice quanto cambia la posizione per ogni unità di tempo, mediamente nell’intervallo osservato.<br><br><strong>Se ti è tutto chiaro, mettiamoci alla prova!</strong>"
+            }
+          ]
+        },
+        {
           "title": "Misuriamo con l’ascensore",
           "board": "elevator",
           "stepMode": "replace",
