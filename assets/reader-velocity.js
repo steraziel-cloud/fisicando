@@ -48,7 +48,8 @@ window.READER_LESSONS["cinematica-velocita"] = {
               "title": "Metri al secondo",
               "html": "Se misuriamo lo spostamento in metri e l’intervallo di tempo in secondi, la velocità si esprime in <strong>metri al secondo</strong>, simbolo <strong>m/s</strong>."
             }
-          ]
+          ],
+          "board": "velocity-story"
         }
       ]
     },
@@ -64,7 +65,8 @@ window.READER_LESSONS["cinematica-velocita"] = {
               "title": "Che cosa significa il risultato",
               "html": "Uno spostamento di <span class=\"rm-formula\">+12 m</span> in <span class=\"rm-formula\">4 s</span> dà <span class=\"rm-formula\">vₘ = +3 m/s</span>; lo stesso spostamento in <span class=\"rm-formula\">6 s</span> dà <span class=\"rm-formula\">vₘ = +2 m/s</span>. Il rapporto distingue i due casi.<br><br><span class=\"rm-formula\">+3 m/s</span> significa una variazione <strong>media</strong> della coordinata di tre metri per secondo: non garantisce che in ogni secondo lo spostamento sia stato proprio quello."
             }
-          ]
+          ],
+          "board": "velocity-story"
         },
         {
           "title": "Quello che la media nasconde",
@@ -78,7 +80,8 @@ window.READER_LESSONS["cinematica-velocita"] = {
               "title": "Una breve andata e ritorno",
               "html": "Se parti da <span class=\"rm-formula\">s = 0 m</span>, raggiungi <span class=\"rm-formula\">s = 3 m</span> e torni a <span class=\"rm-formula\">s = 0 m</span>, lo spostamento totale è nullo: anche la velocità media complessiva è zero. <strong>Non sei rimasto fermo.</strong><br><br>Per descrivere il movimento, considera separatamente l’andata e il ritorno: gli spostamenti hanno segni opposti e nel bilancio totale si compensano."
             }
-          ]
+          ],
+          "board": "velocity-story"
         }
       ]
     },
@@ -102,7 +105,8 @@ window.READER_LESSONS["cinematica-velocita"] = {
               "title": "Due numeri piccoli, un rapporto finito",
               "html": "Il numeratore e il denominatore diventano entrambi piccoli. Questo non significa che il loro rapporto debba diventare piccolo:<br><br><span class=\"rm-formula\">2 m / 0,1 s = 20 m/s</span><br><span class=\"rm-formula\">0,2 m / 0,01 s = 20 m/s</span><br><span class=\"rm-formula\">0,02 m / 0,001 s = 20 m/s</span><br><br>Qui spostamento e durata si riducono nello stesso rapporto: il quoziente rimane uguale."
             }
-          ]
+          ],
+          "board": "velocity-story"
         },
         {
           "title": "Un valore che si precisa",
@@ -120,7 +124,8 @@ window.READER_LESSONS["cinematica-velocita"] = {
               "title": "Quanta precisione serve?",
               "html": "Nella pratica ci fermiamo alla precisione utile. Se vogliamo un risultato ai decimi e ulteriori riduzioni cambiano soltanto i decimali successivi, non serve inseguirli, purché le misure siano abbastanza affidabili.<br><br><strong>Più cifre sul display non significano automaticamente più precisione.</strong> Gli strumenti hanno un’incertezza: intervalli troppo piccoli possono rendere il rapporto meno affidabile. Non esiste una durata minima adatta a tutti i movimenti."
             }
-          ]
+          ],
+          "board": "velocity-story"
         }
       ]
     },
