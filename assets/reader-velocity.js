@@ -69,33 +69,18 @@ window.READER_LESSONS["cinematica-velocita"] = {
     },
     {
       "id": "media",
-      "title": "Misurare la velocità",
+      "title": "Che cosa ci dice la velocità media",
       "cards": [
         {
-          "title": "Dare un numero alla velocità",
+          "title": "Misuriamo con l’ascensore",
+          "board": "elevator",
           "stepMode": "replace",
           "steps": [
             {
-              "title": "Che cosa significa il risultato",
-              "html": "Uno spostamento di <span class=\"rm-formula\">+12 m</span> in <span class=\"rm-formula\">4 s</span> dà <span class=\"rm-formula\">vₘ = +3 m/s</span>; lo stesso spostamento in <span class=\"rm-formula\">6 s</span> dà <span class=\"rm-formula\">vₘ = +2 m/s</span>. Il rapporto distingue i due casi.<br><br><span class=\"rm-formula\">+3 m/s</span> significa una variazione <strong>media</strong> della coordinata di tre metri per secondo: non garantisce che in ogni secondo lo spostamento sia stato proprio quello."
+              "html": "Un ascensore sale e scende lungo un percorso fisso. L’origine è al piano terra e il verso positivo è verso l’alto. Si ferma al piano terra, al secondo e al terzo; attraversa il primo senza fermarsi. Ogni piano dista 3 m dal successivo.",
+              "interaction": "elevator-challenges"
             }
-          ],
-          "board": "velocity-story"
-        },
-        {
-          "title": "Quello che la media nasconde",
-          "stepMode": "replace",
-          "steps": [
-            {
-              "title": "Lo stesso risultato, due viaggi diversi",
-              "html": "Per Red e Morgana il rapporto sull’intero viaggio è uguale: stesso spostamento, stesso tempo totale. È un risultato corretto, ma <strong>nasconde la corsa e la sosta di Red</strong>. Per riconoscerle dobbiamo osservare anche ciò che accade durante il viaggio."
-            },
-            {
-              "title": "Una breve andata e ritorno",
-              "html": "Se parti da <span class=\"rm-formula\">s = 0 m</span>, raggiungi <span class=\"rm-formula\">s = 3 m</span> e torni a <span class=\"rm-formula\">s = 0 m</span>, lo spostamento totale è nullo: anche la velocità media complessiva è zero. <strong>Non sei rimasto fermo.</strong><br><br>Per descrivere il movimento, considera separatamente l’andata e il ritorno: gli spostamenti hanno segni opposti e nel bilancio totale si compensano."
-            }
-          ],
-          "board": "velocity-story"
+          ]
         }
       ]
     },
