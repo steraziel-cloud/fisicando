@@ -48,14 +48,8 @@ window.READER_GLOSSARY = {
   "riferimento-scalare": {
     "title": "Sistema di riferimento nella cinematica scalare",
     "kind": "Definizione di fisica",
-    "text": "Per descrivere il moto scegliamo rispetto a che cosa osservare le posizioni e misuriamo il tempo con un orologio. Su una traiettoria nota, anche curva, fissiamo un’origine, un verso positivo e un’unità di lunghezza. La coordinata s misura la posizione lungo il percorso.",
+    "text": "Se la traiettoria è nota, per stabilire la posizione basta fissare l’origine in un punto sulla traiettoria, il verso positivo e un’unità di lunghezza.",
     "links": [
-      {
-        "label": "Richiamo: il sistema di riferimento",
-        "lesson": "cinematica-introduzione",
-        "section": "inizio",
-        "card": 1
-      },
       {
         "label": "Richiamo: la coordinata lungo il percorso",
         "lesson": "cinematica-introduzione",

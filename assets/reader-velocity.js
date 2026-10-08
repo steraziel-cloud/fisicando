@@ -33,12 +33,12 @@ window.READER_LESSONS["cinematica-velocita"] = {
           "hideTitle": true
         },
         {
-          "title": "Dare un numero alla velocità",
+          "title": "Misuriamo quanto è rapido uno spostamento",
           "stepMode": "replace",
           "steps": [
             {
               "title": "Due osservazioni",
-              "html": "Fissato opportunamente il <button type=\"button\" class=\"rm-keyword\" data-term=\"riferimento-scalare\">sistema di riferimento</button>, registriamo due posizioni, <span class=\"rm-formula\">s₁</span> e <span class=\"rm-formula\">s₂</span>, e i corrispondenti istanti, <span class=\"rm-formula\">t₁</span> e <span class=\"rm-formula\">t₂</span>. Ricaviamo lo spostamento e il tempo trascorso:<br><br><span class=\"rm-formula\">Δs = s₂ − s₁</span><br><span class=\"rm-formula\">Δt = t₂ − t₁ > 0</span><br><br>Il simbolo <button type=\"button\" class=\"rm-keyword\" data-term=\"delta\">Δ</button> permette di scrivere queste differenze in forma compatta."
+              "html": "Fissato opportunamente il <button type=\"button\" class=\"rm-keyword\" data-term=\"riferimento-scalare\">sistema di riferimento</button>, registriamo due posizioni, <span class=\"rm-formula\">s₁</span> e <span class=\"rm-formula\">s₂</span>, e i corrispondenti istanti, <span class=\"rm-formula\">t₁</span> e <span class=\"rm-formula\">t₂</span>. Ricaviamo lo spostamento e il tempo trascorso:<br><br><span class=\"rm-formula\"><button type=\"button\" class=\"rm-keyword\" data-term=\"delta\">Δ</button>s = s₂ − s₁</span><br><span class=\"rm-formula\"><button type=\"button\" class=\"rm-keyword\" data-term=\"delta\">Δ</button>t = t₂ − t₁ > 0</span>"
             },
             {
               "title": "Un rapporto utile",
