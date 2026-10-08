@@ -42,7 +42,7 @@ window.READER_LESSONS["cinematica-velocita"] = {
             },
             {
               "title": "Un rapporto utile",
-              "html": "A parità di spostamento, impiegare meno tempo significa compierlo mediamente più rapidamente. Dividiamo quindi lo spostamento per il tempo impiegato:<br><br><span class=\"rm-formula\">vₘ = Δs / Δt = (s₂ − s₁) / (t₂ − t₁)</span><br><br>Il risultato è la <strong>velocità scalare media</strong> nell’intervallo osservato."
+              "html": "A parità di spostamento, impiegare meno tempo significa compierlo mediamente più rapidamente.<br><br>Un <strong>rapporto</strong> ci dice quanta parte di una grandezza corrisponde a un’unità dell’altra. Qui dividiamo lo spostamento per il tempo impiegato, per stimare <strong>quanto cambia la posizione per ogni unità di tempo</strong>:<br><br><span class=\"rm-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mfrac><mrow><mi>Δ</mi><mi>s</mi></mrow><mrow><mi>Δ</mi><mi>t</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><msub><mi>s</mi><mn>2</mn></msub><mo>−</mo><msub><mi>s</mi><mn>1</mn></msub></mrow><mrow><msub><mi>t</mi><mn>2</mn></msub><mo>−</mo><msub><mi>t</mi><mn>1</mn></msub></mrow></mfrac></mrow></math></span><br>Il risultato del calcolo di questo rapporto viene chiamato <strong>velocità scalare media</strong> nell’intervallo osservato."
             },
             {
               "title": "Metri al secondo",

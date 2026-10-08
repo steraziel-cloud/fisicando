@@ -233,7 +233,18 @@ document.addEventListener('DOMContentLoaded',()=>{
    const previous=[...view.text.childNodes],next=wanted.map(step=>stepNode(step));
    slideSwap(view.text,previous,next,direction);
   }else{
-   while(view.text.children.length>wanted.length)view.text.lastElementChild.remove();
+   const removed=[...view.text.children].slice(wanted.length);
+   if(removed.length&&direction&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&removed[0].animate){
+    const animations=removed.map(node=>{
+     node.inert=true;node.setAttribute('aria-hidden','true');node.style.overflow='hidden';
+     return node.animate([
+      {height:node.getBoundingClientRect().height+'px',opacity:1,transform:'none',paddingTop:'14px',paddingBottom:'14px'},
+      {height:'0px',opacity:0,transform:'translateX(-36px)',paddingTop:'0px',paddingBottom:'0px',borderTopWidth:'0px'}
+     ],{duration:260,easing:'ease-out',fill:'both'});
+    });
+    const cleanup=()=>{animations.forEach(a=>a.cancel());removed.forEach(node=>node.remove());cancelSlide=()=>{};};
+    cancelSlide=cleanup;Promise.all(animations.map(a=>a.finished)).then(()=>{if(cancelSlide===cleanup)cleanup();}).catch(()=>{});
+   }else removed.forEach(node=>node.remove());
    while(view.text.children.length<wanted.length){
     const node=stepNode(wanted[view.text.children.length]);view.text.append(node);
     if(direction&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&node.animate)
