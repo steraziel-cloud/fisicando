@@ -74,15 +74,9 @@ window.READER_LESSONS["cinematica-velocita"] = {
         {
           "title": "Mettiamoci alla prova",
           "stepMode": "replace",
-          "illustration": {
-            "src": "assets/images/reader/velocity-measuring-cats-v1.png",
-            "alt": "Morgana è pronta a misurare il tempo con un cronometro; Red tiene una rollina metrica per misurare le lunghezze.",
-            "width": 720,
-            "height": 300
-          },
           "steps": [
             {
-              "html": "La <strong>velocità scalare media</strong> è il rapporto tra lo spostamento e l’intervallo di tempo in cui avviene:<br><br><span class=\"rm-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" displaystyle=\"true\"><mrow><msub><mi>v</mi><mi>m</mi></msub><mo>=</mo><mfrac><mrow><mi>Δ</mi><mi>s</mi></mrow><mrow><mi>Δ</mi><mi>t</mi></mrow></mfrac></mrow></math></span><br>Ci dice quanto cambia la posizione per ogni unità di tempo, mediamente nell’intervallo osservato.<br><br><strong>Se ti è tutto chiaro, mettiamoci alla prova!</strong>"
+              "html": "La <strong>velocità scalare media</strong> è il rapporto tra lo spostamento e l’intervallo di tempo in cui avviene.<br><br>Per calcolarla, <strong>misuriamo uno spostamento e l’intervallo di tempo in cui avviene, poi facciamo il rapporto</strong>:<br><br><span class=\"rm-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" displaystyle=\"true\"><mrow><msub><mi>v</mi><mi>m</mi></msub><mo>=</mo><mfrac><mrow><mi>Δ</mi><mi>s</mi></mrow><mrow><mi>Δ</mi><mi>t</mi></mrow></mfrac></mrow></math></span><span class=\"rm-measure-companion\"><span class=\"rm-measure-balloon\">Se ti è tutto chiaro,<br><strong>mettiamoci alla prova!</strong></span><img src=\"assets/images/reader/velocity-measuring-cats-v1.png\" alt=\"Morgana tiene un cronometro e invita a mettersi alla prova; Red tiene una rollina metrica.\" width=\"440\" height=\"294\"></span>"
             }
           ]
         },
