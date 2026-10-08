@@ -18,13 +18,13 @@
       .rm-velocity-scene .vs-phase{display:block;flex:1;min-width:190px;padding:12px 16px;border-radius:12px;border:1px solid var(--rm-border);background:rgba(31,170,173,.12);font-size:17px;font-weight:600;line-height:1.4}
     </style>
     <svg viewBox="0 0 720 300" role="img" aria-label="Red e Morgana percorrono la stessa traiettoria curva: Red si ferma al chiosco e aspetta Morgana, poi proseguono insieme fino al parco.">
-      <defs><clipPath id="${id}-clip"><circle r="19"/></clipPath><marker id="${id}-arrow" markerWidth="5" markerHeight="5" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="currentColor"/></marker></defs>
+      <defs><clipPath id="${id}-clip"><circle r="19"/></clipPath></defs>
       <path class="vs-path" d="M65 205 C125 205 140 95 215 100 S300 225 395 200 S470 70 555 105 S610 170 652 160" fill="none" stroke="currentColor" stroke-opacity=".38" stroke-width="4"/>
       <g class="vs-arrows"></g>
       <circle cx="65" cy="205" r="5" fill="currentColor"/><text x="28" y="266" fill="currentColor" font-size="15">Origine</text>
       <line class="vs-kiosk-link" stroke="currentColor" stroke-opacity=".3" stroke-dasharray="3 4"/>
-      <g class="vs-kiosk"><image x="-48" y="-88" width="96" height="96" href="assets/images/reader/velocity-kiosk-v1.png"/></g>
-      <image x="603" y="6" width="110" height="96" href="assets/images/reader/velocity-park-v1.png"/>
+      <g class="vs-kiosk"><image x="-32" y="-60" width="64" height="64" href="assets/images/reader/velocity-kiosk-v1.png"/></g>
+      <image x="590" y="27" width="145" height="130" href="assets/images/reader/velocity-park-v1.png"/>
       <g class="vs-morgana"><line class="vs-link" stroke="#a17bd7" stroke-width="1.5" stroke-dasharray="3 3"/><g class="vs-avatar"><circle r="21" fill="var(--rm-panel)" stroke="#a17bd7" stroke-width="3"/><g clip-path="url(#${id}-clip)"><svg x="-20" y="-20" width="40" height="40" viewBox="590 0 560 430" preserveAspectRatio="xMidYMid slice"><image href="assets/images/morgana-classroom/morgana-turn-01.png" width="1672" height="941"/></svg></g><text x="0" y="-28" text-anchor="middle" fill="currentColor" font-size="14">Morgana</text></g></g>
       <g class="vs-red"><line class="vs-link" stroke="#ee944e" stroke-width="1.5" stroke-dasharray="3 3"/><g class="vs-avatar"><circle r="21" fill="var(--rm-panel)" stroke="#ee944e" stroke-width="3"/><image x="-19" y="-18" width="38" height="36" href="assets/images/red-logo-head.png"/><text x="30" y="5" text-anchor="start" fill="currentColor" font-size="14">Red</text></g></g>
     </svg>
@@ -45,17 +45,19 @@
       return { x: p.x, y: p.y, nx: -dy / norm, ny: dx / norm };
     }
     const kiosk = geometry(.75);
-    board.querySelector('.vs-kiosk').setAttribute('transform', `translate(${kiosk.x - 65} ${Math.max(88, kiosk.y - 35)})`);
+    board.querySelector('.vs-kiosk').setAttribute('transform', `translate(${kiosk.x - 54} ${kiosk.y - 8})`);
     const kioskLink = board.querySelector('.vs-kiosk-link');
     kioskLink.setAttribute('x1', kiosk.x); kioskLink.setAttribute('y1', kiosk.y);
-    kioskLink.setAttribute('x2', kiosk.x - 65); kioskLink.setAttribute('y2', Math.max(88, kiosk.y - 35));
+    kioskLink.setAttribute('x2', kiosk.x - 22); kioskLink.setAttribute('y2', kiosk.y - 4);
     const ns = 'http://www.w3.org/2000/svg';
     [.2, .45, .64].forEach(f => {
-      const arrow = document.createElementNS(ns, 'path');
-      const points = Array.from({length: 9}, (_, i) => geometry(f - .018 + .036 * i / 8));
-      arrow.setAttribute('d', points.map((p, i) => (i ? 'L' : 'M') + p.x + ' ' + p.y).join(' '));
-      arrow.setAttribute('fill', 'none'); arrow.setAttribute('stroke', 'currentColor'); arrow.setAttribute('stroke-width', '2.5');
-      arrow.setAttribute('marker-end', `url(#${id}-arrow)`); board.querySelector('.vs-arrows').append(arrow);
+      const p = geometry(f), arrow = document.createElementNS(ns, 'path');
+      const angle = Math.atan2(-p.nx, p.ny) * 180 / Math.PI;
+      arrow.setAttribute('d', 'M-6 -5 L0 0 L-6 5');
+      arrow.setAttribute('transform', `translate(${p.x} ${p.y}) rotate(${angle})`);
+      arrow.setAttribute('fill', 'none'); arrow.setAttribute('stroke', 'currentColor');
+      arrow.setAttribute('stroke-width', '2.5'); arrow.setAttribute('stroke-linecap', 'round'); arrow.setAttribute('stroke-linejoin', 'round');
+      board.querySelector('.vs-arrows').append(arrow);
     });
     function move(name, fraction, offset) {
       const p = geometry(fraction), g = board.querySelector('.vs-' + name);
