@@ -17,7 +17,11 @@ window.READER_LESSONS["cinematica-velocita"] = {
             },
             {
               "title": "Che cosa manca alla descrizione?",
-              "html": "I due gatti partono insieme e arrivano insieme: compiono <strong>lo stesso spostamento nello stesso intervallo di tempo</strong>, ma si sono mossi in due modi diversi.<br><br>Per descrivere queste differenze dobbiamo introdurre <strong>una nuova grandezza fisica</strong>, che esprima quanto rapidamente cambia la posizione durante il viaggio."
+              "html": "I due gatti partono insieme e arrivano insieme: compiono <strong>lo stesso spostamento nello stesso intervallo di tempo</strong>, ma si sono mossi in due modi diversi."
+            },
+            {
+              "title": "",
+              "html": "Per descrivere queste differenze dobbiamo introdurre <strong>una nuova grandezza fisica</strong>, che esprima quanto rapidamente cambia la posizione durante il viaggio. Questa grandezza si chiama <strong>velocità</strong>."
             }
           ],
           "illustration": {
