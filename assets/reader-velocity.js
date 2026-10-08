@@ -10,11 +10,10 @@ window.READER_LESSONS["cinematica-velocita"] = {
       "cards": [
         {
           "title": "Morgana e Red arrivano insieme",
-          "stepMode": "replace",
           "steps": [
             {
-              "title": "Una passeggiata e un gelato",
-              "html": "Morgana e Red partono insieme e seguono lo stesso percorso verso un parco. Morgana cammina con passo lento e regolare. Red corre sulla sua BMX, ma si ferma a mangiare un gelato. Poi riparte e arriva insieme a lei."
+              "title": "Una passeggiata e una sosta",
+              "html": "Morgana e Red partono insieme verso un parco, seguendo lo stesso percorso. Morgana cammina con passo lento e regolare. Red pedala veloce sulla sua BMX, ma si ferma a un chiosco di souvenir per gattini. Quando Morgana lo raggiunge, continuano insieme a piedi fino al parco, dove mangiano un gelato."
             },
             {
               "title": "Che cosa manca alla descrizione?",
