@@ -13,9 +13,9 @@
     board.innerHTML = `<style>
       .rm-velocity-scene{margin:4px 0 24px;padding:14px;border:1px solid var(--rm-border);border-radius:16px;background:var(--rm-card)}
       .rm-velocity-scene svg{display:block;width:100%;height:auto;overflow:visible}
-      .rm-velocity-scene .vs-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px}
+      .rm-velocity-scene .vs-controls{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:8px}
       .rm-velocity-scene .vs-controls button{padding:8px 14px;border-radius:10px;border:1px solid var(--rm-border);background:var(--rm-panel);color:inherit;font:inherit;cursor:pointer}
-      .rm-velocity-scene .vs-phase{display:block;flex:1;min-width:190px;padding:12px 16px;border-radius:12px;border:1px solid var(--rm-border);background:rgba(31,170,173,.12);font-size:17px;font-weight:600;line-height:1.4}
+      .rm-velocity-scene .vs-phase{display:block;flex:0 1 auto;min-width:0;max-width:100%;padding:12px 16px;border-radius:12px;border:1px solid var(--rm-border);background:rgba(31,170,173,.12);font-size:17px;font-weight:600;line-height:1.4}
     </style>
     <svg viewBox="0 0 720 300" role="img" aria-label="Red e Morgana percorrono la stessa traiettoria curva: Red si ferma al chiosco e aspetta Morgana, poi proseguono insieme fino al parco.">
       <defs><clipPath id="${id}-clip"><circle r="19"/></clipPath></defs>
@@ -45,10 +45,10 @@
       return { x: p.x, y: p.y, nx: -dy / norm, ny: dx / norm };
     }
     const kiosk = geometry(.75);
-    board.querySelector('.vs-kiosk').setAttribute('transform', `translate(${kiosk.x - 54} ${kiosk.y - 8})`);
+    board.querySelector('.vs-kiosk').setAttribute('transform', `translate(${kiosk.x - 42} ${kiosk.y + 4})`);
     const kioskLink = board.querySelector('.vs-kiosk-link');
     kioskLink.setAttribute('x1', kiosk.x); kioskLink.setAttribute('y1', kiosk.y);
-    kioskLink.setAttribute('x2', kiosk.x - 22); kioskLink.setAttribute('y2', kiosk.y - 4);
+    kioskLink.setAttribute('x2', kiosk.x - 10); kioskLink.setAttribute('y2', kiosk.y + 8);
     const ns = 'http://www.w3.org/2000/svg';
     [.2, .45, .64].forEach(f => {
       const p = geometry(f), arrow = document.createElementNS(ns, 'path');
