@@ -48,12 +48,13 @@ window.READER_LESSONS["cinematica-velocita"] = {
           "board": "velocity-story"
         },
         {
-          "title": "Metri al secondo e chilometri all’ora",
+          "title": "L’unità di misura della velocità",
           "stepMode": "replace",
           "steps": [
             {
-              "title": "Due unità per la stessa grandezza",
-              "html": "Nel Sistema Internazionale la velocità si misura in <strong>metri al secondo</strong> (<span class=\"rm-formula\">m/s</span>). Su strada usiamo spesso i <strong>chilometri all’ora</strong> (<span class=\"rm-formula\">km/h</span>).<br><br><span class=\"rm-formula\">1 m = 0,001 km</span> e <span class=\"rm-formula\">1 h = 3600 s</span>. Quindi:<br><br><span class=\"rm-formula\">1 m/s = 0,001 km / (1/3600 h) = 3,6 km/h</span>. Anche la velocità media si esprime in queste unità."
+              "title": "Metri al secondo e chilometri orari",
+              "html": "Nel <button type=\"button\" class=\"rm-keyword\" data-term=\"sistema-internazionale\">Sistema Internazionale</button> la velocità si misura in <strong>metri al secondo</strong> (<span class=\"rm-formula\">m/s</span>). Su strada usiamo spesso i <strong>chilometri orari</strong> (<span class=\"rm-formula\">km/h</span>).<br><br>Completa le equivalenze che ci servono per passare da un’unità all’altra:",
+              "interaction": "units-conversion"
             },
             {
               "title": "Convertire il valore",
@@ -61,7 +62,10 @@ window.READER_LESSONS["cinematica-velocita"] = {
             }
           ]
         }
-      ]
+      ],
+      "quiz": {
+        "type": "velocity-units"
+      }
     },
     {
       "id": "media",

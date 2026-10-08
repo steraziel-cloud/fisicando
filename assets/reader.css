@@ -147,3 +147,7 @@
 @media(prefers-reduced-motion:reduce){.rm-slide-viewport{overflow:visible}}
 
 #reader-steps{display:flow-root}
+
+/* Guided unit conversion and the two-stage velocity checkpoint. */
+.rm-unit-result{margin-top:20px}.rm-unit-result math{font-size:22px}.rm-unit-result>p{margin-top:18px}
+.rm-reader-checkpoint .rm-sentence input[type=text]{width:100px;padding:9px;border:1px solid var(--rm-accent);border-radius:9px;background:var(--rm-panel);color:var(--rm-text);font:inherit;text-align:center}

@@ -70,5 +70,10 @@ window.READER_GLOSSARY = {
         "card": 1
       }
     ]
+  },
+  "sistema-internazionale": {
+    "title": "Sistema Internazionale di unità di misura",
+    "kind": "Definizione di fisica",
+    "text": "Il Sistema Internazionale (SI) è un sistema condiviso di unità di misura. Si basa su sette unità fondamentali, tra cui il metro per la lunghezza e il secondo per il tempo. Le unità delle altre grandezze si ricavano combinando quelle fondamentali: per esempio, il metro al secondo per la velocità."
   }
 };

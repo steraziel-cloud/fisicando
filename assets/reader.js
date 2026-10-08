@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   frame.addEventListener('load',()=>{try{const doc=frame.contentDocument;doc.querySelectorAll('header,.sidebar,.rm-learning-back').forEach(e=>e.style.display='none');const headings=[...doc.querySelectorAll('.main h2,.main h3')];headings.forEach((h,i)=>{const b=document.createElement('button');b.textContent=h.textContent;b.addEventListener('click',()=>h.scrollIntoView({behavior:'auto',block:'start'}));$('reader-parts').append(b);});}catch{}});return;
  }
  // Learning progress belongs to this visit only. Reference cards do not award progress.
- const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},lab:{started:null,period:8,marks:[],verified:false,answer:''}}));
+ const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},units:{values:['',''],done:false},velocityQuiz:{answer:'',stage:0,choice:null,done:false},lab:{started:null,period:8,marks:[],verified:false,answer:''}}));
  let current=0,allMode=false,reviewAccess=false,referenceMode=false,disposeWidget=()=>{},mountedCard=null,cancelSlide=()=>{};
  const flat=s=>s.cards.flatMap((card,ci)=>card.steps.map((step,si)=>({card,ci,step,si})));
  const format=n=>Number(n).toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(referenceMode){$('reader-prev').hidden=true;$('reader-next').hidden=true;return;}
   const count=flat(lesson.sections[current]).length,st=state[current];
   $('reader-prev').hidden=allMode||st.cursor===0;$('reader-next').hidden=allMode;
-  let blocked=false;if(st.cursor<count){const item=flat(lesson.sections[current])[st.cursor];blocked=!reviewAccess&&item.step.interaction==='train-reference'&&!st.reference.done;}
+  let blocked=false;if(st.cursor<count){const item=flat(lesson.sections[current])[st.cursor];blocked=stepBlocked(item);}
   $('reader-next').disabled=blocked||(st.cursor===count&&!st.complete&&!reviewAccess);
   $('reader-next').textContent=st.cursor<count-1?'Continua →':st.cursor<count?(lesson.sections[current].quiz?'Controlla l’idea →':current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione'):current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione';
   $('reader-step-count').textContent=allMode?'':st.cursor<count?'Passaggio '+(st.cursor+1)+' di '+count:lesson.sections[current].quiz?'Verifica finale':'Parte completata';
@@ -191,9 +191,60 @@ document.addEventListener('DOMContentLoaded',()=>{
   const sync=()=>{redHit.disabled=bjorneHit.disabled=st.marks.length>0;verify.disabled=st.marks.length!==2||st.verified;};clock.board.addEventListener('measurement',sync);sync();
   disposeWidget=()=>{clockDispose();disposed=true;cancelAnimationFrame(raf);clearTimeout(balloonTimer);if(!st.verified)st.marks=[];};
  }
+ function unitsExercise(box,interactive=true){
+  const st=state[current].units,exercise=el('div','rm-inline-exercise rm-unit-exercise');
+  const correct=['0.001','3600'],values=interactive?st.values:correct;
+  const choices=[[['0.001','0,001'],['0.01','0,01']],[['60','60'],['3600','3600']]];
+  ['1 m =','1 h ='].forEach((text,i)=>{
+   const line=el('label','rm-sentence',text+' '),select=el('select');
+   select.setAttribute('aria-label',i===0?'Un metro in chilometri':'Un’ora in secondi');
+   [['','Scegli…'],...choices[i]].forEach(([value,text])=>{const option=el('option','',text);option.value=value;select.append(option);});
+   select.value=values[i];select.disabled=st.done||!interactive;
+   select.addEventListener('change',()=>st.values[i]=select.value);
+   line.append(select,el('span','',i===0?'km':'s'));exercise.append(line);
+  });
+  const feedback=el('p','rm-inline-feedback');feedback.setAttribute('role','status');
+  const result=el('div','rm-unit-result');result.hidden=!(st.done||!interactive);
+  result.innerHTML="<span class=\"rm-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" displaystyle=\"true\"><mrow><mfrac><mrow><mn>1</mn><mi mathvariant=\"normal\">m</mi></mrow><mrow><mn>1</mn><mi mathvariant=\"normal\">s</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>0,001</mn><mi mathvariant=\"normal\">km</mi></mrow><mrow><mfrac><mn>1</mn><mn>3600</mn></mfrac><mi mathvariant=\"normal\">h</mi></mrow></mfrac><mo>=</mo><mn>3,6</mn><mfrac><mi mathvariant=\"normal\">km</mi><mi mathvariant=\"normal\">h</mi></mfrac></mrow></math></span>"+'<p>Anche la velocità media si esprime in queste unità.</p>';
+  const check=button('Verifica le equivalenze',()=>{
+   if(st.values.includes('')){feedback.textContent='Scegli un valore per entrambe le equivalenze.';return;}
+   if(st.values.some((v,i)=>v!==correct[i])){feedback.textContent='Riprova: 1 km contiene 1000 m e un’ora contiene 60 minuti di 60 secondi ciascuno.';return;}
+   st.done=true;exercise.querySelectorAll('select').forEach(s=>s.disabled=true);check.hidden=true;
+   feedback.textContent='Esatto! Ora usiamo queste equivalenze nel rapporto.';result.hidden=false;
+   if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&result.animate)result.animate([{opacity:0,transform:'translateX(36px)'},{opacity:1,transform:'none'}],{duration:260,easing:'ease-out'});
+   actions();
+  });
+  check.hidden=st.done||!interactive;exercise.append(check,feedback,result);box.append(exercise);
+ }
+ function velocityUnitsQuiz(box){
+  const st=state[current].velocityQuiz;
+  box.append(el('p','','Un’auto percorre 20 km in 30 minuti, procedendo sempre nel verso positivo. Quanto vale la sua velocità scalare media in km/h?'));
+  const line=el('label','rm-sentence','Velocità media: '),answer=el('input');answer.type='text';answer.inputMode='decimal';answer.setAttribute('aria-label','Velocità media in chilometri orari');answer.value=st.answer;answer.disabled=st.stage>0;answer.addEventListener('input',()=>st.answer=answer.value);line.append(answer,el('span','','km/h'));box.append(line);
+  if(st.stage===0){
+   const verify=()=>{const raw=answer.value.trim().replace(',','.');const value=Number(raw);
+    if(!raw||!Number.isFinite(value)){$('reader-feedback').textContent='Inserisci un valore numerico in km/h.';return;}
+    if(Math.abs(value-40)<.000001){st.stage=1;checkpoint();$('reader-feedback').textContent='Esatto: 30 minuti sono 0,5 ore, quindi 20 ÷ 0,5 = 40 km/h.';}
+    else $('reader-feedback').textContent='Riprova: esprimi prima i 30 minuti in ore, poi dividi lo spostamento per quella durata.';
+   };answer.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();verify();}});box.append(button('Verifica il calcolo',verify));return;
+  }
+  box.append(el('h4','','Convertiamo in metri al secondo'),el('p','','Quale valore in m/s corrisponde a 40 km/h?'));
+  ['Circa 11,1 m/s','40 m/s','144 m/s'].forEach((text,i)=>{
+   const label=el('label'),radio=el('input');radio.type='radio';radio.name='velocity-conversion';radio.value=i;radio.checked=st.choice===i;radio.disabled=st.done;radio.addEventListener('change',()=>st.choice=i);label.append(radio,el('span','',text));box.append(label);
+  });
+  if(st.done){$('reader-feedback').textContent='Quiz completato: 40 km/h corrispondono a circa 11,1 m/s.';return;}
+  box.append(button('Verifica la conversione',()=>{
+   if(st.choice===null){$('reader-feedback').textContent='Scegli una risposta prima di verificare.';return;}
+   if(st.choice===0){st.done=true;box.querySelectorAll('input[type=radio]').forEach(input=>input.disabled=true);finish('40 km/h ÷ 3,6 ≈ 11,1 m/s. Hai completato entrambe le parti del quiz.');}
+   else $('reader-feedback').textContent='Per passare da km/h a m/s devi dividere per 3,6. Riprova.';
+  }));
+ }
+ function stepBlocked(item){
+  return !reviewAccess&&((item.step.interaction==='train-reference'&&!state[current].reference.done)||(item.step.interaction==='units-conversion'&&!state[current].units.done));
+ }
  function checkpoint(){
   const s=lesson.sections[current],box=$('reader-checkpoint');box.replaceChildren();box.hidden=false;box.append(el('h3','','Controlla l’idea'));
   if(s.quiz.type==='period-lab'){periodLab(box);return;}
+  if(s.quiz.type==='velocity-units'){velocityUnitsQuiz(box);return;}
   const q=el('p','',s.quiz.question);box.append(q);
   s.quiz.options.forEach((option,i)=>{const label=el('label'),input=el('input');input.type='radio';input.name='checkpoint';input.value=i;label.append(input,el('span','',option));box.append(label);});
   box.append(button('Verifica',()=>{const selected=box.querySelector('input:checked');if(!selected){$('reader-feedback').textContent='Scegli una risposta prima di verificare.';return;}
@@ -207,6 +258,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const article=el('div','rm-reader-step');if(step.title)article.append(el('h4','',step.title));
   const p=el('p');p.innerHTML=step.html;article.append(p);
   if(step.interaction==='train-reference')referenceExercise(article,!archived);
+  if(step.interaction==='units-conversion')unitsExercise(article,!archived);
   return article;
  }
  function slideSwap(host,previous,next,direction,beforeHeight){
@@ -288,7 +340,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  function open(i,focus=false,direction=0){if(!unlocked(i))return;allMode=false;referenceMode=false;current=i;if(!lesson.sections[i].quiz&&state[i].cursor===flat(lesson.sections[i]).length)state[i].cursor=0;render(direction);history.replaceState(null,'','#'+lesson.sections[i].id);if(focus)top();}
  $('reader-next').addEventListener('click',()=>{
   const st=state[current],items=flat(lesson.sections[current]);
-  if(st.cursor<items.length){const item=items[st.cursor];if(!reviewAccess&&item.step.interaction==='train-reference'&&!st.reference.done)return;
+  if(st.cursor<items.length){const item=items[st.cursor];if(stepBlocked(item))return;
    st.cursor++;st.reached=Math.max(st.reached,st.cursor);
    if(st.cursor===items.length&&!lesson.sections[current].quiz){state[current].complete=true;if(current<state.length-1){open(current+1,true,1);return;}render();$('reader-next').hidden=true;top();return;}
    const replaces=st.cursor===items.length||items[st.cursor].ci!==item.ci||item.card.stepMode==='replace';render(1);if(replaces&&items[st.cursor]?.ci!==item.ci)top();
