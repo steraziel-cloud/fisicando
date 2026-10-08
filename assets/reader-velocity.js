@@ -21,13 +21,7 @@ window.READER_LESSONS["cinematica-velocita"] = {
               "html": "Hanno compiuto <strong>lo stesso spostamento nello stesso tempo</strong>, ma si sono mossi in modi diversi. Per descrivere come e quanto rapidamente cambia la posizione durante il viaggio introduciamo la <strong>velocità scalare</strong>."
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "media",
-      "title": "Misurare la velocità",
-      "cards": [
+        },
         {
           "title": "Dare un numero alla velocità",
           "stepMode": "replace",
@@ -39,7 +33,19 @@ window.READER_LESSONS["cinematica-velocita"] = {
             {
               "title": "Un rapporto utile",
               "html": "A parità di spostamento, impiegare meno tempo significa compierlo mediamente più rapidamente. Dividiamo quindi lo spostamento per il tempo impiegato:<br><br><span class=\"rm-formula\">vₘ = Δs / Δt = (s₂ − s₁) / (t₂ − t₁)</span><br><br>Il risultato è la <strong>velocità scalare media</strong> nell’intervallo osservato."
-            },
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "media",
+      "title": "Misurare la velocità",
+      "cards": [
+        {
+          "title": "Dare un numero alla velocità",
+          "stepMode": "replace",
+          "steps": [
             {
               "title": "Che cosa significa il risultato",
               "html": "Uno spostamento di <span class=\"rm-formula\">+12 m</span> in <span class=\"rm-formula\">4 s</span> dà <span class=\"rm-formula\">vₘ = +3 m/s</span>; lo stesso spostamento in <span class=\"rm-formula\">6 s</span> dà <span class=\"rm-formula\">vₘ = +2 m/s</span>. Il rapporto distingue i due casi.<br><br><span class=\"rm-formula\">+3 m/s</span> significa una variazione <strong>media</strong> della coordinata di tre metri per secondo: non garantisce che in ogni secondo lo spostamento sia stato proprio quello."
