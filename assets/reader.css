@@ -137,3 +137,13 @@
 .rm-room-stage--topdown .rm-room-balloon{animation:none;opacity:1}
 .rm-room-stage--topdown .rm-red-balloon{left:21%;right:auto;top:15%;width:31%}
 .rm-room-stage--topdown .rm-bjorne-balloon{left:42%;right:auto;top:17%;width:31%}
+
+/* Slide changes move only the reading surface; mounted boards remain live. */
+.rm-reader-card{animation:none}
+.rm-slide-viewport{position:relative;overflow:hidden;isolation:isolate}
+.rm-slide-frame{width:100%;min-width:0;display:flow-root}
+.rm-slide-outgoing{position:absolute;top:0;left:0;pointer-events:none}
+.rm-card-text{min-width:0}
+@media(prefers-reduced-motion:reduce){.rm-slide-viewport{overflow:visible}}
+
+#reader-steps{display:flow-root}

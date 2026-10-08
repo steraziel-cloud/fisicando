@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  // Learning progress belongs to this visit only. Reference cards do not award progress.
  const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},lab:{started:null,period:8,marks:[],verified:false,answer:''}}));
- let current=0,allMode=false,reviewAccess=false,referenceMode=false,disposeWidget=()=>{};
+ let current=0,allMode=false,reviewAccess=false,referenceMode=false,disposeWidget=()=>{},mountedCard=null,cancelSlide=()=>{};
  const flat=s=>s.cards.flatMap((card,ci)=>card.steps.map((step,si)=>({card,ci,step,si})));
  const format=n=>Number(n).toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2});
  const el=(tag,cls,text)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node;};
@@ -109,7 +109,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   let initialLabel=null;
   if(kind==='displacement'){initialLabel=svg.querySelector('.rm-point-label').cloneNode(true);initialLabel.setAttribute('class','rm-initial-label');initialLabel.querySelector('rect').setAttribute('stroke','#e7b94f');svg.append(initialLabel);}
   board.querySelector('.rm-coordinate-name').textContent=kind==='displacement'?'finale s₂':'s';
-  function update(){
+  function update(nextShowDistance){
+   if(typeof nextShowDistance==='boolean')showDistance=nextShowDistance;
    const s=Number(input.value),p=at(s);st.position=s;const label=svg.querySelector('.rm-point-label');label.setAttribute('transform',`translate(${p.x},${p.y-32})`);label.querySelector('text').textContent=(kind==='displacement'?'s₂':'s')+' = '+format(s)+' m';
    const point=svg.querySelector('.rm-moving-point');point.setAttribute('cx',p.x);point.setAttribute('cy',p.y);input.parentElement.querySelector('output').textContent=format(s)+' m';
    input.setAttribute('aria-valuetext',format(s)+' metri');
@@ -119,7 +120,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    const displacement=box.querySelector('.rm-displacement-example');if(displacement)displacement.textContent=`Sulla lavagna parti da s₁ = ${format(s1)} m e arrivi a s₂ = ${format(s)} m: Δs = ${format(s)} m − (${format(s1)} m) = ${format(delta)} m.`;
    const sign=box.querySelector('.rm-displacement-sign');if(sign)sign.textContent=delta>0?`Qui Δs = +${format(delta)} m: la posizione finale si trova nel verso positivo rispetto a quella iniziale.`:delta<0?`Qui Δs = ${format(delta)} m: la posizione finale si trova nel verso negativo rispetto a quella iniziale.`:'Qui Δs = 0,00 m: le posizioni iniziale e finale coincidono, anche se il corpo potrebbe essersi mosso e poi essere tornato al punto di partenza.';
    const example=box.querySelector('.rm-position-example');if(example)example.textContent=`Sulla lavagna la posizione è s = ${format(s)} m: la distanza dall’origine lungo la traiettoria è |s| = ${format(Math.abs(s))} m. Sposta il punto per osservare come cambiano questi valori.`;
-  }input.addEventListener('input',update);if(initialInput)initialInput.addEventListener('input',update);update();
+  }input.addEventListener('input',update);if(initialInput)initialInput.addEventListener('input',update);update();return update;
  }
  function stopwatch(box,lab=false){
   const st=lab?state[current].lab:state[current].clock;
@@ -201,6 +202,46 @@ document.addEventListener('DOMContentLoaded',()=>{
   }));
   if(state[current].complete)$('reader-feedback').textContent='Questa parte è già completata. Puoi rivedere il quiz o proseguire.';
  }
+ // Keep the board mounted while changing the text, rather than recreating the card.
+ function stepNode(step,archived=false){
+  const article=el('div','rm-reader-step');if(step.title)article.append(el('h4','',step.title));
+  const p=el('p');p.innerHTML=step.html;article.append(p);
+  if(step.interaction==='train-reference')referenceExercise(article,!archived);
+  return article;
+ }
+ function slideSwap(host,previous,next,direction,beforeHeight){
+  cancelSlide();
+  if(!direction||matchMedia('(prefers-reduced-motion: reduce)').matches||!host.animate){host.replaceChildren(...next);return;}
+  const before=beforeHeight??host.getBoundingClientRect().height;
+  const outgoing=el('div','rm-slide-frame rm-slide-outgoing'),incoming=el('div','rm-slide-frame');
+  outgoing.append(...previous);outgoing.inert=true;outgoing.setAttribute('aria-hidden','true');
+  incoming.append(...next);host.classList.add('rm-slide-viewport');host.replaceChildren(outgoing,incoming);
+  const after=incoming.getBoundingClientRect().height;
+  const timing={duration:340,easing:'cubic-bezier(.25,.8,.25,1)',fill:'both'};
+  const animations=[
+   outgoing.animate([{transform:'translateX(0)'},{transform:`translateX(${-direction*100}%)`}],timing),
+   incoming.animate([{transform:`translateX(${direction*100}%)`},{transform:'translateX(0)'}],timing),
+   host.animate([{height:before+'px'},{height:after+'px'}],timing)
+  ];
+  const cleanup=()=>{animations.forEach(a=>a.cancel());host.replaceChildren(...incoming.childNodes);host.classList.remove('rm-slide-viewport');cancelSlide=()=>{};};
+  cancelSlide=cleanup;animations[1].finished.then(()=>{if(cancelSlide===cleanup)cleanup();}).catch(()=>{});
+ }
+ function updateCard(item,direction){
+  const view=mountedCard;cancelSlide();
+  const wanted=item.card.stepMode==='replace'?[item.step]:item.card.steps.slice(0,item.si+1);
+  if(item.card.stepMode==='replace'){
+   const previous=[...view.text.childNodes],next=wanted.map(step=>stepNode(step));
+   slideSwap(view.text,previous,next,direction);
+  }else{
+   while(view.text.children.length>wanted.length)view.text.lastElementChild.remove();
+   while(view.text.children.length<wanted.length){
+    const node=stepNode(wanted[view.text.children.length]);view.text.append(node);
+    if(direction&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&node.animate)
+     node.animate([{opacity:0,transform:`translateX(${direction*36}px)`},{opacity:1,transform:'none'}],{duration:260,easing:'ease-out'});
+   }
+  }
+  if(view.updateBoard)view.updateBoard(wanted.length>=3);
+ }
  function renderCard(card,steps,archived=false,collapsed=false){
   const box=el('article','rm-reader-card'+(archived?' rm-reader-card-previous':''));
   if(collapsed){
@@ -215,34 +256,40 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.board==='velocity-story'&&window.GatitoVelocityScene)disposeWidget=window.GatitoVelocityScene.mount(box);
   if(card.board==='train-reference')trainPicture(box);
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
-  steps.forEach(step=>{const article=el('div','rm-reader-step');if(step.title)article.append(el('h4','',step.title));const p=el('p');p.innerHTML=step.html;article.append(p);if(step.interaction==='train-reference')referenceExercise(article,!archived);box.append(article);});
-  if(card.board==='position'||card.board==='displacement')positionBoard(box,card.board,steps.length>=3);
+  const text=el('div','rm-card-text');steps.forEach(step=>text.append(stepNode(step,archived)));box.append(text);
+  const updateBoard=card.board==='position'||card.board==='displacement'?positionBoard(box,card.board,steps.length>=3):null;
+  if(!archived&&!allMode&&!referenceMode)mountedCard={section:current,card,box,text,updateBoard};
  }
- function render(){
+ function render(direction=0){
+  const section=lesson.sections[current],item=flat(section)[state[current].cursor];
+  if(!allMode&&!referenceMode&&item&&mountedCard?.section===current&&mountedCard.card===item.card){
+   updateCard(item,direction);$('reader-feedback').textContent='';index();actions();return;
+  }
+  cancelSlide();const previousHeight=$('reader-steps').getBoundingClientRect().height;const previous=direction?[...$('reader-steps').childNodes]:[];mountedCard=null;
   disposeWidget();disposeWidget=()=>{};$('reader-steps').replaceChildren();$('reader-checkpoint').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';
   const s=lesson.sections[current],st=state[current],items=flat(s);$('reader-section-title').textContent=s.title;
   if(st.cursor===items.length){if(s.quiz)checkpoint();else $('reader-feedback').textContent='Lezione completata. Puoi rivedere le parti dall’indice o scegliere «Mostra tutto».';}else{
    const item=items[st.cursor];if((item.card.retainPrevious||item.card.collapsePrevious)&&item.ci>0)renderCard(s.cards[item.ci-1],s.cards[item.ci-1].steps,true,!!item.card.collapsePrevious);
    renderCard(item.card,item.card.stepMode==='replace'?[item.step]:item.card.steps.slice(0,item.si+1));
-  }index();actions();
+  }if(previous.length&&$('reader-steps').children.length)slideSwap($('reader-steps'),previous,[...$('reader-steps').childNodes],direction,previousHeight);index();actions();
  }
  function top(){const target=$('reader-section-title');target.focus({preventScroll:true});target.scrollIntoView({block:'start',behavior:'auto'});}
- function open(i,focus=false){if(!unlocked(i))return;allMode=false;referenceMode=false;current=i;if(!lesson.sections[i].quiz&&state[i].cursor===flat(lesson.sections[i]).length)state[i].cursor=0;render();history.replaceState(null,'','#'+lesson.sections[i].id);if(focus)top();}
+ function open(i,focus=false,direction=0){if(!unlocked(i))return;allMode=false;referenceMode=false;current=i;if(!lesson.sections[i].quiz&&state[i].cursor===flat(lesson.sections[i]).length)state[i].cursor=0;render(direction);history.replaceState(null,'','#'+lesson.sections[i].id);if(focus)top();}
  $('reader-next').addEventListener('click',()=>{
   const st=state[current],items=flat(lesson.sections[current]);
   if(st.cursor<items.length){const item=items[st.cursor];if(!reviewAccess&&item.step.interaction==='train-reference'&&!st.reference.done)return;
    st.cursor++;st.reached=Math.max(st.reached,st.cursor);
-   if(st.cursor===items.length&&!lesson.sections[current].quiz){state[current].complete=true;if(current<state.length-1){open(current+1,true);return;}render();$('reader-next').hidden=true;top();return;}
-   const replaces=st.cursor===items.length||items[st.cursor].ci!==item.ci||item.card.stepMode==='replace';render();if(replaces)top();
-  }else if(st.complete||reviewAccess){if(current<state.length-1)open(current+1,true);else{$('reader-feedback').textContent='Lezione completata! Nell’indice puoi rivedere le parti o scegliere «Mostra tutto».';$('reader-next').hidden=true;}}
+   if(st.cursor===items.length&&!lesson.sections[current].quiz){state[current].complete=true;if(current<state.length-1){open(current+1,true,1);return;}render();$('reader-next').hidden=true;top();return;}
+   const replaces=st.cursor===items.length||items[st.cursor].ci!==item.ci||item.card.stepMode==='replace';render(1);if(replaces&&items[st.cursor]?.ci!==item.ci)top();
+  }else if(st.complete||reviewAccess){if(current<state.length-1)open(current+1,true,1);else{$('reader-feedback').textContent='Lezione completata! Nell’indice puoi rivedere le parti o scegliere «Mostra tutto».';$('reader-next').hidden=true;}}
  });
- $('reader-prev').addEventListener('click',()=>{if(state[current].cursor>0){state[current].cursor--;render();top();}});
+ $('reader-prev').addEventListener('click',()=>{if(state[current].cursor>0){const previous=flat(lesson.sections[current])[state[current].cursor];state[current].cursor--;render(-1);if(flat(lesson.sections[current])[state[current].cursor].ci!==previous?.ci)top();}});
  // Horizontal swipes navigate only the already unlocked learning path.
  let touch=null;const column=document.querySelector('.rm-reader-column');
  column.addEventListener('touchstart',e=>{if(e.target.closest('input,select,button,.rm-reader-board'))return;const p=e.changedTouches[0];touch={x:p.clientX,y:p.clientY};},{passive:true});
  column.addEventListener('touchend',e=>{if(!touch)return;const p=e.changedTouches[0],dx=p.clientX-touch.x,dy=p.clientY-touch.y;touch=null;if(Math.abs(dx)<75||Math.abs(dy)>50)return;const b=dx>0?$('reader-prev'):$('reader-next');if(!b.hidden&&!b.disabled)b.click();},{passive:true});
  $('reader-show-all').addEventListener('click',()=>{
-  referenceMode=false;reviewAccess=true;disposeWidget();disposeWidget=()=>{};allMode=true;$('reader-section-title').textContent='La lezione completa';$('reader-steps').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';
+  referenceMode=false;reviewAccess=true;cancelSlide();mountedCard=null;disposeWidget();disposeWidget=()=>{};allMode=true;$('reader-section-title').textContent='La lezione completa';$('reader-steps').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';
   lesson.sections.forEach((s,i)=>{current=i;$('reader-steps').append(el('h2','rm-all-section',s.title));s.cards.forEach(card=>renderCard(card,card.steps,true));});actions();index();top();
  });
  // Old localStorage entries from reader v1 are intentionally never read.
