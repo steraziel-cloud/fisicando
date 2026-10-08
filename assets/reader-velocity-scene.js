@@ -19,7 +19,7 @@
     </style>
     <svg viewBox="0 0 720 300" role="img" aria-label="Red e Morgana percorrono la stessa traiettoria curva: Red si ferma al chiosco e aspetta Morgana, poi proseguono insieme fino al parco.">
       <defs><clipPath id="${id}-clip"><circle r="19"/></clipPath></defs>
-      <path class="vs-path" d="M65 205 C125 205 140 95 215 100 S300 225 395 200 S470 70 555 105 S610 170 652 160" fill="none" stroke="currentColor" stroke-opacity=".38" stroke-width="4"/>
+      <path class="vs-path" d="M65 205 C125 205 140 95 215 100 S300 225 395 200 S470 70 555 105 C589 119 610 160 652 160" fill="none" stroke="currentColor" stroke-opacity=".38" stroke-width="4"/>
       <g class="vs-arrows"></g>
       <circle cx="65" cy="205" r="5" fill="currentColor"/><text x="28" y="266" fill="currentColor" font-size="15">Origine</text>
       <line class="vs-kiosk-link" stroke="currentColor" stroke-opacity=".3" stroke-dasharray="3 4"/>
