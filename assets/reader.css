@@ -185,3 +185,7 @@
 @media(max-width:480px){.rm-reader-main>.rm-shell{width:calc(100% - 20px)}.rm-elevator-building{height:390px}.rm-elevator-floor{font-size:12px}.rm-elevator-marker span{font-size:12px;left:8px;padding:4px}.rm-elevator-cabin{height:84px}.rm-elevator-readings{grid-template-columns:1fr}.rm-elevator-equation{font-size:16px;gap:6px}}
 
 .rm-elevator-guide{position:absolute;left:61%;right:26%;border-top:1px dashed var(--rm-accent);z-index:3}
+
+/* Le sfide cambiano slide senza rimontare l’ascensore. */
+.rm-elevator-task-viewport{position:relative;overflow:hidden;isolation:isolate}
+.rm-elevator-task-outgoing{position:absolute;inset:0 0 auto;pointer-events:none}
