@@ -158,3 +158,30 @@
 
 /* Invito di Morgana dopo il ripasso della velocità media. */
 .rm-measure-companion{display:block;width:440px;max-width:100%;margin:26px auto 0}.rm-measure-companion img{display:block;width:100%;height:auto;max-height:260px;object-fit:contain}.rm-measure-balloon{display:block;position:relative;width:270px;max-width:82%;box-sizing:border-box;padding:12px 16px;margin:0 0 5px 10px;border:1px solid var(--rm-line);border-radius:22px;background:var(--rm-panel);color:var(--rm-text);box-shadow:0 5px 15px #102c4210;text-align:center;font-size:16px;line-height:1.5}.rm-measure-balloon:after{content:"";position:absolute;bottom:-9px;left:48%;width:16px;height:16px;transform:rotate(45deg);background:var(--rm-panel);border-right:1px solid var(--rm-line);border-bottom:1px solid var(--rm-line)}
+
+
+/* Spazio utile sul desktop, testo leggibile e lavagna di misura. */
+.rm-reader-main>.rm-shell{width:calc(100% - 64px);max-width:1660px}
+.rm-reader-layout{grid-template-columns:220px minmax(0,1fr)}
+.rm-card-text{max-width:78ch;margin-inline:auto}
+.rm-elevator{margin:12px 0 0}
+.rm-elevator-task{border-top:0;padding-top:0;margin-top:0}
+.rm-elevator-task h4{margin:0 0 8px}.rm-elevator-task p{margin:8px 0 12px}
+.rm-elevator-layout{grid-template-columns:minmax(320px,1.2fr) minmax(270px,.8fr);gap:36px;align-items:center}
+.rm-elevator-building{height:450px;background:none;max-width:620px;width:100%;margin:auto}
+.rm-elevator-shaft{position:absolute;left:35%;width:26%;bottom:10%;top:0;background:#102132;border-radius:8px 8px 0 0}
+.rm-elevator-floor{left:0;right:26%;z-index:1}.rm-elevator-floor b{margin-right:-15px;background:var(--rm-card)}
+.rm-elevator-axis{top:2%;bottom:10%;right:26%;width:0;border-left:2px solid var(--rm-accent);z-index:3}
+.rm-elevator-axis:before{content:"";position:absolute;top:-3px;left:-6px;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:10px solid var(--rm-accent)}
+.rm-elevator-axis strong{position:absolute;top:-20px;left:12px;white-space:nowrap;color:var(--rm-accent)}
+.rm-elevator-cabin{left:35%;width:26%;height:96px;transform:translateY(10px)}
+.rm-elevator-marker{position:absolute;right:26%;width:0;height:0;z-index:4}
+.rm-elevator-marker:before{content:"";position:absolute;width:10px;height:10px;border:2px solid var(--rm-card);border-radius:50%;background:var(--rm-accent);transform:translate(-6px,-6px)}
+.rm-elevator-marker span{position:absolute;left:12px;top:-15px;white-space:nowrap;background:var(--rm-panel);border:1px solid var(--rm-accent);border-radius:8px;padding:4px 8px;font-size:14px;font-variant-numeric:tabular-nums}
+.rm-elevator-readings{margin-top:14px;gap:12px}.rm-elevator-live,.rm-elevator-readings,.rm-elevator-result{font-variant-numeric:tabular-nums}
+.rm-elevator-buttons{gap:10px;margin:18px 0 24px}.lift-slow[aria-pressed=true]{border-color:var(--rm-accent);background:#20c3da22}
+@media(max-width:1000px){.rm-elevator-layout{grid-template-columns:1fr;gap:18px}.rm-elevator-building{height:430px;max-width:500px}.rm-elevator-readings{grid-template-columns:1fr 1fr}}
+@media(max-width:800px){.rm-reader-main>.rm-shell{width:calc(100% - 32px)}.rm-reader-layout{grid-template-columns:1fr}}
+@media(max-width:480px){.rm-reader-main>.rm-shell{width:calc(100% - 20px)}.rm-elevator-building{height:390px}.rm-elevator-floor{font-size:12px}.rm-elevator-marker span{font-size:12px;left:8px;padding:4px}.rm-elevator-cabin{height:84px}.rm-elevator-readings{grid-template-columns:1fr}.rm-elevator-equation{font-size:16px;gap:6px}}
+
+.rm-elevator-guide{position:absolute;left:61%;right:26%;border-top:1px dashed var(--rm-accent);z-index:3}

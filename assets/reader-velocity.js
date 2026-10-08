@@ -81,12 +81,12 @@ window.READER_LESSONS["cinematica-velocita"] = {
           ]
         },
         {
-          "title": "Misuriamo con l’ascensore",
+          "title": "Misuriamo la velocità media",
           "board": "elevator",
           "stepMode": "replace",
           "steps": [
             {
-              "html": "Un ascensore sale e scende lungo un percorso fisso. L’origine è al piano terra e il verso positivo è verso l’alto. Si ferma al piano terra, al secondo e al terzo; attraversa il primo senza fermarsi. Ogni piano dista 3 m dal successivo.",
+              "html": "",
               "interaction": "elevator-challenges"
             }
           ]
@@ -223,3 +223,4 @@ window.READER_LESSONS["cinematica-velocita"] = {
     }
   ]
 };
+
