@@ -19,7 +19,13 @@ window.READER_LESSONS["cinematica-velocita"] = {
               "title": "Che cosa manca alla descrizione?",
               "html": "Hanno compiuto <strong>lo stesso spostamento nello stesso tempo</strong>, ma si sono mossi in modi diversi. Per descrivere come e quanto rapidamente cambia la posizione durante il viaggio introduciamo la <strong>velocità scalare</strong>."
             }
-          ]
+          ],
+          "illustration": {
+            "src": "assets/images/reader/red-morgana-souvenir-v1.png",
+            "alt": "Morgana si avvicina a piedi al chiosco di souvenir dove Red osserva gli oggetti in vendita; la sua BMX è parcheggiata accanto al chiosco.",
+            "width": 1778,
+            "height": 885
+          }
         },
         {
           "title": "Dare un numero alla velocità",
