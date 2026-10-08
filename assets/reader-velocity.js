@@ -21,8 +21,8 @@ window.READER_LESSONS["cinematica-velocita"] = {
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/red-morgana-souvenir-v1.png",
-            "alt": "Morgana si avvicina a piedi al chiosco di souvenir dove Red osserva gli oggetti in vendita; la sua BMX è parcheggiata accanto al chiosco.",
+            "src": "assets/images/reader/red-morgana-souvenir-v2.png",
+            "alt": "Morgana si avvicina a piedi al chiosco di souvenir dove Red, con il caschetto da ciclista, osserva gli oggetti in vendita; la sua BMX è parcheggiata accanto al chiosco.",
             "width": 1778,
             "height": 885
           }
