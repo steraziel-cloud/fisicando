@@ -43,13 +43,23 @@ window.READER_LESSONS["cinematica-velocita"] = {
             {
               "title": "Un rapporto utile",
               "html": "A parità di spostamento, impiegare meno tempo significa compierlo mediamente più rapidamente.<br><br>Un <strong>rapporto</strong> ci dice quanta parte di una grandezza corrisponde a un’unità dell’altra. Qui dividiamo lo spostamento per il tempo impiegato, per stimare <strong>quanto cambia la posizione per ogni unità di tempo</strong>:<br><br><span class=\"rm-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mfrac><mrow><mi>Δ</mi><mi>s</mi></mrow><mrow><mi>Δ</mi><mi>t</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><msub><mi>s</mi><mn>2</mn></msub><mo>−</mo><msub><mi>s</mi><mn>1</mn></msub></mrow><mrow><msub><mi>t</mi><mn>2</mn></msub><mo>−</mo><msub><mi>t</mi><mn>1</mn></msub></mrow></mfrac></mrow></math></span><br>Il risultato del calcolo di questo rapporto viene chiamato <strong>velocità scalare media</strong> nell’intervallo osservato."
-            },
-            {
-              "title": "Metri al secondo",
-              "html": "Se misuriamo lo spostamento in metri e l’intervallo di tempo in secondi, la velocità si esprime in <strong>metri al secondo</strong>, simbolo <strong>m/s</strong>."
             }
           ],
           "board": "velocity-story"
+        },
+        {
+          "title": "Metri al secondo e chilometri all’ora",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Due unità per la stessa grandezza",
+              "html": "Nel Sistema Internazionale la velocità si misura in <strong>metri al secondo</strong> (<span class=\"rm-formula\">m/s</span>). Su strada usiamo spesso i <strong>chilometri all’ora</strong> (<span class=\"rm-formula\">km/h</span>).<br><br><span class=\"rm-formula\">1 m = 0,001 km</span> e <span class=\"rm-formula\">1 h = 3600 s</span>. Quindi:<br><br><span class=\"rm-formula\">1 m/s = 0,001 km / (1/3600 h) = 3,6 km/h</span>. Anche la velocità media si esprime in queste unità."
+            },
+            {
+              "title": "Convertire il valore",
+              "html": "Da <span class=\"rm-formula\">m/s</span> a <span class=\"rm-formula\">km/h</span> <strong>moltiplichiamo per 3,6</strong>:<br><span class=\"rm-formula\">20 m/s = 72 km/h</span>.<br><br>Da <span class=\"rm-formula\">km/h</span> a <span class=\"rm-formula\">m/s</span> <strong>dividiamo per 3,6</strong>:<br><span class=\"rm-formula\">36 km/h = 10 m/s</span>.<br><br>Cambia l’unità, non il movimento descritto."
+            }
+          ]
         }
       ]
     },
@@ -148,26 +158,6 @@ window.READER_LESSONS["cinematica-velocita"] = {
             {
               "title": "Il segno di una media",
               "html": "Il segno della velocità media riguarda lo <strong>spostamento complessivo dell’intervallo</strong>. Una media positiva non garantisce che il corpo abbia proceduto sempre nel verso positivo: possono esserci state inversioni intermedie."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "unita",
-      "title": "Unità e conversioni",
-      "cards": [
-        {
-          "title": "Metri al secondo e chilometri all’ora",
-          "stepMode": "replace",
-          "steps": [
-            {
-              "title": "Due unità per la stessa grandezza",
-              "html": "Nel Sistema Internazionale la velocità si misura in <strong>metri al secondo</strong> (<span class=\"rm-formula\">m/s</span>). Su strada usiamo spesso i <strong>chilometri all’ora</strong> (<span class=\"rm-formula\">km/h</span>).<br><br><span class=\"rm-formula\">1 m = 0,001 km</span> e <span class=\"rm-formula\">1 h = 3600 s</span>. Quindi:<br><br><span class=\"rm-formula\">1 m/s = 0,001 km / (1/3600 h) = 3,6 km/h</span>. Anche la velocità media si esprime in queste unità."
-            },
-            {
-              "title": "Convertire il valore",
-              "html": "Da <span class=\"rm-formula\">m/s</span> a <span class=\"rm-formula\">km/h</span> <strong>moltiplichiamo per 3,6</strong>:<br><span class=\"rm-formula\">20 m/s = 72 km/h</span>.<br><br>Da <span class=\"rm-formula\">km/h</span> a <span class=\"rm-formula\">m/s</span> <strong>dividiamo per 3,6</strong>:<br><span class=\"rm-formula\">36 km/h = 10 m/s</span>.<br><br>Cambia l’unità, non il movimento descritto."
             }
           ]
         }
