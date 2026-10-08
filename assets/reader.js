@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    const removed=[...view.text.children].slice(wanted.length);
    if(removed.length&&direction&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&removed[0].animate){
     const animations=removed.map(node=>{
-     node.inert=true;node.setAttribute('aria-hidden','true');node.style.overflow='hidden';
+     node.inert=true;node.setAttribute('aria-hidden','true');node.style.overflow='hidden';node.style.boxSizing='border-box';
      return node.animate([
       {height:node.getBoundingClientRect().height+'px',opacity:1,transform:'none',paddingTop:'14px',paddingBottom:'14px'},
       {height:'0px',opacity:0,transform:'translateX(-36px)',paddingTop:'0px',paddingBottom:'0px',borderTopWidth:'0px'}
