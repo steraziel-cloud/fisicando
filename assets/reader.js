@@ -209,12 +209,12 @@ document.addEventListener('DOMContentLoaded',()=>{
    details.append(summary,box);$('reader-steps').append(details);
    details.addEventListener('toggle',()=>summary.querySelector('.rm-recap-toggle').textContent=details.open?'Comprimi':'Rivedi');
   }else $('reader-steps').append(box);
-  box.append(el('h3','rm-card-title',card.title));
+  if(!card.hideTitle)box.append(el('h3','rm-card-title',card.title));
   if(card.title==='Benvenuta, benvenuto!'){box.classList.add('rm-welcome-card');const cat=el('img','rm-welcome-cat');cat.src='assets/images/reader/red-bjorne-benvenuto-v1.png';cat.alt='Red e Bjorne ti danno il benvenuto e ti salutano con una zampina';cat.width=240;cat.height=160;box.append(cat);}
   if(card.illustration){const picture=el('div','rm-reference-scene'),img=el('img','rm-train-illustration');img.src=card.illustration.src;img.alt=card.illustration.alt;img.width=card.illustration.width;img.height=card.illustration.height;img.style.objectFit='contain';img.style.mask='none';img.style.webkitMask='none';picture.append(img);box.append(picture);}
   if(card.board==='train-reference')trainPicture(box);
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
-  steps.forEach(step=>{const article=el('div','rm-reader-step');article.append(el('h4','',step.title));const p=el('p');p.innerHTML=step.html;article.append(p);if(step.interaction==='train-reference')referenceExercise(article,!archived);box.append(article);});
+  steps.forEach(step=>{const article=el('div','rm-reader-step');if(step.title)article.append(el('h4','',step.title));const p=el('p');p.innerHTML=step.html;article.append(p);if(step.interaction==='train-reference')referenceExercise(article,!archived);box.append(article);});
   if(card.board==='position'||card.board==='displacement')positionBoard(box,card.board,steps.length>=3);
  }
  function render(){

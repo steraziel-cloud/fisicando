@@ -6,18 +6,18 @@ window.READER_LESSONS["cinematica-velocita"] = {
   "sections": [
     {
       "id": "inizio",
-      "title": "Due movimenti diversi",
+      "title": "Ci serve una nuova grandezza",
       "cards": [
         {
           "title": "Morgana e Red arrivano insieme",
           "steps": [
             {
-              "title": "Una passeggiata e una sosta",
-              "html": "Morgana e Red partono insieme verso un parco, seguendo lo stesso percorso. Morgana cammina con passo lento e regolare. Red pedala veloce sulla sua BMX, ma si ferma a un chiosco di souvenir per gattini. Quando Morgana lo raggiunge, continuano insieme a piedi fino al parco, dove mangiano un gelato."
+              "title": "",
+              "html": "Morgana e Red partono insieme verso il parco, seguendo lo stesso percorso. Morgana cammina con passo lento e regolare. Red pedala veloce sulla sua BMX, ma si ferma a un chiosco di souvenir. Quando Morgana lo raggiunge, continuano insieme a piedi."
             },
             {
               "title": "Che cosa manca alla descrizione?",
-              "html": "Hanno compiuto <strong>lo stesso spostamento nello stesso tempo</strong>, ma si sono mossi in modi diversi. Per descrivere come e quanto rapidamente cambia la posizione durante il viaggio introduciamo la <strong>velocità scalare</strong>."
+              "html": "I due gatti partono insieme e arrivano insieme: compiono <strong>lo stesso spostamento nello stesso intervallo di tempo</strong>, ma si sono mossi in due modi diversi.<br><br>Per descrivere queste differenze dobbiamo introdurre <strong>una nuova grandezza fisica</strong>, che esprima quanto rapidamente cambia la posizione durante il viaggio."
             }
           ],
           "illustration": {
@@ -25,7 +25,8 @@ window.READER_LESSONS["cinematica-velocita"] = {
             "alt": "Morgana si avvicina a piedi al chiosco di souvenir dove Red osserva gli oggetti in vendita; la sua BMX è parcheggiata accanto al chiosco, con il caschetto appoggiato sul manubrio.",
             "width": 1778,
             "height": 885
-          }
+          },
+          "hideTitle": true
         },
         {
           "title": "Dare un numero alla velocità",
