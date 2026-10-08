@@ -15,26 +15,25 @@
       .rm-velocity-scene svg{display:block;width:100%;height:auto;overflow:visible}
       .rm-velocity-scene .vs-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px}
       .rm-velocity-scene .vs-controls button{padding:8px 14px;border-radius:10px;border:1px solid var(--rm-border);background:var(--rm-panel);color:inherit;font:inherit;cursor:pointer}
-      .rm-velocity-scene .vs-time{font-variant-numeric:tabular-nums}
-      .rm-velocity-scene .vs-note{font-size:13px;line-height:1.45;margin:10px 0 0;opacity:.8}
+      .rm-velocity-scene .vs-phase{display:block;flex:1;min-width:190px;padding:12px 16px;border-radius:12px;border:1px solid var(--rm-border);background:rgba(31,170,173,.12);font-size:17px;font-weight:600;line-height:1.4}
     </style>
     <svg viewBox="0 0 720 300" role="img" aria-label="Red e Morgana percorrono la stessa traiettoria curva: Red si ferma al chiosco e aspetta Morgana, poi proseguono insieme fino al parco.">
-      <defs><clipPath id="${id}-clip"><circle r="19"/></clipPath><marker id="${id}-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="currentColor"/></marker></defs>
+      <defs><clipPath id="${id}-clip"><circle r="19"/></clipPath><marker id="${id}-arrow" markerWidth="5" markerHeight="5" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="currentColor"/></marker></defs>
       <path class="vs-path" d="M65 205 C125 205 140 95 215 100 S300 225 395 200 S470 70 555 105 S610 170 652 160" fill="none" stroke="currentColor" stroke-opacity=".38" stroke-width="4"/>
-      <text x="35" y="270" fill="currentColor" font-size="16">Partenza · s = 0</text>
-      <path d="M78 248 L130 248" stroke="currentColor" stroke-width="2" marker-end="url(#${id}-arrow)"/><text x="140" y="253" fill="currentColor" font-size="13">verso positivo</text>
-      <g class="vs-kiosk"><path d="M-22 -12 H22 V16 H-22 Z" fill="#c49052" stroke="#805c35"/><path d="M-28 -12 L-18 -29 H18 L28 -12 Z" fill="#36aaa6" stroke="#267c79"/><path d="M-14 -4 H14 V8 H-14 Z" fill="#fff1cf"/><text y="-39" text-anchor="middle" fill="currentColor" font-size="15">Chiosco · ¾ del percorso</text></g>
-      <g transform="translate(655 130)"><path d="M-15 0 V-28 M13 0 V-22" stroke="#866145" stroke-width="5"/><circle cx="-15" cy="-33" r="15" fill="#65a86c"/><circle cx="13" cy="-26" r="13" fill="#87bb71"/><text y="-55" text-anchor="middle" fill="currentColor" font-size="16">Parco</text></g>
+      <g class="vs-arrows"></g>
+      <circle cx="65" cy="205" r="5" fill="currentColor"/><text x="28" y="266" fill="currentColor" font-size="15">Origine</text>
+      <line class="vs-kiosk-link" stroke="currentColor" stroke-opacity=".3" stroke-dasharray="3 4"/>
+      <g class="vs-kiosk"><image x="-48" y="-88" width="96" height="96" href="assets/images/reader/velocity-kiosk-v1.png"/></g>
+      <image x="603" y="6" width="110" height="96" href="assets/images/reader/velocity-park-v1.png"/>
       <g class="vs-morgana"><line class="vs-link" stroke="#a17bd7" stroke-width="1.5" stroke-dasharray="3 3"/><g class="vs-avatar"><circle r="21" fill="var(--rm-panel)" stroke="#a17bd7" stroke-width="3"/><g clip-path="url(#${id}-clip)"><svg x="-20" y="-20" width="40" height="40" viewBox="590 0 560 430" preserveAspectRatio="xMidYMid slice"><image href="assets/images/morgana-classroom/morgana-turn-01.png" width="1672" height="941"/></svg></g><text x="0" y="-28" text-anchor="middle" fill="currentColor" font-size="14">Morgana</text></g></g>
       <g class="vs-red"><line class="vs-link" stroke="#ee944e" stroke-width="1.5" stroke-dasharray="3 3"/><g class="vs-avatar"><circle r="21" fill="var(--rm-panel)" stroke="#ee944e" stroke-width="3"/><image x="-19" y="-18" width="38" height="36" href="assets/images/red-logo-head.png"/><text x="30" y="5" text-anchor="start" fill="currentColor" font-size="14">Red</text></g></g>
     </svg>
-    <div class="vs-controls"><button type="button" class="vs-play">Avvia</button><button type="button" class="vs-reset">Ricomincia</button><output class="vs-time" aria-label="Tempo dell’animazione"></output><span class="vs-phase" aria-live="polite"></span></div>
-    <p class="vs-note">Le icone sono separate per leggibilità: i tratteggi le collegano alla posizione sulla traiettoria. Quando proseguono insieme, hanno la stessa coordinata s.</p>`;
+    <div class="vs-controls"><button type="button" class="vs-play">Avvia</button><button type="button" class="vs-reset">Ricomincia</button><span class="vs-phase" aria-live="polite"></span></div>
+    `;
     box.append(board);
     const path = board.querySelector('.vs-path');
     const length = path.getTotalLength();
     const play = board.querySelector('.vs-play');
-    const output = board.querySelector('.vs-time');
     const phase = board.querySelector('.vs-phase');
     let frame = 0, last = 0, disposed = false;
     function geometry(fraction) {
@@ -46,7 +45,18 @@
       return { x: p.x, y: p.y, nx: -dy / norm, ny: dx / norm };
     }
     const kiosk = geometry(.75);
-    board.querySelector('.vs-kiosk').setAttribute('transform', `translate(${kiosk.x + kiosk.nx * -58} ${kiosk.y + kiosk.ny * -58})`);
+    board.querySelector('.vs-kiosk').setAttribute('transform', `translate(${kiosk.x - 65} ${Math.max(88, kiosk.y - 35)})`);
+    const kioskLink = board.querySelector('.vs-kiosk-link');
+    kioskLink.setAttribute('x1', kiosk.x); kioskLink.setAttribute('y1', kiosk.y);
+    kioskLink.setAttribute('x2', kiosk.x - 65); kioskLink.setAttribute('y2', Math.max(88, kiosk.y - 35));
+    const ns = 'http://www.w3.org/2000/svg';
+    [.2, .45, .64].forEach(f => {
+      const arrow = document.createElementNS(ns, 'path');
+      const points = Array.from({length: 9}, (_, i) => geometry(f - .018 + .036 * i / 8));
+      arrow.setAttribute('d', points.map((p, i) => (i ? 'L' : 'M') + p.x + ' ' + p.y).join(' '));
+      arrow.setAttribute('fill', 'none'); arrow.setAttribute('stroke', 'currentColor'); arrow.setAttribute('stroke-width', '2.5');
+      arrow.setAttribute('marker-end', `url(#${id}-arrow)`); board.querySelector('.vs-arrows').append(arrow);
+    });
     function move(name, fraction, offset) {
       const p = geometry(fraction), g = board.querySelector('.vs-' + name);
       g.querySelector('.vs-avatar').setAttribute('transform', `translate(${p.x + p.nx * offset} ${p.y + p.ny * offset})`);
@@ -57,7 +67,6 @@
     function draw() {
       const p = positions(state.elapsed);
       move('morgana', p.morgana, -28); move('red', p.red, 28);
-      output.textContent = state.elapsed.toFixed(1).replace('.', ',') + ' s / 10,0 s';
       const text = state.elapsed >= 10 ? 'Arrivati al parco' : state.elapsed >= 7.5 ? 'Proseguono insieme' : state.elapsed >= 2.5 ? 'Red aspetta al chiosco' : 'Red pedala, Morgana cammina';
       if (phase.textContent !== text) phase.textContent = text;
       play.textContent = state.running ? 'Pausa' : state.elapsed >= 10 ? 'Rivedi' : 'Avvia';
