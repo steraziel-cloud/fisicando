@@ -57,7 +57,7 @@ window.READER_LESSONS["cinematica-velocita"] = {
               "interaction": "units-conversion"
             },
             {
-              "title": "Convertire il valore",
+              "title": "Facciamo qualche equivalenza",
               "html": "Da <span class=\"rm-formula\">m/s</span> a <span class=\"rm-formula\">km/h</span> <strong>moltiplichiamo per 3,6</strong>:<br><span class=\"rm-formula\">20 m/s = 72 km/h</span>.<br><br>Da <span class=\"rm-formula\">km/h</span> a <span class=\"rm-formula\">m/s</span> <strong>dividiamo per 3,6</strong>:<br><span class=\"rm-formula\">36 km/h = 10 m/s</span>.<br><br>Cambia l’unità, non il movimento descritto."
             }
           ]

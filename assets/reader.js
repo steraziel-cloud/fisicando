@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
   const feedback=el('p','rm-inline-feedback');feedback.setAttribute('role','status');
   const result=el('div','rm-unit-result');result.hidden=!(st.done||!interactive);
-  result.innerHTML="<span class=\"rm-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" displaystyle=\"true\"><mrow><mfrac><mrow><mn>1</mn><mi mathvariant=\"normal\">m</mi></mrow><mrow><mn>1</mn><mi mathvariant=\"normal\">s</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>0,001</mn><mi mathvariant=\"normal\">km</mi></mrow><mrow><mfrac><mn>1</mn><mn>3600</mn></mfrac><mi mathvariant=\"normal\">h</mi></mrow></mfrac><mo>=</mo><mn>3,6</mn><mfrac><mi mathvariant=\"normal\">km</mi><mi mathvariant=\"normal\">h</mi></mfrac></mrow></math></span>"+'<p>Anche la velocità media si esprime in queste unità.</p>';
+  result.innerHTML="<span class=\"rm-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" displaystyle=\"true\"><mrow><mfrac><mrow><mn>1</mn><mi mathvariant=\"normal\">m</mi></mrow><mrow><mn>1</mn><mi mathvariant=\"normal\">s</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>0,001</mn><mi mathvariant=\"normal\">km</mi></mrow><mrow><mfrac><mn>1</mn><mn>3600</mn></mfrac><mi mathvariant=\"normal\">h</mi></mrow></mfrac><mo>=</mo><mn>3,6</mn><mfrac><mi mathvariant=\"normal\">km</mi><mi mathvariant=\"normal\">h</mi></mfrac></mrow></math></span>";
   const check=button('Verifica le equivalenze',()=>{
    if(st.values.includes('')){feedback.textContent='Scegli un valore per entrambe le equivalenze.';return;}
    if(st.values.some((v,i)=>v!==correct[i])){feedback.textContent='Riprova: 1 km contiene 1000 m e un’ora contiene 60 minuti di 60 secondi ciascuno.';return;}
