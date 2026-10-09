@@ -12,7 +12,7 @@
   const draw=p=>{
    if(wheel){const x=52+2*Math.PI*34*p;$('.si-wheel').setAttribute('transform',`translate(${x} 130)`);$('.si-rotate').setAttribute('transform',`rotate(${360*p})`);$('.si-travel').setAttribute('x2',x);$('.si-distance').textContent='Avanzamento: '+fmt(distance()*p)+' m';$('.si-sensor').setAttribute('fill',p===0||p===1?'#ee944e':'var(--rm-accent)');}
    else{$('.si-car').setAttribute('transform',`translate(${110+180*p} 152)`);$('.si-sensor-a').setAttribute('fill',p>0?'#ee944e':'currentColor');$('.si-sensor-b').setAttribute('fill',p===1?'#ee944e':'currentColor');}
-   $('.si-known').textContent=fmt(distance())+' m';$('.si-period').textContent=fmt(period())+' s';if(rInput)$('.si-radius').textContent=fmt(radius())+' m';
+   $('.si-known').textContent=(wheel?'≈ ':'')+fmt(distance(),wheel?3:2)+' m';$('.si-period').textContent=fmt(period())+' s';if(rInput)$('.si-radius').textContent=fmt(radius())+' m';
    $('.si-time').textContent=running||p===1?fmt(period()*p,3)+' s':'—';$('.si-pulses').textContent=p===1?'2':running?'1':'0';
   };
   const indicate=v=>{const a=Math.PI+Math.min(200,v)/200*Math.PI;$('.si-needle').setAttribute('x2',130+72*Math.cos(a));$('.si-needle').setAttribute('y2',115+72*Math.sin(a));$('.si-speed').textContent=fmt(v,1)+' km/h';$('.si-dial').setAttribute('aria-label','Velocità misurata: '+fmt(v,1)+' chilometri orari');};
