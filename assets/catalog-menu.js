@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const area = document.getElementById('area-filter');
   const available = document.getElementById('available-filter');
   const all = document.getElementById('all-levels-filter');
+  const subjectAllowed = s => !s.visibleLevels || !!level && s.visibleLevels.includes(level);
+  subject.replaceChildren(new Option('Tutte le materie',''));
+  catalog.filter(subjectAllowed).forEach(s=>subject.add(new Option(s.title,s.id)));
   if (!level) all.closest('label').hidden = true;
   const paths = {
     ruler:'M4 4h16v16H4z M8 4v5 M12 4v3 M16 4v5',
@@ -40,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function updateAreas() {
     const previous=area.value;area.replaceChildren(new Option('Tutte le macroaree',''));
-    catalog.filter(s=>!subject.value || s.id===subject.value).forEach(s=>s.areas.forEach(a=>area.add(new Option(a.title,s.id+'/'+a.title))));
+    catalog.filter(s=>subjectAllowed(s)&&(!subject.value || s.id===subject.value)).forEach(s=>s.areas.forEach(a=>area.add(new Option(a.title,s.id+'/'+a.title))));
     if ([...area.options].some(o=>o.value===previous))area.value=previous;
   }
   let selectedKey = null;
@@ -52,11 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
     pane.hidden = false; pane.classList.remove('rm-options-enter'); void pane.offsetWidth; pane.classList.add('rm-options-enter');
     document.getElementById('materials-title').textContent = l.title;
     document.getElementById('selected-lesson-path').textContent = `${subjectTitle} · ${areaTitle} · ${topic.title}`;
-    document.getElementById('selected-lesson-note').textContent = l.url ? 'Scegli il materiale disponibile per questa lezione.' : 'Questa lezione è da preparare. I materiali verranno aggiunti qui.';
+    document.getElementById('selected-lesson-note').textContent = l.unpublished ? 'Progetto in lavorazione. Questo segnaposto ricorda un’attività futura: i materiali non sono ancora pubblicati.' : l.url ? 'Scegli il materiale disponibile per questa lezione.' : 'Questa lezione è da preparare. I materiali verranno aggiunti qui.';
     const cards = document.getElementById('lesson-cards'); cards.replaceChildren();
-    const types = [['Teoria','Capire i concetti','Leggi la spiegazione nel reader.'],['Esercizi','Metterti alla prova','Applica i concetti e allena il ragionamento.'],['Laboratorio','Esplorare e sperimentare','Osserva e manipola i fenomeni.']];
+    const types = l.kind==='Progetto' ? [['Progetto','Un tachimetro con Arduino','Costruire uno strumento per misurare la velocità.']] : [['Teoria','Capire i concetti','Leggi la spiegazione nel reader.'],['Esercizi','Metterti alla prova','Applica i concetti e allena il ragionamento.'],['Laboratorio','Esplorare e sperimentare','Osserva e manipola i fenomeni.']];
     types.forEach(([kind,title,description],i) => {
-      const active = l.url && l.kind === kind;
+      const active = !l.unpublished && l.url && l.kind === kind;
       const card = document.createElement(active ? 'a' : 'div'); card.className = 'rm-material-card rm-choice-card' + (active ? ' rm-choice-card-ready' : ' rm-choice-card-disabled');
       if (active) {
         const url = new URL(kind === 'Teoria' && !l.id ? 'reader.html' : l.url, location.href);
@@ -67,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else card.setAttribute('aria-disabled','true');
       const label = document.createElement('span'); label.className = 'rm-material-label';label.textContent = `0${i+1} · ${kind}`;
       const heading = document.createElement('h3');heading.textContent = title;
-      const text = document.createElement('p');text.textContent = active ? description : 'Non ancora disponibile per questa lezione.';
+      const text = document.createElement('p');text.textContent = l.unpublished ? 'In lavorazione · Non ancora disponibile al pubblico.' : active ? description : 'Non ancora disponibile per questa lezione.';
       card.append(label,heading,text);cards.append(card);
     });
   }
@@ -76,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filtering=!!(tokens.length || subject.value || area.value || available.checked || all.checked);
     const fragment=document.createDocumentFragment();let count=0, ready=0;
     catalog.forEach(s=> {
+      if(!subjectAllowed(s))return;
       if(subject.value && s.id!==subject.value)return;
       const sd=branch(s.title,s.id,s.icon,filtering);
       sd.classList.add('rm-catalog-subject');
@@ -85,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         a.topics.forEach((t,ti)=> {
           const lessons=t.lessons.filter(l=> {
             if(level && !all.checked && !l.levels.includes(level))return false;
-            if(available.checked && !l.url)return false;
+            if(available.checked && (!l.url||l.unpublished))return false;
             const haystack=normalize([s.title,a.title,t.title,...(t.aliases||[]),l.title,l.kind||''].join(' '));
             return tokens.every(token=>haystack.includes(token));
           });
@@ -93,13 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
           const td=branch(t.title,s.id+'/'+ai+'/'+ti,null,tokens.length > 0 || available.checked);td.classList.add('rm-catalog-topic');
           const list=document.createElement('ul');
           lessons.forEach(l=> {
-            count++;if(l.url)ready++;
+            count++;if(l.url&&!l.unpublished)ready++;
             const li=document.createElement('li');const label=document.createElement('button');label.type='button';label.className='rm-catalog-lesson';
             const key = `${s.id}/${ai}/${ti}/${t.lessons.indexOf(l)}`;
             label.dataset.lessonKey = key; label.setAttribute('aria-pressed',String(selectedKey === key));
             label.addEventListener('click',()=>selectLesson(l,t,s.title,a.title,key));
             const title=document.createElement('span');title.textContent=l.title;label.append(title);
-            const status=document.createElement('small');status.textContent=l.url?l.kind || 'Disponibile':'Da preparare';status.className=l.url?'rm-lesson-ready':'rm-lesson-planned';label.append(status);
+            const status=document.createElement('small');status.textContent=l.status==='work-in-progress'?'In lavorazione':l.url?l.kind || 'Disponibile':'Da preparare';status.className=l.url&&!l.unpublished?'rm-lesson-ready':'rm-lesson-planned';label.append(status);
             if(all.checked || !level){const tags=document.createElement('small');tags.className='rm-lesson-levels';tags.textContent=l.levels.map(k=>levels[k]).join(' · ');label.append(tags);}
             li.append(label);list.append(li);
           });td.append(list);ad.append(td);

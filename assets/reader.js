@@ -42,10 +42,11 @@ document.addEventListener('DOMContentLoaded',()=>{
  function showOptionalParts(){
   const destinations=lesson.sections[current].optionalNext;
   const dialog=el('dialog','rm-glossary'),title=el('h2','','Vuoi esplorare ancora?');title.id='reader-optional-title';dialog.setAttribute('aria-labelledby',title.id);
-  dialog.append(title,el('p','','Puoi scoprire le curiosità e gli approfondimenti sulla velocità nella vita quotidiana, oppure passare direttamente al riepilogo della lezione.'));
+  const trivia=lesson.sections.find(s=>s.id===destinations.trivia),inProgress=trivia?.status==='work-in-progress';
+  dialog.append(title,el('p','',inProgress?'Le curiosità e gli approfondimenti sulla velocità nella vita quotidiana sono ancora in lavorazione: troverai un primo prototipo del tachimetro e segnaposti per autovelox e GPS. Puoi dare un’occhiata oppure passare direttamente al riepilogo della lezione.':'Puoi scoprire le curiosità e gli approfondimenti sulla velocità nella vita quotidiana, oppure passare direttamente al riepilogo della lezione.'));
   const choices=el('div','rm-reader-actions');
   const choose=id=>{const target=lesson.sections.findIndex(s=>s.id===id);dialog.close();if(target>=0){state[target].available=true;open(target,true,1);}};
-  choices.append(button('Esplora i trivia',()=>choose(destinations.trivia),'rm-btn'),button('Vai al recap',()=>choose(destinations.recap)));
+  choices.append(button(inProgress?'Anteprima · In lavorazione':'Esplora i trivia',()=>choose(destinations.trivia),'rm-btn'),button('Vai al recap',()=>choose(destinations.recap)));
   dialog.append(choices);dialog.addEventListener('close',()=>dialog.remove(),{once:true});document.body.append(dialog);dialog.showModal();
  }
  function actions(){

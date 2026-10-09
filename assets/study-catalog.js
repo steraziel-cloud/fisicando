@@ -1100,5 +1100,47 @@ window.LESSON_CATALOG = [
         ]
       }
     ]
+  },
+  {
+    "id": "arduino",
+    "title": "Arduino",
+    "icon": "gear",
+    "visibleLevels": [
+      "biennio",
+      "terzo-quarto",
+      "ultimo-altro",
+      "triennio",
+      "analisi1"
+    ],
+    "areas": [
+      {
+        "title": "Progetti",
+        "icon": "gear",
+        "topics": [
+          {
+            "title": "Sensori e misure",
+            "aliases": [
+              "elettronica",
+              "tachimetro"
+            ],
+            "lessons": [
+              {
+                "title": "Un tachimetro con Arduino",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "triennio",
+                  "analisi1"
+                ],
+                "kind": "Progetto",
+                "status": "work-in-progress",
+                "unpublished": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ];
