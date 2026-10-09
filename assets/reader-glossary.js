@@ -1,4 +1,4 @@
-/* Shared definitions: lessons link to these entries by term ID. */
+/* Glossario condiviso delle lezioni. */
 window.READER_GLOSSARY = {
   "riferimento": {
     "title": "Sistema di riferimento",
@@ -32,7 +32,7 @@ window.READER_GLOSSARY = {
   },
   "funzione": {
     "title": "Funzione",
-    "text": "Una funzione associa a ogni valore ammesso in ingresso un solo valore in uscita. Nella legge oraria s(t), l’ingresso è l’istante t e l’uscita è la posizione s; nella funzione velocità v(t), l’uscita è la velocità istantanea. Si legge «s di t» o «v di t», non è una moltiplicazione. Istanti diversi possono avere lo stesso valore in uscita. Una funzione può essere rappresentata con una formula, una tabella o un grafico.",
+    "text": "Una funzione è una legge di corrispondenza tra due insiemi: a ogni elemento del primo associa uno e un solo elemento del secondo. Indichiamo con x l’elemento in ingresso e con y quello in uscita. La scrittura y = f(x), letta «y uguale a f di x», esprime questa corrispondenza; quando disponiamo di una formula, è un’equazione nelle variabili x e y. Elementi diversi in ingresso possono avere la stessa uscita. Una funzione può essere descritta anche con una tabella o un grafico.",
     "kind": "Riprendi la matematica"
   },
   "legge-oraria": {
@@ -75,5 +75,10 @@ window.READER_GLOSSARY = {
     "title": "Sistema Internazionale di unità di misura",
     "kind": "Definizione di fisica",
     "text": "Il Sistema Internazionale (SI) è un sistema condiviso di unità di misura. Si basa su sette unità fondamentali, tra cui il metro per la lunghezza e il secondo per il tempo. Le unità delle altre grandezze si ricavano combinando quelle fondamentali: per esempio, il metro al secondo per la velocità."
+  },
+  "incertezza": {
+    "title": "Incertezza di misura",
+    "kind": "Definizione di fisica",
+    "text": "Una misura non determina il valore di una grandezza con precisione assoluta. L’incertezza esprime quanto può variare ragionevolmente il valore attribuito alla grandezza sulla base delle informazioni disponibili. Dipende dagli strumenti, dal metodo e dalle condizioni della misura. Non è uno sbaglio: anche una misura eseguita correttamente ha un’incertezza."
   }
 };
