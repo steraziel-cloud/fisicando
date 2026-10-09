@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  const format=n=>Number(n).toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2});
  const el=(tag,cls,text)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node;};
  const button=(text,fn,cls='rm-btn secondary')=>{const b=el('button',cls,text);b.type='button';b.addEventListener('click',fn);return b;};
- const unlocked=i=>reviewAccess||i===0||state[i-1].complete;
+ const unlocked=i=>reviewAccess||i===0||state[i].available||state[i-1].complete;
  $('reader-title').textContent=lesson.title;$('reader-subtitle').textContent=lesson.subtitle;document.title='GatitoMath – '+lesson.title;
  // BFCache can restore a departed page without executing DOMContentLoaded again.
  window.addEventListener('pageshow',e=>{if(e.persisted)location.reload();});
@@ -38,7 +38,16 @@ document.addEventListener('DOMContentLoaded',()=>{
   const copy=el('span','rm-celebration-copy');copy.append(el('strong','',title),el('span','',message));card.append(cat,copy);
   const stars=el('span','rm-celebration-stars');stars.setAttribute('aria-hidden','true');for(let i=0;i<5;i++)stars.append(el('i'));card.append(stars);target.replaceChildren(card);
  }
- function finish(message){const first=!state[current].complete;state[current].complete=true;state[current].reached=flat(lesson.sections[current]).length;index();celebrate($('reader-feedback'),message,first?'Una parte in più, ci sei!':'Perfetto!');actions();}
+ function finish(message){const first=!state[current].complete;state[current].complete=true;state[current].reached=flat(lesson.sections[current]).length;index();celebrate($('reader-feedback'),message,first?'Una parte in più, ci sei!':'Perfetto!');actions();if(first&&lesson.sections[current].optionalNext)showOptionalParts();}
+ function showOptionalParts(){
+  const destinations=lesson.sections[current].optionalNext;
+  const dialog=el('dialog','rm-glossary'),title=el('h2','','Vuoi esplorare ancora?');title.id='reader-optional-title';dialog.setAttribute('aria-labelledby',title.id);
+  dialog.append(title,el('p','','Puoi scoprire le curiosità e gli approfondimenti sulla velocità nella vita quotidiana, oppure passare direttamente al riepilogo della lezione.'));
+  const choices=el('div','rm-reader-actions');
+  const choose=id=>{const target=lesson.sections.findIndex(s=>s.id===id);dialog.close();if(target>=0){state[target].available=true;open(target,true,1);}};
+  choices.append(button('Esplora i trivia',()=>choose(destinations.trivia),'rm-btn'),button('Vai al recap',()=>choose(destinations.recap)));
+  dialog.append(choices);dialog.addEventListener('close',()=>dialog.remove(),{once:true});document.body.append(dialog);dialog.showModal();
+ }
  function actions(){
   if(referenceMode){
    const st=state[current],item=flat(lesson.sections[current])[st.cursor];
@@ -297,8 +306,9 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  function updateCard(item,direction){
   const view=mountedCard;cancelSlide();
-  const wanted=item.card.stepMode==='replace'?[item.step]:item.card.steps.slice(0,item.si+1);
-  if(item.card.stepMode==='replace'){
+  const replace=item.card.stepMode==='replace'||!!item.step.replace;
+  const wanted=replace?[item.step]:item.card.steps.slice(0,item.si+1);
+  if(replace||view.replace){
    const previous=[...view.text.childNodes],next=wanted.map(step=>stepNode(step));
    slideSwap(view.text,previous,next,direction);
   }else{
@@ -320,6 +330,7 @@ document.addEventListener('DOMContentLoaded',()=>{
      node.animate([{opacity:0,transform:`translateX(${direction*36}px)`},{opacity:1,transform:'none'}],{duration:260,easing:'ease-out'});
    }
   }
+  view.replace=replace;
   if(view.updateBoard)view.updateBoard(wanted.length>=3);
   if(item.card.board==='velocity-instant'){const graph=view.box.querySelector('.vs-graph');if(graph){const show=!!item.step.velocityGraph;const play=view.box.querySelector('.vs-play');if(show&&graph.hidden&&play?.textContent==='Rivedi')play.click();graph.hidden=!show;view.box.querySelector('.rm-velocity-scene').classList.toggle('vs-withgraph',show);}}
  }
@@ -341,7 +352,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
   const text=el('div','rm-card-text');steps.forEach(step=>text.append(stepNode(step,archived)));box.append(text);
   const updateBoard=card.board==='position'||card.board==='displacement'?positionBoard(box,card.board,steps.length>=3):null;
-  if(!archived&&!allMode)mountedCard={section:current,card,box,text,updateBoard};
+  if(!archived&&!allMode)mountedCard={section:current,card,box,text,updateBoard,replace:card.stepMode==='replace'||!!steps.at(-1)?.replace};
  }
  function render(direction=0){
   const section=lesson.sections[current],item=flat(section)[state[current].cursor];
@@ -353,7 +364,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const s=lesson.sections[current],st=state[current],items=flat(s);$('reader-section-title').textContent=s.title+(referenceMode?' · Richiamo':'');
   if(st.cursor===items.length){if(s.quiz)checkpoint();else $('reader-feedback').textContent='Lezione completata. Puoi rivedere le parti dall’indice o scegliere «Mostra tutto».';}else{
    const item=items[st.cursor];if((item.card.retainPrevious||item.card.collapsePrevious)&&item.ci>0)renderCard(s.cards[item.ci-1],s.cards[item.ci-1].steps,true,!!item.card.collapsePrevious);
-   renderCard(item.card,item.card.stepMode==='replace'?[item.step]:item.card.steps.slice(0,item.si+1));
+   renderCard(item.card,item.card.stepMode==='replace'||item.step.replace?[item.step]:item.card.steps.slice(0,item.si+1));
   }if(previous.length&&$('reader-steps').children.length)slideSwap($('reader-steps'),previous,[...$('reader-steps').childNodes],direction,previousHeight);index();actions();
  }
  function top(){const target=$('reader-section-title');target.focus({preventScroll:true});target.scrollIntoView({block:'start',behavior:'auto'});}
