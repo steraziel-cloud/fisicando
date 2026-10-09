@@ -208,6 +208,10 @@ window.READER_LESSONS["cinematica-velocita"] = {
             {
               "title": "Segno, misura e precisione",
               "html": "Il <strong>segno</strong> deriva dal verso positivo scelto; nella descrizione locale indica il verso del moto. Il valore assoluto indica quanto rapidamente ci muoviamo.<br><br>Una misura usa intervalli finiti: la precisione utile dipende dal movimento osservato e dagli strumenti.<br><br>La velocità si esprime in <strong>m/s</strong> oppure in altre unità equivalenti, come <strong>km/h</strong>."
+            },
+            {
+              "title": "La funzione velocità",
+              "html": "La <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button> <span class=\"rm-formula\">v(t)</span> associa a ogni istante la velocità istantanea. Il suo grafico permette di leggere <strong>quanto vale la velocità, quando cambia e per quanto tempo resta costante o nulla</strong>.<br><br>Due movimenti possono avere la stessa velocità media e <strong>grafici v(t) diversi</strong>, come Red e Morgana.<br><br>La legge oraria <span class=\"rm-formula\">s(t)</span> descrive la posizione nel tempo; <span class=\"rm-formula\">v(t)</span> descrive la velocità istantanea nel tempo."
             }
           ]
         }
