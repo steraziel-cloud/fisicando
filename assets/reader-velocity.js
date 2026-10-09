@@ -92,7 +92,7 @@ window.READER_LESSONS["cinematica-velocita"] = {
           ]
         },
         {
-          "title": "Una media, movimenti diversi",
+          "title": "In conclusione",
           "stepMode": "replace",
           "steps": [
             {
