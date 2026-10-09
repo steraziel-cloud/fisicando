@@ -211,16 +211,16 @@ window.READER_LESSONS["cinematica-velocita"] = {
           "stepMode": "replace",
           "steps": [
             {
-              "title": "Dalla media alla descrizione locale",
-              "html": "La <strong>velocità scalare</strong> descrive come e quanto rapidamente cambia la coordinata lungo una traiettoria nota, anche curva.<br><br>Il rapporto <span class=\"rm-formula\">Δs / Δt</span> fornisce la <strong>velocità media</strong> nell’intervallo scelto. Può nascondere soste, ripartenze e inversioni.<br><br>Restringendo gli intervalli verso lo stesso momento, nei casi regolari le medie si avvicinano al valore della <strong>velocità istantanea</strong>."
+              "title": "La velocità media riassume un intervallo",
+              "html": "La <strong>velocità scalare</strong> descrive quanto rapidamente cambia la posizione lungo una traiettoria, tenendo conto del verso scelto come positivo.<br><br>La <strong>velocità media</strong> si calcola dividendo lo spostamento per il tempo trascorso: <span class=\"rm-formula\">vₘ = Δs / Δt</span>.<br><br>Questo numero <strong>non racconta ciò che accade all’interno dell’intervallo</strong>: restare fermi oppure andare e tornare può dare la stessa media nulla; muoversi uniformemente oppure alternare tratti rapidi e pause può dare la stessa media non nulla."
             },
             {
-              "title": "Segno, misura e precisione",
-              "html": "Il <strong>segno</strong> deriva dal verso positivo scelto; nella descrizione locale indica il verso del moto. Il valore assoluto indica quanto rapidamente ci muoviamo.<br><br>Una misura usa intervalli finiti: la precisione utile dipende dal movimento osservato e dagli strumenti.<br><br>La velocità si esprime in <strong>m/s</strong> oppure in altre unità equivalenti, come <strong>km/h</strong>."
+              "title": "La velocità istantanea descrive i singoli momenti",
+              "html": "Per distinguere questi movimenti, restringiamo gli intervalli verso l’istante che ci interessa. Se le velocità medie si avvicinano a un valore preciso, <strong>quel valore è la velocità istantanea in quell’istante</strong>.<br><br>La <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button> <span class=\"rm-formula\">v(t)</span> associa a ogni istante la sua velocità. Il grafico permette di leggere <strong>quanto vale, quando cambia e quanto durano i diversi tratti del moto</strong>.<br><br>Morgana mantiene <strong>2 m/s</strong>; Red passa da <strong>6 a 0 e poi a 2 m/s</strong>. La media dell’intero viaggio è uguale, ma i grafici rendono evidenti le differenze."
             },
             {
-              "title": "La funzione velocità",
-              "html": "La <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button> <span class=\"rm-formula\">v(t)</span> associa a ogni istante la velocità istantanea. Il suo grafico permette di leggere <strong>quanto vale la velocità, quando cambia e per quanto tempo resta costante o nulla</strong>.<br><br>Due movimenti possono avere la stessa velocità media e <strong>grafici v(t) diversi</strong>, come Red e Morgana.<br><br>La legge oraria <span class=\"rm-formula\">s(t)</span> descrive la posizione nel tempo; <span class=\"rm-formula\">v(t)</span> descrive la velocità istantanea nel tempo."
+              "title": "Leggere e misurare una velocità",
+              "html": "Il <strong>segno della velocità istantanea</strong> indica il verso del movimento: positivo nel verso scelto, negativo nel verso opposto. Il suo <strong>valore assoluto</strong> indica quanto rapidamente ci muoviamo; durante una pausa la velocità è nulla.<br><br>L’unità del Sistema Internazionale è il <strong>m/s</strong>: per passare ai <strong>km/h</strong> moltiplichiamo per <strong>3,6</strong>; per tornare ai m/s dividiamo per 3,6.<br><br>Nella pratica misuriamo sempre su intervalli finiti. Intervalli brevi possono dare una buona stima della velocità istantanea, ma <strong>la precisione dipende anche dagli strumenti e dall’<button type=\"button\" class=\"rm-keyword\" data-term=\"incertezza\">incertezza</button> della misura</strong>. Cerchiamo la precisione utile al nostro scopo."
             }
           ]
         }
