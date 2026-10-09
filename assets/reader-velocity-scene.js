@@ -52,8 +52,8 @@
       <path class="vs-graph-red" fill="none" stroke="#ee944e" stroke-width="3" stroke-dasharray="8 4"/>
       <circle class="vs-dot-morgana" r="5" fill="#a17bd7"/><circle class="vs-dot-red" r="5" fill="#ee944e"/>
       <line class="vs-graph-time" y1="35" y2="185" stroke="currentColor" stroke-opacity=".4" stroke-dasharray="3 4"/>
-      </svg><p style="margin:4px 0;font-size:14px"><span style="color:#a17bd7">━ Morgana</span> · <span style="color:#ee944e">┄ Red</span></p><p style="margin:6px 0;font-size:13px">Modello idealizzato: i cambi di velocità di Red sono immediati. In un moto reale richiedono un breve intervallo.</p>`;
-      board.querySelector('.vs-controls').before(graph);
+      </svg><p style="margin:4px 0;font-size:14px"><span style="color:#a17bd7">━ Morgana</span> · <span style="color:#ee944e">┄ Red</span></p>`;
+      const visuals=document.createElement('div');visuals.className='vs-visuals';const route=board.querySelector('svg');route.before(visuals);visuals.append(route,graph);board.classList.toggle('vs-withgraph',!!options.graph);
       board.querySelector('svg').setAttribute('viewBox','0 0 720 330');
     }
     box.append(board);
