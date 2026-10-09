@@ -1,4 +1,4 @@
-/* La velocità scalare · bozza teorica per revisione. */
+/* La velocità scalare · teoria e lavagne guidate. */
 window.READER_LESSONS["cinematica-velocita"] = {
   "title": "La velocità scalare",
   "subtitle": "Biennio · Meccanica · Cinematica scalare",
@@ -96,7 +96,7 @@ window.READER_LESSONS["cinematica-velocita"] = {
           "stepMode": "replace",
           "steps": [
             {
-              "html": "La velocità media riassume ciò che accade tra due letture, ma <strong>non permette di distinguere come si è svolto il movimento all’interno dell’intervallo</strong>.<br><br>Con l’ascensore abbiamo ottenuto una <strong>velocità media nulla</strong> sia restando fermi sia salendo e tornando al punto di partenza: il risultato è uguale, ma ciò che è accaduto è diverso.<br><br>Anche una <strong>stessa media non nulla</strong> può descrivere un movimento uniforme oppure un movimento con una pausa e tratti più rapidi, come nel viaggio di Red e Morgana.<br><br><strong>La media ci dice quanto è cambiata la posizione per unità di tempo, complessivamente. Non ci dice quanto rapidamente cambiava nei singoli momenti.</strong> Per scoprirlo, dobbiamo osservare più da vicino."
+              "html": "La velocità media riassume ciò che accade tra due letture, ma <strong>non permette di distinguere come si è svolto il movimento all’interno dell’intervallo</strong>.<br><br>Con l’ascensore abbiamo ottenuto una <strong>velocità media nulla</strong> sia restando fermi sia salendo e tornando al punto di partenza: il risultato è uguale, ma ciò che è accaduto è diverso.<br><br>Anche una <strong>stessa media non nulla</strong> può descrivere un movimento uniforme oppure un movimento con una pausa e tratti più rapidi, come nel viaggio di Red e Morgana.<br><br><strong>La media ci dice quanto è cambiata la posizione per unità di tempo, complessivamente. Non ci dice quanto rapidamente cambiava nei singoli momenti.</strong> Per scoprirlo, dobbiamo ridurre l’intervallo di tempo osservato."
             }
           ]
         }
@@ -104,67 +104,50 @@ window.READER_LESSONS["cinematica-velocita"] = {
     },
     {
       "id": "locale",
-      "title": "Osservare più da vicino",
+      "title": "La velocità istantanea",
+      "quiz": {
+        "type": "velocity-graph"
+      },
       "cards": [
         {
-          "title": "Restringere l’intervallo",
+          "title": "Intervalli sempre più brevi",
           "stepMode": "replace",
           "steps": [
             {
-              "title": "La corsa, la sosta, la ripartenza",
-              "html": "Durante la sosta al chiosco Red non cambia posizione: la sua velocità media su quell’intervallo è zero. Morgana, invece, continua a camminare. Durante la corsa iniziale Red compie lo stesso spostamento in meno tempo di lei.<br><br><strong>La stessa procedura, applicata a intervalli più brevi, distingue i due movimenti.</strong>"
+              "html": "Per distinguere ciò che accade all’interno di un intervallo, <strong>riduciamo progressivamente la sua durata attorno al momento che ci interessa</strong>.<br><br>A un intervallo di tempo <span class=\"rm-formula\">Δt</span> più breve corrisponde, nei movimenti che stiamo considerando, uno spostamento <span class=\"rm-formula\">Δs</span> sempre più piccolo. Ogni volta calcoliamo di nuovo il rapporto:<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mfrac><mtext>Δs</mtext><mtext>Δt</mtext></mfrac></math>"
             },
             {
-              "title": "Sempre più vicino allo stesso momento",
-              "html": "Se Red rallenta o riparte, anche la media su un breve intervallo riassume variazioni del movimento. Fissiamo allora il momento che ci interessa e restringiamo gli intervalli nelle sue vicinanze.<br><br><strong>In via del tutto teorica possiamo immaginare durate positive piccole a piacere.</strong> Anche gli spostamenti corrispondenti diventano sempre più piccoli."
-            },
-            {
-              "title": "Due numeri piccoli, un rapporto finito",
-              "html": "Il numeratore e il denominatore diventano entrambi piccoli. Questo non significa che il loro rapporto debba diventare piccolo:<br><br><span class=\"rm-formula\">2 m / 0,1 s = 20 m/s</span><br><span class=\"rm-formula\">0,2 m / 0,01 s = 20 m/s</span><br><span class=\"rm-formula\">0,02 m / 0,001 s = 20 m/s</span><br><br>Qui spostamento e durata si riducono nello stesso rapporto: il quoziente rimane uguale."
+              "title": "Quanto possiamo ridurre l’intervallo?",
+              "html": "In teoria possiamo ripetere questa procedura quanto vogliamo, usando <strong>durate positive piccole a piacere</strong>.<br><br>Ogni intervallo ha ancora una durata: non diventa un istante e non dividiamo mai per zero. Ma, se la velocità varia poco al suo interno, la media su un intervallo breve può darne una <strong>buona stima nel momento scelto</strong>."
             }
-          ],
-          "board": "velocity-story"
+          ]
         },
         {
-          "title": "Un valore che si precisa",
+          "title": "Un rapporto che si precisa",
           "stepMode": "replace",
           "steps": [
             {
-              "title": "Le cifre iniziano a stabilizzarsi",
-              "html": "Quando la velocità varia, le medie su intervalli sempre più brevi possono invece dare risultati come questi, tutti vicini allo stesso momento:<br><br><span class=\"rm-formula\">1 s → 20,84 m/s</span><br><span class=\"rm-formula\">0,1 s → 20,39 m/s</span><br><span class=\"rm-formula\">0,01 s → 20,345 m/s</span><br><span class=\"rm-formula\">0,001 s → 20,3405 m/s</span><br><br>In questo esempio teorico le cifre iniziali si stabilizzano; le differenze si spostano verso decimali sempre più lontani. Il numero si precisa."
+              "html": "Due quantità che diventano piccole <strong>non danno necessariamente un rapporto piccolo</strong>. In questo esempio teorico, restringendo l’intervallo a partire dallo stesso istante, otteniamo:<div class=\"rm-instant-table\"><table><thead><tr><th>Δt</th><th>Δs</th><th>Δs / Δt</th></tr></thead><tbody><tr><td>1 s</td><td>2,5 m</td><td>2,5 m/s</td></tr><tr><td>0,1 s</td><td>0,205 m</td><td>2,05 m/s</td></tr><tr><td>0,01 s</td><td>0,02005 m</td><td>2,005 m/s</td></tr><tr><td>0,001 s</td><td>0,0020005 m</td><td>2,0005 m/s</td></tr></tbody></table></div><strong>Tempo e spostamento tendono a zero, mentre il loro rapporto si avvicina a 2 m/s.</strong> Le prime cifre si stabilizzano: cambia soltanto un decimale sempre più lontano."
             },
+            {
+              "title": "Nella pratica: la precisione utile",
+              "html": "Misurare intervalli e spostamenti sempre più piccoli richiede <strong>strumenti più precisi, spesso più costosi</strong>. L’incertezza delle letture può rendere il rapporto meno affidabile.<br><br>Inoltre, non sempre serve distinguere <span class=\"rm-formula\">2,000001 m/s</span> da <span class=\"rm-formula\">2,000000 m/s</span>: dipende dallo scopo della misura.<br><br><strong>Ci fermiamo alla precisione utile e sostenuta dagli strumenti.</strong> Non esiste un intervallo abbastanza breve per ogni situazione."
+            }
+          ]
+        },
+        {
+          "title": "La velocità in ogni istante",
+          "board": "velocity-instant",
+          "stepMode": "replace",
+          "steps": [
             {
               "title": "La velocità istantanea",
-              "html": "Nei moti regolari, restringendo gli intervalli verso il momento scelto, le medie si avvicinano a un valore preciso. <strong>Quel valore è la velocità scalare istantanea</strong>.<br><br>Il concetto è sempre quello di velocità: la media descrive un intervallo nel suo complesso; con questa procedura cerchiamo di cogliere il movimento sempre più localmente."
+              "html": "Quando, restringendo gli intervalli verso un istante, le velocità medie si avvicinano a un valore preciso, <strong>quel valore è la velocità scalare istantanea in quell’istante</strong>.<br><br>Nella lavagna, Morgana mantiene <strong>2 m/s</strong> lungo il percorso. Red procede a <strong>6 m/s</strong> fino al chiosco, resta fermo a <strong>0 m/s</strong> e riparte a <strong>2 m/s</strong> insieme a lei. Le etichette mostrano la velocità durante ciascun tratto."
             },
             {
-              "title": "Quanta precisione serve?",
-              "html": "Nella pratica ci fermiamo alla precisione utile. Se vogliamo un risultato ai decimi e ulteriori riduzioni cambiano soltanto i decimali successivi, non serve inseguirli, purché le misure siano abbastanza affidabili.<br><br><strong>Più cifre sul display non significano automaticamente più precisione.</strong> Gli strumenti hanno un’incertezza: intervalli troppo piccoli possono rendere il rapporto meno affidabile. Non esiste una durata minima adatta a tutti i movimenti."
-            }
-          ],
-          "board": "velocity-story"
-        }
-      ]
-    },
-    {
-      "id": "segno",
-      "title": "Il significato del segno",
-      "cards": [
-        {
-          "title": "Da dove viene il segno meno?",
-          "stepMode": "replace",
-          "steps": [
-            {
-              "title": "Una conseguenza del riferimento",
-              "html": "Abbiamo scelto un verso positivo e definito lo spostamento come <span class=\"rm-formula\">s₂ − s₁</span>. Il tempo trascorso è positivo: perciò <strong>il rapporto eredita il segno dello spostamento</strong>.<br><br>Se la coordinata passa da <span class=\"rm-formula\">12 m</span> a <span class=\"rm-formula\">4 m</span> in <span class=\"rm-formula\">2 s</span>, la velocità media è <span class=\"rm-formula\">(4 − 12) / 2 = −4 m/s</span>. Invertendo il verso positivo, cambia il segno, non il movimento."
-            },
-            {
-              "title": "Negativo non significa più lento",
-              "html": "Nella descrizione locale, il segno indica il verso del movimento; il <button type=\"button\" class=\"rm-keyword\" data-term=\"valore-assoluto\">valore assoluto</button> indica quanto rapidamente ci muoviamo. A <span class=\"rm-formula\">−4 m/s</span> ci si muove più rapidamente che a <span class=\"rm-formula\">+3 m/s</span>.<br><br><strong>Il segno meno non significa né “più piano” né “sta rallentando”.</strong> Nel linguaggio comune non esplicitiamo questa scelta del verso: per questo una velocità negativa può sembrare insolita."
-            },
-            {
-              "title": "Il segno di una media",
-              "html": "Il segno della velocità media riguarda lo <strong>spostamento complessivo dell’intervallo</strong>. Una media positiva non garantisce che il corpo abbia proceduto sempre nel verso positivo: possono esserci state inversioni intermedie."
+              "title": "La funzione velocità v(t)",
+              "velocityGraph": true,
+              "html": "Associando a ogni istante <span class=\"rm-formula\">t</span> la velocità istantanea, otteniamo la <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button> <strong>velocità</strong>, scritta <span class=\"rm-formula\">v = v(t)</span>.<br><br>Il grafico si traccia insieme al movimento: per Morgana una linea a <strong>2 m/s</strong>; per Red tre tratti a <strong>6, 0 e 2 m/s</strong>. Leggiamo <strong>quanto vale la velocità e quando cambia</strong>, comprese la durata della pausa e quella dei tratti in movimento.<br><br>Entrambi percorrono 120 m in 60 s e hanno media 2 m/s, ma <strong>i loro grafici v(t) sono diversi</strong>: ora le differenze sono anche quantitative.<br><br>Nella <button type=\"button\" class=\"rm-keyword\" data-term=\"legge-oraria\">legge oraria</button> <span class=\"rm-formula\">s(t)</span> l’uscita è la posizione; in <span class=\"rm-formula\">v(t)</span> è la velocità istantanea."
             }
           ]
         }
@@ -232,4 +215,3 @@ window.READER_LESSONS["cinematica-velocita"] = {
     }
   ]
 };
-
