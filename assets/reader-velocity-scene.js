@@ -1,6 +1,6 @@
 /* Moto lungo una traiettoria nota: s è parametrizzata per lunghezza d'arco. */
 (() => {
-  const state = { elapsed: 0, running: false };
+  const legacyState = { elapsed: 0, running: false };
   let serial = 0;
   function positions(t) {
     const time = Math.max(0, Math.min(10, t));
@@ -9,6 +9,7 @@
   function velocities(t) { return {morgana:t>=60?0:2,red:t>=60?0:t===15||t===45?null:t<15?6:t<45?0:2}; }
   function mount(box, options = {}) {
     const instant=!!options.instant;
+    const state=instant?{elapsed:0,running:true}:legacyState;
     if(instant&&state.elapsed>=10)state.elapsed=0;
     if(instant)state.running=true;
     const id = 'velocity-scene-' + (++serial);
