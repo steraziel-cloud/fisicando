@@ -32,7 +32,7 @@ window.READER_GLOSSARY = {
   },
   "funzione": {
     "title": "Funzione",
-    "text": "Una funzione associa a ogni valore ammesso in ingresso un solo valore in uscita. Nella legge oraria l’ingresso è l’istante t e l’uscita è la posizione s. Istanti diversi possono avere la stessa posizione, per esempio se il corpo torna in un punto già visitato.",
+    "text": "Una funzione associa a ogni valore ammesso in ingresso un solo valore in uscita. Nella legge oraria s(t), l’ingresso è l’istante t e l’uscita è la posizione s; nella funzione velocità v(t), l’uscita è la velocità istantanea. Si legge «s di t» o «v di t», non è una moltiplicazione. Istanti diversi possono avere lo stesso valore in uscita. Una funzione può essere rappresentata con una formula, una tabella o un grafico.",
     "kind": "Riprendi la matematica"
   },
   "legge-oraria": {
