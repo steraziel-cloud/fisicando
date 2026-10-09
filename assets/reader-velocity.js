@@ -90,6 +90,15 @@ window.READER_LESSONS["cinematica-velocita"] = {
               "interaction": "elevator-challenges"
             }
           ]
+        },
+        {
+          "title": "Una media, movimenti diversi",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "html": "La velocità media riassume ciò che accade tra due letture, ma <strong>non permette di distinguere come si è svolto il movimento all’interno dell’intervallo</strong>.<br><br>Con l’ascensore abbiamo ottenuto una <strong>velocità media nulla</strong> sia restando fermi sia salendo e tornando al punto di partenza: il risultato è uguale, ma ciò che è accaduto è diverso.<br><br>Anche una <strong>stessa media non nulla</strong> può descrivere un movimento uniforme oppure un movimento con una pausa e tratti più rapidi, come nel viaggio di Red e Morgana.<br><br><strong>La media ci dice quanto è cambiata la posizione per unità di tempo, complessivamente. Non ci dice quanto rapidamente cambiava nei singoli momenti.</strong> Per scoprirlo, dobbiamo osservare più da vicino."
+            }
+          ]
         }
       ]
     },
