@@ -131,28 +131,36 @@ window.READER_LESSONS["cinematica-velocita"] = {
             },
             {
               "title": "Nella pratica: la precisione utile",
-              "html": "Misurare intervalli e spostamenti sempre più piccoli richiede <strong>strumenti più precisi, spesso più costosi</strong>. L’<button type=\"button\" class=\"rm-keyword\" data-term=\"incertezza\">incertezza</button> delle letture può rendere il rapporto meno affidabile.<br><br><strong>La precisione necessaria dipende da ciò che dobbiamo fare.</strong> Distinguere la settima cifra significativa può servire in una misura di altissima precisione. Per controllare la velocità di un’auto rispetto a un limite, invece, è normalmente utile ragionare all’unità di km/h, senza inseguire i decimali.<br><br>Un valore come <span class=\"rm-formula\">90 km/h</span> o <span class=\"rm-formula\">130 km/h</span> richiede poche cifre, ma dobbiamo anche conoscere l’affidabilità dello strumento. <strong>Ci fermiamo alla precisione utile e sostenuta dalla misura.</strong>"
+              "html": "Misurare intervalli e spostamenti sempre più piccoli richiede <strong>strumenti più precisi, spesso più costosi</strong>. L’<button type=\"button\" class=\"rm-keyword\" data-term=\"incertezza\">incertezza</button> delle letture può rendere il rapporto meno affidabile.<br><br><strong>La precisione necessaria dipende da ciò che dobbiamo fare.</strong> Distinguere la settima cifra significativa può servire in una misura di altissima precisione. Per controllare la velocità di un’auto rispetto a un limite, invece, è normalmente utile ragionare all’unità di km/h, senza inseguire i decimali."
             }
           ]
         },
         {
           "title": "La velocità in ogni istante",
           "board": "velocity-instant",
-          "stepMode": "replace",
+          "stepMode": "cumulative",
           "steps": [
             {
               "title": "La velocità istantanea",
-              "html": "Quando, restringendo gli intervalli verso un istante, le velocità medie si avvicinano a un valore preciso, <strong>quel valore è la velocità scalare istantanea in quell’istante</strong>.<br><br>Osserva le etichette sulla lavagna e <strong>completa le velocità dei due gatti</strong>. Puoi mettere in pausa o rivedere il movimento.",
+              "html": "Quando, restringendo gli intervalli verso un istante, le velocità medie si avvicinano a un valore preciso, <strong>quel valore è la velocità scalare istantanea in quell’istante</strong>."
+            },
+            {
+              "html": "Osserva le etichette sulla lavagna e <strong>completa le velocità dei due gatti</strong>. Puoi mettere in pausa o rivedere il movimento.",
               "interaction": "instant-speeds"
             },
             {
               "title": "La funzione velocità v(t)",
               "velocityGraph": true,
-              "html": "Associando a ogni istante <span class=\"rm-formula\">t</span> la velocità istantanea, otteniamo la <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button> <strong>velocità</strong>, scritta <span class=\"rm-formula\">v = v(t)</span>.<br><br>Il grafico si traccia insieme al movimento: per Morgana una linea a <strong>2 m/s</strong>; per Red tre tratti a <strong>6, 0 e 2 m/s</strong>. Leggiamo <strong>quanto vale la velocità e quando cambia</strong>, comprese la durata della pausa e quella dei tratti in movimento.<br><br>Entrambi percorrono 120 m in 60 s e hanno media 2 m/s, ma <strong>i loro grafici v(t) sono diversi</strong>: ora le differenze sono anche quantitative."
+              "html": "Associando a ogni istante <span class=\"rm-formula\">t</span> la velocità istantanea, otteniamo la <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button> <strong>velocità</strong>, scritta <span class=\"rm-formula\">v = v(t)</span>.<br><br>Il grafico si traccia insieme al movimento: per Morgana una linea a <strong>2 m/s</strong>; per Red tre tratti a <strong>6, 0 e 2 m/s</strong>. Leggiamo <strong>quanto vale la velocità e quando cambia</strong>, comprese la durata della pausa e quella dei tratti in movimento.<br><br>Entrambi percorrono 120 m in 60 s e hanno media 2 m/s, ma <strong>i loro grafici v(t) sono diversi</strong>: ora le differenze sono anche quantitative.",
+              "replace": true
             }
           ]
         }
-      ]
+      ],
+      "optionalNext": {
+        "trivia": "quotidiano",
+        "recap": "pillole"
+      }
     },
     {
       "id": "quotidiano",
