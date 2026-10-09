@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   frame.addEventListener('load',()=>{try{const doc=frame.contentDocument;doc.querySelectorAll('header,.sidebar,.rm-learning-back').forEach(e=>e.style.display='none');const headings=[...doc.querySelectorAll('.main h2,.main h3')];headings.forEach((h,i)=>{const b=document.createElement('button');b.textContent=h.textContent;b.addEventListener('click',()=>h.scrollIntoView({behavior:'auto',block:'start'}));$('reader-parts').append(b);});}catch{}});return;
  }
  // Learning progress belongs to this visit only. Reference cards do not award progress.
- const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},units:{values:['',''],done:false},elevator:{},velocityGraph:{},velocityQuiz:{answer:'',stage:0,choice:null,done:false},lab:{started:null,period:8,marks:[],verified:false,answer:''}}));
+ const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},units:{values:['',''],done:false},elevator:{},velocityGraph:{},instantSpeeds:{values:['','','',''],done:false},velocityQuiz:{answer:'',stage:0,choice:null,done:false},lab:{started:null,period:8,marks:[],verified:false,answer:''}}));
  let current=0,allMode=false,reviewAccess=false,referenceMode=false,disposeWidget=()=>{},mountedCard=null,cancelSlide=()=>{};
  const flat=s=>s.cards.flatMap((card,ci)=>card.steps.map((step,si)=>({card,ci,step,si})));
  const format=n=>Number(n).toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -239,7 +239,14 @@ document.addEventListener('DOMContentLoaded',()=>{
   }));
  }
  function stepBlocked(item){
-  return !reviewAccess&&((item.step.interaction==='elevator-challenges'&&!state[current].elevator.done)||(item.step.interaction==='train-reference'&&!state[current].reference.done)||(item.step.interaction==='units-conversion'&&!state[current].units.done));
+  return !reviewAccess&&((item.step.interaction==='instant-speeds'&&!state[current].instantSpeeds.done)||(item.step.interaction==='elevator-challenges'&&!state[current].elevator.done)||(item.step.interaction==='train-reference'&&!state[current].reference.done)||(item.step.interaction==='units-conversion'&&!state[current].units.done));
+ }
+ function instantSpeedsExercise(box,interactive=true){
+  const st=state[current].instantSpeeds,labels=['Morgana lungo il percorso','Red prima del chiosco','Red durante la pausa','Red dopo la pausa'],expected=[2,6,0,2],host=el('div','rm-instant-speeds');
+  const inputs=labels.map((text,i)=>{const label=el('label','',text+' '),input=el('input');input.type='text';input.inputMode='decimal';input.setAttribute('aria-label',text+': velocità in m/s');input.value=interactive?st.values[i]:String(expected[i]);input.disabled=!interactive||st.done;input.oninput=()=>st.values[i]=input.value;label.append(input,el('span','','m/s'));host.append(label);return input;});
+  const feedback=el('p','');feedback.setAttribute('role','status');
+  if(interactive){const verify=button('Verifica le velocità',()=>{const correct=st.values.every((x,i)=>x.trim()!==''&&Number.isFinite(Number(x.trim().replace(',','.')))&&Math.abs(Number(x.trim().replace(',','.'))-expected[i])<.01);if(!correct){feedback.textContent='Rivedi le etichette: controlla i tratti prima e dopo il chiosco e la pausa. Puoi fermare l’animazione.';return;}st.done=true;inputs.forEach(input=>input.disabled=true);verify.disabled=true;feedback.textContent='Corretto: Morgana mantiene 2 m/s; Red passa da 6 m/s a una velocità nulla e poi a 2 m/s.';actions();});verify.disabled=st.done;host.append(verify);if(st.done)feedback.textContent='Velocità completate correttamente.';}
+  host.append(feedback);box.append(host);
  }
  function checkpoint(){
   const s=lesson.sections[current],box=$('reader-checkpoint');box.replaceChildren();box.hidden=false;box.append(el('h3','','Controlla l’idea'));
@@ -260,6 +267,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const p=el('p');p.innerHTML=step.html;article.append(p);
   if(step.interaction==='train-reference')referenceExercise(article,!archived);
   if(step.interaction==='units-conversion')unitsExercise(article,!archived);
+  if(step.interaction==='instant-speeds')instantSpeedsExercise(article,!archived);
   return article;
  }
  function slideSwap(host,previous,next,direction,beforeHeight){
@@ -305,7 +313,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    }
   }
   if(view.updateBoard)view.updateBoard(wanted.length>=3);
-  if(item.card.board==='velocity-instant'){const graph=view.box.querySelector('.vs-graph');if(graph){const show=!!item.step.velocityGraph;const play=view.box.querySelector('.vs-play');if(show&&graph.hidden&&play?.textContent==='Rivedi')play.click();graph.hidden=!show;}}
+  if(item.card.board==='velocity-instant'){const graph=view.box.querySelector('.vs-graph');if(graph){const show=!!item.step.velocityGraph;const play=view.box.querySelector('.vs-play');if(show&&graph.hidden&&play?.textContent==='Rivedi')play.click();graph.hidden=!show;view.box.querySelector('.rm-velocity-scene').classList.toggle('vs-withgraph',show);}}
  }
  function renderCard(card,steps,archived=false,collapsed=false){
   const box=el('article','rm-reader-card'+(archived?' rm-reader-card-previous':''));
