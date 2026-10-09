@@ -6,7 +6,11 @@
     const time = Math.max(0, Math.min(10, t));
     return { morgana: time / 10, red: time < 2.5 ? 3 * time / 10 : time < 7.5 ? 0.75 : time / 10 };
   }
-  function mount(box) {
+  function velocities(t) { return {morgana:t>=60?0:2,red:t>=60?0:t===15||t===45?null:t<15?6:t<45?0:2}; }
+  function mount(box, options = {}) {
+    const instant=!!options.instant;
+    if(instant&&state.elapsed>=10)state.elapsed=0;
+    if(instant)state.running=true;
     const id = 'velocity-scene-' + (++serial);
     const board = document.createElement('div');
     board.className = 'rm-velocity-scene';
@@ -30,6 +34,27 @@
     </svg>
     <div class="vs-controls"><button type="button" class="vs-play">Avvia</button><button type="button" class="vs-reset">Ricomincia</button><span class="vs-phase" aria-live="polite"></span></div>
     `;
+    if(instant){
+      for(const name of ['morgana','red']){
+        const avatar=board.querySelector('.vs-'+name+' .vs-avatar'),ns='http://www.w3.org/2000/svg';
+        const rect=document.createElementNS(ns,'rect');rect.setAttribute('x','-48');rect.setAttribute('y','28');rect.setAttribute('width','96');rect.setAttribute('height','25');rect.setAttribute('rx','7');rect.setAttribute('fill','var(--rm-panel)');rect.setAttribute('stroke',name==='red'?'#ee944e':'#a17bd7');
+        const label=document.createElementNS(ns,'text');label.setAttribute('x','0');label.setAttribute('y','45');label.setAttribute('text-anchor','middle');label.setAttribute('fill','currentColor');label.setAttribute('font-size','14');label.setAttribute('class','vs-speed-'+name);avatar.append(rect,label);
+      }
+      const graph=document.createElement('div');graph.className='vs-graph';graph.hidden=!options.graph;
+      graph.innerHTML=`<svg viewBox="0 0 720 235" role="img" aria-label="Grafico della velocità in funzione del tempo: Morgana procede a 2 metri al secondo; Red a 6, poi 0, poi 2.">
+      <text x="64" y="20" fill="currentColor" font-size="16">v (m/s)</text>
+      <path d="M64 35 V185 H680" fill="none" stroke="currentColor" stroke-width="2"/>
+      ${[0,2,4,6].map(v=>`<line x1="64" y1="${185-v*23}" x2="664" y2="${185-v*23}" stroke="currentColor" stroke-opacity=".13"/><text x="49" y="${190-v*23}" text-anchor="end" fill="currentColor" font-size="14">${v}</text>`).join('')}
+      ${[0,15,30,45,60].map(t=>`<line x1="${64+t*10}" y1="185" x2="${64+t*10}" y2="191" stroke="currentColor"/><text x="${64+t*10}" y="211" text-anchor="middle" fill="currentColor" font-size="14">${t}</text>`).join('')}
+      <text x="678" y="229" fill="currentColor" font-size="15">t (s)</text>
+      <path class="vs-graph-morgana" fill="none" stroke="#a17bd7" stroke-width="5"/>
+      <path class="vs-graph-red" fill="none" stroke="#ee944e" stroke-width="3" stroke-dasharray="8 4"/>
+      <circle class="vs-dot-morgana" r="5" fill="#a17bd7"/><circle class="vs-dot-red" r="5" fill="#ee944e"/>
+      <line class="vs-graph-time" y1="35" y2="185" stroke="currentColor" stroke-opacity=".4" stroke-dasharray="3 4"/>
+      </svg><p style="margin:4px 0;font-size:14px"><span style="color:#a17bd7">━ Morgana</span> · <span style="color:#ee944e">┄ Red</span></p><p style="margin:6px 0;font-size:13px">Modello idealizzato: i cambi di velocità di Red sono immediati. In un moto reale richiedono un breve intervallo.</p>`;
+      board.querySelector('.vs-controls').before(graph);
+      board.querySelector('svg').setAttribute('viewBox','0 0 720 330');
+    }
     box.append(board);
     const path = board.querySelector('.vs-path');
     const length = path.getTotalLength();
@@ -71,6 +96,17 @@
       move('morgana', p.morgana, -28); move('red', p.red, 28);
       const text = state.elapsed >= 10 ? 'Arrivati al parco' : state.elapsed >= 7.5 ? 'Proseguono insieme' : state.elapsed >= 2.5 ? 'Red aspetta al chiosco' : 'Red pedala, Morgana cammina';
       if (phase.textContent !== text) phase.textContent = text;
+      if(instant){
+        const t=state.elapsed*6,v=velocities(t);
+        for(const name of ['morgana','red'])board.querySelector('.vs-speed-'+name).textContent=v[name]===null?'cambio di moto':v[name]+' m/s';
+        phase.textContent='t = '+t.toLocaleString('it-IT',{minimumFractionDigits:1,maximumFractionDigits:1})+' s · '+text;
+        const x=t=>64+t*10,y=v=>185-v*23;
+        board.querySelector('.vs-graph-morgana').setAttribute('d',`M64 ${y(2)} H${x(t)}`);
+        const segments=[[0,15,6],[15,45,0],[45,60,2]];
+        board.querySelector('.vs-graph-red').setAttribute('d',segments.filter(([a])=>t>=a).map(([a,b,v])=>`M${x(a)} ${y(v)} H${x(Math.min(b,t))}`).join(' '));
+        for(const name of ['morgana','red']){const dot=board.querySelector('.vs-dot-'+name);dot.setAttribute('cx',x(t));dot.setAttribute('cy',y(t>=60?2:v[name]??0));dot.style.display=v[name]===null?'none':t>=60?'none':'';}
+        const guide=board.querySelector('.vs-graph-time');guide.setAttribute('x1',x(t));guide.setAttribute('x2',x(t));
+      }
       play.textContent = state.running ? 'Pausa' : state.elapsed >= 10 ? 'Rivedi' : 'Avvia';
     }
     function tick(now) {
@@ -94,5 +130,5 @@
     if (state.running) frame = requestAnimationFrame(tick);
     return () => { disposed = true; cancelAnimationFrame(frame); };
   }
-  window.GatitoVelocityScene = { mount, positions };
+  window.GatitoVelocityScene = { mount, positions, velocities };
 })();
