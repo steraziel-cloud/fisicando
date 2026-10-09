@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   frame.addEventListener('load',()=>{try{const doc=frame.contentDocument;doc.querySelectorAll('header,.sidebar,.rm-learning-back').forEach(e=>e.style.display='none');const headings=[...doc.querySelectorAll('.main h2,.main h3')];headings.forEach((h,i)=>{const b=document.createElement('button');b.textContent=h.textContent;b.addEventListener('click',()=>h.scrollIntoView({behavior:'auto',block:'start'}));$('reader-parts').append(b);});}catch{}});return;
  }
  // Learning progress belongs to this visit only. Reference cards do not award progress.
- const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},units:{values:['',''],done:false},elevator:{},velocityQuiz:{answer:'',stage:0,choice:null,done:false},lab:{started:null,period:8,marks:[],verified:false,answer:''}}));
+ const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},units:{values:['',''],done:false},elevator:{},velocityGraph:{},velocityQuiz:{answer:'',stage:0,choice:null,done:false},lab:{started:null,period:8,marks:[],verified:false,answer:''}}));
  let current=0,allMode=false,reviewAccess=false,referenceMode=false,disposeWidget=()=>{},mountedCard=null,cancelSlide=()=>{};
  const flat=s=>s.cards.flatMap((card,ci)=>card.steps.map((step,si)=>({card,ci,step,si})));
  const format=n=>Number(n).toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -244,6 +244,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  function checkpoint(){
   const s=lesson.sections[current],box=$('reader-checkpoint');box.replaceChildren();box.hidden=false;box.append(el('h3','','Controlla l’idea'));
   if(s.quiz.type==='period-lab'){periodLab(box);return;}
+  if(s.quiz.type==='velocity-graph'){window.GatitoVelocityGraph.mount(box,state[current].velocityGraph,()=>finish('Hai letto correttamente la funzione velocità nei quattro istanti.'));return;}
   if(s.quiz.type==='velocity-units'){velocityUnitsQuiz(box);return;}
   const q=el('p','',s.quiz.question);box.append(q);
   s.quiz.options.forEach((option,i)=>{const label=el('label'),input=el('input');input.type='radio';input.name='checkpoint';input.value=i;label.append(input,el('span','',option));box.append(label);});
@@ -304,6 +305,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    }
   }
   if(view.updateBoard)view.updateBoard(wanted.length>=3);
+  if(item.card.board==='velocity-instant'){const graph=view.box.querySelector('.vs-graph');if(graph){const show=!!item.step.velocityGraph;const play=view.box.querySelector('.vs-play');if(show&&graph.hidden&&play?.textContent==='Rivedi')play.click();graph.hidden=!show;}}
  }
  function renderCard(card,steps,archived=false,collapsed=false){
   const box=el('article','rm-reader-card'+(archived?' rm-reader-card-previous':''));
@@ -317,6 +319,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.title==='Benvenuta, benvenuto!'){box.classList.add('rm-welcome-card');const cat=el('img','rm-welcome-cat');cat.src='assets/images/reader/red-bjorne-benvenuto-v1.png';cat.alt='Red e Bjorne ti danno il benvenuto e ti salutano con una zampina';cat.width=240;cat.height=160;box.append(cat);}
   if(card.illustration){const picture=el('div','rm-reference-scene'),img=el('img','rm-train-illustration');img.src=card.illustration.src;img.alt=card.illustration.alt;img.width=card.illustration.width;img.height=card.illustration.height;img.style.objectFit='contain';img.style.mask='none';img.style.webkitMask='none';picture.append(img);box.append(picture);}
   if(card.board==='elevator'&&window.GatitoElevator)disposeWidget=window.GatitoElevator.mount(box,state[current].elevator,()=>{actions();if(!referenceMode&&!allMode)$('reader-next').click();},archived||allMode);
+  if(card.board==='velocity-instant'&&window.GatitoVelocityScene)disposeWidget=window.GatitoVelocityScene.mount(box,{instant:true,graph:steps.some(step=>step.velocityGraph)});
   if(card.board==='velocity-story'&&window.GatitoVelocityScene)disposeWidget=window.GatitoVelocityScene.mount(box);
   if(card.board==='train-reference')trainPicture(box);
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
