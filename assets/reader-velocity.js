@@ -168,35 +168,49 @@ window.READER_LESSONS["cinematica-velocita"] = {
       "cards": [
         {
           "title": "Il tachimetro",
+          "board": "wheel-speed",
           "stepMode": "replace",
           "steps": [
             {
-              "title": "Un numero senza segno",
-              "html": "Il tachimetro dell’auto indica quanto rapidamente ci muoviamo, senza il segno legato al verso positivo della nostra traiettoria: l’informazione corrisponde al <strong>valore assoluto della velocità</strong>.<br><br>Leggere <span class=\"rm-formula\">20 m/s</span> non garantisce che nel secondo successivo percorreremo venti metri: potremmo rallentare. La previsione vale se manteniamo quel valore per tutto il secondo."
-            }
-          ]
-        },
-        {
-          "title": "La velocità del navigatore",
-          "stepMode": "replace",
-          "steps": [
+              "title": "Dalla rotazione della ruota al movimento dell’auto",
+              "html": "Il <strong>tachimetro</strong> è lo strumento a bordo degli autoveicoli che indica quanto rapidamente si stanno muovendo, con una lancetta oppure un display digitale.<br><br>Per capirne l’idea, immaginiamo una ruota circolare di raggio <span class=\"rm-formula\">r</span> che <strong>rotola senza slittare</strong>. Dopo un giro completo, l’auto è avanzata di una circonferenza: <span class=\"rm-formula\">C = 2πr</span>.<br><br>Nella lavagna, il punto arancione segna un punto della ruota. Un sensore solidale all’auto ne rileva il passaggio: <strong>due passaggi consecutivi delimitano un giro</strong>."
+            },
             {
-              "title": "Misurare attraverso i segnali dei satelliti",
-              "html": "Il navigatore può stimare la velocità usando i segnali dei satelliti. La qualità della stima dipende dal ricevitore e dalle condizioni di ricezione: edifici e altri ostacoli possono disturbare i segnali.<br><br>Il numero visualizzato è il risultato di una misura e di un’elaborazione: <strong>non tutte le cifre mostrate sono necessariamente affidabili</strong>.<br><br><a href=\"https://www.gps.gov/gps-accuracy\" target=\"_blank\" rel=\"noopener\">Approfondisci: GPS.gov</a>"
+              "title": "Il sensore misura il tempo, il sistema calcola la velocità",
+              "html": "Il primo segnale avvia il conteggio del tempo; il secondo lo conclude. Il sistema conosce la circonferenza della ruota e calcola:<br><br><span class=\"rm-formula\">velocità = C / Δt = 2πr / Δt</span>.<br><br>È quindi <strong>la distanza a essere divisa per il tempo</strong>. Il risultato in m/s viene moltiplicato per 3,6 e inviato all’indicatore in km/h.<br><br><strong>Prova nella lavagna:</strong> a parità di raggio, dimezza il tempo di un giro. La velocità raddoppia. Il giro a schermo è rallentato; il cronometro mostra il tempo del modello."
+            },
+            {
+              "title": "Dal modello allo strumento reale",
+              "html": "Il rapporto dà una <strong>media durante il giro</strong>. Se la velocità cambia poco in quel breve intervallo, è una buona stima della velocità istantanea, espressa senza il segno del verso.<br><br>Nei sistemi elettronici si possono rilevare <strong>molti segnali per giro</strong>, usando sensori e ruote foniche o anelli magnetici: non occorre sempre aspettare un’intera rotazione. Il valore visualizzato deriva dall’elaborazione dei segnali e dalla taratura del sistema.<br><br>La circonferenza effettiva di rotolamento deve essere conosciuta correttamente; se la ruota slitta, la sua rotazione non descrive fedelmente l’avanzamento dell’auto.<br><br><a href=\"https://www.bosch-mobility.com/en/solutions/sensors/wheel-speed-sensor/\" target=\"_blank\" rel=\"noopener\">Approfondisci: un sensore di velocità delle ruote</a><details><summary>Un’idea per il laboratorio: costruirlo con Arduino</summary><p>Su una piccola ruota montiamo un magnete; un sensore Hall fissato al supporto genera un segnale a ogni passaggio. Arduino misura il tempo tra due segnali, usa la circonferenza impostata e mostra <strong>C / Δt</strong> sul computer o su un display.</p><p>Possiamo verificare la circonferenza facendo rotolare la ruota per un giro e misurando l’avanzamento. Se gira su un supporto, ricaviamo la velocità di avanzamento <em>che avrebbe</em> rotolando senza slittare.</p><p><a href=\"https://github.com/steraziel-cloud/fisicando/blob/main/labs/tachimetro-arduino/README.md\" target=\"_blank\" rel=\"noopener\">Apri il progetto didattico</a> · <a href=\"labs/tachimetro-arduino/tachimetro.ino\" download>Scarica il programma Arduino</a></p></details>"
             }
           ]
         },
         {
           "title": "L’autovelox",
+          "board": "road-speed",
           "stepMode": "replace",
           "steps": [
             {
-              "title": "Un breve tratto di movimento",
-              "html": "Per capire una misura locale immaginiamo un rilevatore ideale con due sensori vicini: ciascuno registra il passaggio dello stesso punto dell’auto.<br><br>Se lo spostamento è <span class=\"rm-formula\">+2 m</span> e il tempo è <span class=\"rm-formula\">0,10 s</span>, il rapporto dà <span class=\"rm-formula\">+20 m/s</span>, cioè <span class=\"rm-formula\">+72 km/h</span>. Se la velocità cambia pochissimo durante il passaggio, questa media ne è una buona stima locale."
+              "title": "Misurare un breve tratto del movimento",
+              "html": "Un misuratore stradale rileva la velocità di un veicolo mentre passa. Per capire il rapporto tra distanza e tempo, usiamo <strong>un modello ideale con due sensori</strong>, A e B, posti a una distanza nota.<br><br>Il cronometro parte quando il punto arancione dell’auto attraversa A e si ferma quando <strong>lo stesso punto</strong> attraversa B.<br><br>Con <span class=\"rm-formula\">Δs = 2,00 m</span> e <span class=\"rm-formula\">Δt = 0,10 s</span>, otteniamo <span class=\"rm-formula\">Δs / Δt = 20 m/s = 72 km/h</span>. Avvia la misura e segui i due passaggi."
             },
             {
-              "title": "Il dispositivo reale",
-              "html": "Il modello a due sensori serve a capire il ragionamento; gli apparecchi reali possono usare tecnologie diverse, fra cui laser e radar.<br><br><strong>Una lunga sosta abbassa la media del viaggio, ma non la velocità durante un successivo passaggio.</strong> È la differenza fra osservare tutto il tragitto e osservarne una piccola parte.<br><br><a href=\"https://sodi.com/autovelox/autovelox-106/\" target=\"_blank\" rel=\"noopener\">Un esempio di sensore laser</a> · <a href=\"https://sodi.com/autovelox/autovelox-106-se-radar/\" target=\"_blank\" rel=\"noopener\">Un esempio di sensore radar</a>"
+              "title": "Una misura locale, con tecnologie diverse",
+              "html": "Anche qui il rapporto è una <strong>velocità media su un intervallo breve</strong>: se il movimento varia poco tra i due sensori, fornisce una buona stima della velocità istantanea durante il passaggio.<br><br>Gli apparecchi reali possono usare tecnologie diverse. Un sistema <strong>laser</strong> può ricavare informazioni sul movimento da misure ottiche di distanza; un <strong>radar</strong> può usare la variazione di frequenza dell’onda riflessa dal veicolo, detta effetto Doppler. La lavagna illustra il modello a due sensori, non la struttura di tutti gli autovelox.<br><br><strong>Una sosta precedente abbassa la media del viaggio, ma non la velocità durante il passaggio davanti al rilevatore.</strong><br><br><a href=\"https://sodi.com/autovelox/autovelox-106/\" target=\"_blank\" rel=\"noopener\">Un esempio di apparecchio laser</a> · <a href=\"https://sodi.com/autovelox/autovelox-106-se-radar/\" target=\"_blank\" rel=\"noopener\">Un esempio di apparecchio radar</a>"
+            }
+          ]
+        },
+        {
+          "title": "La velocità del GPS",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Una misura dai segnali dei satelliti",
+              "html": "Il ricevitore GPS del navigatore o del telefono elabora i segnali di più satelliti per stimare posizione e movimento.<br><br>Un’idea semplice è confrontare posizioni rilevate a istanti vicini e calcolare una velocità media sul breve intervallo. Ma i ricevitori possono anche sfruttare <strong>l’effetto Doppler dei segnali satellitari</strong>: la variazione della frequenza ricevuta contiene informazioni sul movimento relativo tra ricevitore e satelliti.<br><br>Combinando le osservazioni di più satelliti e tenendo conto del loro movimento, il ricevitore può stimare la propria velocità. Il navigatore ne mostra normalmente <strong>il valore in km/h, senza il segno del verso</strong>."
+            },
+            {
+              "title": "Il numero mostrato è una stima aggiornata",
+              "html": "Il numero viene aggiornato nel tempo e può descrivere quanto rapidamente ci stiamo muovendo in quel momento. <strong>Non è però una misura perfetta di un istante di durata nulla</strong>: dipende dalle osservazioni, dalla loro frequenza e dall’elaborazione del ricevitore.<br><br>Edifici, ostacoli e riflessioni dei segnali possono peggiorare la misura. Durante variazioni rapide del moto, aggiornamenti e filtri possono introdurre un ritardo nella visualizzazione.<br><br>Tachimetro, rilevatore stradale e GPS usano informazioni diverse, ma perseguono lo stesso scopo: <strong>stimare quanto rapidamente si sta muovendo il veicolo</strong>, con una precisione legata al metodo e agli strumenti.<br><br><a href=\"https://www.gps.gov/gps-accuracy\" target=\"_blank\" rel=\"noopener\">Approfondisci: da cosa dipende la precisione del GPS</a> · <a href=\"https://www.u-blox.com/en/technologies/gnss-raw-data\" target=\"_blank\" rel=\"noopener\">Le osservazioni dei ricevitori GNSS</a>"
             }
           ]
         }
