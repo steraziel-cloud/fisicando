@@ -114,7 +114,7 @@ window.READER_LESSONS["cinematica-velocita"] = {
           "stepMode": "replace",
           "steps": [
             {
-              "html": "Per distinguere ciò che accade all’interno di un intervallo, <strong>riduciamo progressivamente la sua durata attorno al momento che ci interessa</strong>.<br><br>A un intervallo di tempo <span class=\"rm-formula\">Δt</span> più breve corrisponde, nei movimenti che stiamo considerando, uno spostamento <span class=\"rm-formula\">Δs</span> sempre più piccolo. Ogni volta calcoliamo di nuovo il rapporto:<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mfrac><mtext>Δs</mtext><mtext>Δt</mtext></mfrac></math>"
+              "html": "Come possiamo migliorare l’informazione su <strong>quanto rapidamente avviene uno spostamento</strong>?<br><br>Per distinguere ciò che accade in un intervallo, dobbiamo poter descrivere il movimento <strong>in ogni istante di quell’intervallo</strong>.<br><br>Per farlo, scegliamo un istante e <strong>restringiamo gli intervalli avvicinandoci a quel momento</strong>. Tempo <span class=\"rm-formula\">Δt</span> e spostamento <span class=\"rm-formula\">Δs</span> diventano sempre più piccoli; ogni volta ne calcoliamo il rapporto:<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mfrac><mtext>Δs</mtext><mtext>Δt</mtext></mfrac></math>"
             },
             {
               "title": "Quanto possiamo ridurre l’intervallo?",
@@ -123,7 +123,7 @@ window.READER_LESSONS["cinematica-velocita"] = {
           ]
         },
         {
-          "title": "Un rapporto che si precisa",
+          "title": "Il rapporto diventa sempre più preciso",
           "stepMode": "replace",
           "steps": [
             {
@@ -131,7 +131,7 @@ window.READER_LESSONS["cinematica-velocita"] = {
             },
             {
               "title": "Nella pratica: la precisione utile",
-              "html": "Misurare intervalli e spostamenti sempre più piccoli richiede <strong>strumenti più precisi, spesso più costosi</strong>. L’incertezza delle letture può rendere il rapporto meno affidabile.<br><br>Inoltre, non sempre serve distinguere <span class=\"rm-formula\">2,000001 m/s</span> da <span class=\"rm-formula\">2,000000 m/s</span>: dipende dallo scopo della misura.<br><br><strong>Ci fermiamo alla precisione utile e sostenuta dagli strumenti.</strong> Non esiste un intervallo abbastanza breve per ogni situazione."
+              "html": "Misurare intervalli e spostamenti sempre più piccoli richiede <strong>strumenti più precisi, spesso più costosi</strong>. L’<button type=\"button\" class=\"rm-keyword\" data-term=\"incertezza\">incertezza</button> delle letture può rendere il rapporto meno affidabile.<br><br><strong>La precisione necessaria dipende da ciò che dobbiamo fare.</strong> Distinguere la settima cifra significativa può servire in una misura di altissima precisione. Per controllare la velocità di un’auto rispetto a un limite, invece, è normalmente utile ragionare all’unità di km/h, senza inseguire i decimali.<br><br>Un valore come <span class=\"rm-formula\">90 km/h</span> o <span class=\"rm-formula\">130 km/h</span> richiede poche cifre, ma dobbiamo anche conoscere l’affidabilità dello strumento. <strong>Ci fermiamo alla precisione utile e sostenuta dalla misura.</strong>"
             }
           ]
         },
@@ -142,12 +142,13 @@ window.READER_LESSONS["cinematica-velocita"] = {
           "steps": [
             {
               "title": "La velocità istantanea",
-              "html": "Quando, restringendo gli intervalli verso un istante, le velocità medie si avvicinano a un valore preciso, <strong>quel valore è la velocità scalare istantanea in quell’istante</strong>.<br><br>Nella lavagna, Morgana mantiene <strong>2 m/s</strong> lungo il percorso. Red procede a <strong>6 m/s</strong> fino al chiosco, resta fermo a <strong>0 m/s</strong> e riparte a <strong>2 m/s</strong> insieme a lei. Le etichette mostrano la velocità durante ciascun tratto."
+              "html": "Quando, restringendo gli intervalli verso un istante, le velocità medie si avvicinano a un valore preciso, <strong>quel valore è la velocità scalare istantanea in quell’istante</strong>.<br><br>Osserva le etichette sulla lavagna e <strong>completa le velocità dei due gatti</strong>. Puoi mettere in pausa o rivedere il movimento.",
+              "interaction": "instant-speeds"
             },
             {
               "title": "La funzione velocità v(t)",
               "velocityGraph": true,
-              "html": "Associando a ogni istante <span class=\"rm-formula\">t</span> la velocità istantanea, otteniamo la <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button> <strong>velocità</strong>, scritta <span class=\"rm-formula\">v = v(t)</span>.<br><br>Il grafico si traccia insieme al movimento: per Morgana una linea a <strong>2 m/s</strong>; per Red tre tratti a <strong>6, 0 e 2 m/s</strong>. Leggiamo <strong>quanto vale la velocità e quando cambia</strong>, comprese la durata della pausa e quella dei tratti in movimento.<br><br>Entrambi percorrono 120 m in 60 s e hanno media 2 m/s, ma <strong>i loro grafici v(t) sono diversi</strong>: ora le differenze sono anche quantitative.<br><br>Nella <button type=\"button\" class=\"rm-keyword\" data-term=\"legge-oraria\">legge oraria</button> <span class=\"rm-formula\">s(t)</span> l’uscita è la posizione; in <span class=\"rm-formula\">v(t)</span> è la velocità istantanea."
+              "html": "Associando a ogni istante <span class=\"rm-formula\">t</span> la velocità istantanea, otteniamo la <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button> <strong>velocità</strong>, scritta <span class=\"rm-formula\">v = v(t)</span>.<br><br>Il grafico si traccia insieme al movimento: per Morgana una linea a <strong>2 m/s</strong>; per Red tre tratti a <strong>6, 0 e 2 m/s</strong>. Leggiamo <strong>quanto vale la velocità e quando cambia</strong>, comprese la durata della pausa e quella dei tratti in movimento.<br><br>Entrambi percorrono 120 m in 60 s e hanno media 2 m/s, ma <strong>i loro grafici v(t) sono diversi</strong>: ora le differenze sono anche quantitative."
             }
           ]
         }
