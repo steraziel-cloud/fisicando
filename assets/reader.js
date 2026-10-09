@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  // Learning progress belongs to this visit only. Reference cards do not award progress.
  const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},units:{values:['',''],done:false},elevator:{},velocityGraph:{},instantSpeeds:{values:['','','',''],done:false},velocityQuiz:{answer:'',stage:0,choice:null,done:false},lab:{started:null,period:8,marks:[],verified:false,answer:''}}));
- let current=0,allMode=false,reviewAccess=false,referenceMode=false,disposeWidget=()=>{},mountedCard=null,cancelSlide=()=>{};
+ let current=0,allMode=false,reviewAccess=false,referenceMode=false,referenceBounds=null,disposeWidget=()=>{},mountedCard=null,cancelSlide=()=>{};
  const flat=s=>s.cards.flatMap((card,ci)=>card.steps.map((step,si)=>({card,ci,step,si})));
  const format=n=>Number(n).toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2});
  const el=(tag,cls,text)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node;};
@@ -40,7 +40,15 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  function finish(message){const first=!state[current].complete;state[current].complete=true;state[current].reached=flat(lesson.sections[current]).length;index();celebrate($('reader-feedback'),message,first?'Una parte in più, ci sei!':'Perfetto!');actions();}
  function actions(){
-  if(referenceMode){$('reader-prev').hidden=true;$('reader-next').hidden=true;return;}
+  if(referenceMode){
+   const st=state[current],item=flat(lesson.sections[current])[st.cursor];
+   $('reader-prev').hidden=st.cursor<=referenceBounds.first;$('reader-next').hidden=st.cursor>=referenceBounds.last;
+   $('reader-next').disabled=stepBlocked(item);$('reader-next').textContent='Continua →';
+   $('reader-step-count').textContent='Passaggio '+(st.cursor-referenceBounds.first+1)+' di '+(referenceBounds.last-referenceBounds.first+1)+' · Richiamo';
+   const restart=el('a','rm-btn secondary','Inizia la lezione dall’inizio'),url=new URL(location.href);url.searchParams.delete('sezione');url.searchParams.delete('scheda');url.hash='';restart.href=url.href;
+   $('reader-feedback').replaceChildren(el('p','','Stai rivedendo una card separatamente; questa vista non assegna avanzamento nella lezione.'),restart);
+   return;
+  }
   const count=flat(lesson.sections[current]).length,st=state[current];
   $('reader-prev').hidden=allMode||st.cursor===0;$('reader-next').hidden=allMode;
   let blocked=false;if(st.cursor<count){const item=flat(lesson.sections[current])[st.cursor];blocked=stepBlocked(item);}
@@ -333,16 +341,16 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
   const text=el('div','rm-card-text');steps.forEach(step=>text.append(stepNode(step,archived)));box.append(text);
   const updateBoard=card.board==='position'||card.board==='displacement'?positionBoard(box,card.board,steps.length>=3):null;
-  if(!archived&&!allMode&&!referenceMode)mountedCard={section:current,card,box,text,updateBoard};
+  if(!archived&&!allMode)mountedCard={section:current,card,box,text,updateBoard};
  }
  function render(direction=0){
   const section=lesson.sections[current],item=flat(section)[state[current].cursor];
-  if(!allMode&&!referenceMode&&item&&mountedCard?.section===current&&mountedCard.card===item.card){
+  if(!allMode&&item&&mountedCard?.section===current&&mountedCard.card===item.card){
    updateCard(item,direction);$('reader-feedback').textContent='';index();actions();return;
   }
   cancelSlide();const previousHeight=$('reader-steps').getBoundingClientRect().height;const previous=direction?[...$('reader-steps').childNodes]:[];mountedCard=null;
   disposeWidget();disposeWidget=()=>{};$('reader-steps').replaceChildren();$('reader-checkpoint').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';
-  const s=lesson.sections[current],st=state[current],items=flat(s);$('reader-section-title').textContent=s.title;
+  const s=lesson.sections[current],st=state[current],items=flat(s);$('reader-section-title').textContent=s.title+(referenceMode?' · Richiamo':'');
   if(st.cursor===items.length){if(s.quiz)checkpoint();else $('reader-feedback').textContent='Lezione completata. Puoi rivedere le parti dall’indice o scegliere «Mostra tutto».';}else{
    const item=items[st.cursor];if((item.card.retainPrevious||item.card.collapsePrevious)&&item.ci>0)renderCard(s.cards[item.ci-1],s.cards[item.ci-1].steps,true,!!item.card.collapsePrevious);
    renderCard(item.card,item.card.stepMode==='replace'?[item.step]:item.card.steps.slice(0,item.si+1));
@@ -351,6 +359,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  function top(){const target=$('reader-section-title');target.focus({preventScroll:true});target.scrollIntoView({block:'start',behavior:'auto'});}
  function open(i,focus=false,direction=0){if(!unlocked(i))return;allMode=false;referenceMode=false;current=i;if(!lesson.sections[i].quiz&&state[i].cursor===flat(lesson.sections[i]).length)state[i].cursor=0;render(direction);history.replaceState(null,'','#'+lesson.sections[i].id);if(focus)top();}
  $('reader-next').addEventListener('click',()=>{
+  if(referenceMode){const st=state[current],item=flat(lesson.sections[current])[st.cursor];if(st.cursor>=referenceBounds.last||stepBlocked(item))return;st.cursor++;render(1);return;}
   const st=state[current],items=flat(lesson.sections[current]);
   if(st.cursor<items.length){const item=items[st.cursor];if(stepBlocked(item))return;
    st.cursor++;st.reached=Math.max(st.reached,st.cursor);
@@ -358,7 +367,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    const replaces=st.cursor===items.length||items[st.cursor].ci!==item.ci||item.card.stepMode==='replace';render(1);if(replaces&&items[st.cursor]?.ci!==item.ci)top();
   }else if(st.complete||reviewAccess){if(current<state.length-1)open(current+1,true,1);else{$('reader-feedback').textContent='Lezione completata! Nell’indice puoi rivedere le parti o scegliere «Mostra tutto».';$('reader-next').hidden=true;}}
  });
- $('reader-prev').addEventListener('click',()=>{if(state[current].cursor>0){const previous=flat(lesson.sections[current])[state[current].cursor];state[current].cursor--;render(-1);if(flat(lesson.sections[current])[state[current].cursor].ci!==previous?.ci)top();}});
+ $('reader-prev').addEventListener('click',()=>{if(referenceMode){if(state[current].cursor>referenceBounds.first){state[current].cursor--;render(-1);}return;}if(state[current].cursor>0){const previous=flat(lesson.sections[current])[state[current].cursor];state[current].cursor--;render(-1);if(flat(lesson.sections[current])[state[current].cursor].ci!==previous?.ci)top();}});
  // Horizontal swipes navigate only the already unlocked learning path.
  let touch=null;const column=document.querySelector('.rm-reader-column');
  column.addEventListener('touchstart',e=>{if(e.target.closest('input,select,button,.rm-reader-board'))return;const p=e.changedTouches[0];touch={x:p.clientX,y:p.clientY};},{passive:true});
@@ -371,11 +380,9 @@ document.addEventListener('DOMContentLoaded',()=>{
  const referenceSection=lesson.sections.findIndex(s=>s.id===params.get('sezione'));
  const referenceCard=params.has('scheda')?Number(params.get('scheda')):NaN;
  if(referenceSection>=0&&Number.isInteger(referenceCard)&&referenceCard>=0&&referenceCard<lesson.sections[referenceSection].cards.length){
-  referenceMode=true;current=referenceSection;const section=lesson.sections[current],card=section.cards[referenceCard];
-  $('reader-section-title').textContent=section.title+' · Richiamo';renderCard(card,card.steps);index();
-  $('reader-prev').hidden=true;$('reader-next').hidden=true;$('reader-step-count').textContent='Scheda di riferimento';
-  const restart=el('a','rm-btn secondary','Inizia la lezione dall’inizio');const url=new URL(location.href);url.searchParams.delete('sezione');url.searchParams.delete('scheda');url.hash='';restart.href=url.href;
-  const note=el('p','','Il richiamo si apre separatamente: puoi tornare alla scheda della lezione da cui sei arrivato.');$('reader-feedback').append(note,restart);
+  referenceMode=true;current=referenceSection;const items=flat(lesson.sections[current]);
+  const first=items.findIndex(item=>item.ci===referenceCard),length=lesson.sections[current].cards[referenceCard].steps.length;
+  referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
 
