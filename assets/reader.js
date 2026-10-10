@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    if(!disposed)$('reader-feedback').textContent='La locomotiva non è stata caricata. Riapri questa parte della lezione.';
   });
   const answerBox=el('div','rm-period-answer'),answerLabel=el('label');
-  answerLabel.append(el('span','','Periodo misurato: '));const answer=el('input');answer.type='text';answer.inputMode='decimal';answer.setAttribute('aria-label','Periodo misurato in secondi');answer.setAttribute('autocomplete','off');answer.value=st.answer;answerLabel.append(answer,el('span','','s'));answerBox.append(answerLabel);box.append(answerBox);
+  answerLabel.append(el('span','','Periodo misurato: '));const answer=el('input');answer.type='text';answer.inputMode='decimal';answer.setAttribute('aria-label','Periodo misurato in secondi');answer.setAttribute('autocomplete','off');answer.value=st.answer;answerLabel.append(answer,el('span','','s'));answerBox.append(answerLabel);clock.board.append(answerBox);
   answer.addEventListener('input',()=>{st.answer=answer.value;st.verified=false;$('reader-feedback').textContent='';sync();});
   const verify=button('Verifica la misura',()=>{
    if(st.marks.length!==2){$('reader-feedback').textContent='Registra i due istanti prima di verificare.';return;}
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    if(Math.abs(reported-measured)>.05){$('reader-feedback').textContent='Il valore inserito non coincide con Δt sul cronometro. Controlla la lettura e riportala nel riquadro in secondi.';return;}
    if(Math.abs(reported-st.period)>tolerance){$('reader-feedback').textContent='La durata misurata non corrisponde a un giro completo. Cancella le letture e riprova: registra due passaggi consecutivi sul segno giallo. Una piccola differenza dovuta al tempo di reazione va bene.';return;}
    st.verified=true;clock.show();finish('Misura riuscita! Il periodo misurato è Δt = '+format(reported)+' s.');
-  },'rm-btn primary');box.append(verify);
+  },'rm-btn primary');clock.board.append(verify);
   const sync=()=>{redHit.disabled=bjorneHit.disabled=st.marks.length>0;verify.disabled=st.marks.length!==2||st.verified;};clock.board.addEventListener('measurement',sync);sync();
   disposeWidget=()=>{clockDispose();disposed=true;cancelAnimationFrame(raf);clearTimeout(balloonTimer);if(!st.verified)st.marks=[];};
  }
