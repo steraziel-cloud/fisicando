@@ -131,9 +131,14 @@ document.addEventListener('DOMContentLoaded',()=>{
  // This open curve is parametrized by physical arc length: equal s increments
  // use equal distances along the path, not equal SVG parameter increments.
  function positionBoard(box,kind,showDistance){
-  const st=state[current],board=el('div','rm-reader-board');
+  const st=state[current],board=el('div','rm-reader-board '+(kind==='position'?'rm-position-board':'rm-displacement-board'));
   board.innerHTML='<h4>Lavagna · Un punto lungo la traiettoria</h4><svg viewBox="0 0 640 285" role="img" aria-label="Traiettoria curva graduata da meno cinque a più cinque metri"><path class="rm-trajectory" d="M50 186 C118 58 191 55 269 144 S432 249 590 93" fill="none" stroke="currentColor" stroke-width="3"/><g class="rm-metric"></g><g class="rm-origin"></g><path class="rm-positive-arrow" fill="none" stroke="var(--rm-accent)" stroke-width="3"/><circle class="rm-start-point" r="7" fill="#e7b94f"/><circle class="rm-moving-point" r="9" fill="var(--rm-accent)"/><g class="rm-point-label"><rect x="-59" y="-24" width="118" height="29" rx="10" fill="var(--rm-panel)" stroke="var(--rm-accent)"/><text text-anchor="middle" y="-5" fill="currentColor" font-size="16"></text></g></svg><label>Posizione <span class="rm-coordinate-name">s</span>: <output></output><input type="range" min="-5" max="5" step="0.01" aria-label="Posizione lungo la traiettoria"></label><p class="rm-board-description"></p>';
   const input=board.querySelector('input');input.value=st.position;
+  if(kind==='position'){
+   const label=input.parentElement,output=label.querySelector('output');
+   output.hidden=true;label.replaceChildren(output,input);
+   board.querySelector('.rm-board-description').hidden=true;
+  }
   let initialInput=null,initialOutput=null;
   if(kind==='displacement'){
    const initial=el('label');initial.innerHTML='Posizione iniziale s₁: <output></output><input type="range" min="-5" max="5" step="0.01" aria-label="Posizione iniziale lungo la traiettoria">';
@@ -163,6 +168,9 @@ document.addEventListener('DOMContentLoaded',()=>{
    const s1=initialInput?Number(initialInput.value):1,delta=s-s1;
    if(initialInput){st.startPosition=s1;const start=at(s1);startPoint.setAttribute('cx',start.x);startPoint.setAttribute('cy',start.y);initialLabel.setAttribute('transform',`translate(${start.x},${start.y+48})`);initialLabel.querySelector('text').textContent='s₁ = '+format(s1)+' m';initialOutput.textContent=format(s1)+' m';initialInput.setAttribute('aria-valuetext',format(s1)+' metri');}
    board.querySelector('.rm-board-description').textContent=kind==='displacement'?`Partenza s₁ = ${format(s1)} m · Arrivo s₂ = ${format(s)} m · Δs = ${format(delta)} m`:`Posizione s = ${format(s)} m`+(showDistance?` · Distanza dall’origine lungo la traiettoria |s| = ${format(Math.abs(s))} m`:'');
+
+   box.querySelectorAll('.rm-current-position').forEach(node=>node.textContent=`Sposta il punto con il cursore: in questo momento occupa la posizione s = ${format(s)} m.`);
+   box.querySelectorAll('.rm-position-sign').forEach(node=>node.textContent=s===0?'In questo momento s = 0,00 m: il punto si trova nell’origine.':`In questo momento s = ${format(s)} m: il punto si trova a ${format(Math.abs(s))} m dall’origine, misurati lungo la traiettoria nel verso ${s>0?'positivo':'negativo'}.`);
    const displacement=box.querySelector('.rm-displacement-example');if(displacement)displacement.textContent=`Sulla lavagna parti da s₁ = ${format(s1)} m e arrivi a s₂ = ${format(s)} m: Δs = ${format(s)} m − (${format(s1)} m) = ${format(delta)} m.`;
    const sign=box.querySelector('.rm-displacement-sign');if(sign)sign.textContent=delta>0?`Qui Δs = +${format(delta)} m: la posizione finale si trova nel verso positivo rispetto a quella iniziale.`:delta<0?`Qui Δs = ${format(delta)} m: la posizione finale si trova nel verso negativo rispetto a quella iniziale.`:'Qui Δs = 0,00 m: le posizioni iniziale e finale coincidono, anche se il corpo potrebbe essersi mosso e poi essere tornato al punto di partenza.';
    const example=box.querySelector('.rm-position-example');if(example)example.textContent=`Sulla lavagna la posizione è s = ${format(s)} m: la distanza dall’origine lungo la traiettoria è |s| = ${format(Math.abs(s))} m. Sposta il punto per osservare come cambiano questi valori.`;

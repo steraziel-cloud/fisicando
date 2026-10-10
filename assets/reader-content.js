@@ -118,7 +118,7 @@ window.READER_LESSONS = {
             "steps": [
               {
                 "title": "Una sola coordinata",
-                "html": "Conosciamo la traiettoria e abbiamo scelto un’origine e un verso positivo. Fissiamo anche l’unità di misura: il metro. Misurando <strong>lungo la traiettoria</strong> a partire dall’origine, possiamo individuare la posizione con un solo numero, anche quando la linea è curva."
+                "html": "Conosciamo la traiettoria e abbiamo scelto un’origine e un verso positivo. Per misurare lungo la linea, fissiamo anche una <strong>graduazione</strong>: scegliamo un tratto della traiettoria che corrisponde a <strong>1 m</strong> e riportiamo questa lunghezza lungo il percorso.<br><br>La lunghezza si misura <strong>seguendo la curva</strong>. Con questa graduazione possiamo individuare la posizione con un solo numero."
               }
             ]
           },
@@ -127,18 +127,19 @@ window.READER_LESSONS = {
             "steps": [
               {
                 "title": "Una posizione ha una coordinata",
-                "html": "La coordinata <span class=\"rm-formula\">s</span>, chiamata <button type=\"button\" class=\"rm-keyword\" data-term=\"ascissa\">ascissa curvilinea</button>, indica la posizione lungo la traiettoria rispetto all’origine. Sposta il punto con il cursore: le posizioni possono assumere anche valori intermedi, come <span class=\"rm-formula\">1,84 m</span>."
+                "html": "La coordinata <span class=\"rm-formula\">s</span>, chiamata <button type=\"button\" class=\"rm-keyword\" data-term=\"ascissa\">ascissa curvilinea</button>, indica la posizione lungo la traiettoria rispetto all’origine.<br><br><span class=\"rm-current-position\" aria-live=\"polite\"></span>"
               },
               {
                 "title": "Il segno indica la posizione rispetto all’origine",
-                "html": "<span class=\"rm-formula\">s = −2 m</span> significa che il punto si trova a 2 m dall’origine, lungo la traiettoria nel verso negativo. Il segno della posizione ci dice <strong>dove si trova il corpo</strong>: da lì può muoversi sia nel verso positivo sia nel verso negativo, oppure restare fermo."
+                "html": "<span class=\"rm-position-sign\" aria-live=\"polite\"></span><br><br>Il segno della posizione ci dice <strong>dove si trova il corpo rispetto all’origine</strong>. Da quella posizione può muoversi in entrambi i versi oppure restare fermo."
               },
               {
                 "title": "Posizione e distanza dall’origine",
                 "html": "La distanza dall’origine <strong>misurata lungo questa traiettoria</strong> è <button type=\"button\" class=\"rm-keyword\" data-term=\"valore-assoluto\">|s|</button>. <span class=\"rm-position-example\" aria-live=\"polite\"></span>"
               }
             ],
-            "board": "position"
+            "board": "position",
+            "stepMode": "replace"
           },
           {
             "title": "La legge oraria",

@@ -241,3 +241,13 @@
  .rm-reader-card .rm-stopwatch-board{grid-template-columns:1fr;gap:8px}
  .rm-reader-card .rm-stopwatch-board .rm-clock,.rm-reader-card .rm-stopwatch-board .rm-clock-marks,.rm-reader-card .rm-stopwatch-board .rm-clock-controls{grid-column:1;grid-row:auto}
 }
+
+/* Keep the trajectory and the current explanation together at normal zoom. */
+.rm-position-board,.rm-displacement-board{padding:10px 14px;margin-bottom:8px}
+.rm-position-board svg,.rm-displacement-board svg{width:100%;max-width:600px;margin-inline:auto}
+.rm-position-board>label{display:block;max-width:600px;margin:0 auto}
+.rm-position-board>label output[hidden],.rm-position-board>.rm-board-description[hidden]{display:none}
+.rm-position-board input[type=range]{margin-top:4px}
+.rm-reader-card:has(.rm-position-board) .rm-card-text{max-width:none;margin-inline:0}
+.rm-reader-card:has(.rm-position-board) .rm-reader-step{padding:10px 0}
+.rm-reader-card:has(.rm-position-board) .rm-reader-step p{line-height:1.6}
