@@ -446,7 +446,7 @@ body[data-reader-lesson="cinematica-velocita"] .rm-reader-card:has(>.rm-referenc
 /* Keep the introductory velocity board above a full-width explanation. */
 .rm-velocity-story-card>.rm-card-text{width:100%;max-width:none;min-width:0;margin:0}
 .rm-velocity-story-card .rm-velocity-scene{margin:0 0 10px;padding:8px 10px}
-.rm-velocity-story-card .rm-velocity-scene>svg{width:min(100%,660px);height:auto;margin-inline:auto}
+.rm-velocity-story-card .rm-velocity-scene>svg{width:min(100%,900px);height:auto;margin-inline:auto}
 .rm-velocity-story-card .rm-velocity-scene .vs-controls{margin-top:4px;gap:8px}
 .rm-velocity-story-card .rm-velocity-scene .vs-controls button{padding:6px 10px;font-size:13px;border-radius:8px}
 .rm-velocity-story-card .rm-velocity-scene .vs-phase{font-size:13px;padding:6px 10px;border-radius:8px}

@@ -56,6 +56,7 @@
       const visuals=document.createElement('div');visuals.className='vs-visuals';const route=board.querySelector('svg');route.before(visuals);visuals.append(route,graph);board.classList.toggle('vs-withgraph',!!options.graph);
       board.querySelector('svg').setAttribute('viewBox','0 0 720 330');
     }
+    if(!instant)board.querySelector('svg').setAttribute('viewBox','0 22 740 260');
     box.append(board);
     const path = board.querySelector('.vs-path');
     const length = path.getTotalLength();
