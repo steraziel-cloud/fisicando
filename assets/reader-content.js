@@ -113,8 +113,12 @@ window.READER_LESSONS = {
             "title": "Dove si trova il corpo?",
             "steps": [
               {
-                "title": "Una sola coordinata",
-                "html": "Conosciamo la traiettoria e abbiamo scelto un’origine e un verso positivo. Per misurare lungo la linea, fissiamo anche una <strong>graduazione</strong>: scegliamo un tratto della traiettoria che corrisponde a <strong>1 m</strong> e riportiamo questa lunghezza lungo il percorso.<br><br>La lunghezza si misura <strong>seguendo la curva</strong>. Con questa graduazione possiamo individuare la posizione con un solo numero."
+                "title": "Una scala lungo il percorso",
+                "html": "Conosciamo la traiettoria e abbiamo scelto un’origine e un verso positivo. Per misurare lungo il percorso, costruiamo una <strong>scala di misura</strong>: usiamo il metro come unità di lunghezza e riportiamo tratti di <strong>1 m</strong> lungo la traiettoria."
+              },
+              {
+                "title": "Misurare seguendo la traiettoria",
+                "html": "La lunghezza si misura <strong>seguendo la traiettoria</strong>, anche quando è curva. Partendo dall’origine e tenendo conto del verso positivo, questa scala ci permette di individuare la posizione del corpo <strong>con un solo numero</strong>."
               }
             ]
           },
