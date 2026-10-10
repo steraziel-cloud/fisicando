@@ -45,15 +45,15 @@ window.READER_LESSONS = {
             "collapsePrevious": false
           },
           {
-            "title": "Una traiettoria che conosciamo",
+            "title": "La traiettoria: la traccia del movimento",
             "steps": [
               {
                 "title": "La nostra ipotesi",
-                "html": "Nella cinematica scalare che studieremo, supponiamo di conoscere la <button type=\"button\" class=\"rm-keyword\" data-term=\"traiettoria\">traiettoria</button>, cioè la linea lungo cui si muove il punto materiale. Può essere <strong>rettilinea oppure curva</strong>."
+                "html": "Per studiare la cinematica scalare, partiamo da un’ipotesi: conosciamo già la <button type=\"button\" class=\"rm-keyword\" data-term=\"traiettoria\">traiettoria</button>, ovvero la linea descritta dal punto materiale durante il movimento. Questa linea può essere <strong>rettilinea o curva</strong>."
               },
               {
                 "title": "Due scelte sul percorso",
-                "html": "Su questa linea scegliamo un’<strong>origine</strong> e un <strong>verso positivo</strong> di percorrenza. Tra poco vedremo come usare queste scelte per indicare la posizione del corpo."
+                "html": "Lungo questa linea dobbiamo compiere due scelte fondamentali: stabilire un’<strong>origine</strong> e un <strong>verso positivo</strong> di percorrenza. Tra poco scopriremo come usarle per indicare la posizione del corpo."
               }
             ]
           }
