@@ -452,3 +452,26 @@ body[data-reader-lesson="cinematica-velocita"] .rm-reader-card:has(>.rm-referenc
 .rm-velocity-story-card .rm-velocity-scene .vs-phase{font-size:13px;padding:6px 10px;border-radius:8px}
 .rm-velocity-story-card .rm-reader-step{padding:8px 0}
 .rm-velocity-story-card .rm-reader-step p{line-height:1.6}
+
+/* Keep the unit conversion board beside both cumulative explanations. */
+.rm-units-card{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:12px 28px;align-items:start}
+.rm-units-card>.rm-card-title{grid-column:1;grid-row:1;margin:0}
+.rm-units-card>.rm-card-text{grid-column:1;grid-row:2;max-width:none;width:100%;min-width:0;margin:0}
+.rm-units-card .rm-reader-step{padding:8px 0}
+.rm-units-card .rm-reader-step p{line-height:1.6}
+.rm-units-card>.rm-unit-exercise{grid-column:2;grid-row:1 / span 2;margin:0;min-width:0;display:grid;grid-template-columns:max-content minmax(0,1fr);gap:12px 18px;align-items:center;padding:16px}
+.rm-unit-choices .rm-sentence{margin:0 0 12px;gap:8px;white-space:nowrap;flex-wrap:nowrap}
+.rm-unit-choices .rm-sentence select{min-width:0;width:125px;padding:7px 9px}
+.rm-unit-choices .rm-btn{font-size:13px;padding:8px 10px;margin-top:0}
+.rm-unit-exercise>.rm-unit-result{margin:0;min-width:0}
+.rm-unit-exercise>.rm-unit-result math{font-size:20px}
+.rm-unit-exercise>.rm-inline-feedback{grid-column:1 / -1;margin:0;padding-top:0}
+@media(max-width:1100px){
+ .rm-units-card{grid-template-columns:1fr;gap:12px}
+ .rm-units-card>.rm-card-title,.rm-units-card>.rm-card-text,.rm-units-card>.rm-unit-exercise{grid-column:1;grid-row:auto}
+}
+@media(max-width:600px){
+ .rm-units-card>.rm-unit-exercise{grid-template-columns:1fr}
+ .rm-unit-exercise>.rm-inline-feedback{grid-column:1}
+ .rm-unit-exercise>.rm-unit-result math{font-size:19px}
+}

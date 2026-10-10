@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   disposeWidget=()=>{clockDispose();disposed=true;cancelAnimationFrame(raf);clearTimeout(balloonTimer);if(!st.verified)st.marks=[];};
  }
  function unitsExercise(box,interactive=true){
-  const st=state[current].units,exercise=el('div','rm-inline-exercise rm-unit-exercise');
+  const st=state[current].units,exercise=el('div','rm-inline-exercise rm-unit-exercise'),choicesBox=el('div','rm-unit-choices');
   const correct=['0.001','3600'],values=interactive?st.values:correct;
   const choices=[[['0.001','0,001'],['0.01','0,01']],[['60','60'],['3600','3600']]];
   ['1 m =','1 h ='].forEach((text,i)=>{
@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    [['','Scegli…'],...choices[i]].forEach(([value,text])=>{const option=el('option','',text);option.value=value;select.append(option);});
    select.value=values[i];select.disabled=st.done||!interactive;
    select.addEventListener('change',()=>st.values[i]=select.value);
-   line.append(select,el('span','',i===0?'km':'s'));exercise.append(line);
+   line.append(select,el('span','',i===0?'km':'s'));choicesBox.append(line);
   });
   const feedback=el('p','rm-inline-feedback');feedback.setAttribute('role','status');
   const result=el('div','rm-unit-result');result.hidden=!(st.done||!interactive);
@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&result.animate)result.animate([{opacity:0,transform:'translateX(36px)'},{opacity:1,transform:'none'}],{duration:260,easing:'ease-out'});
    actions();
   });
-  check.hidden=st.done||!interactive;exercise.append(check,feedback,result);box.append(exercise);
+  check.hidden=st.done||!interactive;choicesBox.append(check);exercise.append(choicesBox,result,feedback);box.append(exercise);
  }
  function velocityUnitsQuiz(box){
   const st=state[current].velocityQuiz;
@@ -389,6 +389,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.board==='train-reference'){box.classList.add('rm-train-reference-card');trainPicture(box);}
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
   const text=el('div','rm-card-text');steps.forEach(step=>text.append(stepNode(step,archived)));box.append(text);
+  const units=text.querySelector('.rm-unit-exercise');if(units){box.classList.add('rm-units-card');box.append(units);}
   const updateBoard=card.board==='position'||card.board==='displacement'?positionBoard(box,card.board,steps.length>=3):null;
   if(!archived&&!allMode)mountedCard={section:current,card,box,text,updateBoard,replace:card.stepMode==='replace'||!!steps.at(-1)?.replace};
  }

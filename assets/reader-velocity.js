@@ -49,7 +49,7 @@ window.READER_LESSONS["cinematica-velocita"] = {
         },
         {
           "title": "L’unità di misura della velocità",
-          "stepMode": "replace",
+          "stepMode": "cumulative",
           "steps": [
             {
               "title": "Metri al secondo e chilometri orari",
