@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.board==='elevator'&&window.GatitoElevator)disposeWidget=window.GatitoElevator.mount(box,state[current].elevator,()=>{actions();if(!referenceMode&&!allMode)$('reader-next').click();},archived||allMode);
   if(card.board==='velocity-instant'&&window.GatitoVelocityScene)disposeWidget=window.GatitoVelocityScene.mount(box,{instant:true,graph:steps.some(step=>step.velocityGraph)});
   if(card.board==='law-motion'&&window.GatitoLawMotion){box.classList.add('rm-law-card');disposeWidget=window.GatitoLawMotion.mount(box,state[current].lawMotion||(state[current].lawMotion={time:0}),{graph:steps.some(step=>step.lawGraph)});}
-  if(card.board==='velocity-story'&&window.GatitoVelocityScene)disposeWidget=window.GatitoVelocityScene.mount(box);
+  if(card.board==='velocity-story'&&window.GatitoVelocityScene){box.classList.add('rm-velocity-story-card');disposeWidget=window.GatitoVelocityScene.mount(box);}
   if(['wheel-speed','road-speed'].includes(card.board)&&window.GatitoSpeedInstruments)disposeWidget=window.GatitoSpeedInstruments.mount(box,card.board);
   if(card.board==='train-reference'){box.classList.add('rm-train-reference-card');trainPicture(box);}
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
