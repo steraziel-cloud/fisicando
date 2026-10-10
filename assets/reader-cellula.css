@@ -1,0 +1,22 @@
+/* Scoped layout for the first biology reader draft. */
+body[data-reader-lesson="biologia-cellula"] .rm-card-text{width:100%;max-width:none;margin:0}
+body[data-reader-lesson="biologia-cellula"] .rm-reader-step{padding:10px 0}
+body[data-reader-lesson="biologia-cellula"] .rm-reader-step p{line-height:1.65}
+body[data-reader-lesson="biologia-cellula"] .rm-reader-subtitle{color:var(--rm-muted)}
+body[data-reader-lesson="biologia-cellula"] #reader-subtitle{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+body[data-reader-lesson="biologia-cellula"] #reader-subtitle::after{content:"In lavorazione";border:1px solid var(--rm-accent);border-radius:20px;padding:4px 10px;font-size:11px;letter-spacing:.03em}
+.rm-biology-draft-note{display:block;border-left:3px solid var(--rm-accent);padding:8px 14px;font-size:14px;color:var(--rm-muted)}
+body[data-reader-lesson="biologia-cellula"] .rm-reader-card:has(>.rm-reference-scene){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto 1fr;gap:10px 28px;align-items:start}
+body[data-reader-lesson="biologia-cellula"] .rm-reader-card:has(>.rm-reference-scene)>.rm-card-title{grid-column:1;grid-row:1;margin:0}
+body[data-reader-lesson="biologia-cellula"] .rm-reader-card:has(>.rm-reference-scene)>.rm-card-text{grid-column:1;grid-row:2}
+body[data-reader-lesson="biologia-cellula"] .rm-reader-card>.rm-reference-scene{grid-column:2;grid-row:1/3;min-width:0;margin:0;align-self:center}
+body[data-reader-lesson="biologia-cellula"] .rm-reference-scene img{display:block;width:100%;height:auto;max-width:none;max-height:none;margin:0;border-radius:12px}
+body[data-reader-lesson="biologia-cellula"] .rm-reader-card.rm-visual-above{display:flex;flex-direction:column;gap:12px}
+body[data-reader-lesson="biologia-cellula"] .rm-visual-above>.rm-reference-scene{width:min(100%,740px);align-self:center}
+body[data-reader-lesson="biologia-cellula"] .rm-visual-above>.rm-card-text{width:100%}
+@media(max-width:800px){
+ body[data-reader-lesson="biologia-cellula"] .rm-reader-card:has(>.rm-reference-scene){grid-template-columns:1fr;gap:12px}
+ body[data-reader-lesson="biologia-cellula"] .rm-reader-card:has(>.rm-reference-scene)>.rm-card-title{grid-column:1;grid-row:1}
+ body[data-reader-lesson="biologia-cellula"] .rm-reader-card:has(>.rm-reference-scene)>.rm-card-text{grid-column:1;grid-row:2}
+ body[data-reader-lesson="biologia-cellula"] .rm-reader-card>.rm-reference-scene{grid-column:1;grid-row:3;width:100%;max-width:500px;justify-self:center}
+}

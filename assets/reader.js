@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const destinations=lesson.sections[current].optionalNext;
   const dialog=el('dialog','rm-glossary'),title=el('h2','','Vuoi esplorare ancora?');title.id='reader-optional-title';dialog.setAttribute('aria-labelledby',title.id);
   const trivia=lesson.sections.find(s=>s.id===destinations.trivia),inProgress=trivia?.status==='work-in-progress';
-  dialog.append(title,el('p','',inProgress?'Le curiosità e gli approfondimenti sulla velocità nella vita quotidiana sono ancora in lavorazione: troverai un primo prototipo del tachimetro e segnaposti per autovelox e GPS. Puoi dare un’occhiata oppure passare direttamente al riepilogo della lezione.':'Puoi scoprire le curiosità e gli approfondimenti sulla velocità nella vita quotidiana, oppure passare direttamente al riepilogo della lezione.'));
+  dialog.append(title,el('p','',lesson.sections[current].optionalPrompt || (inProgress?'Le curiosità e gli approfondimenti sulla velocità nella vita quotidiana sono ancora in lavorazione: troverai un primo prototipo del tachimetro e segnaposti per autovelox e GPS. Puoi dare un’occhiata oppure passare direttamente al riepilogo della lezione.':'Puoi scoprire le curiosità e gli approfondimenti sulla velocità nella vita quotidiana, oppure passare direttamente al riepilogo della lezione.')));
   const choices=el('div','rm-reader-actions');
   const choose=id=>{const target=lesson.sections.findIndex(s=>s.id===id);dialog.close();if(target>=0){state[target].available=true;open(target,true,1);}};
   choices.append(button(inProgress?'Anteprima · In lavorazione':'Esplora i trivia',()=>choose(destinations.trivia),'rm-btn'),button('Vai al recap',()=>choose(destinations.recap)));
@@ -318,8 +318,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   const q=el('p','',s.quiz.question);box.append(q);
   s.quiz.options.forEach((option,i)=>{const label=el('label'),input=el('input');input.type='radio';input.name='checkpoint';input.value=i;label.append(input,el('span','',option));box.append(label);});
   box.append(button('Verifica',()=>{const selected=box.querySelector('input:checked');if(!selected){$('reader-feedback').textContent='Scegli una risposta prima di verificare.';return;}
-   if(Number(selected.value)===s.quiz.answer)finish('Corretto. '+s.quiz.feedback);
-   else retry($('reader-feedback'),(s.id==='inizio'?'Dire soltanto “il corpo è fermo” lascia una domanda aperta: rispetto a che cosa? ':s.quiz.feedback+' ')+'Puoi rileggere e riprovare.');
+   const chosen=Number(selected.value);
+   if(chosen===s.quiz.answer)finish('Corretto. '+(s.quiz.feedbackByOption?.[chosen]||s.quiz.feedback));
+   else retry($('reader-feedback'),(s.quiz.feedbackByOption?.[chosen]||(s.id==='inizio'?'Dire soltanto “il corpo è fermo” lascia una domanda aperta: rispetto a che cosa? ':s.quiz.feedback+' '))+' Puoi rileggere e riprovare.');
   }));
   if(state[current].complete)$('reader-feedback').textContent='Questa parte è già completata. Puoi rivedere il quiz o proseguire.';
  }
@@ -392,6 +393,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(!card.hideTitle)box.append(el('h3','rm-card-title',card.title));
   if(card.title==='In conclusione')box.classList.add('rm-conclusion-card');
   if(card.title==='Benvenuta, benvenuto!'||card.title==='Benvenuta, Benvenuto!'){box.classList.add('rm-welcome-card');const cat=el('img','rm-welcome-cat');cat.src='assets/images/reader/red-bjorne-benvenuto-v1.png';cat.alt='Red e Bjorne ti danno il benvenuto e ti salutano con una zampina';cat.width=240;cat.height=160;box.append(cat);}
+  if(card.visualLayout==='above')box.classList.add('rm-visual-above');
   if(card.illustration){const picture=el('div','rm-reference-scene'),img=el('img','rm-train-illustration');img.src=card.illustration.src;img.alt=card.illustration.alt;img.width=card.illustration.width;img.height=card.illustration.height;img.style.objectFit='contain';img.style.mask='none';img.style.webkitMask='none';picture.append(img);box.append(picture);}
   if(card.board==='elevator'&&window.GatitoElevator)disposeWidget=window.GatitoElevator.mount(box,state[current].elevator,()=>{actions();if(!referenceMode&&!allMode)$('reader-next').click();},archived||allMode);
   if(card.board==='velocity-instant'&&window.GatitoVelocityScene){box.classList.add('rm-velocity-instant-card');disposeWidget=window.GatitoVelocityScene.mount(box,{instant:true,graph:steps.some(step=>step.velocityGraph)});}
@@ -447,4 +449,5 @@ document.addEventListener('DOMContentLoaded',()=>{
   referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
+
 

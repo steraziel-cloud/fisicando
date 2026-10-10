@@ -1144,3 +1144,44 @@ window.LESSON_CATALOG = [
     ]
   }
 ];
+
+
+window.LESSON_CATALOG.push({
+  "id": "biologia",
+  "title": "Biologia",
+  "icon": "atom",
+  "visibleLevels": [
+    "medie"
+  ],
+  "areas": [
+    {
+      "title": "Gli esseri viventi",
+      "icon": "atom",
+      "topics": [
+        {
+          "title": "La cellula",
+          "aliases": [
+            "seconda media",
+            "cellule",
+            "procarioti",
+            "eucarioti",
+            "organuli",
+            "osmosi"
+          ],
+          "lessons": [
+            {
+              "id": "biologia-cellula",
+              "title": "La cellula · Prima bozza",
+              "levels": [
+                "medie"
+              ],
+              "url": "reader.html?lezione=biologia-cellula",
+              "kind": "Teoria",
+              "status": "work-in-progress"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+});
