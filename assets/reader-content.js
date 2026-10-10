@@ -94,8 +94,8 @@ window.READER_LESSONS = {
                 "html": "Prima di sottrarre, esprimi i tempi nella stessa unità. Un minuto equivale a 60 secondi: da 30 s a 1 min trascorrono 30 s."
               },
               {
-                "title": "Il cronometro può partire prima",
-                "html": "Se la prima lettura è 4 s e la seconda è 9 s, la durata è 5 s. <strong>La prima lettura non deve essere zero.</strong> Prova a registrare un nuovo intervallo senza riavviare il cronometro."
+                "title": "L’istante iniziale",
+                "html": "Se la prima lettura è 4 s e la seconda è 9 s, la durata è di 5 s (9 s − 4 s). <strong>La prima lettura non deve essere necessariamente zero</strong>: per calcolare la durata, basta sottrarre la lettura iniziale da quella finale."
               }
             ],
             "board": "stopwatch"
