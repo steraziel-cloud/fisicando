@@ -493,3 +493,8 @@ body[data-reader-lesson="cinematica-velocita"] .rm-reader-card:has(>.rm-referenc
 .rm-conclusion-card>.rm-card-text{max-width:none;width:100%;margin:0}
 .rm-conclusion-card .rm-reader-step{padding:8px 0}
 .rm-conclusion-card .rm-reader-step p{line-height:1.6}
+
+/* Text-only velocity cards use the available reader width. */
+body[data-reader-lesson="cinematica-velocita"] .rm-reader-card:not(:has(img,svg,canvas,.rm-inline-exercise,.rm-elevator))>.rm-card-text{
+ width:100%;max-width:none;min-width:0;margin-inline:0;
+}
