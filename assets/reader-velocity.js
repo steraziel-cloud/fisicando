@@ -142,7 +142,7 @@ window.READER_LESSONS["cinematica-velocita"] = {
           "steps": [
             {
               "title": "La velocità istantanea",
-              "html": "Quando, restringendo gli intervalli verso un istante, le velocità medie si avvicinano a un valore preciso, <strong>quel valore è la velocità scalare istantanea in quell’istante</strong>."
+              "html": "La <strong>velocità scalare istantanea</strong> descrive quanto rapidamente cambia la posizione di un corpo in un determinato istante. Si ottiene considerando intervalli di tempo di durata sempre più vicina a zero."
             },
             {
               "html": "Osserva le etichette sulla lavagna e <strong>completa le velocità dei due gatti</strong>. Puoi mettere in pausa o rivedere il movimento.",
