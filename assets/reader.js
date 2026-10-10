@@ -345,6 +345,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const wanted=replace?[item.step]:item.card.steps.slice(0,item.si+1);
   if(replace||view.replace){
    const previous=[...view.text.childNodes],next=wanted.map(step=>stepNode(step));
+   if(view.box.classList.contains('rm-units-card'))next.forEach(node=>node.querySelector('.rm-unit-exercise')?.remove());
    slideSwap(view.text,previous,next,direction);
   }else{
    const removed=[...view.text.children].slice(wanted.length);
