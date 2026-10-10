@@ -13,7 +13,7 @@ window.READER_LESSONS = {
             "steps": [
               {
                 "title": "La prima lezione di cinematica scalare",
-                "html": "Qui impareremo a descrivere il movimento dei corpi senza badare alle cause che lo determinano."
+                "html": "Qui impareremo a descrivere il <button type=\"button\" class=\"rm-keyword\" data-term=\"movimento\">movimento</button> dei corpi senza badare alle cause che lo determinano."
               }
             ]
           },
