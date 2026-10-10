@@ -77,6 +77,34 @@ document.addEventListener('DOMContentLoaded',()=>{
   });$('reader-glossary').append(links);}
   $('reader-glossary').showModal();
  }
+
+ // Link the delta symbol in both lesson text and changing measurement readouts.
+ function linkDeltaSymbols(root){
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];
+  while(walker.nextNode()){
+   const node=walker.currentNode,parent=node.parentElement;
+   if(node.data.includes('Δ')&&parent&&!parent.closest('button,a,script,style,textarea,option,svg,[data-term]'))nodes.push(node);
+  }
+  nodes.forEach(node=>{
+   const fragment=document.createDocumentFragment(),parts=node.data.split('Δ');
+   parts.forEach((part,i)=>{
+    if(i){const term=el('button','rm-keyword','Δ');term.type='button';term.dataset.term='delta';term.setAttribute('aria-label','Delta: definizione di variazione');fragment.append(term);}
+    if(part)fragment.append(document.createTextNode(part));
+   });
+   node.replaceWith(fragment);
+  });
+ }
+ const deltaRoot=document.querySelector('.rm-reader-column');
+ const deltaObserver=new MutationObserver(records=>{
+  const roots=new Set();
+  records.forEach(record=>{
+   if(record.type==='characterData')roots.add(record.target.parentElement);
+   else record.addedNodes.forEach(node=>roots.add(node.nodeType===Node.TEXT_NODE?node.parentElement:node));
+  });
+  roots.forEach(root=>{if(root&&root.isConnected)linkDeltaSymbols(root);});
+ });
+ deltaObserver.observe(deltaRoot,{childList:true,subtree:true,characterData:true});
+ linkDeltaSymbols(deltaRoot);
  document.addEventListener('click',e=>{const term=e.target.closest('[data-term]');if(term)showGlossary(term.dataset.term);});
  $('reader-glossary').addEventListener('click',e=>{if(e.target===$('reader-glossary'))$('reader-glossary').close();});
  function trainPicture(box){

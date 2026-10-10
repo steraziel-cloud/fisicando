@@ -94,10 +94,6 @@ window.READER_LESSONS = {
                 "html": "Un <strong>intervallo di tempo</strong> è la durata compresa tra due istanti. Se un evento inizia all’istante <span class=\"rm-formula\">t₁</span> e termina all’istante <span class=\"rm-formula\">t₂</span>, la sua durata è la differenza <span class=\"rm-formula\">Δt = t₂ − t₁</span>. Per esempio, tra <span class=\"rm-formula\">t₁ = 2 s</span> e <span class=\"rm-formula\">t₂ = 7 s</span> trascorrono <span class=\"rm-formula\">5 s</span>."
               },
               {
-                "title": "Il simbolo Δ",
-                "html": "La lettera greca delta, <span class=\"rm-formula\">Δ</span>, indica qui una variazione: <strong>valore finale meno valore iniziale</strong>. Δt è la durata tra due istanti. Per esempio, da 2 s a 7 s passano 5 s."
-              },
-              {
                 "title": "Confrontare misure coerenti",
                 "html": "Prima di sottrarre, esprimi i tempi nella stessa unità. Un minuto equivale a 60 secondi: da 30 s a 1 min trascorrono 30 s."
               },
