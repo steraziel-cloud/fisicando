@@ -31,7 +31,8 @@ window.READER_LESSONS = {
               },
               {
                 "title": "Diamo un nome al riferimento",
-                "html": "Per descrivere un movimento dobbiamo scegliere rispetto a che cosa osservare la posizione del corpo e i suoi cambiamenti. Il <button type=\"button\" class=\"rm-keyword\" data-term=\"riferimento\">sistema di riferimento</button> ci permette di stabilire <strong>dove si trova il corpo e quando</strong>. Nell’esempio abbiamo scelto prima la stazione e poi il treno."
+                "html": "Per descrivere un movimento dobbiamo scegliere rispetto a che cosa osservare la posizione del corpo e i suoi cambiamenti. Il <button type=\"button\" class=\"rm-keyword\" data-term=\"riferimento\">sistema di riferimento</button> ci permette di stabilire <strong>dove si trova il corpo e quando</strong>. Nell’esempio abbiamo scelto prima la stazione e poi il treno.",
+                "replace": true
               }
             ],
             "board": "train-reference"
