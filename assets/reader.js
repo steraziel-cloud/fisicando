@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  const $=id=>document.getElementById(id),params=new URLSearchParams(location.search);
  const back=new URL('lezioni.html',location.href);['ruolo','livello'].forEach(k=>{if(params.has(k))back.searchParams.set(k,params.get(k));});$('reader-back').href=back.href;
  const lesson=window.READER_LESSONS[params.get('lezione')];
+ document.body.dataset.readerLesson=params.get('lezione')||'';
  if(!lesson){
   const sources={'pillole/vettori/teoria.html':'Algebra dei vettori','meccanica_punto_materiale/cinematica/teoria.html':'Cinematica · Dispensa completa','meccanica_punto_materiale/dinamica/teoria.html':'Dinamica · Dispensa completa'};
   const source=params.get('materiale');$('reader-next').hidden=true;
@@ -380,7 +381,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    details.addEventListener('toggle',()=>summary.querySelector('.rm-recap-toggle').textContent=details.open?'Comprimi':'Rivedi');
   }else $('reader-steps').append(box);
   if(!card.hideTitle)box.append(el('h3','rm-card-title',card.title));
-  if(card.title==='Benvenuta, benvenuto!'){box.classList.add('rm-welcome-card');const cat=el('img','rm-welcome-cat');cat.src='assets/images/reader/red-bjorne-benvenuto-v1.png';cat.alt='Red e Bjorne ti danno il benvenuto e ti salutano con una zampina';cat.width=240;cat.height=160;box.append(cat);}
+  if(card.title==='Benvenuta, benvenuto!'||card.title==='Benvenuta, Benvenuto!'){box.classList.add('rm-welcome-card');const cat=el('img','rm-welcome-cat');cat.src='assets/images/reader/red-bjorne-benvenuto-v1.png';cat.alt='Red e Bjorne ti danno il benvenuto e ti salutano con una zampina';cat.width=240;cat.height=160;box.append(cat);}
   if(card.illustration){const picture=el('div','rm-reference-scene'),img=el('img','rm-train-illustration');img.src=card.illustration.src;img.alt=card.illustration.alt;img.width=card.illustration.width;img.height=card.illustration.height;img.style.objectFit='contain';img.style.mask='none';img.style.webkitMask='none';picture.append(img);box.append(picture);}
   if(card.board==='elevator'&&window.GatitoElevator)disposeWidget=window.GatitoElevator.mount(box,state[current].elevator,()=>{actions();if(!referenceMode&&!allMode)$('reader-next').click();},archived||allMode);
   if(card.board==='velocity-instant'&&window.GatitoVelocityScene)disposeWidget=window.GatitoVelocityScene.mount(box,{instant:true,graph:steps.some(step=>step.velocityGraph)});

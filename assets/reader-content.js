@@ -9,15 +9,11 @@ window.READER_LESSONS = {
         "title": "Prima di partire",
         "cards": [
           {
-            "title": "Benvenuta, benvenuto!",
+            "title": "Benvenuta, Benvenuto!",
             "steps": [
               {
                 "title": "La prima lezione di cinematica scalare",
-                "html": "Benvenuta, benvenuto nella prima lezione di cinematica scalare! Qui impareremo a <strong>descrivere il movimento</strong>: dove si trova un corpo e come cambia la sua posizione nel tempo."
-              },
-              {
-                "title": "Che cosa studieremo",
-                "html": "Ci concentreremo su come descrivere il movimento senza badare alle cause che lo determinano."
+                "html": "Qui impareremo a descrivere il movimento dei corpi senza badare alle cause che lo determinano."
               }
             ]
           },
