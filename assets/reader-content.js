@@ -42,7 +42,7 @@ window.READER_LESSONS = {
               }
             ],
             "retainPrevious": false,
-            "collapsePrevious": true
+            "collapsePrevious": false
           },
           {
             "title": "Una traiettoria che conosciamo",
