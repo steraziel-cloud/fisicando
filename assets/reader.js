@@ -367,6 +367,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
   view.replace=replace;
   if(view.updateBoard)view.updateBoard(wanted.length>=3);
+  if(item.card.board==='law-motion'){const graph=view.box.querySelector('.rm-law-graph');if(graph)graph.hidden=!item.step.lawGraph;}
   if(item.card.board==='velocity-instant'){const graph=view.box.querySelector('.vs-graph');if(graph){const show=!!item.step.velocityGraph;const play=view.box.querySelector('.vs-play');if(show&&graph.hidden&&play?.textContent==='Rivedi')play.click();graph.hidden=!show;view.box.querySelector('.rm-velocity-scene').classList.toggle('vs-withgraph',show);}}
  }
  function renderCard(card,steps,archived=false,collapsed=false){
@@ -382,6 +383,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.illustration){const picture=el('div','rm-reference-scene'),img=el('img','rm-train-illustration');img.src=card.illustration.src;img.alt=card.illustration.alt;img.width=card.illustration.width;img.height=card.illustration.height;img.style.objectFit='contain';img.style.mask='none';img.style.webkitMask='none';picture.append(img);box.append(picture);}
   if(card.board==='elevator'&&window.GatitoElevator)disposeWidget=window.GatitoElevator.mount(box,state[current].elevator,()=>{actions();if(!referenceMode&&!allMode)$('reader-next').click();},archived||allMode);
   if(card.board==='velocity-instant'&&window.GatitoVelocityScene)disposeWidget=window.GatitoVelocityScene.mount(box,{instant:true,graph:steps.some(step=>step.velocityGraph)});
+  if(card.board==='law-motion'&&window.GatitoLawMotion){box.classList.add('rm-law-card');disposeWidget=window.GatitoLawMotion.mount(box,state[current].lawMotion||(state[current].lawMotion={time:0}),{graph:steps.some(step=>step.lawGraph)});}
   if(card.board==='velocity-story'&&window.GatitoVelocityScene)disposeWidget=window.GatitoVelocityScene.mount(box);
   if(['wheel-speed','road-speed'].includes(card.board)&&window.GatitoSpeedInstruments)disposeWidget=window.GatitoSpeedInstruments.mount(box,card.board);
   if(card.board==='train-reference'){box.classList.add('rm-train-reference-card');trainPicture(box);}

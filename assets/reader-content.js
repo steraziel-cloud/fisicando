@@ -145,10 +145,25 @@ window.READER_LESSONS = {
             "title": "La legge oraria",
             "steps": [
               {
+                "title": "La posizione cambia nel tempo",
+                "html": "Finora abbiamo usato la coordinata <span class=\"rm-formula\">s</span> per indicare <em>dove</em> si trova il corpo sulla traiettoria. Ma per descrivere un movimento, sapere solo la posizione non basta: dobbiamo aggiungere <strong>quando</strong> il corpo occupa quella posizione.<br><br>Osserviamo quindi il corpo in istanti diversi e associamo a ogni istante la posizione corrispondente. Avvia il movimento: sulla lavagna le due letture cambiano insieme."
+              },
+              {
                 "title": "Una posizione per ogni istante",
-                "html": "La <button type=\"button\" class=\"rm-keyword\" data-term=\"legge-oraria\">legge oraria</button> descrive come cambia la posizione del punto materiale nel tempo. È una <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button> che associa a ogni istante <span class=\"rm-formula\">t</span> la corrispondente posizione <span class=\"rm-formula\">s</span> lungo la traiettoria. Si scrive <span class=\"rm-formula\">s = s(t)</span> e permette di sapere dove si trova il corpo all’istante considerato."
+                "html": "In ogni istante <span class=\"rm-formula\">t</span>, il punto materiale occupa una precisa posizione <span class=\"rm-formula\">s</span>. Registrando le osservazioni otteniamo coppie di valori <strong>(istante, posizione)</strong>.<br><br>Le misure ci danno un numero finito di coppie. Per descrivere la posizione in <strong>ogni istante</strong>, anche tra due osservazioni, usiamo una regola: la <button type=\"button\" class=\"rm-keyword\" data-term=\"legge-oraria\">legge oraria</button>."
+              },
+              {
+                "title": "La legge oraria",
+                "html": "In matematica, una corrispondenza come la legge oraria è una <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button>: associa a ogni istante <span class=\"rm-formula\">t</span> <strong>una e una sola posizione</strong> <span class=\"rm-formula\">s</span> lungo la traiettoria.<span class=\"rm-law-formula\">s = s(t)</span>Si legge «s di t» e indica che la posizione dipende dal tempo. Per esempio, <strong>s(2) = 4</strong>. Se esprimiamo il tempo in secondi e la posizione in metri, significa che all’istante 2 s il corpo occupa la posizione 4 m.<br><br>In istanti diversi può occupare la stessa posizione: accade durante una pausa, ma anche quando ripassa per un punto del percorso."
+              },
+              {
+                "title": "Il movimento in un grafico",
+                "lawGraph": true,
+                "html": "Possiamo rappresentare la legge oraria in un grafico: sull’asse orizzontale riportiamo il <strong>tempo t</strong>, su quello verticale la <strong>posizione s</strong>. Ogni punto del grafico indica dove si trova il corpo in un certo istante.<br><br>Quando la coordinata aumenta, il corpo si muove nel verso positivo; quando diminuisce, nel verso contrario. Un <strong>tratto orizzontale</strong> indica che la posizione rimane costante: il corpo è fermo.<br><br>Avvia o rivedi il movimento: il grafico si traccia insieme al moto. <strong>La traiettoria mostra il percorso nello spazio; il grafico mostra la posizione nel tempo.</strong>"
               }
-            ]
+            ],
+            "board": "law-motion",
+            "stepMode": "replace"
           }
         ],
         "quiz": {
