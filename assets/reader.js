@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const startPoint=svg.querySelector('.rm-start-point');startPoint.style.display=kind==='displacement'?'':'none';
   let initialLabel=null;
   if(kind==='displacement'){initialLabel=svg.querySelector('.rm-point-label').cloneNode(true);initialLabel.setAttribute('class','rm-initial-label');initialLabel.querySelector('rect').setAttribute('stroke','#e7b94f');svg.append(initialLabel);}
-  board.querySelector('.rm-coordinate-name').textContent=kind==='displacement'?'finale s₂':'s';
+  const coordinateName=board.querySelector('.rm-coordinate-name');if(coordinateName)coordinateName.textContent=kind==='displacement'?'finale s₂':'s';
   function update(nextShowDistance){
    if(typeof nextShowDistance==='boolean')showDistance=nextShowDistance;
    const s=Number(input.value),p=at(s);st.position=s;const label=svg.querySelector('.rm-point-label');label.setAttribute('transform',`translate(${p.x},${p.y-32})`);label.querySelector('text').textContent=(kind==='displacement'?'s₂':'s')+' = '+format(s)+' m';
