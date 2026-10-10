@@ -279,3 +279,27 @@ body[data-reader-lesson="cinematica-introduzione"] .rm-welcome-card::before{cont
  body[data-reader-lesson="cinematica-introduzione"] .rm-welcome-cat{grid-column:1;grid-row:3;width:260px;height:180px}
  body[data-reader-lesson="cinematica-introduzione"] .rm-welcome-card::before{grid-column:1;grid-row:3;width:280px;max-width:100%;height:170px}
 }
+
+/* Keep the reference scene beside the changing explanation. */
+.rm-train-reference-card{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);grid-template-rows:auto 1fr;gap:10px 30px;align-items:start}
+.rm-train-reference-card>.rm-card-title{grid-column:1;grid-row:1;margin:0}
+.rm-train-reference-card>.rm-card-text{grid-column:1;grid-row:2;width:100%;max-width:none;margin:0}
+.rm-train-reference-card>.rm-reference-scene{grid-column:2;grid-row:1/3;margin:0;align-self:center;min-width:0}
+.rm-train-reference-card .rm-reference-scene .rm-train-illustration{width:100%;height:clamp(280px,22vw,350px);max-height:none;margin:0;object-fit:cover;object-position:50% 46%;border-radius:0;-webkit-mask:url("images/reader/train-soft-mask.svg") center/100% 100% no-repeat;mask:url("images/reader/train-soft-mask.svg") center/100% 100% no-repeat}
+.rm-train-reference-card .rm-reader-step{padding:8px 0}
+.rm-train-reference-card .rm-reader-step p{line-height:1.65}
+.rm-train-reference-card .rm-inline-exercise{margin-top:14px;padding:12px 14px}
+.rm-train-reference-card .rm-sentence{display:grid;grid-template-columns:minmax(0,1fr) 145px;gap:10px;margin:0 0 10px;font-size:15px}
+.rm-train-reference-card .rm-sentence select{min-width:0;width:100%;padding:7px 10px}
+.rm-train-reference-card .rm-inline-exercise>.rm-btn{margin-top:2px;padding:9px 13px;font-size:14px}
+.rm-train-reference-card .rm-inline-feedback{padding-top:10px;font-size:14px}
+.rm-train-reference-card .rm-inline-feedback .rm-celebration{padding:10px;gap:10px;margin-top:0}
+.rm-train-reference-card .rm-inline-feedback .rm-celebration-copy span{font-size:13px;line-height:1.5}
+@media(max-width:800px){
+ .rm-train-reference-card{grid-template-columns:1fr;gap:12px}
+ .rm-train-reference-card>.rm-card-title{grid-column:1;grid-row:1}
+ .rm-train-reference-card>.rm-reference-scene{grid-column:1;grid-row:2}
+ .rm-train-reference-card>.rm-card-text{grid-column:1;grid-row:3}
+ .rm-train-reference-card .rm-reference-scene .rm-train-illustration{height:260px;max-width:480px;margin-inline:auto}
+}
+@media(max-width:420px){.rm-train-reference-card .rm-sentence{grid-template-columns:1fr;gap:5px;margin-bottom:12px}}
