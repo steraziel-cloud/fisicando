@@ -220,3 +220,7 @@
  .rm-reader-checkpoint:has(.rm-period-scene) .rm-stopwatch-board{grid-template-columns:1fr}
  .rm-reader-checkpoint:has(.rm-period-scene) .rm-clock{grid-row:auto}
 }
+
+/* Show the complete reference scene instead of cropping it into a banner. */
+.rm-reference-scene{margin:0 0 18px}
+.rm-reference-scene .rm-train-illustration{width:min(100%,480px);height:auto;max-height:none;margin-inline:auto;object-fit:contain;object-position:center;-webkit-mask:none;mask:none;border-radius:14px}
