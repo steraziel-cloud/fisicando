@@ -197,8 +197,8 @@
 .rm-instant-speeds{display:grid;gap:12px;margin-top:18px}.rm-instant-speeds label{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.rm-instant-speeds input{width:75px;padding:7px;border:1px solid var(--rm-border);border-radius:8px;color:inherit;background:var(--rm-panel);font:inherit}.rm-instant-speeds button{justify-self:start}.vs-withgraph .vs-visuals{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;align-items:center}.vs-withgraph .vs-graph{border-top:0;margin:0;padding:0}.vs-visuals>svg{min-width:0}.vs-withgraph .vs-graph p{font-size:12px!important}@media(max-width:850px){.vs-withgraph .vs-visuals{grid-template-columns:1fr}.vs-withgraph .vs-graph{border-top:1px solid var(--rm-border);padding-top:12px}}
 
 /* Keep the complete period measurement beside its train scene. */
-.rm-reader-checkpoint:has(.rm-period-scene) .rm-lab-workbench{grid-template-columns:minmax(0,1fr) 250px;gap:18px;align-items:center;margin:12px 0 0}
-.rm-reader-checkpoint:has(.rm-period-scene) .rm-room-stage{max-width:min(100%,660px,calc(150vh - 480px));margin-inline:auto}
+.rm-reader-checkpoint:has(.rm-period-scene) .rm-lab-workbench{grid-template-columns:minmax(0,1fr) clamp(250px,18vw,290px);gap:18px;align-items:center;margin:12px 0 0}
+.rm-reader-checkpoint:has(.rm-period-scene) .rm-room-stage{max-width:min(100%,840px,calc(150vh - 480px));margin-inline:auto}
 .rm-reader-checkpoint:has(.rm-period-scene) .rm-stopwatch-board{display:flex;flex-direction:column;align-items:stretch;text-align:center;padding:12px;min-width:0}
 .rm-reader-checkpoint:has(.rm-period-scene) .rm-stopwatch-board h4{font-size:15px;margin:0 0 6px}
 .rm-reader-checkpoint:has(.rm-period-scene) .rm-clock{margin:4px auto 6px}
@@ -334,4 +334,15 @@ body[data-reader-lesson="cinematica-introduzione"] .rm-welcome-card::before{cont
  .rm-reader-card:has(>.rm-stopwatch-board)>.rm-card-title{grid-column:1;grid-row:1}
  .rm-reader-card:has(>.rm-stopwatch-board)>.rm-card-text{grid-column:1;grid-row:2}
  .rm-reader-card>.rm-stopwatch-board{grid-column:1;grid-row:3;width:100%;max-width:440px;justify-self:center}
+}
+
+/* Give the period experiment more presence without expanding its mobile layout. */
+@media(min-width:701px){
+ .rm-reader-checkpoint:has(.rm-period-scene) .rm-clock{width:210px;padding-top:30px}
+ .rm-reader-checkpoint:has(.rm-period-scene) .rm-clock-face{height:200px;border-width:9px}
+ .rm-reader-checkpoint:has(.rm-period-scene) .rm-clock-top{left:65px;width:80px}
+ .rm-reader-checkpoint:has(.rm-period-scene) .rm-clock-reading{font-size:36px}
+ .rm-reader-checkpoint:has(.rm-period-scene) .rm-clock-face>span{font-size:10px}
+ .rm-reader-checkpoint:has(.rm-period-scene) .rm-clock-marks p{font-size:14px}
+ .rm-reader-checkpoint:has(.rm-period-scene) .rm-clock-marks .rm-formula{font-size:22px}
 }
