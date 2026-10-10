@@ -346,3 +346,20 @@ body[data-reader-lesson="cinematica-introduzione"] .rm-welcome-card::before{cont
  .rm-reader-checkpoint:has(.rm-period-scene) .rm-clock-marks p{font-size:14px}
  .rm-reader-checkpoint:has(.rm-period-scene) .rm-clock-marks .rm-formula{font-size:22px}
 }
+
+/* Keep the position explanation alongside the interactive trajectory. */
+.rm-reader-card:has(>.rm-position-board){
+ display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+ grid-template-rows:auto 1fr;gap:10px 28px;align-items:start
+}
+.rm-reader-card:has(>.rm-position-board)>.rm-card-title{grid-column:1;grid-row:1;margin:0}
+.rm-reader-card:has(>.rm-position-board)>.rm-card-text{grid-column:1;grid-row:2;width:100%;min-width:0;margin:0;max-width:none}
+.rm-reader-card>.rm-position-board{grid-column:2;grid-row:1/3;min-width:0;margin:0;padding:12px 14px}
+.rm-reader-card>.rm-position-board svg{width:100%;max-width:none}
+.rm-reader-card>.rm-position-board>label{width:100%;max-width:none}
+@media(max-width:800px){
+ .rm-reader-card:has(>.rm-position-board){grid-template-columns:1fr;gap:12px}
+ .rm-reader-card:has(>.rm-position-board)>.rm-card-title{grid-column:1;grid-row:1}
+ .rm-reader-card:has(>.rm-position-board)>.rm-card-text{grid-column:1;grid-row:2}
+ .rm-reader-card>.rm-position-board{grid-column:1;grid-row:3;width:100%}
+}
