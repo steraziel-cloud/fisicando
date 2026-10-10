@@ -498,3 +498,22 @@ body[data-reader-lesson="cinematica-velocita"] .rm-reader-card:has(>.rm-referenc
 body[data-reader-lesson="cinematica-velocita"] .rm-reader-card:not(:has(img,svg,canvas,.rm-inline-exercise,.rm-elevator))>.rm-card-text{
  width:100%;max-width:none;min-width:0;margin-inline:0;
 }
+
+/* Glossary links remain native MathML tokens inside formulas. */
+.rm-math-keyword{color:var(--rm-accent-2);cursor:pointer;text-decoration:underline dashed;text-underline-offset:3px}
+.rm-math-keyword:hover,.rm-math-keyword:focus{color:var(--rm-accent)}
+/* Compact instantaneous-velocity board, with full-width sliding text below. */
+.rm-velocity-instant-card>.rm-card-text{max-width:none;width:100%;min-width:0;margin:0}
+.rm-velocity-instant-card .rm-velocity-scene{margin:0 0 10px;padding:8px 10px}
+.rm-velocity-instant-card .vs-visuals>svg{width:min(100%,850px);height:auto;margin-inline:auto}
+.rm-velocity-instant-card .vs-withgraph .vs-visuals>svg{width:100%;max-height:300px}
+.rm-velocity-instant-card .vs-controls{margin-top:4px;gap:8px}
+.rm-velocity-instant-card .vs-controls button{padding:6px 10px;font-size:13px;border-radius:8px}
+.rm-velocity-instant-card .vs-phase{font-size:13px;padding:6px 10px;border-radius:8px}
+.rm-velocity-instant-card .rm-reader-step{padding:8px 0}
+.rm-velocity-instant-card .rm-reader-step p{line-height:1.6}
+.rm-velocity-instant-card .rm-instant-speeds{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 22px;margin-top:12px}
+.rm-velocity-instant-card .rm-instant-speeds label{display:grid;grid-template-columns:minmax(0,1fr) 65px auto;gap:8px;font-size:15px}
+.rm-velocity-instant-card .rm-instant-speeds input{width:65px;box-sizing:border-box;padding:6px}
+.rm-velocity-instant-card .rm-instant-speeds>button,.rm-velocity-instant-card .rm-instant-speeds>p{grid-column:1 / -1}
+@media(max-width:700px){.rm-velocity-instant-card .rm-instant-speeds{grid-template-columns:1fr}}

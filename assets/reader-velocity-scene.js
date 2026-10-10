@@ -54,7 +54,7 @@
       <line class="vs-graph-time" y1="35" y2="185" stroke="currentColor" stroke-opacity=".4" stroke-dasharray="3 4"/>
       </svg><p style="margin:4px 0;font-size:14px"><span style="color:#a17bd7">━ Morgana</span> · <span style="color:#ee944e">┄ Red</span></p>`;
       const visuals=document.createElement('div');visuals.className='vs-visuals';const route=board.querySelector('svg');route.before(visuals);visuals.append(route,graph);board.classList.toggle('vs-withgraph',!!options.graph);
-      board.querySelector('svg').setAttribute('viewBox','0 0 720 330');
+      board.querySelector('svg').setAttribute('viewBox','0 20 740 300');
     }
     if(!instant)board.querySelector('svg').setAttribute('viewBox','0 22 740 260');
     box.append(board);

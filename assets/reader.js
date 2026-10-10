@@ -84,6 +84,15 @@ document.addEventListener('DOMContentLoaded',()=>{
    if(node.data.includes('Δ')&&parent&&!parent.closest('button,a,script,style,textarea,option,svg,[data-term]'))nodes.push(node);
   }
   nodes.forEach(node=>{
+   const mathParent=node.parentElement;
+   if(mathParent.namespaceURI==='http://www.w3.org/1998/Math/MathML'){
+    const ns=mathParent.namespaceURI,row=document.createElementNS(ns,'mrow');
+    node.data.split('Δ').forEach((part,i)=>{
+     if(i){const term=document.createElementNS(ns,'mi');term.textContent='Δ';term.setAttribute('mathvariant','normal');term.setAttribute('class','rm-math-keyword');term.setAttribute('data-term','delta');term.setAttribute('role','button');term.setAttribute('tabindex','0');term.setAttribute('aria-label','Delta: definizione di variazione');row.append(term);}
+     if(part){const text=document.createElementNS(ns,mathParent.localName==='mi'?'mi':'mtext');text.textContent=part;row.append(text);}
+    });
+    mathParent.replaceWith(row);return;
+   }
    const fragment=document.createDocumentFragment(),parts=node.data.split('Δ');
    parts.forEach((part,i)=>{
     if(i){const term=el('button','rm-keyword','Δ');term.type='button';term.dataset.term='delta';term.setAttribute('aria-label','Delta: definizione di variazione');fragment.append(term);}
@@ -104,6 +113,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  deltaObserver.observe(deltaRoot,{childList:true,subtree:true,characterData:true});
  linkDeltaSymbols(deltaRoot);
  document.addEventListener('click',e=>{const term=e.target.closest('[data-term]');if(term)showGlossary(term.dataset.term);});
+ document.addEventListener('keydown',e=>{const term=e.target.closest('.rm-math-keyword');if(term&&(e.key==='Enter'||e.key===' ')){e.preventDefault();showGlossary(term.dataset.term);}});
  $('reader-glossary').addEventListener('click',e=>{if(e.target===$('reader-glossary'))$('reader-glossary').close();});
  function trainPicture(box){
   const picture=el('div','rm-reference-scene');
@@ -384,7 +394,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.title==='Benvenuta, benvenuto!'||card.title==='Benvenuta, Benvenuto!'){box.classList.add('rm-welcome-card');const cat=el('img','rm-welcome-cat');cat.src='assets/images/reader/red-bjorne-benvenuto-v1.png';cat.alt='Red e Bjorne ti danno il benvenuto e ti salutano con una zampina';cat.width=240;cat.height=160;box.append(cat);}
   if(card.illustration){const picture=el('div','rm-reference-scene'),img=el('img','rm-train-illustration');img.src=card.illustration.src;img.alt=card.illustration.alt;img.width=card.illustration.width;img.height=card.illustration.height;img.style.objectFit='contain';img.style.mask='none';img.style.webkitMask='none';picture.append(img);box.append(picture);}
   if(card.board==='elevator'&&window.GatitoElevator)disposeWidget=window.GatitoElevator.mount(box,state[current].elevator,()=>{actions();if(!referenceMode&&!allMode)$('reader-next').click();},archived||allMode);
-  if(card.board==='velocity-instant'&&window.GatitoVelocityScene)disposeWidget=window.GatitoVelocityScene.mount(box,{instant:true,graph:steps.some(step=>step.velocityGraph)});
+  if(card.board==='velocity-instant'&&window.GatitoVelocityScene){box.classList.add('rm-velocity-instant-card');disposeWidget=window.GatitoVelocityScene.mount(box,{instant:true,graph:steps.some(step=>step.velocityGraph)});}
   if(card.board==='law-motion'&&window.GatitoLawMotion){box.classList.add('rm-law-card');disposeWidget=window.GatitoLawMotion.mount(box,state[current].lawMotion||(state[current].lawMotion={time:0}),{graph:steps.some(step=>step.lawGraph)});}
   if(card.board==='velocity-story'&&window.GatitoVelocityScene){box.classList.add('rm-velocity-story-card');disposeWidget=window.GatitoVelocityScene.mount(box);}
   if(['wheel-speed','road-speed'].includes(card.board)&&window.GatitoSpeedInstruments)disposeWidget=window.GatitoSpeedInstruments.mount(box,card.board);

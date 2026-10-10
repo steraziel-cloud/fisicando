@@ -138,7 +138,7 @@ window.READER_LESSONS["cinematica-velocita"] = {
         {
           "title": "La velocità in ogni istante",
           "board": "velocity-instant",
-          "stepMode": "cumulative",
+          "stepMode": "replace",
           "steps": [
             {
               "title": "La velocità istantanea",
