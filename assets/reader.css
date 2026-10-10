@@ -487,3 +487,9 @@ body[data-reader-lesson="cinematica-velocita"] .rm-reader-card:has(>.rm-referenc
  .rm-measure-layout{grid-template-columns:1fr;gap:20px}
  .rm-measure-layout .rm-measure-companion{width:330px}
 }
+
+/* Keep the measurement instructions readable and use the whole conclusion card. */
+.rm-elevator-task>p{white-space:pre-line}
+.rm-conclusion-card>.rm-card-text{max-width:none;width:100%;margin:0}
+.rm-conclusion-card .rm-reader-step{padding:8px 0}
+.rm-conclusion-card .rm-reader-step p{line-height:1.6}
