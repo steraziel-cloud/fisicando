@@ -2,7 +2,7 @@
 window.READER_GLOSSARY = {
   "movimento": {
     "title": "Movimento (o moto)",
-    "text": "Un corpo è in movimento quando la sua posizione cambia nel tempo rispetto al sistema di riferimento scelto. Se la posizione rimane invariata, il corpo è in quiete rispetto a quel riferimento. Per esempio, una passeggera seduta su un treno in viaggio è in quiete rispetto al sedile e in movimento rispetto alla stazione.",
+    "text": "Un corpo è in movimento quando la sua posizione cambia nel tempo rispetto al sistema di riferimento scelto. Se la posizione rimane invariata, il corpo è in quiete rispetto a quel riferimento.",
     "kind": "Definizione di fisica"
   },
   "riferimento": {
