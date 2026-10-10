@@ -475,3 +475,15 @@ body[data-reader-lesson="cinematica-velocita"] .rm-reader-card:has(>.rm-referenc
  .rm-unit-exercise>.rm-inline-feedback{grid-column:1}
  .rm-unit-exercise>.rm-unit-result math{font-size:19px}
 }
+
+/* The measuring cats introduce the lab beside the definition. */
+.rm-reader-card:has(.rm-measure-layout)>.rm-card-text{max-width:none;width:100%;margin:0}
+.rm-measure-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:32px;align-items:center}
+.rm-measure-layout .rm-measure-companion{width:440px;max-width:100%;margin:0 auto}
+.rm-measure-layout .rm-measure-companion img{max-height:290px}
+.rm-measure-explanation{display:block;min-width:0;line-height:1.6}
+.rm-measure-explanation math{font-size:25px;margin:18px 0 0}
+@media(max-width:800px){
+ .rm-measure-layout{grid-template-columns:1fr;gap:20px}
+ .rm-measure-layout .rm-measure-companion{width:330px}
+}
