@@ -303,3 +303,12 @@ body[data-reader-lesson="cinematica-introduzione"] .rm-welcome-card::before{cont
  .rm-train-reference-card .rm-reference-scene .rm-train-illustration{height:260px;max-width:480px;margin-inline:auto}
 }
 @media(max-width:420px){.rm-train-reference-card .rm-sentence{grid-template-columns:1fr;gap:5px;margin-bottom:12px}}
+
+/* Shared, compact feedback reactions for both physics lessons. */
+.rm-quiz-reaction{align-items:center}
+.rm-quiz-reaction .rm-celebration-cat{width:96px;height:96px;object-fit:contain;flex:0 0 96px}
+.rm-quiz-reaction-retry{border-color:#d49a4c80;background:#d49a4c0c}
+.rm-quiz-reaction-retry .rm-celebration-copy strong{color:var(--rm-text)}
+.rm-inline-feedback .rm-quiz-reaction .rm-celebration-cat,.rm-train-reference-card .rm-quiz-reaction .rm-celebration-cat{width:72px;height:72px;flex-basis:72px}
+.rm-elevator-success .rm-quiz-reaction,.vg-feedback .rm-quiz-reaction{margin:0}
+@media(max-width:480px){.rm-quiz-reaction .rm-celebration-cat{width:72px;height:72px;flex-basis:72px}}

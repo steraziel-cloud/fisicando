@@ -34,11 +34,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   const track=el('span','rm-total-progress');track.setAttribute('aria-hidden','true');const fill=el('span');fill.style.width=completed/state.length*100+'%';track.append(fill);$('reader-progress').append(track);
   $('reader-show-all').hidden=false;
  }
- function celebrate(target,message,title='Ottimo lavoro!'){
-  const card=el('span','rm-celebration'),cat=el('img','rm-celebration-cat');cat.src='assets/images/oltre-lezioni/red-confab-01.png';cat.alt='Red festeggia la risposta corretta';cat.width=94;cat.height=110;
-  const copy=el('span','rm-celebration-copy');copy.append(el('strong','',title),el('span','',message));card.append(cat,copy);
-  const stars=el('span','rm-celebration-stars');stars.setAttribute('aria-hidden','true');for(let i=0;i<5;i++)stars.append(el('i'));card.append(stars);target.replaceChildren(card);
- }
+ function celebrate(target,message,title='Ottimo lavoro!'){window.GatitoQuizReactions.show(target,message,{correct:true,title,final:target===$('reader-feedback')});}
+ function retry(target,message){window.GatitoQuizReactions.show(target,message,{correct:false});}
  function finish(message){const first=!state[current].complete;state[current].complete=true;state[current].reached=flat(lesson.sections[current]).length;index();celebrate($('reader-feedback'),message,first?'Una parte in più, ci sei!':'Perfetto!');actions();if(first&&lesson.sections[current].optionalNext)showOptionalParts();}
  function showOptionalParts(){
   const destinations=lesson.sections[current].optionalNext;
@@ -125,7 +122,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(st.done)explanation();else if(interactive)exercise.append(button('Verifica le due frasi',()=>{
    if(st.values.includes('')){feedback.textContent='Completa entrambe le frasi prima di verificare.';return;}
    if(st.values[0]==='moto'&&st.values[1]==='fermo'){st.done=true;exercise.querySelectorAll('select').forEach(x=>x.disabled=true);check.hidden=true;explanation();actions();}
-   else{st.attempts++;if(st.attempts>=3){st.values=['moto','fermo'];st.done=true;st.assisted=true;exercise.querySelectorAll('select').forEach((x,i)=>{x.value=st.values[i];x.disabled=true;});check.hidden=true;explanation();actions();}else feedback.textContent=st.attempts===1?'Osserva il sedile: si sposta insieme a te e al treno.':'La stazione rimane fuori dal treno. La tua posizione rispetto alla stazione cambia?';}
+   else{st.attempts++;if(st.attempts>=3){st.values=['moto','fermo'];st.done=true;st.assisted=true;exercise.querySelectorAll('select').forEach((x,i)=>{x.value=st.values[i];x.disabled=true;});check.hidden=true;explanation();actions();}else retry(feedback,st.attempts===1?'Osserva il sedile: si sposta insieme a te e al treno.':'La stazione rimane fuori dal treno. La tua posizione rispetto alla stazione cambia?');}
   }));
   const check=exercise.querySelector('button');exercise.append(feedback);box.append(exercise);
  }
@@ -239,8 +236,8 @@ document.addEventListener('DOMContentLoaded',()=>{
    const value=answer.value.trim().replace(',','.');const reported=Number(value);
    if(!value||!Number.isFinite(reported)||reported<=0){$('reader-feedback').textContent='Inserisci la misura del periodo in secondi, per esempio 8,12.';return;}
    const measured=st.marks[1]-st.marks[0],tolerance=Math.max(.6,st.period*.08);
-   if(Math.abs(reported-measured)>.05){$('reader-feedback').textContent='Il valore inserito non coincide con Δt sul cronometro. Controlla la lettura e riportala nel riquadro in secondi.';return;}
-   if(Math.abs(reported-st.period)>tolerance){$('reader-feedback').textContent='La durata misurata non corrisponde a un giro completo. Cancella le letture e riprova: registra due passaggi consecutivi sul segno giallo. Una piccola differenza dovuta al tempo di reazione va bene.';return;}
+   if(Math.abs(reported-measured)>.05){retry($('reader-feedback'),'Il valore inserito non coincide con Δt sul cronometro. Controlla la lettura e riportala nel riquadro in secondi.');return;}
+   if(Math.abs(reported-st.period)>tolerance){retry($('reader-feedback'),'La durata misurata non corrisponde a un giro completo. Cancella le letture e riprova: registra due passaggi consecutivi sul segno giallo. Una piccola differenza dovuta al tempo di reazione va bene.');return;}
    st.verified=true;clock.show();finish('Misura riuscita! Il periodo misurato è Δt = '+format(reported)+' s.');
   },'rm-btn primary');clock.board.append(verify);
   const sync=()=>{redHit.disabled=bjorneHit.disabled=st.marks.length>0;verify.disabled=st.marks.length!==2||st.verified;};clock.board.addEventListener('measurement',sync);sync();
@@ -263,9 +260,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   result.innerHTML="<span class=\"rm-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" displaystyle=\"true\"><mrow><mfrac><mrow><mn>1</mn><mi mathvariant=\"normal\">m</mi></mrow><mrow><mn>1</mn><mi mathvariant=\"normal\">s</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>0,001</mn><mi mathvariant=\"normal\">km</mi></mrow><mrow><mfrac><mn>1</mn><mn>3600</mn></mfrac><mi mathvariant=\"normal\">h</mi></mrow></mfrac><mo>=</mo><mn>3,6</mn><mfrac><mi mathvariant=\"normal\">km</mi><mi mathvariant=\"normal\">h</mi></mfrac></mrow></math></span>";
   const check=button('Verifica le equivalenze',()=>{
    if(st.values.includes('')){feedback.textContent='Scegli un valore per entrambe le equivalenze.';return;}
-   if(st.values.some((v,i)=>v!==correct[i])){feedback.textContent='Riprova: 1 km contiene 1000 m e un’ora contiene 60 minuti di 60 secondi ciascuno.';return;}
+   if(st.values.some((v,i)=>v!==correct[i])){retry(feedback,'Riprova: 1 km contiene 1000 m e un’ora contiene 60 minuti di 60 secondi ciascuno.');return;}
    st.done=true;exercise.querySelectorAll('select').forEach(s=>s.disabled=true);check.hidden=true;
-   feedback.textContent='Esatto! Ora usiamo queste equivalenze nel rapporto.';result.hidden=false;
+   celebrate(feedback,'Esatto! Ora usiamo queste equivalenze nel rapporto.');result.hidden=false;
    if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&result.animate)result.animate([{opacity:0,transform:'translateX(36px)'},{opacity:1,transform:'none'}],{duration:260,easing:'ease-out'});
    actions();
   });
@@ -278,8 +275,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(st.stage===0){
    const verify=()=>{const raw=answer.value.trim().replace(',','.');const value=Number(raw);
     if(!raw||!Number.isFinite(value)){$('reader-feedback').textContent='Inserisci un valore numerico in km/h.';return;}
-    if(Math.abs(value-40)<.000001){st.stage=1;checkpoint();$('reader-feedback').textContent='Esatto: 30 minuti sono 0,5 ore, quindi 20 ÷ 0,5 = 40 km/h.';}
-    else $('reader-feedback').textContent='Riprova: esprimi prima i 30 minuti in ore, poi dividi lo spostamento per quella durata.';
+    if(Math.abs(value-40)<.000001){st.stage=1;checkpoint();celebrate($('reader-feedback'),'Esatto: 30 minuti sono 0,5 ore, quindi 20 ÷ 0,5 = 40 km/h.');}
+    else retry($('reader-feedback'),'Riprova: esprimi prima i 30 minuti in ore, poi dividi lo spostamento per quella durata.');
    };answer.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();verify();}});box.append(button('Verifica il calcolo',verify));return;
   }
   box.append(el('h4','','Convertiamo in metri al secondo'),el('p','','Quale valore in m/s corrisponde a 40 km/h?'));
@@ -290,7 +287,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   box.append(button('Verifica la conversione',()=>{
    if(st.choice===null){$('reader-feedback').textContent='Scegli una risposta prima di verificare.';return;}
    if(st.choice===0){st.done=true;box.querySelectorAll('input[type=radio]').forEach(input=>input.disabled=true);finish('40 km/h ÷ 3,6 ≈ 11,1 m/s. Hai completato entrambe le parti del quiz.');}
-   else $('reader-feedback').textContent='Per passare da km/h a m/s devi dividere per 3,6. Riprova.';
+   else retry($('reader-feedback'),'Per passare da km/h a m/s devi dividere per 3,6. Riprova.');
   }));
  }
  function stepBlocked(item){
@@ -300,7 +297,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const st=state[current].instantSpeeds,labels=['Morgana lungo il percorso','Red prima del chiosco','Red durante la pausa','Red dopo la pausa'],expected=[2,6,0,2],host=el('div','rm-instant-speeds');
   const inputs=labels.map((text,i)=>{const label=el('label','',text+' '),input=el('input');input.type='text';input.inputMode='decimal';input.setAttribute('aria-label',text+': velocità in m/s');input.value=interactive?st.values[i]:String(expected[i]);input.disabled=!interactive||st.done;input.oninput=()=>st.values[i]=input.value;label.append(input,el('span','','m/s'));host.append(label);return input;});
   const feedback=el('p','');feedback.setAttribute('role','status');
-  if(interactive){const verify=button('Verifica le velocità',()=>{const correct=st.values.every((x,i)=>x.trim()!==''&&Number.isFinite(Number(x.trim().replace(',','.')))&&Math.abs(Number(x.trim().replace(',','.'))-expected[i])<.01);if(!correct){feedback.textContent='Rivedi le etichette: controlla i tratti prima e dopo il chiosco e la pausa. Puoi fermare l’animazione.';return;}st.done=true;inputs.forEach(input=>input.disabled=true);verify.disabled=true;feedback.textContent='Corretto: Morgana mantiene 2 m/s; Red passa da 6 m/s a una velocità nulla e poi a 2 m/s.';actions();});verify.disabled=st.done;host.append(verify);if(st.done)feedback.textContent='Velocità completate correttamente.';}
+  if(interactive){const verify=button('Verifica le velocità',()=>{const correct=st.values.every((x,i)=>x.trim()!==''&&Number.isFinite(Number(x.trim().replace(',','.')))&&Math.abs(Number(x.trim().replace(',','.'))-expected[i])<.01);if(!correct){retry(feedback,'Rivedi le etichette: controlla i tratti prima e dopo il chiosco e la pausa. Puoi fermare l’animazione.');return;}st.done=true;inputs.forEach(input=>input.disabled=true);verify.disabled=true;celebrate(feedback,'Corretto: Morgana mantiene 2 m/s; Red passa da 6 m/s a una velocità nulla e poi a 2 m/s.');actions();});verify.disabled=st.done;host.append(verify);if(st.done)feedback.textContent='Velocità completate correttamente.';}
   host.append(feedback);box.append(host);
  }
  function checkpoint(){
@@ -312,7 +309,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   s.quiz.options.forEach((option,i)=>{const label=el('label'),input=el('input');input.type='radio';input.name='checkpoint';input.value=i;label.append(input,el('span','',option));box.append(label);});
   box.append(button('Verifica',()=>{const selected=box.querySelector('input:checked');if(!selected){$('reader-feedback').textContent='Scegli una risposta prima di verificare.';return;}
    if(Number(selected.value)===s.quiz.answer)finish('Corretto. '+s.quiz.feedback);
-   else $('reader-feedback').textContent=(s.id==='inizio'?'Dire soltanto “il corpo è fermo” lascia una domanda aperta: rispetto a che cosa? ':s.quiz.feedback+' ')+'Puoi rileggere e riprovare.';
+   else retry($('reader-feedback'),(s.id==='inizio'?'Dire soltanto “il corpo è fermo” lascia una domanda aperta: rispetto a che cosa? ':s.quiz.feedback+' ')+'Puoi rileggere e riprovare.');
   }));
   if(state[current].complete)$('reader-feedback').textContent='Questa parte è già completata. Puoi rivedere il quiz o proseguire.';
  }
