@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const st=lab?state[current].lab:state[current].clock;
   const board=el('div','rm-reader-board rm-stopwatch-board');
   const currentTime=()=>st.started===null?0:(performance.now()-st.started)/1000;
-  board.innerHTML='<h4>'+ (lab?'Misura un giro completo':'Lavagna · Il cronometro')+'</h4><div class="rm-clock"><button type="button" class="rm-clock-top">Avvia</button><div class="rm-clock-face"><span>CRONOMETRO</span><strong class="rm-clock-reading"></strong><span class="rm-clock-unit">secondi</span></div></div><div class="rm-clock-marks" aria-live="polite"></div><div class="rm-clock-controls"></div><p class="rm-clock-help">Avvia il cronometro con il pulsante superiore; poi premi lo stesso pulsante per registrare t₁ e t₂.</p>';
+  board.innerHTML='<h4>'+ (lab?'Misura un giro completo':'Lavagna · Il cronometro')+'</h4><div class="rm-clock"><button type="button" class="rm-clock-top">Avvia</button><div class="rm-clock-face"><span>CRONOMETRO</span><strong class="rm-clock-reading"></strong><span class="rm-clock-unit">secondi</span></div></div><div class="rm-clock-marks" aria-live="polite"></div><div class="rm-clock-controls"></div>';
   const marks=board.querySelector('.rm-clock-marks'),record=board.querySelector('.rm-clock-top');
   function show(){
    marks.replaceChildren();marks.append(el('p','',`t₁ = ${st.marks.length?format(st.marks[0])+' s':'—'} · t₂ = ${st.marks.length>1?format(st.marks[1])+' s':'—'}`));

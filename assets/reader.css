@@ -224,3 +224,20 @@
 /* Show the complete reference scene instead of cropping it into a banner. */
 .rm-reference-scene{margin:0 0 18px}
 .rm-reference-scene .rm-train-illustration{width:min(100%,480px);height:auto;max-height:none;margin-inline:auto;object-fit:contain;object-position:center;-webkit-mask:none;mask:none;border-radius:14px}
+
+/* Use the theory card's width for the clock and its cumulative explanation. */
+.rm-reader-card .rm-stopwatch-board{display:grid;grid-template-columns:200px minmax(0,1fr);align-items:center;gap:6px 22px;padding:12px 18px;text-align:center;margin-bottom:8px}
+.rm-reader-card .rm-stopwatch-board h4{grid-column:1/-1;margin:0 0 4px}
+.rm-reader-card .rm-stopwatch-board .rm-clock{grid-column:1;grid-row:2/4;margin:0 auto}
+.rm-reader-card .rm-stopwatch-board .rm-clock-marks{grid-column:2;grid-row:2}
+.rm-reader-card .rm-stopwatch-board .rm-clock-marks p{font-size:16px;margin:5px 0}
+.rm-reader-card .rm-stopwatch-board .rm-clock-marks .rm-formula{font-size:22px}
+.rm-reader-card .rm-stopwatch-board .rm-clock-controls{grid-column:2;grid-row:3}
+.rm-reader-card .rm-stopwatch-board .rm-clock-controls .rm-btn{font-size:13px;padding:9px 12px}
+.rm-reader-card:has(.rm-stopwatch-board) .rm-card-text{max-width:none;margin-inline:0}
+.rm-reader-card:has(.rm-stopwatch-board) .rm-reader-step{padding:10px 0}
+.rm-reader-card:has(.rm-stopwatch-board) .rm-reader-step p{line-height:1.6}
+@media(max-width:480px){
+ .rm-reader-card .rm-stopwatch-board{grid-template-columns:1fr;gap:8px}
+ .rm-reader-card .rm-stopwatch-board .rm-clock,.rm-reader-card .rm-stopwatch-board .rm-clock-marks,.rm-reader-card .rm-stopwatch-board .rm-clock-controls{grid-column:1;grid-row:auto}
+}
