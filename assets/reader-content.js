@@ -159,7 +159,7 @@ window.READER_LESSONS = {
               {
                 "title": "Il movimento in un grafico",
                 "lawGraph": true,
-                "html": "Possiamo rappresentare la legge oraria in un grafico: sull’asse orizzontale riportiamo il <strong>tempo t</strong>, su quello verticale la <strong>posizione s</strong>. Ogni punto del grafico indica dove si trova il corpo in un certo istante.<br><br>Quando la coordinata aumenta, il corpo si muove nel verso positivo; quando diminuisce, nel verso contrario. Un <strong>tratto orizzontale</strong> indica che la posizione rimane costante: il corpo è fermo.<br><br>Avvia o rivedi il movimento: il grafico si traccia insieme al moto. <strong>La traiettoria mostra il percorso nello spazio; il grafico mostra la posizione nel tempo.</strong>"
+                "html": "Possiamo rappresentare la legge oraria in un grafico: sull’asse orizzontale riportiamo il <strong>tempo t</strong>, su quello verticale la <strong>posizione s</strong>. Ogni punto del grafico indica dove si trova il corpo in un certo istante.<br><br>Quando la coordinata aumenta, il corpo si muove nel verso positivo; quando diminuisce, nel verso contrario. Un <strong>tratto orizzontale</strong> indica che la posizione rimane costante: il corpo è fermo.<br><br>Avvia o rivedi il movimento: il grafico si traccia insieme al moto. <strong>La traiettoria mostra il percorso nello spazio; il grafico della legge oraria mostra la posizione nel tempo.</strong>"
               }
             ],
             "board": "law-motion",
