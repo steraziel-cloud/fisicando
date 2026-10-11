@@ -10,6 +10,7 @@ window.LESSON_CATALOG = [
         "topics": [
           {
             "title": "Calcolo numerico",
+            "icon": "numbers",
             "aliases": [],
             "lessons": [
               {
@@ -72,6 +73,7 @@ window.LESSON_CATALOG = [
           },
           {
             "title": "Calcolo letterale",
+            "icon": "variable",
             "aliases": [],
             "lessons": [
               {
@@ -126,6 +128,7 @@ window.LESSON_CATALOG = [
           },
           {
             "title": "Equazioni e disequazioni",
+            "icon": "equation",
             "aliases": [],
             "lessons": [
               {
@@ -186,6 +189,7 @@ window.LESSON_CATALOG = [
         "topics": [
           {
             "title": "Geometria del piano",
+            "icon": "triangle",
             "aliases": [],
             "lessons": [
               {
@@ -244,6 +248,7 @@ window.LESSON_CATALOG = [
           },
           {
             "title": "Geometria analitica",
+            "icon": "coordinates",
             "aliases": [],
             "lessons": [
               {
@@ -304,6 +309,7 @@ window.LESSON_CATALOG = [
         "topics": [
           {
             "title": "Insiemi",
+            "icon": "sets",
             "aliases": [],
             "lessons": [
               {
@@ -349,6 +355,7 @@ window.LESSON_CATALOG = [
           },
           {
             "title": "Funzioni e grafici",
+            "icon": "graph",
             "aliases": [],
             "lessons": [
               {
@@ -409,6 +416,7 @@ window.LESSON_CATALOG = [
         "topics": [
           {
             "title": "Algebra dei vettori",
+            "icon": "vectors",
             "aliases": [],
             "lessons": [
               {
@@ -527,6 +535,7 @@ window.LESSON_CATALOG = [
         "topics": [
           {
             "title": "Descrivere e misurare le grandezze fisiche",
+            "icon": "measure",
             "aliases": [],
             "lessons": [
               {
@@ -591,6 +600,7 @@ window.LESSON_CATALOG = [
         "topics": [
           {
             "title": "Cinematica scalare",
+            "icon": "motion",
             "aliases": [
               "MRU",
               "MRUA",
@@ -691,6 +701,7 @@ window.LESSON_CATALOG = [
           },
           {
             "title": "Cinematica vettoriale",
+            "icon": "vectors",
             "aliases": [
               "MCU",
               "lancio obliquo"
@@ -744,6 +755,7 @@ window.LESSON_CATALOG = [
           },
           {
             "title": "Cinematica",
+            "icon": "motion",
             "aliases": [
               "fisica 1",
               "medicina"
@@ -773,6 +785,7 @@ window.LESSON_CATALOG = [
           },
           {
             "title": "Statica del punto materiale",
+            "icon": "balance",
             "aliases": [],
             "lessons": [
               {
@@ -853,6 +866,7 @@ window.LESSON_CATALOG = [
           },
           {
             "title": "Dinamica del punto materiale",
+            "icon": "force",
             "aliases": [
               "Newton"
             ],
@@ -941,6 +955,7 @@ window.LESSON_CATALOG = [
           },
           {
             "title": "Lavoro ed energia",
+            "icon": "work",
             "aliases": [],
             "lessons": [
               {
@@ -1001,6 +1016,7 @@ window.LESSON_CATALOG = [
         "topics": [
           {
             "title": "Temperatura e calore",
+            "icon": "thermometer",
             "aliases": [],
             "lessons": [
               {
@@ -1049,6 +1065,7 @@ window.LESSON_CATALOG = [
         "topics": [
           {
             "title": "Circuiti elettrici",
+            "icon": "circuit",
             "aliases": [],
             "lessons": [
               {
@@ -1436,6 +1453,7 @@ window.LESSON_CATALOG.push({
           "children": [
             {
               "title": "Conservazione dell’informazione genetica",
+              "icon": "dna",
               "lessons": [
                 {
                   "title": "Struttura del DNA e replicazione",
@@ -1451,6 +1469,7 @@ window.LESSON_CATALOG.push({
             },
             {
               "title": "Espressione dell’informazione genetica",
+              "icon": "expression",
               "lessons": [
                 {
                   "title": "Dal DNA all’RNA: la trascrizione",
@@ -1484,6 +1503,7 @@ window.LESSON_CATALOG.push({
       "topics": [
         {
           "title": "Le molecole della vita",
+          "icon": "molecule",
           "lessons": [
             {
               "title": "Carboidrati e lipidi",
@@ -1509,6 +1529,7 @@ window.LESSON_CATALOG.push({
         },
         {
           "title": "Enzimi e reazioni biologiche",
+          "icon": "enzyme",
           "lessons": [
             {
               "title": "Come funzionano gli enzimi",
@@ -1530,6 +1551,7 @@ window.LESSON_CATALOG.push({
       "topics": [
         {
           "title": "Ereditarietà",
+          "icon": "pedigree",
           "lessons": [
             {
               "title": "Le leggi di Mendel",
@@ -1555,6 +1577,7 @@ window.LESSON_CATALOG.push({
         },
         {
           "title": "Variabilità genetica",
+          "icon": "variation",
           "lessons": [
             {
               "title": "Mutazioni geniche e cromosomiche",
@@ -1576,6 +1599,7 @@ window.LESSON_CATALOG.push({
       "topics": [
         {
           "title": "Organizzazione del corpo umano",
+          "icon": "human",
           "lessons": [
             {
               "title": "Cellule, tessuti, organi e apparati",
@@ -1591,6 +1615,7 @@ window.LESSON_CATALOG.push({
         },
         {
           "title": "Apparati e funzioni",
+          "icon": "human",
           "lessons": [
             {
               "title": "Apparato digerente e nutrizione",
@@ -1616,6 +1641,7 @@ window.LESSON_CATALOG.push({
         },
         {
           "title": "Regolazione e coordinamento",
+          "icon": "signal",
           "lessons": [
             {
               "title": "Omeostasi e sistemi di controllo",
@@ -1647,6 +1673,7 @@ window.LESSON_CATALOG.push({
       "topics": [
         {
           "title": "Riproduzione e sviluppo degli organismi",
+          "icon": "growth",
           "lessons": [
             {
               "title": "Riproduzione sessuata e asessuata",
@@ -1678,6 +1705,7 @@ window.LESSON_CATALOG.push({
       "topics": [
         {
           "title": "Meccanismi dell’evoluzione",
+          "icon": "evolution",
           "lessons": [
             {
               "title": "La selezione naturale",
@@ -1703,6 +1731,7 @@ window.LESSON_CATALOG.push({
         },
         {
           "title": "Storia e diversificazione della vita",
+          "icon": "species",
           "lessons": [
             {
               "title": "Speciazione e relazioni evolutive",
@@ -1724,6 +1753,7 @@ window.LESSON_CATALOG.push({
       "topics": [
         {
           "title": "Popolazioni e comunità",
+          "icon": "community",
           "lessons": [
             {
               "title": "Crescita delle popolazioni",
@@ -1749,6 +1779,7 @@ window.LESSON_CATALOG.push({
         },
         {
           "title": "Ecosistemi",
+          "icon": "leaf",
           "lessons": [
             {
               "title": "Reti alimentari e flusso di energia",
@@ -1780,6 +1811,7 @@ window.LESSON_CATALOG.push({
       "topics": [
         {
           "title": "Classificazione e domini della vita",
+          "icon": "species",
           "lessons": [
             {
               "title": "Come classifichiamo gli organismi",
@@ -1795,6 +1827,7 @@ window.LESSON_CATALOG.push({
         },
         {
           "title": "Microrganismi e virus",
+          "icon": "microbe",
           "lessons": [
             {
               "title": "Batteri e archei",
@@ -1820,6 +1853,7 @@ window.LESSON_CATALOG.push({
         },
         {
           "title": "Principali gruppi di eucarioti",
+          "icon": "species",
           "lessons": [
             {
               "title": "Funghi, piante e animali",
@@ -1837,4 +1871,5 @@ window.LESSON_CATALOG.push({
     }
   ]
 });
+
 

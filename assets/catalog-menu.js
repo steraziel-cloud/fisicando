@@ -53,6 +53,23 @@ document.addEventListener('DOMContentLoaded', () => {
   "leaf": "M20 3C10 2 3 6 4 14c1 7 9 8 13 3 3-4 3-8 3-14Z M5 19 16 8 M9 15v-5 M9 15h5",
   "species": "M3 20V4 M3 8h6 M3 16h6 M9 6h5 M9 14h5 M18 3l3 3-3 3-3-3Z M18 13a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"
 });
+  Object.assign(paths, {
+  "numbers": "M9 3 7 21 M17 3l-2 18 M4 9h17 M3 15h17",
+  "variable": "M7 7c3 0 3 10 6 10 M16 7 6 17 M17 4h3 M17 20h3",
+  "equation": "M3 8h6 M6 5v6 M13 8h8 M3 16h6 M13 15h8 M13 18h8",
+  "coordinates": "M3 12h18 m-3-3 3 3-3 3 M12 21V3 m-3 3 3-3 3 3 M5 18l13-12",
+  "sets": "M14 12a6 8 0 1 1-12 0 6 8 0 0 1 12 0Z M22 12a6 8 0 1 1-12 0 6 8 0 0 1 12 0Z",
+  "vectors": "M4 20V4 m-3 3 3-3 3 3 M4 20h16 m-3-3 3 3-3 3 M4 20 19 5 M13 5h6v6",
+  "motion": "M3 17h18 M4 14l4-4h12 m-4-4 4 4-4 4 M6 20v-3 M12 20v-3 M18 20v-3",
+  "balance": "M12 3v18 M4 21h16 M3 7h18 M6 7l-4 8h8Z M18 7l-4 8h8Z",
+  "force": "M3 10h8v8H3Z M11 14h10 m-4-4 4 4-4 4 M3 21h18",
+  "work": "M3 19h18 M4 10h7v7H4Z M11 13h10 m-3-3 3 3-3 3 M5 5h9 m-3-3 3 3-3 3",
+  "expression": "M3 4h7v5H3Z M6 9v5h7 m-3-3 3 3-3 3 M15 11h6v8h-6Z M16 21h4",
+  "enzyme": "M3 17V9h6l3 5 3-5h6v8Z M9 3h6v4l-3 4-3-4Z",
+  "variation": "M6 2c0 7 8 13 8 20 M14 2c0 7-8 13-8 20 M7 5h6 M7 19h6 M18 8v6 M15 11h6",
+  "community": "M8 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z M22 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z M15 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z M8 7h8 M7 10l3 4 M17 10l-3 4",
+  "microbe": "M17 7c4 4-2 12-6 12s-7-4-4-8 6-8 10-4Z M9 6 7 3 M15 5l1-3 M19 10h3 M17 16l3 2 M10 20v2 M5 16H2 M10 11h1 M14 14h1"
+});
   function icon(key) {
     const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
     svg.setAttribute('viewBox','0 0 24 24'); svg.setAttribute('aria-hidden','true'); svg.classList.add('rm-catalog-icon');svg.setAttribute('fill','none');svg.setAttribute('stroke','currentColor');svg.setAttribute('stroke-width','1.7');svg.setAttribute('stroke-linecap','round');svg.setAttribute('stroke-linejoin','round');
@@ -152,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if([...subject.options].some(o=>o.value===requestedSubject))subject.value=requestedSubject;
   updateAreas();render();
 });
+
 
 
 
