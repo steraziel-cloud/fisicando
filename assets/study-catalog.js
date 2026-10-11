@@ -2,7 +2,7 @@ window.LESSON_CATALOG = [
   {
     "id": "matematica",
     "title": "Matematica",
-    "icon": "ruler",
+    "icon": "math",
     "areas": [
       {
         "title": "Numeri e algebra",
@@ -1104,7 +1104,7 @@ window.LESSON_CATALOG = [
   {
     "id": "arduino",
     "title": "Arduino",
-    "icon": "gear",
+    "icon": "chip",
     "visibleLevels": [
       "biennio",
       "terzo-quarto",
@@ -1115,10 +1115,11 @@ window.LESSON_CATALOG = [
     "areas": [
       {
         "title": "Progetti",
-        "icon": "gear",
+        "icon": "circuit",
         "topics": [
           {
             "title": "Sensori e misure",
+            "icon": "measure",
             "aliases": [
               "elettronica",
               "tachimetro"
@@ -1149,17 +1150,19 @@ window.LESSON_CATALOG = [
 window.LESSON_CATALOG.push({
   "id": "biologia",
   "title": "Biologia",
-  "icon": "atom",
+  "icon": "dna",
   "areas": [
     {
       "title": "Biologia cellulare e molecolare",
-      "icon": "atom",
+      "icon": "cell",
       "topics": [
         {
           "title": "Biologia cellulare",
+          "icon": "cell",
           "children": [
             {
               "title": "Fondamenti e osservazione delle cellule",
+              "icon": "microscope",
               "lessons": [
                 {
                   "title": "La cellula, unità fondamentale dei viventi",
@@ -1185,6 +1188,7 @@ window.LESSON_CATALOG.push({
             },
             {
               "title": "Organizzazione e strutture cellulari",
+              "icon": "cell",
               "lessons": [
                 {
                   "title": "Le strutture comuni alle cellule",
@@ -1230,6 +1234,7 @@ window.LESSON_CATALOG.push({
             },
             {
               "title": "Membrane e trasporti",
+              "icon": "membrane",
               "lessons": [
                 {
                   "title": "La membrana e la diffusione",
@@ -1275,6 +1280,7 @@ window.LESSON_CATALOG.push({
             },
             {
               "title": "Energia e metabolismo cellulare",
+              "icon": "energy",
               "lessons": [
                 {
                   "title": "ATP e trasformazioni energetiche",
@@ -1310,6 +1316,7 @@ window.LESSON_CATALOG.push({
             },
             {
               "title": "Citoscheletro e movimento cellulare",
+              "icon": "cytoskeleton",
               "lessons": [
                 {
                   "title": "Il citoscheletro",
@@ -1335,6 +1342,7 @@ window.LESSON_CATALOG.push({
             },
             {
               "title": "Comunicazione e relazioni tra cellule",
+              "icon": "signal",
               "lessons": [
                 {
                   "title": "Segnali, recettori e risposte cellulari",
@@ -1360,6 +1368,7 @@ window.LESSON_CATALOG.push({
             },
             {
               "title": "Ciclo e divisione cellulare",
+              "icon": "cycle",
               "lessons": [
                 {
                   "title": "La divisione cellulare e la scissione binaria",
@@ -1395,6 +1404,7 @@ window.LESSON_CATALOG.push({
             },
             {
               "title": "Differenziamento e destino cellulare",
+              "icon": "sprout",
               "lessons": [
                 {
                   "title": "Specializzazione e cellule staminali",
@@ -1422,6 +1432,7 @@ window.LESSON_CATALOG.push({
         },
         {
           "title": "Biologia molecolare",
+          "icon": "dna",
           "children": [
             {
               "title": "Conservazione dell’informazione genetica",
@@ -1469,6 +1480,7 @@ window.LESSON_CATALOG.push({
     },
     {
       "title": "Biochimica",
+      "icon": "molecule",
       "topics": [
         {
           "title": "Le molecole della vita",
@@ -1514,6 +1526,7 @@ window.LESSON_CATALOG.push({
     },
     {
       "title": "Genetica",
+      "icon": "pedigree",
       "topics": [
         {
           "title": "Ereditarietà",
@@ -1559,6 +1572,7 @@ window.LESSON_CATALOG.push({
     },
     {
       "title": "Anatomia e fisiologia",
+      "icon": "human",
       "topics": [
         {
           "title": "Organizzazione del corpo umano",
@@ -1629,6 +1643,7 @@ window.LESSON_CATALOG.push({
     },
     {
       "title": "Biologia dello sviluppo",
+      "icon": "growth",
       "topics": [
         {
           "title": "Riproduzione e sviluppo degli organismi",
@@ -1659,6 +1674,7 @@ window.LESSON_CATALOG.push({
     },
     {
       "title": "Biologia evolutiva",
+      "icon": "evolution",
       "topics": [
         {
           "title": "Meccanismi dell’evoluzione",
@@ -1704,6 +1720,7 @@ window.LESSON_CATALOG.push({
     },
     {
       "title": "Ecologia",
+      "icon": "leaf",
       "topics": [
         {
           "title": "Popolazioni e comunità",
@@ -1759,6 +1776,7 @@ window.LESSON_CATALOG.push({
     },
     {
       "title": "Diversità dei viventi",
+      "icon": "species",
       "topics": [
         {
           "title": "Classificazione e domini della vita",
@@ -1819,3 +1837,4 @@ window.LESSON_CATALOG.push({
     }
   ]
 });
+

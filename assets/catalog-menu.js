@@ -11,9 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const area = document.getElementById('area-filter');
   const available = document.getElementById('available-filter');
   const all = document.getElementById('all-levels-filter');
-  const subjectAllowed = s => !s.visibleLevels || !!level && s.visibleLevels.includes(level);
-  subject.replaceChildren(new Option('Tutte le materie',''));
-  catalog.filter(subjectAllowed).forEach(s=>subject.add(new Option(s.title,s.id)));
+  const subjectAllowed = s => !s.visibleLevels || !level || all.checked || s.visibleLevels.includes(level);
+  function updateSubjects() {
+    const previous=subject.value;
+    subject.replaceChildren(new Option('Tutte le materie',''));
+    catalog.filter(subjectAllowed).forEach(s=>subject.add(new Option(s.title,s.id)));
+    if([...subject.options].some(o=>o.value===previous))subject.value=previous;
+  }
+  updateSubjects();
   if (!level) all.closest('label').hidden = true;
   const paths = {
     ruler:'M4 4h16v16H4z M8 4v5 M12 4v3 M16 4v5',
@@ -27,9 +32,30 @@ document.addEventListener('DOMContentLoaded', () => {
     thermometer:'M9 14V5a3 3 0 0 1 6 0v9a5 5 0 1 1-6 0Z M12 8v10 M18 6h3 M18 10h3',
     bolt:'m13 2-9 12h7l-1 8 10-13h-7Z'
   };
+  Object.assign(paths, {
+  "math": "M5 7h14 M8 7v8c0 2-1 3-3 3 M16 7v9c0 2 1 2 3 2",
+  "chip": "M6 6h12v12H6Z M9 2v4 M15 2v4 M9 18v4 M15 18v4 M2 9h4 M2 15h4 M18 9h4 M18 15h4 M9 9h6v6H9Z",
+  "circuit": "M3 5h18v14H3Z M7 9h5v6H7Z M12 11h5v4h-2 M5 17h2 M17 7h2",
+  "dna": "M7 2c0 7 10 13 10 20 M17 2c0 7-10 13-10 20 M8 4h8 M9 8h6 M9 16h6 M8 20h8",
+  "cell": "M20 7c3 5 0 13-7 14S2 17 3 10 15 1 20 7Z M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z M7 16l2 1 M16 16l2-1 M7 8h1",
+  "microscope": "m9 3 5 5-3 3-5-5Z M13 7h3a5 5 0 0 1 2 9 M5 14h9 M10 14v5 M4 21h17 M6 19h11 M11 2l4 4",
+  "membrane": "M3 6h18 M3 18h18 M5 6v4 M9 6v4 M15 6v4 M19 6v4 M5 14v4 M9 14v4 M15 14v4 M19 14v4 M11 5h2v14h-2Z",
+  "energy": "M19 5c5 3 2 13-5 15S2 18 3 12 13 1 19 5Z M8 9l4 1-3 4 5 1 3-4 M15 6l2 2",
+  "cytoskeleton": "M4 4l16 16 M20 4 4 20 M3 12h18 M12 3v18 M4 4h16v16H4Z",
+  "signal": "M3 10a3 3 0 1 1 0 4 M21 10a3 3 0 1 0 0 4 M7 12h10 m-3-3 3 3-3 3 M9 5a5 5 0 0 1 6 0 M9 19a5 5 0 0 0 6 0",
+  "cycle": "M20 10a8 8 0 0 0-14-4 M6 2v4h4 M4 14a8 8 0 0 0 14 4 M18 22v-4h-4 M10 9h4v6h-4Z",
+  "sprout": "M12 21V10 M12 14C4 14 3 9 3 5c6 0 9 3 9 9Z M12 10c0-5 4-7 9-7 0 5-3 8-9 8",
+  "molecule": "M7 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z M21 7a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z M14 13a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z M20 20a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z M6 7l3 4 M14 12l4-4 M13 15l4 4",
+  "pedigree": "M9 2h6v5H9Z M12 7v5 M4 12h16 M4 12v4 M12 12v4 M20 12v4 M2 16h4v5H2Z M10 16h4v5h-4Z M18 16h4v5h-4Z",
+  "human": "M15 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z M12 8v7 M5 11l7-2 7 2 M12 15l-4 7 M12 15l4 7",
+  "growth": "M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z M15 9a3 3 0 1 0-5 3c3 0 5 2 3 5 M12 7h1",
+  "evolution": "M4 21V4 M4 15h8 M12 15V7 M12 10h8 M12 15l8 6 M4 7h4 M18 5h4 M18 19h4",
+  "leaf": "M20 3C10 2 3 6 4 14c1 7 9 8 13 3 3-4 3-8 3-14Z M5 19 16 8 M9 15v-5 M9 15h5",
+  "species": "M3 20V4 M3 8h6 M3 16h6 M9 6h5 M9 14h5 M18 3l3 3-3 3-3-3Z M18 13a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"
+});
   function icon(key) {
     const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
-    svg.setAttribute('viewBox','0 0 24 24'); svg.setAttribute('aria-hidden','true'); svg.classList.add('rm-catalog-icon');
+    svg.setAttribute('viewBox','0 0 24 24'); svg.setAttribute('aria-hidden','true'); svg.classList.add('rm-catalog-icon');svg.setAttribute('fill','none');svg.setAttribute('stroke','currentColor');svg.setAttribute('stroke-width','1.7');svg.setAttribute('stroke-linecap','round');svg.setAttribute('stroke-linejoin','round');
     const path = document.createElementNS(svg.namespaceURI,'path'); path.setAttribute('d',paths[key] || paths.graph); svg.append(path); return svg;
   }
   const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
@@ -93,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const haystack=normalize([s.title,a.title,...ancestors,t.title,...(t.aliases||[]),l.title,l.kind||''].join(' '));
             return tokens.every(token=>haystack.includes(token));
           });
-          const td=branch(t.title,topicKey,null,filtering);td.classList.add('rm-catalog-topic');
+          const td=branch(t.title,topicKey,t.icon,filtering);td.classList.add('rm-catalog-topic');
           const list=document.createElement('ul');
           lessons.forEach(l=> {
             count++;if(l.url&&!l.unpublished)ready++;
@@ -119,11 +145,13 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('catalog-filters').addEventListener('submit',e=>e.preventDefault());
   search.addEventListener('input',render);
   subject.addEventListener('change',()=>{updateAreas();render();});
-  [area,available,all].forEach(el=>el.addEventListener('change',render));
-  document.getElementById('reset-filters').addEventListener('click',()=>{search.value='';subject.value='';available.checked=false;all.checked=false;area.value='';updateAreas();render();search.focus();});
+  [area,available].forEach(el=>el.addEventListener('change',render));
+  all.addEventListener('change',()=>{updateSubjects();updateAreas();render();});
+  document.getElementById('reset-filters').addEventListener('click',()=>{search.value='';subject.value='';available.checked=false;all.checked=false;area.value='';updateSubjects();updateAreas();render();search.focus();});
   const requestedSubject=params.get('materia');
   if([...subject.options].some(o=>o.value===requestedSubject))subject.value=requestedSubject;
   updateAreas();render();
 });
+
 
 
