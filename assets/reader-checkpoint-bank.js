@@ -1070,3 +1070,6 @@ window.READER_CHECKPOINT_BANK = {
   }
 };
 for(const [id,sections] of Object.entries(window.READER_CHECKPOINT_BANK)){const lesson=window.READER_LESSONS[id];if(!lesson)continue;for(const section of lesson.sections){const questions=sections[section.id];if(!questions)continue;section.quiz=section.quiz?.type?{...section.quiz,questions}:{questions};}}
+
+if(window.READER_LESSONS["cinematica-introduzione"])window.READER_LESSONS["cinematica-introduzione"].nextLesson={id:"cinematica-velocita"};
+if(window.READER_LESSONS["cinematica-velocita"])window.READER_LESSONS["cinematica-velocita"].nextLesson={title:"Moto rettilineo uniforme"};

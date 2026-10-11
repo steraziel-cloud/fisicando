@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   let host=$('reader-completion');if(!host){host=el('div','rm-reader-actions');host.id='reader-completion';$('reader-feedback').after(host);}host.replaceChildren();
   const subjects=window.LESSON_CATALOG||[];let next=null;
   function leaves(topic){return [...(topic.lessons||[]),...(topic.children||[]).flatMap(leaves)];}
-  for(const subject of subjects)for(const area of subject.areas)for(const topic of area.topics){const list=leaves(topic),i=list.findIndex(l=>l.id===params.get('lezione'));if(i>=0&&i+1<list.length)next=list[i+1];}
+  for(const subject of subjects)for(const area of subject.areas)for(const topic of area.topics){const list=leaves(topic),i=list.findIndex(l=>l.id===params.get('lezione'));if(lesson.nextLesson){const chosen=list.find(l=>lesson.nextLesson.id?l.id===lesson.nextLesson.id:l.title===lesson.nextLesson.title);if(chosen)next=chosen;}else if(i>=0&&i+1<list.length)next=list[i+1];}
   if(next?.url&&!next.unpublished){const link=el('a','rm-btn','Passa alla prossima lezione →');const url=new URL(next.url,location.href);['livello','ruolo'].forEach(k=>{if(params.has(k))url.searchParams.set(k,params.get(k));});link.href=url.href;host.append(link,el('span','',next.title));}
   else if(next){const b=button('Passa alla prossima lezione →',()=>{},'rm-btn');b.disabled=true;host.append(b,el('span','',next.title+' · In lavorazione'));}
   const back=el('a','rm-btn secondary','Torna al menu');back.href=$('reader-back').href;host.append(back);
