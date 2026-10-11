@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded',()=>{
  const $=id=>document.getElementById(id),params=new URLSearchParams(location.search);
  const back=new URL('lezioni.html',location.href);['ruolo','livello'].forEach(k=>{if(params.has(k))back.searchParams.set(k,params.get(k));});$('reader-back').href=back.href;
- const lesson=window.READER_LESSONS[params.get('lezione')];
+ const sourceLesson=window.READER_LESSONS[params.get('lezione')],selectedLevel=params.get('livello');
+ // Filter optional grade-specific sections before progress and prerequisite gates are created.
+ const lesson=sourceLesson?{...sourceLesson,sections:sourceLesson.sections.filter(s=>!s.levels||!selectedLevel||s.levels.includes(selectedLevel))}:null;
  document.body.dataset.readerLesson=params.get('lezione')||'';
  if(!lesson){
   const sources={'pillole/vettori/teoria.html':'Algebra dei vettori','meccanica_punto_materiale/cinematica/teoria.html':'Cinematica · Dispensa completa','meccanica_punto_materiale/dinamica/teoria.html':'Dinamica · Dispensa completa'};
@@ -471,6 +473,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
+
 
 
 

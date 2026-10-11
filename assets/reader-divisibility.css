@@ -13,3 +13,18 @@ body[data-reader-lesson="aritmetica-divisibilita"] .rm-divisibility-card>.rm-car
 body[data-reader-lesson="aritmetica-criteri-divisibilita"] .rm-reader-card,
 body[data-reader-lesson="aritmetica-criteri-divisibilita"] .rm-reader-step{max-width:none}
 body[data-reader-lesson="aritmetica-criteri-divisibilita"] .rm-card-text{max-width:none;width:100%;text-align:left}
+
+
+/* Shared full-width text layout for the arithmetic pathway. */
+body[data-reader-lesson="aritmetica-primi"] .rm-reader-card,
+body[data-reader-lesson="aritmetica-scomposizione"] .rm-reader-card,
+body[data-reader-lesson="aritmetica-mcd"] .rm-reader-card,
+body[data-reader-lesson="aritmetica-mcm"] .rm-reader-card,
+body[data-reader-lesson="aritmetica-primi"] .rm-reader-step,
+body[data-reader-lesson="aritmetica-scomposizione"] .rm-reader-step,
+body[data-reader-lesson="aritmetica-mcd"] .rm-reader-step,
+body[data-reader-lesson="aritmetica-mcm"] .rm-reader-step{max-width:none}
+body[data-reader-lesson="aritmetica-primi"] .rm-card-text,
+body[data-reader-lesson="aritmetica-scomposizione"] .rm-card-text,
+body[data-reader-lesson="aritmetica-mcd"] .rm-card-text,
+body[data-reader-lesson="aritmetica-mcm"] .rm-card-text{max-width:none;width:100%;text-align:left}

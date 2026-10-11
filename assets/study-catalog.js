@@ -92,7 +92,10 @@ window.LESSON_CATALOG = [
                   "medie",
                   "biennio"
                 ],
-                "status": "work-in-progress"
+                "status": "work-in-progress",
+                "id": "aritmetica-primi",
+                "url": "reader.html?lezione=aritmetica-primi",
+                "kind": "Teoria"
               },
               {
                 "title": "Scomposizione in fattori primi",
@@ -100,7 +103,10 @@ window.LESSON_CATALOG = [
                   "medie",
                   "biennio"
                 ],
-                "status": "work-in-progress"
+                "status": "work-in-progress",
+                "id": "aritmetica-scomposizione",
+                "url": "reader.html?lezione=aritmetica-scomposizione",
+                "kind": "Teoria"
               },
               {
                 "title": "Massimo comune divisore (M.C.D.)",
@@ -108,7 +114,10 @@ window.LESSON_CATALOG = [
                   "medie",
                   "biennio"
                 ],
-                "status": "work-in-progress"
+                "status": "work-in-progress",
+                "id": "aritmetica-mcd",
+                "url": "reader.html?lezione=aritmetica-mcd",
+                "kind": "Teoria"
               },
               {
                 "title": "Minimo comune multiplo (m.c.m.)",
@@ -116,7 +125,10 @@ window.LESSON_CATALOG = [
                   "medie",
                   "biennio"
                 ],
-                "status": "work-in-progress"
+                "status": "work-in-progress",
+                "id": "aritmetica-mcm",
+                "url": "reader.html?lezione=aritmetica-mcm",
+                "kind": "Teoria"
               }
             ]
           },
