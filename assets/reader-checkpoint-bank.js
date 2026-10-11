@@ -273,7 +273,7 @@ window.READER_CHECKPOINT_BANK = {
           "b = a × q per qualche numero naturale q.",
           "a è necessariamente uguale a b.",
           "a è necessariamente maggiore di b.",
-          "b = a + q per qualche naturale q."
+          "a = b × q per qualche numero naturale q."
         ],
         "answer": 0,
         "feedback": "È la relazione che collega divisione esatta, divisore e multiplo.",
@@ -302,7 +302,7 @@ window.READER_CHECKPOINT_BANK = {
         ]
       },
       {
-        "question": "Quale uguaglianza dimostra che 9 è divisore di 54?",
+        "question": "Quale scrittura esprime direttamente 54 come prodotto di 9 per un numero naturale?",
         "options": [
           "54 = 9 + 45",
           "9 = 54 : 6",
