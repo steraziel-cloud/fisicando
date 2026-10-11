@@ -5,8 +5,8 @@ window.LESSON_CATALOG = [
     "icon": "math",
     "areas": [
       {
-        "title": "Numeri e algebra",
-        "icon": "calculator",
+        "title": "Numeri e aritmetica",
+        "icon": "numbers",
         "topics": [
           {
             "title": "Aritmetica dei numeri naturali",
@@ -217,7 +217,13 @@ window.LESSON_CATALOG = [
                 ]
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "title": "Algebra",
+        "icon": "variable",
+        "topics": [
           {
             "title": "Calcolo letterale",
             "icon": "variable",
