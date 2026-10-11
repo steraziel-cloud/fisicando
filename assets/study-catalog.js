@@ -1150,34 +1150,668 @@ window.LESSON_CATALOG.push({
   "id": "biologia",
   "title": "Biologia",
   "icon": "atom",
-  "visibleLevels": [
-    "medie"
-  ],
   "areas": [
     {
-      "title": "Gli esseri viventi",
+      "title": "Biologia cellulare e molecolare",
       "icon": "atom",
       "topics": [
         {
-          "title": "La cellula",
-          "aliases": [
-            "seconda media",
-            "cellule",
-            "procarioti",
-            "eucarioti",
-            "organuli",
-            "osmosi"
-          ],
+          "title": "Biologia cellulare",
+          "children": [
+            {
+              "title": "Fondamenti e osservazione delle cellule",
+              "lessons": [
+                {
+                  "title": "La cellula, unità fondamentale dei viventi",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                },
+                {
+                  "title": "Osservare le cellule e comprenderne le dimensioni",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Organizzazione e strutture cellulari",
+              "lessons": [
+                {
+                  "title": "Le strutture comuni alle cellule",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                },
+                {
+                  "title": "Cellule procariote ed eucariote",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                },
+                {
+                  "title": "Dentro la cellula eucariote",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                },
+                {
+                  "title": "Cellule animali e vegetali a confronto",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Membrane e trasporti",
+              "lessons": [
+                {
+                  "title": "La membrana e la diffusione",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                },
+                {
+                  "title": "L’osmosi",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                },
+                {
+                  "title": "Trasporto attraverso le proteine di membrana",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                },
+                {
+                  "title": "Endocitosi ed esocitosi",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Energia e metabolismo cellulare",
+              "lessons": [
+                {
+                  "title": "ATP e trasformazioni energetiche",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                },
+                {
+                  "title": "Respirazione cellulare e fermentazione",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                },
+                {
+                  "title": "La fotosintesi",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Citoscheletro e movimento cellulare",
+              "lessons": [
+                {
+                  "title": "Il citoscheletro",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                },
+                {
+                  "title": "Ciglia, flagelli e movimento cellulare",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Comunicazione e relazioni tra cellule",
+              "lessons": [
+                {
+                  "title": "Segnali, recettori e risposte cellulari",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                },
+                {
+                  "title": "Adesione e giunzioni cellulari",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Ciclo e divisione cellulare",
+              "lessons": [
+                {
+                  "title": "La divisione cellulare e la scissione binaria",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                },
+                {
+                  "title": "La mitosi e la divisione della cellula eucariote",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                },
+                {
+                  "title": "La meiosi",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Differenziamento e destino cellulare",
+              "lessons": [
+                {
+                  "title": "Specializzazione e cellule staminali",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                },
+                {
+                  "title": "Morte cellulare e controllo della proliferazione",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Biologia molecolare",
+          "children": [
+            {
+              "title": "Conservazione dell’informazione genetica",
+              "lessons": [
+                {
+                  "title": "Struttura del DNA e replicazione",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Espressione dell’informazione genetica",
+              "lessons": [
+                {
+                  "title": "Dal DNA all’RNA: la trascrizione",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                },
+                {
+                  "title": "Dall’RNA alle proteine: la traduzione",
+                  "levels": [
+                    "biennio",
+                    "terzo-quarto",
+                    "ultimo-altro",
+                    "analisi1",
+                    "triennio"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Biochimica",
+      "topics": [
+        {
+          "title": "Le molecole della vita",
           "lessons": [
             {
-              "id": "biologia-cellula",
-              "title": "La cellula · Prima bozza",
+              "title": "Carboidrati e lipidi",
               "levels": [
-                "medie"
-              ],
-              "url": "reader.html?lezione=biologia-cellula",
-              "kind": "Teoria",
-              "status": "work-in-progress"
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            },
+            {
+              "title": "Proteine e acidi nucleici",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Enzimi e reazioni biologiche",
+          "lessons": [
+            {
+              "title": "Come funzionano gli enzimi",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Genetica",
+      "topics": [
+        {
+          "title": "Ereditarietà",
+          "lessons": [
+            {
+              "title": "Le leggi di Mendel",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            },
+            {
+              "title": "Oltre i modelli mendeliani",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Variabilità genetica",
+          "lessons": [
+            {
+              "title": "Mutazioni geniche e cromosomiche",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Anatomia e fisiologia",
+      "topics": [
+        {
+          "title": "Organizzazione del corpo umano",
+          "lessons": [
+            {
+              "title": "Cellule, tessuti, organi e apparati",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Apparati e funzioni",
+          "lessons": [
+            {
+              "title": "Apparato digerente e nutrizione",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            },
+            {
+              "title": "Apparato circolatorio e trasporto",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Regolazione e coordinamento",
+          "lessons": [
+            {
+              "title": "Omeostasi e sistemi di controllo",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            },
+            {
+              "title": "Sistema nervoso e sistema endocrino",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Biologia dello sviluppo",
+      "topics": [
+        {
+          "title": "Riproduzione e sviluppo degli organismi",
+          "lessons": [
+            {
+              "title": "Riproduzione sessuata e asessuata",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            },
+            {
+              "title": "Dalla fecondazione allo sviluppo embrionale",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Biologia evolutiva",
+      "topics": [
+        {
+          "title": "Meccanismi dell’evoluzione",
+          "lessons": [
+            {
+              "title": "La selezione naturale",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            },
+            {
+              "title": "Deriva genetica e flusso genico",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Storia e diversificazione della vita",
+          "lessons": [
+            {
+              "title": "Speciazione e relazioni evolutive",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Ecologia",
+      "topics": [
+        {
+          "title": "Popolazioni e comunità",
+          "lessons": [
+            {
+              "title": "Crescita delle popolazioni",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            },
+            {
+              "title": "Relazioni tra organismi",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Ecosistemi",
+          "lessons": [
+            {
+              "title": "Reti alimentari e flusso di energia",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            },
+            {
+              "title": "Cicli della materia",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Diversità dei viventi",
+      "topics": [
+        {
+          "title": "Classificazione e domini della vita",
+          "lessons": [
+            {
+              "title": "Come classifichiamo gli organismi",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Microrganismi e virus",
+          "lessons": [
+            {
+              "title": "Batteri e archei",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            },
+            {
+              "title": "I virus",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Principali gruppi di eucarioti",
+          "lessons": [
+            {
+              "title": "Funghi, piante e animali",
+              "levels": [
+                "biennio",
+                "terzo-quarto",
+                "ultimo-altro",
+                "analisi1",
+                "triennio"
+              ]
             }
           ]
         }

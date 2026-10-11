@@ -86,28 +86,31 @@ document.addEventListener('DOMContentLoaded', () => {
       s.areas.forEach((a,ai)=> {
         if(area.value && area.value!==s.id+'/'+a.title)return;
         const ad=branch(a.title,s.id+'/'+ai,a.icon,filtering);
-        a.topics.forEach((t,ti)=> {
-          const lessons=t.lessons.filter(l=> {
+        function visitTopic(t, topicKey, parent, ancestors) {
+          const lessons=(t.lessons || []).filter(l=> {
             if(level && !all.checked && !l.levels.includes(level))return false;
             if(available.checked && (!l.url||l.unpublished))return false;
-            const haystack=normalize([s.title,a.title,t.title,...(t.aliases||[]),l.title,l.kind||''].join(' '));
+            const haystack=normalize([s.title,a.title,...ancestors,t.title,...(t.aliases||[]),l.title,l.kind||''].join(' '));
             return tokens.every(token=>haystack.includes(token));
           });
-          if(!lessons.length)return;
-          const td=branch(t.title,s.id+'/'+ai+'/'+ti,null,tokens.length > 0 || available.checked);td.classList.add('rm-catalog-topic');
+          const td=branch(t.title,topicKey,null,filtering);td.classList.add('rm-catalog-topic');
           const list=document.createElement('ul');
           lessons.forEach(l=> {
             count++;if(l.url&&!l.unpublished)ready++;
             const li=document.createElement('li');const label=document.createElement('button');label.type='button';label.className='rm-catalog-lesson';
-            const key = `${s.id}/${ai}/${ti}/${t.lessons.indexOf(l)}`;
+            const key = `${topicKey}/${(t.lessons || []).indexOf(l)}`;
             label.dataset.lessonKey = key; label.setAttribute('aria-pressed',String(selectedKey === key));
-            label.addEventListener('click',()=>selectLesson(l,t,s.title,a.title,key));
+            label.addEventListener('click',()=>selectLesson(l,t,s.title,[a.title,...ancestors].join(' · '),key));
             const title=document.createElement('span');title.textContent=l.title;label.append(title);
             const status=document.createElement('small');status.textContent=l.status==='work-in-progress'?'In lavorazione':l.url?l.kind || 'Disponibile':'Da preparare';status.className=l.url&&!l.unpublished?'rm-lesson-ready':'rm-lesson-planned';label.append(status);
             if(all.checked || !level){const tags=document.createElement('small');tags.className='rm-lesson-levels';tags.textContent=l.levels.map(k=>levels[k]).join(' · ');label.append(tags);}
             li.append(label);list.append(li);
-          });td.append(list);ad.append(td);
-        });if(ad.children.length>1)sd.append(ad);
+          });if(lessons.length)td.append(list);
+          (t.children || []).forEach((child,ci)=>visitTopic(child,topicKey+'/child/'+ci,td,[...ancestors,t.title]));
+          if(td.children.length>1)parent.append(td);
+        }
+        a.topics.forEach((t,ti)=>visitTopic(t,s.id+'/'+ai+'/'+ti,ad,[]));
+        if(ad.children.length>1)sd.append(ad);
       });if(sd.children.length>1)fragment.append(sd);
     });nav.replaceChildren(fragment);
     document.getElementById('topics-empty').hidden=count!==0;
@@ -118,6 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
   subject.addEventListener('change',()=>{updateAreas();render();});
   [area,available,all].forEach(el=>el.addEventListener('change',render));
   document.getElementById('reset-filters').addEventListener('click',()=>{search.value='';subject.value='';available.checked=false;all.checked=false;area.value='';updateAreas();render();search.focus();});
+  const requestedSubject=params.get('materia');
+  if([...subject.options].some(o=>o.value===requestedSubject))subject.value=requestedSubject;
   updateAreas();render();
 });
+
 
