@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    };answer.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();verify();}});box.append(button('Verifica il calcolo',verify));return;
   }
   box.append(el('h4','','Convertiamo in metri al secondo'),el('p','','Quale valore in m/s corrisponde a 40 km/h?'));
-  ['Circa 11,1 m/s','40 m/s','144 m/s'].forEach((text,i)=>{
+  ['Circa 11,1 m/s','40 m/s','144 m/s','Circa 1,11 m/s'].forEach((text,i)=>{
    const label=el('label'),radio=el('input');radio.type='radio';radio.name='velocity-conversion';radio.value=i;radio.checked=st.choice===i;radio.disabled=st.done;radio.addEventListener('change',()=>st.choice=i);label.append(radio,el('span','',text));box.append(label);
   });
   if(st.done){$('reader-feedback').textContent='Quiz completato: 40 km/h corrispondono a circa 11,1 m/s.';return;}
