@@ -81,7 +81,10 @@ window.LESSON_CATALOG = [
                   "medie",
                   "biennio"
                 ],
-                "status": "work-in-progress"
+                "status": "work-in-progress",
+                "id": "aritmetica-criteri-divisibilita",
+                "url": "reader.html?lezione=aritmetica-criteri-divisibilita",
+                "kind": "Teoria"
               },
               {
                 "title": "Numeri primi e numeri composti",

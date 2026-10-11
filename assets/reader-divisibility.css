@@ -8,3 +8,8 @@ body[data-reader-lesson="aritmetica-divisibilita"] .rm-divisibility-card>.rm-car
 .dv-board h4{margin:0 0 16px;font-size:1.1rem}.dv-control{display:grid;grid-template-columns:1fr 36px;gap:10px;align-items:center}.dv-control span{grid-column:1/-1}.dv-control input{width:100%;accent-color:#169e9e}.dv-control output{font-weight:700;text-align:center}
 .dv-groups{display:flex;flex-wrap:wrap;gap:10px;align-content:start;min-height:145px;margin:20px 0}.dv-group{display:grid;grid-template-columns:repeat(3,16px);gap:7px;padding:10px;border:1px solid #159999;border-radius:10px}.dv-token{width:16px;height:16px;border-radius:50%;background:#159999}.dv-remainder{border:2px dashed #b87618}.dv-remainder .dv-token{background:#b87618}.dv-equation{font-size:1.35rem;font-weight:700;margin:12px 0}.dv-reading{margin:0;line-height:1.5}
 @media(max-width:850px){body[data-reader-lesson="aritmetica-divisibilita"] .rm-divisibility-card{display:flex;flex-direction:column}.dv-board{width:100%;box-sizing:border-box;order:3}.dv-groups{min-height:100px}}
+
+/* Text-only drafts use the available reader width. */
+body[data-reader-lesson="aritmetica-criteri-divisibilita"] .rm-reader-card,
+body[data-reader-lesson="aritmetica-criteri-divisibilita"] .rm-reader-step{max-width:none}
+body[data-reader-lesson="aritmetica-criteri-divisibilita"] .rm-card-text{max-width:none;width:100%;text-align:left}
