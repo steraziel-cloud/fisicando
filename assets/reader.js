@@ -400,6 +400,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.board==='law-motion'&&window.GatitoLawMotion){box.classList.add('rm-law-card');disposeWidget=window.GatitoLawMotion.mount(box,state[current].lawMotion||(state[current].lawMotion={time:0}),{graph:steps.some(step=>step.lawGraph)});}
   if(card.board==='velocity-story'&&window.GatitoVelocityScene){box.classList.add('rm-velocity-story-card');disposeWidget=window.GatitoVelocityScene.mount(box);}
   if(['wheel-speed','road-speed'].includes(card.board)&&window.GatitoSpeedInstruments)disposeWidget=window.GatitoSpeedInstruments.mount(box,card.board);
+  if(card.board?.startsWith('divisibility-')&&window.GatitoDivisibility)disposeWidget=window.GatitoDivisibility.mount(box,card.board);
   if(card.board==='train-reference'){box.classList.add('rm-train-reference-card');trainPicture(box);}
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
   const text=el('div','rm-card-text');steps.forEach(step=>text.append(stepNode(step,archived)));box.append(text);
@@ -449,5 +450,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
+
 
 

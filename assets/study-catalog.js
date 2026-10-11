@@ -70,7 +70,10 @@ window.LESSON_CATALOG = [
                   "medie",
                   "biennio"
                 ],
-                "status": "work-in-progress"
+                "status": "work-in-progress",
+                "id": "aritmetica-divisibilita",
+                "url": "reader.html?lezione=aritmetica-divisibilita",
+                "kind": "Teoria"
               },
               {
                 "title": "Criteri di divisibilità",
