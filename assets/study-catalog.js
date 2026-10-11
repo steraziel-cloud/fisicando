@@ -9,12 +9,15 @@ window.LESSON_CATALOG = [
         "icon": "calculator",
         "topics": [
           {
-            "title": "Calcolo numerico",
+            "title": "Aritmetica dei numeri naturali",
             "icon": "numbers",
-            "aliases": [],
+            "aliases": [
+              "Calcolo numerico",
+              "N"
+            ],
             "lessons": [
               {
-                "title": "Operazioni, precedenze e parentesi",
+                "title": "Numeri naturali e operazioni interne",
                 "levels": [
                   "elementari",
                   "medie",
@@ -25,10 +28,11 @@ window.LESSON_CATALOG = [
                   "triennio",
                   "universita-avanzata",
                   "universita"
-                ]
+                ],
+                "status": "work-in-progress"
               },
               {
-                "title": "Frazioni e operazioni con le frazioni",
+                "title": "Addizione e moltiplicazione: proprietà",
                 "levels": [
                   "elementari",
                   "medie",
@@ -39,7 +43,23 @@ window.LESSON_CATALOG = [
                   "triennio",
                   "universita-avanzata",
                   "universita"
-                ]
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Sottrazione e divisione nei numeri naturali",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
               },
               {
                 "title": "Potenze e loro proprietà",
@@ -53,8 +73,296 @@ window.LESSON_CATALOG = [
                   "triennio",
                   "universita-avanzata",
                   "universita"
-                ]
+                ],
+                "status": "work-in-progress"
               },
+              {
+                "title": "Scrittura posizionale e forma polinomiale di un numero",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Espressioni aritmetiche: precedenze e parentesi",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Multipli, divisori e divisibilità",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Criteri di divisibilità",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Numeri primi e numeri composti",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Scomposizione in fattori primi",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Massimo comune divisore (M.C.D.)",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Minimo comune multiplo (m.c.m.)",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              }
+            ]
+          },
+          {
+            "title": "Frazioni e numeri razionali",
+            "icon": "numbers",
+            "aliases": [
+              "Q+",
+              "razionali positivi"
+            ],
+            "lessons": [
+              {
+                "title": "Frazioni: significato e rappresentazione",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Frazioni equivalenti e riduzione ai minimi termini",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Numeri razionali positivi e confronto",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Addizione e sottrazione di frazioni",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Moltiplicazione e divisione di frazioni",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Potenze di frazioni",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Espressioni con le frazioni",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Numeri interi relativi",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Numeri razionali relativi",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Numeri reali: un ampliamento degli insiemi numerici",
+                "levels": [
+                  "elementari",
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              }
+            ]
+          },
+          {
+            "title": "Proporzioni e percentuali",
+            "icon": "numbers",
+            "aliases": [],
+            "lessons": [
               {
                 "title": "Proporzioni e percentuali",
                 "levels": [
@@ -193,7 +501,7 @@ window.LESSON_CATALOG = [
             "aliases": [],
             "lessons": [
               {
-                "title": "Punti, rette, segmenti e angoli",
+                "title": "Punti, rette, semirette e segmenti",
                 "levels": [
                   "medie",
                   "biennio",
@@ -203,7 +511,8 @@ window.LESSON_CATALOG = [
                   "triennio",
                   "universita-avanzata",
                   "universita"
-                ]
+                ],
+                "status": "work-in-progress"
               },
               {
                 "title": "Triangoli e loro proprietà",
@@ -242,6 +551,84 @@ window.LESSON_CATALOG = [
                   "triennio",
                   "universita-avanzata",
                   "universita"
+                ]
+              }
+            ],
+            "children": [
+              {
+                "title": "Angoli",
+                "icon": "triangle",
+                "lessons": [
+                  {
+                    "title": "Angoli: lati, vertice e ampiezza",
+                    "levels": [
+                      "medie",
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio",
+                      "universita-avanzata",
+                      "universita"
+                    ],
+                    "status": "work-in-progress"
+                  },
+                  {
+                    "title": "Misurare e classificare gli angoli",
+                    "levels": [
+                      "medie",
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio",
+                      "universita-avanzata",
+                      "universita"
+                    ],
+                    "status": "work-in-progress"
+                  },
+                  {
+                    "title": "Angoli consecutivi, adiacenti e opposti al vertice",
+                    "levels": [
+                      "medie",
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio",
+                      "universita-avanzata",
+                      "universita"
+                    ],
+                    "status": "work-in-progress"
+                  },
+                  {
+                    "title": "Angoli complementari, supplementari ed esplementari",
+                    "levels": [
+                      "medie",
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio",
+                      "universita-avanzata",
+                      "universita"
+                    ],
+                    "status": "work-in-progress"
+                  },
+                  {
+                    "title": "Operazioni con le misure degli angoli",
+                    "levels": [
+                      "medie",
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio",
+                      "universita-avanzata",
+                      "universita"
+                    ],
+                    "status": "work-in-progress"
+                  }
                 ]
               }
             ]
@@ -323,7 +710,8 @@ window.LESSON_CATALOG = [
                   "triennio",
                   "universita-avanzata",
                   "universita"
-                ]
+                ],
+                "status": "work-in-progress"
               },
               {
                 "title": "Sottoinsiemi",
@@ -336,7 +724,8 @@ window.LESSON_CATALOG = [
                   "triennio",
                   "universita-avanzata",
                   "universita"
-                ]
+                ],
+                "status": "work-in-progress"
               },
               {
                 "title": "Unione, intersezione e differenza",
@@ -349,7 +738,8 @@ window.LESSON_CATALOG = [
                   "triennio",
                   "universita-avanzata",
                   "universita"
-                ]
+                ],
+                "status": "work-in-progress"
               }
             ]
           },
@@ -1160,716 +1550,712 @@ window.LESSON_CATALOG = [
         ]
       }
     ]
+  },
+  {
+    "id": "biologia",
+    "title": "Biologia",
+    "icon": "dna",
+    "areas": [
+      {
+        "title": "Biologia cellulare e molecolare",
+        "icon": "cell",
+        "topics": [
+          {
+            "title": "Biologia cellulare",
+            "icon": "cell",
+            "children": [
+              {
+                "title": "Fondamenti e osservazione delle cellule",
+                "icon": "microscope",
+                "lessons": [
+                  {
+                    "title": "La cellula, unità fondamentale dei viventi",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  },
+                  {
+                    "title": "Osservare le cellule e comprenderne le dimensioni",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Organizzazione e strutture cellulari",
+                "icon": "cell",
+                "lessons": [
+                  {
+                    "title": "Le strutture comuni alle cellule",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  },
+                  {
+                    "title": "Cellule procariote ed eucariote",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  },
+                  {
+                    "title": "Dentro la cellula eucariote",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  },
+                  {
+                    "title": "Cellule animali e vegetali a confronto",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Membrane e trasporti",
+                "icon": "membrane",
+                "lessons": [
+                  {
+                    "title": "La membrana e la diffusione",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  },
+                  {
+                    "title": "L’osmosi",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  },
+                  {
+                    "title": "Trasporto attraverso le proteine di membrana",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  },
+                  {
+                    "title": "Endocitosi ed esocitosi",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Energia e metabolismo cellulare",
+                "icon": "energy",
+                "lessons": [
+                  {
+                    "title": "ATP e trasformazioni energetiche",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  },
+                  {
+                    "title": "Respirazione cellulare e fermentazione",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  },
+                  {
+                    "title": "La fotosintesi",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Citoscheletro e movimento cellulare",
+                "icon": "cytoskeleton",
+                "lessons": [
+                  {
+                    "title": "Il citoscheletro",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  },
+                  {
+                    "title": "Ciglia, flagelli e movimento cellulare",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Comunicazione e relazioni tra cellule",
+                "icon": "signal",
+                "lessons": [
+                  {
+                    "title": "Segnali, recettori e risposte cellulari",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  },
+                  {
+                    "title": "Adesione e giunzioni cellulari",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Ciclo e divisione cellulare",
+                "icon": "cycle",
+                "lessons": [
+                  {
+                    "title": "La divisione cellulare e la scissione binaria",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  },
+                  {
+                    "title": "La mitosi e la divisione della cellula eucariote",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  },
+                  {
+                    "title": "La meiosi",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Differenziamento e destino cellulare",
+                "icon": "sprout",
+                "lessons": [
+                  {
+                    "title": "Specializzazione e cellule staminali",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  },
+                  {
+                    "title": "Morte cellulare e controllo della proliferazione",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Biologia molecolare",
+            "icon": "dna",
+            "children": [
+              {
+                "title": "Conservazione dell’informazione genetica",
+                "icon": "dna",
+                "lessons": [
+                  {
+                    "title": "Struttura del DNA e replicazione",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Espressione dell’informazione genetica",
+                "icon": "expression",
+                "lessons": [
+                  {
+                    "title": "Dal DNA all’RNA: la trascrizione",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  },
+                  {
+                    "title": "Dall’RNA alle proteine: la traduzione",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Biochimica",
+        "icon": "molecule",
+        "topics": [
+          {
+            "title": "Le molecole della vita",
+            "icon": "molecule",
+            "lessons": [
+              {
+                "title": "Carboidrati e lipidi",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              },
+              {
+                "title": "Proteine e acidi nucleici",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Enzimi e reazioni biologiche",
+            "icon": "enzyme",
+            "lessons": [
+              {
+                "title": "Come funzionano gli enzimi",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Genetica",
+        "icon": "pedigree",
+        "topics": [
+          {
+            "title": "Ereditarietà",
+            "icon": "pedigree",
+            "lessons": [
+              {
+                "title": "Le leggi di Mendel",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              },
+              {
+                "title": "Oltre i modelli mendeliani",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Variabilità genetica",
+            "icon": "variation",
+            "lessons": [
+              {
+                "title": "Mutazioni geniche e cromosomiche",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Anatomia e fisiologia",
+        "icon": "human",
+        "topics": [
+          {
+            "title": "Organizzazione del corpo umano",
+            "icon": "human",
+            "lessons": [
+              {
+                "title": "Cellule, tessuti, organi e apparati",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Apparati e funzioni",
+            "icon": "human",
+            "lessons": [
+              {
+                "title": "Apparato digerente e nutrizione",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              },
+              {
+                "title": "Apparato circolatorio e trasporto",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Regolazione e coordinamento",
+            "icon": "signal",
+            "lessons": [
+              {
+                "title": "Omeostasi e sistemi di controllo",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              },
+              {
+                "title": "Sistema nervoso e sistema endocrino",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Biologia dello sviluppo",
+        "icon": "growth",
+        "topics": [
+          {
+            "title": "Riproduzione e sviluppo degli organismi",
+            "icon": "growth",
+            "lessons": [
+              {
+                "title": "Riproduzione sessuata e asessuata",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              },
+              {
+                "title": "Dalla fecondazione allo sviluppo embrionale",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Biologia evolutiva",
+        "icon": "evolution",
+        "topics": [
+          {
+            "title": "Meccanismi dell’evoluzione",
+            "icon": "evolution",
+            "lessons": [
+              {
+                "title": "La selezione naturale",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              },
+              {
+                "title": "Deriva genetica e flusso genico",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Storia e diversificazione della vita",
+            "icon": "species",
+            "lessons": [
+              {
+                "title": "Speciazione e relazioni evolutive",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Ecologia",
+        "icon": "leaf",
+        "topics": [
+          {
+            "title": "Popolazioni e comunità",
+            "icon": "community",
+            "lessons": [
+              {
+                "title": "Crescita delle popolazioni",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              },
+              {
+                "title": "Relazioni tra organismi",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Ecosistemi",
+            "icon": "leaf",
+            "lessons": [
+              {
+                "title": "Reti alimentari e flusso di energia",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              },
+              {
+                "title": "Cicli della materia",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Diversità dei viventi",
+        "icon": "species",
+        "topics": [
+          {
+            "title": "Classificazione e domini della vita",
+            "icon": "species",
+            "lessons": [
+              {
+                "title": "Come classifichiamo gli organismi",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Microrganismi e virus",
+            "icon": "microbe",
+            "lessons": [
+              {
+                "title": "Batteri e archei",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              },
+              {
+                "title": "I virus",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Principali gruppi di eucarioti",
+            "icon": "species",
+            "lessons": [
+              {
+                "title": "Funghi, piante e animali",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ];
-
-
-window.LESSON_CATALOG.push({
-  "id": "biologia",
-  "title": "Biologia",
-  "icon": "dna",
-  "areas": [
-    {
-      "title": "Biologia cellulare e molecolare",
-      "icon": "cell",
-      "topics": [
-        {
-          "title": "Biologia cellulare",
-          "icon": "cell",
-          "children": [
-            {
-              "title": "Fondamenti e osservazione delle cellule",
-              "icon": "microscope",
-              "lessons": [
-                {
-                  "title": "La cellula, unità fondamentale dei viventi",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                },
-                {
-                  "title": "Osservare le cellule e comprenderne le dimensioni",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "Organizzazione e strutture cellulari",
-              "icon": "cell",
-              "lessons": [
-                {
-                  "title": "Le strutture comuni alle cellule",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                },
-                {
-                  "title": "Cellule procariote ed eucariote",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                },
-                {
-                  "title": "Dentro la cellula eucariote",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                },
-                {
-                  "title": "Cellule animali e vegetali a confronto",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "Membrane e trasporti",
-              "icon": "membrane",
-              "lessons": [
-                {
-                  "title": "La membrana e la diffusione",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                },
-                {
-                  "title": "L’osmosi",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                },
-                {
-                  "title": "Trasporto attraverso le proteine di membrana",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                },
-                {
-                  "title": "Endocitosi ed esocitosi",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "Energia e metabolismo cellulare",
-              "icon": "energy",
-              "lessons": [
-                {
-                  "title": "ATP e trasformazioni energetiche",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                },
-                {
-                  "title": "Respirazione cellulare e fermentazione",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                },
-                {
-                  "title": "La fotosintesi",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "Citoscheletro e movimento cellulare",
-              "icon": "cytoskeleton",
-              "lessons": [
-                {
-                  "title": "Il citoscheletro",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                },
-                {
-                  "title": "Ciglia, flagelli e movimento cellulare",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "Comunicazione e relazioni tra cellule",
-              "icon": "signal",
-              "lessons": [
-                {
-                  "title": "Segnali, recettori e risposte cellulari",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                },
-                {
-                  "title": "Adesione e giunzioni cellulari",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "Ciclo e divisione cellulare",
-              "icon": "cycle",
-              "lessons": [
-                {
-                  "title": "La divisione cellulare e la scissione binaria",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                },
-                {
-                  "title": "La mitosi e la divisione della cellula eucariote",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                },
-                {
-                  "title": "La meiosi",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "Differenziamento e destino cellulare",
-              "icon": "sprout",
-              "lessons": [
-                {
-                  "title": "Specializzazione e cellule staminali",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                },
-                {
-                  "title": "Morte cellulare e controllo della proliferazione",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Biologia molecolare",
-          "icon": "dna",
-          "children": [
-            {
-              "title": "Conservazione dell’informazione genetica",
-              "icon": "dna",
-              "lessons": [
-                {
-                  "title": "Struttura del DNA e replicazione",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                }
-              ]
-            },
-            {
-              "title": "Espressione dell’informazione genetica",
-              "icon": "expression",
-              "lessons": [
-                {
-                  "title": "Dal DNA all’RNA: la trascrizione",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                },
-                {
-                  "title": "Dall’RNA alle proteine: la traduzione",
-                  "levels": [
-                    "biennio",
-                    "terzo-quarto",
-                    "ultimo-altro",
-                    "analisi1",
-                    "triennio"
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Biochimica",
-      "icon": "molecule",
-      "topics": [
-        {
-          "title": "Le molecole della vita",
-          "icon": "molecule",
-          "lessons": [
-            {
-              "title": "Carboidrati e lipidi",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            },
-            {
-              "title": "Proteine e acidi nucleici",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Enzimi e reazioni biologiche",
-          "icon": "enzyme",
-          "lessons": [
-            {
-              "title": "Come funzionano gli enzimi",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Genetica",
-      "icon": "pedigree",
-      "topics": [
-        {
-          "title": "Ereditarietà",
-          "icon": "pedigree",
-          "lessons": [
-            {
-              "title": "Le leggi di Mendel",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            },
-            {
-              "title": "Oltre i modelli mendeliani",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Variabilità genetica",
-          "icon": "variation",
-          "lessons": [
-            {
-              "title": "Mutazioni geniche e cromosomiche",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Anatomia e fisiologia",
-      "icon": "human",
-      "topics": [
-        {
-          "title": "Organizzazione del corpo umano",
-          "icon": "human",
-          "lessons": [
-            {
-              "title": "Cellule, tessuti, organi e apparati",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Apparati e funzioni",
-          "icon": "human",
-          "lessons": [
-            {
-              "title": "Apparato digerente e nutrizione",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            },
-            {
-              "title": "Apparato circolatorio e trasporto",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Regolazione e coordinamento",
-          "icon": "signal",
-          "lessons": [
-            {
-              "title": "Omeostasi e sistemi di controllo",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            },
-            {
-              "title": "Sistema nervoso e sistema endocrino",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Biologia dello sviluppo",
-      "icon": "growth",
-      "topics": [
-        {
-          "title": "Riproduzione e sviluppo degli organismi",
-          "icon": "growth",
-          "lessons": [
-            {
-              "title": "Riproduzione sessuata e asessuata",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            },
-            {
-              "title": "Dalla fecondazione allo sviluppo embrionale",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Biologia evolutiva",
-      "icon": "evolution",
-      "topics": [
-        {
-          "title": "Meccanismi dell’evoluzione",
-          "icon": "evolution",
-          "lessons": [
-            {
-              "title": "La selezione naturale",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            },
-            {
-              "title": "Deriva genetica e flusso genico",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Storia e diversificazione della vita",
-          "icon": "species",
-          "lessons": [
-            {
-              "title": "Speciazione e relazioni evolutive",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Ecologia",
-      "icon": "leaf",
-      "topics": [
-        {
-          "title": "Popolazioni e comunità",
-          "icon": "community",
-          "lessons": [
-            {
-              "title": "Crescita delle popolazioni",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            },
-            {
-              "title": "Relazioni tra organismi",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Ecosistemi",
-          "icon": "leaf",
-          "lessons": [
-            {
-              "title": "Reti alimentari e flusso di energia",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            },
-            {
-              "title": "Cicli della materia",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Diversità dei viventi",
-      "icon": "species",
-      "topics": [
-        {
-          "title": "Classificazione e domini della vita",
-          "icon": "species",
-          "lessons": [
-            {
-              "title": "Come classifichiamo gli organismi",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Microrganismi e virus",
-          "icon": "microbe",
-          "lessons": [
-            {
-              "title": "Batteri e archei",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            },
-            {
-              "title": "I virus",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Principali gruppi di eucarioti",
-          "icon": "species",
-          "lessons": [
-            {
-              "title": "Funghi, piante e animali",
-              "levels": [
-                "biennio",
-                "terzo-quarto",
-                "ultimo-altro",
-                "analisi1",
-                "triennio"
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
-});
-
-
