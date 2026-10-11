@@ -18,14 +18,18 @@ document.addEventListener('DOMContentLoaded',()=>{
  const format=n=>Number(n).toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2});
  const el=(tag,cls,text)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node;};
  const button=(text,fn,cls='rm-btn secondary')=>{const b=el('button',cls,text);b.type='button';b.addEventListener('click',fn);return b;};
- const unlocked=i=>reviewAccess||i===0||state[i].available||state[i-1].complete;
+ const optionalIds=new Set(lesson.sections.flatMap(s=>s.optionalNext?[s.optionalNext.trivia]:[]));
+ let pendingSection=null;
+ const unlocked=i=>true;
+ const quizState=i=>state[i].checkpoint||(state[i].checkpoint={index:0,passed:[],special:false,gateOnly:false});
+ const requiredBefore=i=>lesson.sections.map((s,j)=>j).filter(j=>j<i&&lesson.sections[j].quiz&&!optionalIds.has(lesson.sections[j].id)&&!state[j].complete);
  $('reader-title').textContent=lesson.title;$('reader-subtitle').textContent=lesson.subtitle;document.title='GatitoMath – '+lesson.title;
  // BFCache can restore a departed page without executing DOMContentLoaded again.
  window.addEventListener('pageshow',e=>{if(e.persisted)location.reload();});
  function index(){
   $('reader-parts').replaceChildren();lesson.sections.forEach((s,i)=>{
-   const b=button('',()=>open(i,true),'');b.disabled=!unlocked(i);b.setAttribute('aria-current',current===i&&!allMode?'step':'false');
-   const dot=el('span','rm-part-progress'+(state[i].complete?' done':''),state[i].complete?'✓':!unlocked(i)?'🔒':String(i+1));
+   const b=button('',()=>open(i,true),'');b.disabled=false;b.setAttribute('aria-current',current===i&&!allMode?'step':'false');
+   const dot=el('span','rm-part-progress'+(state[i].complete?' done':''),state[i].complete?'✓':String(i+1));
    dot.style.setProperty('--part-progress',Math.round(state[i].reached/flat(s).length*100)+'%');dot.setAttribute('aria-hidden','true');
    b.append(dot,el('span','',s.title));b.setAttribute('aria-label',s.title+' · '+(state[i].complete?'completata':unlocked(i)?'disponibile':'da sbloccare'));$('reader-parts').append(b);
   });
@@ -36,7 +40,8 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  function celebrate(target,message,title='Ottimo lavoro!'){window.GatitoQuizReactions.show(target,message,{correct:true,title,final:target===$('reader-feedback')});}
  function retry(target,message){window.GatitoQuizReactions.show(target,message,{correct:false});}
- function finish(message){const first=!state[current].complete;state[current].complete=true;state[current].reached=flat(lesson.sections[current]).length;index();celebrate($('reader-feedback'),message,first?'Una parte in più, ci sei!':'Perfetto!');actions();if(first&&lesson.sections[current].optionalNext)showOptionalParts();}
+ function completeSection(message){const first=!state[current].complete;state[current].complete=true;state[current].reached=flat(lesson.sections[current]).length;index();celebrate($('reader-feedback'),message,first?'Una parte in più, ci sei!':'Perfetto!');actions();if(pendingSection!==null){const target=pendingSection,remaining=requiredBefore(target);if(remaining.length){current=remaining[0];state[current].cursor=flat(lesson.sections[current]).length;quizState(current).gateOnly=true;render();top();}else{pendingSection=null;open(target,true,1);}return;}if(first&&lesson.sections[current].optionalNext)showOptionalParts();if(current===state.length-1)completionLinks();}
+ function finish(message){const qs=quizState(current),quiz=lesson.sections[current].quiz;if(quiz?.type&&quiz.questions?.length&&!qs.special){qs.special=true;checkpoint();$('reader-feedback').textContent='Attività completata. Ora verifica le idee con le domande.';actions();return;}completeSection(message);}
  function showOptionalParts(){
   const destinations=lesson.sections[current].optionalNext;
   const dialog=el('dialog','rm-glossary'),title=el('h2','','Vuoi esplorare ancora?');title.id='reader-optional-title';dialog.setAttribute('aria-labelledby',title.id);
@@ -60,7 +65,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const count=flat(lesson.sections[current]).length,st=state[current];
   $('reader-prev').hidden=allMode||st.cursor===0;$('reader-next').hidden=allMode;
   let blocked=false;if(st.cursor<count){const item=flat(lesson.sections[current])[st.cursor];blocked=stepBlocked(item);}
-  $('reader-next').disabled=blocked||(st.cursor===count&&!st.complete&&!reviewAccess);
+  $('reader-next').disabled=blocked||(st.cursor===count&&!!lesson.sections[current].quiz&&!st.complete);
   $('reader-next').textContent=st.cursor<count-1?'Continua →':st.cursor<count?(lesson.sections[current].quiz?'Controlla l’idea →':current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione'):current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione';
   $('reader-step-count').textContent=allMode?'':st.cursor<count?'Passaggio '+(st.cursor+1)+' di '+count:lesson.sections[current].quiz?'Verifica finale':'Parte completata';
  }
@@ -300,9 +305,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    else retry($('reader-feedback'),'Per passare da km/h a m/s devi dividere per 3,6. Riprova.');
   }));
  }
- function stepBlocked(item){
-  return !reviewAccess&&((item.step.interaction==='instant-speeds'&&!state[current].instantSpeeds.done)||(item.step.interaction==='elevator-challenges'&&!state[current].elevator.done)||(item.step.interaction==='train-reference'&&!state[current].reference.done)||(item.step.interaction==='units-conversion'&&!state[current].units.done));
- }
+ function stepBlocked(item){return false;}
  function instantSpeedsExercise(box,interactive=true){
   const st=state[current].instantSpeeds,labels=['Morgana lungo il percorso','Red prima del chiosco','Red durante la pausa','Red dopo la pausa'],expected=[2,6,0,2],host=el('div','rm-instant-speeds');
   const inputs=labels.map((text,i)=>{const label=el('label','',text+' '),input=el('input');input.type='text';input.inputMode='decimal';input.setAttribute('aria-label',text+': velocità in m/s');input.value=interactive?st.values[i]:String(expected[i]);input.disabled=!interactive||st.done;input.oninput=()=>st.values[i]=input.value;label.append(input,el('span','','m/s'));host.append(label);return input;});
@@ -311,18 +314,37 @@ document.addEventListener('DOMContentLoaded',()=>{
   host.append(feedback);box.append(host);
  }
  function checkpoint(){
-  const s=lesson.sections[current],box=$('reader-checkpoint');box.replaceChildren();box.hidden=false;box.append(el('h3','','Controlla l’idea'));
-  if(s.quiz.type==='period-lab'){periodLab(box);return;}
-  if(s.quiz.type==='velocity-graph'){window.GatitoVelocityGraph.mount(box,state[current].velocityGraph,()=>finish('Hai letto correttamente la funzione velocità nei quattro istanti.'));return;}
-  if(s.quiz.type==='velocity-units'){velocityUnitsQuiz(box);return;}
-  const q=el('p','',s.quiz.question);box.append(q);
-  s.quiz.options.forEach((option,i)=>{const label=el('label'),input=el('input');input.type='radio';input.name='checkpoint';input.value=i;label.append(input,el('span','',option));box.append(label);});
+  const section=lesson.sections[current],quiz=section.quiz,qs=quizState(current),box=$('reader-checkpoint');
+  box.replaceChildren();box.hidden=false;
+  box.append(el('h3','',pendingSection!==null?'Verifica i prerequisiti · '+section.title:'Controlla l’idea'));
+  if(pendingSection!==null)box.append(el('p','','Vuoi aprire «'+lesson.sections[pendingSection].title+'». Supera i checkpoint precedenti; puoi tornare al testo con «Indietro».'));
+  if(quiz.type&&!qs.special&&!qs.gateOnly){
+   if(quiz.type==='period-lab'){periodLab(box);return;}
+   if(quiz.type==='velocity-graph'){window.GatitoVelocityGraph.mount(box,state[current].velocityGraph,()=>finish('Hai letto correttamente la funzione velocità nei quattro istanti.'));return;}
+   if(quiz.type==='velocity-units'){velocityUnitsQuiz(box);return;}
+  }
+  const questions=quiz.questions||[quiz],position=Math.min(qs.index,questions.length-1),q=questions[position];
+  box.append(el('p','rm-checkpoint-progress','Domanda '+(position+1)+' di '+questions.length),el('p','',q.question));
+  q.options.forEach((option,i)=>{const label=el('label'),input=el('input');input.type='radio';input.name='checkpoint';input.value=i;label.append(input,el('span','',option));box.append(label);});
   box.append(button('Verifica',()=>{const selected=box.querySelector('input:checked');if(!selected){$('reader-feedback').textContent='Scegli una risposta prima di verificare.';return;}
-   const chosen=Number(selected.value);
-   if(chosen===s.quiz.answer)finish('Corretto. '+(s.quiz.feedbackByOption?.[chosen]||s.quiz.feedback));
-   else retry($('reader-feedback'),(s.quiz.feedbackByOption?.[chosen]||(s.id==='inizio'?'Dire soltanto “il corpo è fermo” lascia una domanda aperta: rispetto a che cosa? ':s.quiz.feedback+' '))+' Puoi rileggere e riprovare.');
+   const chosen=Number(selected.value),feedback=q.feedbackByOption?.[chosen]||q.feedback;
+   if(chosen!==q.answer){retry($('reader-feedback'),feedback+' Puoi rileggere e riprovare.');return;}
+   qs.passed[position]=true;
+   if(position===questions.length-1){completeSection('Hai superato tutte le '+questions.length+' domande. '+feedback);return;}
+   box.querySelectorAll('input').forEach(input=>input.disabled=true);box.querySelector('button').disabled=true;
+   celebrate($('reader-feedback'),'Corretto. '+feedback);
+   box.append(button('Prossima domanda →',()=>{qs.index=position+1;$('reader-feedback').replaceChildren();checkpoint();actions();},'rm-btn'));
   }));
-  if(state[current].complete)$('reader-feedback').textContent='Questa parte è già completata. Puoi rivedere il quiz o proseguire.';
+  if(state[current].complete)$('reader-feedback').textContent='Checkpoint già superato. Puoi ripassare o proseguire.';
+ }
+ function completionLinks(){
+  let host=$('reader-completion');if(!host){host=el('div','rm-reader-actions');host.id='reader-completion';$('reader-feedback').after(host);}host.replaceChildren();
+  const subjects=window.LESSON_CATALOG||[];let next=null;
+  function leaves(topic){return [...(topic.lessons||[]),...(topic.children||[]).flatMap(leaves)];}
+  for(const subject of subjects)for(const area of subject.areas)for(const topic of area.topics){const list=leaves(topic),i=list.findIndex(l=>l.id===params.get('lezione'));if(i>=0&&i+1<list.length)next=list[i+1];}
+  if(next?.url&&!next.unpublished){const link=el('a','rm-btn','Passa alla prossima lezione →');const url=new URL(next.url,location.href);['livello','ruolo'].forEach(k=>{if(params.has(k))url.searchParams.set(k,params.get(k));});link.href=url.href;host.append(link,el('span','',next.title));}
+  else if(next){const b=button('Passa alla prossima lezione →',()=>{},'rm-btn');b.disabled=true;host.append(b,el('span','',next.title+' · In lavorazione'));}
+  const back=el('a','rm-btn secondary','Torna al menu');back.href=$('reader-back').href;host.append(back);
  }
  // Keep the board mounted while changing the text, rather than recreating the card.
  function stepNode(step,archived=false){
@@ -413,16 +435,16 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(!allMode&&item&&mountedCard?.section===current&&mountedCard.card===item.card){
    updateCard(item,direction);$('reader-feedback').textContent='';index();actions();return;
   }
-  cancelSlide();const previousHeight=$('reader-steps').getBoundingClientRect().height;const previous=direction?[...$('reader-steps').childNodes]:[];mountedCard=null;
+  $('reader-completion')?.remove();cancelSlide();const previousHeight=$('reader-steps').getBoundingClientRect().height;const previous=direction?[...$('reader-steps').childNodes]:[];mountedCard=null;
   disposeWidget();disposeWidget=()=>{};$('reader-steps').replaceChildren();$('reader-checkpoint').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';
   const s=lesson.sections[current],st=state[current],items=flat(s);$('reader-section-title').textContent=s.title+(referenceMode?' · Richiamo':'');
   if(st.cursor===items.length){if(s.quiz)checkpoint();else $('reader-feedback').textContent='Lezione completata. Puoi rivedere le parti dall’indice o scegliere «Mostra tutto».';}else{
    const item=items[st.cursor];if((item.card.retainPrevious||item.card.collapsePrevious)&&item.ci>0)renderCard(s.cards[item.ci-1],s.cards[item.ci-1].steps,true,!!item.card.collapsePrevious);
    renderCard(item.card,item.card.stepMode==='replace'||item.step.replace?[item.step]:item.card.steps.slice(0,item.si+1));
-  }if(previous.length&&$('reader-steps').children.length)slideSwap($('reader-steps'),previous,[...$('reader-steps').childNodes],direction,previousHeight);index();actions();
+  }if(previous.length&&$('reader-steps').children.length)slideSwap($('reader-steps'),previous,[...$('reader-steps').childNodes],direction,previousHeight);index();actions();if(current===state.length-1&&st.complete)completionLinks();
  }
  function top(){const target=$('reader-section-title');target.focus({preventScroll:true});target.scrollIntoView({block:'start',behavior:'auto'});}
- function open(i,focus=false,direction=0){if(!unlocked(i))return;allMode=false;referenceMode=false;current=i;if(!lesson.sections[i].quiz&&state[i].cursor===flat(lesson.sections[i]).length)state[i].cursor=0;render(direction);history.replaceState(null,'','#'+lesson.sections[i].id);if(focus)top();}
+ function open(i,focus=false,direction=0){const missing=requiredBefore(i);if(missing.length){pendingSection=i;current=missing[0];allMode=false;referenceMode=false;state[current].cursor=flat(lesson.sections[current]).length;quizState(current).gateOnly=true;render();top();return;}pendingSection=null;allMode=false;referenceMode=false;current=i;if(!lesson.sections[i].quiz&&state[i].cursor===flat(lesson.sections[i]).length)state[i].cursor=0;render(direction);history.replaceState(null,'','#'+lesson.sections[i].id);if(focus)top();}
  $('reader-next').addEventListener('click',()=>{
   if(referenceMode){const st=state[current],item=flat(lesson.sections[current])[st.cursor];if(st.cursor>=referenceBounds.last||stepBlocked(item))return;st.cursor++;render(1);return;}
   const st=state[current],items=flat(lesson.sections[current]);
@@ -430,7 +452,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    st.cursor++;st.reached=Math.max(st.reached,st.cursor);
    if(st.cursor===items.length&&!lesson.sections[current].quiz){state[current].complete=true;if(current<state.length-1){open(current+1,true,1);return;}render();$('reader-next').hidden=true;top();return;}
    const replaces=st.cursor===items.length||items[st.cursor].ci!==item.ci||item.card.stepMode==='replace';render(1);if(replaces&&items[st.cursor]?.ci!==item.ci)top();
-  }else if(st.complete||reviewAccess){if(current<state.length-1)open(current+1,true,1);else{$('reader-feedback').textContent='Lezione completata! Nell’indice puoi rivedere le parti o scegliere «Mostra tutto».';$('reader-next').hidden=true;}}
+  }else if(st.complete){if(current<state.length-1)open(current+1,true,1);else{$('reader-feedback').textContent='Lezione completata! Nell’indice puoi rivedere le parti o scegliere «Mostra tutto».';$('reader-next').hidden=true;completionLinks();}}
  });
  $('reader-prev').addEventListener('click',()=>{if(referenceMode){if(state[current].cursor>referenceBounds.first){state[current].cursor--;render(-1);}return;}if(state[current].cursor>0){const previous=flat(lesson.sections[current])[state[current].cursor];state[current].cursor--;render(-1);if(flat(lesson.sections[current])[state[current].cursor].ci!==previous?.ci)top();}});
  // Horizontal swipes navigate only the already unlocked learning path.
@@ -450,6 +472,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
+
 
 
 
