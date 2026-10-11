@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    return;
   }
   const count=flat(lesson.sections[current]).length,st=state[current];
-  $('reader-prev').hidden=allMode||st.cursor===0;$('reader-next').hidden=allMode;
+  $('reader-prev').hidden=allMode||st.cursor===0;$('reader-next').hidden=allMode||(current===state.length-1&&st.complete);
   let blocked=false;if(st.cursor<count){const item=flat(lesson.sections[current])[st.cursor];blocked=stepBlocked(item);}
   $('reader-next').disabled=blocked||(st.cursor===count&&!!lesson.sections[current].quiz&&!st.complete);
   $('reader-next').textContent=st.cursor<count-1?'Continua →':st.cursor<count?(lesson.sections[current].quiz?'Controlla l’idea →':current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione'):current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione';
