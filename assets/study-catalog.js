@@ -19,180 +19,96 @@ window.LESSON_CATALOG = [
               {
                 "title": "Numeri naturali e operazioni interne",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Addizione e moltiplicazione: proprietà",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Sottrazione e divisione nei numeri naturali",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Potenze e loro proprietà",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Scrittura posizionale e forma polinomiale di un numero",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Espressioni aritmetiche: precedenze e parentesi",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Multipli, divisori e divisibilità",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Criteri di divisibilità",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Numeri primi e numeri composti",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Scomposizione in fattori primi",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Massimo comune divisore (M.C.D.)",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Minimo comune multiplo (m.c.m.)",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               }
@@ -209,150 +125,80 @@ window.LESSON_CATALOG = [
               {
                 "title": "Frazioni: significato e rappresentazione",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Frazioni equivalenti e riduzione ai minimi termini",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Numeri razionali positivi e confronto",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Addizione e sottrazione di frazioni",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Moltiplicazione e divisione di frazioni",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Potenze di frazioni",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Espressioni con le frazioni",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Numeri interi relativi",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Numeri razionali relativi",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
               {
                 "title": "Numeri reali: un ampliamento degli insiemi numerici",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               }
@@ -366,15 +212,8 @@ window.LESSON_CATALOG = [
               {
                 "title": "Proporzioni e percentuali",
                 "levels": [
-                  "elementari",
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ]
               }
             ]
@@ -504,13 +343,7 @@ window.LESSON_CATALOG = [
                 "title": "Punti, rette, semirette e segmenti",
                 "levels": [
                   "medie",
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
+                  "biennio"
                 ],
                 "status": "work-in-progress"
               },
@@ -563,13 +396,7 @@ window.LESSON_CATALOG = [
                     "title": "Angoli: lati, vertice e ampiezza",
                     "levels": [
                       "medie",
-                      "biennio",
-                      "terzo-quarto",
-                      "ultimo-altro",
-                      "analisi1",
-                      "triennio",
-                      "universita-avanzata",
-                      "universita"
+                      "biennio"
                     ],
                     "status": "work-in-progress"
                   },
@@ -577,13 +404,7 @@ window.LESSON_CATALOG = [
                     "title": "Misurare e classificare gli angoli",
                     "levels": [
                       "medie",
-                      "biennio",
-                      "terzo-quarto",
-                      "ultimo-altro",
-                      "analisi1",
-                      "triennio",
-                      "universita-avanzata",
-                      "universita"
+                      "biennio"
                     ],
                     "status": "work-in-progress"
                   },
@@ -591,13 +412,7 @@ window.LESSON_CATALOG = [
                     "title": "Angoli consecutivi, adiacenti e opposti al vertice",
                     "levels": [
                       "medie",
-                      "biennio",
-                      "terzo-quarto",
-                      "ultimo-altro",
-                      "analisi1",
-                      "triennio",
-                      "universita-avanzata",
-                      "universita"
+                      "biennio"
                     ],
                     "status": "work-in-progress"
                   },
@@ -605,13 +420,7 @@ window.LESSON_CATALOG = [
                     "title": "Angoli complementari, supplementari ed esplementari",
                     "levels": [
                       "medie",
-                      "biennio",
-                      "terzo-quarto",
-                      "ultimo-altro",
-                      "analisi1",
-                      "triennio",
-                      "universita-avanzata",
-                      "universita"
+                      "biennio"
                     ],
                     "status": "work-in-progress"
                   },
@@ -619,13 +428,7 @@ window.LESSON_CATALOG = [
                     "title": "Operazioni con le misure degli angoli",
                     "levels": [
                       "medie",
-                      "biennio",
-                      "terzo-quarto",
-                      "ultimo-altro",
-                      "analisi1",
-                      "triennio",
-                      "universita-avanzata",
-                      "universita"
+                      "biennio"
                     ],
                     "status": "work-in-progress"
                   }
