@@ -379,6 +379,16 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(Number.isInteger(from)&&from>=0&&from<=item.si)return item.card.steps.slice(from,item.si+1);
   return item.card.stepMode==='replace'||item.step.replace?[item.step]:item.card.steps.slice(0,item.si+1);
  }
+ // The final board arrow reveals the conclusion in the text column.
+ function syncPairConclusion(box,card,summary,direction=0){
+  if(box.querySelector('.dp-board')?.hidden){box.classList.remove('rm-pairs-conclusion');return;}
+  const text=box.querySelector('.rm-card-text'),step=summary?card.pairsConclusion:card.steps.find(step=>step.pairsBoard);
+  if(!text||!step)return;
+  if(!summary&&!box.classList.contains('rm-pairs-conclusion'))return;
+  if(box.classList.contains('rm-pairs-conclusion')===summary&&text.querySelector('h4')?.textContent===step.title)return;
+  box.classList.toggle('rm-pairs-conclusion',summary);
+  slideSwap(text,[...text.childNodes],[stepNode(step)],direction);
+ }
  function updateCard(item,direction){
   const view=mountedCard;cancelSlide();
   const cumulative=Number.isInteger(item.step.cumulativeFrom),replace=!cumulative&&(item.card.stepMode==='replace'||!!item.step.replace);
@@ -407,7 +417,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    }
   }
   view.replace=replace;
-  if(item.card.board==='pairs-example'&&window.GatitoDivisorPairs)window.GatitoDivisorPairs.setVisible(view.box,!!item.step.pairsBoard);
+  if(item.card.board==='pairs-example'&&window.GatitoDivisorPairs){window.GatitoDivisorPairs.setVisible(view.box,!!item.step.pairsBoard);syncPairConclusion(view.box,item.card,divisorPairs['pairs-example']?.stage===18);}
   if(item.card.board==='coin-observe'&&window.GatitoCoins)window.GatitoCoins.showObservation(view.box,coinExperiment,item.si===1);
   if(view.updateBoard)view.updateBoard(wanted.length>=3);
   if(item.card.board==='law-motion'){const graph=view.box.querySelector('.rm-law-graph');if(graph)graph.hidden=!item.step.lawGraph;}
@@ -438,7 +448,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.board==='train-reference'){box.classList.add('rm-train-reference-card');trainPicture(box);}
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
   const text=el('div','rm-card-text');steps.forEach(step=>text.append(stepNode(step,archived)));box.append(text);
-  if(card.board==='pairs-example'&&window.GatitoDivisorPairs)window.GatitoDivisorPairs.setVisible(box,steps.some(step=>step.pairsBoard));
+  if(card.board==='pairs-example'&&window.GatitoDivisorPairs){window.GatitoDivisorPairs.setVisible(box,steps.some(step=>step.pairsBoard));box.addEventListener('gatito-pairs-stage',event=>syncPairConclusion(box,card,event.detail.summary,event.detail.summary?1:-1));syncPairConclusion(box,card,divisorPairs['pairs-example']?.stage===18);}
   const units=text.querySelector('.rm-unit-exercise');if(units){box.classList.add('rm-units-card');box.append(units);}
   const updateBoard=card.board==='position'||card.board==='displacement'?positionBoard(box,card.board,steps.length>=3):null;
   if(!archived&&!allMode)mountedCard={section:current,card,box,text,updateBoard,replace:!Number.isInteger(steps.at(-1)?.cumulativeFrom)&&(card.stepMode==='replace'||!!steps.at(-1)?.replace)};
@@ -485,6 +495,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
+
 
 
 

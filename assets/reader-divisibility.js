@@ -267,13 +267,13 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
               "title": "Ecco il trucco!",
               "pairsBoard": true,
               "html": "<strong>I divisori si trovano in coppia.</strong> Ogni volta che ne trovi uno, puoi trovare subito anche il suo compagno.<br><br>Proviamolo insieme con <strong>36</strong>.<br><br>La prima coppia è formata da <strong>1 e dal numero stesso</strong>."
-            },
-            {
-              "title": "Il trucco è sapere quando fermarsi",
-              "pairsBoard": true,
-              "html": "Proviamo i candidati <strong>in ordine crescente</strong>. Quando il quoziente diventa più piccolo del candidato, possiamo fermarci: <strong>gli eventuali divisori successivi sono già comparsi come compagni nelle coppie precedenti.</strong><br><br>Per esempio, con 36 abbiamo trovato <strong>2 e 18</strong>. Provando 18, ritroveremmo <strong>18 e 2</strong>: la stessa coppia, con i ruoli scambiati.<br><br>Se candidato e quoziente coincidono, come in <strong>6 e 6</strong>, li scriviamo una volta sola e ci fermiamo già lì."
             }
-          ]
+          ],
+          "pairsConclusion": {
+            "title": "Il trucco è sapere quando fermarsi",
+            "pairsBoard": true,
+            "html": "Proviamo i candidati <strong>in ordine crescente</strong>. Quando il quoziente diventa più piccolo del candidato, possiamo fermarci: <strong>gli eventuali divisori successivi sono già comparsi come compagni nelle coppie precedenti.</strong><br><br>Per esempio, con 36 abbiamo trovato <strong>2 e 18</strong>. Provando 18, ritroveremmo <strong>18 e 2</strong>: la stessa coppia, con i ruoli scambiati.<br><br>Se candidato e quoziente coincidono, come in <strong>6 e 6</strong>, li scriviamo una volta sola e ci fermiamo già lì."
+          }
         },
         {
           "id": "coppie-prova",

@@ -17,7 +17,7 @@ window.GatitoDivisorPairs=(()=>{
    function draw(){
     const stage=stages[state.stage],a=stage.candidate,phase=stage.phase;
     const done=[];for(let d=1;d<(stage.summary?7:a);d++)if(36%d===0)done.push([d,36/d]);showPairs(done);
-    pairs.hidden=done.length===0;work.replaceChildren();work.classList.toggle('dp-summary',!!stage.summary);
+    pairs.hidden=done.length===0;work.replaceChildren();work.classList.toggle('dp-summary',!!stage.summary);note.hidden=!!stage.summary;
     if(stage.summary){work.append(el('span','dp-kicker','Tutti i divisori di 36'),el('strong','dp-equation','1, 2, 3, 4, 6, 9, 12, 18, 36'));note.textContent='Il 6 compare due volte nella coppia 6 e 6, ma nella lista lo scriviamo una volta sola. Abbiamo trovato tutti i divisori!';}
     else{
      const q=Math.floor(36/a),rest=36%a,exact=rest===0;
@@ -33,7 +33,7 @@ window.GatitoDivisorPairs=(()=>{
      if(phase===1)note.textContent=exact?`La divisione è esatta: il resto è zero. Il quoziente ${q} ci permette di completare la coppia.`:`La divisione lascia un resto di ${rest}. Quindi ${a} non è un divisore di 36.`;
      if(phase===2)note.textContent=!exact?`Per ${a} non troviamo una coppia. Lasciamo questo tentativo e passiamo al candidato successivo.`:a===6?'Il compagno di 6 è ancora 6: i due fattori si incontrano. Ci fermiamo qui. I divisori più grandi sono già comparsi come compagni nelle coppie precedenti.':`Il quoziente ${q} diventa il secondo divisore. La coppia è completa: ${a} e ${q}.`;
     }
-    controls.replaceChildren(button('←',()=>{state.stage--;draw();}),el('span','dp-progress',`${state.stage+1} / ${stages.length}`),button('→',()=>{state.stage++;draw();}));const bs=controls.querySelectorAll('button');bs[0].setAttribute('aria-label','Coppie di divisori: passo precedente');bs[1].setAttribute('aria-label','Coppie di divisori: passo successivo');bs[0].disabled=state.stage===0;bs[1].disabled=state.stage===stages.length-1;
+    controls.replaceChildren(button('←',()=>{state.stage--;draw();}),el('span','dp-progress',`${state.stage+1} / ${stages.length}`),button('→',()=>{state.stage++;draw();}));const bs=controls.querySelectorAll('button');bs[0].setAttribute('aria-label','Coppie di divisori: passo precedente');bs[1].setAttribute('aria-label','Coppie di divisori: passo successivo');bs[0].disabled=state.stage===0;bs[1].disabled=state.stage===stages.length-1;host.dispatchEvent(new CustomEvent('gatito-pairs-stage',{detail:{summary:!!stage.summary}}));
    }
    draw();
   }else{
@@ -60,5 +60,6 @@ window.GatitoDivisorPairs=(()=>{
  function hydrateIntro(host){host.querySelectorAll('[data-dp-reaction]').forEach(img=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const still=img.getAttribute('src');img.src=still.replace('-still.webp','.webp');setTimeout(()=>{img.src=still;},2800);});}
  return{mount,setVisible,hydrateIntro};
 })();
+
 
 
