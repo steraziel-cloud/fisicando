@@ -12,3 +12,7 @@ body[data-reader-lesson="aritmetica-divisibilita"] .rm-multiples-card{display:gr
 /* Keep the complete calculation above the wooden lower frame. */
 .mp-blackboard{container-type:inline-size}.mp-chalk{inset:14% 7% 21%}.mp-title{font-size:clamp(16px,3.8cqw,24px);margin-bottom:8px}.mp-step{grid-template-rows:clamp(10px,2.4cqw,14px) clamp(24px,5.6cqw,32px) clamp(10px,2.2cqw,13px)}.mp-equation{font-size:clamp(18px,4.5cqw,28px);margin:8px 0 0}
 @media(max-width:560px){.mp-blackboard{aspect-ratio:1/1.08}}
+
+
+/* The wooden side frames are also accessible page controls. */
+.mp-edge{position:absolute;z-index:2;top:9%;bottom:12%;width:6.5%;padding:0;border:0;border-radius:8px;background:transparent;cursor:pointer}.mp-edge-left{left:1.5%}.mp-edge-right{right:1.5%}.mp-edge:enabled:hover{background:#fff2}.mp-edge:focus-visible{outline:3px solid #56e2e5;outline-offset:-3px;background:#fff2}.mp-edge:disabled{cursor:default}
