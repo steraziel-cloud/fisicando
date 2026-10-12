@@ -1,7 +1,7 @@
 /* Twelve persistent, countable coins. No randomness and no answer is required to read on. */
 window.GatitoCoins=(()=>{
  const TOTAL=12;
- const scatter=[[10,74,-18],[24,88,13],[36,72,-7],[50,92,22],[65,79,-14],[79,93,8],[14,96,19],[29,65,-20],[44,83,11],[60,66,-12],[77,70,17],[90,82,-9]];
+ const scatter=[[10,74,-18],[24,88,13],[36,72,-7],[50,92,22],[65,79,-14],[79,93,8],[14,93,19],[29,72,-20],[44,83,11],[60,73,-12],[77,70,17],[90,82,-9]];
  function pack(node,count){node.style.setProperty('--cg-columns',String(count<=2?Math.max(1,count):count<=4?2:count<=6?3:4));}
  const defaults={phase:'intro',placements:Array(TOTAL).fill(null),piles:[],nextPile:1,selected:null,manipulated:false,groupsInput:'',coinsInput:'',solution:null,message:'',kind:''};
  const el=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
