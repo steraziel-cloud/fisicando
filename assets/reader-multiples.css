@@ -8,3 +8,7 @@ body[data-reader-lesson="aritmetica-divisibilita"] .rm-multiples-card{display:gr
 @media(max-width:1000px){body[data-reader-lesson="aritmetica-divisibilita"] .rm-multiples-card{display:flex;flex-direction:column;gap:16px}.mp-board{width:100%;max-width:700px;align-self:center}.mp-title{font-size:1.4rem}.mp-number{font-size:1.6rem}.mp-equation{font-size:1.45rem}}
 @media(max-width:560px){.mp-controls{margin-bottom:0}.mp-choice{font-size:.8rem;gap:8px}.mp-blackboard{aspect-ratio:1423/1250}.mp-background{object-fit:fill}.mp-chalk{inset:14% 7% 16%}.mp-title{font-size:1rem;margin-bottom:6px}.mp-sequence{column-gap:4px;row-gap:2px}.mp-step{grid-template-rows:12px 26px 12px}.mp-number{font-size:1.1rem;min-width:42px;min-height:26px;padding:0 3px}.mp-increment,.mp-factor{font-size:.64rem}.mp-equation{font-size:1.15rem;margin-top:6px}.mp-reading{font-size:.65rem}.mp-footer .rm-btn{font-size:.78rem}}
 @media(prefers-reduced-motion:reduce){.mp-step.is-writing{animation:none}}
+
+/* Keep the complete calculation above the wooden lower frame. */
+.mp-blackboard{container-type:inline-size}.mp-chalk{inset:14% 7% 21%}.mp-title{font-size:clamp(16px,3.8cqw,24px);margin-bottom:8px}.mp-step{grid-template-rows:clamp(10px,2.4cqw,14px) clamp(24px,5.6cqw,32px) clamp(10px,2.2cqw,13px)}.mp-equation{font-size:clamp(18px,4.5cqw,28px);margin:8px 0 0}
+@media(max-width:560px){.mp-blackboard{aspect-ratio:1/1.08}}

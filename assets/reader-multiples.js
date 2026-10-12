@@ -12,10 +12,10 @@ window.GatitoMultiples=(()=>{
   for(let n=1;n<=20;n++){const option=el('option','',String(n));option.value=n;select.append(option);}select.value=state.number;
   const range=el('span','mp-range');controls.append(label,range);board.append(controls);
   const surface=el('div','mp-blackboard'),background=el('img','mp-background');background.src='assets/images/morgana-classroom/chalkboard.png';background.alt='';background.width=1423;background.height=1080;background.setAttribute('aria-hidden','true');
-  const chalk=el('div','mp-chalk'),title=el('h4','mp-title'),sequence=el('div','mp-sequence'),equation=el('p','mp-equation'),reading=el('p','mp-reading');equation.setAttribute('aria-live','polite');chalk.append(title,sequence,equation,reading);surface.append(background,chalk);board.append(surface);
+  const chalk=el('div','mp-chalk'),title=el('h4','mp-title'),sequence=el('div','mp-sequence'),equation=el('p','mp-equation');equation.setAttribute('aria-live','polite');chalk.append(title,sequence,equation);surface.append(background,chalk);board.append(surface);
   const footer=el('div','mp-footer'),more=el('button','rm-btn secondary');more.type='button';footer.append(more);board.append(footer);
   function cancel(){generation++;for(const timer of timers)clearTimeout(timer);timers.clear();}
-  function choose(factor){state.factor=factor;sequence.querySelectorAll('button').forEach(b=>{const selected=Number(b.dataset.factor)===factor;b.setAttribute('aria-pressed',String(selected));b.classList.toggle('is-selected',selected);});equation.textContent=`${state.number} × ${factor} = ${state.number*factor}`;reading.textContent=`${state.number*factor} è un multiplo di ${state.number}.`;}
+  function choose(factor){state.factor=factor;sequence.querySelectorAll('button').forEach(b=>{const selected=Number(b.dataset.factor)===factor;b.setAttribute('aria-pressed',String(selected));b.classList.toggle('is-selected',selected);});equation.textContent=`${state.number} × ${factor} = ${state.number*factor}`;}
   function draw(animate){
    cancel();userSelected=false;const gen=generation,n=state.number,start=state.page?11:0,end=state.page?20:10;
    title.textContent=`I multipli di ${n}`;range.textContent=`×${start} – ×${end}`;more.textContent=state.page?'Torna ai primi multipli':'Mostra altri multipli';
