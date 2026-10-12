@@ -24,7 +24,7 @@ window.GatitoDivisorPairs=(()=>{
      const caption=el('span','dp-kicker',phase===0?'Il candidato':phase===1?'Il tentativo':'Il risultato');work.append(caption);
      const flow=el('div','dp-flow'),candidate=el('strong','dp-candidate',String(a)),first=el('span','dp-arrow dp-arrow-first'),calculation=el('div','dp-calculation'),second=el('span','dp-arrow dp-arrow-second'),partner=el('strong','dp-partner');
      first.setAttribute('aria-hidden','true');second.setAttribute('aria-hidden','true');
-     if(phase>=1){first.classList.add('is-active');calculation.append(el('strong','',`36 ÷ ${a} = ${q}`),el('span','dp-remainder',`Resto ${rest}`));}
+     if(phase>=1){first.classList.add('is-active');calculation.append(el('strong','',exact?`36 ÷ ${a} = ${q}`:`36 ÷ ${a}`),el('span','dp-remainder',exact?'Resto 0':`Quoziente ${q} · Resto ${rest}`));}
      else calculation.classList.add('dp-not-yet');
      if(phase===2&&exact){second.classList.add('is-active','is-growing');partner.textContent=q;partner.classList.add('is-revealed');}
      if(phase===2&&!exact){calculation.classList.add('dp-failed');partner.textContent='✕';partner.classList.add('dp-no-partner');partner.setAttribute('aria-label','Nessun compagno');}
