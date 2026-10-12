@@ -224,7 +224,8 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
               "html": "I multipli di un numero <strong>diverso da zero</strong> sono infiniti. Possiamo continuare la sequenza aggiungendo ogni volta lo stesso numero.<br><br><strong>Il numero stesso è un suo multiplo</strong>, perché moltiplicarlo per 1 lo lascia invariato."
             }
           ],
-          "board": "divisibility-multiples"
+          "board": "divisibility-multiples",
+          "stepMode": "replace"
         }
       ],
       "quiz": {
