@@ -1,7 +1,8 @@
 /* Twelve persistent, countable coins. No randomness and no answer is required to read on. */
 window.GatitoCoins=(()=>{
  const TOTAL=12;
- const scatter=[[10,74,-18],[24,88,13],[36,72,-7],[50,92,22],[65,79,-14],[79,93,8],[14,93,19],[29,72,-20],[44,83,11],[60,73,-12],[77,70,17],[90,82,-9]];
+ const scatter=[[19,80,-5],[25,84,7],[53,73,-6],[78,86,8],[46,92,3],[69,78,-7],[34,85,-4],[82,76,5],[60,90,-9],[39,75,8],[64,83,2],[26,94,-5]];
+ const bankScatter=[[18,9],[51,15],[83,8],[22,35],[54,41],[83,34],[17,64],[51,68],[84,62],[20,89],[56,93],[82,87]];
  function pack(node,count){node.style.setProperty('--cg-columns',String(count<=2?Math.max(1,count):count<=4?2:count<=6?3:4));}
  const defaults={phase:'intro',placements:Array(TOTAL).fill(null),piles:[],nextPile:1,selected:null,manipulated:false,groupsInput:'',coinsInput:'',solution:null,message:'',kind:''};
  const el=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
@@ -34,39 +35,42 @@ window.GatitoCoins=(()=>{
   const abort=new AbortController(),listen=(node,event,fn)=>node.addEventListener(event,fn,{signal:abort.signal});
   
   const intro=el('div','cg-intro'),cat=el('img','cg-bjorne');cat.src='assets/images/reader/bjorne-tavolo-v2.png';cat.alt='Bjorne osserva le sue monete sul tavolo';cat.width=1536;cat.height=1024;
-  const desk=el('div','cg-front-desk'),preview=el('div','cg-preview');preview.setAttribute('aria-label','Dodici monete da un euro');
-  for(let i=0;i<TOTAL;i++){const coin=el('span','cg-coin cg-preview-coin','1 €');coin.setAttribute('aria-hidden','true');const [x,y,r]=scatter[i];coin.style.cssText=`left:${x}%;top:${y}%;transform:translate(-50%,-50%) rotate(${r}deg)`;preview.append(coin);}
+  const preview=el('div','cg-preview');preview.setAttribute('aria-label','Dodici monete da un euro');
+  for(let i=0;i<TOTAL;i++){const coin=el('span','cg-preview-coin'),sprite=el('img');sprite.src='assets/images/reader/moneta-prospettiva-v1.png';sprite.alt='';sprite.width=1536;sprite.height=1024;coin.append(sprite);coin.setAttribute('aria-hidden','true');const [x,y,r]=scatter[i];coin.style.cssText=`left:${x}%;top:${y}%;transform:translate(-50%,-50%) rotate(${r}deg)`;preview.append(coin);}
   const tableHit=makeButton('','open','cg-table-hit');tableHit.setAttribute('aria-label','Vai sul tavolo e dividi le monete');intro.append(cat,preview,tableHit);board.append(intro);
-  const controls=el('div','cg-controls'),open=makeButton('Vai sul tavolo','open'),add=makeButton('+ Nuovo mazzetto','add'),reset=makeButton('Ricomincia','reset','cg-button cg-secondary');controls.append(add,reset);board.append(controls);
-  const tabletop=el('div','cg-tabletop'),bank=el('div','cg-bank');bank.dataset.zone='bank';const bankTitle=el('h5','','Sul tavolo'),bankCoins=el('div','cg-bank-coins');bank.append(bankTitle,bankCoins);const pileArea=el('div','cg-piles');tabletop.append(bank,pileArea);board.append(tabletop);
+  const controls=el('div','cg-controls'),open=makeButton('Vai sul tavolo','open'),reset=makeButton('Ricomincia','reset','cg-button cg-secondary');controls.append(reset);board.append(controls);
+  const tabletop=el('div','cg-tabletop');tabletop.dataset.zone='new';const bank=el('div','cg-bank');bank.dataset.zone='bank';const bankTitle=el('h5','','Sul tavolo'),bankCoins=el('div','cg-bank-coins');bank.append(bankTitle,bankCoins);const pileArea=el('div','cg-piles');pileArea.dataset.zone='new';tabletop.append(bank,pileArea);board.append(tabletop);
   const selection=el('p','cg-selection');selection.setAttribute('aria-live','polite');board.append(selection);
   const form=el('form','cg-answer');form.noValidate=true;
   const field=(name,key)=>{const label=el('label','cg-field'),input=el('input');input.type='number';input.min='1';input.max='12';input.step='1';input.inputMode='numeric';input.value=state[key];input.autocomplete='off';label.append(el('span','',name),input);listen(input,'input',()=>{state[key]=input.value;state.message='';state.kind='';showMessage();});return {label,input};};
   const groupField=field('Numero di mazzetti','groupsInput'),coinField=field('Monete in ogni mazzetto','coinsInput');
-  const verify=el('button','cg-button','Controlla');verify.type='submit';form.append(open,groupField.label,coinField.label,verify);board.append(form);
+  const verify=el('button','cg-button','Controlla');verify.type='submit';const answerSide=el('div','cg-answer-right');answerSide.append(groupField.label,coinField.label,verify);form.append(open,answerSide);board.append(form);
+  function sizeFields(){const width=Math.ceil(Math.max(...[groupField,coinField].map(f=>f.label.querySelector('span').getBoundingClientRect().width)));if(width)[groupField,coinField].forEach(f=>f.label.style.width=width+'px');}
+  const formResize=new ResizeObserver(sizeFields);formResize.observe(form);
   const message=el('p','cg-message');message.setAttribute('role','status');message.setAttribute('aria-live','polite');board.append(message);
   let drag=null,ghost=null,suppressClickUntil=0;
   let reactionKey='';
   function showMessage(){const key=state.kind+'|'+state.message;if(key!==reactionKey){reactionKey=key;if(state.message&&window.GatitoQuizReactions)window.GatitoQuizReactions.show(message,state.message,{correct:state.kind==='success',title:state.kind==='success'?'Monete sistemate!':'Riproviamo'});else message.textContent=state.message;}message.dataset.kind=state.kind;board.classList.toggle('cg-success',state.kind==='success');}
   function clearMessage(){state.message='';state.kind='';showMessage();}
-  function showPhase(){intro.hidden=state.phase!=='intro';tabletop.hidden=state.phase!=='table';open.hidden=state.phase==='table';add.hidden=reset.hidden=state.phase!=='table';board.dataset.phase=state.phase;}
+  function showPhase(){intro.hidden=state.phase!=='intro';tabletop.hidden=state.phase!=='table';open.hidden=state.phase==='table';reset.hidden=state.phase!=='table';board.dataset.phase=state.phase;}
   function coinNode(i){const b=makeButton('1 €',null,'cg-coin');b.dataset.coin=String(i);b.classList.toggle('cg-selected',state.selected===i);b.setAttribute('aria-pressed',String(state.selected===i));b.setAttribute('aria-label',`Moneta ${i+1} da 1 euro, ${state.placements[i]===null?'sul tavolo':'nel mazzetto '+(state.piles.indexOf(state.placements[i])+1)}`);return b;}
   function draw(old=new Map()){
-   bankCoins.replaceChildren();state.placements.forEach((p,i)=>{if(p===null){const coin=coinNode(i),[x,y,r]=scatter[i];coin.style.cssText=`left:${Math.min(84,Math.max(15,x))}%;top:${12+(y-65)*2}%;rotate:${r}deg`;bankCoins.append(coin);}});bankTitle.textContent=`Sul tavolo · ${state.placements.filter(p=>p===null).length}`;
+   bankCoins.replaceChildren();state.placements.forEach((p,i)=>{if(p===null){const coin=coinNode(i),[x,y]=bankScatter[i];coin.style.cssText=`left:${x}%;top:${y}%;rotate:${scatter[i][2]}deg`;bankCoins.append(coin);}});bankTitle.textContent=`Sul tavolo · ${state.placements.filter(p=>p===null).length}`;
    pileArea.replaceChildren();
-   if(!state.piles.length)pileArea.append(el('p','cg-empty','Mazzetti'));
+   
    state.piles.forEach((id,index)=>{const pile=el('div','cg-pile');pile.dataset.zone=String(id);pile.setAttribute('role','group');pile.setAttribute('aria-label',`Mazzetto ${index+1}`);const head=el('div','cg-pile-head'),remove=makeButton('×','remove','cg-remove');remove.dataset.pile=String(id);remove.setAttribute('aria-label',`Sciogli il mazzetto ${index+1}`);head.append(el('span','',`Mazzetto ${index+1}`),remove);const coins=el('div','cg-pile-coins');state.placements.forEach((p,i)=>{if(p===id)coins.append(coinNode(i));});pack(coins,coins.children.length);const place=makeButton('Metti qui','place','cg-place');place.dataset.pile=String(id);place.disabled=state.selected===null;pile.append(head,coins,place);pileArea.append(pile);});
+   const free=makeButton('','new','cg-new-zone');free.dataset.zone='new';free.setAttribute('aria-label','Tavolo libero: crea un mazzetto con la moneta selezionata');free.disabled=state.selected===null;pileArea.append(free);
    selection.textContent=state.selected===null?'':`Moneta ${state.selected+1} selezionata`;
-   showPhase();showMessage();
+   showPhase();showMessage();sizeFields();
    board.querySelectorAll('.cg-coin[data-coin]').forEach(n=>{const before=old.get(n.dataset.coin);if(!before||matchMedia('(prefers-reduced-motion: reduce)').matches)return;const now=n.getBoundingClientRect();if(Math.abs(before.x-now.x)+Math.abs(before.y-now.y)>2)n.animate([{transform:`translate(${before.x-now.x}px,${before.y-now.y}px)`},{transform:'translate(0,0)'}],{duration:260,easing:'ease-out'});});
   }
   function positions(){return new Map([...board.querySelectorAll('.cg-coin[data-coin]')].map(n=>[n.dataset.coin,n.getBoundingClientRect()]));}
-  function move(i,target){const pile=target==='bank'?null:Number(target);if(pile!==null&&!state.piles.includes(pile))return;if(state.placements[i]===pile){state.selected=null;draw();return;}const old=positions();state.placements[i]=pile;state.selected=null;state.manipulated=true;clearMessage();draw(old);}
+  function move(i,target){const old=positions();let pile;if(target==='new'){pile=state.nextPile++;state.piles.push(pile);}else{pile=target==='bank'?null:Number(target);if(pile!==null&&!state.piles.includes(pile))return;}if(state.placements[i]===pile){state.selected=null;draw();return;}state.placements[i]=pile;state.piles=state.piles.filter(id=>state.placements.includes(id));state.selected=null;state.manipulated=true;clearMessage();draw(old);}
   listen(board,'click',e=>{
    const coin=e.target.closest('[data-coin]');if(coin){if(Date.now()<suppressClickUntil)return;const i=Number(coin.dataset.coin);state.selected=state.selected===i?null:i;draw();board.querySelector(`[data-coin="${i}"]`)?.focus({preventScroll:true});return;}
    const action=e.target.closest('[data-action]');
    if(action?.dataset.action==='open'){state.phase='table';draw();return;}
-   if(action?.dataset.action==='add'){if(state.piles.length<TOTAL){state.piles.push(state.nextPile++);clearMessage();draw();}return;}
+   if(action?.dataset.action==='new'){if(state.selected!==null)move(state.selected,'new');return;}
    if(action?.dataset.action==='reset'){state.placements.fill(null);state.piles=[];state.nextPile=1;state.selected=null;state.manipulated=false;state.groupsInput=state.coinsInput='';groupField.input.value=coinField.input.value='';clearMessage();draw();return;}
    if(action?.dataset.action==='remove'){const id=Number(action.dataset.pile),old=positions();state.manipulated=state.manipulated||state.placements.includes(id);state.piles=state.piles.filter(p=>p!==id);state.placements=state.placements.map(p=>p===id?null:p);state.selected=null;clearMessage();draw(old);return;}
    if(action?.dataset.action==='place'){if(state.selected!==null)move(state.selected,action.dataset.pile);return;}
@@ -92,7 +96,7 @@ window.GatitoCoins=(()=>{
    }
    state.solution={groups:g,coins:c};state.message=`${g} ${g===1?'mazzetto':'mazzetti'} da ${c} ${c===1?'moneta':'monete'}: ${g} × ${c} = 12. Hai usato tutte le monete.`;state.kind='success';showMessage();onSolution(state.solution);
   });
-  draw();return()=>{abort.abort();ghost?.remove();};
+  draw();return()=>{abort.abort();formResize.disconnect();ghost?.remove();};
  }
  function showObservation(host,state,remainder=false){
   host.classList.add('rm-coin-card');let board=host.querySelector('.cg-observation');if(!board){board=el('section','cg-board cg-observation');host.append(board);}board.replaceChildren();
@@ -105,4 +109,5 @@ window.GatitoCoins=(()=>{
  }
  return {mount,hydrate,questionFor,showObservation};
 })();
+
 

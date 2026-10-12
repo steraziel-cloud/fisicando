@@ -37,3 +37,15 @@ body[data-reader-lesson="aritmetica-divisibilita"] .rm-coin-card{grid-template-c
 body[data-reader-lesson="aritmetica-divisibilita"] .rm-coin-card{grid-template-rows:min-content 1fr}
 .cg-piles{grid-template-columns:repeat(auto-fit,minmax(125px,1fr))}
 @media(max-width:480px){.cg-piles{grid-template-columns:1fr}}
+
+/* Front view: actual perspective sprite; top-down coins keep their clear round shape. */
+.cg-preview-coin{position:absolute;display:block;width:6.5%;max-width:46px;height:auto;aspect-ratio:3/2;padding:0;border:0;border-radius:0;background:none;box-shadow:none;pointer-events:none}
+.cg-preview-coin img{display:block;width:100%;height:100%;object-fit:contain}
+.cg-answer{display:flex;justify-content:space-between;align-items:end;gap:18px}.cg-answer-right{display:flex;align-items:end;gap:12px;margin-left:auto}.cg-answer-right .cg-field{flex:none}.cg-field>span{width:max-content;white-space:nowrap}.cg-answer-right .cg-field input{width:100%;text-align:left;padding:8px}.cg-answer-right>.cg-button{min-height:38px;padding:10px 12px}
+.cg-controls{justify-content:flex-end}
+.cg-new-zone{grid-column:1/-1;width:100%;height:78px;min-height:78px;border:0;border-radius:12px;background:transparent;align-self:start;padding:0;cursor:default}
+.cg-piles:has(.cg-new-zone:only-child){display:flex;align-items:stretch}.cg-new-zone:only-child{height:100%;min-height:245px}
+.cg-new-zone:enabled{cursor:pointer}.cg-new-zone:enabled:hover,.cg-new-zone:focus-visible{background:#fff1;outline:2px dashed #f6e0ab;outline-offset:-4px}
+.cg-new-zone:disabled{opacity:1;cursor:default}
+@media(max-width:600px){.cg-answer{flex-wrap:wrap;gap:12px}.cg-answer-right{flex-wrap:wrap;justify-content:flex-end;gap:10px}.cg-answer>[data-action=open]{margin-right:auto}.cg-answer-right .cg-field{max-width:calc((100vw - 90px)/2)}}
+@media(max-width:480px){.cg-answer{display:flex}.cg-answer-right{margin-left:0;width:100%;justify-content:space-between}.cg-answer-right>.cg-button{margin-left:auto}.cg-preview-coin{width:6.5%;max-width:46px;height:auto}.cg-piles:has(.cg-new-zone:only-child){display:flex}}
