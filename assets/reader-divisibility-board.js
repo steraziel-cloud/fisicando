@@ -1,4 +1,5 @@
-window.GatitoDivisibility={mount(host,mode){
+window.GatitoDivisibility={mount(host,mode,state){
+ if(mode==='divisibility-multiples'&&window.GatitoMultiples)return window.GatitoMultiples.mount(host,state);
  host.classList.add('rm-divisibility-card');
  const board=document.createElement('section');board.className='dv-board';board.setAttribute('aria-label','Lavagna dei gruppi e dei multipli');
  const multiples=mode==='divisibility-multiples';
@@ -13,4 +14,5 @@ window.GatitoDivisibility={mount(host,mode){
  }
  input.addEventListener('input',draw);draw();return()=>input.removeEventListener('input',draw);
 }};
+
 

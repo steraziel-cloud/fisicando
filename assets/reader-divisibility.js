@@ -39,7 +39,7 @@ Object.assign(window.READER_GLOSSARY, {
 window.READER_LESSONS["aritmetica-divisibilita"] = {
   "title": "Multipli, divisori e divisibilità",
   "subtitle": "Matematica · Medie e biennio · Prima bozza in lavorazione",
-  "version": 3,
+  "version": 4,
   "status": "work-in-progress",
   "sections": [
     {
@@ -213,15 +213,15 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
       "cards": [
         {
           "id": "sequenza",
-          "title": "Aggiungere un gruppo alla volta",
+          "title": "Le tabelline ci mostrano i multipli",
           "steps": [
             {
               "title": "",
-              "html": "I multipli di 6 si ottengono moltiplicando 6 per 0, 1, 2, 3, … :<br><strong>0, 6, 12, 18, 24, 30, …</strong><br><br>Ogni nuovo gruppo aggiunge 6 monete. Puoi scegliere nella lavagna quanti gruppi formare."
+              "html": "I multipli di un numero si ottengono moltiplicandolo per <strong>0, 1, 2, 3, …</strong>.<br><br>Quando reciti la tabellina del 7, stai già elencando alcuni suoi multipli:<br><strong>0, 7, 14, 21, 28, …</strong><br><br>Ogni volta aggiungiamo 7 al numero precedente."
             },
             {
               "title": "La lista continua",
-              "html": "I multipli di un numero naturale positivo sono infiniti: possiamo sempre aggiungere un altro gruppo. <strong>Il numero stesso è un suo multiplo</strong>, perché moltiplicarlo per 1 lo lascia invariato."
+              "html": "I multipli di un numero <strong>diverso da zero</strong> sono infiniti. Possiamo continuare la sequenza aggiungendo ogni volta lo stesso numero.<br><br><strong>Il numero stesso è un suo multiplo</strong>, perché moltiplicarlo per 1 lo lascia invariato."
             }
           ],
           "board": "divisibility-multiples"
@@ -367,5 +367,6 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
     }
   ]
 };
+
 
 

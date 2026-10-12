@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   frame.addEventListener('load',()=>{try{const doc=frame.contentDocument;doc.querySelectorAll('header,.sidebar,.rm-learning-back').forEach(e=>e.style.display='none');const headings=[...doc.querySelectorAll('.main h2,.main h3')];headings.forEach((h,i)=>{const b=document.createElement('button');b.textContent=h.textContent;b.addEventListener('click',()=>h.scrollIntoView({behavior:'auto',block:'start'}));$('reader-parts').append(b);});}catch{}});return;
  }
  // Learning progress belongs to this visit only. Reference cards do not award progress.
- const coinExperiment={};
+ const coinExperiment={},multiplesExplorer={};
  const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},units:{values:['',''],done:false},elevator:{},velocityGraph:{},instantSpeeds:{values:['','','',''],done:false},velocityQuiz:{answer:'',stage:0,choice:null,done:false},lab:{started:null,period:8,marks:[],verified:false,answer:''}}));
  let current=0,allMode=false,reviewAccess=false,referenceMode=false,referenceBounds=null,disposeWidget=()=>{},mountedCard=null,cancelSlide=()=>{};
  const flat=s=>s.cards.flatMap((card,ci)=>card.steps.map((step,si)=>({card,ci,step,si})));
@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(['wheel-speed','road-speed'].includes(card.board)&&window.GatitoSpeedInstruments)disposeWidget=window.GatitoSpeedInstruments.mount(box,card.board);
   if(card.board==='coin-experiment'&&window.GatitoCoins)disposeWidget=window.GatitoCoins.mount(box,coinExperiment,()=>window.GatitoCoins.hydrate($('reader-steps'),coinExperiment));
   if(card.board==='coin-observe'&&window.GatitoCoins)window.GatitoCoins.showObservation(box,coinExperiment,steps.at(-1)?.title==='Mazzetti da 5 monete');
-  if(card.board?.startsWith('divisibility-')&&window.GatitoDivisibility)disposeWidget=window.GatitoDivisibility.mount(box,card.board);
+  if(card.board?.startsWith('divisibility-')&&window.GatitoDivisibility)disposeWidget=window.GatitoDivisibility.mount(box,card.board,multiplesExplorer);
   if(card.board==='train-reference'){box.classList.add('rm-train-reference-card');trainPicture(box);}
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
   const text=el('div','rm-card-text');steps.forEach(step=>text.append(stepNode(step,archived)));box.append(text);
@@ -477,6 +477,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
+
 
 
 
