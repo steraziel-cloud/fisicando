@@ -40,3 +40,16 @@
 .rm-pairs-practice.dp-aid-open>.dp-practice-multiples{grid-column:2;grid-row:2/4;align-self:center}
 .rm-pairs-practice.dp-aid-open>.dp-aid-toggle{grid-column:2;grid-row:1;justify-self:end}
 @media(max-width:850px){.rm-pairs-card.rm-pairs-practice,.rm-pairs-practice.dp-aid-open{grid-template-columns:1fr;grid-template-rows:auto;gap:14px}.rm-pairs-practice>.rm-card-title{grid-column:1;grid-row:1}.rm-pairs-practice>.rm-card-text{grid-column:1;grid-row:2}.rm-pairs-practice>.dp-aid-toggle,.rm-pairs-practice.dp-aid-open>.dp-aid-toggle{grid-column:1;grid-row:3;justify-self:start}.rm-pairs-practice>.dp-board,.rm-pairs-practice.dp-aid-open>.dp-board{grid-column:1;grid-row:4}.rm-pairs-practice.dp-aid-open>.dp-practice-multiples{grid-column:1;grid-row:5;max-width:540px;justify-self:center}}
+
+
+/* Memory phrases above the cats' wide final victory scene. */
+.dp-zero-rule{display:block;color:var(--rm-accent,#079ba5);font-size:1.13em;letter-spacing:.025em;margin-bottom:8px}
+.rm-visual-closing{display:grid;grid-template-columns:1fr;gap:22px;align-items:start}
+.rm-visual-closing>.rm-card-title{grid-column:1;grid-row:1;margin:0}
+.rm-visual-closing>.rm-card-text{grid-column:1;grid-row:2;max-width:none}
+.rm-visual-closing>.rm-reference-scene{grid-column:1;grid-row:3;margin:0;position:relative;isolation:isolate;padding:0;width:100%;max-width:850px;justify-self:center}
+.rm-visual-closing>.rm-reference-scene::before{content:"";position:absolute;inset:20% 4% 3%;border-radius:43% 57% 56% 44% / 53% 40% 60% 47%;background:linear-gradient(135deg,#21b6c320,#ab8eea20);z-index:-1;transform:rotate(-3deg)}
+.rm-visual-closing .rm-train-illustration{width:100%;height:auto;max-height:340px;object-fit:contain}
+.dp-memory-list{padding:0;margin:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px}
+.dp-memory-list li{border-left:3px solid #19a6ad66;padding-left:13px;font-size:.96rem;line-height:1.6}
+@media(max-width:650px){.dp-memory-list{grid-template-columns:1fr;gap:14px}.rm-visual-closing{gap:18px}.rm-visual-closing .rm-train-illustration{max-height:260px}}

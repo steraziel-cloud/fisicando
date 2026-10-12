@@ -216,107 +216,107 @@ window.READER_CHECKPOINT_BANK = {
     ],
     "uno-zero": [
       {
-        "question": "Quale affermazione è corretta?",
+        "question": "Quale frase descrive correttamente 1, tra i numeri positivi?",
         "options": [
-          "Zero non è multiplo di 7.",
-          "Zero è multiplo di 7 perché 0 = 7 × 0.",
-          "7 ÷ 0 = 0.",
-          "Zero è divisore positivo di 7."
+          "È multiplo di tutti e divisore solo di se stesso.",
+          "È divisore solo di se stesso.",
+          "È divisore di tutti e multiplo solo di se stesso.",
+          "Non è divisore di nessun numero."
         ],
-        "answer": 1,
-        "feedback": "Il fattore zero rende il prodotto uguale a zero.",
+        "answer": 2,
+        "feedback": "1 divide tutti i numeri positivi senza resto. Per ottenere 1 con una moltiplicazione di numeri positivi possiamo usare soltanto 1 e 1.",
         "feedbackByOption": [
-          "Un multiplo si ottiene anche moltiplicando per zero.",
-          "Il fattore zero rende il prodotto uguale a zero.",
-          "La divisione per zero non è definita. Non confonderla con 0 ÷ 7 = 0.",
-          "Rivedi la relazione tra le grandezze o gli oggetti citati. Il fattore zero rende il prodotto uguale a zero."
+          "Hai scambiato le due proprietà: 1 è divisore di tutti, ma multiplo solo di se stesso.",
+          "1 non divide soltanto se stesso: divide tutti i numeri positivi.",
+          "Esatto: divisore di tutti, multiplo solo di se stesso.",
+          "Dividendo un numero per 1 non resta nulla: 1 è un suo divisore."
         ]
       },
       {
-        "question": "Qual è l’unico divisore positivo di 1?",
+        "question": "Quale frase descrive correttamente zero?",
         "options": [
-          "0",
-          "1",
-          "2",
-          "Non ne ha"
+          "È divisore di tutti i numeri.",
+          "È multiplo di tutti i numeri e ha un solo multiplo: zero.",
+          "Non è multiplo di nessun numero.",
+          "I suoi multipli sono 0, 1, 2, 3 e così via."
         ],
         "answer": 1,
-        "feedback": "1 ÷ 1 = 1 e nessun naturale positivo maggiore di 1 divide 1.",
+        "feedback": "Moltiplicando qualsiasi numero per zero otteniamo zero. Anche moltiplicando zero per qualsiasi numero otteniamo sempre zero.",
         "feedbackByOption": [
-          "Questa risposta non segue la relazione richiesta. 1 ÷ 1 = 1 e nessun naturale positivo maggiore di 1 divide 1.",
-          "1 ÷ 1 = 1 e nessun naturale positivo maggiore di 1 divide 1.",
-          "Questa risposta non segue la relazione richiesta. 1 ÷ 1 = 1 e nessun naturale positivo maggiore di 1 divide 1.",
-          "Questa risposta non segue la relazione richiesta. 1 ÷ 1 = 1 e nessun naturale positivo maggiore di 1 divide 1."
+          "Non si può dividere per zero: zero non è un divisore.",
+          "Esatto: zero è multiplo di tutti, ma il suo unico multiplo è zero.",
+          "Moltiplicando un numero per zero otteniamo proprio zero: è un suo multiplo.",
+          "Moltiplicare zero dà sempre zero: non otteniamo 1, 2, 3 e così via."
         ]
       },
       {
-        "question": "Quale affermazione su zero rispetta le convenzioni della lezione?",
+        "question": "Quale divisione si può eseguire?",
         "options": [
-          "Ha soltanto due divisori positivi",
-          "È divisore positivo di ogni naturale",
-          "Non è multiplo di alcun numero",
-          "È divisibile per ogni naturale positivo"
+          "7 ÷ 0",
+          "0 ÷ 7",
+          "0 ÷ 0",
+          "1 ÷ 0"
         ],
-        "answer": 3,
-        "feedback": "Per d positivo, 0 ÷ d = 0. La divisione per zero resta esclusa.",
+        "answer": 1,
+        "feedback": "Si può dividere zero per 7: il risultato è zero. Non si può invece dividere per zero.",
         "feedbackByOption": [
-          "Questa risposta non segue la relazione richiesta. Per d positivo, 0 ÷ d = 0. La divisione per zero resta esclusa.",
-          "Questa risposta non segue la relazione richiesta. Per d positivo, 0 ÷ d = 0. La divisione per zero resta esclusa.",
-          "Questa risposta non segue la relazione richiesta. Per d positivo, 0 ÷ d = 0. La divisione per zero resta esclusa.",
-          "Per d positivo, 0 ÷ d = 0. La divisione per zero resta esclusa."
+          "Il divisore è zero: questa divisione non si può eseguire.",
+          "Esatto! Dividere zero per un numero diverso da zero è possibile.",
+          "Anche qui il divisore è zero: la divisione non si può eseguire.",
+          "Il divisore è zero: questa divisione non si può eseguire."
         ]
       }
     ],
     "recap": [
       {
-        "question": "Sai che a e b sono naturali positivi e che a divide b. Quale relazione deve essere vera?",
+        "question": "Dividendo 24 per 6 non resta nulla. Quale frase è corretta?",
         "options": [
-          "b = a × q per qualche numero naturale q.",
-          "a è necessariamente uguale a b.",
-          "a è necessariamente maggiore di b.",
-          "a = b × q per qualche numero naturale q."
+          "6 è divisore di 24 e 24 è multiplo di 6.",
+          "6 è multiplo di 24 e 24 è divisore di 6.",
+          "24 e 6 sono divisori uno dell’altro.",
+          "24 e 6 sono multipli uno dell’altro."
         ],
         "answer": 0,
-        "feedback": "È la relazione che collega divisione esatta, divisore e multiplo.",
+        "feedback": "Una divisione senza resto collega i due numeri: 6 è il divisore e 24 è un suo multiplo.",
         "feedbackByOption": [
-          "È la relazione che collega divisione esatta, divisore e multiplo.",
-          "Possono coincidere, ma non è necessario: 3 divide 12.",
-          "Un divisore positivo non può superare il numero positivo che divide.",
-          "Rivedi la relazione tra le grandezze o gli oggetti citati. È la relazione che collega divisione esatta, divisore e multiplo."
+          "Esatto: un divisore divide senza resto; il numero diviso è un suo multiplo.",
+          "Hai invertito i ruoli: è 6 a dividere 24 senza resto.",
+          "6 divide 24 senza resto, ma 24 non divide 6 senza resto.",
+          "24 è multiplo di 6, ma 6 non è multiplo di 24."
         ]
       },
       {
-        "question": "Quale confronto è corretto per un naturale positivo?",
+        "question": "Per un numero positivo, quale frase è corretta?",
         "options": [
-          "Divisori e multipli sono entrambi finiti",
-          "I divisori sono finiti e i multipli infiniti",
-          "I divisori sono infiniti e i multipli finiti",
-          "I divisori sono sempre più numerosi dei multipli"
+          "I divisori e i multipli sono entrambi finiti.",
+          "I divisori sono finiti, i multipli sono infiniti.",
+          "I divisori sono infiniti, i multipli sono finiti.",
+          "I divisori sono sempre più numerosi dei multipli."
         ],
         "answer": 1,
-        "feedback": "I divisori positivi non superano il numero; i multipli continuano senza limite.",
+        "feedback": "La lista dei divisori termina. Quella dei multipli continua aggiungendo ogni volta il numero scelto.",
         "feedbackByOption": [
-          "Questa risposta non segue la relazione richiesta. I divisori positivi non superano il numero; i multipli continuano senza limite.",
-          "I divisori positivi non superano il numero; i multipli continuano senza limite.",
-          "Questa risposta non segue la relazione richiesta. I divisori positivi non superano il numero; i multipli continuano senza limite.",
-          "Questa risposta non segue la relazione richiesta. I divisori positivi non superano il numero; i multipli continuano senza limite."
+          "Puoi continuare a costruire multipli senza fermarti.",
+          "Esatto: divisori finiti, multipli infiniti.",
+          "Hai scambiato le due proprietà: a continuare senza fine sono i multipli.",
+          "I multipli sono infiniti, mentre i divisori sono finiti."
         ]
       },
       {
-        "question": "Quale scrittura esprime direttamente 54 come prodotto di 9 per un numero naturale?",
+        "question": "Cerchi i divisori di 36 in ordine. Dividendo per 6 ottieni quoziente 6 e resto zero. Che cosa fai?",
         "options": [
-          "54 = 9 + 45",
-          "9 = 54 ÷ 6",
-          "54 = 9 × 6",
-          "54 = 9 × 5 + 9"
+          "Scrivo 6 una volta sola e termino la ricerca.",
+          "Scrivo 6 due volte e termino la ricerca.",
+          "Continuo a provare tutti i numeri fino a 36.",
+          "Scarto 6, perché i due numeri della coppia sono uguali."
         ],
-        "answer": 2,
-        "feedback": "54 = 9 × 6 esprime direttamente un prodotto con quoziente naturale e resto zero.",
+        "answer": 0,
+        "feedback": "I due fattori si incontrano nella coppia 6 e 6. Nella lista dei divisori 6 compare una sola volta; le eventuali coppie successive sono già state trovate.",
         "feedbackByOption": [
-          "Questa risposta non segue la relazione richiesta. 54 = 9 × 6 esprime direttamente un prodotto con quoziente naturale e resto zero.",
-          "Questa risposta non segue la relazione richiesta. 54 = 9 × 6 esprime direttamente un prodotto con quoziente naturale e resto zero.",
-          "54 = 9 × 6 esprime direttamente un prodotto con quoziente naturale e resto zero.",
-          "Questa risposta non segue la relazione richiesta. 54 = 9 × 6 esprime direttamente un prodotto con quoziente naturale e resto zero."
+          "Esatto: il divisore ripetuto si scrive una volta sola e possiamo fermarci.",
+          "Nella lista ogni divisore va scritto una sola volta.",
+          "Le coppie successive ripeterebbero quelle già trovate, con i ruoli scambiati.",
+          "6 è un divisore: la divisione è esatta. I fattori uguali non lo escludono."
         ]
       }
     ]
@@ -1074,6 +1074,7 @@ for(const [id,sections] of Object.entries(window.READER_CHECKPOINT_BANK)){const 
 
 if(window.READER_LESSONS["cinematica-introduzione"])window.READER_LESSONS["cinematica-introduzione"].nextLesson={id:"cinematica-velocita"};
 if(window.READER_LESSONS["cinematica-velocita"])window.READER_LESSONS["cinematica-velocita"].nextLesson={title:"Moto rettilineo uniforme"};
+
 
 
 

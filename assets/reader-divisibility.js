@@ -7,22 +7,22 @@ Object.assign(window.READER_GLOSSARY, {
   },
   "arith-divisore": {
     "title": "Divisore",
-    "text": "Un numero naturale positivo d è un divisore del numero naturale n se esiste un numero naturale q tale che n = d × q. Equivalentemente, la divisione di n per d ha resto zero.",
+    "text": "Un numero naturale diverso da zero che divide un altro numero senza lasciare resto.",
     "kind": "Concetto"
   },
   "arith-multiplo": {
     "title": "Multiplo",
-    "text": "Un numero naturale n è multiplo di un numero naturale a se si può scrivere n = a × k, con k numero naturale. Per a positivo, n è multiplo di a esattamente quando a è divisore di n.",
+    "text": "Un numero che si ottiene moltiplicando il numero di partenza per 0, 1, 2, 3 e così via.",
     "kind": "Concetto"
   },
   "arith-divisibilita": {
     "title": "Divisibilità",
-    "text": "Un numero naturale n è divisibile per un numero naturale positivo d quando la divisione di n per d è esatta, cioè ha resto zero.",
+    "text": "Un numero è divisibile per un altro numero diverso da zero quando la divisione è esatta, cioè non lascia resto.",
     "kind": "Concetto"
   },
   "arith-resto": {
     "title": "Resto",
-    "text": "Nella divisione tra numeri naturali n = d × q + r, con d positivo, il resto r è il numero naturale che soddisfa 0 ≤ r < d. Il quoziente q indica quanti gruppi completi di d elementi si possono formare.",
+    "text": "La quantità che avanza in una divisione tra numeri naturali, dopo aver formato tutti i gruppi completi. È sempre più piccola del divisore.",
     "kind": "Concetto"
   },
   "arith-prodotto": {
@@ -32,14 +32,14 @@ Object.assign(window.READER_GLOSSARY, {
   },
   "arith-quoziente": {
     "title": "Quoziente",
-    "text": "Il risultato di una divisione esatta. Nella divisione con resto tra naturali è il numero q nella scrittura n = d × q + r, dove 0 ≤ r < d.",
+    "text": "Il risultato di una divisione. Nella divisione tra numeri naturali con resto, indica quante volte il divisore è contenuto nel dividendo, senza contare la parte che avanza.",
     "kind": "Concetto"
   }
 });
 window.READER_LESSONS["aritmetica-divisibilita"] = {
   "title": "Multipli, divisori e divisibilità",
   "subtitle": "Matematica · Medie e biennio · Prima bozza in lavorazione",
-  "version": 6,
+  "version": 7,
   "status": "work-in-progress",
   "sections": [
     {
@@ -308,44 +308,35 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
       "title": "Il ruolo di 1 e di 0",
       "cards": [
         {
-          "id": "uno",
-          "title": "Due divisori che troviamo sempre",
+          "id": "uno-zero",
+          "title": "1 e 0: due casi speciali",
           "steps": [
             {
-              "title": "",
-              "html": "<strong>1 divide ogni numero naturale</strong>, perché n = 1 × n. Inoltre, ogni numero naturale positivo divide se stesso, perché n = n × 1.<br><br>Per 1 questi due divisori coincidono: il suo unico divisore positivo è 1."
-            }
-          ]
-        },
-        {
-          "id": "zero",
-          "title": "Zero è un multiplo, ma non un divisore",
-          "steps": [
-            {
-              "title": "Zero come multiplo",
-              "html": "Per ogni naturale a vale <strong>0 = a × 0</strong>: perciò zero è multiplo di ogni numero naturale. I multipli di zero, invece, sono soltanto zero, perché 0 × k = 0."
+              "title": "Il ruolo di 1",
+              "html": "<strong>Tra i numeri positivi, 1 è divisore di tutti e multiplo solo di se stesso.</strong><br><br>Dividere per 1 lascia il numero invariato. Per ottenere 1 con una moltiplicazione di numeri positivi, invece, possiamo usare soltanto 1 e 1."
             },
             {
-              "title": "Zero e la divisione",
-              "html": "In questa lezione chiamiamo divisori soltanto i numeri naturali positivi: <strong>non dividiamo per zero</strong>.<br><br>Ogni naturale positivo divide zero, perché 0 ÷ d = 0. Quindi zero, diversamente dai naturali positivi, ha infiniti divisori positivi."
+              "title": "Il ruolo di 0",
+              "html": "<strong class=\"dp-zero-rule\">NON SI PUÒ DIVIDERE PER ZERO.</strong> Per questo, zero non è divisore di nessun numero.<br><br><strong>Zero è multiplo di tutti i numeri:</strong> moltiplicando qualsiasi numero per zero, otteniamo zero.<br><br><strong>Zero ha un solo multiplo: zero.</strong> Moltiplicando zero per qualsiasi numero, il risultato rimane sempre zero."
             }
-          ],
-          "stepMode": "replace"
+          ]
         }
       ],
       "quiz": {
-        "question": "Quale affermazione è corretta?",
+        "question": "Quale frase descrive correttamente 1, tra i numeri positivi?",
         "options": [
-          "Zero non è multiplo di 7.",
-          "Zero è multiplo di 7 perché 0 = 7 × 0.",
-          "7 ÷ 0 = 0."
+          "È multiplo di tutti e divisore solo di se stesso.",
+          "È divisore solo di se stesso.",
+          "È divisore di tutti e multiplo solo di se stesso.",
+          "Non è divisore di nessun numero."
         ],
-        "answer": 1,
-        "feedback": "Il fattore zero rende il prodotto uguale a zero.",
+        "answer": 2,
+        "feedback": "1 divide tutti i numeri positivi senza resto. Per ottenere 1 con una moltiplicazione di numeri positivi possiamo usare soltanto 1 e 1.",
         "feedbackByOption": [
-          "Un multiplo si ottiene anche moltiplicando per zero.",
-          "Il fattore zero rende il prodotto uguale a zero.",
-          "La divisione per zero non è definita. Non confonderla con 0 ÷ 7 = 0."
+          "Hai scambiato le due proprietà: 1 è divisore di tutti, ma multiplo solo di se stesso.",
+          "1 non divide soltanto se stesso: divide tutti i numeri positivi.",
+          "Esatto: divisore di tutti, multiplo solo di se stesso.",
+          "Dividendo un numero per 1 non resta nulla: 1 è un suo divisore."
         ]
       }
     },
@@ -359,24 +350,33 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
           "steps": [
             {
               "title": "",
-              "html": "<strong>Divisibilità:</strong> n è divisibile per d, con d positivo, quando n ÷ d ha resto zero.<br><br><strong>Divisore e multiplo:</strong> se n = d × q con q naturale, d è divisore di n e n è multiplo di d.<br><br><strong>Come cercarli:</strong> costruiamo i multipli moltiplicando per 0, 1, 2, … ; troviamo i divisori di un numero positivo cercando coppie di fattori.<br><br><strong>Da ricordare:</strong> ogni numero positivo ha un numero finito di divisori e infiniti multipli. Zero è multiplo di ogni naturale; non si divide per zero."
+              "html": "<ul class=\"dp-memory-list\"><li><strong>Un divisore divide senza resto.</strong> Il numero diviso è un suo multiplo.</li><li><strong>Per trovare i multipli, parti da zero</strong> e aggiungi ogni volta il numero scelto. Per un numero positivo, i multipli sono infiniti e i divisori sono finiti.</li><li><strong>I divisori si cercano in coppia.</strong> Parti da 1 e dal numero stesso; prova i candidati in ordine. Se la divisione è esatta, il quoziente completa la coppia.</li><li><strong>Fermati quando il quoziente è uguale o più piccolo del candidato.</strong> Le eventuali coppie successive sono già state trovate. Un divisore ripetuto si scrive una volta sola.</li><li><strong>1 divide tutti i numeri positivi</strong> ed è multiplo solo di se stesso.</li><li><strong>Non si può dividere per zero.</strong> Zero è multiplo di tutti e ha un solo multiplo: zero.</li></ul>"
             }
-          ]
+          ],
+          "visualLayout": "closing",
+          "illustration": {
+            "src": "assets/images/reader/red-bjorne-rivincita-78-v2.png",
+            "alt": "Bjorne e Red inseguono con un aspirapolvere il fantasma 78, che ora fugge spaventato.",
+            "width": 1635,
+            "height": 962
+          }
         }
       ],
       "quiz": {
-        "question": "Sai che a e b sono naturali positivi e che a divide b. Quale relazione deve essere vera?",
+        "question": "Dividendo 24 per 6 non resta nulla. Quale frase è corretta?",
         "options": [
-          "b = a × q per qualche numero naturale q.",
-          "a è necessariamente uguale a b.",
-          "a è necessariamente maggiore di b."
+          "6 è divisore di 24 e 24 è multiplo di 6.",
+          "6 è multiplo di 24 e 24 è divisore di 6.",
+          "24 e 6 sono divisori uno dell’altro.",
+          "24 e 6 sono multipli uno dell’altro."
         ],
         "answer": 0,
-        "feedback": "È la relazione che collega divisione esatta, divisore e multiplo.",
+        "feedback": "Una divisione senza resto collega i due numeri: 6 è il divisore e 24 è un suo multiplo.",
         "feedbackByOption": [
-          "È la relazione che collega divisione esatta, divisore e multiplo.",
-          "Possono coincidere, ma non è necessario: 3 divide 12.",
-          "Un divisore positivo non può superare il numero positivo che divide."
+          "Esatto: un divisore divide senza resto; il numero diviso è un suo multiplo.",
+          "Hai invertito i ruoli: è 6 a dividere 24 senza resto.",
+          "6 divide 24 senza resto, ma 24 non divide 6 senza resto.",
+          "24 è multiplo di 6, ma 6 non è multiplo di 24."
         ]
       }
     }
