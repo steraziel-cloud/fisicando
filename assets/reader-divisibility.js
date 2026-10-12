@@ -261,12 +261,17 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
           "steps": [
             {
               "title": "Tutti questi divisori!",
-              "html": "<span class=\"dp-intro-scene\"><span class=\"dp-intro-copy\">Prendiamo 72. I suoi <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisore\">divisori</button> sono:<br><strong>1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72.</strong><br><br>Sono parecchi! Per trovarli tutti dovremmo provare ogni numero da 1 a 72?</span><img class=\"dp-intro-red\" data-dp-reaction src=\"assets/images/reactions/red_mente_esplosa_shaking_da_frame-still.webp?v=2\" alt=\"Red è sorpreso dalla lunga lista dei divisori\" width=\"180\" height=\"180\"></span>"
+              "html": "<span class=\"dp-intro-scene dp-ghost-scene\"><span class=\"dp-intro-copy\">Prendiamo 78. I suoi <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisore\">divisori</button> sono:<br><strong>1, 2, 3, 6, 13, 26, 39, 78.</strong><br><br>Sono parecchi! Per trovarli tutti dovremmo provare ogni numero da 1 a 78?</span><span class=\"dp-intro-illustration\"><img class=\"dp-intro-ghost\" src=\"assets/images/reader/red-bjorne-fantasma-78-v1.png\" alt=\"Red e Bjorne si stringono spaventati davanti al buffo fantasma 78\" width=\"1024\" height=\"1024\"></span></span>"
             },
             {
               "title": "Ecco il trucco!",
               "pairsBoard": true,
               "html": "<strong>I divisori si trovano in coppia.</strong> Ogni volta che ne trovi uno, puoi trovare subito anche il suo compagno.<br><br>Proviamolo insieme con <strong>36</strong>.<br><br>La prima coppia è formata da <strong>1 e dal numero stesso</strong>."
+            },
+            {
+              "title": "Il trucco è sapere quando fermarsi",
+              "pairsBoard": true,
+              "html": "Proviamo i candidati <strong>in ordine crescente</strong>. Quando il quoziente diventa più piccolo del candidato, possiamo fermarci: <strong>gli eventuali divisori successivi sono già comparsi come compagni nelle coppie precedenti.</strong><br><br>Per esempio, con 36 abbiamo trovato <strong>2 e 18</strong>. Provando 18, ritroveremmo <strong>18 e 2</strong>: la stessa coppia, con i ruoli scambiati.<br><br>Se candidato e quoziente coincidono, come in <strong>6 e 6</strong>, li scriviamo una volta sola e ci fermiamo già lì."
             }
           ]
         },

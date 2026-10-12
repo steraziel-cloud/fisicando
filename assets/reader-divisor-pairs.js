@@ -31,7 +31,7 @@ window.GatitoDivisorPairs=(()=>{
      flow.append(candidate,first,calculation,second,partner);work.append(flow);
      if(phase===0)note.textContent=`Partiamo da ${a}: per ora è soltanto un candidato. Controlliamo se divide 36 senza resto.`;
      if(phase===1)note.textContent=exact?`La divisione è esatta: il resto è zero. Il quoziente ${q} ci permette di completare la coppia.`:`La divisione lascia un resto di ${rest}. Quindi ${a} non è un divisore di 36.`;
-     if(phase===2)note.textContent=!exact?`Per ${a} non troviamo una coppia. Lasciamo questo tentativo e passiamo al candidato successivo.`:a===6?'Il compagno di 6 è ancora 6: i due fattori si incontrano. Fermiamoci qui: con fattori entrambi maggiori di 6 il prodotto supererebbe 36.':`Il quoziente ${q} diventa il secondo divisore. La coppia è completa: ${a} e ${q}.`;
+     if(phase===2)note.textContent=!exact?`Per ${a} non troviamo una coppia. Lasciamo questo tentativo e passiamo al candidato successivo.`:a===6?'Il compagno di 6 è ancora 6: i due fattori si incontrano. Ci fermiamo qui. I divisori più grandi sono già comparsi come compagni nelle coppie precedenti.':`Il quoziente ${q} diventa il secondo divisore. La coppia è completa: ${a} e ${q}.`;
     }
     controls.replaceChildren(button('←',()=>{state.stage--;draw();}),el('span','dp-progress',`${state.stage+1} / ${stages.length}`),button('→',()=>{state.stage++;draw();}));const bs=controls.querySelectorAll('button');bs[0].setAttribute('aria-label','Coppie di divisori: passo precedente');bs[1].setAttribute('aria-label','Coppie di divisori: passo successivo');bs[0].disabled=state.stage===0;bs[1].disabled=state.stage===stages.length-1;
    }
@@ -45,8 +45,8 @@ window.GatitoDivisorPairs=(()=>{
    function advance(){state.tested.push(state.candidate);state.candidate++;state.phase=state.candidate===6?'stop':'decide';draw();}
    function draw(){showPairs(state.pairs);controls.replaceChildren();work.replaceChildren();note.textContent=state.tested.length?`Già controllati: 1, ${state.tested.join(', ')}.`:'La prima coppia te l’abbiamo regalata. Ora continui tu!';
     if(state.phase==='done'){work.append(el('span','dp-kicker','Tutti i divisori di 32'),el('strong','dp-equation','1, 2, 4, 8, 16, 32'));note.textContent='Abbiamo trovato tutte le coppie, senza provare ogni numero fino a 32.';controls.append(button('Riprova',()=>{state.candidate=2;state.pairs=[[1,32]];state.tested=[];state.phase='decide';feedback.replaceChildren();draw();}));return;}
-    if(state.phase==='stop'){work.append(el('strong','dp-question','Dobbiamo provare anche 6?'),el('p','','6 × 6 = 36, che è già maggiore di 32.'));
-     controls.append(button('Sì, continuiamo',()=>respond(false,'Con due fattori da 6 in su il prodotto sarebbe almeno 36. I fattori più piccoli li abbiamo già controllati.')),button('No, abbiamo finito',()=>{state.phase='done';draw();respond(true,'Esatto! Le coppie ancora possibili avrebbero un fattore più piccolo di 6, ma li abbiamo già provati tutti.');}));return;}
+    if(state.phase==='stop'){work.append(el('strong','dp-question','Dobbiamo provare anche 6?'),el('p','','Dividendo 32 per 6 troviamo quoziente 5 e resto 2. Il quoziente è più piccolo del candidato: 5 < 6.'));
+     controls.append(button('Sì, continuiamo',()=>respond(false,'Il quoziente 5 è più piccolo del candidato 6. I divisori successivi sono già comparsi come compagni dei candidati più piccoli, che abbiamo controllato.')),button('No, abbiamo finito',()=>{state.phase='done';draw();respond(true,'Esatto! I divisori più grandi li abbiamo già trovati come compagni: 8, 16 e 32. Continuando ritroveremmo le stesse coppie con i ruoli scambiati.');}));return;}
     work.append(el('span','dp-kicker',`Proviamo ${state.candidate}`));
     if(state.phase==='partner'){const label=el('label','dp-answer');label.append(el('span','',`${state.candidate} ×`));const input=el('input');input.type='text';input.inputMode='numeric';input.setAttribute('aria-label',`Il compagno di ${state.candidate} nella coppia di 32`);input.maxLength=2;label.append(input,el('span','','= 32'));work.append(label);const verify=()=>{const value=input.value.trim();if(!/^\d+$/.test(value)||Number(value)*state.candidate!==32){respond(false,'Cerchiamo il numero che, moltiplicato per '+state.candidate+', dà 32. Puoi aiutarti con la lavagna dei multipli.');return;}const a=state.candidate,b=Number(value);state.pairs.push([a,b]);advance();respond(true,`${a} × ${b} = 32. Abbiamo trovato due divisori in un solo tentativo!`);};controls.append(button('Controlla la coppia',verify,'rm-btn primary'));input.addEventListener('keydown',e=>{if(e.key==='Enter')verify();},{signal:abort.signal});return;}
     work.append(el('strong','dp-question',`32 ÷ ${state.candidate} è una divisione esatta?`));
@@ -60,4 +60,5 @@ window.GatitoDivisorPairs=(()=>{
  function hydrateIntro(host){host.querySelectorAll('[data-dp-reaction]').forEach(img=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const still=img.getAttribute('src');img.src=still.replace('-still.webp','.webp');setTimeout(()=>{img.src=still;},2800);});}
  return{mount,setVisible,hydrateIntro};
 })();
+
 
