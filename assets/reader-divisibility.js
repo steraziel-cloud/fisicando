@@ -39,7 +39,7 @@ Object.assign(window.READER_GLOSSARY, {
 window.READER_LESSONS["aritmetica-divisibilita"] = {
   "title": "Multipli, divisori e divisibilità",
   "subtitle": "Matematica · Medie e biennio · Prima bozza in lavorazione",
-  "version": 1,
+  "version": 2,
   "status": "work-in-progress",
   "sections": [
     {
@@ -48,45 +48,86 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
       "cards": [
         {
           "id": "partenza",
-          "title": "Riusciamo a usarli tutti?",
+          "title": "Come può fare?",
           "steps": [
             {
               "title": "",
-              "html": "Abbiamo <strong>18 gettoni</strong> e vogliamo formare gruppi di <strong>6 gettoni ciascuno</strong>. Possiamo usare tutti i gettoni senza lasciarne fuori?<br><br>Lavoriamo con i <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-naturali\">numeri naturali</button>, includendo lo zero."
+              "html": "Bjorne ha <strong>12 monete da 1 €</strong> e vuole <strong>dividerle in mazzetti uguali</strong>, usando tutte le monete.<br><br><strong>Come può fare?</strong>"
             }
           ],
-          "board": "divisibility-groups"
+          "board": "coin-experiment"
         },
         {
           "id": "resto",
-          "title": "La differenza è nel resto",
+          "title": "Con o senza monete avanzate",
           "steps": [
             {
-              "title": "Gruppi da 6",
-              "html": "Con 18 gettoni formiamo 3 gruppi da 6, senza avanzo: <strong>18 = 6 × 3</strong>. La divisione 18 : 6 è esatta e il suo quoziente è 3."
+              "title": "Una suddivisione senza avanzi",
+              "html": "<span data-coin-copy=\"arrangement\">Possiamo formare 3 mazzetti da 4 monete ciascuno, usando tutte le 12 monete.</span><br><br><strong><span data-coin-copy=\"product\">12 = 4 × 3</span></strong>.<br><span data-coin-copy=\"exact\">12 : 4 = 3, senza resto.</span><br><br>Le quantità sono descritte dai <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-naturali\">numeri naturali</button>, includendo lo zero."
             },
             {
-              "title": "Gruppi da 4",
-              "html": "Con gruppi da 4 otteniamo 4 gruppi completi e avanzano 2 gettoni: <strong>18 = 4 × 4 + 2</strong>. Il <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-resto\">resto</button> è 2: la divisione tra naturali non è esatta."
+              "title": "Mazzetti da 5 monete",
+              "html": "Con 12 monete possiamo formare <strong>2 mazzetti da 5</strong>, ma avanzano <strong>2 monete</strong>:<br><strong>12 = 5 × 2 + 2</strong>.<br><br>Il <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-resto\">resto</button> è 2: la divisione tra naturali non è esatta."
             }
           ],
-          "board": "divisibility-groups",
+          "board": "coin-observe",
           "stepMode": "replace"
         }
       ],
       "quiz": {
-        "question": "18 gettoni sono distribuiti in gruppi da 4. Che cosa impedisce di usare tutti i gettoni in gruppi completi?",
-        "options": [
-          "Avanzano 2 gettoni.",
-          "Ci sono troppo pochi gruppi.",
-          "Il numero dei gruppi deve essere pari."
-        ],
-        "answer": 0,
-        "feedback": "Il resto è 2: restano gettoni fuori dai gruppi completi.",
-        "feedbackByOption": [
-          "Il resto è 2: restano gettoni fuori dai gruppi completi.",
-          "Il numero dei gruppi non decide se la divisione è esatta: controlla il resto.",
-          "Il numero dei gruppi può essere pari o dispari. Conta che il resto sia zero."
+        "questions": [
+          {
+            "question": "12 monete vengono divise in mazzetti da 5. Quante monete restano fuori dai mazzetti completi?",
+            "options": [
+              "0",
+              "1",
+              "2",
+              "5"
+            ],
+            "answer": 2,
+            "feedback": "Due mazzetti da 5 usano 10 monete: ne restano 2.",
+            "feedbackByOption": [
+              "Due mazzetti contengono 10 monete: ne restano 2.",
+              "12 = 5 × 2 + 2, quindi il resto non è 1.",
+              "Due mazzetti da 5 usano 10 monete: ne restano 2.",
+              "5 è la quantità per mazzetto, non il resto."
+            ]
+          },
+          {
+            "question": "Dividi tutte le 12 monete in 3 mazzetti uguali. Quante monete ci sono in ogni mazzetto?",
+            "options": [
+              "3",
+              "4",
+              "9",
+              "12"
+            ],
+            "answer": 1,
+            "feedback": "3 mazzetti da 4 monete usano tutte le 12 monete.",
+            "feedbackByOption": [
+              "3 indica il numero dei mazzetti; 3 × 3 userebbe soltanto 9 monete.",
+              "3 mazzetti da 4 monete usano tutte le 12 monete.",
+              "Tre mazzetti da 9 richiederebbero 27 monete.",
+              "Se ogni mazzetto avesse 12 monete ne servirebbero 36."
+            ]
+          },
+          {
+            "question": "Quale altra suddivisione usa tutte le 12 monete in mazzetti uguali?",
+            "options": [
+              "4 mazzetti da 3 monete.",
+              "3 mazzetti da 3 monete.",
+              "5 mazzetti da 2 monete.",
+              "4 mazzetti da 4 monete."
+            ],
+            "answer": 0,
+            "feedback": "4 × 3 = 12.",
+            "feedbackByOption": [
+              "4 × 3 = 12.",
+              "3 × 3 = 9: avanzano 3 monete.",
+              "5 × 2 = 10: avanzano 2 monete.",
+              "4 × 4 = 16: servono 4 monete in più."
+            ],
+            "coinAnother": true
+          }
         ]
       }
     },
@@ -96,15 +137,15 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
       "cards": [
         {
           "id": "nomi",
-          "title": "18 = 6 × 3",
+          "title": "Tre modi di leggere lo stesso fatto",
           "steps": [
             {
-              "title": "6 è un divisore di 18",
-              "html": "La divisione 18 : 6 ha resto zero. Diciamo che <strong>18 è <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisibilita\">divisibile</button> per 6</strong>, oppure che <strong>6 è un <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisore\">divisore</button> di 18</strong>."
+              "title": "Divisore e divisibilità",
+              "html": "<span data-coin-copy=\"exact\">12 : 4 = 3, senza resto.</span><br><br>Perciò diciamo che <strong><span data-coin-copy=\"divisible\">12 è divisibile per 4</span></strong>, oppure che <strong><span data-coin-copy=\"divisor\">4 è un divisore di 12</span></strong>.<br><br><button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisibilita\">Divisibilità</button> e <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisore\">divisore</button> descrivono una divisione esatta."
             },
             {
-              "title": "18 è un multiplo di 6",
-              "html": "La stessa uguaglianza dice che 18 si ottiene moltiplicando 6 per un numero naturale: 3. Perciò <strong>18 è un <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-multiplo\">multiplo</button> di 6</strong>.<br><br>Non sono due fatti diversi: stiamo leggendo la stessa relazione da due punti di vista."
+              "title": "Il numero 12 come multiplo",
+              "html": "<span data-coin-copy=\"same\">Moltiplicando 4 per 3 otteniamo 12: è la stessa relazione letta attraverso la moltiplicazione.</span><br><br>Quindi <strong><span data-coin-copy=\"multiple\">12 è un multiplo di 4</span></strong>. <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-multiplo\">Multiplo</button> e divisore sono due modi di leggere la stessa relazione."
             }
           ]
         },
@@ -145,7 +186,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
           "steps": [
             {
               "title": "",
-              "html": "I multipli di 6 si ottengono moltiplicando 6 per 0, 1, 2, 3, … :<br><strong>0, 6, 12, 18, 24, 30, …</strong><br><br>Ogni nuovo gruppo aggiunge 6 gettoni. Puoi scegliere nella lavagna quanti gruppi formare."
+              "html": "I multipli di 6 si ottengono moltiplicando 6 per 0, 1, 2, 3, … :<br><strong>0, 6, 12, 18, 24, 30, …</strong><br><br>Ogni nuovo gruppo aggiunge 6 monete. Puoi scegliere nella lavagna quanti gruppi formare."
             },
             {
               "title": "La lista continua",

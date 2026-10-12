@@ -3,55 +3,56 @@ window.READER_CHECKPOINT_BANK = {
   "aritmetica-divisibilita": {
     "gruppi": [
       {
-        "question": "18 gettoni sono distribuiti in gruppi da 4. Che cosa impedisce di usare tutti i gettoni in gruppi completi?",
+        "question": "12 monete vengono divise in mazzetti da 5. Quante monete restano fuori dai mazzetti completi?",
         "options": [
-          "Avanzano 2 gettoni.",
-          "Ci sono troppo pochi gruppi.",
-          "Il numero dei gruppi deve essere pari.",
-          "Si possono formare 4 gruppi, quindi il resto è zero."
+          "0",
+          "1",
+          "2",
+          "5"
         ],
-        "answer": 0,
-        "feedback": "Il resto è 2: restano gettoni fuori dai gruppi completi.",
+        "answer": 2,
+        "feedback": "Due mazzetti da 5 usano 10 monete: ne restano 2.",
         "feedbackByOption": [
-          "Il resto è 2: restano gettoni fuori dai gruppi completi.",
-          "Il numero dei gruppi non decide se la divisione è esatta: controlla il resto.",
-          "Il numero dei gruppi può essere pari o dispari. Conta che il resto sia zero.",
-          "Rivedi la relazione tra le grandezze o gli oggetti citati. Il resto è 2: restano gettoni fuori dai gruppi completi."
+          "Due mazzetti contengono 10 monete: ne restano 2.",
+          "12 = 5 × 2 + 2, quindi il resto non è 1.",
+          "Due mazzetti da 5 usano 10 monete: ne restano 2.",
+          "5 è la quantità per mazzetto, non il resto."
         ]
       },
       {
-        "question": "Quale divisione è esatta nei numeri naturali?",
+        "question": "Dividi tutte le 12 monete in 3 mazzetti uguali. Quante monete ci sono in ogni mazzetto?",
         "options": [
-          "20 : 6",
-          "20 : 4",
-          "20 : 3",
-          "20 : 7"
+          "3",
+          "4",
+          "9",
+          "12"
         ],
         "answer": 1,
-        "feedback": "20 = 4 × 5, quindi il resto è zero.",
+        "feedback": "3 mazzetti da 4 monete usano tutte le 12 monete.",
         "feedbackByOption": [
-          "Questa risposta non segue la relazione richiesta. 20 = 4 × 5, quindi il resto è zero.",
-          "20 = 4 × 5, quindi il resto è zero.",
-          "Questa risposta non segue la relazione richiesta. 20 = 4 × 5, quindi il resto è zero.",
-          "Questa risposta non segue la relazione richiesta. 20 = 4 × 5, quindi il resto è zero."
+          "3 indica il numero dei mazzetti; 3 × 3 userebbe soltanto 9 monete.",
+          "3 mazzetti da 4 monete usano tutte le 12 monete.",
+          "Tre mazzetti da 9 richiederebbero 27 monete.",
+          "Se ogni mazzetto avesse 12 monete ne servirebbero 36."
         ]
       },
       {
-        "question": "Hai 23 gettoni e formi gruppi da 5. Quale scrittura descrive il risultato?",
+        "question": "Quale altra suddivisione usa tutte le 12 monete in mazzetti uguali?",
         "options": [
-          "23 = 5 × 4 + 3",
-          "23 = 5 × 3 + 4",
-          "23 = 5 × 5 − 2, con resto −2",
-          "23 = 5 × 4, senza resto"
+          "4 mazzetti da 3 monete.",
+          "3 mazzetti da 3 monete.",
+          "5 mazzetti da 2 monete.",
+          "4 mazzetti da 4 monete."
         ],
         "answer": 0,
-        "feedback": "Si formano 4 gruppi completi e restano 3 gettoni: il resto è minore di 5.",
+        "feedback": "4 × 3 = 12.",
         "feedbackByOption": [
-          "Si formano 4 gruppi completi e restano 3 gettoni: il resto è minore di 5.",
-          "Questa risposta non segue la relazione richiesta. Si formano 4 gruppi completi e restano 3 gettoni: il resto è minore di 5.",
-          "Questa risposta non segue la relazione richiesta. Si formano 4 gruppi completi e restano 3 gettoni: il resto è minore di 5.",
-          "Questa risposta non segue la relazione richiesta. Si formano 4 gruppi completi e restano 3 gettoni: il resto è minore di 5."
-        ]
+          "4 × 3 = 12.",
+          "3 × 3 = 9: avanzano 3 monete.",
+          "5 × 2 = 10: avanzano 2 monete.",
+          "4 × 4 = 16: servono 4 monete in più."
+        ],
+        "coinAnother": true
       }
     ],
     "relazione": [
@@ -1073,3 +1074,4 @@ for(const [id,sections] of Object.entries(window.READER_CHECKPOINT_BANK)){const 
 
 if(window.READER_LESSONS["cinematica-introduzione"])window.READER_LESSONS["cinematica-introduzione"].nextLesson={id:"cinematica-velocita"};
 if(window.READER_LESSONS["cinematica-velocita"])window.READER_LESSONS["cinematica-velocita"].nextLesson={title:"Moto rettilineo uniforme"};
+

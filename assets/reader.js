@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   frame.addEventListener('load',()=>{try{const doc=frame.contentDocument;doc.querySelectorAll('header,.sidebar,.rm-learning-back').forEach(e=>e.style.display='none');const headings=[...doc.querySelectorAll('.main h2,.main h3')];headings.forEach((h,i)=>{const b=document.createElement('button');b.textContent=h.textContent;b.addEventListener('click',()=>h.scrollIntoView({behavior:'auto',block:'start'}));$('reader-parts').append(b);});}catch{}});return;
  }
  // Learning progress belongs to this visit only. Reference cards do not award progress.
+ const coinExperiment={};
  const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},units:{values:['',''],done:false},elevator:{},velocityGraph:{},instantSpeeds:{values:['','','',''],done:false},velocityQuiz:{answer:'',stage:0,choice:null,done:false},lab:{started:null,period:8,marks:[],verified:false,answer:''}}));
  let current=0,allMode=false,reviewAccess=false,referenceMode=false,referenceBounds=null,disposeWidget=()=>{},mountedCard=null,cancelSlide=()=>{};
  const flat=s=>s.cards.flatMap((card,ci)=>card.steps.map((step,si)=>({card,ci,step,si})));
@@ -324,7 +325,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    if(quiz.type==='velocity-graph'){window.GatitoVelocityGraph.mount(box,state[current].velocityGraph,()=>finish('Hai letto correttamente la funzione velocità nei quattro istanti.'));return;}
    if(quiz.type==='velocity-units'){velocityUnitsQuiz(box);return;}
   }
-  const questions=quiz.questions||[quiz],position=Math.min(qs.index,questions.length-1),q=questions[position];
+  const questions=quiz.questions||[quiz],position=Math.min(qs.index,questions.length-1),q=window.GatitoCoins?window.GatitoCoins.questionFor(questions[position],coinExperiment):questions[position];
   box.append(el('p','rm-checkpoint-progress','Domanda '+(position+1)+' di '+questions.length),el('p','',q.question));
   q.options.forEach((option,i)=>{const label=el('label'),input=el('input');input.type='radio';input.name='checkpoint';input.value=i;label.append(input,el('span','',option));box.append(label);});
   box.append(button('Verifica',()=>{const selected=box.querySelector('input:checked');if(!selected){$('reader-feedback').textContent='Scegli una risposta prima di verificare.';return;}
@@ -350,7 +351,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  // Keep the board mounted while changing the text, rather than recreating the card.
  function stepNode(step,archived=false){
   const article=el('div','rm-reader-step');if(step.title)article.append(el('h4','',step.title));
-  const p=el('p');p.innerHTML=step.html;article.append(p);
+  const p=el('p');p.innerHTML=step.html;if(window.GatitoCoins)window.GatitoCoins.hydrate(p,coinExperiment);article.append(p);
   if(step.interaction==='train-reference')referenceExercise(article,!archived);
   if(step.interaction==='units-conversion')unitsExercise(article,!archived);
   if(step.interaction==='instant-speeds')instantSpeedsExercise(article,!archived);
@@ -401,6 +402,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    }
   }
   view.replace=replace;
+  if(item.card.board==='coin-observe'&&window.GatitoCoins)window.GatitoCoins.showObservation(view.box,coinExperiment,item.si===1);
   if(view.updateBoard)view.updateBoard(wanted.length>=3);
   if(item.card.board==='law-motion'){const graph=view.box.querySelector('.rm-law-graph');if(graph)graph.hidden=!item.step.lawGraph;}
   if(item.card.board==='velocity-instant'){const graph=view.box.querySelector('.vs-graph');if(graph){const show=!!item.step.velocityGraph;const play=view.box.querySelector('.vs-play');if(show&&graph.hidden&&play?.textContent==='Rivedi')play.click();graph.hidden=!show;view.box.querySelector('.rm-velocity-scene').classList.toggle('vs-withgraph',show);}}
@@ -423,6 +425,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.board==='law-motion'&&window.GatitoLawMotion){box.classList.add('rm-law-card');disposeWidget=window.GatitoLawMotion.mount(box,state[current].lawMotion||(state[current].lawMotion={time:0}),{graph:steps.some(step=>step.lawGraph)});}
   if(card.board==='velocity-story'&&window.GatitoVelocityScene){box.classList.add('rm-velocity-story-card');disposeWidget=window.GatitoVelocityScene.mount(box);}
   if(['wheel-speed','road-speed'].includes(card.board)&&window.GatitoSpeedInstruments)disposeWidget=window.GatitoSpeedInstruments.mount(box,card.board);
+  if(card.board==='coin-experiment'&&window.GatitoCoins)disposeWidget=window.GatitoCoins.mount(box,coinExperiment,()=>window.GatitoCoins.hydrate($('reader-steps'),coinExperiment));
+  if(card.board==='coin-observe'&&window.GatitoCoins)window.GatitoCoins.showObservation(box,coinExperiment,steps.at(-1)?.title==='Mazzetti da 5 monete');
   if(card.board?.startsWith('divisibility-')&&window.GatitoDivisibility)disposeWidget=window.GatitoDivisibility.mount(box,card.board);
   if(card.board==='train-reference'){box.classList.add('rm-train-reference-card');trainPicture(box);}
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
@@ -473,6 +477,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
+
 
 
 
