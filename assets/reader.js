@@ -351,7 +351,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  // Keep the board mounted while changing the text, rather than recreating the card.
  function stepNode(step,archived=false){
   const article=el('div','rm-reader-step');if(step.title)article.append(el('h4','',step.title));
-  const p=el('p');p.innerHTML=step.html;if(window.GatitoCoins)window.GatitoCoins.hydrate(p,coinExperiment);article.append(p);
+  const p=el('p');p.innerHTML=step.html;if(window.GatitoCoins)window.GatitoCoins.hydrate(p,coinExperiment);if(window.GatitoMultiples)window.GatitoMultiples.hydrate(p,multiplesExplorer);article.append(p);
   if(step.interaction==='train-reference')referenceExercise(article,!archived);
   if(step.interaction==='units-conversion')unitsExercise(article,!archived);
   if(step.interaction==='instant-speeds')instantSpeedsExercise(article,!archived);
