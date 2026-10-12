@@ -8,7 +8,7 @@ window.GatitoMultiples=(()=>{
   host.classList.add('rm-multiples-card');const board=el('section','mp-board');board.setAttribute('aria-label','Esplora i multipli di un numero');host.append(board);
   const abort=new AbortController(),timers=new Set(),reduce=matchMedia('(prefers-reduced-motion: reduce)');let generation=0,disposed=false,userSelected=false;
   const listen=(node,type,fn)=>node.addEventListener(type,fn,{signal:abort.signal});
-  const controls=el('div','mp-controls'),label=el('label','mp-choice'),select=el('select');label.append(el('span','','Scegli il numero'),select);
+  const controls=el('div','mp-controls'),label=el('label','mp-choice'),select=el('select');select.setAttribute('aria-label','Scegli il numero');label.append(el('span','','Scegli il numero'),select);
   for(let n=1;n<=20;n++){const option=el('option','',String(n));option.value=n;select.append(option);}select.value=state.number;
   const range=el('span','mp-range');controls.append(label,range);board.append(controls);
   const surface=el('div','mp-blackboard'),background=el('img','mp-background');background.src='assets/images/morgana-classroom/chalkboard.png';background.alt='';background.width=1423;background.height=1080;background.setAttribute('aria-hidden','true');
