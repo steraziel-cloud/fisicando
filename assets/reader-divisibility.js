@@ -261,7 +261,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
                 "steps": [
                         {
                                 "title": "Una scorciatoia per trovare i divisori",
-                                "html": "Prendiamo 60. I suoi <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisore\">divisori</button> sono:<br><strong>1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60.</strong><br><br>Sono parecchi! Per trovarli tutti dovremmo provare ogni numero da 1 a 60?<br><br><strong>Ti sveliamo una scorciatoia: i divisori si trovano in coppia.</strong> Ogni volta che ne trovi uno, puoi trovare subito anche il suo compagno.<br><br>Proviamola insieme con 36. Se <strong>36 = 2 × 18</strong>, abbiamo già trovato due divisori: <strong>2 e 18</strong>.<br><br>La prima coppia la conosciamo già: <strong>1 e il numero stesso</strong>. Partiamo da qui."
+                                "html": "Prendiamo 60. I suoi <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisore\">divisori</button> sono:<br><strong>1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60.</strong><br><br>Sono parecchi! Per trovarli tutti dovremmo provare ogni numero da 1 a 60?<br><br><strong>Ti sveliamo una scorciatoia: i divisori si trovano in coppia.</strong> Ogni volta che ne trovi uno, puoi trovare subito anche il suo compagno.<br><br>Proviamola insieme con 36. Se <strong>36 = 2 × 18</strong>, abbiamo già trovato due divisori: <strong>2 e 18</strong>.<br><br><strong>Ogni numero positivo è divisibile per 1 e per se stesso.</strong> Quindi conosciamo già la prima coppia: <strong>1 e 36</strong>. Partiamo da qui."
                         },
                         {
                                 "title": "Quando possiamo fermarci?",
