@@ -3,6 +3,7 @@ window.GatitoMultiples=(()=>{
  const el=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
  function hydrate(host,state={}){
   const n=Number.isInteger(state.number)&&state.number>=1&&state.number<=20?state.number:7;
+  host.querySelectorAll('[data-multiples-self-product]').forEach(node=>node.textContent=`${n} × 1 = ${n}`);
   host.querySelectorAll('[data-multiples-number]').forEach(node=>node.textContent=String(n));
   host.querySelectorAll('[data-multiples-sequence]').forEach(node=>node.textContent=Array.from({length:5},(_,factor)=>n*factor).join(', ')+', …');
  }
@@ -39,4 +40,5 @@ window.GatitoMultiples=(()=>{
  }
  return{mount,hydrate};
 })();
+
 

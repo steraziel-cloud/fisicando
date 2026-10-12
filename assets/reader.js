@@ -374,11 +374,16 @@ document.addEventListener('DOMContentLoaded',()=>{
   const cleanup=()=>{animations.forEach(a=>a.cancel());host.replaceChildren(...incoming.childNodes);host.classList.remove('rm-slide-viewport');cancelSlide=()=>{};};
   cancelSlide=cleanup;animations[1].finished.then(()=>{if(cancelSlide===cleanup)cleanup();}).catch(()=>{});
  }
+ function cardSteps(item){
+  const from=item.step.cumulativeFrom;
+  if(Number.isInteger(from)&&from>=0&&from<=item.si)return item.card.steps.slice(from,item.si+1);
+  return item.card.stepMode==='replace'||item.step.replace?[item.step]:item.card.steps.slice(0,item.si+1);
+ }
  function updateCard(item,direction){
   const view=mountedCard;cancelSlide();
-  const replace=item.card.stepMode==='replace'||!!item.step.replace;
-  const wanted=replace?[item.step]:item.card.steps.slice(0,item.si+1);
-  if(replace||view.replace){
+  const cumulative=Number.isInteger(item.step.cumulativeFrom),replace=!cumulative&&(item.card.stepMode==='replace'||!!item.step.replace);
+  const wanted=cardSteps(item);
+  if(replace||(view.replace&&!cumulative)){
    const previous=[...view.text.childNodes],next=wanted.map(step=>stepNode(step));
    if(view.box.classList.contains('rm-units-card'))next.forEach(node=>node.querySelector('.rm-unit-exercise')?.remove());
    slideSwap(view.text,previous,next,direction);
@@ -433,7 +438,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const text=el('div','rm-card-text');steps.forEach(step=>text.append(stepNode(step,archived)));box.append(text);
   const units=text.querySelector('.rm-unit-exercise');if(units){box.classList.add('rm-units-card');box.append(units);}
   const updateBoard=card.board==='position'||card.board==='displacement'?positionBoard(box,card.board,steps.length>=3):null;
-  if(!archived&&!allMode)mountedCard={section:current,card,box,text,updateBoard,replace:card.stepMode==='replace'||!!steps.at(-1)?.replace};
+  if(!archived&&!allMode)mountedCard={section:current,card,box,text,updateBoard,replace:!Number.isInteger(steps.at(-1)?.cumulativeFrom)&&(card.stepMode==='replace'||!!steps.at(-1)?.replace)};
  }
  function render(direction=0){
   const section=lesson.sections[current],item=flat(section)[state[current].cursor];
@@ -445,7 +450,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const s=lesson.sections[current],st=state[current],items=flat(s);$('reader-section-title').textContent=s.title+(referenceMode?' · Richiamo':'');
   if(st.cursor===items.length){if(s.quiz)checkpoint();else $('reader-feedback').textContent='Lezione completata. Puoi rivedere le parti dall’indice o scegliere «Mostra tutto».';}else{
    const item=items[st.cursor];if((item.card.retainPrevious||item.card.collapsePrevious)&&item.ci>0)renderCard(s.cards[item.ci-1],s.cards[item.ci-1].steps,true,!!item.card.collapsePrevious);
-   renderCard(item.card,item.card.stepMode==='replace'||item.step.replace?[item.step]:item.card.steps.slice(0,item.si+1));
+   renderCard(item.card,cardSteps(item));
   }if(previous.length&&$('reader-steps').children.length)slideSwap($('reader-steps'),previous,[...$('reader-steps').childNodes],direction,previousHeight);index();actions();if(current===state.length-1&&st.complete)completionLinks();
  }
  function top(){const target=$('reader-section-title');target.focus({preventScroll:true});target.scrollIntoView({block:'start',behavior:'auto'});}
@@ -477,6 +482,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
+
 
 
 

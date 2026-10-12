@@ -39,7 +39,7 @@ Object.assign(window.READER_GLOSSARY, {
 window.READER_LESSONS["aritmetica-divisibilita"] = {
   "title": "Multipli, divisori e divisibilità",
   "subtitle": "Matematica · Medie e biennio · Prima bozza in lavorazione",
-  "version": 5,
+  "version": 6,
   "status": "work-in-progress",
   "sections": [
     {
@@ -221,7 +221,12 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
             },
             {
               "title": "La lista continua",
-              "html": "I multipli di un numero <strong>diverso da zero</strong> sono infiniti. Possiamo continuare la sequenza aggiungendo ogni volta lo stesso numero.<br><br><strong>Il numero stesso è un suo multiplo</strong>, perché moltiplicarlo per 1 lo lascia invariato."
+              "html": "I multipli di un numero <strong>diverso da zero</strong> sono infiniti. Possiamo continuare la sequenza aggiungendo ogni volta lo stesso numero."
+            },
+            {
+              "title": "Anche il numero di partenza",
+              "html": "<strong>Ogni numero è anche un multiplo di se stesso.</strong> Moltiplicarlo per 1 ci restituisce il numero di partenza. Per esempio:<br><strong><span data-multiples-self-product>7 × 1 = 7</span></strong>.",
+              "cumulativeFrom": 1
             }
           ],
           "board": "divisibility-multiples",
@@ -368,6 +373,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
     }
   ]
 };
+
 
 
 
