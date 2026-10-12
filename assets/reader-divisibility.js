@@ -255,7 +255,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
       "cards": [
         {
           "id": "coppie",
-          "title": "I divisori si trovano in coppia",
+          "title": "Trovare tutti i divisori",
           "board": "pairs-example",
           "stepMode": "replace",
           "steps": [
