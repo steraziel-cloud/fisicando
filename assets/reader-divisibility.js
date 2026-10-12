@@ -254,30 +254,33 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
       "title": "Trovare tutti i divisori",
       "cards": [
         {
-          "id": "coppie",
-          "title": "Due fattori, due divisori",
-          "steps": [
-            {
-              "title": "",
-              "html": "Per trovare i divisori positivi di 18 cerchiamo le coppie di numeri naturali il cui <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-prodotto\">prodotto</button> è 18:<br><strong>1 × 18 &nbsp; 2 × 9 &nbsp; 3 × 6</strong><br><br>Ogni coppia ci dà due divisori: se 18 = 2 × 9, sia 2 sia 9 dividono 18."
-            },
-            {
-              "title": "Una lista senza ripetizioni",
-              "html": "Raccogliendo i numeri delle coppie e ordinandoli troviamo <strong>1, 2, 3, 6, 9, 18</strong>.<br><br>Puoi controllare ogni candidato con una divisione. Quando cerchi le coppie in ordine crescente, fermati quando il primo fattore supera il secondo: da lì ritroveresti le coppie già viste."
-            }
-          ]
+                "id": "coppie",
+                "title": "I divisori si trovano in coppia",
+                "board": "pairs-example",
+                "stepMode": "replace",
+                "steps": [
+                        {
+                                "title": "Cerchiamo tutti i divisori di 36",
+                                "html": "Spesso è utile trovare tutti i <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisore\">divisori</button> di un numero. Ma dobbiamo davvero provare ogni numero fino a 36?<br><br>Possiamo cercarli <strong>a coppie</strong>. Se <strong>36 = 2 × 18</strong>, sia 2 sia 18 dividono 36 senza resto.<br><br><strong>1 e il numero stesso sono sempre divisori.</strong> Partiamo da questa coppia e proviamo, in ordine, 2, 3, 4, … ."
+                        },
+                        {
+                                "title": "Quando possiamo fermarci?",
+                                "html": "Il primo fattore cresce e il secondo si avvicina. Quando si incontrano, o il primo supera il secondo, non troviamo più coppie nuove.<br><br>Per 36 arriviamo a <strong>6 × 6</strong>. Il 6 è un divisore, ma nella lista lo scriviamo <strong>una volta sola</strong>."
+                        }
+                ]
         },
         {
-          "id": "quadrato",
-          "title": "Una coppia può avere due numeri uguali",
-          "steps": [
-            {
-              "title": "",
-              "html": "Per 16 troviamo <strong>1 × 16, 2 × 8 e 4 × 4</strong>. Il 4 compare due volte nella stessa coppia, ma nella lista dei divisori lo scriviamo una volta sola:<br><strong>1, 2, 4, 8, 16</strong>.<br><br>I divisori positivi di un numero positivo sono finiti: nessuno può superare quel numero."
-            }
-          ]
+                "id": "coppie-prova",
+                "title": "Ora trova i divisori di 32",
+                "board": "pairs-practice",
+                "steps": [
+                        {
+                                "title": "",
+                                "html": "La prima coppia è già pronta: <strong>1 e 32</strong>. Ti abbiamo dato una mano… ora continui tu!<br><br>Proviamo i numeri in ordine. Se la divisione è esatta, trova il fattore che completa la coppia. Se resta qualcosa, passa al numero successivo.<br><br>La lavagna dei multipli è disponibile se ti serve un aiuto."
+                        }
+                ]
         }
-      ],
+],
       "quiz": {
         "question": "Se 28 = 4 × 7, che cosa possiamo concludere?",
         "options": [
@@ -373,6 +376,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
     }
   ]
 };
+
 
 
 
