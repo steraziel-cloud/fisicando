@@ -65,21 +65,21 @@ window.READER_CHECKPOINT_BANK = {
           "24 è multiplo di 8, ma 8 non è divisore di 24."
         ],
         "answer": 1,
-        "feedback": "24 : 8 = 3 senza resto. Le due frasi descrivono la stessa relazione.",
+        "feedback": "24 ÷ 8 = 3 senza resto. Le due frasi descrivono la stessa relazione.",
         "feedbackByOption": [
           "Hai scambiato i ruoli: è 8 che divide 24 senza resto.",
-          "24 : 8 = 3 senza resto. Le due frasi descrivono la stessa relazione.",
-          "Un divisore positivo può essere più piccolo del numero che divide: 24 : 8 è esatta.",
-          "Rivedi la relazione tra le grandezze o gli oggetti citati. 24 : 8 = 3 senza resto. Le due frasi descrivono la stessa relazione."
+          "24 ÷ 8 = 3 senza resto. Le due frasi descrivono la stessa relazione.",
+          "Un divisore positivo può essere più piccolo del numero che divide: 24 ÷ 8 è esatta.",
+          "Rivedi la relazione tra le grandezze o gli oggetti citati. 24 ÷ 8 = 3 senza resto. Le due frasi descrivono la stessa relazione."
         ]
       },
       {
         "question": "Quale divisione esatta mostra che 4 è un divisore di 20?",
         "options": [
-          "20 : 4 = 5",
-          "4 : 20 = 5",
-          "20 : 5 = 4",
-          "20 : 4 = 4"
+          "20 ÷ 4 = 5",
+          "4 ÷ 20 = 5",
+          "20 ÷ 5 = 4",
+          "20 ÷ 4 = 4"
         ],
         "answer": 0,
         "feedback": "20 diviso 4 dà 5 senza resto, quindi 4 è un divisore di 20.",
@@ -173,7 +173,7 @@ window.READER_CHECKPOINT_BANK = {
         "answer": 1,
         "feedback": "Entrambi i fattori dividono il prodotto senza resto.",
         "feedbackByOption": [
-          "Anche 7 divide 28: 28 : 7 = 4.",
+          "Anche 7 divide 28: 28 ÷ 7 = 4.",
           "Entrambi i fattori dividono il prodotto senza resto.",
           "I fattori sono divisori di 28; è 28 a essere multiplo di ciascuno.",
           "Rivedi la relazione tra le grandezze o gli oggetti citati. Entrambi i fattori dividono il prodotto senza resto."
@@ -220,7 +220,7 @@ window.READER_CHECKPOINT_BANK = {
         "options": [
           "Zero non è multiplo di 7.",
           "Zero è multiplo di 7 perché 0 = 7 × 0.",
-          "7 : 0 = 0.",
+          "7 ÷ 0 = 0.",
           "Zero è divisore positivo di 7."
         ],
         "answer": 1,
@@ -228,7 +228,7 @@ window.READER_CHECKPOINT_BANK = {
         "feedbackByOption": [
           "Un multiplo si ottiene anche moltiplicando per zero.",
           "Il fattore zero rende il prodotto uguale a zero.",
-          "La divisione per zero non è definita. Non confonderla con 0 : 7 = 0.",
+          "La divisione per zero non è definita. Non confonderla con 0 ÷ 7 = 0.",
           "Rivedi la relazione tra le grandezze o gli oggetti citati. Il fattore zero rende il prodotto uguale a zero."
         ]
       },
@@ -241,12 +241,12 @@ window.READER_CHECKPOINT_BANK = {
           "Non ne ha"
         ],
         "answer": 1,
-        "feedback": "1 : 1 = 1 e nessun naturale positivo maggiore di 1 divide 1.",
+        "feedback": "1 ÷ 1 = 1 e nessun naturale positivo maggiore di 1 divide 1.",
         "feedbackByOption": [
-          "Questa risposta non segue la relazione richiesta. 1 : 1 = 1 e nessun naturale positivo maggiore di 1 divide 1.",
-          "1 : 1 = 1 e nessun naturale positivo maggiore di 1 divide 1.",
-          "Questa risposta non segue la relazione richiesta. 1 : 1 = 1 e nessun naturale positivo maggiore di 1 divide 1.",
-          "Questa risposta non segue la relazione richiesta. 1 : 1 = 1 e nessun naturale positivo maggiore di 1 divide 1."
+          "Questa risposta non segue la relazione richiesta. 1 ÷ 1 = 1 e nessun naturale positivo maggiore di 1 divide 1.",
+          "1 ÷ 1 = 1 e nessun naturale positivo maggiore di 1 divide 1.",
+          "Questa risposta non segue la relazione richiesta. 1 ÷ 1 = 1 e nessun naturale positivo maggiore di 1 divide 1.",
+          "Questa risposta non segue la relazione richiesta. 1 ÷ 1 = 1 e nessun naturale positivo maggiore di 1 divide 1."
         ]
       },
       {
@@ -258,12 +258,12 @@ window.READER_CHECKPOINT_BANK = {
           "È divisibile per ogni naturale positivo"
         ],
         "answer": 3,
-        "feedback": "Per d positivo, 0 : d = 0. La divisione per zero resta esclusa.",
+        "feedback": "Per d positivo, 0 ÷ d = 0. La divisione per zero resta esclusa.",
         "feedbackByOption": [
-          "Questa risposta non segue la relazione richiesta. Per d positivo, 0 : d = 0. La divisione per zero resta esclusa.",
-          "Questa risposta non segue la relazione richiesta. Per d positivo, 0 : d = 0. La divisione per zero resta esclusa.",
-          "Questa risposta non segue la relazione richiesta. Per d positivo, 0 : d = 0. La divisione per zero resta esclusa.",
-          "Per d positivo, 0 : d = 0. La divisione per zero resta esclusa."
+          "Questa risposta non segue la relazione richiesta. Per d positivo, 0 ÷ d = 0. La divisione per zero resta esclusa.",
+          "Questa risposta non segue la relazione richiesta. Per d positivo, 0 ÷ d = 0. La divisione per zero resta esclusa.",
+          "Questa risposta non segue la relazione richiesta. Per d positivo, 0 ÷ d = 0. La divisione per zero resta esclusa.",
+          "Per d positivo, 0 ÷ d = 0. La divisione per zero resta esclusa."
         ]
       }
     ],
@@ -306,7 +306,7 @@ window.READER_CHECKPOINT_BANK = {
         "question": "Quale scrittura esprime direttamente 54 come prodotto di 9 per un numero naturale?",
         "options": [
           "54 = 9 + 45",
-          "9 = 54 : 6",
+          "9 = 54 ÷ 6",
           "54 = 9 × 6",
           "54 = 9 × 5 + 9"
         ],
@@ -580,12 +580,12 @@ window.READER_CHECKPOINT_BANK = {
           "3,6 m/s"
         ],
         "answer": 0,
-        "feedback": "Per passare da km/h a m/s si divide per 3,6: 36 / 3,6 = 10.",
+        "feedback": "Per passare da km/h a m/s si divide per 3,6: 36 ÷ 3,6 = 10.",
         "feedbackByOption": [
-          "Per passare da km/h a m/s si divide per 3,6: 36 / 3,6 = 10.",
-          "Questa risposta non segue la relazione richiesta. Per passare da km/h a m/s si divide per 3,6: 36 / 3,6 = 10.",
-          "Questa risposta non segue la relazione richiesta. Per passare da km/h a m/s si divide per 3,6: 36 / 3,6 = 10.",
-          "Questa risposta non segue la relazione richiesta. Per passare da km/h a m/s si divide per 3,6: 36 / 3,6 = 10."
+          "Per passare da km/h a m/s si divide per 3,6: 36 ÷ 3,6 = 10.",
+          "Questa risposta non segue la relazione richiesta. Per passare da km/h a m/s si divide per 3,6: 36 ÷ 3,6 = 10.",
+          "Questa risposta non segue la relazione richiesta. Per passare da km/h a m/s si divide per 3,6: 36 ÷ 3,6 = 10.",
+          "Questa risposta non segue la relazione richiesta. Per passare da km/h a m/s si divide per 3,6: 36 ÷ 3,6 = 10."
         ]
       }
     ],
@@ -1074,5 +1074,6 @@ for(const [id,sections] of Object.entries(window.READER_CHECKPOINT_BANK)){const 
 
 if(window.READER_LESSONS["cinematica-introduzione"])window.READER_LESSONS["cinematica-introduzione"].nextLesson={id:"cinematica-velocita"};
 if(window.READER_LESSONS["cinematica-velocita"])window.READER_LESSONS["cinematica-velocita"].nextLesson={title:"Moto rettilineo uniforme"};
+
 
 

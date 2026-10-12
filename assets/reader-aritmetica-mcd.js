@@ -66,10 +66,10 @@ window.READER_LESSONS["aritmetica-mcd"] = {
             "answer": 2,
             "feedback": "6 divide entrambi, ma non è il maggiore dei divisori comuni.",
             "feedbackByOption": [
-              "36 : 6 = 6 senza resto.",
+              "36 ÷ 6 = 6 senza resto.",
               "Il M.C.D. può essere composto, come 12.",
               "6 divide entrambi, ma non è il maggiore dei divisori comuni.",
-              "24 : 6 = 4 senza resto."
+              "24 ÷ 6 = 4 senza resto."
             ]
           },
           {
@@ -197,7 +197,7 @@ window.READER_LESSONS["aritmetica-mcd"] = {
             },
             {
               "title": "Scegliere le copie comuni",
-              "html": "Per 2 il minore esponente è <strong>3</strong>; per 3 è <strong>1</strong>. Quindi:<br><strong>M.C.D.(48, 72, 120) = 2<sup>3</sup> × 3 = 24</strong>.<br><br>Controlliamo: <strong>48 : 24 = 2; 72 : 24 = 3; 120 : 24 = 5</strong>."
+              "html": "Per 2 il minore esponente è <strong>3</strong>; per 3 è <strong>1</strong>. Quindi:<br><strong>M.C.D.(48, 72, 120) = 2<sup>3</sup> × 3 = 24</strong>.<br><br>Controlliamo: <strong>48 ÷ 24 = 2; 72 ÷ 24 = 3; 120 ÷ 24 = 5</strong>."
             }
           ]
         },
@@ -301,11 +301,11 @@ window.READER_LESSONS["aritmetica-mcd"] = {
               "Il numero di matite in ogni kit: 12."
             ],
             "answer": 2,
-            "feedback": "Ogni kit contiene 24 : 12 = 2 matite e 36 : 12 = 3 penne.",
+            "feedback": "Ogni kit contiene 24 ÷ 12 = 2 matite e 36 ÷ 12 = 3 penne.",
             "feedbackByOption": [
               "60 è la somma degli oggetti, non il numero massimo di kit identici.",
               "Ogni kit contiene 3 penne; 12 è il numero dei kit.",
-              "Ogni kit contiene 24 : 12 = 2 matite e 36 : 12 = 3 penne.",
+              "Ogni kit contiene 24 ÷ 12 = 2 matite e 36 ÷ 12 = 3 penne.",
               "12 kit hanno 2 matite ciascuno: il M.C.D. qui conta i kit."
             ]
           },
@@ -426,3 +426,4 @@ window.READER_LESSONS["aritmetica-mcd"] = {
     }
   ]
 };
+

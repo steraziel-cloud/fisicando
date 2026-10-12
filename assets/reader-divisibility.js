@@ -63,7 +63,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
           "steps": [
             {
               "title": "Una suddivisione senza avanzi",
-              "html": "<span data-coin-copy=\"arrangement\">Possiamo formare 3 mazzetti da 4 monete ciascuno, usando tutte le 12 monete.</span><br><br><strong><span data-coin-copy=\"product\">12 = 4 × 3</span></strong>.<br><span data-coin-copy=\"exact\">12 : 4 = 3, senza resto.</span><br><br>Abbiamo eseguito una <strong>divisione esatta</strong> e il <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-resto\">resto</button> è <strong>zero</strong>."
+              "html": "<span data-coin-copy=\"arrangement\">Possiamo formare 3 mazzetti da 4 monete ciascuno, usando tutte le 12 monete.</span><br><br><strong><span data-coin-copy=\"product\">12 = 4 × 3</span></strong>.<br><span data-coin-copy=\"exact\">12 ÷ 4 = 3, senza resto.</span><br><br>Abbiamo eseguito una <strong>divisione esatta</strong> e il <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-resto\">resto</button> è <strong>zero</strong>."
             },
             {
               "title": "Mazzetti da 5 monete",
@@ -141,7 +141,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
           "steps": [
             {
               "title": "Divisore e divisibilità",
-              "html": "<span data-coin-copy=\"exact\">12 : 4 = 3, senza resto.</span><br><br>Perciò diciamo che <strong><span data-coin-copy=\"divisible\">12 è divisibile per 4</span></strong>, oppure che <strong><span data-coin-copy=\"divisor\">4 è un divisore di 12</span></strong>.<br><br><button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisibilita\">Divisibilità</button> e <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisore\">divisore</button> descrivono una divisione esatta."
+              "html": "<span data-coin-copy=\"exact\">12 ÷ 4 = 3, senza resto.</span><br><br>Perciò diciamo che <strong><span data-coin-copy=\"divisible\">12 è divisibile per 4</span></strong>, oppure che <strong><span data-coin-copy=\"divisor\">4 è un divisore di 12</span></strong>.<br><br><button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisibilita\">Divisibilità</button> e <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisore\">divisore</button> descrivono una divisione esatta."
             },
             {
               "title": "Il numero 12 come multiplo",
@@ -162,21 +162,21 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
               "24 è multiplo di 8, ma 8 non è divisore di 24."
             ],
             "answer": 1,
-            "feedback": "24 : 8 = 3 senza resto. Le due frasi descrivono la stessa relazione.",
+            "feedback": "24 ÷ 8 = 3 senza resto. Le due frasi descrivono la stessa relazione.",
             "feedbackByOption": [
               "Hai scambiato i ruoli: è 8 che divide 24 senza resto.",
-              "24 : 8 = 3 senza resto. Le due frasi descrivono la stessa relazione.",
-              "Un divisore positivo può essere più piccolo del numero che divide: 24 : 8 è esatta.",
-              "Rivedi la relazione tra le grandezze o gli oggetti citati. 24 : 8 = 3 senza resto. Le due frasi descrivono la stessa relazione."
+              "24 ÷ 8 = 3 senza resto. Le due frasi descrivono la stessa relazione.",
+              "Un divisore positivo può essere più piccolo del numero che divide: 24 ÷ 8 è esatta.",
+              "Rivedi la relazione tra le grandezze o gli oggetti citati. 24 ÷ 8 = 3 senza resto. Le due frasi descrivono la stessa relazione."
             ]
           },
           {
             "question": "Quale divisione esatta mostra che 4 è un divisore di 20?",
             "options": [
-              "20 : 4 = 5",
-              "4 : 20 = 5",
-              "20 : 5 = 4",
-              "20 : 4 = 4"
+              "20 ÷ 4 = 5",
+              "4 ÷ 20 = 5",
+              "20 ÷ 5 = 4",
+              "20 ÷ 4 = 4"
             ],
             "answer": 0,
             "feedback": "20 diviso 4 dà 5 senza resto, quindi 4 è un divisore di 20.",
@@ -288,7 +288,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
         "answer": 1,
         "feedback": "Entrambi i fattori dividono il prodotto senza resto.",
         "feedbackByOption": [
-          "Anche 7 divide 28: 28 : 7 = 4.",
+          "Anche 7 divide 28: 28 ÷ 7 = 4.",
           "Entrambi i fattori dividono il prodotto senza resto.",
           "I fattori sono divisori di 28; è 28 a essere multiplo di ciascuno."
         ]
@@ -318,7 +318,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
             },
             {
               "title": "Zero e la divisione",
-              "html": "In questa lezione chiamiamo divisori soltanto i numeri naturali positivi: <strong>non dividiamo per zero</strong>.<br><br>Ogni naturale positivo divide zero, perché 0 : d = 0. Quindi zero, diversamente dai naturali positivi, ha infiniti divisori positivi."
+              "html": "In questa lezione chiamiamo divisori soltanto i numeri naturali positivi: <strong>non dividiamo per zero</strong>.<br><br>Ogni naturale positivo divide zero, perché 0 ÷ d = 0. Quindi zero, diversamente dai naturali positivi, ha infiniti divisori positivi."
             }
           ],
           "stepMode": "replace"
@@ -329,14 +329,14 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
         "options": [
           "Zero non è multiplo di 7.",
           "Zero è multiplo di 7 perché 0 = 7 × 0.",
-          "7 : 0 = 0."
+          "7 ÷ 0 = 0."
         ],
         "answer": 1,
         "feedback": "Il fattore zero rende il prodotto uguale a zero.",
         "feedbackByOption": [
           "Un multiplo si ottiene anche moltiplicando per zero.",
           "Il fattore zero rende il prodotto uguale a zero.",
-          "La divisione per zero non è definita. Non confonderla con 0 : 7 = 0."
+          "La divisione per zero non è definita. Non confonderla con 0 ÷ 7 = 0."
         ]
       }
     },
@@ -350,7 +350,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
           "steps": [
             {
               "title": "",
-              "html": "<strong>Divisibilità:</strong> n è divisibile per d, con d positivo, quando n : d ha resto zero.<br><br><strong>Divisore e multiplo:</strong> se n = d × q con q naturale, d è divisore di n e n è multiplo di d.<br><br><strong>Come cercarli:</strong> costruiamo i multipli moltiplicando per 0, 1, 2, … ; troviamo i divisori di un numero positivo cercando coppie di fattori.<br><br><strong>Da ricordare:</strong> ogni numero positivo ha un numero finito di divisori e infiniti multipli. Zero è multiplo di ogni naturale; non si divide per zero."
+              "html": "<strong>Divisibilità:</strong> n è divisibile per d, con d positivo, quando n ÷ d ha resto zero.<br><br><strong>Divisore e multiplo:</strong> se n = d × q con q naturale, d è divisore di n e n è multiplo di d.<br><br><strong>Come cercarli:</strong> costruiamo i multipli moltiplicando per 0, 1, 2, … ; troviamo i divisori di un numero positivo cercando coppie di fattori.<br><br><strong>Da ricordare:</strong> ogni numero positivo ha un numero finito di divisori e infiniti multipli. Zero è multiplo di ogni naturale; non si divide per zero."
             }
           ]
         }
@@ -373,6 +373,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
     }
   ]
 };
+
 
 
 

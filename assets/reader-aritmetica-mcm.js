@@ -175,8 +175,8 @@ window.READER_LESSONS["aritmetica-mcm"] = {
             "answer": 3,
             "feedback": "48 è comune, ma non è minimo.",
             "feedbackByOption": [
-              "48 : 6 = 8 senza resto.",
-              "48 : 8 = 6 senza resto.",
+              "48 ÷ 6 = 8 senza resto.",
+              "48 ÷ 8 = 6 senza resto.",
               "Un m.c.m. può essere composto, come 24.",
               "48 è comune, ma non è minimo."
             ]
@@ -197,7 +197,7 @@ window.READER_LESSONS["aritmetica-mcm"] = {
             },
             {
               "title": "Il risultato e il controllo",
-              "html": "<strong>m.c.m.(12, 18, 30) = 2<sup>2</sup> × 3<sup>2</sup> × 5 = 180</strong>.<br><br>Controlliamo: <strong>180 : 12 = 15; 180 : 18 = 10; 180 : 30 = 6</strong>. Una copia in meno di 2, di 3 o di 5 farebbe fallire almeno una richiesta."
+              "html": "<strong>m.c.m.(12, 18, 30) = 2<sup>2</sup> × 3<sup>2</sup> × 5 = 180</strong>.<br><br>Controlliamo: <strong>180 ÷ 12 = 15; 180 ÷ 18 = 10; 180 ÷ 30 = 6</strong>. Una copia in meno di 2, di 3 o di 5 farebbe fallire almeno una richiesta."
             }
           ]
         },
@@ -330,7 +330,7 @@ window.READER_LESSONS["aritmetica-mcm"] = {
             "question": "Sai che M.C.D.(12, 18) = 6. Come puoi calcolare il loro m.c.m.?",
             "options": [
               "6 × 12 × 18 = 1 296",
-              "12 : 6 = 2",
+              "12 ÷ 6 = 2",
               "(12 × 18) : 6 = 36",
               "12 + 18 − 6 = 24"
             ],
@@ -443,3 +443,4 @@ window.READER_LESSONS["aritmetica-mcm"] = {
     }
   ]
 };
+

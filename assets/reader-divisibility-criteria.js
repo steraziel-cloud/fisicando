@@ -30,7 +30,7 @@ window.READER_LESSONS["aritmetica-criteri-divisibilita"] = {
             },
             {
               "title": "Un indizio nella scrittura",
-              "html": "Consideriamo <strong>235</strong>. Sappiamo che 235 : 5 è esatta: i multipli di 5 terminano tutti con 0 oppure con 5. Ci è bastato osservare l’ultima cifra, senza calcolare il quoziente."
+              "html": "Consideriamo <strong>235</strong>. Sappiamo che 235 ÷ 5 è esatta: i multipli di 5 terminano tutti con 0 oppure con 5. Ci è bastato osservare l’ultima cifra, senza calcolare il quoziente."
             }
           ]
         },
@@ -81,7 +81,7 @@ window.READER_LESSONS["aritmetica-criteri-divisibilita"] = {
             ]
           },
           {
-            "question": "Sai che 235 è divisibile per 5. Quale informazione possiedi già, prima di calcolare 235 : 5?",
+            "question": "Sai che 235 è divisibile per 5. Quale informazione possiedi già, prima di calcolare 235 ÷ 5?",
             "options": [
               "Il resto è zero.",
               "Il quoziente è 5.",
@@ -92,7 +92,7 @@ window.READER_LESSONS["aritmetica-criteri-divisibilita"] = {
             "feedback": "Essere divisibile per 5 significa proprio che la divisione per 5 ha resto zero.",
             "feedbackByOption": [
               "Essere divisibile per 5 significa proprio che la divisione per 5 ha resto zero.",
-              "5 è il divisore, non il quoziente: 235 : 5 = 47.",
+              "5 è il divisore, non il quoziente: 235 ÷ 5 = 47.",
               "Il resto è zero; inoltre un resto della divisione per 5 deve essere minore di 5.",
               "Il criterio riguarda il divisore 5, non tutti i numeri che terminano con 5."
             ]
@@ -375,7 +375,7 @@ window.READER_LESSONS["aritmetica-criteri-divisibilita"] = {
               "Non è divisibile per 3, perché la somma non è 3.",
               "È divisibile per 3, perché 15 è multiplo di 3.",
               "È divisibile per 3 soltanto perché termina con 8.",
-              "Il quoziente 4 218 : 3 è 15."
+              "Il quoziente 4 218 ÷ 3 è 15."
             ],
             "answer": 1,
             "feedback": "15 = 3 × 5: il criterio è soddisfatto.",
@@ -406,8 +406,8 @@ window.READER_LESSONS["aritmetica-criteri-divisibilita"] = {
           {
             "question": "Per 9 876 sommi le cifre e ottieni 30, poi 3 + 0 = 3. Che cosa significa?",
             "options": [
-              "La divisione 9 876 : 3 ha resto zero.",
-              "Il quoziente 9 876 : 3 è 3.",
+              "La divisione 9 876 ÷ 3 ha resto zero.",
+              "Il quoziente 9 876 ÷ 3 è 3.",
               "9 876 non è divisibile per 3 perché contiene una cifra 8.",
               "Il criterio non permette di ripetere la somma."
             ],
@@ -513,7 +513,7 @@ window.READER_LESSONS["aritmetica-criteri-divisibilita"] = {
             "answer": 3,
             "feedback": "Il divisore è positivo e il quoziente è zero: ogni divisione è esatta.",
             "feedbackByOption": [
-              "Il quoziente può essere zero: 0 : d = 0 ha resto zero per d positivo.",
+              "Il quoziente può essere zero: 0 ÷ d = 0 ha resto zero per d positivo.",
               "Zero ha somma delle cifre 0 e termina con 0: soddisfa anche i criteri per 3 e per 5.",
               "Stiamo dividendo zero per numeri positivi, non dividendo per zero.",
               "Il divisore è positivo e il quoziente è zero: ogni divisione è esatta."
@@ -524,3 +524,4 @@ window.READER_LESSONS["aritmetica-criteri-divisibilita"] = {
     }
   ]
 };
+

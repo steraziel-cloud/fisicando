@@ -13,7 +13,7 @@ window.GatitoCoins=(()=>{
   const copies={
    arrangement:personal?`Hai formato ${g} ${g===1?'mazzetto':'mazzetti'} da ${c} ${c===1?'moneta':'monete'} ciascuno, usando tutte le 12 monete.`:'Possiamo formare 3 mazzetti da 4 monete ciascuno, usando tutte le 12 monete.',
    product:`12 = ${c} × ${g}`,
-   exact:`12 : ${c} = ${g}, senza resto.`,
+   exact:`12 ÷ ${c} = ${g}, senza resto.`,
    divisor:`${c} è un divisore di 12`,
    divisible:`12 è divisibile per ${c}`,
    multiple:`12 è un multiplo di ${c}`,
@@ -109,6 +109,7 @@ window.GatitoCoins=(()=>{
  }
  return {mount,hydrate,questionFor,showObservation};
 })();
+
 
 
 

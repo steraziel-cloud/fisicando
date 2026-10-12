@@ -97,7 +97,7 @@ window.READER_LESSONS["aritmetica-scomposizione"] = {
           "steps": [
             {
               "title": "Cominciamo da 90",
-              "html": "90 è divisibile per 2: <strong>90 : 2 = 45</strong>. Abbiamo estratto un fattore 2.<br><br>45 non è divisibile per 2, ma lo è per 3: <strong>45 : 3 = 15</strong>. Poi <strong>15 : 3 = 5</strong> e infine <strong>5 : 5 = 1</strong>."
+              "html": "90 è divisibile per 2: <strong>90 ÷ 2 = 45</strong>. Abbiamo estratto un fattore 2.<br><br>45 non è divisibile per 2, ma lo è per 3: <strong>45 ÷ 3 = 15</strong>. Poi <strong>15 ÷ 3 = 5</strong> e infine <strong>5 ÷ 5 = 1</strong>."
             },
             {
               "title": "Leggere i divisori usati",
@@ -119,7 +119,7 @@ window.READER_LESSONS["aritmetica-scomposizione"] = {
           "steps": [
             {
               "title": "",
-              "html": "Per <strong>72</strong> le divisioni sono:<br><strong>72 : 2 = 36<br>36 : 2 = 18<br>18 : 2 = 9<br>9 : 3 = 3<br>3 : 3 = 1</strong>.<br><br>Quindi <strong>72 = 2 × 2 × 2 × 3 × 3</strong>. Il primo 2 compare tre volte: dopo averlo usato una volta non dobbiamo scartarlo."
+              "html": "Per <strong>72</strong> le divisioni sono:<br><strong>72 ÷ 2 = 36<br>36 ÷ 2 = 18<br>18 ÷ 2 = 9<br>9 ÷ 3 = 3<br>3 ÷ 3 = 1</strong>.<br><br>Quindi <strong>72 = 2 × 2 × 2 × 3 × 3</strong>. Il primo 2 compare tre volte: dopo averlo usato una volta non dobbiamo scartarlo."
             }
           ]
         }
@@ -127,12 +127,12 @@ window.READER_LESSONS["aritmetica-scomposizione"] = {
       "quiz": {
         "questions": [
           {
-            "question": "Nella scomposizione di 72 hai eseguito 72 : 2 = 36. Quale divisione è adatta come passo successivo?",
+            "question": "Nella scomposizione di 72 hai eseguito 72 ÷ 2 = 36. Quale divisione è adatta come passo successivo?",
             "options": [
-              "36 : 5 = 7 con resto 1",
-              "36 : 7 = 5 con resto 1",
-              "36 : 1 = 36",
-              "36 : 2 = 18"
+              "36 ÷ 5 = 7 con resto 1",
+              "36 ÷ 7 = 5 con resto 1",
+              "36 ÷ 1 = 36",
+              "36 ÷ 2 = 18"
             ],
             "answer": 3,
             "feedback": "Possiamo usare ancora 2: il numero rimasto è divisibile per 2.",
@@ -173,7 +173,7 @@ window.READER_LESSONS["aritmetica-scomposizione"] = {
             "feedbackByOption": [
               "Scegliere i primi in ordine crescente è comodo, ma non serve il divisore più grande.",
               "Il divisore deve essere un fattore esatto del numero rimasto.",
-              "Il quoziente può essere dispari: 90 : 2 = 45.",
+              "Il quoziente può essere dispari: 90 ÷ 2 = 45.",
               "Un fattore primo può ripetersi, come i tre 2 di 72."
             ]
           }
@@ -426,3 +426,4 @@ window.READER_LESSONS["aritmetica-scomposizione"] = {
     }
   ]
 };
+
