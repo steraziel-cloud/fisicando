@@ -49,3 +49,6 @@ body[data-reader-lesson="aritmetica-divisibilita"] .rm-coin-card{grid-template-r
 .cg-new-zone:disabled{opacity:1;cursor:default}
 @media(max-width:600px){.cg-answer{flex-wrap:wrap;gap:12px}.cg-answer-right{flex-wrap:wrap;justify-content:flex-end;gap:10px}.cg-answer>[data-action=open]{margin-right:auto}.cg-answer-right .cg-field{max-width:calc((100vw - 90px)/2)}}
 @media(max-width:480px){.cg-answer{display:flex}.cg-answer-right{margin-left:0;width:100%;justify-content:space-between}.cg-answer-right>.cg-button{margin-left:auto}.cg-preview-coin{width:6.5%;max-width:46px;height:auto}.cg-piles:has(.cg-new-zone:only-child){display:flex}}
+
+.cg-piles{grid-template-columns:repeat(auto-fit,minmax(var(--cg-pile-min,125px),1fr))}
+@media(max-width:480px){.cg-piles{grid-template-columns:1fr}}
