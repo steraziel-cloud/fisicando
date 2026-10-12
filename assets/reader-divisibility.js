@@ -52,7 +52,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
           "steps": [
             {
               "title": "",
-              "html": "Bjorne ha <strong>12 monete da 1 €</strong> e vuole <strong>dividerle in mazzetti uguali</strong>, usando tutte le monete.<br><br><strong>Come può fare?</strong>"
+              "html": "Bjorne ha <strong>12 monete da 1 €</strong> e vuole <strong>dividerle in mazzetti uguali</strong>, usando tutte le monete."
             }
           ],
           "board": "coin-experiment"
@@ -336,3 +336,4 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
     }
   ]
 };
+

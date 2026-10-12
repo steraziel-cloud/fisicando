@@ -1,0 +1,9 @@
+/* Shared hover language: actions, explanations and direct manipulation. */
+@media (hover:hover) and (pointer:fine){
+ :where(a[href],button,summary,select,input[type=button],input[type=submit],input[type=reset],input[type=checkbox],input[type=radio],[role=button],[data-action],[data-interactive],[data-book-next],[data-book-red]){cursor:pointer}
+ :where(label:has(input[type=checkbox]),label:has(input[type=radio])){cursor:pointer}
+ .rm-keyword,[data-term],[data-glossary],.glossary-term{cursor:help!important}
+ :where([draggable=true],.cg-coin[data-coin]){cursor:grab}
+ :where([draggable=true],.cg-coin[data-coin]):active{cursor:grabbing}
+ :where(button,input,select)[disabled],button[aria-disabled=true]{cursor:not-allowed}
+}

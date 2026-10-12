@@ -14,3 +14,20 @@ body[data-reader-lesson="aritmetica-divisibilita"] .rm-coin-card{display:grid;gr
 @media(max-width:900px){body[data-reader-lesson="aritmetica-divisibilita"] .rm-coin-card{display:flex;flex-direction:column}.cg-board{width:100%}}
 @media(max-width:480px){.cg-tabletop{grid-template-columns:110px minmax(0,1fr);padding:8px;gap:7px}.cg-bank-coins{grid-template-columns:repeat(2,30px)}.cg-answer{grid-template-columns:1fr 1fr}.cg-answer>.cg-button{grid-column:1/-1}.cg-piles{grid-template-columns:1fr}.cg-board{padding:12px}}
 @media(prefers-reduced-motion:reduce){.cg-tabletop{animation:none}.cg-coin{transition:none}}
+
+/* Polished scene; each visible coin remains a separate countable object. */
+body[data-reader-lesson="aritmetica-divisibilita"] .rm-coin-card{grid-template-columns:minmax(0,.72fr) minmax(480px,1.28fr);column-gap:32px;row-gap:16px}
+.rm-coin-card>.rm-card-title{grid-column:1;grid-row:1}.rm-coin-card>.rm-card-text{grid-column:1;grid-row:2}.cg-board{grid-row:1/3;border:0;background:none;box-shadow:none;padding:0}
+.cg-intro{height:auto;aspect-ratio:3/2;background:#20343a;border-radius:16px;box-shadow:0 8px 28px #0002}
+.cg-bjorne{position:absolute;width:100%;height:100%;inset:0;transform:none;object-fit:cover}
+.cg-preview{inset:0;transform:none;display:block;pointer-events:none}.cg-preview-coin{position:absolute;width:34px;height:34px;font-size:10px}
+.cg-table-hit{position:absolute;inset:66% 0 0;z-index:4;border:0;border-radius:0 0 16px 16px;background:transparent;cursor:pointer;transition:background .2s}
+.cg-table-hit:hover{background:#fff1}.cg-table-hit:focus-visible{outline:3px solid #38d1d4;outline-offset:-4px;background:#fff1}
+.cg-controls{margin:0 0 10px}.cg-controls:has(>button:not([hidden])){display:flex}.cg-controls:not(:has(>button:not([hidden]))){display:none}
+.cg-answer{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-top:16px;flex-wrap:wrap}.cg-field{flex:0 0 auto;gap:5px;font-size:.75rem}.cg-field input{width:72px;text-align:center;background:var(--rm-panel,#fff);padding:7px 5px;font-size:1rem}.cg-answer>.cg-button{padding:10px 12px;min-height:36px}
+.cg-tabletop{height:310px;grid-template-columns:136px minmax(0,1fr);background:linear-gradient(#54362455,#54362455),url('images/reader/bjorne-tavolo-v2.png') center bottom/100% 350%;border:3px solid #997448;padding:12px}
+.cg-bank{overflow:hidden}.cg-bank-coins{position:relative;height:225px;display:block}.cg-bank .cg-coin{position:absolute;transform:translate(-50%,-50%);width:30px;height:30px}
+.cg-piles{grid-template-columns:repeat(auto-fit,minmax(155px,1fr));align-items:start}.cg-pile{background:#42352522;border-style:dashed;padding:8px}.cg-pile-coins{display:grid;grid-template-columns:repeat(var(--cg-columns,3),30px);justify-content:center;align-content:center;gap:7px;min-height:44px;padding:10px 0}.cg-pile-coins>.cg-coin{width:30px;height:30px}
+.cg-observe-piles{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}.cg-observation .cg-heading{display:block}.cg-message .rm-quiz-reaction{display:flex;gap:12px;align-items:center;padding:8px 0;background:none;border:0}.cg-message .rm-celebration-cat{width:68px;height:68px;object-fit:contain;flex:none}.cg-message .rm-celebration-copy{display:flex;flex-direction:column;gap:3px}.cg-message[data-kind=error]{color:inherit}.cg-message[data-kind=success]{color:inherit}
+@media(max-width:1000px){body[data-reader-lesson="aritmetica-divisibilita"] .rm-coin-card{display:flex;flex-direction:column}.cg-board{width:100%;max-width:720px;align-self:center}.cg-intro{max-height:420px}.cg-piles{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}}
+@media(max-width:480px){.cg-answer{display:grid;grid-template-columns:1fr 1fr;gap:12px}.cg-answer>.cg-button{grid-column:auto}.cg-answer>[data-action=open]{grid-column:1/-1}.cg-tabletop{grid-template-columns:92px minmax(0,1fr);padding:8px;gap:8px}.cg-piles{grid-template-columns:1fr}.cg-preview-coin{width:25px;height:25px;font-size:8px;border-width:2px}.cg-bank .cg-coin{width:25px;height:25px}.cg-bank-coins{height:228px}.cg-field input{width:68px}.cg-observe-piles{grid-template-columns:repeat(auto-fit,minmax(125px,1fr))}}

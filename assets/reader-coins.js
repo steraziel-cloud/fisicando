@@ -1,6 +1,8 @@
 /* Twelve persistent, countable coins. No randomness and no answer is required to read on. */
 window.GatitoCoins=(()=>{
  const TOTAL=12;
+ const scatter=[[10,74,-18],[24,88,13],[36,72,-7],[50,92,22],[65,79,-14],[79,93,8],[14,96,19],[29,65,-20],[44,83,11],[60,66,-12],[77,70,17],[90,82,-9]];
+ function pack(node,count){node.style.setProperty('--cg-columns',String(count<=2?Math.max(1,count):count<=4?2:count<=6?3:4));}
  const defaults={phase:'intro',placements:Array(TOTAL).fill(null),piles:[],nextPile:1,selected:null,manipulated:false,groupsInput:'',coinsInput:'',solution:null,message:'',kind:''};
  const el=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
  const makeButton=(text,action,cls='cg-button')=>{const b=el('button',cls,text);b.type='button';if(action)b.dataset.action=action;return b;};
@@ -30,29 +32,30 @@ window.GatitoCoins=(()=>{
   for(const [k,v] of Object.entries(defaults))if(state[k]===undefined)state[k]=Array.isArray(v)?[...v]:v;
   host.classList.add('rm-coin-card');const board=el('section','cg-board');board.setAttribute('aria-label','L’esperimento di Bjorne con 12 monete');host.append(board);
   const abort=new AbortController(),listen=(node,event,fn)=>node.addEventListener(event,fn,{signal:abort.signal});
-  board.append(el('h4','cg-heading','Bjorne e le 12 monete'));
-  const intro=el('div','cg-intro'),cat=el('img','cg-bjorne');cat.src='assets/images/reader/bjorne-monete-v1.png';cat.alt='Bjorne osserva le sue monete sul tavolo';cat.width=1122;cat.height=1402;
+  
+  const intro=el('div','cg-intro'),cat=el('img','cg-bjorne');cat.src='assets/images/reader/bjorne-tavolo-v2.png';cat.alt='Bjorne osserva le sue monete sul tavolo';cat.width=1536;cat.height=1024;
   const desk=el('div','cg-front-desk'),preview=el('div','cg-preview');preview.setAttribute('aria-label','Dodici monete da un euro');
-  for(let i=0;i<TOTAL;i++){const coin=el('span','cg-coin cg-preview-coin','1 €');coin.setAttribute('aria-hidden','true');preview.append(coin);}
-  intro.append(cat,desk,preview);board.append(intro);
-  const controls=el('div','cg-controls'),open=makeButton('Sul tavolo →','open'),add=makeButton('+ Nuovo mazzetto','add'),reset=makeButton('Ricomincia','reset','cg-button cg-secondary');controls.append(open,add,reset);board.append(controls);
+  for(let i=0;i<TOTAL;i++){const coin=el('span','cg-coin cg-preview-coin','1 €');coin.setAttribute('aria-hidden','true');const [x,y,r]=scatter[i];coin.style.cssText=`left:${x}%;top:${y}%;transform:translate(-50%,-50%) rotate(${r}deg)`;preview.append(coin);}
+  const tableHit=makeButton('','open','cg-table-hit');tableHit.setAttribute('aria-label','Vai sul tavolo e dividi le monete');intro.append(cat,preview,tableHit);board.append(intro);
+  const controls=el('div','cg-controls'),open=makeButton('Vai sul tavolo','open'),add=makeButton('+ Nuovo mazzetto','add'),reset=makeButton('Ricomincia','reset','cg-button cg-secondary');controls.append(add,reset);board.append(controls);
   const tabletop=el('div','cg-tabletop'),bank=el('div','cg-bank');bank.dataset.zone='bank';const bankTitle=el('h5','','Sul tavolo'),bankCoins=el('div','cg-bank-coins');bank.append(bankTitle,bankCoins);const pileArea=el('div','cg-piles');tabletop.append(bank,pileArea);board.append(tabletop);
   const selection=el('p','cg-selection');selection.setAttribute('aria-live','polite');board.append(selection);
   const form=el('form','cg-answer');form.noValidate=true;
   const field=(name,key)=>{const label=el('label','cg-field'),input=el('input');input.type='number';input.min='1';input.max='12';input.step='1';input.inputMode='numeric';input.value=state[key];input.autocomplete='off';label.append(el('span','',name),input);listen(input,'input',()=>{state[key]=input.value;state.message='';state.kind='';showMessage();});return {label,input};};
   const groupField=field('Numero di mazzetti','groupsInput'),coinField=field('Monete in ogni mazzetto','coinsInput');
-  const verify=el('button','cg-button','Controlla');verify.type='submit';form.append(groupField.label,coinField.label,verify);board.append(form);
+  const verify=el('button','cg-button','Controlla');verify.type='submit';form.append(open,groupField.label,coinField.label,verify);board.append(form);
   const message=el('p','cg-message');message.setAttribute('role','status');message.setAttribute('aria-live','polite');board.append(message);
   let drag=null,ghost=null,suppressClickUntil=0;
-  function showMessage(){message.textContent=state.message;message.dataset.kind=state.kind;board.classList.toggle('cg-success',state.kind==='success');}
+  let reactionKey='';
+  function showMessage(){const key=state.kind+'|'+state.message;if(key!==reactionKey){reactionKey=key;if(state.message&&window.GatitoQuizReactions)window.GatitoQuizReactions.show(message,state.message,{correct:state.kind==='success',title:state.kind==='success'?'Monete sistemate!':'Riproviamo'});else message.textContent=state.message;}message.dataset.kind=state.kind;board.classList.toggle('cg-success',state.kind==='success');}
   function clearMessage(){state.message='';state.kind='';showMessage();}
   function showPhase(){intro.hidden=state.phase!=='intro';tabletop.hidden=state.phase!=='table';open.hidden=state.phase==='table';add.hidden=reset.hidden=state.phase!=='table';board.dataset.phase=state.phase;}
   function coinNode(i){const b=makeButton('1 €',null,'cg-coin');b.dataset.coin=String(i);b.classList.toggle('cg-selected',state.selected===i);b.setAttribute('aria-pressed',String(state.selected===i));b.setAttribute('aria-label',`Moneta ${i+1} da 1 euro, ${state.placements[i]===null?'sul tavolo':'nel mazzetto '+(state.piles.indexOf(state.placements[i])+1)}`);return b;}
   function draw(old=new Map()){
-   bankCoins.replaceChildren();state.placements.forEach((p,i)=>{if(p===null)bankCoins.append(coinNode(i));});bankTitle.textContent=`Sul tavolo · ${state.placements.filter(p=>p===null).length}`;
+   bankCoins.replaceChildren();state.placements.forEach((p,i)=>{if(p===null){const coin=coinNode(i),[x,y,r]=scatter[i];coin.style.cssText=`left:${Math.min(84,Math.max(15,x))}%;top:${12+(y-65)*2}%;rotate:${r}deg`;bankCoins.append(coin);}});bankTitle.textContent=`Sul tavolo · ${state.placements.filter(p=>p===null).length}`;
    pileArea.replaceChildren();
    if(!state.piles.length)pileArea.append(el('p','cg-empty','Mazzetti'));
-   state.piles.forEach((id,index)=>{const pile=el('div','cg-pile');pile.dataset.zone=String(id);pile.setAttribute('role','group');pile.setAttribute('aria-label',`Mazzetto ${index+1}`);const head=el('div','cg-pile-head'),remove=makeButton('×','remove','cg-remove');remove.dataset.pile=String(id);remove.setAttribute('aria-label',`Sciogli il mazzetto ${index+1}`);head.append(el('span','',`Mazzetto ${index+1}`),remove);const coins=el('div','cg-pile-coins');state.placements.forEach((p,i)=>{if(p===id)coins.append(coinNode(i));});const place=makeButton('Metti qui','place','cg-place');place.dataset.pile=String(id);place.disabled=state.selected===null;pile.append(head,coins,place);pileArea.append(pile);});
+   state.piles.forEach((id,index)=>{const pile=el('div','cg-pile');pile.dataset.zone=String(id);pile.setAttribute('role','group');pile.setAttribute('aria-label',`Mazzetto ${index+1}`);const head=el('div','cg-pile-head'),remove=makeButton('×','remove','cg-remove');remove.dataset.pile=String(id);remove.setAttribute('aria-label',`Sciogli il mazzetto ${index+1}`);head.append(el('span','',`Mazzetto ${index+1}`),remove);const coins=el('div','cg-pile-coins');state.placements.forEach((p,i)=>{if(p===id)coins.append(coinNode(i));});pack(coins,coins.children.length);const place=makeButton('Metti qui','place','cg-place');place.dataset.pile=String(id);place.disabled=state.selected===null;pile.append(head,coins,place);pileArea.append(pile);});
    selection.textContent=state.selected===null?'':`Moneta ${state.selected+1} selezionata`;
    showPhase();showMessage();
    board.querySelectorAll('.cg-coin[data-coin]').forEach(n=>{const before=old.get(n.dataset.coin);if(!before||matchMedia('(prefers-reduced-motion: reduce)').matches)return;const now=n.getBoundingClientRect();if(Math.abs(before.x-now.x)+Math.abs(before.y-now.y)>2)n.animate([{transform:`translate(${before.x-now.x}px,${before.y-now.y}px)`},{transform:'translate(0,0)'}],{duration:260,easing:'ease-out'});});
@@ -96,9 +99,10 @@ window.GatitoCoins=(()=>{
   const answer=remainder?{groups:2,coins:5}:saved(state);
   board.append(el('h4','cg-heading',remainder?'Questa volta le monete avanzano':state.solution?'La tua suddivisione':'Una suddivisione possibile'));
   const piles=el('div','cg-observe-piles');
-  for(let g=0;g<answer.groups;g++){const pile=el('div','cg-pile');pile.append(el('span','cg-observe-label',`Mazzetto ${g+1}`));const coins=el('div','cg-pile-coins');for(let i=0;i<answer.coins;i++){const c=el('span','cg-coin','1 €');c.setAttribute('aria-hidden','true');coins.append(c);}pile.append(coins);pile.setAttribute('aria-label',`Mazzetto ${g+1} con ${answer.coins} monete`);piles.append(pile);}board.append(piles);
+  for(let g=0;g<answer.groups;g++){const pile=el('div','cg-pile');pile.append(el('span','cg-observe-label',`Mazzetto ${g+1}`));const coins=el('div','cg-pile-coins');for(let i=0;i<answer.coins;i++){const c=el('span','cg-coin','1 €');c.setAttribute('aria-hidden','true');coins.append(c);}pack(coins,answer.coins);pile.append(coins);pile.setAttribute('aria-label',`Mazzetto ${g+1} con ${answer.coins} monete`);piles.append(pile);}board.append(piles);
   if(remainder){const outside=el('div','cg-observe-rest');outside.append(el('span','','Fuori dai mazzetti: '));for(let i=0;i<2;i++)outside.append(el('span','cg-coin','1 €'));board.append(outside);}
   board.append(el('p','cg-observe-equation',`12 = ${answer.coins} × ${answer.groups}${remainder?' + 2':''}`));
  }
  return {mount,hydrate,questionFor,showObservation};
 })();
+
