@@ -26,3 +26,4 @@
 .rm-pairs-practice .dp-work{margin-top:18px;padding:18px 14px}
 .rm-pairs-practice .dp-controls{margin-top:18px}
 @media(max-width:850px){.rm-pairs-card.rm-pairs-practice{display:grid;grid-template-columns:1fr;grid-template-rows:auto;gap:16px}.rm-pairs-practice>.rm-card-title{grid-column:1;grid-row:1}.rm-pairs-practice>.rm-card-text{grid-column:1;grid-row:2}.rm-pairs-practice>.dp-board{grid-column:1;grid-row:3}.rm-pairs-practice>.dp-practice-multiples{grid-column:1;grid-row:4;max-width:540px;justify-self:center}}
+

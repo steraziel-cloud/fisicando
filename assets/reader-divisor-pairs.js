@@ -40,8 +40,11 @@ window.GatitoDivisorPairs=(()=>{
    host.classList.add('rm-pairs-practice');note.remove();
    state.candidate=state.candidate||2;state.pairs=state.pairs||[[1,32]];state.phase=state.phase||'decide';
    const feedback=el('div','dp-feedback');feedback.setAttribute('aria-live','polite');board.append(feedback);
-   const help=el('div','dp-practice-multiples');host.append(help);
-   aidDispose=window.GatitoMultiples.mount(help,state.aid||(state.aid={number:2}));
+   const help=el('div','dp-practice-multiples');help.hidden=true;
+   let aidMounted=false;
+   const helpButton=button('Apri la lavagna dei multipli',()=>setHelpOpen(!state.helpOpen));helpButton.classList.add('dp-aid-toggle');helpButton.setAttribute('aria-expanded','false');host.append(helpButton,help);
+   function setHelpOpen(open){state.helpOpen=open;help.hidden=!open;host.classList.toggle('dp-aid-open',open);helpButton.textContent=open?'Chiudi la lavagna dei multipli':'Apri la lavagna dei multipli';helpButton.setAttribute('aria-expanded',String(open));if(open&&!aidMounted){aidMounted=true;aidDispose=window.GatitoMultiples.mount(help,state.aid||(state.aid={number:state.candidate<=20?state.candidate:2}));}}
+   setHelpOpen(state.helpOpen===true);
    function respond(correct,message){window.GatitoQuizReactions.show(feedback,message,{correct});}
    function advance(){state.candidate++;state.phase=state.candidate===6?'stop':'decide';draw();}
    function draw(){showPairs(state.pairs);controls.replaceChildren();work.replaceChildren();
@@ -61,6 +64,7 @@ window.GatitoDivisorPairs=(()=>{
  function hydrateIntro(host){host.querySelectorAll('[data-dp-reaction]').forEach(img=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const still=img.getAttribute('src');img.src=still.replace('-still.webp','.webp');setTimeout(()=>{img.src=still;},2800);});}
  return{mount,setVisible,hydrateIntro};
 })();
+
 
 
 
