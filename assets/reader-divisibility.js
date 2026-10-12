@@ -52,7 +52,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
           "steps": [
             {
               "title": "",
-              "html": "Abbiamo <strong>18 gettoni</strong> e vogliamo formare gruppi di <strong>6 gettoni ciascuno</strong>. Possiamo usare tutti i gettoni senza lasciarne fuori?<br><br>Nella lavagna puoi cambiare la grandezza dei gruppi: osserva quando avanza qualcosa. Lavoriamo con i <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-naturali\">numeri naturali</button>, includendo lo zero."
+              "html": "Abbiamo <strong>18 gettoni</strong> e vogliamo formare gruppi di <strong>6 gettoni ciascuno</strong>. Possiamo usare tutti i gettoni senza lasciarne fuori?<br><br>Lavoriamo con i <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-naturali\">numeri naturali</button>, includendo lo zero."
             }
           ],
           "board": "divisibility-groups"
