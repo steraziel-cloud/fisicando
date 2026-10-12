@@ -17,7 +17,7 @@ window.GatitoCoins=(()=>{
    divisor:`${c} è un divisore di 12`,
    divisible:`12 è divisibile per ${c}`,
    multiple:`12 è un multiplo di ${c}`,
-   same:`Moltiplicando ${c} per ${g} otteniamo 12: è la stessa relazione letta attraverso la moltiplicazione.`
+   same:`Moltiplicando ${c} per ${g} otteniamo 12. È la stessa relazione letta attraverso la moltiplicazione.`
   };
   host.querySelectorAll('[data-coin-copy]').forEach(n=>{if(copies[n.dataset.coinCopy])n.textContent=copies[n.dataset.coinCopy];});
  }
@@ -109,5 +109,6 @@ window.GatitoCoins=(()=>{
  }
  return {mount,hydrate,questionFor,showObservation};
 })();
+
 
 

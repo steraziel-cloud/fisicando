@@ -74,20 +74,20 @@ window.READER_CHECKPOINT_BANK = {
         ]
       },
       {
-        "question": "Come si legge 4 ∣ 20?",
+        "question": "Quale divisione esatta mostra che 4 è un divisore di 20?",
         "options": [
-          "4 diviso 20",
-          "20 divide 4",
-          "4 divide 20",
-          "4 è uguale a 20"
+          "20 : 4 = 5",
+          "4 : 20 = 5",
+          "20 : 5 = 4",
+          "20 : 4 = 4"
         ],
-        "answer": 2,
-        "feedback": "La barretta indica che il numero a sinistra divide quello a destra.",
+        "answer": 0,
+        "feedback": "20 diviso 4 dà 5 senza resto, quindi 4 è un divisore di 20.",
         "feedbackByOption": [
-          "Questa risposta non segue la relazione richiesta. La barretta indica che il numero a sinistra divide quello a destra.",
-          "Questa risposta non segue la relazione richiesta. La barretta indica che il numero a sinistra divide quello a destra.",
-          "La barretta indica che il numero a sinistra divide quello a destra.",
-          "Questa risposta non segue la relazione richiesta. La barretta indica che il numero a sinistra divide quello a destra."
+          "20 diviso 4 dà 5 senza resto, quindi 4 è un divisore di 20.",
+          "Per verificare se 4 è un divisore di 20, dobbiamo dividere 20 per 4, mantenendo questo ordine.",
+          "Questa divisione mostra che 5 è un divisore di 20. Per controllare il 4 dobbiamo dividere per 4.",
+          "4 × 4 = 16, mentre 4 × 5 = 20. Il quoziente corretto è 5."
         ]
       },
       {
@@ -1074,4 +1074,5 @@ for(const [id,sections] of Object.entries(window.READER_CHECKPOINT_BANK)){const 
 
 if(window.READER_LESSONS["cinematica-introduzione"])window.READER_LESSONS["cinematica-introduzione"].nextLesson={id:"cinematica-velocita"};
 if(window.READER_LESSONS["cinematica-velocita"])window.READER_LESSONS["cinematica-velocita"].nextLesson={title:"Moto rettilineo uniforme"};
+
 

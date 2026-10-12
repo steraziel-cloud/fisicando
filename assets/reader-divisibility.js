@@ -39,7 +39,7 @@ Object.assign(window.READER_GLOSSARY, {
 window.READER_LESSONS["aritmetica-divisibilita"] = {
   "title": "Multipli, divisori e divisibilità",
   "subtitle": "Matematica · Medie e biennio · Prima bozza in lavorazione",
-  "version": 2,
+  "version": 3,
   "status": "work-in-progress",
   "sections": [
     {
@@ -63,11 +63,11 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
           "steps": [
             {
               "title": "Una suddivisione senza avanzi",
-              "html": "<span data-coin-copy=\"arrangement\">Possiamo formare 3 mazzetti da 4 monete ciascuno, usando tutte le 12 monete.</span><br><br><strong><span data-coin-copy=\"product\">12 = 4 × 3</span></strong>.<br><span data-coin-copy=\"exact\">12 : 4 = 3, senza resto.</span><br><br>Le quantità sono descritte dai <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-naturali\">numeri naturali</button>, includendo lo zero."
+              "html": "<span data-coin-copy=\"arrangement\">Possiamo formare 3 mazzetti da 4 monete ciascuno, usando tutte le 12 monete.</span><br><br><strong><span data-coin-copy=\"product\">12 = 4 × 3</span></strong>.<br><span data-coin-copy=\"exact\">12 : 4 = 3, senza resto.</span><br><br>Abbiamo eseguito una <strong>divisione esatta</strong> e il <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-resto\">resto</button> è <strong>zero</strong>."
             },
             {
               "title": "Mazzetti da 5 monete",
-              "html": "Con 12 monete possiamo formare <strong>2 mazzetti da 5</strong>, ma avanzano <strong>2 monete</strong>:<br><strong>12 = 5 × 2 + 2</strong>.<br><br>Il <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-resto\">resto</button> è 2: la divisione tra naturali non è esatta."
+              "html": "Con 12 monete possiamo formare <strong>2 mazzetti da 5</strong>, ma avanzano <strong>2 monete</strong>:<br><strong>12 = 5 × 2 + 2</strong>.<br><br>Il <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-resto\">resto</button> è 2, quindi <strong>la divisione non è esatta</strong>."
             }
           ],
           "board": "coin-observe",
@@ -133,11 +133,11 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
     },
     {
       "id": "relazione",
-      "title": "Tre modi di leggere la stessa relazione",
+      "title": "Due modi di leggere la stessa relazione",
       "cards": [
         {
           "id": "nomi",
-          "title": "Tre modi di leggere lo stesso fatto",
+          "title": "Due modi di leggere lo stesso fatto",
           "steps": [
             {
               "title": "Divisore e divisibilità",
@@ -145,34 +145,65 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
             },
             {
               "title": "Il numero 12 come multiplo",
-              "html": "<span data-coin-copy=\"same\">Moltiplicando 4 per 3 otteniamo 12: è la stessa relazione letta attraverso la moltiplicazione.</span><br><br>Quindi <strong><span data-coin-copy=\"multiple\">12 è un multiplo di 4</span></strong>. <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-multiplo\">Multiplo</button> e divisore sono due modi di leggere la stessa relazione."
+              "html": "<span data-coin-copy=\"same\">Moltiplicando 4 per 3 otteniamo 12. È la stessa relazione letta attraverso la moltiplicazione.</span><br><br>Quindi <strong><span data-coin-copy=\"multiple\">12 è un multiplo di 4</span></strong>. <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-multiplo\">Multiplo</button> e <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisore\">divisore</button> sono due modi di leggere la stessa relazione."
             }
-          ]
-        },
-        {
-          "id": "notazione",
-          "title": "L’ordine dei numeri conta",
-          "steps": [
-            {
-              "title": "",
-              "html": "<strong>6 divide 18</strong> si può scrivere <strong>6 ∣ 18</strong>. La barretta si legge «divide»: il divisore è a sinistra, il numero divisibile è a destra.<br><br>Non significa 6 : 18 e non si può invertire liberamente: 18 non divide 6."
-            }
-          ]
+          ],
+          "stepMode": "replace"
         }
       ],
       "quiz": {
-        "question": "Quale frase esprime correttamente l’uguaglianza 24 = 8 × 3?",
-        "options": [
-          "24 è un divisore di 8.",
-          "8 è un divisore di 24 e 24 è un multiplo di 8.",
-          "8 non divide 24 perché è più piccolo."
-        ],
-        "answer": 1,
-        "feedback": "24 : 8 = 3 senza resto. Le due frasi descrivono la stessa relazione.",
-        "feedbackByOption": [
-          "Hai scambiato i ruoli: è 8 che divide 24 senza resto.",
-          "24 : 8 = 3 senza resto. Le due frasi descrivono la stessa relazione.",
-          "Un divisore positivo può essere più piccolo del numero che divide: 24 : 8 è esatta."
+        "questions": [
+          {
+            "question": "Quale frase esprime correttamente l’uguaglianza 24 = 8 × 3?",
+            "options": [
+              "24 è un divisore di 8.",
+              "8 è un divisore di 24 e 24 è un multiplo di 8.",
+              "8 non divide 24 perché è più piccolo.",
+              "24 è multiplo di 8, ma 8 non è divisore di 24."
+            ],
+            "answer": 1,
+            "feedback": "24 : 8 = 3 senza resto. Le due frasi descrivono la stessa relazione.",
+            "feedbackByOption": [
+              "Hai scambiato i ruoli: è 8 che divide 24 senza resto.",
+              "24 : 8 = 3 senza resto. Le due frasi descrivono la stessa relazione.",
+              "Un divisore positivo può essere più piccolo del numero che divide: 24 : 8 è esatta.",
+              "Rivedi la relazione tra le grandezze o gli oggetti citati. 24 : 8 = 3 senza resto. Le due frasi descrivono la stessa relazione."
+            ]
+          },
+          {
+            "question": "Quale divisione esatta mostra che 4 è un divisore di 20?",
+            "options": [
+              "20 : 4 = 5",
+              "4 : 20 = 5",
+              "20 : 5 = 4",
+              "20 : 4 = 4"
+            ],
+            "answer": 0,
+            "feedback": "20 diviso 4 dà 5 senza resto, quindi 4 è un divisore di 20.",
+            "feedbackByOption": [
+              "20 diviso 4 dà 5 senza resto, quindi 4 è un divisore di 20.",
+              "Per verificare se 4 è un divisore di 20, dobbiamo dividere 20 per 4, mantenendo questo ordine.",
+              "Questa divisione mostra che 5 è un divisore di 20. Per controllare il 4 dobbiamo dividere per 4.",
+              "4 × 4 = 16, mentre 4 × 5 = 20. Il quoziente corretto è 5."
+            ]
+          },
+          {
+            "question": "Quale frase descrive 7 × 5 = 35?",
+            "options": [
+              "7 è multiplo di 35",
+              "35 è divisore di 5",
+              "5 non divide 35",
+              "35 è multiplo sia di 7 sia di 5"
+            ],
+            "answer": 3,
+            "feedback": "Entrambi i fattori dividono 35 senza resto.",
+            "feedbackByOption": [
+              "Questa risposta non segue la relazione richiesta. Entrambi i fattori dividono 35 senza resto.",
+              "Questa risposta non segue la relazione richiesta. Entrambi i fattori dividono 35 senza resto.",
+              "Questa risposta non segue la relazione richiesta. Entrambi i fattori dividono 35 senza resto.",
+              "Entrambi i fattori dividono 35 senza resto."
+            ]
+          }
         ]
       }
     },
@@ -313,7 +344,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
           "steps": [
             {
               "title": "",
-              "html": "<strong>Divisibilità:</strong> n è divisibile per d, con d positivo, quando n : d ha resto zero.<br><br><strong>Divisore e multiplo:</strong> se n = d × q con q naturale, d è divisore di n e n è multiplo di d. Scriviamo d ∣ n.<br><br><strong>Come cercarli:</strong> costruiamo i multipli moltiplicando per 0, 1, 2, … ; troviamo i divisori di un numero positivo cercando coppie di fattori.<br><br><strong>Da ricordare:</strong> ogni numero positivo ha un numero finito di divisori e infiniti multipli. Zero è multiplo di ogni naturale; non si divide per zero."
+              "html": "<strong>Divisibilità:</strong> n è divisibile per d, con d positivo, quando n : d ha resto zero.<br><br><strong>Divisore e multiplo:</strong> se n = d × q con q naturale, d è divisore di n e n è multiplo di d.<br><br><strong>Come cercarli:</strong> costruiamo i multipli moltiplicando per 0, 1, 2, … ; troviamo i divisori di un numero positivo cercando coppie di fattori.<br><br><strong>Da ricordare:</strong> ogni numero positivo ha un numero finito di divisori e infiniti multipli. Zero è multiplo di ogni naturale; non si divide per zero."
             }
           ]
         }
@@ -336,4 +367,5 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
     }
   ]
 };
+
 
