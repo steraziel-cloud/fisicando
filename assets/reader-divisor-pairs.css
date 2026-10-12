@@ -53,3 +53,6 @@
 .dp-memory-list{padding:0;margin:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px}
 .dp-memory-list li{border-left:3px solid #19a6ad66;padding-left:13px;font-size:.96rem;line-height:1.6}
 @media(max-width:650px){.dp-memory-list{grid-template-columns:1fr;gap:14px}.rm-visual-closing{gap:18px}.rm-visual-closing .rm-train-illustration{max-height:260px}}
+
+/* Layered soft shapes give the closing scene volume. */
+.rm-visual-closing>.rm-reference-scene::before{inset:15% 39% 3% 0;background:linear-gradient(145deg,#2bb8c32e,#58cdb915);transform:rotate(-7deg);border-radius:41% 59% 54% 46% / 57% 37% 63% 43%}.rm-visual-closing>.rm-reference-scene::after{content:"";position:absolute;inset:5% 0 15% 43%;z-index:-1;border-radius:58% 42% 46% 54% / 42% 58% 38% 62%;background:linear-gradient(150deg,#a789dc2b,#45b7d71c);transform:rotate(8deg)}
