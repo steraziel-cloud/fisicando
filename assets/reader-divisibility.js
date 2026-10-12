@@ -260,8 +260,8 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
                 "stepMode": "replace",
                 "steps": [
                         {
-                                "title": "Cerchiamo tutti i divisori di 36",
-                                "html": "Spesso è utile trovare tutti i <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisore\">divisori</button> di un numero. Ma dobbiamo davvero provare ogni numero fino a 36?<br><br>Possiamo cercarli <strong>a coppie</strong>. Se <strong>36 = 2 × 18</strong>, sia 2 sia 18 dividono 36 senza resto.<br><br><strong>1 e il numero stesso sono sempre divisori.</strong> Partiamo da questa coppia e proviamo, in ordine, 2, 3, 4, … ."
+                                "title": "Una scorciatoia per trovare i divisori",
+                                "html": "Prendiamo 60. I suoi <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisore\">divisori</button> sono:<br><strong>1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60.</strong><br><br>Sono parecchi! Per trovarli tutti dovremmo provare ogni numero da 1 a 60?<br><br><strong>Ti sveliamo una scorciatoia: i divisori si trovano in coppia.</strong> Ogni volta che ne trovi uno, puoi trovare subito anche il suo compagno.<br><br>Proviamola insieme con 36. Se <strong>36 = 2 × 18</strong>, abbiamo già trovato due divisori: <strong>2 e 18</strong>.<br><br>La prima coppia la conosciamo già: <strong>1 e il numero stesso</strong>. Partiamo da qui."
                         },
                         {
                                 "title": "Quando possiamo fermarci?",
