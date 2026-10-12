@@ -39,7 +39,7 @@ Object.assign(window.READER_GLOSSARY, {
 window.READER_LESSONS["aritmetica-divisibilita"] = {
   "title": "Multipli, divisori e divisibilità",
   "subtitle": "Matematica · Medie e biennio · Prima bozza in lavorazione",
-  "version": 4,
+  "version": 5,
   "status": "work-in-progress",
   "sections": [
     {
@@ -217,7 +217,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
           "steps": [
             {
               "title": "",
-              "html": "I multipli di un numero si ottengono moltiplicandolo per <strong>0, 1, 2, 3, …</strong>.<br><br>Quando reciti la tabellina del 7, stai già elencando alcuni suoi multipli:<br><strong>0, 7, 14, 21, 28, …</strong><br><br>Ogni volta aggiungiamo 7 al numero precedente."
+              "html": "I multipli di un numero si ottengono moltiplicandolo per <strong>0, 1, 2, 3, …</strong>.<br><br>Quando reciti la tabellina del numero <span data-multiples-number>7</span>, stai già elencando alcuni suoi multipli:<br><strong><span data-multiples-sequence>0, 7, 14, 21, 28, …</span></strong><br><br>Ogni volta aggiungiamo <span data-multiples-number>7</span> al numero precedente."
             },
             {
               "title": "La lista continua",
@@ -367,6 +367,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
     }
   ]
 };
+
 
 
 

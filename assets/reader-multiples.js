@@ -1,6 +1,11 @@
 /* Optional number explorer. The same mount API can later serve the equation copilot. */
 window.GatitoMultiples=(()=>{
  const el=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
+ function hydrate(host,state={}){
+  const n=Number.isInteger(state.number)&&state.number>=1&&state.number<=20?state.number:7;
+  host.querySelectorAll('[data-multiples-number]').forEach(node=>node.textContent=String(n));
+  host.querySelectorAll('[data-multiples-sequence]').forEach(node=>node.textContent=Array.from({length:5},(_,factor)=>n*factor).join(', ')+', …');
+ }
  function mount(host,state={}){
   state.number=Number.isInteger(state.number)&&state.number>=1&&state.number<=20?state.number:7;
   state.page=state.page===1?1:0;
@@ -10,15 +15,15 @@ window.GatitoMultiples=(()=>{
   const listen=(node,type,fn)=>node.addEventListener(type,fn,{signal:abort.signal});
   const controls=el('div','mp-controls'),label=el('label','mp-choice'),select=el('select');select.setAttribute('aria-label','Scegli il numero');label.append(el('span','','Scegli il numero'),select);
   for(let n=1;n<=20;n++){const option=el('option','',String(n));option.value=n;select.append(option);}select.value=state.number;
-  const range=el('span','mp-range');controls.append(label,range);board.append(controls);
+  controls.append(label);board.append(controls);
   const surface=el('div','mp-blackboard'),background=el('img','mp-background');background.src='assets/images/morgana-classroom/chalkboard.png';background.alt='';background.width=1423;background.height=1080;background.setAttribute('aria-hidden','true');
   const chalk=el('div','mp-chalk'),title=el('h4','mp-title'),sequence=el('div','mp-sequence'),equation=el('p','mp-equation');equation.setAttribute('aria-live','polite');chalk.append(title,sequence,equation);surface.append(background,chalk);board.append(surface);
   const footer=el('div','mp-footer'),more=el('button','rm-btn secondary');more.type='button';footer.append(more);board.append(footer);
   function cancel(){generation++;for(const timer of timers)clearTimeout(timer);timers.clear();}
   function choose(factor){state.factor=factor;sequence.querySelectorAll('button').forEach(b=>{const selected=Number(b.dataset.factor)===factor;b.setAttribute('aria-pressed',String(selected));b.classList.toggle('is-selected',selected);});equation.textContent=`${state.number} × ${factor} = ${state.number*factor}`;}
   function draw(animate){
-   cancel();userSelected=false;const gen=generation,n=state.number,start=state.page?11:0,end=state.page?20:10;
-   title.textContent=`I multipli di ${n}`;range.textContent=`×${start} – ×${end}`;more.textContent=state.page?'Torna ai primi multipli':'Mostra altri multipli';
+   cancel();hydrate(host,state);userSelected=false;const gen=generation,n=state.number,start=state.page?11:0,end=state.page?20:10;
+   title.textContent=`I multipli di ${n}`;more.textContent=state.page?'Torna ai primi multipli':'Mostra altri multipli';
    sequence.replaceChildren();equation.setAttribute('aria-live',animate&&!reduce.matches?'off':'polite');
    const current=state.factor>=start&&state.factor<=end?state.factor:start;choose(current);
    for(let factor=start;factor<=end;factor++){
@@ -32,5 +37,6 @@ window.GatitoMultiples=(()=>{
   draw(!state.visited);state.visited=true;
   return()=>{disposed=true;cancel();abort.abort();};
  }
- return{mount};
+ return{mount,hydrate};
 })();
+
