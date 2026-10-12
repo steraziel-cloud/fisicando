@@ -8,19 +8,33 @@ window.GatitoDivisorPairs=(()=>{
   const listen=(node,fn)=>node.addEventListener('click',fn,{signal:abort.signal});
   const button=(text,fn,cls='rm-btn secondary')=>{const b=el('button',cls,text);b.type='button';listen(b,fn);return b;};
   const title=el('h4','dp-heading',`Le coppie di ${n}`),pairs=el('div','dp-pairs'),work=el('div','dp-work'),note=el('p','dp-note'),controls=el('div','dp-controls');note.setAttribute('aria-live','polite');board.append(title,pairs,work,note,controls);
-  function showPairs(values){pairs.replaceChildren();values.forEach(([a,b],i)=>{const row=el('div','dp-pair');row.style.setProperty('--pair-color',['#178e96','#ab6824','#6478bb','#8d5da2','#38895d'][i%5]);row.append(el('strong','dp-factor',String(a)),el('span','dp-link',a===b?'×':'×'),el('strong','dp-factor',String(b)),el('span','dp-result',`= ${n}`));if(a===b)row.classList.add('dp-same');pairs.append(row);});}
+  function showPairs(values){pairs.replaceChildren();values.forEach(([a,b],i)=>{const row=el('div','dp-pair');row.style.setProperty('--pair-color',['#178e96','#ab6824','#6478bb','#8d5da2','#38895d'][i%5]);row.append(el('strong','dp-factor',String(a)),el('span','dp-link','↔'),el('strong','dp-factor',String(b)));if(a===b)row.classList.add('dp-same');pairs.append(row);});}
   if(!practice){
-   state.stage=Number.isInteger(state.stage)?Math.max(0,Math.min(6,state.stage)):0;
-   const stages=[
-    {pairs:[[1,36]],equation:'36 ÷ 1 = 36',text:'1 e 36 sono divisori di 36. La prima coppia c’è sempre: 1 e il numero stesso.'},
-    {pairs:[[1,36],[2,18]],equation:'36 ÷ 2 = 18',text:'La divisione è esatta: troviamo insieme due divisori, 2 e 18.'},
-    {pairs:[[1,36],[2,18],[3,12]],equation:'36 ÷ 3 = 12',text:'Anche 3 divide 36 senza resto. Il suo compagno è 12.'},
-    {pairs:[[1,36],[2,18],[3,12],[4,9]],equation:'36 ÷ 4 = 9',text:'Un’altra coppia: 4 e 9. Il primo fattore aumenta, il secondo diminuisce.'},
-    {pairs:[[1,36],[2,18],[3,12],[4,9]],equation:'36 = 5 × 7 + 1',text:'Proviamo 5: avanza 1. La divisione non è esatta, quindi 5 non è un divisore.'},
-    {pairs:[[1,36],[2,18],[3,12],[4,9],[6,6]],equation:'36 ÷ 6 = 6',text:'I due fattori si incontrano: 6 × 6 = 36. Possiamo fermarci. Con fattori entrambi maggiori di 6, il prodotto supererebbe 36.'},
-    {pairs:[[1,36],[2,18],[3,12],[4,9],[6,6]],equation:'1, 2, 3, 4, 6, 9, 12, 18, 36',text:'Ecco tutti i divisori, in ordine. Il 6 compare due volte nella coppia, ma nella lista lo scriviamo una volta sola.'}
-   ];
-   function draw(){const s=stages[state.stage];showPairs(s.pairs);work.replaceChildren(el('span','dp-kicker',state.stage===6?'Tutti i divisori':'Il tentativo'),el('strong','dp-equation',s.equation));note.textContent=s.text;controls.replaceChildren(button('←',()=>{state.stage--;draw();}),el('span','dp-progress',`${state.stage+1} / ${stages.length}`),button('→',()=>{state.stage++;draw();}));const bs=controls.querySelectorAll('button');bs[0].setAttribute('aria-label','Coppie di divisori: passo precedente');bs[1].setAttribute('aria-label','Coppie di divisori: passo successivo');bs[0].disabled=state.stage===0;bs[1].disabled=state.stage===6;}
+   state.stage=Number.isInteger(state.stage)?Math.max(0,Math.min(18,state.stage)):0;
+   const stages=[];
+   for(let candidate=1;candidate<=6;candidate++)for(let phase=0;phase<3;phase++)stages.push({candidate,phase});
+   stages.push({summary:true});
+   function draw(){
+    const stage=stages[state.stage],a=stage.candidate,phase=stage.phase;
+    const done=[];for(let d=1;d<(stage.summary?7:a);d++)if(36%d===0)done.push([d,36/d]);showPairs(done);
+    pairs.hidden=done.length===0;work.replaceChildren();work.classList.toggle('dp-summary',!!stage.summary);
+    if(stage.summary){work.append(el('span','dp-kicker','Tutti i divisori di 36'),el('strong','dp-equation','1, 2, 3, 4, 6, 9, 12, 18, 36'));note.textContent='Il 6 compare due volte nella coppia 6 e 6, ma nella lista lo scriviamo una volta sola. Abbiamo trovato tutti i divisori!';}
+    else{
+     const q=Math.floor(36/a),rest=36%a,exact=rest===0;
+     const caption=el('span','dp-kicker',phase===0?'Il candidato':phase===1?'Il tentativo':'Il risultato');work.append(caption);
+     const flow=el('div','dp-flow'),candidate=el('strong','dp-candidate',String(a)),first=el('span','dp-arrow dp-arrow-first'),calculation=el('div','dp-calculation'),second=el('span','dp-arrow dp-arrow-second'),partner=el('strong','dp-partner');
+     first.setAttribute('aria-hidden','true');second.setAttribute('aria-hidden','true');
+     if(phase>=1){first.classList.add('is-active');calculation.append(el('strong','',`36 ÷ ${a} = ${q}`),el('span','dp-remainder',`Resto ${rest}`));}
+     else calculation.classList.add('dp-not-yet');
+     if(phase===2&&exact){second.classList.add('is-active','is-growing');partner.textContent=q;partner.classList.add('is-revealed');}
+     if(phase===2&&!exact){calculation.classList.add('dp-failed');partner.textContent='✕';partner.classList.add('dp-no-partner');partner.setAttribute('aria-label','Nessun compagno');}
+     flow.append(candidate,first,calculation,second,partner);work.append(flow);
+     if(phase===0)note.textContent=`Partiamo da ${a}: per ora è soltanto un candidato. Controlliamo se divide 36 senza resto.`;
+     if(phase===1)note.textContent=exact?`La divisione è esatta: il resto è zero. Il quoziente ${q} ci permette di completare la coppia.`:`La divisione lascia un resto di ${rest}. Quindi ${a} non è un divisore di 36.`;
+     if(phase===2)note.textContent=!exact?`Per ${a} non troviamo una coppia. Lasciamo questo tentativo e passiamo al candidato successivo.`:a===6?'Il compagno di 6 è ancora 6: i due fattori si incontrano. Fermiamoci qui: con fattori entrambi maggiori di 6 il prodotto supererebbe 36.':`Il quoziente ${q} diventa il secondo divisore. La coppia è completa: ${a} e ${q}.`;
+    }
+    controls.replaceChildren(button('←',()=>{state.stage--;draw();}),el('span','dp-progress',`${state.stage+1} / ${stages.length}`),button('→',()=>{state.stage++;draw();}));const bs=controls.querySelectorAll('button');bs[0].setAttribute('aria-label','Coppie di divisori: passo precedente');bs[1].setAttribute('aria-label','Coppie di divisori: passo successivo');bs[0].disabled=state.stage===0;bs[1].disabled=state.stage===stages.length-1;
+   }
    draw();
   }else{
    state.candidate=state.candidate||2;state.pairs=state.pairs||[[1,32]];state.tested=state.tested||[];state.phase=state.phase||'decide';
@@ -42,5 +56,8 @@ window.GatitoDivisorPairs=(()=>{
   }
   return()=>{abort.abort();aidDispose();};
  }
- return{mount};
+ function setVisible(host,visible){host.querySelector('.dp-board').hidden=!visible;host.classList.toggle('rm-pairs-card',visible);host.classList.toggle('rm-pairs-intro',!visible);}
+ function hydrateIntro(host){host.querySelectorAll('[data-dp-reaction]').forEach(img=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const still=img.getAttribute('src');img.src=still.replace('-still.webp','.webp');setTimeout(()=>{img.src=still;},2800);});}
+ return{mount,setVisible,hydrateIntro};
 })();
+

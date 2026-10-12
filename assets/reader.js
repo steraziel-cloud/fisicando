@@ -351,7 +351,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  // Keep the board mounted while changing the text, rather than recreating the card.
  function stepNode(step,archived=false){
   const article=el('div','rm-reader-step');if(step.title)article.append(el('h4','',step.title));
-  const p=el('p');p.innerHTML=step.html;if(window.GatitoCoins)window.GatitoCoins.hydrate(p,coinExperiment);if(window.GatitoMultiples)window.GatitoMultiples.hydrate(p,multiplesExplorer);article.append(p);
+  const p=el('p');p.innerHTML=step.html;if(window.GatitoCoins)window.GatitoCoins.hydrate(p,coinExperiment);if(window.GatitoMultiples)window.GatitoMultiples.hydrate(p,multiplesExplorer);article.append(p);if(window.GatitoDivisorPairs)window.GatitoDivisorPairs.hydrateIntro(p);
   if(step.interaction==='train-reference')referenceExercise(article,!archived);
   if(step.interaction==='units-conversion')unitsExercise(article,!archived);
   if(step.interaction==='instant-speeds')instantSpeedsExercise(article,!archived);
@@ -407,6 +407,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    }
   }
   view.replace=replace;
+  if(item.card.board==='pairs-example'&&window.GatitoDivisorPairs)window.GatitoDivisorPairs.setVisible(view.box,!!item.step.pairsBoard);
   if(item.card.board==='coin-observe'&&window.GatitoCoins)window.GatitoCoins.showObservation(view.box,coinExperiment,item.si===1);
   if(view.updateBoard)view.updateBoard(wanted.length>=3);
   if(item.card.board==='law-motion'){const graph=view.box.querySelector('.rm-law-graph');if(graph)graph.hidden=!item.step.lawGraph;}
@@ -437,6 +438,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.board==='train-reference'){box.classList.add('rm-train-reference-card');trainPicture(box);}
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
   const text=el('div','rm-card-text');steps.forEach(step=>text.append(stepNode(step,archived)));box.append(text);
+  if(card.board==='pairs-example'&&window.GatitoDivisorPairs)window.GatitoDivisorPairs.setVisible(box,steps.some(step=>step.pairsBoard));
   const units=text.querySelector('.rm-unit-exercise');if(units){box.classList.add('rm-units-card');box.append(units);}
   const updateBoard=card.board==='position'||card.board==='displacement'?positionBoard(box,card.board,steps.length>=3):null;
   if(!archived&&!allMode)mountedCard={section:current,card,box,text,updateBoard,replace:!Number.isInteger(steps.at(-1)?.cumulativeFrom)&&(card.stepMode==='replace'||!!steps.at(-1)?.replace)};
@@ -483,6 +485,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
+
 
 
 

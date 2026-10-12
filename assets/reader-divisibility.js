@@ -254,33 +254,34 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
       "title": "Trovare tutti i divisori",
       "cards": [
         {
-                "id": "coppie",
-                "title": "I divisori si trovano in coppia",
-                "board": "pairs-example",
-                "stepMode": "replace",
-                "steps": [
-                        {
-                                "title": "Una scorciatoia per trovare i divisori",
-                                "html": "Prendiamo 60. I suoi <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisore\">divisori</button> sono:<br><strong>1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60.</strong><br><br>Sono parecchi! Per trovarli tutti dovremmo provare ogni numero da 1 a 60?<br><br><strong>Ti sveliamo una scorciatoia: i divisori si trovano in coppia.</strong> Ogni volta che ne trovi uno, puoi trovare subito anche il suo compagno.<br><br>Proviamola insieme con 36. Se <strong>36 = 2 × 18</strong>, abbiamo già trovato due divisori: <strong>2 e 18</strong>.<br><br><strong>La prima coppia è formata da 1 e dal numero stesso.</strong> Per 36, partiamo quindi da <strong>1 e 36</strong>."
-                        },
-                        {
-                                "title": "Quando possiamo fermarci?",
-                                "html": "Il primo fattore cresce e il secondo si avvicina. Quando si incontrano, o il primo supera il secondo, non troviamo più coppie nuove.<br><br>Per 36 arriviamo a <strong>6 × 6</strong>. Il 6 è un divisore, ma nella lista lo scriviamo <strong>una volta sola</strong>."
-                        }
-                ]
+          "id": "coppie",
+          "title": "I divisori si trovano in coppia",
+          "board": "pairs-example",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Tutti questi divisori!",
+              "html": "<span class=\"dp-intro-scene\"><span class=\"dp-intro-copy\">Prendiamo 72. I suoi <button type=\"button\" class=\"rm-keyword\" data-term=\"arith-divisore\">divisori</button> sono:<br><strong>1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72.</strong><br><br>Sono parecchi! Per trovarli tutti dovremmo provare ogni numero da 1 a 72?</span><img class=\"dp-intro-red\" data-dp-reaction src=\"assets/images/reactions/red_mente_esplosa_shaking_da_frame-still.webp?v=2\" alt=\"Red è sorpreso dalla lunga lista dei divisori\" width=\"180\" height=\"180\"></span>"
+            },
+            {
+              "title": "Ecco il trucco!",
+              "pairsBoard": true,
+              "html": "<strong>I divisori si trovano in coppia.</strong> Ogni volta che ne trovi uno, puoi trovare subito anche il suo compagno.<br><br>Proviamolo insieme con <strong>36</strong>.<br><br>La prima coppia è formata da <strong>1 e dal numero stesso</strong>."
+            }
+          ]
         },
         {
-                "id": "coppie-prova",
-                "title": "Ora trova i divisori di 32",
-                "board": "pairs-practice",
-                "steps": [
-                        {
-                                "title": "",
-                                "html": "La prima coppia è già pronta: <strong>1 e 32</strong>. Ti abbiamo dato una mano… ora continui tu!<br><br>Proviamo i numeri in ordine. Se la divisione è esatta, trova il fattore che completa la coppia. Se resta qualcosa, passa al numero successivo.<br><br>La lavagna dei multipli è disponibile se ti serve un aiuto."
-                        }
-                ]
+          "id": "coppie-prova",
+          "title": "Ora trova i divisori di 32",
+          "board": "pairs-practice",
+          "steps": [
+            {
+              "title": "",
+              "html": "La prima coppia è già pronta: <strong>1 e 32</strong>. Ti abbiamo dato una mano… ora continui tu!<br><br>Proviamo i numeri in ordine. Se la divisione è esatta, trova il fattore che completa la coppia. Se resta qualcosa, passa al numero successivo.<br><br>La lavagna dei multipli è disponibile se ti serve un aiuto."
+            }
+          ]
         }
-],
+      ],
       "quiz": {
         "question": "Se 28 = 4 × 7, che cosa possiamo concludere?",
         "options": [
@@ -376,10 +377,3 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
     }
   ]
 };
-
-
-
-
-
-
-
