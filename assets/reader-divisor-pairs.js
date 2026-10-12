@@ -7,7 +7,7 @@ window.GatitoDivisorPairs=(()=>{
   const abort=new AbortController();let aidDispose=()=>{};
   const listen=(node,fn)=>node.addEventListener('click',fn,{signal:abort.signal});
   const button=(text,fn,cls='rm-btn secondary')=>{const b=el('button',cls,text);b.type='button';listen(b,fn);return b;};
-  const title=el('h4','dp-heading',`Le coppie di ${n}`),pairs=el('div','dp-pairs'),work=el('div','dp-work'),note=el('p','dp-note'),controls=el('div','dp-controls');note.setAttribute('aria-live','polite');board.append(title,pairs,work,note,controls);
+  const title=el('h4','dp-heading',practice?'Le coppie di divisori di 32':`Le coppie di ${n}`),pairs=el('div','dp-pairs'),work=el('div','dp-work'),note=el('p','dp-note'),controls=el('div','dp-controls');note.setAttribute('aria-live','polite');board.append(title,pairs,work,note,controls);
   function showPairs(values){pairs.replaceChildren();values.forEach(([a,b],i)=>{const row=el('div','dp-pair');row.style.setProperty('--pair-color',['#178e96','#ab6824','#6478bb','#8d5da2','#38895d'][i%5]);row.append(el('strong','dp-factor',String(a)),el('span','dp-link','↔'),el('strong','dp-factor',String(b)));if(a===b)row.classList.add('dp-same');pairs.append(row);});}
   if(!practice){
    state.stage=Number.isInteger(state.stage)?Math.max(0,Math.min(18,state.stage)):0;
@@ -37,14 +37,15 @@ window.GatitoDivisorPairs=(()=>{
    }
    draw();
   }else{
-   state.candidate=state.candidate||2;state.pairs=state.pairs||[[1,32]];state.tested=state.tested||[];state.phase=state.phase||'decide';
+   host.classList.add('rm-pairs-practice');note.remove();
+   state.candidate=state.candidate||2;state.pairs=state.pairs||[[1,32]];state.phase=state.phase||'decide';
    const feedback=el('div','dp-feedback');feedback.setAttribute('aria-live','polite');board.append(feedback);
-   const help=el('div','dp-aid');help.hidden=true;board.append(help);
-   const helpButton=button('Apri la lavagna dei multipli',()=>{help.hidden=!help.hidden;helpButton.textContent=help.hidden?'Apri la lavagna dei multipli':'Chiudi la lavagna dei multipli';helpButton.setAttribute('aria-expanded',String(!help.hidden));if(!help.hidden&&!help.childNodes.length)aidDispose=window.GatitoMultiples.mount(help,state.aid||(state.aid={number:state.candidate<=20?state.candidate:2}));});helpButton.setAttribute('aria-expanded','false');board.insertBefore(helpButton,help);
+   const help=el('div','dp-practice-multiples');host.append(help);
+   aidDispose=window.GatitoMultiples.mount(help,state.aid||(state.aid={number:2}));
    function respond(correct,message){window.GatitoQuizReactions.show(feedback,message,{correct});}
-   function advance(){state.tested.push(state.candidate);state.candidate++;state.phase=state.candidate===6?'stop':'decide';draw();}
-   function draw(){showPairs(state.pairs);controls.replaceChildren();work.replaceChildren();note.textContent=state.tested.length?`Già controllati: 1, ${state.tested.join(', ')}.`:'La prima coppia te l’abbiamo regalata. Ora continui tu!';
-    if(state.phase==='done'){work.append(el('span','dp-kicker','Tutti i divisori di 32'),el('strong','dp-equation','1, 2, 4, 8, 16, 32'));note.textContent='Abbiamo trovato tutte le coppie, senza provare ogni numero fino a 32.';controls.append(button('Riprova',()=>{state.candidate=2;state.pairs=[[1,32]];state.tested=[];state.phase='decide';feedback.replaceChildren();draw();}));return;}
+   function advance(){state.candidate++;state.phase=state.candidate===6?'stop':'decide';draw();}
+   function draw(){showPairs(state.pairs);controls.replaceChildren();work.replaceChildren();
+    if(state.phase==='done'){work.append(el('span','dp-kicker','Tutti i divisori di 32'),el('strong','dp-equation','1, 2, 4, 8, 16, 32'));controls.append(button('Riprova',()=>{state.candidate=2;state.pairs=[[1,32]];state.phase='decide';feedback.replaceChildren();draw();}));return;}
     if(state.phase==='stop'){work.append(el('strong','dp-question','Dobbiamo provare anche 6?'),el('p','','Dividendo 32 per 6 troviamo quoziente 5 e resto 2. Il quoziente è più piccolo del candidato: 5 < 6.'));
      controls.append(button('Sì, continuiamo',()=>respond(false,'Il quoziente 5 è più piccolo del candidato 6. I divisori successivi sono già comparsi come compagni dei candidati più piccoli, che abbiamo controllato.')),button('No, abbiamo finito',()=>{state.phase='done';draw();respond(true,'Esatto! I divisori più grandi li abbiamo già trovati come compagni: 8, 16 e 32. Continuando ritroveremmo le stesse coppie con i ruoli scambiati.');}));return;}
     work.append(el('span','dp-kicker',`Proviamo ${state.candidate}`));
@@ -60,6 +61,7 @@ window.GatitoDivisorPairs=(()=>{
  function hydrateIntro(host){host.querySelectorAll('[data-dp-reaction]').forEach(img=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const still=img.getAttribute('src');img.src=still.replace('-still.webp','.webp');setTimeout(()=>{img.src=still;},2800);});}
  return{mount,setVisible,hydrateIntro};
 })();
+
 
 
 

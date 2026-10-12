@@ -282,7 +282,7 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
           "steps": [
             {
               "title": "",
-              "html": "La prima coppia è già pronta: <strong>1 e 32</strong>. Ti abbiamo dato una mano… ora continui tu!<br><br>Proviamo i numeri in ordine. Se la divisione è esatta, trova il fattore che completa la coppia. Se resta qualcosa, passa al numero successivo.<br><br>La lavagna dei multipli è disponibile se ti serve un aiuto."
+              "html": "La prima coppia è già pronta: <strong>1 e 32</strong>. Ti abbiamo dato una mano… ora continui tu!"
             }
           ]
         }

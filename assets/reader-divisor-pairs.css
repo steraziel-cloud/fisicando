@@ -10,3 +10,19 @@
 /* A single playful illustration, with a soft blob behind the transparent cutout. */
 .dp-ghost-scene{grid-template-columns:minmax(0,1fr) minmax(300px,.85fr);gap:32px;align-items:center}.dp-intro-illustration{position:relative;display:block;isolation:isolate;max-width:440px;width:100%;justify-self:center}.dp-intro-illustration::before{content:"";position:absolute;inset:15% 4% 7%;z-index:-1;border-radius:43% 57% 62% 38% / 48% 42% 58% 52%;background:linear-gradient(135deg,#35b7c42a,#9880d930);transform:rotate(-6deg)}.dp-intro-ghost{display:block;width:100%;height:auto;max-height:330px;object-fit:contain;filter:drop-shadow(0 8px 10px #253f5715)}
 @media(max-width:720px){.dp-ghost-scene{grid-template-columns:1fr;gap:16px}.dp-intro-illustration{max-width:320px}.dp-intro-ghost{max-height:260px}}
+
+
+/* Two boards: optional multiplication aid under the copy, exercise at the right. */
+.rm-pairs-card.rm-pairs-practice{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:min-content min-content 1fr;gap:16px 26px}
+.rm-pairs-practice>.rm-card-title{grid-column:1;grid-row:1}
+.rm-pairs-practice>.rm-card-text{grid-column:1;grid-row:2;align-self:start;max-width:none}
+.rm-pairs-practice>.dp-board{grid-column:2;grid-row:1/4;align-self:start}
+.rm-pairs-practice>.dp-practice-multiples{grid-column:1;grid-row:3;min-width:0;display:block!important;width:100%;align-self:start}
+.dp-practice-multiples>.mp-board{width:100%;max-width:none}
+.dp-practice-multiples .mp-controls{margin:0 5% 0}
+.dp-practice-multiples .mp-choice{font-size:.8rem;gap:9px}
+.dp-practice-multiples .mp-choice select{padding:5px 8px}
+.dp-practice-multiples .mp-footer .rm-btn{font-size:.8rem;padding:8px 12px}
+.rm-pairs-practice .dp-work{margin-top:18px;padding:18px 14px}
+.rm-pairs-practice .dp-controls{margin-top:18px}
+@media(max-width:850px){.rm-pairs-card.rm-pairs-practice{display:grid;grid-template-columns:1fr;grid-template-rows:auto;gap:16px}.rm-pairs-practice>.rm-card-title{grid-column:1;grid-row:1}.rm-pairs-practice>.rm-card-text{grid-column:1;grid-row:2}.rm-pairs-practice>.dp-board{grid-column:1;grid-row:3}.rm-pairs-practice>.dp-practice-multiples{grid-column:1;grid-row:4;max-width:540px;justify-self:center}}
