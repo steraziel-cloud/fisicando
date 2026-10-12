@@ -65,7 +65,7 @@ window.GatitoCoins=(()=>{
    if(action?.dataset.action==='open'){state.phase='table';draw();return;}
    if(action?.dataset.action==='add'){if(state.piles.length<TOTAL){state.piles.push(state.nextPile++);clearMessage();draw();}return;}
    if(action?.dataset.action==='reset'){state.placements.fill(null);state.piles=[];state.nextPile=1;state.selected=null;state.manipulated=false;state.groupsInput=state.coinsInput='';groupField.input.value=coinField.input.value='';clearMessage();draw();return;}
-   if(action?.dataset.action==='remove'){const id=Number(action.dataset.pile),old=positions();state.piles=state.piles.filter(p=>p!==id);state.placements=state.placements.map(p=>p===id?null:p);state.manipulated=true;state.selected=null;clearMessage();draw(old);return;}
+   if(action?.dataset.action==='remove'){const id=Number(action.dataset.pile),old=positions();state.manipulated=state.manipulated||state.placements.includes(id);state.piles=state.piles.filter(p=>p!==id);state.placements=state.placements.map(p=>p===id?null:p);state.selected=null;clearMessage();draw(old);return;}
    if(action?.dataset.action==='place'){if(state.selected!==null)move(state.selected,action.dataset.pile);return;}
    const zone=e.target.closest('[data-zone]');if(zone&&state.selected!==null)move(state.selected,zone.dataset.zone);
   });
