@@ -54,3 +54,32 @@
 @media(prefers-reduced-motion:reduce){.ag-layer-bjorne,.ag-layer-bjorne img,.ag-layer-morgana,.ag-png-balloon{animation:none!important}.ag-sob-closed{display:none}}
 
 @media(prefers-reduced-motion:reduce){.ag-layer-morgana{transition:none}}
+
+/* Original cafe RPG console: all controls and conversations remain inside the frame. */
+.ag-game-screen{position:relative;overflow:hidden;border:3px solid #698d88;border-radius:22px;background:#f6f3e9;box-shadow:inset 0 0 0 4px #dfebdf,0 8px 18px #263c4b18;isolation:isolate}
+.ag-game .ag-map{border-radius:0;background:#f6f3e9;max-height:470px;min-height:320px}
+.ag-game .ag-player{shape-rendering:auto}
+.ag-morgana-sprite{image-rendering:pixelated}
+.ag-console-controls{position:absolute;inset:0;pointer-events:none}
+.ag-console-controls .ag-dpad{position:absolute;left:3%;bottom:8%;display:grid;grid-template-columns:repeat(3,40px);grid-template-rows:repeat(3,40px);gap:0;pointer-events:auto;filter:drop-shadow(0 4px 0 #47645f)}
+.ag-console-controls .ag-up{grid-column:2;grid-row:1;border-radius:10px 10px 0 0}
+.ag-console-controls .ag-left{grid-column:1;grid-row:2;border-radius:10px 0 0 10px}
+.ag-console-controls .ag-down{grid-column:2;grid-row:3;border-radius:0 0 10px 10px}
+.ag-console-controls .ag-right{grid-column:3;grid-row:2;border-radius:0 10px 10px 0}
+.ag-console-controls .ag-move{border:0;background:#71958b;color:#fcf8e9;font-weight:bold;font-size:1.4rem;box-shadow:inset 0 2px #9db9a7;touch-action:none}
+.ag-pad-center{grid-column:2;grid-row:2;background:#71958b;box-shadow:inset 0 0 8px #3f6b5944;pointer-events:none}
+.ag-console-controls .ag-move:active{background:#497d75}
+.ag-console-action{position:absolute;width:82px;height:82px;border:3px solid #fff6dc;border-radius:50%;background:#9566b1;color:white;font-size:.85rem;font-weight:750;box-shadow:0 5px 0 #654579;cursor:pointer;pointer-events:auto;touch-action:manipulation;padding:0;transition:filter .15s}
+.ag-inspect{right:3%;bottom:12%}.ag-hint{right:11%;bottom:3%;background:#598c83;box-shadow:0 5px 0 #37685e}
+.ag-console-action:hover{filter:brightness(1.12)}.ag-console-action:active{box-shadow:none}
+.ag-action-ready{border-color:#eac674}
+.ag-music{position:absolute;right:14px;top:12px;z-index:5;width:38px;height:38px;border-radius:12px;background:#fff8e9dd;border:1px solid #82a299;cursor:pointer;font-size:1.1rem}
+.ag-rpg-dialogue{position:absolute;left:9%;right:9%;bottom:14px;z-index:6;display:flex;gap:16px;align-items:center;border:3px solid #56887f;border-radius:14px;background:#fff9e7;box-shadow:0 4px 0 #375e56;padding:15px 20px;animation:ag-arrive .18s ease-out;color:#263b42}
+.ag-rpg-dialogue[hidden]{display:none}
+.ag-rpg-portrait{width:65px;height:65px;flex:none;background-image:url('images/reader/cafe-morgana-rpg-v1.png');background-size:300% 400%;background-repeat:no-repeat;image-rendering:pixelated}
+.ag-rpg-speech{flex:1;min-width:0}.ag-rpg-speech strong{color:#785594;font-size:1rem}.ag-rpg-speech p{margin:5px 0 0;font-size:1rem;line-height:1.45}
+.ag-dialogue-next{align-self:flex-end;border:0;background:none;color:#56887f;font-size:1.1rem;cursor:pointer;padding:4px}
+.ag-table-near{filter:drop-shadow(0 0 4px #22aca9)}
+.ag-barista,.ag-customer{shape-rendering:crispEdges}
+@media(max-width:650px){.ag-console-controls .ag-dpad{left:2%;bottom:4%;grid-template-columns:repeat(3,29px);grid-template-rows:repeat(3,29px)}.ag-console-controls .ag-move{font-size:1.05rem}.ag-console-action{width:62px;height:62px;font-size:.68rem}.ag-inspect{right:2%;bottom:12%}.ag-hint{right:16%;bottom:2%}.ag-game .ag-map{min-height:300px}.ag-rpg-dialogue{left:3%;right:3%;bottom:10px;padding:10px;gap:8px}.ag-rpg-portrait{width:48px;height:48px}.ag-rpg-speech p{font-size:.85rem}.ag-music{top:8px;right:8px}}
+@media(prefers-reduced-motion:reduce){.ag-rpg-dialogue{animation:none}}
