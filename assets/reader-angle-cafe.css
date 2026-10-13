@@ -38,7 +38,7 @@
 .ag-layer-bjorne img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom}
 .ag-sob-open{animation:ag-sob-open 1.8s steps(1,end) infinite}
 .ag-sob-closed{animation:ag-sob-closed 1.8s steps(1,end) infinite}
-.ag-png-balloon{position:absolute;width:34%;aspect-ratio:4/3;z-index:3;background-image:url('images/reader/cafe-layers/balloons.png');background-size:200% 400%;background-repeat:no-repeat;animation:ag-arrive .35s ease-out;pointer-events:none}
+.ag-png-balloon{position:absolute;width:34%;aspect-ratio:4/3;z-index:3;background-image:url('images/reader/cafe-layers/balloons.png');background-size:200% 400%;background-repeat:no-repeat;clip-path:inset(8% 0 0);animation:ag-arrive .35s ease-out;pointer-events:none}
 .ag-speech-bjorne{left:13%;top:9%}.ag-speech-morgana{right:9%;top:0}
 .ag-layer-scene[data-stage='1'] .ag-layer-morgana{transform:rotate(-1deg)}
 .ag-layer-scene[data-stage='3'] .ag-layer-morgana,.ag-layer-scene[data-stage='4'] .ag-layer-morgana{left:36%;width:55%;height:65%}
