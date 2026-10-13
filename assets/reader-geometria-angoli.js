@@ -77,7 +77,7 @@ window.READER_LESSONS["geometria-angoli"] = {
             },
             {
               "title": "Un segno nella figura",
-              "html": "Un <strong>archetto</strong> vicino al vertice mostra quale delle due regioni stiamo considerando: uno per l’angolo più piccolo, due per quello più grande. Gli archetti sono un’indicazione: <strong>l’angolo non finisce lì</strong>.",
+              "html": "Gli <strong>archetti</strong> vicino al vertice distinguono le due regioni: in questa figura ne usiamo uno per una regione e due per l’altra.<br><br>Trascinando i lati, le aperture cambiano: <strong>il numero di archetti non definisce un angolo come convesso o concavo</strong>. L’angolo comprende tutta la regione indicata, non soltanto la zona vicina al vertice.",
               "cafeStage": 1
             },
             {
@@ -99,8 +99,15 @@ window.READER_LESSONS["geometria-angoli"] = {
             },
             {
               "title": "Dalla stanza alla geometria",
+              "html": "Nel linguaggio quotidiano, «vicino all’angolo» ci ha indicato una zona vicino all’incontro delle pareti. In geometria, invece, l’angolo comprende <strong>l’intera regione scelta, che continua senza limite</strong>.",
               "cafeStage": 3,
-              "html": "Nel linguaggio quotidiano, «vicino all’angolo» ci ha indicato una zona vicino all’incontro delle pareti. In geometria, invece, l’angolo comprende <strong>l’intera regione scelta, che continua senza limite</strong>.<br><br>La stanza ha dei confini. Il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button> geometrico e le <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> continuano oltre il disegno. Il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> O è il vertice, non tutto l’angolo."
+              "cumulativeFrom": 3
+            },
+            {
+              "title": "Oltre il disegno",
+              "html": "La stanza ha dei confini. Il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button> geometrico e le <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> continuano oltre il disegno. Il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> O è il vertice, non tutto l’angolo.",
+              "cafeStage": 3,
+              "cumulativeFrom": 3
             }
           ]
         },
@@ -110,7 +117,7 @@ window.READER_LESSONS["geometria-angoli"] = {
             {
               "title": "Tre lettere, un angolo",
               "html": "Scegliamo un <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> A su un lato e un <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> B sull’altro. <strong>A e B sono nomi di punti sui lati, non nomi dei lati.</strong><br><br>Scriviamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˆ</mo></mover></math>, leggendo «angolo A, O, B». <strong>La lettera del vertice sta al centro.</strong>",
-              "cafeStage": 2,
+              "cafeStage": 12,
               "cloze": [
                 {
                   "before": "Nella scrittura AÔB, il vertice è ",
@@ -126,13 +133,14 @@ window.READER_LESSONS["geometria-angoli"] = {
             },
             {
               "title": "Due cappelli per due angoli",
-              "html": "Nelle nostre figure usiamo il <strong>cappello normale</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˆ</mo></mover></math> per indicare l’angolo interno, quello più piccolo. Il <strong>cappello rovesciato</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˇ</mo></mover></math> indica l’altra regione, cioè l’angolo più grande.<br><br>Questa distinzione vale quando i lati non sono opposti né coincidenti. Gli archetti nel disegno aiutano a riconoscere l’angolo indicato.",
-              "cafeStage": 2
+              "html": "Nelle nostre figure usiamo il <strong>cappello normale</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˆ</mo></mover></math> per indicare l’angolo segnato con un archetto. Il <strong>cappello rovesciato</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˇ</mo></mover></math> indica l’altra regione, segnata con due archetti.<br><br>Se i lati sono opposti, le due regioni hanno la stessa apertura: osserviamo il disegno per distinguere quale stiamo indicando. Se coincidono, i due simboli ci permettono di distinguere <strong>l’angolo nullo dall’angolo giro</strong>.",
+              "cafeStage": 13
             },
             {
               "title": "Un nome più breve",
               "html": "Scrivere ogni volta tre lettere può essere scomodo. <strong>Se è chiaro quale angolo stiamo indicando</strong>, possiamo usare soltanto il nome del vertice con il cappello: <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">O</mi></mrow><mo stretchy=\"true\">ˆ</mo></mover></math> oppure <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">O</mi></mrow><mo stretchy=\"true\">ˇ</mo></mover></math>.<br><br>Possiamo anche assegnargli una lettera greca, come <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-alfa\">α</button>, che si legge «alfa». È un nome breve: la figura deve far capire a quale angolo si riferisce.",
-              "cafeStage": 2
+              "cafeStage": 14,
+              "replace": true
             }
           ],
           "board": "cafe-geometry"
@@ -209,7 +217,7 @@ window.READER_LESSONS["geometria-angoli"] = {
             ]
           },
           {
-            "question": "Se nella figura è chiaro quale angolo stiamo indicando, come possiamo abbreviarne il nome?",
+            "question": "Osserva l’angolo evidenziato nella figura. Come possiamo abbreviarne il nome senza creare confusione?",
             "options": [
               "Con il nome del vertice e il cappello, oppure con una lettera greca assegnata all’angolo.",
               "Con il nome di un punto qualsiasi su uno dei lati.",
@@ -217,7 +225,13 @@ window.READER_LESSONS["geometria-angoli"] = {
               "Con i nomi di due punti sui lati, eliminando sempre quello del vertice."
             ],
             "answer": 0,
-            "feedback": "Possiamo usare il vertice con il cappello o una lettera greca, purché sia chiaro quale angolo indica il nome."
+            "feedback": "Possiamo usare il vertice con il cappello o una lettera greca, purché sia chiaro quale angolo indica il nome.",
+            "illustration": {
+              "src": "assets/images/reader/quiz-angolo-nome-v1.svg",
+              "alt": "Due semirette di origine O, con A e B segnati sui lati e una regione colorata.",
+              "width": 360,
+              "height": 220
+            }
           }
         ]
       }
@@ -266,10 +280,10 @@ window.READER_LESSONS["geometria-angoli"] = {
                   "before": "Un angolo piatto occupa ",
                   "options": [
                     "metà",
-                    "tutto"
+                    "tutto il"
                   ],
                   "answer": 0,
-                  "after": " il piano.",
+                  "after": " piano.",
                   "feedback": "Ciascuna delle due regioni occupa metà piano."
                 }
               ]
@@ -337,21 +351,21 @@ window.READER_LESSONS["geometria-angoli"] = {
             }
           },
           {
-            "question": "Per distinguere il convesso dal concavo con gli stessi lati, che cosa dobbiamo osservare?",
+            "question": "Osserva la regione colorata e i prolungamenti dei lati oltre O. Quale osservazione ci permette di riconoscere un angolo concavo?",
             "options": [
-              "La lunghezza dei tratti disegnati.",
-              "Il nome del vertice.",
-              "Il colore del foglio.",
-              "La regione scelta."
+              "La regione non contiene i prolungamenti dei lati oltre O.",
+              "I lati sono semirette opposte.",
+              "La regione contiene i prolungamenti dei lati oltre O.",
+              "I due lati coincidono in una sola semiretta."
             ],
-            "answer": 3,
-            "feedback": "Gli stessi lati delimitano due regioni: l’archetto indica quella scelta.",
-            "feedbackByOption": [
-              "Controlla questa distinzione: Gli stessi lati delimitano due regioni: l’archetto indica quella scelta.",
-              "Controlla questa distinzione: Gli stessi lati delimitano due regioni: l’archetto indica quella scelta.",
-              "Controlla questa distinzione: Gli stessi lati delimitano due regioni: l’archetto indica quella scelta.",
-              "Esatto. Gli stessi lati delimitano due regioni: l’archetto indica quella scelta."
-            ]
+            "answer": 2,
+            "feedback": "Un angolo concavo contiene i prolungamenti dei lati oltre il vertice. Nella figura i tratti viola si trovano nella regione colorata.",
+            "illustration": {
+              "src": "assets/images/reader/quiz-angolo-prolungamenti-v1.svg",
+              "alt": "Due semirette con origine O; la regione più ampia è colorata e contiene i tratti viola disegnati oltre O, dalla parte opposta rispetto ai lati.",
+              "width": 360,
+              "height": 220
+            }
           },
           {
             "question": "Un angolo piatto ha come lati…",
@@ -2103,5 +2117,6 @@ window.READER_LESSONS["geometria-perpendicolari"] = {
     }
   ]
 };
+
 
 

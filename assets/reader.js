@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    else retry($('reader-feedback'),'Per passare da km/h a m/s devi dividere per 3,6. Riprova.');
   }));
  }
- function stepBlocked(item){return false;}
+ function stepBlocked(item){if(reviewAccess)return false;return cardSteps(item).some(step=>step.cloze?.some((q,i)=>sentenceAnswers.get(step)?.[i]!==q.answer));}
  function instantSpeedsExercise(box,interactive=true){
   const st=state[current].instantSpeeds,labels=['Morgana lungo il percorso','Red prima del chiosco','Red durante la pausa','Red dopo la pausa'],expected=[2,6,0,2],host=el('div','rm-instant-speeds');
   const inputs=labels.map((text,i)=>{const label=el('label','',text+' '),input=el('input');input.type='text';input.inputMode='decimal';input.setAttribute('aria-label',text+': velocità in m/s');input.value=interactive?st.values[i]:String(expected[i]);input.disabled=!interactive||st.done;input.oninput=()=>st.values[i]=input.value;label.append(input,el('span','','m/s'));host.append(label);return input;});
@@ -357,7 +357,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const host=el('div','rm-sentence-practice');
   step.cloze.forEach((q,i)=>{const row=el('div','rm-sentence-row'),line=el('label','rm-sentence-line'),select=el('select');select.setAttribute('aria-label',q.before.trim());select.append(el('option','','Scegli…'));select.options[0].value='';q.options.forEach((v,j)=>{const option=el('option','',v);option.value=String(j);select.append(option);});const feedback=el('p','rm-sentence-feedback');feedback.setAttribute('role','status');
    select.value=values[i]===null?'':String(values[i]);select.disabled=archived||values[i]===q.answer;if(values[i]===q.answer){row.classList.add('rm-sentence-correct');feedback.textContent='✓ '+q.feedback;}
-   select.addEventListener('change',()=>{if(select.value==='')return;values[i]=Number(select.value);const correct=values[i]===q.answer;row.classList.toggle('rm-sentence-correct',correct);row.classList.toggle('rm-sentence-retry',!correct);feedback.textContent=correct?'✓ '+q.feedback:'Riprova: osserva la figura e rileggi la frase.';select.disabled=correct;});
+   select.addEventListener('change',()=>{if(select.value==='')return;values[i]=Number(select.value);const correct=values[i]===q.answer;row.classList.toggle('rm-sentence-correct',correct);row.classList.toggle('rm-sentence-retry',!correct);feedback.textContent=correct?'✓ '+q.feedback:'Riprova: osserva la figura e rileggi la frase.';select.disabled=correct;actions();});
    line.append(document.createTextNode(q.before),select,document.createTextNode(q.after));row.append(line,feedback);host.append(row);
   });article.append(host);
  }
@@ -407,7 +407,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(item.card.board?.startsWith('cafe-')&&window.GatitoAngleCafe)window.GatitoAngleCafe.setStage(view.box,item.step.cafeStage??0);
   const cumulative=Number.isInteger(item.step.cumulativeFrom),replace=!cumulative&&(item.card.stepMode==='replace'||!!item.step.replace);
   const wanted=cardSteps(item);
-  if(replace||(view.replace&&!cumulative)){
+  const groupChanged=(view.groupFrom??0)!==(item.step.cumulativeFrom??0);
+  if(replace||(view.replace&&!cumulative)||groupChanged){
    const previous=[...view.text.childNodes],next=wanted.map(step=>stepNode(step));
    if(view.box.classList.contains('rm-units-card'))next.forEach(node=>node.querySelector('.rm-unit-exercise')?.remove());
    slideSwap(view.text,previous,next,direction);
@@ -430,7 +431,7 @@ document.addEventListener('DOMContentLoaded',()=>{
      node.animate([{opacity:0,transform:`translateX(${direction*36}px)`},{opacity:1,transform:'none'}],{duration:260,easing:'ease-out'});
    }
   }
-  view.replace=replace;
+  view.replace=replace;view.groupFrom=item.step.cumulativeFrom??0;
   if(item.card.board==='pairs-example'&&window.GatitoDivisorPairs){window.GatitoDivisorPairs.setVisible(view.box,!!item.step.pairsBoard);syncPairConclusion(view.box,item.card,divisorPairs['pairs-example']?.stage===18);}
   if(item.card.board==='coin-observe'&&window.GatitoCoins)window.GatitoCoins.showObservation(view.box,coinExperiment,item.si===1);
   if(view.updateBoard)view.updateBoard(wanted.length>=3);
@@ -468,7 +469,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.board==='pairs-example'&&window.GatitoDivisorPairs){window.GatitoDivisorPairs.setVisible(box,steps.some(step=>step.pairsBoard));box.addEventListener('gatito-pairs-stage',event=>syncPairConclusion(box,card,event.detail.summary,event.detail.summary?1:-1));syncPairConclusion(box,card,divisorPairs['pairs-example']?.stage===18);}
   const units=text.querySelector('.rm-unit-exercise');if(units){box.classList.add('rm-units-card');box.append(units);}
   const updateBoard=card.board==='position'||card.board==='displacement'?positionBoard(box,card.board,steps.length>=3):null;
-  if(!archived&&!allMode)mountedCard={section:current,card,box,text,updateBoard,replace:!Number.isInteger(steps.at(-1)?.cumulativeFrom)&&(card.stepMode==='replace'||!!steps.at(-1)?.replace)};
+  if(!archived&&!allMode)mountedCard={section:current,card,box,text,updateBoard,groupFrom:steps.at(-1)?.cumulativeFrom??0,replace:!Number.isInteger(steps.at(-1)?.cumulativeFrom)&&(card.stepMode==='replace'||!!steps.at(-1)?.replace)};
  }
  function render(direction=0){
   const section=lesson.sections[current],item=flat(section)[state[current].cursor];
@@ -530,6 +531,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
+
 
 
 
