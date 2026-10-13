@@ -1,0 +1,2 @@
+/* Textual drafts use the reader width; board layouts will be designed separately. */
+body[data-reader-lesson^="geometria-"] .rm-reader-card>.rm-card-text{width:100%;max-width:none;min-width:0;margin-inline:0}
