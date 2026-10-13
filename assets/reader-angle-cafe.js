@@ -114,19 +114,19 @@ function baseMap(){
   const {map,scenery}=baseMap();map.setAttribute('role','group');
   const regions=svg('g',{class:'ag-regions'}),convex=svg('path',{fill:'#2bb5bf','data-region':'convesso'}),concave=svg('path',{fill:'#a18ac9','data-region':'concavo'});regions.append(concave,convex);map.append(regions);
   const rays=svg('g',{class:'ag-definition-rays'}),lines=[0,1].map(()=>svg('path',{fill:'none',stroke:'#118e9c','stroke-width':5})),ends=[0,1].map(()=>svg('path',{fill:'none',stroke:'#118e9c','stroke-width':4,'stroke-dasharray':'10 9'}));
-  rays.append(...lines,...ends);const dot=svg('circle',{r:6,fill:'#263c4b'}),label=svg('text',{fill:'#263c4b','font-size':25,'font-weight':700});label.textContent='O';rays.append(dot,label);
+  const extensions=[0,1].map(()=>svg('path',{fill:'none',stroke:'#936797','stroke-width':3,'stroke-dasharray':'7 9'}));rays.append(...extensions,...lines,...ends);const dot=svg('circle',{r:6,fill:'#263c4b'}),label=svg('text',{fill:'#263c4b','font-size':25,'font-weight':700});label.textContent='O';rays.append(dot,label);
   const arcs=svg('g',{class:'ag-angle-arcs'}),arcPaths=[0,1,2].map(()=>svg('path',{fill:'none',stroke:'#118e9c','stroke-width':3}));arcs.append(...arcPaths);rays.append(arcs);
-  const handle=svg('circle',{r:19,fill:'transparent',class:'ag-angle-handle',tabindex:0,role:'slider','aria-label':'Ampiezza dell’angolo interno','aria-valuemin':5,'aria-valuemax':175});rays.append(handle);map.append(rays);
+  const rightMark=svg('path',{fill:'none',stroke:'#118e9c','stroke-width':3});rays.append(rightMark);const handle=svg('circle',{r:19,fill:'transparent',class:'ag-angle-handle',tabindex:0,role:'slider','aria-label':'Ampiezza dell’angolo interno','aria-valuemin':5,'aria-valuemax':175});rays.append(handle);map.append(rays);
   const select=node('div','ag-region-buttons');let chosen=null,angle=state.angle??Math.atan2(232,-73),origin=stage===0&&!state.geometryEntered?{x:185,y:88}:{x:450,y:275},currentStage=stage,dragging=false,raf=0;
   const choices=[];const pt=(a,r)=>[origin.x+Math.cos(a)*r,origin.y+Math.sin(a)*r];
   function sector(start,end){let d='M'+origin.x+' '+origin.y;for(let i=0;i<=72;i++)d+='L'+pt(start+(end-start)*i/72,2000).join(' ');return d+'Z';}
-  function arc(r,start,end){return 'M'+pt(start,r).join(' ')+'A'+r+' '+r+' 0 '+(end-start>Math.PI?1:0)+' 1 '+pt(end,r).join(' ');}
+  function arc(r,start,end){if(end-start>=Math.PI*2-.001)return 'M'+pt(start,r).join(' ')+'A'+r+' '+r+' 0 1 1 '+pt(start+Math.PI,r).join(' ')+'A'+r+' '+r+' 0 1 1 '+pt(end,r).join(' ');return 'M'+pt(start,r).join(' ')+'A'+r+' '+r+' 0 '+(end-start>Math.PI?1:0)+' 1 '+pt(end,r).join(' ');}
   function paint(){
    convex.setAttribute('d',sector(0,angle));concave.setAttribute('d',sector(angle,Math.PI*2));convex.setAttribute('opacity',chosen==='convesso'?'.38':'.18');concave.setAttribute('opacity',chosen==='concavo'?'.35':'.16');
-   [0,angle].forEach((a,i)=>{lines[i].setAttribute('d','M'+origin.x+' '+origin.y+'L'+pt(a,160).join(' '));ends[i].setAttribute('d','M'+pt(a,160).join(' ')+'L'+pt(a,2000).join(' '));});
+   [0,angle].forEach((a,i)=>{extensions[i].setAttribute('d','M'+origin.x+' '+origin.y+'L'+pt(a+Math.PI,2000).join(' '));extensions[i].style.display=[4,5].includes(currentStage)?'':'none';lines[i].setAttribute('d','M'+origin.x+' '+origin.y+'L'+pt(a,160).join(' '));ends[i].setAttribute('d','M'+pt(a,160).join(' ')+'L'+pt(a,2000).join(' '));});
    dot.setAttribute('cx',origin.x);dot.setAttribute('cy',origin.y);label.setAttribute('x',origin.x-27);label.setAttribute('y',origin.y-16);
    arcPaths[0].setAttribute('d',arc(45,0,angle));arcPaths[1].setAttribute('d',arc(56,angle,Math.PI*2));arcPaths[2].setAttribute('d',arc(66,angle,Math.PI*2));arcs.style.opacity=currentStage>=1?1:0;
-   const h=pt(angle,140);handle.setAttribute('cx',h[0]);handle.setAttribute('cy',h[1]);handle.setAttribute('aria-valuenow',Math.round(angle*180/Math.PI));state.angle=angle;
+   handle.style.display=[6,7].includes(currentStage)?'none':'';handle.setAttribute('tabindex',[6,7].includes(currentStage)?'-1':'0');rightMark.setAttribute('d','M'+(origin.x+22)+' '+origin.y+'v22h-22');rightMark.style.display=currentStage>=8&&Math.abs(angle-Math.PI/2)<.001?'':'none';const h=pt(angle,140);handle.setAttribute('cx',h[0]);handle.setAttribute('cy',h[1]);handle.setAttribute('aria-valuenow',Math.round(angle*180/Math.PI));state.angle=angle;
    choices.forEach(([b,v])=>b.setAttribute('aria-pressed',String(v===chosen)));map.setAttribute('aria-label','Due semirette con origine O: entrambe le regioni del piano sono colorate. Ampiezza interna '+Math.round(angle*180/Math.PI)+' gradi.');
   }
   function highlight(value){chosen=value;paint();}
@@ -136,7 +136,11 @@ function baseMap(){
   handle.addEventListener('pointerdown',e=>{e.preventDefault();dragging=true;handle.setPointerCapture(e.pointerId);handle.classList.add('ag-grabbing');});handle.addEventListener('pointermove',e=>{if(dragging)drag(e);});
   const release=()=>{dragging=false;handle.classList.remove('ag-grabbing');};handle.addEventListener('pointerup',release);handle.addEventListener('pointercancel',release);
   handle.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowDown','ArrowRight','ArrowUp'].includes(e.key)){e.preventDefault();e.stopPropagation();angle=Math.max(5*Math.PI/180,Math.min(175*Math.PI/180,angle+(['ArrowLeft','ArrowDown'].includes(e.key)?-1:1)*Math.PI/180));paint();}});
-  host.replaceChildren(map,select);host.agGeometryUpdate=s=>{currentStage=s;paint();};paint();
+  host.replaceChildren(map,select);
+  function setMode(s){currentStage=s;if([4,5].includes(s)&&(angle<.001||angle>Math.PI-.001))angle=Math.atan2(232,-73);if(s===4)chosen='convesso';if(s===5)chosen='concavo';if(s===6){angle=Math.PI;chosen=null;}if(s===7){angle=0;chosen='convesso';}if(s===8||s===10){angle=Math.PI/2;chosen='convesso';}if(s===9){angle=Math.PI/3;chosen='convesso';}
+   choices[0][0].textContent=s===7?'Angolo nullo':s===6?'Prima regione':'Regione interna';choices[1][0].textContent=s===7?'Angolo giro':s===6?'Altra regione':'Regione esterna';paint();
+  }
+  host.agGeometryUpdate=s=>{if(s!==currentStage)setMode(s);else paint();};setMode(stage);
   if(stage===0&&!state.geometryEntered){state.geometryEntered=true;const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduced){origin={x:450,y:275};scenery.style.opacity=0;paint();}else{let start;const animate=now=>{start??=now;const p=Math.min(1,(now-start)/1200),t=p*p*(3-2*p);origin={x:185+265*t,y:88+187*t};scenery.style.opacity=1-t;paint();if(p<1)raf=requestAnimationFrame(animate);};raf=requestAnimationFrame(animate);}}else scenery.style.opacity=0;
   host.agGeometryDispose=()=>{cancelAnimationFrame(raf);host.agGeometryUpdate=null;};
  }

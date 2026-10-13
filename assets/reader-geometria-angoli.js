@@ -97,17 +97,21 @@ window.READER_LESSONS["geometria-angoli"] = {
           "steps": [
             {
               "title": "Tre lettere, un angolo",
-              "html": "Scegliamo un <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> A su un lato e un <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> B sull’altro. <strong>A e B sono nomi di punti sui lati, non nomi dei lati.</strong><br><br>Scriviamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˆ</mo></mover></math>, leggendo «angolo A, O, B». <strong>La lettera del vertice sta al centro.</strong>"
+              "html": "Scegliamo un <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> A su un lato e un <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> B sull’altro. <strong>A e B sono nomi di punti sui lati, non nomi dei lati.</strong><br><br>Scriviamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˆ</mo></mover></math>, leggendo «angolo A, O, B». <strong>La lettera del vertice sta al centro.</strong>",
+              "cafeStage": 2
             },
             {
               "title": "Due cappelli per due angoli",
-              "html": "Nelle nostre figure usiamo il <strong>cappello normale</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˆ</mo></mover></math> per indicare l’angolo interno, quello più piccolo. Il <strong>cappello rovesciato</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˇ</mo></mover></math> indica l’altra regione, cioè l’angolo più grande.<br><br>Questa distinzione vale quando i lati non sono opposti né coincidenti. Gli archetti nel disegno aiutano a riconoscere l’angolo indicato."
+              "html": "Nelle nostre figure usiamo il <strong>cappello normale</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˆ</mo></mover></math> per indicare l’angolo interno, quello più piccolo. Il <strong>cappello rovesciato</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˇ</mo></mover></math> indica l’altra regione, cioè l’angolo più grande.<br><br>Questa distinzione vale quando i lati non sono opposti né coincidenti. Gli archetti nel disegno aiutano a riconoscere l’angolo indicato.",
+              "cafeStage": 2
             },
             {
               "title": "Un nome più breve",
-              "html": "Scrivere ogni volta tre lettere può essere scomodo. <strong>Se è chiaro quale angolo stiamo indicando</strong>, possiamo usare soltanto il nome del vertice con il cappello: <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">O</mi></mrow><mo stretchy=\"true\">ˆ</mo></mover></math> oppure <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">O</mi></mrow><mo stretchy=\"true\">ˇ</mo></mover></math>.<br><br>Possiamo anche assegnargli una lettera greca, come <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-alfa\">α</button>, che si legge «alfa». È un nome breve: la figura deve far capire a quale angolo si riferisce."
+              "html": "Scrivere ogni volta tre lettere può essere scomodo. <strong>Se è chiaro quale angolo stiamo indicando</strong>, possiamo usare soltanto il nome del vertice con il cappello: <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">O</mi></mrow><mo stretchy=\"true\">ˆ</mo></mover></math> oppure <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">O</mi></mrow><mo stretchy=\"true\">ˇ</mo></mover></math>.<br><br>Possiamo anche assegnargli una lettera greca, come <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-alfa\">α</button>, che si legge «alfa». È un nome breve: la figura deve far capire a quale angolo si riferisce.",
+              "cafeStage": 2
             }
-          ]
+          ],
+          "board": "cafe-geometry"
         }
       ],
       "quiz": {
@@ -186,27 +190,32 @@ window.READER_LESSONS["geometria-angoli"] = {
           "steps": [
             {
               "title": "L’angolo convesso",
-              "html": "Se i lati non appartengono alla stessa retta, una regione ha un’apertura minore di un angolo piatto: è l’angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-convesso\">convesso</button>. <strong>Non contiene i prolungamenti dei lati oltre il vertice.</strong>"
+              "html": "Prolunghiamo i lati oltre il vertice, dalla parte opposta rispetto alle <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> che formano l’angolo.<br><br>Un angolo è <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-convesso\">convesso</button> quando <strong>non contiene i prolungamenti dei suoi lati oltre il vertice</strong>. Nella figura è la regione più piccola.",
+              "cafeStage": 4
             },
             {
               "title": "L’angolo concavo",
-              "html": "L’altra regione passa dalla parte dei prolungamenti e ha un’apertura maggiore di un angolo piatto: è l’angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-concavo\">concavo</button>.<br><br>Gli stessi lati delimitano entrambi: <strong>scegliere la regione fa parte della descrizione.</strong>"
+              "html": "Un angolo è <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-concavo\">concavo</button> quando <strong>contiene i prolungamenti dei suoi lati oltre il vertice</strong>. Nella figura è la regione più grande.<br><br><strong>I lati sono gli stessi: cambia la regione considerata.</strong>",
+              "cafeStage": 5
             }
           ],
-          "stepMode": "replace"
+          "board": "cafe-geometry"
         },
         {
           "title": "Quando i lati stanno sulla stessa retta",
           "steps": [
             {
               "title": "Il piatto",
-              "html": "Se i lati sono <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semirette-opposte\">semirette opposte</button>, individuano due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piatto\">angoli piatti</button>. Ciascuno occupa metà <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button>."
+              "html": "Se i lati sono <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semirette-opposte\">semirette opposte</button>, individuano due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piatto\">angoli piatti</button>. Ciascuno occupa metà <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button>.",
+              "cafeStage": 6
             },
             {
               "title": "Nullo e giro",
-              "html": "Se i lati coincidono, distinguiamo due casi: l’angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-nullo\">nullo</button> è formato dalla sola <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semiretta</button> comune; l’angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-giro\">giro</button> comprende tutto il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button>.<br><br><strong>I lati sono gli stessi: cambia la regione considerata.</strong>"
+              "html": "Se i lati coincidono, distinguiamo due casi: l’angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-nullo\">nullo</button> è formato dalla sola <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semiretta</button> comune; l’angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-giro\">giro</button> comprende tutto il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button>.<br><br><strong>I lati sono gli stessi: cambia la regione considerata.</strong>",
+              "cafeStage": 7
             }
-          ]
+          ],
+          "board": "cafe-geometry"
         }
       ],
       "quiz": {
@@ -274,22 +283,27 @@ window.READER_LESSONS["geometria-angoli"] = {
           "steps": [
             {
               "title": "Il retto",
-              "html": "Dividiamo un angolo piatto in <strong>due angoli della stessa apertura</strong>. Ciascuno è un angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-retto\">retto</button>. Nel disegno lo riconosciamo anche dal piccolo quadratino vicino al vertice."
+              "html": "Dividiamo un angolo piatto in <strong>due angoli della stessa apertura</strong>. Ciascuno è un angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-retto\">retto</button>. Nel disegno lo riconosciamo anche dal piccolo quadratino vicino al vertice.",
+              "cafeStage": 8
             },
             {
               "title": "Più piccolo o più grande",
-              "html": "Un angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-acuto\">acuto</button> ha un’apertura <strong>maggiore del nullo e minore del retto</strong>.<br><br>Un angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-ottuso\">ottuso</button> ha un’apertura <strong>maggiore del retto e minore del piatto</strong>."
+              "html": "Un angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-acuto\">acuto</button> ha un’apertura <strong>maggiore del nullo e minore del retto</strong>.<br><br>Un angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-ottuso\">ottuso</button> ha un’apertura <strong>maggiore del retto e minore del piatto</strong>.",
+              "cafeStage": 9
             }
-          ]
+          ],
+          "board": "cafe-geometry"
         },
         {
           "title": "Conta l’apertura",
           "steps": [
             {
               "title": "Anche se ruotiamo la figura",
-              "html": "Un angolo retto resta retto anche se lo disegniamo inclinato. Allungare i tratti visibili dei lati non cambia il tipo di angolo: <strong>conta l’apertura, non l’orientamento o la grandezza del disegno.</strong>"
+              "html": "Un angolo retto resta retto anche se lo disegniamo inclinato. Allungare i tratti visibili dei lati non cambia il tipo di angolo: <strong>conta l’apertura, non l’orientamento o la grandezza del disegno.</strong>",
+              "cafeStage": 10
             }
-          ]
+          ],
+          "board": "cafe-geometry"
         }
       ],
       "quiz": {
@@ -357,9 +371,11 @@ window.READER_LESSONS["geometria-angoli"] = {
           "steps": [
             {
               "title": "",
-              "html": "<ul><li><strong>Due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> con origine comune individuano due angoli.</strong> Scegli quale regione osservare.</li><li><strong>I lati sono <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button>; il vertice è l’origine comune.</strong> L’archetto indica la regione scelta.</li><li><strong>Convesso e concavo sono due aperture diverse con gli stessi lati.</strong> I prolungamenti dei lati stanno nella regione concava.</li><li><strong>Opposti: piatto. Coincidenti: nullo oppure giro.</strong> Nel primo caso ciascuna regione occupa metà <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button>; nel secondo scegliamo la sola <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semiretta</button> o tutto il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button>.</li><li><strong>Acuto, retto, ottuso: confronta l’apertura.</strong> Il retto è metà del piatto.</li></ul>"
+              "html": "<ul><li><strong>Due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> con origine comune individuano due angoli.</strong> Scegli quale regione osservare.</li><li><strong>I lati sono <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button>; il vertice è l’origine comune.</strong> L’archetto indica la regione scelta.</li><li><strong>Convesso e concavo sono due aperture diverse con gli stessi lati.</strong> I prolungamenti dei lati stanno nella regione concava.</li><li><strong>Opposti: piatto. Coincidenti: nullo oppure giro.</strong> Nel primo caso ciascuna regione occupa metà <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button>; nel secondo scegliamo la sola <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semiretta</button> o tutto il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button>.</li><li><strong>Acuto, retto, ottuso: confronta l’apertura.</strong> Il retto è metà del piatto.</li></ul>",
+              "cafeStage": 2
             }
-          ]
+          ],
+          "board": "cafe-geometry"
         }
       ],
       "quiz": {
