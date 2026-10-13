@@ -499,10 +499,13 @@ document.addEventListener('DOMContentLoaded',()=>{
  column.addEventListener('touchstart',e=>{if(e.target.closest('input,select,button,.rm-reader-board'))return;const p=e.changedTouches[0];touch={x:p.clientX,y:p.clientY};},{passive:true});
  column.addEventListener('touchend',e=>{if(!touch)return;const p=e.changedTouches[0],dx=p.clientX-touch.x,dy=p.clientY-touch.y;touch=null;if(Math.abs(dx)<75||Math.abs(dy)>50)return;const b=dx>0?$('reader-prev'):$('reader-next');if(!b.hidden&&!b.disabled)b.click();},{passive:true});
  $('reader-show-all').textContent='Sblocca tutto';
+ $('reader-show-all').setAttribute('aria-pressed','false');
  $('reader-show-all').addEventListener('click',()=>{
-  reviewAccess=true;referenceMode=false;referenceBounds=null;pendingSection=null;allMode=false;
-  $('reader-show-all').textContent='Tutto sbloccato';$('reader-show-all').disabled=true;
-  render();index();actions();
+  reviewAccess=!reviewAccess;referenceMode=false;referenceBounds=null;pendingSection=null;allMode=false;
+  $('reader-show-all').textContent=reviewAccess?'Ripristina i checkpoint':'Sblocca tutto';
+  $('reader-show-all').setAttribute('aria-pressed',String(reviewAccess));
+  if(reviewAccess){render();index();actions();}else open(current,true);
+
  });
  // Old localStorage entries from reader v1 are intentionally never read.
  const referenceSection=lesson.sections.findIndex(s=>s.id===params.get('sezione'));
