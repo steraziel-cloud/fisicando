@@ -18,7 +18,7 @@
 function spriteCat(color,scarf){
  const cell=color==='#c79565'?3:color==='#dba569'?0:color==='#eee4cb'?1:2;
  const g=svg('g',{'aria-hidden':'true'}),v=svg('svg',{x:-29,y:-48,width:58,height:58,viewBox:'0 0 100 100',overflow:'hidden',class:'ag-npc-sprite'});
- v.append(svg('image',{href:'assets/images/reader/cafe-npcs-rpg-v2.png',width:200,height:200,x:-(cell%2)*100,y:-Math.floor(cell/2)*100,'image-rendering':'pixelated'}));g.append(v);return g;
+ v.append(svg('image',{href:'assets/images/reader/cafe-npcs-rpg-v3.png',width:200,height:200,x:-(cell%2)*100,y:-Math.floor(cell/2)*100,'image-rendering':'pixelated'}));g.append(v);return g;
 }
 function baseMap(){
  const map=svg('svg',{viewBox:'0 0 900 550',class:'ag-map',role:'img','aria-label':'Caffetteria in prospettiva dall’alto, con tavolini, bancone e un solo angolo tra le pareti dritte'});
@@ -44,7 +44,7 @@ function baseMap(){
   inside.append(g);return g;
  });
  const customers=[];
- [[0,'Milo','#dba569','#77975e'],[2,'Luna','#eee4cb','#cf8d9b'],[4,'Nilo','#7e8494','#e0ae5f']].forEach(([i,name,color,scarf])=>{const t=tables[i];const g=svg('g',{transform:'translate('+(t.x+61)+' '+(t.y+8)+')',class:'ag-customer'});g.append(spriteCat(color,scarf));inside.append(g);customers.push({x:t.x+61,y:t.y+8,name,node:g,table:i});});
+ [[0,'Mila','#dba569','#77975e'],[2,'Luna','#eee4cb','#cf8d9b'],[4,'Nilo','#7e8494','#e0ae5f']].forEach(([i,name,color,scarf])=>{const t=tables[i];const g=svg('g',{transform:'translate('+(t.x+61)+' '+(t.y+8)+')',class:'ag-customer'});g.append(spriteCat(color,scarf));inside.append(g);customers.push({x:t.x+61,y:t.y+8,name,node:g,table:i});});
  // The opening follows the wall tangent; no floor is painted outside the room.
  const door=svg('g',{transform:'translate(739 414) rotate(-33)'});door.innerHTML='<rect x="-28" y="-10" width="56" height="19" fill="#e6cda3"/><path d="M-28-10v18M28-10v18" stroke="#705c48" stroke-width="5"/><path d="M-27-6L8-29" stroke="#775743" stroke-width="7"/><path d="M-24-7L8-27" stroke="#b98e61" stroke-width="3"/><circle cx="3" cy="-22" r="2" fill="#ecc365"/>';scenery.append(door);
  const actors=svg('g',{class:'ag-depth-layer'});scenery.append(actors);map.append(scenery);return {map,scenery,tableNodes,barista,customers,insideLayer:actors,depth:[...tableNodes.map((node,i)=>({node,y:tables[i].y+18})),...customers.map(c=>({node:c.node,y:c.y})),{node:barista,y:126},{node:counter,y:190}]};
@@ -122,7 +122,7 @@ function baseMap(){
    convex.setAttribute('opacity',chosen==='convesso'?'.22':'.05');concave.setAttribute('opacity',chosen==='concavo'?'.22':'.05');
    arc.setAttribute('d',chosen==='convesso'?'M230 88A45 45 0 0 1 171.5 130.9':'M230 88A45 45 0 1 0 171.5 130.9');
    choices.forEach(([b,v])=>b.setAttribute('aria-pressed',String(v===chosen)));
-   map.setAttribute('aria-label','Due semirette di origine O. È evidenziata la regione '+chosen+'. Le semirette continuano oltre i confini della stanza.');
+   map.setAttribute('aria-label','Due semirette di origine O. È evidenziato l’angolo '+chosen+'. Le semirette continuano oltre i confini della stanza.');
   };
   [['Regione interna','convesso'],['L’altra regione','concavo']].forEach(([text,value])=>{const b=button(text,()=>{chosen=value;apply();});choices.push([b,value]);select.append(b);});
   host.replaceChildren(map,select);
@@ -154,7 +154,7 @@ function game(host,state,onNext){
  const sound=music(host,state.musicMuted);
  const dialogueBox=node('div','ag-rpg-dialogue');dialogueBox.hidden=true;dialogueBox.setAttribute('role','status');
  const portrait=node('div','ag-rpg-portrait'),speech=node('div','ag-rpg-speech'),speaker=node('strong'),words=node('p'),dismiss=button('▼',()=>inspect(),'ag-dialogue-next');dismiss.setAttribute('aria-label','Continua il dialogo');speech.append(speaker,words);dialogueBox.append(portrait,speech,dismiss);frameBox.append(dialogueBox);
- function say(who,text,after){keys.clear();active=false;dialogue={after};speaker.textContent=who;words.textContent=text;portrait.textContent='';const cell={Milo:0,Luna:1,Nilo:2,Barista:3}[who];portrait.style.backgroundImage='url(assets/images/reader/'+(who==='Morgana'?'cafe-morgana-rpg-v1.png':'cafe-npcs-rpg-v2.png')+')';portrait.style.backgroundSize=who==='Morgana'?'300% 400%':'200% 200%';portrait.style.backgroundPosition=who==='Morgana'?'0% 0%':(cell%2?100:0)+'% '+(cell>=2?100:0)+'%';dialogueBox.hidden=false;sync();}
+ function say(who,text,after){keys.clear();active=false;dialogue={after};speaker.textContent=who;words.textContent=text;portrait.textContent='';const cell={Mila:0,Luna:1,Nilo:2,Barista:3}[who];portrait.style.backgroundImage='url(assets/images/reader/'+(who==='Morgana'?'cafe-morgana-rpg-v1.png':'cafe-npcs-rpg-v3.png')+')';portrait.style.backgroundSize=who==='Morgana'?'300% 400%':'200% 200%';portrait.style.backgroundPosition=who==='Morgana'?'0% 0%':(cell%2?100:0)+'% '+(cell>=2?100:0)+'%';dialogueBox.hidden=false;sync();}
  function closeDialogue(){if(!dialogue)return;const after=dialogue.after;dialogue=null;dialogueBox.hidden=true;if(after)after();map.focus({preventScroll:true});}
  const controls=node('div','ag-console-controls'),pad=node('div','ag-dpad');pad.setAttribute('aria-label','Croce direzionale');
  const action=button('Ispeziona',()=>inspect(),'ag-console-action ag-inspect');action.setAttribute('aria-label','Ispeziona o continua il dialogo');
@@ -176,7 +176,7 @@ function game(host,state,onNext){
   if(dialogue){closeDialogue();return;}if(state.found){onNext();return;}if(!near){say('Morgana','Meglio avvicinarmi a un tavolino, a un oggetto o a qualcuno prima di ispezionare.');return;}
   if(near.type==='barista'){say('Barista','Le preparo un cappuccino? Miao. Se cerca una scatolina, provi a chiedere ai clienti.');return;}
   if(near.type==='plant'){say('Morgana','Una pianta molto curata. La scatolina di Bjorne non è un vaso… per ora.');return;}
-  if(near.type==='customer'){const texts={Milo:'Prima qui c’era un gattino con una bandana turchese. Gli è scivolato qualcosa sotto il tavolino.',Luna:'Cerchi qualcosa? Vicino all’angolo c’è un altro tavolino. Io ho soltanto biscotti!',Nilo:'Questo posto sembra un labirinto… ma il cappuccino è buonissimo.'};say(near.name,texts[near.name]);return;}
+  if(near.type==='customer'){const texts={Mila:'Prima qui c’era un gattino con una bandana turchese. Gli è scivolato qualcosa sotto il tavolino.',Luna:'Cerchi qualcosa? Vicino all’angolo c’è un altro tavolino. Io ho soltanto biscotti!',Nilo:'Questo posto sembra un labirinto… ma il cappuccino è buonissimo.'};say(near.name,texts[near.name]);return;}
   if(near.box){state.found=true;const box=svg('g',{class:'ag-found-box',transform:'translate('+(near.x-12)+' '+(near.y+22)+')'});box.innerHTML='<rect width="25" height="19" fill="#bd8b59" stroke="#715037" stroke-width="2"/><path d="M0 6H25M12 0V19" stroke="#f4c46e" stroke-width="3"/>';map.append(box);say('Morgana','Eccola! La scatolina era proprio sotto il tavolino vicino all’angolo. Ora gliela porto.',onNext);}
   else say('Morgana','Sotto questo tavolino non c’è. Continuo a cercare.');
  }

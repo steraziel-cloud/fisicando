@@ -84,4 +84,4 @@
 @media(max-width:650px){.ag-console-controls .ag-dpad{left:2%;bottom:4%;grid-template-columns:repeat(3,29px);grid-template-rows:repeat(3,29px)}.ag-console-controls .ag-move{font-size:1.05rem}.ag-console-action{width:62px;height:62px;font-size:.68rem}.ag-inspect{right:2%;bottom:12%}.ag-hint{right:16%;bottom:2%}.ag-game .ag-map{min-height:300px}.ag-rpg-dialogue{left:3%;right:3%;bottom:10px;padding:10px;gap:8px}.ag-rpg-portrait{width:48px;height:48px}.ag-rpg-speech p{font-size:.85rem}.ag-music{top:8px;right:8px}}
 @media(prefers-reduced-motion:reduce){.ag-rpg-dialogue{animation:none}}
 
-.ag-game .ag-npc-sprite,.ag-game .ag-morgana-sprite{overflow:hidden!important}
+.ag-npc-sprite,.ag-morgana-sprite{overflow:hidden!important}
