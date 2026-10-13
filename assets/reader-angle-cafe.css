@@ -20,7 +20,7 @@
 .ag-start{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);box-shadow:0 7px 20px #263c4b33}
 .ag-game-feedback{min-height:28px;text-align:center;margin-top:10px;font-size:1rem;color:var(--rm-text,#253947)}
 .ag-game-feedback strong{color:var(--rm-accent,#238d9c);margin-right:10px}
-.ag-board-card>.rm-card-text:has(.rm-reader-step p:empty){display:none}
+.ag-card:has(.ag-game)>.rm-card-text{display:none}
 .ag-geometry+.rm-card-text{margin-top:18px}
 .ag-region-buttons{display:flex;justify-content:center;gap:10px;margin:12px 0}
 .ag-region-buttons button[aria-pressed=true]{border-color:#19a6ad;background:#19a6ad16}
