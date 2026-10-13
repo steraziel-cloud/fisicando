@@ -31,9 +31,21 @@ window.READER_LESSONS["geometria-angoli"] = {
               "html": "",
               "cafeStage": 2
             },
-            {"title": "", "html": "", "cafeStage": 3},
-            {"title": "", "html": "", "cafeStage": 4},
-            {"title": "", "html": "", "cafeStage": 5}
+            {
+              "title": "",
+              "html": "",
+              "cafeStage": 3
+            },
+            {
+              "title": "",
+              "html": "",
+              "cafeStage": 4
+            },
+            {
+              "title": "",
+              "html": "",
+              "cafeStage": 5
+            }
           ]
         },
         {
@@ -55,36 +67,37 @@ window.READER_LESSONS["geometria-angoli"] = {
       "cards": [
         {
           "id": "cafe-definizione",
-          "title": "La definizione",
+          "title": "La definizione di angolo",
           "board": "cafe-geometry",
           "steps": [
             {
               "title": "",
               "cafeStage": 0,
-              "html": "Un <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-angolo\">angolo</button> è <strong>ciascuna delle due regioni del piano individuate da due semirette con la stessa origine, compresi i lati</strong>."
+              "html": "Un <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-angolo\">angolo</button> è <strong>ciascuna delle due regioni del <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button> individuate da due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> con la stessa origine, comprese le <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button></strong>."
+            },
+            {
+              "title": "Un segno nella figura",
+              "html": "Un <strong>archetto</strong> vicino al vertice mostra quale delle due regioni stiamo considerando: uno per l’angolo convesso, due per quello concavo. Gli archetti sono un’indicazione: <strong>l’angolo non finisce lì</strong>.",
+              "cafeStage": 1
             },
             {
               "title": "Lati e vertice",
-              "cafeStage": 1,
+              "cafeStage": 2,
               "html": "Le due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> sono i <strong>lati</strong> dell’angolo; la loro origine comune è il <strong>vertice</strong>. L’angolo comprende tutta la regione scelta, anche oltre ciò che riusciamo a disegnare."
             },
             {
               "title": "Dalla stanza alla geometria",
-              "cafeStage": 2,
-              "html": "Nel linguaggio quotidiano, «vicino all’angolo» ci ha indicato una zona vicino all’incontro delle pareti. In geometria, invece, l’angolo comprende <strong>l’intera regione scelta, che continua senza limite</strong>.<br><br>La stanza ha dei confini. Il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button> geometrico e le semirette continuano oltre il disegno. Il punto O è il vertice, non tutto l’angolo."
+              "cafeStage": 3,
+              "html": "Nel linguaggio quotidiano, «vicino all’angolo» ci ha indicato una zona vicino all’incontro delle pareti. In geometria, invece, l’angolo comprende <strong>l’intera regione scelta, che continua senza limite</strong>.<br><br>La stanza ha dei confini. Il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button> geometrico e le <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> continuano oltre il disegno. Il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> O è il vertice, non tutto l’angolo."
             }
           ]
         },
         {
-          "title": "Quale angolo stiamo indicando?",
+          "title": "Un nome per riconoscerlo",
           "steps": [
             {
-              "title": "Un segno nella figura",
-              "html": "Un <strong>archetto</strong> vicino al vertice mostra quale delle due regioni stiamo considerando. L’archetto è un’indicazione: l’angolo non finisce lì."
-            },
-            {
-              "title": "Un nome per riconoscerlo",
-              "html": "Se A è su un lato e B sull’altro, possiamo scrivere <strong>AÔB</strong>, leggendo «angolo A, O, B». <strong>La lettera del vertice sta al centro.</strong><br><br>Possiamo anche dare all’angolo un nome come α, letto «alfa». Per distinguere le due regioni contano l’archetto e l’indicazione «convesso» o «concavo»."
+              "title": "",
+              "html": "Scegliamo un <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> A</strong> su un lato e un <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> B</strong> sull’altro. A e B sono i nomi di due <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punti</button> sui lati</strong>, non i nomi dei lati.<br><br>Possiamo scrivere <strong>AÔB</strong>, leggendo «angolo A, O, B». <strong>La lettera del vertice sta al centro.</strong><br><br>Possiamo anche dare all’angolo un nome come <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-alfa\">α</button>, letto «alfa». Per distinguere le due regioni contano gli archetti e l’indicazione «convesso» o «concavo»."
             }
           ]
         }
@@ -168,11 +181,11 @@ window.READER_LESSONS["geometria-angoli"] = {
           "steps": [
             {
               "title": "Il piatto",
-              "html": "Se i lati sono <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semirette-opposte\">semirette opposte</button>, individuano due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piatto\">angoli piatti</button>. Ciascuno occupa metà piano."
+              "html": "Se i lati sono <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semirette-opposte\">semirette opposte</button>, individuano due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piatto\">angoli piatti</button>. Ciascuno occupa metà <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button>."
             },
             {
               "title": "Nullo e giro",
-              "html": "Se i lati coincidono, distinguiamo due casi: l’angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-nullo\">nullo</button> è formato dalla sola semiretta comune; l’angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-giro\">giro</button> comprende tutto il piano.<br><br><strong>I lati sono gli stessi: cambia la regione considerata.</strong>"
+              "html": "Se i lati coincidono, distinguiamo due casi: l’angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-nullo\">nullo</button> è formato dalla sola <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semiretta</button> comune; l’angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-giro\">giro</button> comprende tutto il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button>.<br><br><strong>I lati sono gli stessi: cambia la regione considerata.</strong>"
             }
           ]
         }
@@ -325,7 +338,7 @@ window.READER_LESSONS["geometria-angoli"] = {
           "steps": [
             {
               "title": "",
-              "html": "<ul><li><strong>Due semirette con origine comune individuano due angoli.</strong> Scegli quale regione osservare.</li><li><strong>I lati sono semirette; il vertice è l’origine comune.</strong> L’archetto indica la regione scelta.</li><li><strong>Convesso e concavo sono due aperture diverse con gli stessi lati.</strong> I prolungamenti dei lati stanno nella regione concava.</li><li><strong>Opposti: piatto. Coincidenti: nullo oppure giro.</strong> Nel primo caso ciascuna regione occupa metà piano; nel secondo scegliamo la sola semiretta o tutto il piano.</li><li><strong>Acuto, retto, ottuso: confronta l’apertura.</strong> Il retto è metà del piatto.</li></ul>"
+              "html": "<ul><li><strong>Due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> con origine comune individuano due angoli.</strong> Scegli quale regione osservare.</li><li><strong>I lati sono <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button>; il vertice è l’origine comune.</strong> L’archetto indica la regione scelta.</li><li><strong>Convesso e concavo sono due aperture diverse con gli stessi lati.</strong> I prolungamenti dei lati stanno nella regione concava.</li><li><strong>Opposti: piatto. Coincidenti: nullo oppure giro.</strong> Nel primo caso ciascuna regione occupa metà <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button>; nel secondo scegliamo la sola <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semiretta</button> o tutto il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button>.</li><li><strong>Acuto, retto, ottuso: confronta l’apertura.</strong> Il retto è metà del piatto.</li></ul>"
             }
           ]
         }
@@ -391,6 +404,7 @@ window.READER_LESSONS["geometria-angoli"] = {
     "id": "geometria-confronto-angoli"
   }
 };
+
 window.READER_LESSONS["geometria-confronto-angoli"] = {
   "title": "Confrontare gli angoli",
   "subtitle": "Matematica · Medie e biennio · Bozza testuale in lavorazione",
@@ -1865,4 +1879,5 @@ window.READER_LESSONS["geometria-perpendicolari"] = {
     }
   ]
 };
+
 

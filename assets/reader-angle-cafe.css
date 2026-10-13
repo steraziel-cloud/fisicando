@@ -85,3 +85,7 @@
 @media(prefers-reduced-motion:reduce){.ag-rpg-dialogue{animation:none}}
 
 .ag-npc-sprite,.ag-morgana-sprite{overflow:hidden!important}
+
+
+.ag-definition-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:20px 28px;align-items:start}.ag-definition-card>.rm-card-title{grid-column:1/-1}.ag-definition-card>.rm-card-text{grid-column:1;grid-row:2;margin:0;max-width:none}.ag-definition-card>.ag-host{grid-column:2;grid-row:2}.ag-definition-card .ag-map{height:auto;max-height:none;aspect-ratio:900/550}.ag-definition-card .ag-region-buttons{gap:7px;flex-wrap:wrap}.ag-definition-card .ag-region-buttons button{padding:9px 12px}.ag-angle-handle{cursor:grab;touch-action:none;stroke:#118e9c;stroke-width:2;stroke-dasharray:3 5}.ag-angle-handle:hover{fill:#ffffff66}.ag-angle-handle.ag-grabbing{cursor:grabbing}.ag-angle-arcs{transition:opacity .26s ease}.ag-regions path{cursor:pointer;transition:opacity .2s ease}.rm-greek-table{width:100%;border-collapse:collapse;margin-top:14px;font-size:.95rem}.rm-greek-table th,.rm-greek-table td{padding:7px 10px;text-align:left;border-bottom:1px solid #879ca944}.rm-greek-table th{font-weight:700}
+@media(max-width:780px){.ag-definition-card{display:flex;flex-direction:column}.ag-definition-card>.rm-card-text{order:1}.ag-definition-card>.ag-host{order:2}.ag-definition-card>.rm-card-title{order:0}}

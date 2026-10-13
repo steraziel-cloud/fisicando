@@ -37,7 +37,6 @@ function baseMap(){
  // Straight walls retain a clear common vertex; the other joins are smooth.
  inside.append(svg('path',{d:'M185 88H550M185 88L112 320',fill:'none',stroke:'#547c76','stroke-width':14}));
  [[290,50],[435,50]].forEach(([x,y])=>{const w=svg('g',{transform:'translate('+x+' '+y+')'});w.innerHTML='<rect x="-31" y="0" width="64" height="34" fill="#705b48"/><rect x="-27" y="3" width="56" height="25" fill="#98d4d6"/><path d="M1 3V28M-27 16H29" stroke="#fff0d0" stroke-width="4"/><path d="M-22 7L-10 7-22 20M10 7H22L10 20" fill="#daf3ea"/><rect x="-34" y="29" width="70" height="7" fill="#b58b62"/>';scenery.append(w);});
- [[804,303],[779,372]].forEach(([x,y])=>{const w=svg('g',{transform:'translate('+x+' '+(y-27)+')'});w.innerHTML='<path d="M-21-9H21V36H-21Z" fill="#7e9e91"/><rect x="-15" y="-7" width="30" height="34" fill="#715b48"/><rect x="-12" y="-4" width="24" height="28" fill="#98d4d6"/><path d="M0-4V24M-12 10H12" stroke="#f7ebcf" stroke-width="3"/><path d="M-9 0H-2L-9 8" fill="#dff4e7"/><rect x="-18" y="27" width="36" height="5" fill="#b58b62"/>';scenery.append(w);});
  const plantNodes=[];
  function plant(x,y){const g=svg('g',{transform:'translate('+x+' '+y+')'});g.append(svg('ellipse',{cx:0,cy:5,rx:20,ry:7,fill:'#5e6148',opacity:.18}),svg('image',{href:'assets/images/reader/cafe-ficus-rpg-v1.png',x:-32,y:-63,width:64,height:78,'image-rendering':'pixelated'}));inside.append(g);plantNodes.push({node:g,y:y+10});}
  [[141,282],[760,288],[426,453]].forEach(([x,y])=>plant(x,y));
@@ -110,34 +109,36 @@ function baseMap(){
   if(stage===5)view.dialogue.append(balloon(6));
  }
  function geometry(host,state,stage){
-  host.classList.add('ag-geometry');const {map,scenery}=baseMap();
-  const regions=svg('g',{class:'ag-regions'});
-  const convex=svg('path',{d:'M185 88H900V550H40Z',fill:'#2bb5bf',opacity:.18,'data-region':'convesso'});
-  const concave=svg('path',{d:'M0 0H900V88H185L40 550H0Z',fill:'#a18ac9',opacity:.16,'data-region':'concavo'});
-  regions.append(concave,convex);map.append(regions);
-  const rays=svg('g',{class:'ag-rays'});
-  rays.append(svg('path',{d:'M185 88H890M185 88L44 535',fill:'none',stroke:'#118e9c','stroke-width':5}));
-  rays.append(svg('path',{d:'M875 79L890 88 875 97M40 518L44 535 57 523',fill:'none',stroke:'#118e9c','stroke-width':4}));
-  const dot=svg('circle',{cx:185,cy:88,r:7,fill:'#263c4b'}),label=svg('text',{x:157,y:70,fill:'#263c4b','font-size':23,'font-weight':700});label.textContent='O';rays.append(dot,label);
-  for(const[x,y,text]of [[460,69,'lato'],[86,330,'lato']]){const n=svg('text',{x,y,fill:'#118e9c','font-size':19});n.textContent=text;n.classList.add('ag-side-label');rays.append(n);}
-  map.append(rays);
-  const select=node('div','ag-region-buttons');
-  let chosen=state.region||'convesso';
-  const arc=svg('path',{fill:'none',stroke:'#118e9c','stroke-width':3});rays.append(arc);
-  const choices=[];
-  const apply=()=>{
-   state.region=chosen;
-   convex.setAttribute('opacity',chosen==='convesso'?'.22':'.05');concave.setAttribute('opacity',chosen==='concavo'?'.22':'.05');
-   arc.setAttribute('d',chosen==='convesso'?'M230 88A45 45 0 0 1 171.5 130.9':'M230 88A45 45 0 1 0 171.5 130.9');
-   choices.forEach(([b,v])=>b.setAttribute('aria-pressed',String(v===chosen)));
-   map.setAttribute('aria-label','Due semirette di origine O. È evidenziato l’angolo '+chosen+'. Le semirette continuano oltre i confini della stanza.');
-  };
-  [['Regione interna','convesso'],['L’altra regione','concavo']].forEach(([text,value])=>{const b=button(text,()=>{chosen=value;apply();});choices.push([b,value]);select.append(b);});
-  host.replaceChildren(map,select);
-  if(stage===0){scenery.style.opacity=1;scenery.animate([{opacity:1},{opacity:0}],{duration:1200,fill:'forwards'});}
-  else scenery.style.opacity=0;
-  rays.querySelectorAll('.ag-side-label').forEach(x=>x.style.opacity=stage>=1?1:0);
-  apply();
+  if(host.agGeometryUpdate){host.agGeometryUpdate(stage);return;}
+  host.classList.add('ag-geometry');host.closest('.ag-card').classList.add('ag-definition-card');
+  const {map,scenery}=baseMap();map.setAttribute('role','group');
+  const regions=svg('g',{class:'ag-regions'}),convex=svg('path',{fill:'#2bb5bf','data-region':'convesso'}),concave=svg('path',{fill:'#a18ac9','data-region':'concavo'});regions.append(concave,convex);map.append(regions);
+  const rays=svg('g',{class:'ag-definition-rays'}),lines=[0,1].map(()=>svg('path',{fill:'none',stroke:'#118e9c','stroke-width':5})),ends=[0,1].map(()=>svg('path',{fill:'none',stroke:'#118e9c','stroke-width':4,'stroke-dasharray':'10 9'}));
+  rays.append(...lines,...ends);const dot=svg('circle',{r:6,fill:'#263c4b'}),label=svg('text',{fill:'#263c4b','font-size':25,'font-weight':700});label.textContent='O';rays.append(dot,label);
+  const arcs=svg('g',{class:'ag-angle-arcs'}),arcPaths=[0,1,2].map(()=>svg('path',{fill:'none',stroke:'#118e9c','stroke-width':3}));arcs.append(...arcPaths);rays.append(arcs);
+  const handle=svg('circle',{r:19,fill:'transparent',class:'ag-angle-handle',tabindex:0,role:'slider','aria-label':'Ampiezza dell’angolo interno','aria-valuemin':5,'aria-valuemax':175});rays.append(handle);map.append(rays);
+  const select=node('div','ag-region-buttons');let chosen=null,angle=state.angle??Math.atan2(232,-73),origin=stage===0&&!state.geometryEntered?{x:185,y:88}:{x:450,y:275},currentStage=stage,dragging=false,raf=0;
+  const choices=[];const pt=(a,r)=>[origin.x+Math.cos(a)*r,origin.y+Math.sin(a)*r];
+  function sector(start,end){let d='M'+origin.x+' '+origin.y;for(let i=0;i<=72;i++)d+='L'+pt(start+(end-start)*i/72,2000).join(' ');return d+'Z';}
+  function arc(r,start,end){return 'M'+pt(start,r).join(' ')+'A'+r+' '+r+' 0 '+(end-start>Math.PI?1:0)+' 1 '+pt(end,r).join(' ');}
+  function paint(){
+   convex.setAttribute('d',sector(0,angle));concave.setAttribute('d',sector(angle,Math.PI*2));convex.setAttribute('opacity',chosen==='convesso'?'.38':'.18');concave.setAttribute('opacity',chosen==='concavo'?'.35':'.16');
+   [0,angle].forEach((a,i)=>{lines[i].setAttribute('d','M'+origin.x+' '+origin.y+'L'+pt(a,160).join(' '));ends[i].setAttribute('d','M'+pt(a,160).join(' ')+'L'+pt(a,2000).join(' '));});
+   dot.setAttribute('cx',origin.x);dot.setAttribute('cy',origin.y);label.setAttribute('x',origin.x-27);label.setAttribute('y',origin.y-16);
+   arcPaths[0].setAttribute('d',arc(45,0,angle));arcPaths[1].setAttribute('d',arc(56,angle,Math.PI*2));arcPaths[2].setAttribute('d',arc(66,angle,Math.PI*2));arcs.style.opacity=currentStage>=1?1:0;
+   const h=pt(angle,140);handle.setAttribute('cx',h[0]);handle.setAttribute('cy',h[1]);handle.setAttribute('aria-valuenow',Math.round(angle*180/Math.PI));state.angle=angle;
+   choices.forEach(([b,v])=>b.setAttribute('aria-pressed',String(v===chosen)));map.setAttribute('aria-label','Due semirette con origine O: entrambe le regioni del piano sono colorate. Ampiezza interna '+Math.round(angle*180/Math.PI)+' gradi.');
+  }
+  function highlight(value){chosen=value;paint();}
+  [['Regione interna','convesso'],['Regione esterna','concavo']].forEach(([text,value])=>{const b=button(text,()=>highlight(value));choices.push([b,value]);select.append(b);});
+  convex.addEventListener('click',()=>highlight('convesso'));concave.addEventListener('click',()=>highlight('concavo'));
+  function drag(e){const p=map.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const q=p.matrixTransform(map.getScreenCTM().inverse());angle=Math.max(5*Math.PI/180,Math.min(175*Math.PI/180,Math.atan2(q.y-origin.y,q.x-origin.x)));paint();}
+  handle.addEventListener('pointerdown',e=>{e.preventDefault();dragging=true;handle.setPointerCapture(e.pointerId);handle.classList.add('ag-grabbing');});handle.addEventListener('pointermove',e=>{if(dragging)drag(e);});
+  const release=()=>{dragging=false;handle.classList.remove('ag-grabbing');};handle.addEventListener('pointerup',release);handle.addEventListener('pointercancel',release);
+  handle.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowDown','ArrowRight','ArrowUp'].includes(e.key)){e.preventDefault();e.stopPropagation();angle=Math.max(5*Math.PI/180,Math.min(175*Math.PI/180,angle+(['ArrowLeft','ArrowDown'].includes(e.key)?-1:1)*Math.PI/180));paint();}});
+  host.replaceChildren(map,select);host.agGeometryUpdate=s=>{currentStage=s;paint();};paint();
+  if(stage===0&&!state.geometryEntered){state.geometryEntered=true;const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduced){origin={x:450,y:275};scenery.style.opacity=0;paint();}else{let start;const animate=now=>{start??=now;const p=Math.min(1,(now-start)/1200),t=p*p*(3-2*p);origin={x:185+265*t,y:88+187*t};scenery.style.opacity=1-t;paint();if(p<1)raf=requestAnimationFrame(animate);};raf=requestAnimationFrame(animate);}}else scenery.style.opacity=0;
+  host.agGeometryDispose=()=>{cancelAnimationFrame(raf);host.agGeometryUpdate=null;};
  }
 function music(host,muted=false){
  let ctx=null,gain=null,timer=0,next=0,beat=0,disposed=false;const voices=new Set();
@@ -155,14 +156,14 @@ function music(host,muted=false){
 function game(host,state,onNext){
  host.classList.add('ag-game');const {map,tableNodes,barista,customers,insideLayer,depth}=baseMap();map.setAttribute('role','application');map.setAttribute('tabindex','0');map.setAttribute('aria-label','Caffetteria esplorabile. Muovi Morgana con WASD o frecce; Spazio ispeziona, I mostra un indizio.');
  const player=svg('g',{class:'ag-player'}),shade=svg('ellipse',{cx:0,cy:2,rx:14,ry:6,fill:'#4b4253',opacity:.25});player.append(shade);
- const sprite=svg('svg',{x:-31,y:-50,width:62,height:62,viewBox:atlasBox(heroAtlas,0,3),overflow:'hidden',class:'ag-morgana-sprite'});const sheet=svg('image',{href:'assets/images/reader/cafe-morgana-rpg-v1.png',x:0,y:0,width:heroAtlas.width,height:heroAtlas.height,'image-rendering':'pixelated'});sprite.append(sheet);player.append(sprite);insideLayer.append(player);let sortedY=null;
+ const sprite=svg('svg',{x:-31,y:-50,width:62,height:62,viewBox:atlasBox(heroAtlas,0,3),overflow:'hidden',class:'ag-morgana-sprite'});const sheet=svg('image',{href:'assets/images/reader/cafe-morgana-rpg-v1.png',x:0,y:0,width:heroAtlas.width,height:heroAtlas.height,'image-rendering':'pixelated'});const crop=svg('rect');const clip=svg('clipPath',{id:'ag-hero-frame-clip',clipPathUnits:'userSpaceOnUse'});clip.append(crop);const defs=svg('defs');defs.append(clip);sheet.setAttribute('clip-path','url(#ag-hero-frame-clip)');sprite.append(defs,sheet);player.append(sprite);insideLayer.append(player);let sortedY=null;
  const frameBox=node('div','ag-game-screen');frameBox.append(map);
  const keys=new Set();let raf=0,last=0,disposed=false,dialogue=null,near=null,walkClock=0,active=false,barClock=0;
  state.x??=735;state.y??=390;state.dir??='up';state.musicMuted??=false;state.hints??=0;
  const sound=music(host,state.musicMuted);
  const dialogueBox=node('div','ag-rpg-dialogue');dialogueBox.hidden=true;dialogueBox.setAttribute('role','status');
  const portrait=node('div','ag-rpg-portrait'),speech=node('div','ag-rpg-speech'),speaker=node('strong'),words=node('p'),dismiss=button('▼',()=>inspect(),'ag-dialogue-next');dismiss.setAttribute('aria-label','Continua il dialogo');speech.append(speaker,words);dialogueBox.append(portrait,speech,dismiss);frameBox.append(dialogueBox);
- function say(who,text,after){keys.clear();active=false;dialogue={after,lines:Array.isArray(text)?text:[text],index:0};speaker.textContent=who;words.textContent=dialogue.lines[0];portrait.textContent='';const cell={Dafne:0,Luna:1,Nilo:2,Barista:3}[who];portrait.style.backgroundImage='url(assets/images/reader/'+(who==='Morgana'?'cafe-morgana-rpg-v1.png':'cafe-npcs-rpg-v4.png')+')';portrait.style.backgroundSize=who==='Morgana'?'300% 400%':'400% 400%';portrait.style.backgroundPosition=who==='Morgana'?'0% 0%':'0% '+(cell*100/3)+'%';dialogueBox.hidden=false;sync();}
+ function say(who,text,after){keys.clear();active=false;dialogue={after,lines:Array.isArray(text)?text:[text],index:0};speaker.textContent=who;words.textContent=dialogue.lines[0];portrait.replaceChildren();portrait.style.backgroundImage='none';const cell={Dafne:0,Luna:1,Nilo:2,Barista:3}[who],atlas=who==='Morgana'?heroAtlas:npcAtlas;const pv=svg('svg',{viewBox:atlasBox(atlas,0,who==='Morgana'?0:cell),width:'100%',height:'100%',preserveAspectRatio:'none',overflow:'hidden'});pv.append(svg('image',{href:'assets/images/reader/'+(who==='Morgana'?'cafe-morgana-rpg-v1.png':'cafe-npcs-rpg-v4.png'),width:atlas.width,height:atlas.height}));portrait.append(pv);dialogueBox.hidden=false;sync();}
  function closeDialogue(){if(!dialogue)return;if(dialogue.index+1<dialogue.lines.length){words.textContent=dialogue.lines[++dialogue.index];return;}const after=dialogue.after;dialogue=null;dialogueBox.hidden=true;if(after)after();map.focus({preventScroll:true});}
  const controls=node('div','ag-console-controls'),pad=node('div','ag-dpad');pad.setAttribute('aria-label','Croce direzionale');
  const action=button('Ispeziona',()=>inspect(),'ag-console-action ag-inspect');action.setAttribute('aria-label','Ispeziona o continua il dialogo');
@@ -174,7 +175,7 @@ function game(host,state,onNext){
  function sync(){
   player.setAttribute('transform','translate('+state.x+' '+state.y+')');map.dataset.morganaX=Math.round(state.x);map.dataset.morganaY=Math.round(state.y);map.dataset.direction=state.dir;
   if(sortedY!==state.y){[...depth,{node:player,y:state.y}].sort((a,b)=>a.y-b.y).forEach(d=>insideLayer.append(d.node));sortedY=state.y;}
-  const row={down:0,left:1,right:2,up:3}[state.dir],col=active?1+(Math.floor(walkClock/.14)%2):0;sprite.setAttribute('viewBox',atlasBox(heroAtlas,col,row));
+  const row={down:0,left:1,right:2,up:3}[state.dir],col=active?1+(Math.floor(walkClock/.14)%2):0;const box=atlasBox(heroAtlas,col,row);sprite.setAttribute('viewBox',box);const [cx,cy,cw,ch]=box.split(' ');for(const[k,v]of Object.entries({x:cx,y:cy,width:cw,height:ch}))crop.setAttribute(k,v);
   const objects=[...tables.map((t,i)=>({...t,type:'table',i})),...customers.map(c=>({...c,type:'customer'})),{x:622,y:211,type:'barista'}, ...[[141,282],[760,288],[426,453]].map(([x,y])=>({x,y,type:'plant'}))];
   near=objects.map(o=>({...o,d:Math.hypot(state.x-o.x,state.y-o.y)})).filter(o=>o.d<(o.type==='table'?85:65)).sort((a,b)=>a.d-b.d)[0]||null;
   tableNodes.forEach((n,i)=>n.classList.toggle('ag-table-near',near?.type==='table'&&near.i===i&&!dialogue));
@@ -204,8 +205,9 @@ function game(host,state,onNext){
   const st=state[type]||(state[type]={});let cleanup=()=>{};
   const update=stage=>{if(type==='cafe-story')story(host,st,stage);if(type==='cafe-geometry')geometry(host,st,stage);};
   if(type==='cafe-game')cleanup=game(host,st,()=>document.getElementById('reader-next').click());else update(options.stage||0);
-  host.agUpdate=update;return ()=>{cleanup();host.agUpdate=null;};
+  host.agUpdate=update;return ()=>{cleanup();host.agGeometryDispose?.();host.agUpdate=null;};
  }
  function setStage(box,stage){box.querySelector('.ag-host')?.agUpdate?.(stage);}
  window.GatitoAngleCafe={mount,setStage};
 })();
+

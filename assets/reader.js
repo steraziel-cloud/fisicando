@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  function showGlossary(id){
   const term=window.READER_GLOSSARY[id];if(!term)return;
-  $('glossary-title').textContent=term.title;$('glossary-kind').textContent=term.kind;$('glossary-text').textContent=term.text;
+  $('glossary-title').textContent=term.title;$('glossary-kind').textContent=term.kind;$('glossary-text').textContent=term.text;if(term.html){const extra=el('div','rm-glossary-extra');extra.innerHTML=term.html;$('glossary-text').append(extra);}
   $('reader-glossary').querySelector('.rm-glossary-links')?.remove();
   if(term.links?.length){const links=el('div','rm-glossary-links');term.links.forEach(ref=>{
    const url=new URL('reader.html',location.href);url.searchParams.set('lezione',ref.lesson);url.searchParams.set('sezione',ref.section);url.searchParams.set('scheda',String(ref.card));
@@ -518,6 +518,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
+
 
 
 
