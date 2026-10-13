@@ -77,7 +77,7 @@ window.READER_LESSONS["geometria-angoli"] = {
             },
             {
               "title": "Un segno nella figura",
-              "html": "Un <strong>archetto</strong> vicino al vertice mostra quale delle due regioni stiamo considerando: uno per l’angolo convesso, due per quello concavo. Gli archetti sono un’indicazione: <strong>l’angolo non finisce lì</strong>.",
+              "html": "Un <strong>archetto</strong> vicino al vertice mostra quale delle due regioni stiamo considerando: uno per l’angolo più piccolo, due per quello più grande. Gli archetti sono un’indicazione: <strong>l’angolo non finisce lì</strong>.",
               "cafeStage": 1
             },
             {
@@ -96,8 +96,16 @@ window.READER_LESSONS["geometria-angoli"] = {
           "title": "Un nome per riconoscerlo",
           "steps": [
             {
-              "title": "",
-              "html": "Scegliamo un <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> A</strong> su un lato e un <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> B</strong> sull’altro. A e B sono i nomi di due <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punti</button> sui lati</strong>, non i nomi dei lati.<br><br>Possiamo scrivere <strong>AÔB</strong>, leggendo «angolo A, O, B». <strong>La lettera del vertice sta al centro.</strong><br><br>Possiamo anche dare all’angolo un nome come <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-alfa\">α</button>, letto «alfa». Per distinguere le due regioni contano gli archetti e l’indicazione «convesso» o «concavo»."
+              "title": "Tre lettere, un angolo",
+              "html": "Scegliamo un <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> A su un lato e un <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> B sull’altro. <strong>A e B sono nomi di punti sui lati, non nomi dei lati.</strong><br><br>Scriviamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˆ</mo></mover></math>, leggendo «angolo A, O, B». <strong>La lettera del vertice sta al centro.</strong>"
+            },
+            {
+              "title": "Due cappelli per due angoli",
+              "html": "Nelle nostre figure usiamo il <strong>cappello normale</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˆ</mo></mover></math> per indicare l’angolo interno, quello più piccolo. Il <strong>cappello rovesciato</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˇ</mo></mover></math> indica l’altra regione, cioè l’angolo più grande.<br><br>Questa distinzione vale quando i lati non sono opposti né coincidenti. Gli archetti nel disegno aiutano a riconoscere l’angolo indicato."
+            },
+            {
+              "title": "Un nome più breve",
+              "html": "Scrivere ogni volta tre lettere può essere scomodo. <strong>Se è chiaro quale angolo stiamo indicando</strong>, possiamo usare soltanto il nome del vertice con il cappello: <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">O</mi></mrow><mo stretchy=\"true\">ˆ</mo></mover></math> oppure <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">O</mi></mrow><mo stretchy=\"true\">ˇ</mo></mover></math>.<br><br>Possiamo anche assegnargli una lettera greca, come <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-alfa\">α</button>, che si legge «alfa». È un nome breve: la figura deve far capire a quale angolo si riferisce."
             }
           ]
         }
@@ -154,6 +162,17 @@ window.READER_LESSONS["geometria-angoli"] = {
               "Esatto. Dobbiamo scegliere quale delle due regioni del piano stiamo considerando.",
               "Controlla questa distinzione: Dobbiamo scegliere quale delle due regioni del piano stiamo considerando."
             ]
+          },
+          {
+            "question": "Se nella figura è chiaro quale angolo stiamo indicando, come possiamo abbreviarne il nome?",
+            "options": [
+              "Con il nome del vertice e il cappello, oppure con una lettera greca assegnata all’angolo.",
+              "Con il nome di un punto qualsiasi su uno dei lati.",
+              "Con il nome del vertice senza alcun segno, anche quando ci sono più angoli da distinguere.",
+              "Con i nomi di due punti sui lati, eliminando sempre quello del vertice."
+            ],
+            "answer": 0,
+            "feedback": "Possiamo usare il vertice con il cappello o una lettera greca, purché sia chiaro quale angolo indica il nome."
           }
         ]
       }
