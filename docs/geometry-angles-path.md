@@ -36,3 +36,9 @@ Origami: da integrare come attività con uno scopo, distinguendo gli angoli sul 
 ## Direzione futura: museo e storia della conoscenza
 
 Approfondimenti storici ed epistemologici: problemi, tentativi, strumenti, idee e collaborazioni che hanno portato allo sviluppo di matematica, fisica, geometria e scienze. Visite di Red, Morgana e Bjorne a un museo narrativo: ritratti e statue cartoon, laboratori ricostruiti e incontri immaginari dichiarati con figure contemporanee. Micro-gag come aggancio facoltativo alla ricerca; per Schrödinger, gag della scatola seguita dal significato dell’esperimento mentale. Il museo cresce con le lezioni.
+
+## Revisione per grado scolastico — 13 ottobre 2026
+
+La prima lezione, “Gli angoli: costruzione e classificazione”, è stata esaminata dal curatore ed è adatta come base per le scuole medie. La visibilità nel biennio non equivale a validazione per le superiori: occorre una revisione dedicata, con approfondimenti, modifiche e integrazioni da concordare. Tenere questo lavoro come attività aperta prima di considerare conclusa la versione per le superiori.
+
+Le lavagne del reader e il futuro copilota restano per ora sistemi distinti. Priorità immediata: arricchire la lezione delle medie per l’uso in classe; nessuno sviluppo del copilota è autorizzato da questa nota.
