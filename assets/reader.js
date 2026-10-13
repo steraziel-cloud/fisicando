@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  let pendingSection=null;
  const unlocked=i=>true;
  const quizState=i=>state[i].checkpoint||(state[i].checkpoint={index:0,passed:[],special:false,gateOnly:false});
- const requiredBefore=i=>lesson.sections.map((s,j)=>j).filter(j=>j<i&&lesson.sections[j].quiz&&!optionalIds.has(lesson.sections[j].id)&&!state[j].complete);
+ const requiredBefore=i=>reviewAccess?[]:lesson.sections.map((s,j)=>j).filter(j=>j<i&&lesson.sections[j].quiz&&!optionalIds.has(lesson.sections[j].id)&&!state[j].complete);
  $('reader-title').textContent=lesson.title;$('reader-subtitle').textContent=lesson.subtitle;document.title='GatitoMath – '+lesson.title;
  // BFCache can restore a departed page without executing DOMContentLoaded again.
  window.addEventListener('pageshow',e=>{if(e.persisted)location.reload();});
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  function celebrate(target,message,title='Ottimo lavoro!'){window.GatitoQuizReactions.show(target,message,{correct:true,title,final:target===$('reader-feedback')});}
  function retry(target,message){window.GatitoQuizReactions.show(target,message,{correct:false});}
- function completeSection(message){const first=!state[current].complete;state[current].complete=true;state[current].reached=flat(lesson.sections[current]).length;index();celebrate($('reader-feedback'),message,first?'Una parte in più, ci sei!':'Perfetto!');actions();if(pendingSection!==null){const target=pendingSection,remaining=requiredBefore(target);if(remaining.length){current=remaining[0];state[current].cursor=flat(lesson.sections[current]).length;quizState(current).gateOnly=true;render();top();}else{pendingSection=null;open(target,true,1);}return;}if(first&&lesson.sections[current].optionalNext)showOptionalParts();if(current===state.length-1)completionLinks();}
+ function completeSection(message){if(reviewAccess){celebrate($('reader-feedback'),message,'Verifica completata');actions();return;}const first=!state[current].complete;state[current].complete=true;state[current].reached=flat(lesson.sections[current]).length;index();celebrate($('reader-feedback'),message,first?'Una parte in più, ci sei!':'Perfetto!');actions();if(pendingSection!==null){const target=pendingSection,remaining=requiredBefore(target);if(remaining.length){current=remaining[0];state[current].cursor=flat(lesson.sections[current]).length;quizState(current).gateOnly=true;render();top();}else{pendingSection=null;open(target,true,1);}return;}if(first&&lesson.sections[current].optionalNext)showOptionalParts();if(current===state.length-1)completionLinks();}
  function finish(message){const qs=quizState(current),quiz=lesson.sections[current].quiz;if(quiz?.type&&quiz.questions?.length&&!qs.special){qs.special=true;checkpoint();$('reader-feedback').textContent='Attività completata. Ora verifica le idee con le domande.';actions();return;}completeSection(message);}
  function showOptionalParts(){
   const destinations=lesson.sections[current].optionalNext;
@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   dialog.append(choices);dialog.addEventListener('close',()=>dialog.remove(),{once:true});document.body.append(dialog);dialog.showModal();
  }
  function actions(){
+  if(reviewAccess&&!allMode){const count=flat(lesson.sections[current]).length,st=state[current];$('reader-prev').hidden=current===0&&st.cursor===0;$('reader-next').hidden=current===state.length-1&&st.cursor===count;$('reader-next').disabled=false;$('reader-next').textContent=st.cursor<count?'Continua →':'Passa alla parte successiva →';$('reader-step-count').textContent=(st.cursor<count?'Passaggio '+(st.cursor+1)+' di '+count:'Checkpoint facoltativo')+' · Navigazione libera';return;}
   if(referenceMode){
    const st=state[current],item=flat(lesson.sections[current])[st.cursor];
    $('reader-prev').hidden=st.cursor<=referenceBounds.first;$('reader-next').hidden=st.cursor>=referenceBounds.last;
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    return;
   }
   const count=flat(lesson.sections[current]).length,st=state[current];
-  $('reader-prev').hidden=allMode||st.cursor===0;$('reader-next').hidden=allMode||(current===state.length-1&&st.complete&&st.cursor===count);
+  $('reader-prev').hidden=allMode||(current===0&&st.cursor===0);$('reader-next').hidden=allMode||(current===state.length-1&&st.complete&&st.cursor===count);
   let blocked=false;if(st.cursor<count){const item=flat(lesson.sections[current])[st.cursor];blocked=stepBlocked(item);}
   $('reader-next').disabled=blocked||(st.cursor===count&&!!lesson.sections[current].quiz&&!st.complete);
   $('reader-next').textContent=st.cursor<count-1?'Continua →':st.cursor<count?(lesson.sections[current].quiz?'Controlla l’idea →':current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione'):current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione';
@@ -463,30 +464,45 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('reader-completion')?.remove();cancelSlide();const previousHeight=$('reader-steps').getBoundingClientRect().height;const previous=direction?[...$('reader-steps').childNodes]:[];mountedCard=null;
   disposeWidget();disposeWidget=()=>{};$('reader-steps').replaceChildren();$('reader-checkpoint').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';
   const s=lesson.sections[current],st=state[current],items=flat(s);$('reader-section-title').textContent=s.title+(referenceMode?' · Richiamo':'');
-  if(st.cursor===items.length){if(s.quiz)checkpoint();else $('reader-feedback').textContent='Lezione completata. Puoi rivedere le parti dall’indice o scegliere «Mostra tutto».';}else{
+  if(st.cursor===items.length){if(s.quiz)checkpoint();else $('reader-feedback').textContent='Lezione completata. Puoi rivedere le parti dall’indice o scegliere «Sblocca tutto».';}else{
    const item=items[st.cursor];if((item.card.retainPrevious||item.card.collapsePrevious)&&item.ci>0)renderCard(s.cards[item.ci-1],s.cards[item.ci-1].steps,true,!!item.card.collapsePrevious);
    renderCard(item.card,cardSteps(item));
-  }if(previous.length&&$('reader-steps').children.length)slideSwap($('reader-steps'),previous,[...$('reader-steps').childNodes],direction,previousHeight);index();actions();if(current===state.length-1&&st.complete)completionLinks();
+  }if(previous.length&&$('reader-steps').children.length)slideSwap($('reader-steps'),previous,[...$('reader-steps').childNodes],direction,previousHeight);index();actions();if(current===state.length-1&&(st.complete||(reviewAccess&&st.cursor===items.length)))completionLinks();
  }
  function top(){const target=$('reader-section-title');target.focus({preventScroll:true});target.scrollIntoView({block:'start',behavior:'auto'});}
  function open(i,focus=false,direction=0){const missing=requiredBefore(i);if(missing.length){pendingSection=i;current=missing[0];allMode=false;referenceMode=false;state[current].cursor=flat(lesson.sections[current]).length;quizState(current).gateOnly=true;render();top();return;}pendingSection=null;allMode=false;referenceMode=false;current=i;if(!lesson.sections[i].quiz&&state[i].cursor===flat(lesson.sections[i]).length)state[i].cursor=0;render(direction);history.replaceState(null,'','#'+lesson.sections[i].id);if(focus)top();}
  $('reader-next').addEventListener('click',()=>{
+  if(reviewAccess){const st=state[current],items=flat(lesson.sections[current]);if(st.cursor<items.length){const previous=items[st.cursor];st.cursor++;render(1);if(st.cursor===items.length||items[st.cursor]?.ci!==previous.ci)top();}else if(current<state.length-1){current++;state[current].cursor=0;open(current,true,1);}return;}
   if(referenceMode){const st=state[current],item=flat(lesson.sections[current])[st.cursor];if(st.cursor>=referenceBounds.last||stepBlocked(item))return;st.cursor++;render(1);return;}
   const st=state[current],items=flat(lesson.sections[current]);
   if(st.cursor<items.length){const item=items[st.cursor];if(stepBlocked(item))return;
    st.cursor++;st.reached=Math.max(st.reached,st.cursor);
    if(st.cursor===items.length&&!lesson.sections[current].quiz){state[current].complete=true;if(current<state.length-1){open(current+1,true,1);return;}render();$('reader-next').hidden=true;top();return;}
    const replaces=st.cursor===items.length||items[st.cursor].ci!==item.ci||item.card.stepMode==='replace';render(1);if(replaces&&items[st.cursor]?.ci!==item.ci)top();
-  }else if(st.complete){if(current<state.length-1)open(current+1,true,1);else{$('reader-feedback').textContent='Lezione completata! Nell’indice puoi rivedere le parti o scegliere «Mostra tutto».';$('reader-next').hidden=true;completionLinks();}}
+  }else if(st.complete){if(current<state.length-1)open(current+1,true,1);else{$('reader-feedback').textContent='Lezione completata! Nell’indice puoi rivedere le parti o scegliere «Sblocca tutto».';$('reader-next').hidden=true;completionLinks();}}
  });
- $('reader-prev').addEventListener('click',()=>{if(referenceMode){if(state[current].cursor>referenceBounds.first){state[current].cursor--;render(-1);}return;}if(state[current].cursor>0){const previous=flat(lesson.sections[current])[state[current].cursor];state[current].cursor--;render(-1);if(flat(lesson.sections[current])[state[current].cursor].ci!==previous?.ci)top();}});
+ $('reader-prev').addEventListener('click',()=>{
+  if(referenceMode){if(state[current].cursor>referenceBounds.first){state[current].cursor--;render(-1);}return;}
+  if(allMode)return;
+  if(state[current].cursor>0){const previous=flat(lesson.sections[current])[state[current].cursor];state[current].cursor--;render(-1);if(flat(lesson.sections[current])[state[current].cursor].ci!==previous?.ci)top();}
+  else if(current>0){pendingSection=null;current--;state[current].cursor=Math.max(0,flat(lesson.sections[current]).length-1);render(-1);history.replaceState(null,'','#'+lesson.sections[current].id);top();}
+ });
+ document.addEventListener('keydown',e=>{
+  if(e.defaultPrevented||e.repeat||e.altKey||e.ctrlKey||e.metaKey||e.shiftKey||allMode||!['ArrowLeft','ArrowRight'].includes(e.key))return;
+  const target=e.target;
+  if(document.querySelector('dialog[open]')||target.isContentEditable||target.closest('input,textarea,select,[contenteditable="true"],[role="slider"],[role="spinbutton"],[role="tablist"],.rm-reader-board,.dp-board,.mp-board,.rm-reader-card svg,canvas'))return;
+  const control=$(e.key==='ArrowLeft'?'reader-prev':'reader-next');
+  if(!control.hidden&&!control.disabled){e.preventDefault();control.click();}
+ });
  // Horizontal swipes navigate only the already unlocked learning path.
  let touch=null;const column=document.querySelector('.rm-reader-column');
  column.addEventListener('touchstart',e=>{if(e.target.closest('input,select,button,.rm-reader-board'))return;const p=e.changedTouches[0];touch={x:p.clientX,y:p.clientY};},{passive:true});
  column.addEventListener('touchend',e=>{if(!touch)return;const p=e.changedTouches[0],dx=p.clientX-touch.x,dy=p.clientY-touch.y;touch=null;if(Math.abs(dx)<75||Math.abs(dy)>50)return;const b=dx>0?$('reader-prev'):$('reader-next');if(!b.hidden&&!b.disabled)b.click();},{passive:true});
+ $('reader-show-all').textContent='Sblocca tutto';
  $('reader-show-all').addEventListener('click',()=>{
-  referenceMode=false;reviewAccess=true;cancelSlide();mountedCard=null;disposeWidget();disposeWidget=()=>{};allMode=true;$('reader-section-title').textContent='La lezione completa';$('reader-steps').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';
-  lesson.sections.forEach((s,i)=>{current=i;$('reader-steps').append(el('h2','rm-all-section',s.title));s.cards.forEach(card=>renderCard(card,card.steps,true));});actions();index();top();
+  reviewAccess=true;referenceMode=false;referenceBounds=null;pendingSection=null;allMode=false;
+  $('reader-show-all').textContent='Tutto sbloccato';$('reader-show-all').disabled=true;
+  render();index();actions();
  });
  // Old localStorage entries from reader v1 are intentionally never read.
  const referenceSection=lesson.sections.findIndex(s=>s.id===params.get('sezione'));
