@@ -118,7 +118,7 @@ function baseMap(){
   const arcs=svg('g',{class:'ag-angle-arcs'}),arcPaths=[0,1,2].map(()=>svg('path',{fill:'none',stroke:'#118e9c','stroke-width':3}));arcs.append(...arcPaths);rays.append(arcs);
   const rightMark=svg('path',{fill:'none',stroke:'#118e9c','stroke-width':3});rays.append(rightMark);const handle=svg('circle',{r:19,fill:'transparent',class:'ag-angle-handle',tabindex:0,role:'slider','aria-label':'Ampiezza dell’angolo interno','aria-valuemin':5,'aria-valuemax':175});rays.append(handle);map.append(rays);
   const select=node('div','ag-region-buttons');let chosen=null,angle=state.angle??Math.atan2(232,-73),origin=stage===0&&!state.geometryEntered?{x:185,y:88}:{x:450,y:275},currentStage=stage,dragging=false,raf=0;
-  const choices=[];const pt=(a,r)=>[origin.x+Math.cos(a)*r,origin.y+Math.sin(a)*r];
+  const comparison=node('div','ag-angle-examples');const choices=[];const pt=(a,r)=>[origin.x+Math.cos(a)*r,origin.y+Math.sin(a)*r];
   function sector(start,end){let d='M'+origin.x+' '+origin.y;for(let i=0;i<=72;i++)d+='L'+pt(start+(end-start)*i/72,2000).join(' ');return d+'Z';}
   function arc(r,start,end){if(end-start>=Math.PI*2-.001)return 'M'+pt(start,r).join(' ')+'A'+r+' '+r+' 0 1 1 '+pt(start+Math.PI,r).join(' ')+'A'+r+' '+r+' 0 1 1 '+pt(end,r).join(' ');return 'M'+pt(start,r).join(' ')+'A'+r+' '+r+' 0 '+(end-start>Math.PI?1:0)+' 1 '+pt(end,r).join(' ');}
   function paint(){
@@ -136,8 +136,16 @@ function baseMap(){
   handle.addEventListener('pointerdown',e=>{e.preventDefault();dragging=true;handle.setPointerCapture(e.pointerId);handle.classList.add('ag-grabbing');});handle.addEventListener('pointermove',e=>{if(dragging)drag(e);});
   const release=()=>{dragging=false;handle.classList.remove('ag-grabbing');};handle.addEventListener('pointerup',release);handle.addEventListener('pointercancel',release);
   handle.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowDown','ArrowRight','ArrowUp'].includes(e.key)){e.preventDefault();e.stopPropagation();angle=Math.max(5*Math.PI/180,Math.min(175*Math.PI/180,angle+(['ArrowLeft','ArrowDown'].includes(e.key)?-1:1)*Math.PI/180));paint();}});
-  host.replaceChildren(map,select);
-  function setMode(s){currentStage=s;if([4,5].includes(s)&&(angle<.001||angle>Math.PI-.001))angle=Math.atan2(232,-73);if(s===4)chosen='convesso';if(s===5)chosen='concavo';if(s===6){angle=Math.PI;chosen=null;}if(s===7){angle=0;chosen='convesso';}if(s===8||s===10){angle=Math.PI/2;chosen='convesso';}if(s===9){angle=Math.PI/3;chosen='convesso';}
+  host.replaceChildren(map,select,comparison);
+  function examples(s){
+   comparison.replaceChildren();const items=s===6?[['Piatto',Math.PI,'convesso']]:s===7?[['Nullo',0,'convesso'],['Giro',0,'concavo']]:s===8?[['Retto',Math.PI/2,'convesso']]:s===9?[['Acuto',Math.PI/3,'convesso'],['Ottuso',Math.PI*2/3,'convesso']]:[];
+   items.forEach(([name,a,region])=>{const b=button('',()=>{angle=a;chosen=region;paint();},'rm-btn secondary ag-angle-example');b.setAttribute('aria-label','Mostra angolo '+name.toLowerCase());
+    const pic=svg('svg',{viewBox:'0 0 160 100',class:'ag-angle-example-image','aria-hidden':'true',style:'overflow:hidden!important;clip-path:inset(0 round 8px)'}),xy=(t,r)=>[60+Math.cos(t)*r,50+Math.sin(t)*r];
+    pic.append(svg('rect',{width:160,height:100,fill:'#f7f5ee'}));let start=region==='concavo'?a:0,end=region==='concavo'?Math.PI*2:a,d='M60 50';for(let i=0;i<=64;i++)d+='L'+xy(start+(end-start)*i/64,500).join(' ');pic.append(svg('path',{d:d+'Z',fill:region==='concavo'?'#c3b4d8':'#b9e4e6'}));
+    [0,a].forEach(t=>{pic.append(svg('path',{d:'M60 50L'+xy(t,40).join(' '),fill:'none',stroke:'#118e9c','stroke-width':2}),svg('path',{d:'M'+xy(t,40).join(' ')+'L'+xy(t,500).join(' '),fill:'none',stroke:'#118e9c','stroke-width':2,'stroke-dasharray':'4 4'}));});pic.append(svg('circle',{cx:60,cy:50,r:3,fill:'#263c4b'}));if(name==='Retto')pic.append(svg('path',{d:'M73 50V63H60',fill:'none',stroke:'#118e9c','stroke-width':2}));b.append(pic,node('span','',name));comparison.append(b);
+   });comparison.hidden=!items.length;
+  }
+  function setMode(s){currentStage=s;if([4,5].includes(s)&&(angle<.001||angle>Math.PI-.001))angle=Math.atan2(232,-73);if(s===4)chosen='convesso';if(s===5)chosen='concavo';if(s===6){angle=Math.PI;chosen=null;}if(s===7){angle=0;chosen='convesso';}if(s===8||s===10){angle=Math.PI/2;chosen='convesso';}if(s===9){angle=Math.PI/3;chosen='convesso';}examples(s);
    choices[0][0].textContent=s===7?'Angolo nullo':s===6?'Prima regione':'Regione interna';choices[1][0].textContent=s===7?'Angolo giro':s===6?'Altra regione':'Regione esterna';paint();
   }
   host.agGeometryUpdate=s=>{if(s!==currentStage)setMode(s);else paint();};setMode(stage);

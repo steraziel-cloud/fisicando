@@ -93,3 +93,5 @@
 .ag-definition-card .ag-map{overflow:hidden!important;clip-path:inset(0 round 20px)}
 
 .ag-rpg-portrait{overflow:hidden}.ag-rpg-portrait>svg{display:block;width:100%!important;height:100%!important;max-width:none;overflow:hidden!important;clip-path:inset(0)}
+
+.ag-angle-examples{display:flex;gap:10px;justify-content:center;margin-top:14px}.ag-angle-examples[hidden]{display:none}.ag-angle-example{padding:7px!important;display:flex;flex-direction:column;gap:5px;align-items:center;width:130px;max-width:46%}.ag-angle-example-image{display:block;width:100%!important;height:auto!important;max-height:90px;overflow:hidden!important;border-radius:8px}.ag-angle-example>span{font-weight:700}
