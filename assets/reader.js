@@ -328,6 +328,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
   const questions=quiz.questions||[quiz],position=Math.min(qs.index,questions.length-1),q=window.GatitoCoins?window.GatitoCoins.questionFor(questions[position],coinExperiment):questions[position];
   box.append(el('p','rm-checkpoint-progress','Domanda '+(position+1)+' di '+questions.length),el('p','',q.question));
+  if(q.illustration){const figure=el('figure','rm-quiz-figure'),img=el('img');img.src=q.illustration.src;img.alt=q.illustration.alt;img.width=q.illustration.width||360;img.height=q.illustration.height||220;figure.append(img);box.append(figure);}
   q.options.forEach((option,i)=>{const label=el('label'),input=el('input');input.type='radio';input.name='checkpoint';input.value=i;label.append(input,el('span','',option));box.append(label);});
   box.append(button('Verifica',()=>{const selected=box.querySelector('input:checked');if(!selected){$('reader-feedback').textContent='Scegli una risposta prima di verificare.';return;}
    const chosen=Number(selected.value),feedback=q.feedbackByOption?.[chosen]||q.feedback;
@@ -350,12 +351,23 @@ document.addEventListener('DOMContentLoaded',()=>{
   const back=el('a','rm-btn secondary','Torna al menu');back.href=$('reader-back').href;host.append(back);
  }
  // Keep the board mounted while changing the text, rather than recreating the card.
+ const sentenceAnswers=new WeakMap();
+ function sentenceExercise(article,step,archived){
+  const values=sentenceAnswers.get(step)||step.cloze.map(()=>null);sentenceAnswers.set(step,values);
+  const host=el('div','rm-sentence-practice');
+  step.cloze.forEach((q,i)=>{const row=el('div','rm-sentence-row'),line=el('label','rm-sentence-line'),select=el('select');select.setAttribute('aria-label',q.before.trim());select.append(el('option','','Scegli…'));select.options[0].value='';q.options.forEach((v,j)=>{const option=el('option','',v);option.value=String(j);select.append(option);});const feedback=el('p','rm-sentence-feedback');feedback.setAttribute('role','status');
+   select.value=values[i]===null?'':String(values[i]);select.disabled=archived||values[i]===q.answer;if(values[i]===q.answer){row.classList.add('rm-sentence-correct');feedback.textContent='✓ '+q.feedback;}
+   select.addEventListener('change',()=>{if(select.value==='')return;values[i]=Number(select.value);const correct=values[i]===q.answer;row.classList.toggle('rm-sentence-correct',correct);row.classList.toggle('rm-sentence-retry',!correct);feedback.textContent=correct?'✓ '+q.feedback:'Riprova: osserva la figura e rileggi la frase.';select.disabled=correct;});
+   line.append(document.createTextNode(q.before),select,document.createTextNode(q.after));row.append(line,feedback);host.append(row);
+  });article.append(host);
+ }
  function stepNode(step,archived=false){
   const article=el('div','rm-reader-step');if(step.title)article.append(el('h4','',step.title));
   const p=el('p');p.innerHTML=step.html;if(window.GatitoCoins)window.GatitoCoins.hydrate(p,coinExperiment);if(window.GatitoMultiples)window.GatitoMultiples.hydrate(p,multiplesExplorer);article.append(p);if(window.GatitoDivisorPairs)window.GatitoDivisorPairs.hydrateIntro(p);
   if(step.interaction==='train-reference')referenceExercise(article,!archived);
   if(step.interaction==='units-conversion')unitsExercise(article,!archived);
   if(step.interaction==='instant-speeds')instantSpeedsExercise(article,!archived);
+  if(step.cloze?.length)sentenceExercise(article,step,archived);
   return article;
  }
  function slideSwap(host,previous,next,direction,beforeHeight){

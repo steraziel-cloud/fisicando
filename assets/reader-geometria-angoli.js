@@ -83,7 +83,19 @@ window.READER_LESSONS["geometria-angoli"] = {
             {
               "title": "Lati e vertice",
               "cafeStage": 2,
-              "html": "Le due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> sono i <strong>lati</strong> dell’angolo; la loro origine comune è il <strong>vertice</strong>. L’angolo comprende tutta la regione scelta, anche oltre ciò che riusciamo a disegnare."
+              "html": "Le due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> sono i <strong>lati</strong> dell’angolo; la loro origine comune è il <strong>vertice</strong>. L’angolo comprende tutta la regione scelta, anche oltre ciò che riusciamo a disegnare.",
+              "cloze": [
+                {
+                  "before": "Le due semirette sono ",
+                  "options": [
+                    "i lati",
+                    "il vertice"
+                  ],
+                  "answer": 0,
+                  "after": " dell’angolo.",
+                  "feedback": "I lati sono le due semirette; il vertice è la loro origine comune."
+                }
+              ]
             },
             {
               "title": "Dalla stanza alla geometria",
@@ -98,7 +110,19 @@ window.READER_LESSONS["geometria-angoli"] = {
             {
               "title": "Tre lettere, un angolo",
               "html": "Scegliamo un <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> A su un lato e un <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> B sull’altro. <strong>A e B sono nomi di punti sui lati, non nomi dei lati.</strong><br><br>Scriviamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˆ</mo></mover></math>, leggendo «angolo A, O, B». <strong>La lettera del vertice sta al centro.</strong>",
-              "cafeStage": 2
+              "cafeStage": 2,
+              "cloze": [
+                {
+                  "before": "Nella scrittura AÔB, il vertice è ",
+                  "options": [
+                    "A",
+                    "O"
+                  ],
+                  "answer": 1,
+                  "after": ".",
+                  "feedback": "Il nome del vertice sta al centro."
+                }
+              ]
             },
             {
               "title": "Due cappelli per due angoli",
@@ -116,6 +140,23 @@ window.READER_LESSONS["geometria-angoli"] = {
       ],
       "quiz": {
         "questions": [
+          {
+            "question": "Quale nome a tre lettere indica l’angolo disegnato con vertice O?",
+            "options": [
+              "AÔB.",
+              "OÂB.",
+              "A B̂ O.",
+              "Non possiamo chiamarlo con tre lettere."
+            ],
+            "answer": 0,
+            "feedback": "La lettera del vertice, O, va al centro; A e B sono punti sui lati.",
+            "illustration": {
+              "src": "assets/images/reader/quiz-angolo-nome-v1.svg",
+              "alt": "Due semirette con origine O e una regione del piano evidenziata.",
+              "width": 360,
+              "height": 220
+            }
+          },
           {
             "question": "Che cosa sono i lati di un angolo?",
             "options": [
@@ -191,7 +232,19 @@ window.READER_LESSONS["geometria-angoli"] = {
             {
               "title": "L’angolo convesso",
               "html": "Prolunghiamo i lati oltre il vertice, dalla parte opposta rispetto alle <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> che formano l’angolo.<br><br>Un angolo è <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-convesso\">convesso</button> quando <strong>non contiene i prolungamenti dei suoi lati oltre il vertice</strong>. Nella figura è la regione più piccola.",
-              "cafeStage": 4
+              "cafeStage": 4,
+              "cloze": [
+                {
+                  "before": "L’angolo convesso ",
+                  "options": [
+                    "contiene",
+                    "non contiene"
+                  ],
+                  "answer": 1,
+                  "after": " i prolungamenti dei lati oltre il vertice.",
+                  "feedback": "I prolungamenti si trovano nell’altra regione."
+                }
+              ]
             },
             {
               "title": "L’angolo concavo",
@@ -207,7 +260,19 @@ window.READER_LESSONS["geometria-angoli"] = {
             {
               "title": "Il piatto",
               "html": "Se i lati sono <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semirette-opposte\">semirette opposte</button>, individuano due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piatto\">angoli piatti</button>. Ciascuno occupa metà <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button>.",
-              "cafeStage": 6
+              "cafeStage": 6,
+              "cloze": [
+                {
+                  "before": "Un angolo piatto occupa ",
+                  "options": [
+                    "metà",
+                    "tutto"
+                  ],
+                  "answer": 0,
+                  "after": " il piano.",
+                  "feedback": "Ciascuna delle due regioni occupa metà piano."
+                }
+              ]
             },
             {
               "title": "Nullo e giro",
@@ -220,6 +285,57 @@ window.READER_LESSONS["geometria-angoli"] = {
       ],
       "quiz": {
         "questions": [
+          {
+            "question": "La regione colorata nella figura rappresenta un angolo…",
+            "options": [
+              "Convesso.",
+              "Concavo.",
+              "Piatto.",
+              "Giro."
+            ],
+            "answer": 0,
+            "feedback": "La regione colorata non contiene i prolungamenti dei lati oltre il vertice.",
+            "illustration": {
+              "src": "assets/images/reader/quiz-angolo-convesso-v1.svg",
+              "alt": "Due semirette con origine O e una regione del piano evidenziata.",
+              "width": 360,
+              "height": 220
+            }
+          },
+          {
+            "question": "E in questa figura, quale angolo è evidenziato?",
+            "options": [
+              "Convesso.",
+              "Concavo.",
+              "Nullo.",
+              "Piatto."
+            ],
+            "answer": 1,
+            "feedback": "La regione colorata contiene i prolungamenti dei lati oltre il vertice.",
+            "illustration": {
+              "src": "assets/images/reader/quiz-angolo-concavo-v1.svg",
+              "alt": "Due semirette con origine O e una regione del piano evidenziata.",
+              "width": 360,
+              "height": 220
+            }
+          },
+          {
+            "question": "Come classifichi l’angolo colorato nella figura?",
+            "options": [
+              "Retto.",
+              "Giro.",
+              "Piatto.",
+              "Nullo."
+            ],
+            "answer": 2,
+            "feedback": "I lati sono semirette opposte e la regione occupa metà piano.",
+            "illustration": {
+              "src": "assets/images/reader/quiz-angolo-piatto-v1.svg",
+              "alt": "Due semirette con origine O e una regione del piano evidenziata.",
+              "width": 360,
+              "height": 220
+            }
+          },
           {
             "question": "Per distinguere il convesso dal concavo con gli stessi lati, che cosa dobbiamo osservare?",
             "options": [
@@ -289,7 +405,29 @@ window.READER_LESSONS["geometria-angoli"] = {
             {
               "title": "Più piccolo o più grande",
               "html": "Un angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-acuto\">acuto</button> ha un’apertura <strong>maggiore del nullo e minore del retto</strong>.<br><br>Un angolo <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-ottuso\">ottuso</button> ha un’apertura <strong>maggiore del retto e minore del piatto</strong>.",
-              "cafeStage": 9
+              "cafeStage": 9,
+              "cloze": [
+                {
+                  "before": "Un angolo acuto è ",
+                  "options": [
+                    "più piccolo",
+                    "più grande"
+                  ],
+                  "answer": 0,
+                  "after": " di un angolo retto.",
+                  "feedback": "L’apertura dell’acuto è minore di quella del retto."
+                },
+                {
+                  "before": "Un angolo ottuso è ",
+                  "options": [
+                    "più piccolo",
+                    "più grande"
+                  ],
+                  "answer": 1,
+                  "after": " di un angolo retto.",
+                  "feedback": "L’ottuso è più aperto del retto, ma meno del piatto."
+                }
+              ]
             }
           ],
           "board": "cafe-geometry"
@@ -308,6 +446,57 @@ window.READER_LESSONS["geometria-angoli"] = {
       ],
       "quiz": {
         "questions": [
+          {
+            "question": "Osserva l’apertura colorata: quale tipo di angolo riconosci?",
+            "options": [
+              "Acuto.",
+              "Retto.",
+              "Ottuso.",
+              "Piatto."
+            ],
+            "answer": 0,
+            "feedback": "La sua apertura è maggiore del nullo e minore del retto.",
+            "illustration": {
+              "src": "assets/images/reader/quiz-angolo-acuto-v1.svg",
+              "alt": "Due semirette con origine O e una regione del piano evidenziata.",
+              "width": 360,
+              "height": 220
+            }
+          },
+          {
+            "question": "Il disegno è inclinato. Come classifichi questo angolo?",
+            "options": [
+              "Acuto.",
+              "Ottuso.",
+              "Retto.",
+              "Concavo."
+            ],
+            "answer": 2,
+            "feedback": "Ruotare il disegno non cambia l’apertura: questo angolo è retto.",
+            "illustration": {
+              "src": "assets/images/reader/quiz-angolo-retto-v1.svg",
+              "alt": "Due semirette con origine O e una regione del piano evidenziata.",
+              "width": 360,
+              "height": 220
+            }
+          },
+          {
+            "question": "Quale angolo è evidenziato nella figura?",
+            "options": [
+              "Piatto.",
+              "Acuto.",
+              "Concavo.",
+              "Ottuso."
+            ],
+            "answer": 3,
+            "feedback": "L’apertura è maggiore del retto e minore del piatto.",
+            "illustration": {
+              "src": "assets/images/reader/quiz-angolo-ottuso-v1.svg",
+              "alt": "Due semirette con origine O e una regione del piano evidenziata.",
+              "width": 360,
+              "height": 220
+            }
+          },
           {
             "question": "Come otteniamo un angolo retto a partire da un piatto?",
             "options": [
@@ -375,7 +564,7 @@ window.READER_LESSONS["geometria-angoli"] = {
               "cafeStage": 2
             }
           ],
-          "board": "cafe-geometry"
+          "board": "cafe-closing"
         }
       ],
       "quiz": {
