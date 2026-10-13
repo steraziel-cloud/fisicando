@@ -91,3 +91,5 @@
 @media(max-width:780px){.ag-definition-card{display:flex;flex-direction:column}.ag-definition-card>.rm-card-text{order:1}.ag-definition-card>.ag-host{order:2}.ag-definition-card>.rm-card-title{order:0}}
 
 .ag-definition-card .ag-map{overflow:hidden!important;clip-path:inset(0 round 20px)}
+
+.ag-rpg-portrait{overflow:hidden}.ag-rpg-portrait>svg{display:block;width:100%!important;height:100%!important;max-width:none;overflow:hidden!important;clip-path:inset(0)}
