@@ -53,7 +53,7 @@
   sob.append(picture('bjorne-open','ag-sob-open','Bjorne piange con gli occhi aperti.'),picture('bjorne-closed','ag-sob-closed',''));
   scene.append(sob);
   const balloon=i=>{const [who,text]=speech[i],bubble=node('div','ag-png-balloon '+(who==='Bjorne'?'ag-speech-bjorne':'ag-speech-morgana'));
-   bubble.setAttribute('role','img');bubble.setAttribute('aria-label',who+': '+text);bubble.style.backgroundPosition=(i%2?100:0)+'% '+(Math.floor(i/2)*100/3)+'%';return bubble;};
+   bubble.setAttribute('role','img');bubble.setAttribute('aria-label',who+': '+text);bubble.style.backgroundPosition=(i%2?100:0)+'% '+(Math.floor(i/2)*31)+'%';return bubble;};
   scene.append(balloon(stage));if(stage===5)scene.append(balloon(6));
   host.replaceChildren(scene);
  }
