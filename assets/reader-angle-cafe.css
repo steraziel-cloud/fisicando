@@ -29,3 +29,24 @@
 @keyframes ag-arrive{from{opacity:0;translate:0 8px}to{opacity:1;translate:0 0}}
 @media(max-width:650px){.ag-story-card{padding:10px}.ag-story-picture{padding-top:125px}.ag-bubble{font-size:.86rem;padding:9px 12px;max-width:44%;top:0}.ag-bjorne{left:0}.ag-morgana{right:0}.ag-door{left:8%;max-width:75%;top:5px}.ag-story-art{max-height:340px}.ag-map{min-height:250px}.ag-game-controls{gap:10px}.ag-game-controls>.rm-btn{font-size:.85rem}.ag-region-buttons{flex-wrap:wrap}}
 @media(prefers-reduced-motion:reduce){.ag-story-art,.ag-bubble,.ag-found-box{animation:none}}
+
+/* Independent PNG layers: scenery, Morgana, Bjorne, dialogue. */
+.ag-layer-scene{width:min(100%,750px);aspect-ratio:3/2;padding:0;overflow:hidden}
+.ag-layer-background{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:0}
+.ag-layer-morgana{position:absolute;left:36%;bottom:13%;width:55%;height:65%;object-fit:contain;object-position:center bottom;z-index:1;animation:ag-arrive .3s ease-out}
+.ag-layer-bjorne{position:absolute;left:14%;bottom:13%;width:34%;height:46%;z-index:2;transform-origin:center bottom;animation:ag-sob-body 1.8s ease-in-out infinite}
+.ag-layer-bjorne img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom}
+.ag-sob-open{animation:ag-sob-open 1.8s steps(1,end) infinite}
+.ag-sob-closed{animation:ag-sob-closed 1.8s steps(1,end) infinite}
+.ag-png-balloon{position:absolute;width:34%;aspect-ratio:4/3;z-index:3;background-image:url('images/reader/cafe-layers/balloons.png');background-size:200% 400%;background-repeat:no-repeat;animation:ag-arrive .35s ease-out;pointer-events:none}
+.ag-speech-bjorne{left:13%;top:9%}.ag-speech-morgana{right:9%;top:0}
+.ag-layer-scene[data-stage='1'] .ag-layer-morgana{transform:rotate(-1deg)}
+.ag-layer-scene[data-stage='3'] .ag-layer-morgana,.ag-layer-scene[data-stage='4'] .ag-layer-morgana{left:43%;width:46%;height:66%}
+.ag-layer-scene[data-stage='5'] .ag-layer-morgana{left:72%;bottom:27%;width:13%;height:28%;z-index:1;animation:ag-enter-door .8s ease-out}
+.ag-layer-scene[data-stage='5'] .ag-speech-morgana{right:4%;top:6%}
+@keyframes ag-sob-open{0%,35%,80%,100%{opacity:1}40%,75%{opacity:0}}
+@keyframes ag-sob-closed{0%,35%,80%,100%{opacity:0}40%,75%{opacity:1}}
+@keyframes ag-sob-body{0%,35%,80%,100%{transform:translateY(0)}42%,62%{transform:translateY(2px) rotate(-.4deg)}52%,72%{transform:translateY(-1px) rotate(.4deg)}}
+@keyframes ag-enter-door{from{transform:translate(-15px,12px) scale(1.15);opacity:0}to{transform:none;opacity:1}}
+@media(max-width:650px){.ag-layer-scene{padding:0}.ag-png-balloon{width:40%}.ag-speech-bjorne{left:6%;top:4%}.ag-speech-morgana{right:2%;top:0}.ag-layer-scene[data-stage='5'] .ag-speech-morgana{top:2%}}
+@media(prefers-reduced-motion:reduce){.ag-layer-bjorne,.ag-layer-bjorne img,.ag-layer-morgana,.ag-png-balloon{animation:none!important}.ag-sob-closed{display:none}}

@@ -30,7 +30,10 @@ window.READER_LESSONS["geometria-angoli"] = {
               "title": "",
               "html": "",
               "cafeStage": 2
-            }
+            },
+            {"title": "", "html": "", "cafeStage": 3},
+            {"title": "", "html": "", "cafeStage": 4},
+            {"title": "", "html": "", "cafeStage": 5}
           ]
         },
         {

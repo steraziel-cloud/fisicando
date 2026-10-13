@@ -35,13 +35,26 @@
   map.append(scenery);
   return {map,scenery,tableNodes};
  }
+ const speech=[
+  ['Bjorne','Miau… miau…'],['Morgana','Che succede?'],
+  ['Bjorne','La mia scatolina… forse l’ho lasciata sotto il tavolino.'],
+  ['Morgana','Dai, la cerco io. Quale tavolino?'],
+  ['Bjorne','Quello vicino all’angolo della sala.'],
+  ['Morgana','Aspettami qui. Torno con la tua scatolina.'],['Bjorne','Miau…']
+ ];
+ const artRoot='assets/images/reader/cafe-layers/';
  function story(host,state,stage){
-  host.classList.add('ag-story');const scene=node('div','ag-story-picture'),img=node('img','ag-story-art');
-  img.src=stage===2?'assets/images/reader/cafe-morgana-porta-day-v1.png':'assets/images/reader/cafe-bjorne-morgana-day-v1.png';
-  img.alt=stage===2?'Morgana, gatta grigia con bandana viola, entra nella caffetteria di giorno.':'Bjorne, gattino nero con bandana turchese, piange per la sua scatolina; Morgana lo consola.';
-  scene.append(img);
-  const lines=stage===0?[['Bjorne','La mia scatolina… forse l’ho lasciata sotto il tavolino.','ag-bjorne'],['Morgana','Dai, la cerco io. Quale tavolino?','ag-morgana']]:stage===1?[['Bjorne','Quello vicino all’angolo della sala.','ag-bjorne'],['Morgana','Va bene. Aspettami qui.','ag-morgana']]:[['Morgana','Aspettami qui. Torno con la tua scatolina.','ag-morgana ag-door']];
-  for(const[who,text,cls]of lines){const bubble=node('div','ag-bubble '+cls);bubble.append(node('strong','',who),node('span','',text));scene.append(bubble);}
+  host.classList.add('ag-story');
+  const scene=node('div','ag-story-picture ag-layer-scene');scene.dataset.stage=stage;
+  const picture=(file,cls,alt)=>{const img=node('img',cls);img.src=artRoot+file+'.png';img.alt=alt;img.draggable=false;return img;};
+  scene.append(picture('background','ag-layer-background','La caffetteria di giorno, con la porta aperta.'));
+  scene.append(picture(stage===5?'morgana-enter':stage>=3?'morgana-listen':'morgana-comfort','ag-layer-morgana',stage===5?'Morgana entra dalla porta della caffetteria.':'Morgana, gatta grigia con bandana viola, consola Bjorne.'));
+  const sob=node('div','ag-layer-bjorne');
+  sob.append(picture('bjorne-open','ag-sob-open','Bjorne piange con gli occhi aperti.'),picture('bjorne-closed','ag-sob-closed',''));
+  scene.append(sob);
+  const balloon=i=>{const [who,text]=speech[i],bubble=node('div','ag-png-balloon '+(who==='Bjorne'?'ag-speech-bjorne':'ag-speech-morgana'));
+   bubble.setAttribute('role','img');bubble.setAttribute('aria-label',who+': '+text);bubble.style.backgroundPosition=(i%2?100:0)+'% '+(Math.floor(i/2)*100/3)+'%';return bubble;};
+  scene.append(balloon(stage));if(stage===5)scene.append(balloon(6));
   host.replaceChildren(scene);
  }
  function geometry(host,state,stage){
