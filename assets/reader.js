@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   frame.addEventListener('load',()=>{try{const doc=frame.contentDocument;doc.querySelectorAll('header,.sidebar,.rm-learning-back').forEach(e=>e.style.display='none');const headings=[...doc.querySelectorAll('.main h2,.main h3')];headings.forEach((h,i)=>{const b=document.createElement('button');b.textContent=h.textContent;b.addEventListener('click',()=>h.scrollIntoView({behavior:'auto',block:'start'}));$('reader-parts').append(b);});}catch{}});return;
  }
  // Learning progress belongs to this visit only. Reference cards do not award progress.
- const coinExperiment={},multiplesExplorer={},divisorPairs={};
+ const cafeState={},coinExperiment={},multiplesExplorer={},divisorPairs={};
  const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},units:{values:['',''],done:false},elevator:{},velocityGraph:{},instantSpeeds:{values:['','','',''],done:false},velocityQuiz:{answer:'',stage:0,choice:null,done:false},lab:{started:null,period:8,marks:[],verified:false,answer:''}}));
  let current=0,allMode=false,reviewAccess=false,referenceMode=false,referenceBounds=null,disposeWidget=()=>{},mountedCard=null,cancelSlide=()=>{};
  const flat=s=>s.cards.flatMap((card,ci)=>card.steps.map((step,si)=>({card,ci,step,si})));
@@ -392,6 +392,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  function updateCard(item,direction){
   const view=mountedCard;cancelSlide();
+  if(item.card.board?.startsWith('cafe-')&&window.GatitoAngleCafe)window.GatitoAngleCafe.setStage(view.box,item.step.cafeStage??0);
   const cumulative=Number.isInteger(item.step.cumulativeFrom),replace=!cumulative&&(item.card.stepMode==='replace'||!!item.step.replace);
   const wanted=cardSteps(item);
   if(replace||(view.replace&&!cumulative)){
@@ -439,6 +440,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.visualLayout==='closing')box.classList.add('rm-visual-closing');
   if(card.illustration){const picture=el('div','rm-reference-scene'),img=el('img','rm-train-illustration');img.src=card.illustration.src;img.alt=card.illustration.alt;img.width=card.illustration.width;img.height=card.illustration.height;img.style.objectFit='contain';img.style.mask='none';img.style.webkitMask='none';picture.append(img);box.append(picture);}
   if(card.closingQuote){const quote=el('figure','rm-closing-quote'),words=el('blockquote','', '«'+card.closingQuote.text+'»'),caption=el('figcaption'),author=el('span','rm-quote-author',card.closingQuote.author),work=el('cite','',card.closingQuote.work),note=el('small','rm-quote-note',card.closingQuote.note||'');caption.append(author,work,note);quote.append(words,caption);box.append(quote);}
+  if(card.board?.startsWith('cafe-')&&window.GatitoAngleCafe)disposeWidget=window.GatitoAngleCafe.mount(box,card.board,cafeState,{stage:steps.at(-1)?.cafeStage??0});
   if(card.board==='elevator'&&window.GatitoElevator)disposeWidget=window.GatitoElevator.mount(box,state[current].elevator,()=>{actions();if(!referenceMode&&!allMode)$('reader-next').click();},archived||allMode);
   if(card.board==='velocity-instant'&&window.GatitoVelocityScene){box.classList.add('rm-velocity-instant-card');disposeWidget=window.GatitoVelocityScene.mount(box,{instant:true,graph:steps.some(step=>step.velocityGraph)});}
   if(card.board==='law-motion'&&window.GatitoLawMotion){box.classList.add('rm-law-card');disposeWidget=window.GatitoLawMotion.mount(box,state[current].lawMotion||(state[current].lawMotion={time:0}),{graph:steps.some(step=>step.lawGraph)});}
@@ -516,6 +518,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
+
 
 
 

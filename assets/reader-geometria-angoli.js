@@ -2,23 +2,73 @@
 window.READER_LESSONS["geometria-angoli"] = {
   "title": "Gli angoli: costruzione e classificazione",
   "subtitle": "Matematica · Medie e biennio · Bozza testuale in lavorazione",
-  "version": 1,
+  "version": 2,
   "status": "work-in-progress",
   "sections": [
+    {
+      "id": "caffetteria",
+      "title": "La scatolina di Bjorne",
+      "cards": [
+        {
+          "id": "cafe-fumetto",
+          "title": "La scatolina di Bjorne",
+          "hideTitle": true,
+          "board": "cafe-story",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "",
+              "html": "",
+              "cafeStage": 0
+            },
+            {
+              "title": "",
+              "html": "",
+              "cafeStage": 1
+            },
+            {
+              "title": "",
+              "html": "",
+              "cafeStage": 2
+            }
+          ]
+        },
+        {
+          "id": "cafe-ricerca",
+          "title": "Dove sarà la scatolina?",
+          "board": "cafe-game",
+          "steps": [
+            {
+              "title": "",
+              "html": ""
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "costruzione",
       "title": "Due semirette, due angoli",
       "cards": [
         {
-          "title": "Partiamo da un punto",
+          "id": "cafe-definizione",
+          "title": "La definizione",
+          "board": "cafe-geometry",
           "steps": [
             {
-              "title": "Il vertice",
-              "html": "Scegliamo un <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> O nel <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button>. Da O tracciamo due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> in direzioni diverse. Hanno la stessa origine, ma proseguono ciascuna nella propria direzione."
+              "title": "",
+              "cafeStage": 0,
+              "html": "Un <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-angolo\">angolo</button> è <strong>ciascuna delle due regioni del piano individuate da due semirette con la stessa origine, compresi i lati</strong>."
             },
             {
-              "title": "Le due regioni",
-              "html": "Le semirette individuano <strong>due regioni del piano</strong>. Ciascuna, compresi i suoi bordi, è un <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-angolo\">angolo</button>.<br><br>Le semirette sono i <strong>lati</strong>; la loro origine comune è il <strong>vertice</strong>. L’angolo comprende tutta la regione scelta, anche oltre ciò che riusciamo a disegnare."
+              "title": "Lati e vertice",
+              "cafeStage": 1,
+              "html": "Le due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> sono i <strong>lati</strong> dell’angolo; la loro origine comune è il <strong>vertice</strong>. L’angolo comprende tutta la regione scelta, anche oltre ciò che riusciamo a disegnare."
+            },
+            {
+              "title": "Dalla stanza alla geometria",
+              "cafeStage": 2,
+              "html": "Nel linguaggio quotidiano, «vicino all’angolo» ci ha indicato una zona vicino all’incontro delle pareti. In geometria, invece, l’angolo comprende <strong>l’intera regione scelta, che continua senza limite</strong>.<br><br>La stanza ha dei confini. Il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button> geometrico e le semirette continuano oltre il disegno. Il punto O è il vertice, non tutto l’angolo."
             }
           ]
         },
@@ -1812,3 +1862,4 @@ window.READER_LESSONS["geometria-perpendicolari"] = {
     }
   ]
 };
+
