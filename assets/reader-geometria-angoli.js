@@ -77,7 +77,7 @@ window.READER_LESSONS["geometria-angoli"] = {
             },
             {
               "title": "Un segno nella figura",
-              "html": "Gli <strong>archetti</strong> vicino al vertice distinguono le due regioni: in questa figura ne usiamo uno per una regione e due per l’altra.<br><br>Trascinando i lati, le aperture cambiano: <strong>il numero di archetti non definisce un angolo come convesso o concavo</strong>. L’angolo comprende tutta la regione indicata, non soltanto la zona vicina al vertice.",
+              "html": "Gli <strong>archetti</strong> vicino al vertice distinguono le due regioni: in questa figura ne usiamo uno per una regione e due per l’altra.<br><br>Trascinando i lati, le aperture cambiano: <strong>il numero di archetti non indica l’ampiezza dell’angolo</strong>. L’angolo comprende tutta la regione indicata, non soltanto la zona vicina al vertice.",
               "cafeStage": 1
             },
             {
@@ -451,7 +451,7 @@ window.READER_LESSONS["geometria-angoli"] = {
           "steps": [
             {
               "title": "Anche se ruotiamo la figura",
-              "html": "Un angolo retto resta retto anche se lo disegniamo inclinato. Allungare i tratti visibili dei lati non cambia il tipo di angolo: <strong>conta l’apertura, non l’orientamento o la grandezza del disegno.</strong>",
+              "html": "Ruotare un angolo <strong>non ne cambia né l’ampiezza né il tipo</strong>. Lo stesso angolo può apparire in posizioni e orientamenti diversi.<br><br>Anche allungare i tratti visibili dei lati non cambia l’angolo: <strong>conta l’apertura, non l’orientamento o la grandezza del disegno</strong>.",
               "cafeStage": 10
             }
           ],
