@@ -354,6 +354,12 @@ window.READER_LESSONS["aritmetica-divisibilita"] = {
             }
           ],
           "visualLayout": "closing",
+          "closingQuote": {
+            "text": "Questo terrore e queste tenebre dell’animo […] devono essere dissipati […] dalla conoscenza della natura e delle sue leggi.",
+            "author": "Lucrezio",
+            "work": "De rerum natura, II, 59–61",
+            "note": "Traduzione dal latino · estratto"
+          },
           "illustration": {
             "src": "assets/images/reader/red-bjorne-rivincita-78-v2.png",
             "alt": "Bjorne e Red inseguono con un aspirapolvere il fantasma 78, che ora fugge spaventato.",

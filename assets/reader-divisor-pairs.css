@@ -56,3 +56,12 @@
 
 /* Layered soft shapes give the closing scene volume. */
 .rm-visual-closing>.rm-reference-scene::before{inset:15% 39% 3% 0;background:linear-gradient(145deg,#2bb8c32e,#58cdb915);transform:rotate(-7deg);border-radius:41% 59% 54% 46% / 57% 37% 63% 43%}.rm-visual-closing>.rm-reference-scene::after{content:"";position:absolute;inset:5% 0 15% 43%;z-index:-1;border-radius:58% 42% 46% 54% / 42% 58% 38% 62%;background:linear-gradient(150deg,#a789dc2b,#45b7d71c);transform:rotate(8deg)}
+
+/* Literary closing, following the victory scene. */
+.rm-visual-closing>.rm-closing-quote{grid-column:1;grid-row:4;justify-self:center;width:min(100%,740px);box-sizing:border-box;margin:0;padding:24px 30px 18px;border-top:1px solid #19a6ad50;text-align:center}
+.rm-closing-quote blockquote{margin:0;font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:400;font-size:clamp(1.15rem,1.8vw,1.45rem);line-height:1.65;text-wrap:balance;color:inherit}
+.rm-closing-quote figcaption{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 12px;margin-top:15px;font-size:.82rem;line-height:1.5}
+.rm-quote-author{font-weight:700;letter-spacing:.035em}
+.rm-closing-quote cite{font-style:normal;opacity:.8}
+.rm-quote-note{flex-basis:100%;font-size:.7rem;opacity:.65}
+@media(max-width:650px){.rm-visual-closing>.rm-closing-quote{padding:20px 10px 12px}.rm-closing-quote blockquote{font-size:1.12rem}}
