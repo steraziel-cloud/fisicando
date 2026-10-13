@@ -417,44 +417,104 @@ window.LESSON_CATALOG = [
                 "icon": "triangle",
                 "lessons": [
                   {
-                    "title": "Angoli: lati, vertice e ampiezza",
+                    "title": "Gli angoli: costruzione e classificazione",
+                    "id": "geometria-angoli",
+                    "url": "reader.html?lezione=geometria-angoli",
                     "levels": [
                       "medie",
                       "biennio"
                     ],
-                    "status": "work-in-progress"
+                    "status": "work-in-progress",
+                    "kind": "Teoria"
                   },
                   {
-                    "title": "Misurare e classificare gli angoli",
+                    "title": "Confrontare gli angoli",
+                    "id": "geometria-confronto-angoli",
+                    "url": "reader.html?lezione=geometria-confronto-angoli",
                     "levels": [
                       "medie",
                       "biennio"
                     ],
-                    "status": "work-in-progress"
+                    "status": "work-in-progress",
+                    "kind": "Teoria"
                   },
                   {
                     "title": "Angoli consecutivi, adiacenti e opposti al vertice",
+                    "id": "geometria-coppie-angoli",
+                    "url": "reader.html?lezione=geometria-coppie-angoli",
                     "levels": [
                       "medie",
                       "biennio"
                     ],
-                    "status": "work-in-progress"
+                    "status": "work-in-progress",
+                    "kind": "Teoria"
+                  },
+                  {
+                    "title": "Operazioni con gli angoli e bisettrice",
+                    "id": "geometria-operazioni-angoli",
+                    "url": "reader.html?lezione=geometria-operazioni-angoli",
+                    "levels": [
+                      "medie",
+                      "biennio"
+                    ],
+                    "status": "work-in-progress",
+                    "kind": "Teoria"
                   },
                   {
                     "title": "Angoli complementari, supplementari ed esplementari",
+                    "id": "geometria-angoli-complementari",
+                    "url": "reader.html?lezione=geometria-angoli-complementari",
                     "levels": [
                       "medie",
                       "biennio"
                     ],
-                    "status": "work-in-progress"
+                    "status": "work-in-progress",
+                    "kind": "Teoria"
                   },
                   {
-                    "title": "Operazioni con le misure degli angoli",
+                    "title": "Misurare gli angoli: gradi, primi e secondi",
+                    "id": "geometria-misura-angoli",
+                    "url": "reader.html?lezione=geometria-misura-angoli",
                     "levels": [
                       "medie",
                       "biennio"
                     ],
+                    "status": "work-in-progress",
+                    "kind": "Teoria"
+                  },
+                  {
+                    "title": "Angoli orientati e radianti",
+                    "levels": [
+                      "biennio",
+                      "terzo-quarto",
+                      "ultimo-altro"
+                    ],
                     "status": "work-in-progress"
+                  }
+                ],
+                "aliases": [
+                  "ampiezza",
+                  "goniometro",
+                  "bisettrice",
+                  "gradi",
+                  "concavo",
+                  "convesso"
+                ]
+              },
+              {
+                "title": "Rette, distanze e costruzioni",
+                "icon": "triangle",
+                "lessons": [
+                  {
+                    "title": "Rette perpendicolari, distanza e asse di un segmento",
+                    "id": "geometria-perpendicolari",
+                    "url": "reader.html?lezione=geometria-perpendicolari",
+                    "levels": [
+                      "medie",
+                      "biennio"
+                    ],
+                    "status": "work-in-progress",
+                    "kind": "Teoria"
                   }
                 ]
               }

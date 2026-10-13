@@ -87,3 +87,173 @@ window.READER_GLOSSARY = {
     "text": "Una misura non determina il valore di una grandezza con precisione assoluta. L’incertezza esprime quanto può variare ragionevolmente il valore attribuito alla grandezza sulla base delle informazioni disponibili. Dipende dagli strumenti, dal metodo e dalle condizioni della misura. Non è uno sbaglio: anche una misura eseguita correttamente ha un’incertezza."
   }
 };
+
+
+/* Geometry terms use their own namespace: geo-punto is not the physical point model. */
+Object.assign(window.READER_GLOSSARY, {
+  "geo-punto": {
+    "title": "Punto geometrico",
+    "text": "Un ente geometrico privo di dimensioni, usato per individuare una posizione. Non ha lunghezza, larghezza o spessore. Il segno sul foglio è una sua rappresentazione.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-piano": {
+    "title": "Piano",
+    "text": "Una superficie geometrica piatta, senza spessore, illimitata in tutte le direzioni. Il foglio ne rappresenta soltanto una parte.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-retta": {
+    "title": "Retta",
+    "text": "Una linea diritta illimitata in entrambi i versi, senza spessore. Per due punti distinti passa una sola retta.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-semiretta": {
+    "title": "Semiretta",
+    "text": "La parte di una retta formata da un punto, detto origine, e da tutti i punti che stanno da uno stesso lato rispetto a esso. È illimitata in un solo verso.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-segmento": {
+    "title": "Segmento",
+    "text": "La parte di una retta compresa tra due punti, inclusi i due punti: questi sono gli estremi del segmento.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-semipiano": {
+    "title": "Semipiano",
+    "text": "Ciascuna delle due parti del piano individuate da una retta, comprendendo anche la retta di confine.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-semirette-opposte": {
+    "title": "Semirette opposte",
+    "text": "Due semirette con la stessa origine sulla stessa retta, rivolte in direzioni opposte. La loro unione è l’intera retta.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-angolo": {
+    "title": "Angolo",
+    "text": "Ciascuna delle due regioni del piano individuate da due semirette con origine comune, compresi i lati. Le semirette sono i lati; l’origine comune è il vertice. Con lati coincidenti distinguiamo il nullo dal giro.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-convesso": {
+    "title": "Angolo convesso",
+    "text": "Nel caso di lati non appartenenti alla stessa retta, è la regione che non contiene i prolungamenti dei lati oltre il vertice; ha ampiezza minore di quella del piatto. Nullo e piatto sono i casi limite.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-concavo": {
+    "title": "Angolo concavo",
+    "text": "Nel caso di lati non appartenenti alla stessa retta, è la regione che contiene i prolungamenti dei lati oltre il vertice. Ha ampiezza maggiore di quella del piatto e minore di quella del giro.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-piatto": {
+    "title": "Angolo piatto",
+    "text": "Un angolo i cui lati sono semirette opposte. Occupa metà piano e misura 180°.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-nullo": {
+    "title": "Angolo nullo",
+    "text": "Un angolo formato dalla sola semiretta comune ai suoi lati coincidenti. Misura 0°.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-giro": {
+    "title": "Angolo giro",
+    "text": "Un angolo con lati coincidenti che comprende tutto il piano. Misura 360°.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-retto": {
+    "title": "Angolo retto",
+    "text": "La metà di un angolo piatto. Misura 90°; nel disegno si può indicare con un piccolo quadratino vicino al vertice.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-acuto": {
+    "title": "Angolo acuto",
+    "text": "Un angolo maggiore del nullo e minore del retto: la sua misura è maggiore di 0° e minore di 90°.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-ottuso": {
+    "title": "Angolo ottuso",
+    "text": "Un angolo maggiore del retto e minore del piatto: la sua misura è maggiore di 90° e minore di 180°.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-ampiezza": {
+    "title": "Ampiezza di un angolo",
+    "text": "La grandezza che descrive l’apertura di un angolo. Non dipende dalla posizione della figura o dalla lunghezza dei tratti visibili dei lati.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-congruenti": {
+    "title": "Angoli congruenti",
+    "text": "Due angoli che possono essere sovrapposti facendo coincidere vertici, lati e regioni considerate senza deformarli. Hanno la stessa ampiezza.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-consecutivi": {
+    "title": "Angoli consecutivi",
+    "text": "Due angoli con il vertice e un lato in comune, le cui regioni stanno da parti opposte rispetto al lato comune.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-adiacenti": {
+    "title": "Angoli adiacenti",
+    "text": "Due angoli consecutivi i cui lati non comuni sono semirette opposte. La loro somma è un angolo piatto.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-opposti-vertice": {
+    "title": "Angoli opposti al vertice",
+    "text": "Due angoli convessi i cui lati sono a coppie i prolungamenti dei lati dell’altro oltre il vertice. Sono congruenti.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-bisettrice": {
+    "title": "Bisettrice di un angolo",
+    "text": "La semiretta con origine nel vertice che divide l’angolo considerato in due angoli congruenti.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-complementari": {
+    "title": "Angoli complementari",
+    "text": "Due angoli la cui somma è un angolo retto, cioè 90°. Non devono necessariamente essere consecutivi.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-supplementari": {
+    "title": "Angoli supplementari",
+    "text": "Due angoli la cui somma è un angolo piatto, cioè 180°. Non devono necessariamente essere adiacenti.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-esplementari": {
+    "title": "Angoli esplementari",
+    "text": "Due angoli la cui somma è un angolo giro, cioè 360°.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-grado": {
+    "title": "Grado",
+    "text": "Unità di misura dell’ampiezza degli angoli: è una delle 360 parti congruenti di un angolo giro. Si indica con °.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-goniometro": {
+    "title": "Goniometro",
+    "text": "Uno strumento graduato per misurare e disegnare angoli. Il centro va sul vertice e la direzione dello zero su un lato; se presenta due scale si segue quella che parte da quello zero.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-sessagesimale": {
+    "title": "Sistema sessagesimale degli angoli",
+    "text": "Un sistema di misura in gradi, primi e secondi: 1 grado equivale a 60 primi e 1 primo a 60 secondi. Primi e secondi angolari misurano aperture, non durate.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-perpendicolari": {
+    "title": "Rette perpendicolari",
+    "text": "Due rette incidenti che formano quattro angoli retti. Si indicano con il simbolo ⟂.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-distanza-retta": {
+    "title": "Distanza di un punto da una retta",
+    "text": "Se il punto è esterno, è la lunghezza del segmento perpendicolare che lo collega alla retta. Il punto d’incontro è il piede della perpendicolare. Se il punto appartiene alla retta, la distanza è zero.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-punto-medio": {
+    "title": "Punto medio",
+    "text": "Il punto di un segmento che lo divide in due segmenti congruenti.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-asse-segmento": {
+    "title": "Asse di un segmento",
+    "text": "La retta perpendicolare al segmento e passante per il suo punto medio.",
+    "kind": "Definizione di geometria"
+  },
+  "geo-simmetrici": {
+    "title": "Punti simmetrici rispetto a una retta",
+    "text": "Due punti distinti sono simmetrici rispetto a una retta quando questa è l’asse del segmento che li unisce. Il simmetrico di un punto sulla retta è il punto stesso.",
+    "kind": "Definizione di geometria"
+  }
+});
