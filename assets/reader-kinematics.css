@@ -1,7 +1,7 @@
 /* Bozze di cinematica scalare: diagramma persistente a destra, testo a sinistra. */
 body[data-reader-lesson="cinematica-accelerazione"] .rm-card-text,body[data-reader-lesson="cinematica-mru"] .rm-card-text,body[data-reader-lesson="cinematica-mrua"] .rm-card-text,body[data-reader-lesson="cinematica-caduta"] .rm-card-text{max-width:none;width:100%;margin-inline:0}
 .ks-data-table{overflow-x:auto;margin:18px 0}.ks-data-table table{width:100%;border-collapse:collapse}.ks-data-table th,.ks-data-table td{padding:10px 12px;border-bottom:1px solid #1598a440;text-align:center}.ks-data-table th{color:#1598a4}
-.ks-formula{display:block;margin:18px 0;overflow-x:auto}.ks-formula math{font-size:1.35em}.ks-formula math[display=block]{margin:0}
+.ks-formula{display:block;margin:18px 0;padding:8px 0;overflow-x:auto;overflow-y:hidden}.ks-formula math{font-size:1.35em}.ks-formula math[display=block]{margin:0}
 body[data-reader-lesson^="cinematica-"] .rm-reader-card:has(img[src*="/kinematics/"]) .rm-reference-scene{margin:0;min-width:0}
 body[data-reader-lesson^="cinematica-"] img[src*="/kinematics/"]{width:100%;height:auto;max-height:400px;object-fit:contain}
 @media(min-width:1050px){body[data-reader-lesson^="cinematica-"] .rm-reader-card:has(img[src*="/kinematics/"]){display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:20px 28px;align-items:start}body[data-reader-lesson^="cinematica-"] .rm-reader-card:has(img[src*="/kinematics/"])>.rm-card-title{grid-column:1/-1}body[data-reader-lesson^="cinematica-"] .rm-reader-card:has(img[src*="/kinematics/"])>.rm-card-text{grid-column:1;grid-row:2}body[data-reader-lesson^="cinematica-"] .rm-reader-card:has(img[src*="/kinematics/"])>.rm-reference-scene{grid-column:2;grid-row:2}}

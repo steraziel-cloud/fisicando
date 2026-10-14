@@ -108,7 +108,7 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/kinematics/accelerazione-positiva.svg",
+            "src": "assets/images/reader/kinematics/accelerazione-positiva.svg?v=2",
             "alt": "Grafico velocità-tempo: la velocità cresce linearmente da 2 m/s a t=0 a 10 m/s a t=4 s.",
             "width": 640,
             "height": 400
@@ -134,7 +134,7 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/kinematics/media-nulla.svg",
+            "src": "assets/images/reader/kinematics/media-nulla.svg?v=2",
             "alt": "La velocità cresce da 2 a 10 m/s nei primi due secondi e torna a 2 m/s nei successivi due.",
             "width": 640,
             "height": 400
@@ -194,7 +194,7 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
               "Rivedi la relazione fra le grandezze. L’accelerazione media usa soltanto la differenza delle velocità alle estremità. Qui v finale e v iniziale sono entrambe 2 m/s."
             ],
             "illustration": {
-              "src": "assets/images/reader/kinematics/media-nulla.svg",
+              "src": "assets/images/reader/kinematics/media-nulla.svg?v=2",
               "alt": "La velocità cresce da 2 a 10 m/s nei primi due secondi e torna a 2 m/s nei successivi due.",
               "width": 640,
               "height": 400
@@ -521,7 +521,7 @@ window.READER_LESSONS["cinematica-mru"] = {
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/kinematics/mru-posizione.svg",
+            "src": "assets/images/reader/kinematics/mru-posizione.svg?v=2",
             "alt": "Grafico posizione-tempo di un MRU: retta che passa per (0 s,2 m) e (4 s,14 m).",
             "width": 640,
             "height": 400
@@ -602,7 +602,7 @@ window.READER_LESSONS["cinematica-mru"] = {
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/kinematics/mru-velocita.svg",
+            "src": "assets/images/reader/kinematics/mru-velocita.svg?v=2",
             "alt": "Grafico velocità-tempo: linea orizzontale a 3 m/s da zero a quattro secondi.",
             "width": 640,
             "height": 400
@@ -638,7 +638,7 @@ window.READER_LESSONS["cinematica-mru"] = {
               "Rivedi la relazione fra le grandezze. L’asse verticale riporta la velocità: il valore 3 m/s resta costante."
             ],
             "illustration": {
-              "src": "assets/images/reader/kinematics/mru-velocita.svg",
+              "src": "assets/images/reader/kinematics/mru-velocita.svg?v=2",
               "alt": "Grafico velocità-tempo: linea orizzontale a 3 m/s da zero a quattro secondi.",
               "width": 640,
               "height": 400
@@ -736,7 +736,7 @@ window.READER_LESSONS["cinematica-mrua"] = {
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/kinematics/accelerazione-positiva.svg",
+            "src": "assets/images/reader/kinematics/accelerazione-positiva.svg?v=2",
             "alt": "Grafico velocità-tempo: la velocità cresce linearmente da 2 m/s a t=0 a 10 m/s a t=4 s.",
             "width": 640,
             "height": 400
@@ -831,7 +831,7 @@ window.READER_LESSONS["cinematica-mrua"] = {
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/kinematics/mrua-posizione.svg",
+            "src": "assets/images/reader/kinematics/mrua-posizione.svg?v=2",
             "alt": "Grafico posizione-tempo curvo del MRUA: s=1+2t+t². La pendenza aumenta nel tempo.",
             "width": 640,
             "height": 400
@@ -891,7 +891,7 @@ window.READER_LESSONS["cinematica-mrua"] = {
               "Rivedi la relazione fra le grandezze. Un asse riporta il tempo e l’altro la posizione: non è una mappa del percorso."
             ],
             "illustration": {
-              "src": "assets/images/reader/kinematics/mrua-posizione.svg",
+              "src": "assets/images/reader/kinematics/mrua-posizione.svg?v=2",
               "alt": "Grafico posizione-tempo curvo del MRUA: s=1+2t+t². La pendenza aumenta nel tempo.",
               "width": 640,
               "height": 400
@@ -1275,7 +1275,7 @@ window.READER_LESSONS["cinematica-caduta"] = {
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/kinematics/lancio-velocita.svg",
+            "src": "assets/images/reader/kinematics/lancio-velocita.svg?v=2",
             "alt": "Grafico velocità-tempo per un lancio verso l’alto con g approssimato a 10 m/s²: da +20 m/s a -20 m/s, passando per zero a t=2 s.",
             "width": 640,
             "height": 400
@@ -1295,7 +1295,7 @@ window.READER_LESSONS["cinematica-caduta"] = {
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/kinematics/lancio-posizione.svg",
+            "src": "assets/images/reader/kinematics/lancio-posizione.svg?v=2",
             "alt": "Grafico quota-tempo del lancio con y iniziale zero: sale fino a 20 m a t=2 s e torna a y=0 a t=4 s. Non rappresenta la traiettoria nello spazio.",
             "width": 640,
             "height": 400
@@ -1355,7 +1355,7 @@ window.READER_LESSONS["cinematica-caduta"] = {
               "Rivedi la relazione fra le grandezze. Gli assi sono tempo e quota: il grafico non è il disegno della traiettoria."
             ],
             "illustration": {
-              "src": "assets/images/reader/kinematics/lancio-posizione.svg",
+              "src": "assets/images/reader/kinematics/lancio-posizione.svg?v=2",
               "alt": "Grafico quota-tempo del lancio con y iniziale zero: sale fino a 20 m a t=2 s e torna a y=0 a t=4 s. Non rappresenta la traiettoria nello spazio.",
               "width": 640,
               "height": 400
