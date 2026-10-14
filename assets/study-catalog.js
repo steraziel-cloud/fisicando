@@ -796,6 +796,94 @@ window.LESSON_CATALOG = [
             ]
           }
         ]
+      },
+      {
+        "title": "Analisi matematica",
+        "icon": "graph",
+        "topics": [
+          {
+            "title": "Calcolo integrale",
+            "icon": "graph",
+            "aliases": [
+              "integrali",
+              "primitive",
+              "sostituzione",
+              "fratti semplici",
+              "integrazione per parti"
+            ],
+            "lessons": [
+              {
+                "title": "Primitive e integrali immediati",
+                "id": "integrali-immediati",
+                "url": "reader.html?lezione=integrali-immediati",
+                "kind": "Teoria",
+                "levels": [
+                  "analisi1"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Funzioni composte e integrazione per sostituzione",
+                "id": "integrali-sostituzione",
+                "url": "reader.html?lezione=integrali-sostituzione",
+                "kind": "Teoria",
+                "levels": [
+                  "analisi1"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Funzioni razionali fratte: divisione e fratti semplici",
+                "id": "integrali-razionali-lineari",
+                "url": "reader.html?lezione=integrali-razionali-lineari",
+                "kind": "Teoria",
+                "levels": [
+                  "analisi1"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Funzioni razionali fratte: denominatori quadratici",
+                "id": "integrali-razionali-quadratiche",
+                "url": "reader.html?lezione=integrali-razionali-quadratiche",
+                "kind": "Teoria",
+                "levels": [
+                  "analisi1"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Integrazione per parti",
+                "id": "integrali-parti",
+                "url": "reader.html?lezione=integrali-parti",
+                "kind": "Teoria",
+                "levels": [
+                  "analisi1"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Integrali definiti: significato e calcolo",
+                "id": "integrali-definiti",
+                "url": "reader.html?lezione=integrali-definiti",
+                "kind": "Teoria",
+                "levels": [
+                  "analisi1"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Integrali · Allenamento con suggerimenti e soluzioni",
+                "url": "integrali-allenamento.html",
+                "kind": "Esercizi",
+                "levels": [
+                  "analisi1"
+                ],
+                "status": "work-in-progress"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
