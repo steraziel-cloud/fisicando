@@ -9,6 +9,22 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
       "id": "cambiamento",
       "title": "Quando cambia la velocità",
       "cards": [
+{
+  "title": "Gli ultimi cento metri",
+  "stepMode": "replace",
+  "illustration": {
+    "src": "assets/images/reader/kinematics/ultimi-cento-metri.webp",
+    "alt": "Red e Morgana quasi alla pari corrono verso il traguardo del campo sportivo della scuola; Bjorne li segue sorridendo.",
+    "width": 1774,
+    "height": 887
+  },
+  "steps": [
+    {
+      "title": "Una sfida fino al traguardo",
+      "html": "Al campo sportivo della scuola, <strong>Red, Morgana e Bjorne si sfidano in una gara di corsa.</strong> Red dà tutto per vincere. Morgana cerca di mantenere il contegno, ma perdere contro di lui? Non se ne parla. Bjorne, intanto, corre felice per conto suo.<br><br>La gara è già iniziata e <strong>mancano gli ultimi cento metri al traguardo.</strong> È qui che comincia la nostra osservazione: qualcuno aumenta la velocità, qualcuno rallenta, qualcuno mantiene la stessa andatura.<br><br>Seguiamoli per capire <strong>come cambia la velocità durante il movimento.</strong>"
+    }
+  ]
+},
         {
           "title": "Una nuova domanda",
           "stepMode": "replace",

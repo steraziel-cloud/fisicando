@@ -6,3 +6,8 @@ body[data-reader-lesson^="cinematica-"] .rm-reader-card:has(img[src*="/kinematic
 body[data-reader-lesson^="cinematica-"] img[src*="/kinematics/"]{width:100%;height:auto;max-height:400px;object-fit:contain}
 @media(min-width:1050px){body[data-reader-lesson^="cinematica-"] .rm-reader-card:has(img[src*="/kinematics/"]){display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:20px 28px;align-items:start}body[data-reader-lesson^="cinematica-"] .rm-reader-card:has(img[src*="/kinematics/"])>.rm-card-title{grid-column:1/-1}body[data-reader-lesson^="cinematica-"] .rm-reader-card:has(img[src*="/kinematics/"])>.rm-card-text{grid-column:1;grid-row:2}body[data-reader-lesson^="cinematica-"] .rm-reader-card:has(img[src*="/kinematics/"])>.rm-reference-scene{grid-column:2;grid-row:2}}
 @media(max-width:1049px){body[data-reader-lesson^="cinematica-"] .rm-reader-card:has(img[src*="/kinematics/"]) .rm-reference-scene{max-width:600px;margin:0 auto 18px}}
+
+/* Apertura narrativa: illustrazione ampia, proporzioni originali. */
+body[data-reader-lesson="cinematica-accelerazione"] .rm-reader-card:has(img[src*="ultimi-cento-metri"]){display:block}
+body[data-reader-lesson="cinematica-accelerazione"] .rm-reader-card:has(img[src*="ultimi-cento-metri"]) .rm-reference-scene{width:100%;max-width:1000px;margin:0 auto 24px}
+body[data-reader-lesson="cinematica-accelerazione"] img[src*="ultimi-cento-metri"]{max-height:440px;border-radius:36px 54px 42px 58px;object-fit:contain}
