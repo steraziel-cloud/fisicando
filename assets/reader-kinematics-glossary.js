@@ -6,17 +6,17 @@ Object.assign(window.READER_GLOSSARY, {
   },
   "ks-accelerazione-media": {
     "title": "Accelerazione scalare media",
-    "text": "Il rapporto fra la variazione della velocità scalare e l’intervallo di tempo: aₘ=(v₂−v₁)/(t₂−t₁), con t₂>t₁. Dipende dalle due letture estreme e non descrive tutti i cambiamenti interni all’intervallo.",
+    "text": "Il rapporto fra la variazione della velocità scalare e l’intervallo di tempo: aₛₘ=(vₛ₂−vₛ₁)/(t₂−t₁), con t₂>t₁. Dipende dalle due letture estreme e non descrive tutti i cambiamenti interni all’intervallo.",
     "kind": "Definizione di fisica"
   },
   "ks-accelerazione-istantanea": {
     "title": "Accelerazione scalare istantanea",
-    "text": "Il valore che descrive quanto rapidamente cambia la velocità scalare in un istante. Si ottiene considerando il rapporto Δv/Δt su intervalli che si avvicinano all’istante con durata sempre più vicina a zero. Quando questo valore esiste, si indica con a(t).",
+    "text": "Il valore che descrive quanto rapidamente cambia la velocità scalare in un istante. Si ottiene considerando il rapporto Δvₛ/Δt su intervalli che si avvicinano all’istante con durata sempre più vicina a zero. Quando questo valore esiste, si indica con aₛ(t).",
     "kind": "Definizione di fisica"
   },
   "ks-mru": {
     "title": "Moto rettilineo uniforme",
-    "text": "Moto lungo una retta con velocità costante nel tempo. L’accelerazione è nulla e la posizione segue s(t)=s₀+v(t−t₀). La quiete è il caso particolare v=0.",
+    "text": "Moto lungo una retta con velocità costante nel tempo. L’accelerazione è nulla e la posizione segue s(t)=s₀+vₛ(t−t₀). La quiete è il caso particolare vₛ=0.",
     "kind": "Definizione di fisica"
   },
   "ks-mrua": {
@@ -26,7 +26,7 @@ Object.assign(window.READER_GLOSSARY, {
   },
   "ks-parabola": {
     "title": "Parabola nel grafico posizione-tempo",
-    "text": "Il grafico di una funzione quadratica, come s(t)=s₀+v₀t+(1/2)at² con a diverso da zero. Gli assi riportano tempo e posizione: la forma del grafico non è la forma della traiettoria nello spazio.",
+    "text": "Il grafico di una funzione quadratica, come s(t)=s₀+vₛ₀t+(1/2)at² con a diverso da zero. Gli assi riportano tempo e posizione: la forma del grafico non è la forma della traiettoria nello spazio.",
     "kind": "Definizione di fisica"
   },
   "ks-caduta-libera": {

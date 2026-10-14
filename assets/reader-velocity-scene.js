@@ -43,7 +43,7 @@
       }
       const graph=document.createElement('div');graph.className='vs-graph';graph.hidden=!options.graph;
       graph.innerHTML=`<svg viewBox="0 0 720 235" role="img" aria-label="Grafico della velocità in funzione del tempo: Morgana procede a 2 metri al secondo; Red a 6, poi 0, poi 2.">
-      <text x="64" y="20" fill="currentColor" font-size="16">v (m/s)</text>
+      <text x="64" y="20" fill="currentColor" font-size="16">v<tspan baseline-shift="sub" font-size="11">s</tspan> (m/s)</text>
       <path d="M64 35 V185 H680" fill="none" stroke="currentColor" stroke-width="2"/>
       ${[0,2,4,6].map(v=>`<line x1="64" y1="${185-v*23}" x2="664" y2="${185-v*23}" stroke="currentColor" stroke-opacity=".13"/><text x="49" y="${190-v*23}" text-anchor="end" fill="currentColor" font-size="14">${v}</text>`).join('')}
       ${[0,15,30,45,60].map(t=>`<line x1="${64+t*10}" y1="185" x2="${64+t*10}" y2="191" stroke="currentColor"/><text x="${64+t*10}" y="211" text-anchor="middle" fill="currentColor" font-size="14">${t}</text>`).join('')}

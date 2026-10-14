@@ -1,4 +1,4 @@
-/* La velocità scalare · teoria e lavagne guidate. */
+/* Convenzione editoriale: velocità e accelerazione scalari v_s e a_s. */
 window.READER_LESSONS["cinematica-velocita"] = {
   "title": "La velocità scalare",
   "subtitle": "Biennio · Meccanica · Cinematica scalare",
@@ -25,7 +25,7 @@ window.READER_LESSONS["cinematica-velocita"] = {
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/red-morgana-souvenir-v3.png",
+            "src": "assets/images/reader/red-morgana-souvenir-vₛ3.png",
             "alt": "Morgana si avvicina a piedi al chiosco di souvenir dove Red osserva gli oggetti in vendita; la sua BMX è parcheggiata accanto al chiosco, con il caschetto appoggiato sul manubrio.",
             "width": 1778,
             "height": 885
@@ -38,7 +38,7 @@ window.READER_LESSONS["cinematica-velocita"] = {
           "steps": [
             {
               "title": "Due osservazioni",
-              "html": "Fissato opportunamente il <button type=\"button\" class=\"rm-keyword\" data-term=\"riferimento-scalare\">sistema di riferimento</button>, registriamo due posizioni, <span class=\"rm-formula\">s₁</span> e <span class=\"rm-formula\">s₂</span>, e i corrispondenti istanti, <span class=\"rm-formula\">t₁</span> e <span class=\"rm-formula\">t₂</span>. Ricaviamo lo spostamento e il tempo trascorso:<br><br><span class=\"rm-formula\"><button type=\"button\" class=\"rm-keyword\" data-term=\"delta\">Δ</button>s = s₂ − s₁</span><br><span class=\"rm-formula\"><button type=\"button\" class=\"rm-keyword\" data-term=\"delta\">Δ</button>t = t₂ − t₁ > 0</span>"
+              "html": "<strong>Indichiamo la velocità scalare con vₛ.</strong> Il pedice s ricorda che è una grandezza con segno, riferita alla traiettoria orientata. Il suo valore assoluto |vₛ| è la rapidità.<br><br>Fissato opportunamente il <button type=\"button\" class=\"rm-keyword\" data-term=\"riferimento-scalare\">sistema di riferimento</button>, registriamo due posizioni, <span class=\"rm-formula\">s₁</span> e <span class=\"rm-formula\">s₂</span>, e i corrispondenti istanti, <span class=\"rm-formula\">t₁</span> e <span class=\"rm-formula\">t₂</span>. Ricaviamo lo spostamento e il tempo trascorso:<br><br><span class=\"rm-formula\"><button type=\"button\" class=\"rm-keyword\" data-term=\"delta\">Δ</button>s = s₂ − s₁</span><br><span class=\"rm-formula\"><button type=\"button\" class=\"rm-keyword\" data-term=\"delta\">Δ</button>t = t₂ − t₁ > 0</span>"
             },
             {
               "title": "Un rapporto utile",
@@ -58,7 +58,7 @@ window.READER_LESSONS["cinematica-velocita"] = {
             },
             {
               "title": "Facciamo qualche equivalenza",
-              "html": "Da <span class=\"rm-formula\">m/s</span> a <span class=\"rm-formula\">km/h</span> <strong>moltiplichiamo per 3,6</strong>:<br><span class=\"rm-formula\">20 m/s = 72 km/h</span>.<br><br>Da <span class=\"rm-formula\">km/h</span> a <span class=\"rm-formula\">m/s</span> <strong>dividiamo per 3,6</strong>:<br><span class=\"rm-formula\">36 km/h = 10 m/s</span>.<br><br>Cambia l’unità, non il movimento descritto."
+              "html": "Da <span class=\"rm-formula\">m/s</span> aₛ <span class=\"rm-formula\">km/h</span> <strong>moltiplichiamo per 3,6</strong>:<br><span class=\"rm-formula\">20 m/s = 72 km/h</span>.<br><br>Da <span class=\"rm-formula\">km/h</span> aₛ <span class=\"rm-formula\">m/s</span> <strong>dividiamo per 3,6</strong>:<br><span class=\"rm-formula\">36 km/h = 10 m/s</span>.<br><br>Cambia l’unità, non il movimento descritto."
             }
           ]
         }
@@ -76,7 +76,7 @@ window.READER_LESSONS["cinematica-velocita"] = {
           "stepMode": "replace",
           "steps": [
             {
-              "html": "<span class=\"rm-measure-layout\"><span class=\"rm-measure-companion\"><span class=\"rm-measure-balloon\">Se ti è tutto chiaro,<br><strong>mettiamoci alla prova!</strong></span><img src=\"assets/images/reader/velocity-measuring-cats-v1.png\" alt=\"Morgana tiene un cronometro e invita a mettersi alla prova; Red tiene una rollina metrica.\" width=\"440\" height=\"294\"></span><span class=\"rm-measure-explanation\">La <strong>velocità scalare media</strong> è il rapporto tra lo spostamento e l’intervallo di tempo in cui avviene.<br><br>Per calcolarla, <strong>misuriamo uno spostamento e l’intervallo di tempo in cui avviene, poi facciamo il rapporto</strong>:<br><br><span class=\"rm-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" displaystyle=\"true\"><mrow><msub><mi>v</mi><mi>m</mi></msub><mo>=</mo><mfrac><mrow><mi>Δ</mi><mi>s</mi></mrow><mrow><mi>Δ</mi><mi>t</mi></mrow></mfrac></mrow></math></span></span></span>"
+              "html": "<span class=\"rm-measure-layout\"><span class=\"rm-measure-companion\"><span class=\"rm-measure-balloon\">Se ti è tutto chiaro,<br><strong>mettiamoci alla prova!</strong></span><img src=\"assets/images/reader/velocity-measuring-cats-vₛ1.png\" alt=\"Morgana tiene un cronometro e invita a mettersi alla prova; Red tiene una rollina metrica.\" width=\"440\" height=\"294\"></span><span class=\"rm-measure-explanation\">La <strong>velocità scalare media</strong> è il rapporto tra lo spostamento e l’intervallo di tempo in cui avviene.<br><br>Per calcolarla, <strong>misuriamo uno spostamento e l’intervallo di tempo in cui avviene, poi facciamo il rapporto</strong>:<br><br><span class=\"rm-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" displaystyle=\"true\"><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mi>m</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>Δ</mi><mi>s</mi></mrow><mrow><mi>Δ</mi><mi>t</mi></mrow></mfrac></mrow></math></span></span></span>"
             }
           ]
         },
@@ -149,9 +149,9 @@ window.READER_LESSONS["cinematica-velocita"] = {
               "interaction": "instant-speeds"
             },
             {
-              "title": "La funzione velocità v(t)",
+              "title": "La funzione velocità vₛ(t)",
               "velocityGraph": true,
-              "html": "Associando a ogni istante <span class=\"rm-formula\">t</span> la velocità istantanea, otteniamo la <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button> <strong>velocità</strong>, scritta <span class=\"rm-formula\">v = v(t)</span>.<br><br>Il grafico si traccia insieme al movimento: per Morgana una linea a <strong>2 m/s</strong>; per Red tre tratti a <strong>6, 0 e 2 m/s</strong>. Leggiamo <strong>quanto vale la velocità e quando cambia</strong>, comprese la durata della pausa e quella dei tratti in movimento.<br><br>Entrambi percorrono 120 m in 60 s e hanno media 2 m/s, ma <strong>i loro grafici v(t) sono diversi</strong>: ora le differenze sono anche quantitative.",
+              "html": "Associando a ogni istante <span class=\"rm-formula\">t</span> la velocità istantanea, otteniamo la <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button> <strong>velocità</strong>, scritta <span class=\"rm-formula\">vₛ = vₛ(t)</span>.<br><br>Il grafico si traccia insieme al movimento: per Morgana una linea aₛ <strong>2 m/s</strong>; per Red tre tratti aₛ <strong>6, 0 e 2 m/s</strong>. Leggiamo <strong>quanto vale la velocità e quando cambia</strong>, comprese la durata della pausa e quella dei tratti in movimento.<br><br>Entrambi percorrono 120 m in 60 s e hanno media 2 m/s, ma <strong>i loro grafici vₛ(t) sono diversi</strong>: ora le differenze sono anche quantitative.",
               "replace": true
             }
           ]
@@ -181,7 +181,7 @@ window.READER_LESSONS["cinematica-velocita"] = {
             },
             {
               "title": "Dal modello allo strumento reale",
-              "html": "Il rapporto dà una <strong>media durante il giro</strong>. Se la velocità cambia poco in quel breve intervallo, è una buona stima della velocità istantanea, espressa senza il segno del verso.<br><br>Nei sistemi elettronici si possono rilevare <strong>molti segnali per giro</strong>, usando sensori e ruote foniche o anelli magnetici: non occorre sempre aspettare un’intera rotazione. Il valore visualizzato deriva dall’elaborazione dei segnali e dalla taratura del sistema.<br><br>La circonferenza effettiva di rotolamento deve essere conosciuta correttamente; se la ruota slitta, la sua rotazione non descrive fedelmente l’avanzamento dell’auto.<br><br><a href=\"https://www.bosch-mobility.com/en/solutions/sensors/wheel-speed-sensor/\" target=\"_blank\" rel=\"noopener\">Approfondisci: un sensore di velocità delle ruote</a>"
+              "html": "Il rapporto dà una <strong>media durante il giro</strong>. Se la velocità cambia poco in quel breve intervallo, è una buona stima della velocità istantanea, espressa senza il segno del verso.<br><br>Nei sistemi elettronici si possono rilevare <strong>molti segnali per giro</strong>, usando sensori e ruote foniche o anelli magnetici: non occorre sempre aspettare un’intera rotazione. Il valore visualizzato deriva dall’elaborazione dei segnali e dalla taratura del sistema.<br><br>La circonferenza effettiva di rotolamento deve essere conosciuta correttamente; se la ruota slitta, la sua rotazione non descrive fedelmente l’avanzamento dell’auto.<br><br><a href=\"https://www.bosch-mobility.com/en/solutions/sensors/wheel-speed-sensor/\" target=\"_blank\" rel=\"noopener\">Approfondisci: un sensore di velocità delle ruote</aₛ>"
             }
           ]
         },
@@ -214,11 +214,11 @@ window.READER_LESSONS["cinematica-velocita"] = {
           "steps": [
             {
               "title": "La velocità media riassume un intervallo",
-              "html": "La <strong>velocità scalare</strong> descrive quanto rapidamente cambia la posizione lungo una traiettoria, tenendo conto del verso scelto come positivo.<br><br>La <strong>velocità media</strong> si calcola dividendo lo spostamento per il tempo trascorso: <span class=\"rm-formula\">vₘ = Δs / Δt</span>.<br><br>Questo numero <strong>non racconta ciò che accade all’interno dell’intervallo</strong>: restare fermi oppure andare e tornare può dare la stessa media nulla; muoversi uniformemente oppure alternare tratti rapidi e pause può dare la stessa media non nulla."
+              "html": "La <strong>velocità scalare</strong> descrive quanto rapidamente cambia la posizione lungo una traiettoria, tenendo conto del verso scelto come positivo.<br><br>La <strong>velocità media</strong> si calcola dividendo lo spostamento per il tempo trascorso: <span class=\"rm-formula\">vₛₘ = Δs / Δt</span>.<br><br>Questo numero <strong>non racconta ciò che accade all’interno dell’intervallo</strong>: restare fermi oppure andare e tornare può dare la stessa media nulla; muoversi uniformemente oppure alternare tratti rapidi e pause può dare la stessa media non nulla."
             },
             {
               "title": "La velocità istantanea descrive i singoli momenti",
-              "html": "Per distinguere questi movimenti, restringiamo gli intervalli verso l’istante che ci interessa. Se le velocità medie si avvicinano a un valore preciso, <strong>quel valore è la velocità istantanea in quell’istante</strong>.<br><br>La <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button> <span class=\"rm-formula\">v(t)</span> associa a ogni istante la sua velocità. Il grafico permette di leggere <strong>quanto vale, quando cambia e quanto durano i diversi tratti del moto</strong>.<br><br>Morgana mantiene <strong>2 m/s</strong>; Red passa da <strong>6 a 0 e poi a 2 m/s</strong>. La media dell’intero viaggio è uguale, ma i grafici rendono evidenti le differenze."
+              "html": "Per distinguere questi movimenti, restringiamo gli intervalli verso l’istante che ci interessa. Se le velocità medie si avvicinano a un valore preciso, <strong>quel valore è la velocità istantanea in quell’istante</strong>.<br><br>La <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button> <span class=\"rm-formula\">vₛ(t)</span> associa a ogni istante la sua velocità. Il grafico permette di leggere <strong>quanto vale, quando cambia e quanto durano i diversi tratti del moto</strong>.<br><br>Morgana mantiene <strong>2 m/s</strong>; Red passa da <strong>6 a 0 e poi a 2 m/s</strong>. La media dell’intero viaggio è uguale, ma i grafici rendono evidenti le differenze."
             },
             {
               "title": "Leggere e misurare una velocità",

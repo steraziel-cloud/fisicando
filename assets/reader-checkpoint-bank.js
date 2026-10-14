@@ -1,4 +1,3 @@
-/* Conceptual checkpoints shared by the reader; original lesson explanations are unchanged. */
 window.READER_CHECKPOINT_BANK = {
   "aritmetica-divisibilita": {
     "gruppi": [
@@ -644,7 +643,7 @@ window.READER_CHECKPOINT_BANK = {
     ],
     "locale": [
       {
-        "question": "Nel grafico di v(t), quale coordinata indica la velocità all’istante scelto?",
+        "question": "Nel grafico di vₛ(t), quale coordinata indica la velocità all’istante scelto?",
         "options": [
           "La coordinata verticale del punto del grafico",
           "La coordinata orizzontale",
@@ -678,7 +677,7 @@ window.READER_CHECKPOINT_BANK = {
         ]
       },
       {
-        "question": "Durante una pausa, quale valore assume v(t)?",
+        "question": "Durante una pausa, quale valore assume vₛ(t)?",
         "options": [
           "Il valore della posizione",
           "Zero",
@@ -697,7 +696,7 @@ window.READER_CHECKPOINT_BANK = {
     ],
     "pillole": [
       {
-        "question": "Quale informazione dà v(t) rispetto a una sola velocità media?",
+        "question": "Quale informazione dà vₛ(t) rispetto a una sola velocità media?",
         "options": [
           "Solo il punto di arrivo",
           "La massa del corpo",
@@ -716,8 +715,8 @@ window.READER_CHECKPOINT_BANK = {
       {
         "question": "Due corpi partono e arrivano insieme alle stesse posizioni. Uno fa una pausa. Quale affermazione è corretta?",
         "options": [
-          "Hanno necessariamente la stessa v(t)",
-          "Possono avere la stessa velocità media e diverse funzioni v(t)",
+          "Hanno necessariamente la stessa vₛ(t)",
+          "Possono avere la stessa velocità media e diverse funzioni vₛ(t)",
           "Il corpo che fa la pausa ha media nulla",
           "Il corpo senza pausa deve avere velocità negativa"
         ],

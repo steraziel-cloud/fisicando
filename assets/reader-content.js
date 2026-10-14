@@ -1,3 +1,4 @@
+/* Convenzione editoriale: velocità e accelerazione scalari v_s e a_s. */
 window.READER_LESSONS = {
   "cinematica-introduzione": {
     "title": "Introduzione alla cinematica scalare",
@@ -204,7 +205,7 @@ window.READER_LESSONS = {
               },
               {
                 "title": "Andare e tornare",
-                "html": "Parti da <span class=\"rm-formula\">s = 0 m</span>, raggiungi <span class=\"rm-formula\">s = 3 m</span> e torni a <span class=\"rm-formula\">s = 0 m</span>. La distanza percorsa è <span class=\"rm-formula\">|3 − 0| + |0 − 3| = 6 m</span>, mentre <span class=\"rm-formula\">Δs = 0 − 0 = 0 m</span>. Distanza percorsa e spostamento lungo la traiettoria descrivono due aspetti diversi."
+                "html": "Parti da <span class=\"rm-formula\">s = 0 m</span>, raggiungi <span class=\"rm-formula\">s = 3 m</span> e torni aₛ <span class=\"rm-formula\">s = 0 m</span>. La distanza percorsa è <span class=\"rm-formula\">|3 − 0| + |0 − 3| = 6 m</span>, mentre <span class=\"rm-formula\">Δs = 0 − 0 = 0 m</span>. Distanza percorsa e spostamento lungo la traiettoria descrivono due aspetti diversi."
               }
             ]
           },

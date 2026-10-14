@@ -1,4 +1,3 @@
-/* Glossario condiviso delle lezioni. */
 window.READER_GLOSSARY = {
   "movimento": {
     "title": "Movimento (o moto)",
@@ -85,12 +84,7 @@ window.READER_GLOSSARY = {
     "title": "Incertezza di misura",
     "kind": "Definizione di fisica",
     "text": "Una misura non determina il valore di una grandezza con precisione assoluta. L’incertezza esprime quanto può variare ragionevolmente il valore attribuito alla grandezza sulla base delle informazioni disponibili. Dipende dagli strumenti, dal metodo e dalle condizioni della misura. Non è uno sbaglio: anche una misura eseguita correttamente ha un’incertezza."
-  }
-};
-
-
-/* Geometry terms use their own namespace: geo-punto is not the physical point model. */
-Object.assign(window.READER_GLOSSARY, {
+  },
   "geo-punto": {
     "title": "Punto geometrico",
     "text": "Un ente geometrico privo di dimensioni, usato per individuare una posizione. Non ha lunghezza, larghezza o spessore. Il segno sul foglio è una sua rappresentazione.",
@@ -255,8 +249,16 @@ Object.assign(window.READER_GLOSSARY, {
     "title": "Punti simmetrici rispetto a una retta",
     "text": "Due punti distinti sono simmetrici rispetto a una retta quando questa è l’asse del segmento che li unisce. Il simmetrico di un punto sulla retta è il punto stesso.",
     "kind": "Definizione di geometria"
+  },
+  "geo-alfa": {
+    "title": "Alfa (α) e alfabeto greco",
+    "kind": "Simboli matematici",
+    "text": "Alfa è la prima lettera dell’alfabeto greco. In geometria le lettere greche possono essere usate per dare un nome agli angoli. La lettera è un nome: da sola non ne indica l’ampiezza.",
+    "html": "<table class=\"rm-greek-table\"><caption>Le 24 lettere dell’alfabeto greco</caption><thead><tr><th scope=\"col\">Maiuscola</th><th scope=\"col\">Minuscola</th><th scope=\"col\">Nome</th></tr></thead><tbody><tr><td>Α</td><td>α</td><td>alfa</td></tr><tr><td>Β</td><td>β</td><td>beta</td></tr><tr><td>Γ</td><td>γ</td><td>gamma</td></tr><tr><td>Δ</td><td>δ</td><td>delta</td></tr><tr><td>Ε</td><td>ε</td><td>epsilon</td></tr><tr><td>Ζ</td><td>ζ</td><td>zeta</td></tr><tr><td>Η</td><td>η</td><td>eta</td></tr><tr><td>Θ</td><td>θ</td><td>theta</td></tr><tr><td>Ι</td><td>ι</td><td>iota</td></tr><tr><td>Κ</td><td>κ</td><td>kappa</td></tr><tr><td>Λ</td><td>λ</td><td>lambda</td></tr><tr><td>Μ</td><td>μ</td><td>mu</td></tr><tr><td>Ν</td><td>ν</td><td>nu</td></tr><tr><td>Ξ</td><td>ξ</td><td>xi</td></tr><tr><td>Ο</td><td>ο</td><td>omicron</td></tr><tr><td>Π</td><td>π</td><td>pi</td></tr><tr><td>Ρ</td><td>ρ</td><td>rho</td></tr><tr><td>Σ</td><td>σ / ς</td><td>sigma</td></tr><tr><td>Τ</td><td>τ</td><td>tau</td></tr><tr><td>Υ</td><td>υ</td><td>upsilon</td></tr><tr><td>Φ</td><td>φ / ϕ</td><td>phi</td></tr><tr><td>Χ</td><td>χ</td><td>chi</td></tr><tr><td>Ψ</td><td>ψ</td><td>psi</td></tr><tr><td>Ω</td><td>ω</td><td>omega</td></tr></tbody></table><p>ς è la forma di sigma usata alla fine delle parole greche; φ e ϕ sono due forme della stessa lettera.</p>"
+  },
+  "notazione-scalare": {
+    "title": "Velocità e accelerazione scalari",
+    "kind": "Convenzione di fisica",
+    "text": "Indichiamo con vₛ la velocità scalare con segno lungo una traiettoria orientata e con aₛ la sua variazione per unità di tempo. Le funzioni sono vₛ(t) e aₛ(t). La rapidità è |vₛ| e coincide con il modulo del vettore velocità. Il modulo del vettore accelerazione non coincide in generale con |aₛ|: su una traiettoria curva la direzione del moto può cambiare anche con velocità scalare costante."
   }
-});
-
-
-Object.assign(window.READER_GLOSSARY, {"geo-alfa":{"title":"Alfa (α) e alfabeto greco","kind":"Simboli matematici","text":"Alfa è la prima lettera dell’alfabeto greco. In geometria le lettere greche possono essere usate per dare un nome agli angoli. La lettera è un nome: da sola non ne indica l’ampiezza.","html":"<table class=\"rm-greek-table\"><caption>Le 24 lettere dell’alfabeto greco</caption><thead><tr><th scope=\"col\">Maiuscola</th><th scope=\"col\">Minuscola</th><th scope=\"col\">Nome</th></tr></thead><tbody><tr><td>Α</td><td>α</td><td>alfa</td></tr><tr><td>Β</td><td>β</td><td>beta</td></tr><tr><td>Γ</td><td>γ</td><td>gamma</td></tr><tr><td>Δ</td><td>δ</td><td>delta</td></tr><tr><td>Ε</td><td>ε</td><td>epsilon</td></tr><tr><td>Ζ</td><td>ζ</td><td>zeta</td></tr><tr><td>Η</td><td>η</td><td>eta</td></tr><tr><td>Θ</td><td>θ</td><td>theta</td></tr><tr><td>Ι</td><td>ι</td><td>iota</td></tr><tr><td>Κ</td><td>κ</td><td>kappa</td></tr><tr><td>Λ</td><td>λ</td><td>lambda</td></tr><tr><td>Μ</td><td>μ</td><td>mu</td></tr><tr><td>Ν</td><td>ν</td><td>nu</td></tr><tr><td>Ξ</td><td>ξ</td><td>xi</td></tr><tr><td>Ο</td><td>ο</td><td>omicron</td></tr><tr><td>Π</td><td>π</td><td>pi</td></tr><tr><td>Ρ</td><td>ρ</td><td>rho</td></tr><tr><td>Σ</td><td>σ / ς</td><td>sigma</td></tr><tr><td>Τ</td><td>τ</td><td>tau</td></tr><tr><td>Υ</td><td>υ</td><td>upsilon</td></tr><tr><td>Φ</td><td>φ / ϕ</td><td>phi</td></tr><tr><td>Χ</td><td>χ</td><td>chi</td></tr><tr><td>Ψ</td><td>ψ</td><td>psi</td></tr><tr><td>Ω</td><td>ω</td><td>omega</td></tr></tbody></table><p>ς è la forma di sigma usata alla fine delle parole greche; φ e ϕ sono due forme della stessa lettera.</p>"}});
+};

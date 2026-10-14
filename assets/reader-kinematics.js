@@ -1,4 +1,4 @@
-/* Cinematica scalare: riorganizzazione delle dispense originali di Fisicando. */
+/* Convenzione editoriale: velocità e accelerazione scalari v_s e a_s. */
 window.READER_LESSONS["cinematica-accelerazione"] = {
   "title": "L’accelerazione scalare",
   "subtitle": "Biennio e ripasso · Meccanica · Cinematica scalare · In lavorazione",
@@ -15,11 +15,11 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
           "steps": [
             {
               "title": "Dalla posizione alla velocità",
-              "html": "Due auto raggiungono <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>10</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> partendo da ferme: una impiega <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>5</mn></mrow></math> secondi, l’altra <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>10</mn></mrow></math>. Arrivano alla stessa velocità, ma non la raggiungono con la stessa rapidità.<br><br>Con la velocità abbiamo descritto quanto rapidamente cambia la posizione. Ora chiediamoci: <strong>quanto rapidamente cambia la velocità?</strong><br><br>Un corpo può aumentare la propria rapidità, rallentare oppure invertire il verso del movimento. Per descrivere la variazione della velocità scalare introduciamo l’<button type=\"button\" class=\"rm-keyword\" data-term=\"ks-accelerazione\">accelerazione scalare</button>."
+              "html": "Due auto raggiungono <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>10</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> partendo da ferme: una impiega <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>5</mn></mrow></math> secondi, l’altra <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>10</mn></mrow></math>. Arrivano alla stessa velocità, ma non la raggiungono con la stessa rapidità.<br><br>Con la velocità abbiamo descritto quanto rapidamente cambia la posizione. Ora chiediamoci: <strong>quanto rapidamente cambia la velocità?</strong><br><br>Un corpo può aumentare la propria rapidità, rallentare oppure invertire il verso del movimento. Per descrivere la variazione della velocità scalare introduciamo l’<button type=\"button\" class=\"rm-keyword\" data-term=\"ks-accelerazione\">accelerazione scalare</button>.<br><br><strong>Indichiamo l’accelerazione scalare con aₛ.</strong> Come per vₛ, il pedice s distingue la grandezza con segno dai moduli dei vettori."
             },
             {
               "title": "Confrontiamo due letture",
-              "html": "Se la velocità passa da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>10</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>, la sua variazione è <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>&#x00394;</mi><mi>v</mi><mo>&#x0003D;</mo><msub><mi>v</mi><mn>2</mn></msub><mo>&#x02212;</mo><msub><mi>v</mi><mn>1</mn></msub><mo>&#x0003D;</mo><mn>8</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math></span> Ma impiegare <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>4</mn></mrow></math> secondi oppure <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>20</mn></mrow></math> secondi per questa variazione significa cambiare velocità in modo diverso: ci serve anche il tempo trascorso."
+              "html": "Se la velocità passa da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>10</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>, la sua variazione è <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>&#x00394;</mi><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>2</mn></mrow></msub><mo>&#x02212;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>1</mn></mrow></msub><mo>&#x0003D;</mo><mn>8</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math></span> Ma impiegare <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>4</mn></mrow></math> secondi oppure <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>20</mn></mrow></math> secondi per questa variazione significa cambiare velocità in modo diverso: ci serve anche il tempo trascorso."
             }
           ]
         },
@@ -29,7 +29,7 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
           "steps": [
             {
               "title": "Il riferimento rimane lo stesso",
-              "html": "Usiamo ancora la traiettoria orientata e il verso positivo scelto. Una velocità <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x02212;</mo><mn>6</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> indica un movimento nel verso negativo.<br><br>Passare da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x02212;</mo><mn>6</mn></mrow></math> a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x02212;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> significa avere <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>&#x00394;</mi><mi>v</mi><mo>&#x0003D;</mo><mo stretchy=\"false\">&#x00028;</mo><mo>&#x02212;</mo><mn>2</mn><mo stretchy=\"false\">&#x00029;</mo><mo>&#x02212;</mo><mo stretchy=\"false\">&#x00028;</mo><mo>&#x02212;</mo><mn>6</mn><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x0002B;</mo><mn>4</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math></span> La velocità scalare aumenta, ma la <strong>rapidità diminuisce</strong>: il suo valore assoluto passa da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>6</mn></mrow></math> a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>. <strong>Il segno della variazione, da solo, non ci dice se il corpo sta andando più veloce.</strong>"
+              "html": "Usiamo ancora la traiettoria orientata e il verso positivo scelto. Una velocità <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x02212;</mo><mn>6</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> indica un movimento nel verso negativo.<br><br>Passare da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x02212;</mo><mn>6</mn></mrow></math> a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x02212;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> significa avere <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>&#x00394;</mi><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mo stretchy=\"false\">&#x00028;</mo><mo>&#x02212;</mo><mn>2</mn><mo stretchy=\"false\">&#x00029;</mo><mo>&#x02212;</mo><mo stretchy=\"false\">&#x00028;</mo><mo>&#x02212;</mo><mn>6</mn><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x0002B;</mo><mn>4</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math></span> La velocità scalare aumenta, ma la <strong>rapidità diminuisce</strong>: il suo valore assoluto passa da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>6</mn></mrow></math> a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>. <strong>Il segno della variazione, da solo, non ci dice se il corpo sta andando più veloce.</strong>"
             }
           ]
         }
@@ -54,7 +54,7 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
             ]
           },
           {
-            "question": "La velocità passa da −6 m/s a −2 m/s. Quanto vale Δv?",
+            "question": "La velocità passa da −6 m/s a −2 m/s. Quanto vale Δvₛ?",
             "options": [
               "−8 m/s",
               "−4 m/s",
@@ -100,15 +100,15 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
           "steps": [
             {
               "title": "La definizione",
-              "html": "L’<button type=\"button\" class=\"rm-keyword\" data-term=\"ks-accelerazione-media\">accelerazione scalare media</button> è il rapporto tra la variazione della velocità e l’intervallo di tempo in cui avviene: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>a</mi><mi>m</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mi>&#x00394;</mi><mi>v</mi></mrow><mrow><mi>&#x00394;</mi><mi>t</mi></mrow></mfrac><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>v</mi><mn>2</mn></msub><mo>&#x02212;</mo><msub><mi>v</mi><mn>1</mn></msub></mrow><mrow><msub><mi>t</mi><mn>2</mn></msub><mo>&#x02212;</mo><msub><mi>t</mi><mn>1</mn></msub></mrow></mfrac></mrow></math></span> con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>2</mn></msub><mo>&#x0003E;</mo><msub><mi>t</mi><mn>1</mn></msub></mrow></math>. Il simbolo <button type=\"button\" class=\"rm-keyword\" data-term=\"delta\">Δ</button> indica una variazione: non è un fattore da cancellare nel rapporto. La struttura è la stessa della velocità media: cambia la grandezza di cui misuriamo la variazione."
+              "html": "L’<button type=\"button\" class=\"rm-keyword\" data-term=\"ks-accelerazione-media\">accelerazione scalare media</button> è il rapporto tra la variazione della velocità e l’intervallo di tempo in cui avviene: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>a</mi><mrow><mi>s</mi><mo>,</mo><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><mfrac><mrow><mi>&#x00394;</mi><msub><mi>v</mi><mi>s</mi></msub></mrow><mrow><mi>&#x00394;</mi><mi>t</mi></mrow></mfrac><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>2</mn></mrow></msub><mo>&#x02212;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>1</mn></mrow></msub></mrow><mrow><msub><mi>t</mi><mn>2</mn></msub><mo>&#x02212;</mo><msub><mi>t</mi><mn>1</mn></msub></mrow></mfrac></mrow></math></span> con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>2</mn></msub><mo>&#x0003E;</mo><msub><mi>t</mi><mn>1</mn></msub></mrow></math>. Il simbolo <button type=\"button\" class=\"rm-keyword\" data-term=\"delta\">Δ</button> indica una variazione: non è un fattore da cancellare nel rapporto. La struttura è la stessa della velocità media: cambia la grandezza di cui misuriamo la variazione."
             },
             {
               "title": "Che cosa significa il numero",
-              "html": "Nel grafico la velocità passa da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn></mrow></math> a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>10</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> in <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>4</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math>: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>a</mi><mi>m</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>10</mn><mo>&#x02212;</mo><mn>2</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math></span> In questo intervallo, la velocità è aumentata <strong>mediamente di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> per ogni secondo</strong>. Il grafico mostra anche che, in questo esempio, l’aumento è regolare."
+              "html": "Nel grafico la velocità passa da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn></mrow></math> a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>10</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> in <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>4</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math>: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>a</mi><mrow><mi>s</mi><mo>,</mo><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>10</mn><mo>&#x02212;</mo><mn>2</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math></span> In questo intervallo, la velocità è aumentata <strong>mediamente di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> per ogni secondo</strong>. Il grafico mostra anche che, in questo esempio, l’aumento è regolare."
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/kinematics/accelerazione-positiva.svg?v=2",
+            "src": "assets/images/reader/kinematics/accelerazione-positiva.svg?vₛ=2",
             "alt": "Grafico velocità-tempo: la velocità cresce linearmente da 2 m/s a t=0 a 10 m/s a t=4 s.",
             "width": 640,
             "height": 400
@@ -134,7 +134,7 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/kinematics/media-nulla.svg?v=2",
+            "src": "assets/images/reader/kinematics/media-nulla.svg?vₛ=2",
             "alt": "La velocità cresce da 2 a 10 m/s nei primi due secondi e torna a 2 m/s nei successivi due.",
             "width": 640,
             "height": 400
@@ -152,12 +152,12 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
               "3 m/s²"
             ],
             "answer": 0,
-            "feedback": "Δv=8 m/s e Δt=4 s: il rapporto è 2 m/s².",
+            "feedback": "Δvₛ=8 m/s e Δt=4 s: il rapporto è 2 m/s².",
             "feedbackByOption": [
-              "Δv=8 m/s e Δt=4 s: il rapporto è 2 m/s².",
-              "Rivedi la relazione fra le grandezze. Δv=8 m/s e Δt=4 s: il rapporto è 2 m/s².",
-              "Rivedi la relazione fra le grandezze. Δv=8 m/s e Δt=4 s: il rapporto è 2 m/s².",
-              "Rivedi la relazione fra le grandezze. Δv=8 m/s e Δt=4 s: il rapporto è 2 m/s²."
+              "Δvₛ=8 m/s e Δt=4 s: il rapporto è 2 m/s².",
+              "Rivedi la relazione fra le grandezze. Δvₛ=8 m/s e Δt=4 s: il rapporto è 2 m/s².",
+              "Rivedi la relazione fra le grandezze. Δvₛ=8 m/s e Δt=4 s: il rapporto è 2 m/s².",
+              "Rivedi la relazione fra le grandezze. Δvₛ=8 m/s e Δt=4 s: il rapporto è 2 m/s²."
             ]
           },
           {
@@ -186,15 +186,15 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
               "Negativa perché il corpo si ferma."
             ],
             "answer": 1,
-            "feedback": "L’accelerazione media usa soltanto la differenza delle velocità alle estremità. Qui v finale e v iniziale sono entrambe 2 m/s.",
+            "feedback": "L’accelerazione media usa soltanto la differenza delle velocità alle estremità. Qui vₛ finale e vₛ iniziale sono entrambe 2 m/s.",
             "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. L’accelerazione media usa soltanto la differenza delle velocità alle estremità. Qui v finale e v iniziale sono entrambe 2 m/s.",
-              "L’accelerazione media usa soltanto la differenza delle velocità alle estremità. Qui v finale e v iniziale sono entrambe 2 m/s.",
-              "Rivedi la relazione fra le grandezze. L’accelerazione media usa soltanto la differenza delle velocità alle estremità. Qui v finale e v iniziale sono entrambe 2 m/s.",
-              "Rivedi la relazione fra le grandezze. L’accelerazione media usa soltanto la differenza delle velocità alle estremità. Qui v finale e v iniziale sono entrambe 2 m/s."
+              "Rivedi la relazione fra le grandezze. L’accelerazione media usa soltanto la differenza delle velocità alle estremità. Qui vₛ finale e vₛ iniziale sono entrambe 2 m/s.",
+              "L’accelerazione media usa soltanto la differenza delle velocità alle estremità. Qui vₛ finale e vₛ iniziale sono entrambe 2 m/s.",
+              "Rivedi la relazione fra le grandezze. L’accelerazione media usa soltanto la differenza delle velocità alle estremità. Qui vₛ finale e vₛ iniziale sono entrambe 2 m/s.",
+              "Rivedi la relazione fra le grandezze. L’accelerazione media usa soltanto la differenza delle velocità alle estremità. Qui vₛ finale e vₛ iniziale sono entrambe 2 m/s."
             ],
             "illustration": {
-              "src": "assets/images/reader/kinematics/media-nulla.svg?v=2",
+              "src": "assets/images/reader/kinematics/media-nulla.svg?vₛ=2",
               "alt": "La velocità cresce da 2 a 10 m/s nei primi due secondi e torna a 2 m/s nei successivi due.",
               "width": 640,
               "height": 400
@@ -216,8 +216,8 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
               "html": "Per sapere come cambia la velocità in un momento preciso, restringiamo l’intervallo verso quell’istante e confrontiamo le letture di velocità sempre più vicine.<br><br>L’<button type=\"button\" class=\"rm-keyword\" data-term=\"ks-accelerazione-istantanea\">accelerazione scalare istantanea</button> descrive quanto rapidamente cambia la velocità scalare in un determinato istante. La ricaviamo considerando intervalli di durata sempre più vicina a zero."
             },
             {
-              "title": "La funzione accelerazione a(t)",
-              "html": "Associando a ogni istante il valore dell’accelerazione otteniamo una <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button>: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>a</mi><mo>&#x0003D;</mo><mi>a</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math></span> La scrittura si legge «a di t». Il grafico di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> ci dice, istante per istante, come cambia la velocità; il grafico di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> ci dice invece quale velocità ha il corpo."
+              "title": "La funzione accelerazione aₛ(t)",
+              "html": "Associando a ogni istante il valore dell’accelerazione otteniamo una <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button>: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003D;</mo><msub><mi>a</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math></span> La scrittura si legge «a di t». Il grafico di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> ci dice, istante per istante, come cambia la velocità; il grafico di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> ci dice invece quale velocità ha il corpo."
             }
           ]
         },
@@ -227,17 +227,17 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
           "steps": [
             {
               "title": "Un’accelerazione che varia",
-              "html": "Consideriamo un esempio teorico in cui <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msup><mi>t</mi><mn>2</mn></msup></mrow></math>, con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi></mrow></math> espresso in secondi e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi></mrow></math> in metri al secondo. Vogliamo descrivere il cambiamento della velocità all’istante <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math>. Confrontiamo questa lettura con letture successive sempre più vicine:<div class=\"ks-data-table\"><table><thead><tr><th>Δt (s)</th><th>Δv (m/s)</th><th>Δv / Δt (m/s²)</th></tr></thead><tbody><tr><td>1</td><td>5</td><td>5</td></tr><tr><td>0,1</td><td>0,41</td><td>4,1</td></tr><tr><td>0,01</td><td>0,0401</td><td>4,01</td></tr></tbody></table></div>Le accelerazioni medie si avvicinano a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>4</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>: è il valore dell’accelerazione nell’istante scelto. <strong>Le variazioni diventano piccole, mentre il loro rapporto si avvicina a un valore preciso.</strong>"
+              "html": "Consideriamo un esempio teorico in cui <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msup><mi>t</mi><mn>2</mn></msup></mrow></math>, con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi></mrow></math> espresso in secondi e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub></mrow></math> in metri al secondo. Vogliamo descrivere il cambiamento della velocità all’istante <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math>. Confrontiamo questa lettura con letture successive sempre più vicine:<div class=\"ks-data-table\"><table><thead><tr><th>Δt (s)</th><th>Δvₛ (m/s)</th><th>Δvₛ / Δt (m/s²)</th></tr></thead><tbody><tr><td>1</td><td>5</td><td>5</td></tr><tr><td>0,1</td><td>0,41</td><td>4,1</td></tr><tr><td>0,01</td><td>0,0401</td><td>4,01</td></tr></tbody></table></div>Le accelerazioni medie si avvicinano a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>4</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>: è il valore dell’accelerazione nell’istante scelto. <strong>Le variazioni diventano piccole, mentre il loro rapporto si avvicina a un valore preciso.</strong>"
             }
           ]
         },
         {
-          "title": "Leggere il cambiamento nel grafico di v(t)",
+          "title": "Leggere il cambiamento nel grafico di vₛ(t)",
           "stepMode": "replace",
           "steps": [
             {
               "title": "La pendenza parla di accelerazione",
-              "html": "Quando il grafico della velocità sale, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi></mrow></math> aumenta e l’accelerazione è positiva; quando scende, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi></mrow></math> diminuisce e l’accelerazione è negativa. In un tratto orizzontale la velocità resta costante e l’accelerazione è nulla.<br><br>A parità di scala degli assi, una variazione più ripida corrisponde a una variazione di velocità più rapida. <strong>Non confondere l’altezza del grafico, che indica <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi></mrow></math>, con la sua pendenza, che descrive <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi></mrow></math>.</strong>"
+              "html": "Quando il grafico della velocità sale, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub></mrow></math> aumenta e l’accelerazione è positiva; quando scende, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub></mrow></math> diminuisce e l’accelerazione è negativa. In un tratto orizzontale la velocità resta costante e l’accelerazione è nulla.<br><br>A parità di scala degli assi, una variazione più ripida corrisponde a una variazione di velocità più rapida. <strong>Non confondere l’altezza del grafico, che indica <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub></mrow></math>, con la sua pendenza, che descrive <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub></mrow></math>.</strong>"
             },
             {
               "title": "Sulle traiettorie curve",
@@ -249,7 +249,7 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
       "quiz": {
         "questions": [
           {
-            "question": "Su un tratto in cui v(t) è orizzontale, l’accelerazione scalare è…",
+            "question": "Su un tratto in cui vₛ(t) è orizzontale, l’accelerazione scalare è…",
             "options": [
               "Uguale al valore della velocità.",
               "Nulla.",
@@ -266,7 +266,7 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
             ]
           },
           {
-            "question": "Quale informazione contiene a(t)?",
+            "question": "Quale informazione contiene aₛ(t)?",
             "options": [
               "La posizione per ogni istante.",
               "La distanza totale percorsa.",
@@ -274,16 +274,16 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
               "La traiettoria nello spazio."
             ],
             "answer": 2,
-            "feedback": "La funzione a(t) associa un valore di accelerazione scalare a ciascun istante.",
+            "feedback": "La funzione aₛ(t) associa un valore di accelerazione scalare a ciascun istante.",
             "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. La funzione a(t) associa un valore di accelerazione scalare a ciascun istante.",
-              "Rivedi la relazione fra le grandezze. La funzione a(t) associa un valore di accelerazione scalare a ciascun istante.",
-              "La funzione a(t) associa un valore di accelerazione scalare a ciascun istante.",
-              "Rivedi la relazione fra le grandezze. La funzione a(t) associa un valore di accelerazione scalare a ciascun istante."
+              "Rivedi la relazione fra le grandezze. La funzione aₛ(t) associa un valore di accelerazione scalare a ciascun istante.",
+              "Rivedi la relazione fra le grandezze. La funzione aₛ(t) associa un valore di accelerazione scalare a ciascun istante.",
+              "La funzione aₛ(t) associa un valore di accelerazione scalare a ciascun istante.",
+              "Rivedi la relazione fra le grandezze. La funzione aₛ(t) associa un valore di accelerazione scalare a ciascun istante."
             ]
           },
           {
-            "question": "Nel grafico v(t), l’altezza di un punto indica…",
+            "question": "Nel grafico vₛ(t), l’altezza di un punto indica…",
             "options": [
               "L’accelerazione, mentre la pendenza indica la posizione.",
               "La velocità, mentre la pendenza descrive l’accelerazione.",
@@ -291,12 +291,12 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
               "Sempre la rapidità, anche se il valore è negativo."
             ],
             "answer": 1,
-            "feedback": "Leggi v sull’asse verticale; il modo in cui v cambia nel tempo è descritto dalla pendenza.",
+            "feedback": "Leggi vₛ sull’asse verticale; il modo in cui vₛ cambia nel tempo è descritto dalla pendenza.",
             "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. Leggi v sull’asse verticale; il modo in cui v cambia nel tempo è descritto dalla pendenza.",
-              "Leggi v sull’asse verticale; il modo in cui v cambia nel tempo è descritto dalla pendenza.",
-              "Rivedi la relazione fra le grandezze. Leggi v sull’asse verticale; il modo in cui v cambia nel tempo è descritto dalla pendenza.",
-              "Rivedi la relazione fra le grandezze. Leggi v sull’asse verticale; il modo in cui v cambia nel tempo è descritto dalla pendenza."
+              "Rivedi la relazione fra le grandezze. Leggi vₛ sull’asse verticale; il modo in cui vₛ cambia nel tempo è descritto dalla pendenza.",
+              "Leggi vₛ sull’asse verticale; il modo in cui vₛ cambia nel tempo è descritto dalla pendenza.",
+              "Rivedi la relazione fra le grandezze. Leggi vₛ sull’asse verticale; il modo in cui vₛ cambia nel tempo è descritto dalla pendenza.",
+              "Rivedi la relazione fra le grandezze. Leggi vₛ sull’asse verticale; il modo in cui vₛ cambia nel tempo è descritto dalla pendenza."
             ]
           }
         ]
@@ -311,12 +311,12 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
           "stepMode": "replace",
           "steps": [
             {
-              "title": "Il segno di a non basta",
-              "html": "Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003E;</mo><mn>0</mn></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo>&#x0003E;</mo><mn>0</mn></mrow></math>, la velocità cresce e il corpo aumenta la propria rapidità. Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003E;</mo><mn>0</mn></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math>, la velocità scende verso zero e il corpo rallenta.<br><br>Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math>, il ragionamento si inverte: se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi></mrow></math> diventa più negativa e la rapidità aumenta; se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo>&#x0003E;</mo><mn>0</mn></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi></mrow></math> si avvicina a zero e la rapidità diminuisce."
+              "title": "Il segno di aₛₛ non basta",
+              "html": "Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003E;</mo><mn>0</mn></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003E;</mo><mn>0</mn></mrow></math>, la velocità cresce e il corpo aumenta la propria rapidità. Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003E;</mo><mn>0</mn></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003C;</mo><mn>0</mn></mrow></math>, la velocità scende verso zero e il corpo rallenta.<br><br>Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003C;</mo><mn>0</mn></mrow></math>, il ragionamento si inverte: se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003C;</mo><mn>0</mn></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub></mrow></math> diventa più negativa e la rapidità aumenta; se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003E;</mo><mn>0</mn></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub></mrow></math> si avvicina a zero e la rapidità diminuisce."
             },
             {
               "title": "La regola pratica",
-              "html": "Finché il corpo si muove, <strong>velocità e accelerazione dello stesso segno fanno aumentare la rapidità; segni opposti la fanno diminuire</strong>.<br><br>Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> in un istante, il corpo è momentaneamente fermo: può restare fermo oppure ripartire. L’accelerazione può essere diversa da zero anche in quell’istante."
+              "html": "Finché il corpo si muove, <strong>velocità e accelerazione dello stesso segno fanno aumentare la rapidità; segni opposti la fanno diminuire</strong>.<br><br>Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math> in un istante, il corpo è momentaneamente fermo: può restare fermo oppure ripartire. L’accelerazione può essere diversa da zero anche in quell’istante."
             }
           ]
         }
@@ -324,7 +324,7 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
       "quiz": {
         "questions": [
           {
-            "question": "Con v=−4 m/s e a=−2 m/s², la rapidità sta…",
+            "question": "Con vₛ=−4 m/s e aₛ=−2 m/s², la rapidità sta…",
             "options": [
               "Aumentando.",
               "Diminuendo.",
@@ -341,7 +341,7 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
             ]
           },
           {
-            "question": "Con v=+4 m/s e a=−2 m/s², il corpo sta…",
+            "question": "Con vₛ=+4 m/s e aₛ=−2 m/s², il corpo sta…",
             "options": [
               "Andando necessariamente nel verso negativo.",
               "Rallentando mentre si muove nel verso positivo.",
@@ -349,16 +349,16 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
               "Restando fermo."
             ],
             "answer": 1,
-            "feedback": "Il segno positivo di v dà il verso; il segno opposto di a riduce la rapidità.",
+            "feedback": "Il segno positivo di vₛ dà il verso; il segno opposto di aₛ riduce la rapidità.",
             "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. Il segno positivo di v dà il verso; il segno opposto di a riduce la rapidità.",
-              "Il segno positivo di v dà il verso; il segno opposto di a riduce la rapidità.",
-              "Rivedi la relazione fra le grandezze. Il segno positivo di v dà il verso; il segno opposto di a riduce la rapidità.",
-              "Rivedi la relazione fra le grandezze. Il segno positivo di v dà il verso; il segno opposto di a riduce la rapidità."
+              "Rivedi la relazione fra le grandezze. Il segno positivo di vₛ dà il verso; il segno opposto di aₛ riduce la rapidità.",
+              "Il segno positivo di vₛ dà il verso; il segno opposto di aₛ riduce la rapidità.",
+              "Rivedi la relazione fra le grandezze. Il segno positivo di vₛ dà il verso; il segno opposto di aₛ riduce la rapidità.",
+              "Rivedi la relazione fra le grandezze. Il segno positivo di vₛ dà il verso; il segno opposto di aₛ riduce la rapidità."
             ]
           },
           {
-            "question": "Un corpo ha v=0 in un istante. Possiamo concludere che a=0?",
+            "question": "Un corpo ha vₛ=0 in un istante. Possiamo concludere che aₛ=0?",
             "options": [
               "Sì, sempre.",
               "Sì, se la posizione è positiva.",
@@ -387,7 +387,7 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
           "steps": [
             {
               "title": "",
-              "html": "<ul><li><strong>Accelerazione scalare:</strong> descrive come cambia la velocità scalare nel tempo.</li><li><strong>Media:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>m</mi></msub><mo>&#x0003D;</mo><mi>&#x00394;</mi><mi>v</mi><mo>&#x0002F;</mo><mi>&#x00394;</mi><mi>t</mi></mrow></math>; non racconta tutti i cambiamenti interni all’intervallo.</li><li><strong>Unità:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>, cioè metri al secondo per secondo.</li><li><strong>Istantanea:</strong> la funzione <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> descrive il cambiamento momento per momento.</li><li><strong>Confronta i segni di v e a:</strong> uguali, la rapidità aumenta; opposti, diminuisce.</li><li><strong>Sulle curve:</strong> il cambiamento di direzione richiede anche la descrizione vettoriale.</li></ul>"
+              "html": "<ul><li><strong>Accelerazione scalare:</strong> descrive come cambia la velocità scalare nel tempo.</li><li><strong>Media:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mrow><mi>s</mi><mo>,</mo><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><mi>&#x00394;</mi><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0002F;</mo><mi>&#x00394;</mi><mi>t</mi></mrow></math>; non racconta tutti i cambiamenti interni all’intervallo.</li><li><strong>Unità:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>, cioè metri al secondo per secondo.</li><li><strong>Istantanea:</strong> la funzione <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> descrive il cambiamento momento per momento.</li><li><strong>Confronta i segni di vₛ e aₛ:</strong> uguali, la rapidità aumenta; opposti, diminuisce.</li><li><strong>Sulle curve:</strong> il cambiamento di direzione richiede anche la descrizione vettoriale.</li></ul>"
             }
           ]
         }
@@ -418,7 +418,7 @@ window.READER_LESSONS["cinematica-mru"] = {
             },
             {
               "title": "Costante non significa positiva",
-              "html": "La velocità costante può essere positiva o negativa: il segno indica il verso lungo la retta orientata. Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>3</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>, ogni secondo la coordinata diminuisce di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>3</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>.<br><br>Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, la posizione rimane costante: è il caso particolare della quiete. In tutti questi casi l’accelerazione è nulla, perché la velocità non cambia."
+              "html": "La velocità costante può essere positiva o negativa: il segno indica il verso lungo la retta orientata. Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>3</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>, ogni secondo la coordinata diminuisce di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>3</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>.<br><br>Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, la posizione rimane costante: è il caso particolare della quiete. In tutti questi casi l’accelerazione è nulla, perché la velocità non cambia."
             }
           ]
         },
@@ -428,7 +428,7 @@ window.READER_LESSONS["cinematica-mru"] = {
           "steps": [
             {
               "title": "La media coincide con l’istantanea",
-              "html": "Poiché la velocità è sempre la stessa, la velocità media in qualunque intervallo coincide con quella istantanea. Da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003D;</mo><mi>&#x00394;</mi><mi>s</mi><mo>&#x0002F;</mo><mi>&#x00394;</mi><mi>t</mi></mrow></math> ricaviamo <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>&#x00394;</mi><mi>s</mi><mo>&#x0003D;</mo><mi>v</mi><mi>&#x00394;</mi><mi>t</mi></mrow></math></span> Per esempio, con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003D;</mo><mn>3</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>, in <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>4</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math> lo spostamento è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>12</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>. Non è ancora la posizione finale: per trovarla serve anche la posizione iniziale."
+              "html": "Poiché la velocità è sempre la stessa, la velocità media in qualunque intervallo coincide con quella istantanea. Da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mi>&#x00394;</mi><mi>s</mi><mo>&#x0002F;</mo><mi>&#x00394;</mi><mi>t</mi></mrow></math> ricaviamo <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>&#x00394;</mi><mi>s</mi><mo>&#x0003D;</mo><msub><mi>v</mi><mi>s</mi></msub><mi>&#x00394;</mi><mi>t</mi></mrow></math></span> Per esempio, con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>3</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>, in <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>4</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math> lo spostamento è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>12</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>. Non è ancora la posizione finale: per trovarla serve anche la posizione iniziale."
             }
           ]
         }
@@ -453,7 +453,7 @@ window.READER_LESSONS["cinematica-mru"] = {
             ]
           },
           {
-            "question": "Con v=−3 m/s, lo spostamento in 4 s è…",
+            "question": "Con vₛ=−3 m/s, lo spostamento in 4 s è…",
             "options": [
               "+12 m",
               "−12 m",
@@ -461,12 +461,12 @@ window.READER_LESSONS["cinematica-mru"] = {
               "+4 m"
             ],
             "answer": 1,
-            "feedback": "Δs=vΔt=(−3)·4=−12 m.",
+            "feedback": "Δs=vₛΔt=(−3)·4=−12 m.",
             "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. Δs=vΔt=(−3)·4=−12 m.",
-              "Δs=vΔt=(−3)·4=−12 m.",
-              "Rivedi la relazione fra le grandezze. Δs=vΔt=(−3)·4=−12 m.",
-              "Rivedi la relazione fra le grandezze. Δs=vΔt=(−3)·4=−12 m."
+              "Rivedi la relazione fra le grandezze. Δs=vₛΔt=(−3)·4=−12 m.",
+              "Δs=vₛΔt=(−3)·4=−12 m.",
+              "Rivedi la relazione fra le grandezze. Δs=vₛΔt=(−3)·4=−12 m.",
+              "Rivedi la relazione fra le grandezze. Δs=vₛΔt=(−3)·4=−12 m."
             ]
           },
           {
@@ -499,11 +499,11 @@ window.READER_LESSONS["cinematica-mru"] = {
           "steps": [
             {
               "title": "Un istante iniziale qualunque",
-              "html": "Se all’istante <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></math> il corpo occupa la posizione <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>s</mi><mn>0</mn></msub></mrow></math>, dopo un tempo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub></mrow></math> troviamo <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>v</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy=\"false\">&#x00029;</mo></mrow></math></span> La <button type=\"button\" class=\"rm-keyword\" data-term=\"legge-oraria\">legge oraria</button> associa così una posizione a ogni istante. <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>s</mi><mn>0</mn></msub></mrow></math> non deve essere zero: l’origine delle posizioni e l’istante iniziale sono due scelte distinte."
+              "html": "Se all’istante <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></math> il corpo occupa la posizione <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>s</mi><mn>0</mn></msub></mrow></math>, dopo un tempo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub></mrow></math> troviamo <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy=\"false\">&#x00029;</mo></mrow></math></span> La <button type=\"button\" class=\"rm-keyword\" data-term=\"legge-oraria\">legge oraria</button> associa così una posizione a ogni istante. <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>s</mi><mn>0</mn></msub></mrow></math> non deve essere zero: l’origine delle posizioni e l’istante iniziale sono due scelte distinte."
             },
             {
               "title": "La scrittura più frequente",
-              "html": "Scegliendo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, la formula diventa <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>v</mi><mi>t</mi></mrow></math></span> Il termine <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mi>t</mi></mrow></math> è lo spostamento dall’istante iniziale; sommando <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>s</mi><mn>0</mn></msub></mrow></math> otteniamo la posizione. Controllo: per <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> ritroviamo proprio <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>s</mi><mn>0</mn></msub></mrow></math>."
+              "html": "Scegliendo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, la formula diventa <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mi>s</mi></msub><mi>t</mi></mrow></math></span> Il termine <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mi>t</mi></mrow></math> è lo spostamento dall’istante iniziale; sommando <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>s</mi><mn>0</mn></msub></mrow></math> otteniamo la posizione. Controllo: per <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> ritroviamo proprio <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>s</mi><mn>0</mn></msub></mrow></math>."
             }
           ]
         },
@@ -513,7 +513,7 @@ window.READER_LESSONS["cinematica-mru"] = {
           "steps": [
             {
               "title": "Una retta nel grafico posizione-tempo",
-              "html": "Il corpo parte da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math> con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003D;</mo><mn>3</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>. Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi></mrow></math> espresso in secondi e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi></mrow></math> in metri, la legge è <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mn>2</mn><mo>&#x0002B;</mo><mn>3</mn><mi>t</mi></mrow></math></span> A <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>4</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math> si trova a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>14</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>; lo spostamento è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>14</mn><mo>&#x02212;</mo><mn>2</mn><mo>&#x0003D;</mo><mn>12</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>. Il grafico di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> è una retta."
+              "html": "Il corpo parte da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math> con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>3</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>. Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi></mrow></math> espresso in secondi e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi></mrow></math> in metri, la legge è <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mn>2</mn><mo>&#x0002B;</mo><mn>3</mn><mi>t</mi></mrow></math></span> A <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>4</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math> si trova a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>14</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>; lo spostamento è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>14</mn><mo>&#x02212;</mo><mn>2</mn><mo>&#x0003D;</mo><mn>12</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>. Il grafico di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> è una retta."
             },
             {
               "title": "Risalire al tempo",
@@ -521,7 +521,7 @@ window.READER_LESSONS["cinematica-mru"] = {
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/kinematics/mru-posizione.svg?v=2",
+            "src": "assets/images/reader/kinematics/mru-posizione.svg?vₛ=2",
             "alt": "Grafico posizione-tempo di un MRU: retta che passa per (0 s,2 m) e (4 s,14 m).",
             "width": 640,
             "height": 400
@@ -531,7 +531,7 @@ window.READER_LESSONS["cinematica-mru"] = {
       "quiz": {
         "questions": [
           {
-            "question": "Con s₀=2 m e v=3 m/s, qual è la posizione dopo 4 s?",
+            "question": "Con s₀=2 m e vₛ=3 m/s, qual è la posizione dopo 4 s?",
             "options": [
               "12 m",
               "14 m",
@@ -551,9 +551,9 @@ window.READER_LESSONS["cinematica-mru"] = {
             "question": "Quale formula usa un istante iniziale t₀ non necessariamente nullo?",
             "options": [
               "s=s₀+vt₀",
-              "s=v(t+t₀)",
-              "s=s₀+v(t−t₀)",
-              "s=s₀+v/t"
+              "s=vₛ(t+t₀)",
+              "s=s₀+vₛ(t−t₀)",
+              "s=s₀+vₛ/t"
             ],
             "answer": 2,
             "feedback": "L’intervallo trascorso dall’istante iniziale è t−t₀.",
@@ -594,15 +594,15 @@ window.READER_LESSONS["cinematica-mru"] = {
           "steps": [
             {
               "title": "Intercetta e pendenza",
-              "html": "Nel grafico posizione-tempo, il punto a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> indica <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>s</mi><mn>0</mn></msub></mrow></math>. La pendenza della retta è la velocità: una retta crescente indica <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003E;</mo><mn>0</mn></mrow></math>, una decrescente <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math>.<br><br>Una retta orizzontale nel grafico di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> indica la quiete. <strong>Una retta inclinata non è la traiettoria del corpo: è un grafico che mette in relazione posizione e tempo.</strong>"
+              "html": "Nel grafico posizione-tempo, il punto a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> indica <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>s</mi><mn>0</mn></msub></mrow></math>. La pendenza della retta è la velocità: una retta crescente indica <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003E;</mo><mn>0</mn></mrow></math>, una decrescente <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003C;</mo><mn>0</mn></mrow></math>.<br><br>Una retta orizzontale nel grafico di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> indica la quiete. <strong>Una retta inclinata non è la traiettoria del corpo: è un grafico che mette in relazione posizione e tempo.</strong>"
             },
             {
-              "title": "Una linea orizzontale in v(t)",
-              "html": "Nel grafico velocità-tempo del nostro esempio, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003D;</mo><mn>3</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> a ogni istante: la linea è orizzontale, anche se il corpo si muove.<br><br>La stessa forma orizzontale significa cose diverse in grafici diversi: <strong>in <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> significa posizione costante; in <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> significa velocità costante.</strong>"
+              "title": "Una linea orizzontale in vₛ(t)",
+              "html": "Nel grafico velocità-tempo del nostro esempio, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>3</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> a ogni istante: la linea è orizzontale, anche se il corpo si muove.<br><br>La stessa forma orizzontale significa cose diverse in grafici diversi: <strong>in <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> significa posizione costante; in <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> significa velocità costante.</strong>"
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/kinematics/mru-velocita.svg?v=2",
+            "src": "assets/images/reader/kinematics/mru-velocita.svg?vₛ=2",
             "alt": "Grafico velocità-tempo: linea orizzontale a 3 m/s da zero a quattro secondi.",
             "width": 640,
             "height": 400
@@ -614,7 +614,7 @@ window.READER_LESSONS["cinematica-mru"] = {
           "steps": [
             {
               "title": "Un rettangolo da interpretare",
-              "html": "Nel grafico <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math>, fra due istanti la regione fra la linea e l’asse del tempo è un rettangolo: base <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>&#x00394;</mi><mi>t</mi></mrow></math>, altezza <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi></mrow></math>. Il prodotto <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mi>&#x00394;</mi><mi>t</mi></mrow></math> restituisce lo spostamento.<br><br>Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math>, lo spostamento è negativo: l’area geometrica è positiva, ma il contributo sotto l’asse si considera <strong>con segno meno</strong>. Nel MRU la distanza percorsa è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo stretchy=\"false\">&#x0007C;</mo><mi>v</mi><mo stretchy=\"false\">&#x0007C;</mo><mi>&#x00394;</mi><mi>t</mi></mrow></math>. Il grafico di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> è invece la linea <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>."
+              "html": "Nel grafico <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math>, fra due istanti la regione fra la linea e l’asse del tempo è un rettangolo: base <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>&#x00394;</mi><mi>t</mi></mrow></math>, altezza <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub></mrow></math>. Il prodotto <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mi>&#x00394;</mi><mi>t</mi></mrow></math> restituisce lo spostamento.<br><br>Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003C;</mo><mn>0</mn></mrow></math>, lo spostamento è negativo: l’area geometrica è positiva, ma il contributo sotto l’asse si considera <strong>con segno meno</strong>. Nel MRU la distanza percorsa è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo stretchy=\"false\">&#x0007C;</mo><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x0007C;</mo><mi>&#x00394;</mi><mi>t</mi></mrow></math>. Il grafico di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> è invece la linea <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>."
             }
           ]
         }
@@ -622,7 +622,7 @@ window.READER_LESSONS["cinematica-mru"] = {
       "quiz": {
         "questions": [
           {
-            "question": "Una linea orizzontale a v=3 m/s nel grafico v(t) indica…",
+            "question": "Una linea orizzontale a vₛ=3 m/s nel grafico vₛ(t) indica…",
             "options": [
               "Un corpo fermo.",
               "Velocità costante e moto nel verso positivo.",
@@ -638,7 +638,7 @@ window.READER_LESSONS["cinematica-mru"] = {
               "Rivedi la relazione fra le grandezze. L’asse verticale riporta la velocità: il valore 3 m/s resta costante."
             ],
             "illustration": {
-              "src": "assets/images/reader/kinematics/mru-velocita.svg?v=2",
+              "src": "assets/images/reader/kinematics/mru-velocita.svg?vₛ=2",
               "alt": "Grafico velocità-tempo: linea orizzontale a 3 m/s da zero a quattro secondi.",
               "width": 640,
               "height": 400
@@ -653,16 +653,16 @@ window.READER_LESSONS["cinematica-mru"] = {
               "Tempo che scorre all’indietro."
             ],
             "answer": 0,
-            "feedback": "La coordinata diminuisce mentre il tempo aumenta: v è negativa e costante.",
+            "feedback": "La coordinata diminuisce mentre il tempo aumenta: vₛ è negativa e costante.",
             "feedbackByOption": [
-              "La coordinata diminuisce mentre il tempo aumenta: v è negativa e costante.",
-              "Rivedi la relazione fra le grandezze. La coordinata diminuisce mentre il tempo aumenta: v è negativa e costante.",
-              "Rivedi la relazione fra le grandezze. La coordinata diminuisce mentre il tempo aumenta: v è negativa e costante.",
-              "Rivedi la relazione fra le grandezze. La coordinata diminuisce mentre il tempo aumenta: v è negativa e costante."
+              "La coordinata diminuisce mentre il tempo aumenta: vₛ è negativa e costante.",
+              "Rivedi la relazione fra le grandezze. La coordinata diminuisce mentre il tempo aumenta: vₛ è negativa e costante.",
+              "Rivedi la relazione fra le grandezze. La coordinata diminuisce mentre il tempo aumenta: vₛ è negativa e costante.",
+              "Rivedi la relazione fra le grandezze. La coordinata diminuisce mentre il tempo aumenta: vₛ è negativa e costante."
             ]
           },
           {
-            "question": "Con v=−3 m/s per 4 s, distanza e spostamento sono…",
+            "question": "Con vₛ=−3 m/s per 4 s, distanza e spostamento sono…",
             "options": [
               "Entrambi −12 m.",
               "Entrambi +12 m.",
@@ -691,7 +691,7 @@ window.READER_LESSONS["cinematica-mru"] = {
           "steps": [
             {
               "title": "",
-              "html": "<ul><li><strong>MRU:</strong> traiettoria retta e velocità costante.</li><li><strong>Spostamento:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>&#x00394;</mi><mi>s</mi><mo>&#x0003D;</mo><mi>v</mi><mi>&#x00394;</mi><mi>t</mi></mrow></math>.</li><li><strong>Legge oraria:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>v</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy=\"false\">&#x00029;</mo></mrow></math>; se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>v</mi><mi>t</mi></mrow></math>.</li><li><strong>s(t):</strong> una retta; la pendenza è la velocità.</li><li><strong>v(t):</strong> una linea orizzontale; <strong>a(t):</strong> zero.</li><li><strong>Prima identifica gli assi:</strong> la stessa forma grafica può rappresentare grandezze diverse.</li></ul>"
+              "html": "<ul><li><strong>MRU:</strong> traiettoria retta e velocità costante.</li><li><strong>Spostamento:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>&#x00394;</mi><mi>s</mi><mo>&#x0003D;</mo><msub><mi>v</mi><mi>s</mi></msub><mi>&#x00394;</mi><mi>t</mi></mrow></math>.</li><li><strong>Legge oraria:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy=\"false\">&#x00029;</mo></mrow></math>; se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mi>s</mi></msub><mi>t</mi></mrow></math>.</li><li><strong>s(t):</strong> una retta; la pendenza è la velocità.</li><li><strong>vₛ(t):</strong> una linea orizzontale; <strong>aₛ(t):</strong> zero.</li><li><strong>Prima identifica gli assi:</strong> la stessa forma grafica può rappresentare grandezze diverse.</li></ul>"
             }
           ]
         }
@@ -722,7 +722,7 @@ window.READER_LESSONS["cinematica-mrua"] = {
             },
             {
               "title": "Dalla variazione alla velocità",
-              "html": "Con accelerazione costante, la media coincide con l’istantanea. Dalla definizione ricaviamo <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>&#x00394;</mi><mi>v</mi><mo>&#x0003D;</mo><mi>a</mi><mi>&#x00394;</mi><mi>t</mi></mrow></math></span> Se all’istante <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></math> la velocità è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mn>0</mn></msub></mrow></math>, allora <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>v</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>a</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy=\"false\">&#x00029;</mo></mrow></math></span> Scegliendo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math> otteniamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>a</mi><mi>t</mi></mrow></math>."
+              "html": "Con accelerazione costante, la media coincide con l’istantanea. Dalla definizione ricaviamo <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>&#x00394;</mi><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><msub><mi>a</mi><mi>s</mi></msub><mi>&#x00394;</mi><mi>t</mi></mrow></math></span> Se all’istante <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></math> la velocità è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub></mrow></math>, allora <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>&#x0002B;</mo><msub><mi>a</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy=\"false\">&#x00029;</mo></mrow></math></span> Scegliendo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math> otteniamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>&#x0002B;</mo><msub><mi>a</mi><mi>s</mi></msub><mi>t</mi></mrow></math>."
             }
           ]
         },
@@ -732,11 +732,11 @@ window.READER_LESSONS["cinematica-mrua"] = {
           "steps": [
             {
               "title": "La velocità cresce in modo lineare",
-              "html": "Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>, ogni secondo la velocità aumenta di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>: a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>1</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math> vale <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>4</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>, a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math> vale <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>6</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>.<br><br>Nel grafico <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> otteniamo una retta con pendenza <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi></mrow></math>. Il grafico <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> è una linea orizzontale al valore <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>."
+              "html": "Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>, ogni secondo la velocità aumenta di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>: a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>1</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math> vale <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>4</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>, a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math> vale <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>6</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>.<br><br>Nel grafico <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> otteniamo una retta con pendenza <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub></mrow></math>. Il grafico <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> è una linea orizzontale al valore <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>."
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/kinematics/accelerazione-positiva.svg?v=2",
+            "src": "assets/images/reader/kinematics/accelerazione-positiva.svg?vₛ=2",
             "alt": "Grafico velocità-tempo: la velocità cresce linearmente da 2 m/s a t=0 a 10 m/s a t=4 s.",
             "width": 640,
             "height": 400
@@ -763,7 +763,7 @@ window.READER_LESSONS["cinematica-mrua"] = {
             ]
           },
           {
-            "question": "Con v₀=2 m/s e a=2 m/s², quanto vale v dopo 3 s?",
+            "question": "Con vₛ₀=2 m/s e aₛ=2 m/s², quanto vale vₛ dopo 3 s?",
             "options": [
               "6 m/s",
               "8 m/s",
@@ -771,12 +771,12 @@ window.READER_LESSONS["cinematica-mrua"] = {
               "2 m/s"
             ],
             "answer": 1,
-            "feedback": "v=v₀+at=2+2·3=8 m/s.",
+            "feedback": "vₛ=vₛ₀+at=2+2·3=8 m/s.",
             "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. v=v₀+at=2+2·3=8 m/s.",
-              "v=v₀+at=2+2·3=8 m/s.",
-              "Rivedi la relazione fra le grandezze. v=v₀+at=2+2·3=8 m/s.",
-              "Rivedi la relazione fra le grandezze. v=v₀+at=2+2·3=8 m/s."
+              "Rivedi la relazione fra le grandezze. vₛ=vₛ₀+at=2+2·3=8 m/s.",
+              "vₛ=vₛ₀+at=2+2·3=8 m/s.",
+              "Rivedi la relazione fra le grandezze. vₛ=vₛ₀+at=2+2·3=8 m/s.",
+              "Rivedi la relazione fra le grandezze. vₛ=vₛ₀+at=2+2·3=8 m/s."
             ]
           },
           {
@@ -788,12 +788,12 @@ window.READER_LESSONS["cinematica-mrua"] = {
               "Sì, ma soltanto se la posizione è positiva."
             ],
             "answer": 1,
-            "feedback": "Conta il confronto dei segni di v e a, non il solo segno di a.",
+            "feedback": "Conta il confronto dei segni di vₛ e aₛₛ, non il solo segno di aₛ.",
             "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. Conta il confronto dei segni di v e a, non il solo segno di a.",
-              "Conta il confronto dei segni di v e a, non il solo segno di a.",
-              "Rivedi la relazione fra le grandezze. Conta il confronto dei segni di v e a, non il solo segno di a.",
-              "Rivedi la relazione fra le grandezze. Conta il confronto dei segni di v e a, non il solo segno di a."
+              "Rivedi la relazione fra le grandezze. Conta il confronto dei segni di vₛ e aₛₛ, non il solo segno di aₛ.",
+              "Conta il confronto dei segni di vₛ e aₛₛ, non il solo segno di aₛ.",
+              "Rivedi la relazione fra le grandezze. Conta il confronto dei segni di vₛ e aₛₛ, non il solo segno di aₛ.",
+              "Rivedi la relazione fra le grandezze. Conta il confronto dei segni di vₛ e aₛₛ, non il solo segno di aₛ."
             ]
           }
         ]
@@ -809,11 +809,11 @@ window.READER_LESSONS["cinematica-mrua"] = {
           "steps": [
             {
               "title": "La velocità media nel MRUA",
-              "html": "Con accelerazione costante, il grafico <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> è una retta. Se le due velocità sono positive, la regione fra il grafico e l’asse del tempo è un trapezio: il suo contributo è la media delle velocità alle estremità moltiplicata per la durata. Se compaiono velocità negative, consideriamo con segno meno le parti sotto l’asse.<br><br>La velocità media è quindi: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>v</mi><mi>m</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>v</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>v</mi></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math></span> Poiché <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>a</mi><mi>&#x00394;</mi><mi>t</mi></mrow></math>, troviamo <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>v</mi><mi>m</mi></msub><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>a</mi><mi>&#x00394;</mi><mi>t</mi></mrow></math></span> Questa relazione vale <strong>per la variazione lineare della velocità</strong>; non è la formula generale della velocità media."
+              "html": "Con accelerazione costante, il grafico <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> è una retta. Se le due velocità sono positive, la regione fra il grafico e l’asse del tempo è un trapezio: il suo contributo è la media delle velocità alle estremità moltiplicata per la durata. Se compaiono velocità negative, consideriamo con segno meno le parti sotto l’asse.<br><br>La velocità media è quindi: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mi>s</mi></msub></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math></span> Poiché <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>&#x0002B;</mo><msub><mi>a</mi><mi>s</mi></msub><mi>&#x00394;</mi><mi>t</mi></mrow></math>, troviamo <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>&#x0002B;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>a</mi><mi>s</mi></msub><mi>&#x00394;</mi><mi>t</mi></mrow></math></span> Questa relazione vale <strong>per la variazione lineare della velocità</strong>; non è la formula generale della velocità media."
             },
             {
               "title": "La legge oraria",
-              "html": "Nel grafico velocità-tempo, lo spostamento si ricava dal contributo con segno della regione fra il grafico e l’asse del tempo. Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi></mrow></math> lineare, il contributo iniziale <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mn>0</mn></msub><mi>&#x00394;</mi><mi>t</mi></mrow></math> e quello dovuto alla variazione di velocità <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><mo stretchy=\"false\">&#x00028;</mo><mi>a</mi><mi>&#x00394;</mi><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mi>&#x00394;</mi><mi>t</mi></mrow></math> danno <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>&#x00394;</mi><mi>s</mi><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>&#x00394;</mi><mi>t</mi><mo>&#x0002B;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>a</mi><mo stretchy=\"false\">&#x00028;</mo><mi>&#x00394;</mi><mi>t</mi><msup><mo stretchy=\"false\">&#x00029;</mo><mn>2</mn></msup></mrow></math></span> Aggiungiamo la posizione iniziale: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mn>0</mn></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0002B;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>a</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><msup><mo stretchy=\"false\">&#x00029;</mo><mn>2</mn></msup></mrow></math></span> Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, la legge diventa <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>t</mi><mo>&#x0002B;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>a</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></math></span> Non serve partire da fermi: il termine <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mn>0</mn></msub><mi>t</mi></mrow></math> tiene conto della velocità iniziale."
+              "html": "Nel grafico velocità-tempo, lo spostamento si ricava dal contributo con segno della regione fra il grafico e l’asse del tempo. Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub></mrow></math> lineare, il contributo iniziale <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mi>&#x00394;</mi><mi>t</mi></mrow></math> e quello dovuto alla variazione di velocità <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><mo stretchy=\"false\">&#x00028;</mo><msub><mi>a</mi><mi>s</mi></msub><mi>&#x00394;</mi><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mi>&#x00394;</mi><mi>t</mi></mrow></math> danno <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>&#x00394;</mi><mi>s</mi><mo>&#x0003D;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mi>&#x00394;</mi><mi>t</mi><mo>&#x0002B;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>a</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>&#x00394;</mi><mi>t</mi><msup><mo stretchy=\"false\">&#x00029;</mo><mn>2</mn></msup></mrow></math></span> Aggiungiamo la posizione iniziale: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0002B;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>a</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><msup><mo stretchy=\"false\">&#x00029;</mo><mn>2</mn></msup></mrow></math></span> Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, la legge diventa <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>s</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mi>t</mi><mo>&#x0002B;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>a</mi><mi>s</mi></msub><msup><mi>t</mi><mn>2</mn></msup></mrow></math></span> Non serve partire da fermi: il termine <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mi>t</mi></mrow></math> tiene conto della velocità iniziale."
             }
           ]
         },
@@ -823,7 +823,7 @@ window.READER_LESSONS["cinematica-mrua"] = {
           "steps": [
             {
               "title": "Un calcolo con significato",
-              "html": "Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>1</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>, dopo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>3</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math>: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>1</mn><mo>&#x0002B;</mo><mn>2</mn><mo>&#x000B7;</mo><mn>3</mn><mo>&#x0002B;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>&#x000B7;</mo><mn>2</mn><mo>&#x000B7;</mo><msup><mn>3</mn><mn>2</mn></msup><mo>&#x0003D;</mo><mn>16</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math></span> Il primo termine è la posizione iniziale; il secondo è il contributo della velocità iniziale; il terzo è il contributo dell’accelerazione. Lo spostamento è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>16</mn><mo>&#x02212;</mo><mn>1</mn><mo>&#x0003D;</mo><mn>15</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>."
+              "html": "Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>1</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>, dopo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>3</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math>: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>1</mn><mo>&#x0002B;</mo><mn>2</mn><mo>&#x000B7;</mo><mn>3</mn><mo>&#x0002B;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>&#x000B7;</mo><mn>2</mn><mo>&#x000B7;</mo><msup><mn>3</mn><mn>2</mn></msup><mo>&#x0003D;</mo><mn>16</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math></span> Il primo termine è la posizione iniziale; il secondo è il contributo della velocità iniziale; il terzo è il contributo dell’accelerazione. Lo spostamento è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>16</mn><mo>&#x02212;</mo><mn>1</mn><mo>&#x0003D;</mo><mn>15</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>."
             },
             {
               "title": "Una curva nel grafico s(t)",
@@ -831,7 +831,7 @@ window.READER_LESSONS["cinematica-mrua"] = {
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/kinematics/mrua-posizione.svg?v=2",
+            "src": "assets/images/reader/kinematics/mrua-posizione.svg?vₛ=2",
             "alt": "Grafico posizione-tempo curvo del MRUA: s=1+2t+t². La pendenza aumenta nel tempo.",
             "width": 640,
             "height": 400
@@ -841,7 +841,7 @@ window.READER_LESSONS["cinematica-mrua"] = {
       "quiz": {
         "questions": [
           {
-            "question": "Con s₀=1 m, v₀=2 m/s e a=2 m/s², qual è la posizione dopo 3 s?",
+            "question": "Con s₀=1 m, vₛ₀=2 m/s e aₛ=2 m/s², qual è la posizione dopo 3 s?",
             "options": [
               "15 m",
               "10 m",
@@ -858,11 +858,11 @@ window.READER_LESSONS["cinematica-mrua"] = {
             ]
           },
           {
-            "question": "Quando possiamo usare vₘ=(v₀+v)/2?",
+            "question": "Quando possiamo usare vₛₘ=(vₛ₀+vₛ)/2?",
             "options": [
-              "Sempre, per qualunque variazione di v.",
+              "Sempre, per qualunque variazione di vₛ.",
               "Quando la velocità varia linearmente nel tempo.",
-              "Solo se v₀=0.",
+              "Solo se vₛ₀=0.",
               "Solo se il corpo non si muove."
             ],
             "answer": 1,
@@ -891,7 +891,7 @@ window.READER_LESSONS["cinematica-mrua"] = {
               "Rivedi la relazione fra le grandezze. Un asse riporta il tempo e l’altro la posizione: non è una mappa del percorso."
             ],
             "illustration": {
-              "src": "assets/images/reader/kinematics/mrua-posizione.svg?v=2",
+              "src": "assets/images/reader/kinematics/mrua-posizione.svg?vₛ=2",
               "alt": "Grafico posizione-tempo curvo del MRUA: s=1+2t+t². La pendenza aumenta nel tempo.",
               "width": 640,
               "height": 400
@@ -910,7 +910,7 @@ window.READER_LESSONS["cinematica-mrua"] = {
           "steps": [
             {
               "title": "Prima rallenta, poi riparte",
-              "html": "Consideriamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>6</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>. Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>v</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mn>6</mn><mo>&#x02212;</mo><mn>2</mn><mi>t</mi></mrow></math></span> La velocità si annulla a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>3</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math>. Prima di quell’istante è positiva e la rapidità diminuisce; dopo diventa negativa e la rapidità aumenta.<br><br>L’accelerazione rimane <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x02212;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math> anche quando il corpo è momentaneamente fermo."
+              "html": "Consideriamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>&#x0003D;</mo><mn>6</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>. Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mn>6</mn><mo>&#x02212;</mo><mn>2</mn><mi>t</mi></mrow></math></span> La velocità si annulla a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>3</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math>. Prima di quell’istante è positiva e la rapidità diminuisce; dopo diventa negativa e la rapidità aumenta.<br><br>L’accelerazione rimane <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x02212;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math> anche quando il corpo è momentaneamente fermo."
             },
             {
               "title": "Spostamento e distanza non coincidono sempre",
@@ -922,7 +922,7 @@ window.READER_LESSONS["cinematica-mrua"] = {
       "quiz": {
         "questions": [
           {
-            "question": "Per v(t)=6−2t, con v in m/s e t in s, quando il corpo è momentaneamente fermo?",
+            "question": "Per vₛ(t)=6−2t, con vₛ in m/s e t in s, quando il corpo è momentaneamente fermo?",
             "options": [
               "2 s",
               "3 s",
@@ -930,16 +930,16 @@ window.READER_LESSONS["cinematica-mrua"] = {
               "Mai."
             ],
             "answer": 1,
-            "feedback": "Poniamo v=0: 6−2t=0, quindi t=3 s.",
+            "feedback": "Poniamo vₛ=0: 6−2t=0, quindi t=3 s.",
             "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. Poniamo v=0: 6−2t=0, quindi t=3 s.",
-              "Poniamo v=0: 6−2t=0, quindi t=3 s.",
-              "Rivedi la relazione fra le grandezze. Poniamo v=0: 6−2t=0, quindi t=3 s.",
-              "Rivedi la relazione fra le grandezze. Poniamo v=0: 6−2t=0, quindi t=3 s."
+              "Rivedi la relazione fra le grandezze. Poniamo vₛ=0: 6−2t=0, quindi t=3 s.",
+              "Poniamo vₛ=0: 6−2t=0, quindi t=3 s.",
+              "Rivedi la relazione fra le grandezze. Poniamo vₛ=0: 6−2t=0, quindi t=3 s.",
+              "Rivedi la relazione fra le grandezze. Poniamo vₛ=0: 6−2t=0, quindi t=3 s."
             ]
           },
           {
-            "question": "Nell’istante in cui v=0 nell’esempio precedente, a vale…",
+            "question": "Nell’istante in cui vₛ=0 nell’esempio precedente, aₛ vale…",
             "options": [
               "0 m/s²",
               "+2 m/s²",
@@ -985,11 +985,11 @@ window.READER_LESSONS["cinematica-mrua"] = {
           "steps": [
             {
               "title": "Collegare velocità e spostamento",
-              "html": "Con accelerazione costante possiamo eliminare il tempo dalle due leggi del moto e ottenere <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msup><mi>v</mi><mn>2</mn></msup><mo>&#x0003D;</mo><msubsup><mi>v</mi><mn>0</mn><mn>2</mn></msubsup><mo>&#x0002B;</mo><mn>2</mn><mi>a</mi><mo stretchy=\"false\">&#x00028;</mo><mi>s</mi><mo>&#x02212;</mo><msub><mi>s</mi><mn>0</mn></msub><mo stretchy=\"false\">&#x00029;</mo></mrow></math></span> È utile quando conosciamo lo spostamento e vogliamo la velocità, o viceversa. È valida anche per <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>; se però dividiamo per <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi></mrow></math> durante un calcolo, dobbiamo avere <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo>&#x02260;</mo><mn>0</mn></mrow></math>."
+              "html": "Con accelerazione costante possiamo eliminare il tempo dalle due leggi del moto e ottenere <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msup><msub><mi>v</mi><mi>s</mi></msub><mn>2</mn></msup><mo>&#x0003D;</mo><msubsup><msub><mi>v</mi><mi>s</mi></msub><mn>0</mn><mn>2</mn></msubsup><mo>&#x0002B;</mo><mn>2</mn><msub><mi>a</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>s</mi><mo>&#x02212;</mo><msub><mi>s</mi><mn>0</mn></msub><mo stretchy=\"false\">&#x00029;</mo></mrow></math></span> È utile quando conosciamo lo spostamento e vogliamo la velocità, o viceversa. È valida anche per <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>; se però dividiamo per <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub></mrow></math> durante un calcolo, dobbiamo avere <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x02260;</mo><mn>0</mn></mrow></math>."
             },
             {
               "title": "Il quadrato perde il segno",
-              "html": "Da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msup><mi>v</mi><mn>2</mn></msup></mrow></math> ricaviamo prima la rapidità <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo stretchy=\"false\">&#x0007C;</mo><mi>v</mi><mo stretchy=\"false\">&#x0007C;</mo></mrow></math>. Per assegnare il segno a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi></mrow></math> dobbiamo sapere in quale verso si muove il corpo nell’istante cercato.<br><br>Per esempio, con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>&#x00394;</mi><mi>s</mi><mo>&#x0003D;</mo><mn>9</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>, troviamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msup><mi>v</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>36</mn><mspace width=\"0.167em\" /><mrow><msup><mi mathvariant=\"normal\">m</mi><mn>2</mn></msup><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>. Dopo la partenza il corpo si muove nel verso positivo, quindi <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003D;</mo><mo>&#x0002B;</mo><mn>6</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>."
+              "html": "Da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msup><msub><mi>v</mi><mi>s</mi></msub><mn>2</mn></msup></mrow></math> ricaviamo prima la rapidità <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo stretchy=\"false\">&#x0007C;</mo><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x0007C;</mo></mrow></math>. Per assegnare il segno a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub></mrow></math> dobbiamo sapere in quale verso si muove il corpo nell’istante cercato.<br><br>Per esempio, con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>&#x00394;</mi><mi>s</mi><mo>&#x0003D;</mo><mn>9</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>, troviamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msup><msub><mi>v</mi><mi>s</mi></msub><mn>2</mn></msup><mo>&#x0003D;</mo><mn>36</mn><mspace width=\"0.167em\" /><mrow><msup><mi mathvariant=\"normal\">m</mi><mn>2</mn></msup><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>. Dopo la partenza il corpo si muove nel verso positivo, quindi <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mo>&#x0002B;</mo><mn>6</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>."
             }
           ]
         },
@@ -999,7 +999,7 @@ window.READER_LESSONS["cinematica-mrua"] = {
           "steps": [
             {
               "title": "Una scelta guidata dai dati",
-              "html": "<strong>Serve la velocità dopo un tempo?</strong> Usa <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>a</mi><mi>&#x00394;</mi><mi>t</mi></mrow></math>.<br><strong>Serve la posizione dopo un tempo?</strong> Usa <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi><mo>&#x0003D;</mo><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>&#x00394;</mi><mi>t</mi><mo>&#x0002B;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>a</mi><mo stretchy=\"false\">&#x00028;</mo><mi>&#x00394;</mi><mi>t</mi><msup><mo stretchy=\"false\">&#x00029;</mo><mn>2</mn></msup></mrow></math>.<br><strong>Tempo assente, ma spostamento noto?</strong> Valuta <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msup><mi>v</mi><mn>2</mn></msup><mo>&#x0003D;</mo><msubsup><mi>v</mi><mn>0</mn><mn>2</mn></msubsup><mo>&#x0002B;</mo><mn>2</mn><mi>a</mi><mi>&#x00394;</mi><mi>s</mi></mrow></math>.<br><br>Queste formule descrivono un’accelerazione costante. Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, ritroviamo le leggi del MRU. Se l’accelerazione varia, questo modello non descrive esattamente l’intero intervallo."
+              "html": "<strong>Serve la velocità dopo un tempo?</strong> Usa <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>&#x0002B;</mo><msub><mi>a</mi><mi>s</mi></msub><mi>&#x00394;</mi><mi>t</mi></mrow></math>.<br><strong>Serve la posizione dopo un tempo?</strong> Usa <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi><mo>&#x0003D;</mo><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mi>&#x00394;</mi><mi>t</mi><mo>&#x0002B;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>a</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>&#x00394;</mi><mi>t</mi><msup><mo stretchy=\"false\">&#x00029;</mo><mn>2</mn></msup></mrow></math>.<br><strong>Tempo assente, ma spostamento noto?</strong> Valuta <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msup><msub><mi>v</mi><mi>s</mi></msub><mn>2</mn></msup><mo>&#x0003D;</mo><msubsup><msub><mi>v</mi><mi>s</mi></msub><mn>0</mn><mn>2</mn></msubsup><mo>&#x0002B;</mo><mn>2</mn><msub><mi>a</mi><mi>s</mi></msub><mi>&#x00394;</mi><mi>s</mi></mrow></math>.<br><br>Queste formule descrivono un’accelerazione costante. Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, ritroviamo le leggi del MRU. Se l’accelerazione varia, questo modello non descrive esattamente l’intero intervallo."
             }
           ]
         }
@@ -1007,12 +1007,12 @@ window.READER_LESSONS["cinematica-mrua"] = {
       "quiz": {
         "questions": [
           {
-            "question": "Con accelerazione costante, quale relazione collega v e Δs senza il tempo?",
+            "question": "Con accelerazione costante, quale relazione collega vₛ e Δs senza il tempo?",
             "options": [
-              "v=v₀+aΔs",
-              "v²=v₀²+2aΔs",
+              "vₛ=vₛ₀+aΔs",
+              "vₛ²=vₛ₀²+2aΔs",
               "s=s₀+vt²",
-              "v²=2a/Δs"
+              "vₛ²=2a/Δs"
             ],
             "answer": 1,
             "feedback": "È la relazione ottenuta eliminando il tempo dalle leggi del MRUA.",
@@ -1024,10 +1024,10 @@ window.READER_LESSONS["cinematica-mrua"] = {
             ]
           },
           {
-            "question": "Dal solo risultato v²=36 m²/s² possiamo concludere…",
+            "question": "Dal solo risultato vₛ²=36 m²/s² possiamo concludere…",
             "options": [
-              "Che v è sempre +6 m/s.",
-              "Che v è sempre −6 m/s.",
+              "Che vₛ è sempre +6 m/s.",
+              "Che vₛ è sempre −6 m/s.",
               "Che la rapidità è 6 m/s; il verso determina il segno.",
               "Che l’accelerazione è 36 m/s²."
             ],
@@ -1041,7 +1041,7 @@ window.READER_LESSONS["cinematica-mrua"] = {
             ]
           },
           {
-            "question": "Ponendo a=0 nelle leggi del MRUA, ritroviamo…",
+            "question": "Ponendo aₛ=0 nelle leggi del MRUA, ritroviamo…",
             "options": [
               "Le leggi del MRU.",
               "Un moto necessariamente fermo.",
@@ -1049,12 +1049,12 @@ window.READER_LESSONS["cinematica-mrua"] = {
               "Una posizione sempre nulla."
             ],
             "answer": 0,
-            "feedback": "v resta uguale a v₀ e s=s₀+v₀Δt: è il caso uniforme.",
+            "feedback": "vₛ resta uguale a vₛ₀ e s=s₀+vₛ₀Δt: è il caso uniforme.",
             "feedbackByOption": [
-              "v resta uguale a v₀ e s=s₀+v₀Δt: è il caso uniforme.",
-              "Rivedi la relazione fra le grandezze. v resta uguale a v₀ e s=s₀+v₀Δt: è il caso uniforme.",
-              "Rivedi la relazione fra le grandezze. v resta uguale a v₀ e s=s₀+v₀Δt: è il caso uniforme.",
-              "Rivedi la relazione fra le grandezze. v resta uguale a v₀ e s=s₀+v₀Δt: è il caso uniforme."
+              "vₛ resta uguale a vₛ₀ e s=s₀+vₛ₀Δt: è il caso uniforme.",
+              "Rivedi la relazione fra le grandezze. vₛ resta uguale a vₛ₀ e s=s₀+vₛ₀Δt: è il caso uniforme.",
+              "Rivedi la relazione fra le grandezze. vₛ resta uguale a vₛ₀ e s=s₀+vₛ₀Δt: è il caso uniforme.",
+              "Rivedi la relazione fra le grandezze. vₛ resta uguale a vₛ₀ e s=s₀+vₛ₀Δt: è il caso uniforme."
             ]
           }
         ]
@@ -1070,7 +1070,7 @@ window.READER_LESSONS["cinematica-mrua"] = {
           "steps": [
             {
               "title": "",
-              "html": "<ul><li><strong>MRUA:</strong> traiettoria retta e accelerazione costante.</li><li><strong>Velocità:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>a</mi><mi>&#x00394;</mi><mi>t</mi></mrow></math>.</li><li><strong>Posizione:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi><mo>&#x0003D;</mo><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>&#x00394;</mi><mi>t</mi><mo>&#x0002B;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>a</mi><mo stretchy=\"false\">&#x00028;</mo><mi>&#x00394;</mi><mi>t</mi><msup><mo stretchy=\"false\">&#x00029;</mo><mn>2</mn></msup></mrow></math>.</li><li><strong>Senza il tempo:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msup><mi>v</mi><mn>2</mn></msup><mo>&#x0003D;</mo><msubsup><mi>v</mi><mn>0</mn><mn>2</mn></msubsup><mo>&#x0002B;</mo><mn>2</mn><mi>a</mi><mi>&#x00394;</mi><mi>s</mi></mrow></math>; il quadrato non determina il verso.</li><li><strong>Un arresto può essere momentaneo:</strong> v può annullarsi mentre a resta diversa da zero.</li><li><strong>Se cambia il verso:</strong> separa i tratti per calcolare la distanza percorsa.</li></ul>"
+              "html": "<ul><li><strong>MRUA:</strong> traiettoria retta e accelerazione costante.</li><li><strong>Velocità:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>&#x0002B;</mo><msub><mi>a</mi><mi>s</mi></msub><mi>&#x00394;</mi><mi>t</mi></mrow></math>.</li><li><strong>Posizione:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>s</mi><mo>&#x0003D;</mo><msub><mi>s</mi><mn>0</mn></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mi>&#x00394;</mi><mi>t</mi><mo>&#x0002B;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>a</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>&#x00394;</mi><mi>t</mi><msup><mo stretchy=\"false\">&#x00029;</mo><mn>2</mn></msup></mrow></math>.</li><li><strong>Senza il tempo:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msup><msub><mi>v</mi><mi>s</mi></msub><mn>2</mn></msup><mo>&#x0003D;</mo><msubsup><msub><mi>v</mi><mi>s</mi></msub><mn>0</mn><mn>2</mn></msubsup><mo>&#x0002B;</mo><mn>2</mn><msub><mi>a</mi><mi>s</mi></msub><mi>&#x00394;</mi><mi>s</mi></mrow></math>; il quadrato non determina il verso.</li><li><strong>Un arresto può essere momentaneo:</strong> vₛ può annullarsi mentre aₛ resta diversa da zero.</li><li><strong>Se cambia il verso:</strong> separa i tratti per calcolare la distanza percorsa.</li></ul>"
             }
           ]
         }
@@ -1111,7 +1111,7 @@ window.READER_LESSONS["cinematica-caduta"] = {
           "steps": [
             {
               "title": "Verso l’alto positivo",
-              "html": "Indichiamo la coordinata verticale con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>y</mi></mrow></math> e scegliamo il verso positivo verso l’alto. La gravità è diretta verso il basso, quindi <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>a</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>g</mi></mrow></math></span> Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, le leggi del MRUA diventano <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>v</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mo>&#x02212;</mo><mi>g</mi><mi>t</mi></mrow></math></span> <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>y</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>y</mi><mn>0</mn></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>t</mi><mo>&#x02212;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>g</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></math></span> Se scegliessimo positivo verso il basso, cambierebbero i segni nelle formule, ma non il fenomeno fisico."
+              "html": "Indichiamo la coordinata verticale con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>y</mi></mrow></math> e scegliamo il verso positivo verso l’alto. La gravità è diretta verso il basso, quindi <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>g</mi></mrow></math></span> Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, le leggi del MRUA diventano <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>&#x02212;</mo><mi>g</mi><mi>t</mi></mrow></math></span> <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>y</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>y</mi><mn>0</mn></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mi>t</mi><mo>&#x02212;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>g</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></math></span> Se scegliessimo positivo verso il basso, cambierebbero i segni nelle formule, ma non il fenomeno fisico."
             }
           ]
         }
@@ -1182,7 +1182,7 @@ window.READER_LESSONS["cinematica-caduta"] = {
           "steps": [
             {
               "title": "Velocità iniziale nulla",
-              "html": "«Lasciato cadere» significa che il corpo parte da fermo rispetto al riferimento scelto: <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>. Ponendo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>y</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mi>h</mi></mrow></math> e il suolo a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>y</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, otteniamo <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>v</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>g</mi><mi>t</mi></mrow></math></span> <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>y</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mi>h</mi><mo>&#x02212;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>g</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></math></span> Il corpo si muove verso il basso e la sua rapidità aumenta. Il tempo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi></mrow></math> è quello trascorso dal rilascio."
+              "html": "«Lasciato cadere» significa che il corpo parte da fermo rispetto al riferimento scelto: <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>. Ponendo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>y</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mi>h</mi></mrow></math> e il suolo a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>y</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, otteniamo <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>g</mi><mi>t</mi></mrow></math></span> <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>y</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mi>h</mi><mo>&#x02212;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>g</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></math></span> Il corpo si muove verso il basso e la sua rapidità aumenta. Il tempo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi></mrow></math> è quello trascorso dal rilascio."
             },
             {
               "title": "Il tempo di caduta",
@@ -1196,7 +1196,7 @@ window.READER_LESSONS["cinematica-caduta"] = {
           "steps": [
             {
               "title": "Altezza, durata, velocità",
-              "html": "Un corpo viene lasciato cadere da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>20</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>. Per questo esempio usiamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>g</mi><mo>&#x0003D;</mo><mn>10</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>t</mi><mo>&#x0003D;</mo><msqrt><mrow><mfrac><mrow><mn>2</mn><mo>&#x000B7;</mo><mn>20</mn></mrow><mrow><mn>10</mn></mrow></mfrac></mrow></msqrt><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math></span> Subito prima di toccare il suolo, <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>v</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>g</mi><mi>t</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>20</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math></span> Il segno meno indica il verso; la rapidità è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>20</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>. Le formule valgono fino al contatto: l’urto non fa parte di questo modello."
+              "html": "Un corpo viene lasciato cadere da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>20</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>. Per questo esempio usiamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>g</mi><mo>&#x0003D;</mo><mn>10</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>t</mi><mo>&#x0003D;</mo><msqrt><mrow><mfrac><mrow><mn>2</mn><mo>&#x000B7;</mo><mn>20</mn></mrow><mrow><mn>10</mn></mrow></mfrac></mrow></msqrt><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math></span> Subito prima di toccare il suolo, <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>g</mi><mi>t</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>20</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math></span> Il segno meno indica il verso; la rapidità è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>20</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>. Le formule valgono fino al contatto: l’urto non fa parte di questo modello."
             }
           ]
         }
@@ -1207,8 +1207,8 @@ window.READER_LESSONS["cinematica-caduta"] = {
             "question": "«Lasciato cadere da fermo» significa…",
             "options": [
               "y₀=0 sempre.",
-              "v₀=0 nel riferimento scelto.",
-              "a=0.",
+              "vₛ₀=0 nel riferimento scelto.",
+              "aₛ=0.",
               "Il corpo non può muoversi."
             ],
             "answer": 1,
@@ -1238,7 +1238,7 @@ window.READER_LESSONS["cinematica-caduta"] = {
             ]
           },
           {
-            "question": "Nell’esempio precedente, v=−20 m/s subito prima dell’impatto significa…",
+            "question": "Nell’esempio precedente, vₛ=−20 m/s subito prima dell’impatto significa…",
             "options": [
               "Rapidità negativa.",
               "Posizione −20 m.",
@@ -1267,15 +1267,15 @@ window.READER_LESSONS["cinematica-caduta"] = {
           "steps": [
             {
               "title": "La gravità non cambia verso",
-              "html": "Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mn>0</mn></msub><mo>&#x0003E;</mo><mn>0</mn></mrow></math>, il corpo sale mentre <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>g</mi></mrow></math>: velocità e accelerazione hanno segni opposti, quindi la rapidità diminuisce. Alla quota massima <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, ma <strong>l’accelerazione resta <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x02212;</mo><mi>g</mi></mrow></math></strong>.<br><br>Dopo quell’istante la velocità diventa negativa: il corpo scende e aumenta la propria rapidità. Non servono due accelerazioni diverse per descrivere salita e discesa."
+              "html": "Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>&#x0003E;</mo><mn>0</mn></mrow></math>, il corpo sale mentre <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>g</mi></mrow></math>: velocità e accelerazione hanno segni opposti, quindi la rapidità diminuisce. Alla quota massima <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, ma <strong>l’accelerazione resta <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x02212;</mo><mi>g</mi></mrow></math></strong>.<br><br>Dopo quell’istante la velocità diventa negativa: il corpo scende e aumenta la propria rapidità. Non servono due accelerazioni diverse per descrivere salita e discesa."
             },
             {
               "title": "Tempo di salita e quota massima",
-              "html": "Poniamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> nella legge della velocità: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>t</mi><mrow><mrow><mi mathvariant=\"normal\">s</mi><mi mathvariant=\"normal\">a</mi><mi mathvariant=\"normal\">l</mi><mi mathvariant=\"normal\">i</mi><mi mathvariant=\"normal\">t</mi><mi mathvariant=\"normal\">a</mi></mrow></mrow></msub><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>v</mi><mn>0</mn></msub></mrow><mrow><mi>g</mi></mrow></mfrac></mrow></math></span> Sostituendo questo tempo nella legge oraria, <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>y</mi><mrow><mrow><mi mathvariant=\"normal\">m</mi><mi mathvariant=\"normal\">a</mi><mi mathvariant=\"normal\">x</mi></mrow></mrow></msub><mo>&#x0003D;</mo><msub><mi>y</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mfrac><mrow><msubsup><mi>v</mi><mn>0</mn><mn>2</mn></msubsup></mrow><mrow><mn>2</mn><mi>g</mi></mrow></mfrac></mrow></math></span> Il termine <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msubsup><mi>v</mi><mn>0</mn><mn>2</mn></msubsup><mo>&#x0002F;</mo><mo stretchy=\"false\">&#x00028;</mo><mn>2</mn><mi>g</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> è l’aumento di quota rispetto al punto di lancio, non sempre la quota rispetto al suolo. Queste formule si riferiscono a un lancio iniziale verso l’alto."
+              "html": "Poniamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math> nella legge della velocità: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>t</mi><mrow><mrow><mi mathvariant=\"normal\">s</mi><mi mathvariant=\"normal\">a</mi><mi mathvariant=\"normal\">l</mi><mi mathvariant=\"normal\">i</mi><mi mathvariant=\"normal\">t</mi><mi mathvariant=\"normal\">a</mi></mrow></mrow></msub><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub></mrow><mrow><mi>g</mi></mrow></mfrac></mrow></math></span> Sostituendo questo tempo nella legge oraria, <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>y</mi><mrow><mrow><mi mathvariant=\"normal\">m</mi><mi mathvariant=\"normal\">a</mi><mi mathvariant=\"normal\">x</mi></mrow></mrow></msub><mo>&#x0003D;</mo><msub><mi>y</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mfrac><mrow><msubsup><msub><mi>v</mi><mi>s</mi></msub><mn>0</mn><mn>2</mn></msubsup></mrow><mrow><mn>2</mn><mi>g</mi></mrow></mfrac></mrow></math></span> Il termine <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msubsup><msub><mi>v</mi><mi>s</mi></msub><mn>0</mn><mn>2</mn></msubsup><mo>&#x0002F;</mo><mo stretchy=\"false\">&#x00028;</mo><mn>2</mn><mi>g</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> è l’aumento di quota rispetto al punto di lancio, non sempre la quota rispetto al suolo. Queste formule si riferiscono a un lancio iniziale verso l’alto."
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/kinematics/lancio-velocita.svg?v=2",
+            "src": "assets/images/reader/kinematics/lancio-velocita.svg?vₛ=2",
             "alt": "Grafico velocità-tempo per un lancio verso l’alto con g approssimato a 10 m/s²: da +20 m/s a -20 m/s, passando per zero a t=2 s.",
             "width": 640,
             "height": 400
@@ -1287,15 +1287,15 @@ window.READER_LESSONS["cinematica-caduta"] = {
           "steps": [
             {
               "title": "Venti metri al secondo verso l’alto",
-              "html": "Poniamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>y</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>20</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>g</mi><mo>&#x0003D;</mo><mn>10</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>. Il corpo raggiunge la quota massima dopo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>20</mn><mo>&#x0002F;</mo><mn>10</mn><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math>; l’aumento di quota è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msup><mn>20</mn><mn>2</mn></msup><mo>&#x0002F;</mo><mo stretchy=\"false\">&#x00028;</mo><mn>2</mn><mo>&#x000B7;</mo><mn>10</mn><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mn>20</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>.<br><br>Il grafico <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>y</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> è una parabola: rappresenta la quota nel tempo. <strong>La traiettoria nello spazio è invece una retta verticale.</strong>"
+              "html": "Poniamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>y</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>&#x0003D;</mo><mn>20</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>g</mi><mo>&#x0003D;</mo><mn>10</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>. Il corpo raggiunge la quota massima dopo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>20</mn><mo>&#x0002F;</mo><mn>10</mn><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math>; l’aumento di quota è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msup><mn>20</mn><mn>2</mn></msup><mo>&#x0002F;</mo><mo stretchy=\"false\">&#x00028;</mo><mn>2</mn><mo>&#x000B7;</mo><mn>10</mn><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mn>20</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>.<br><br>Il grafico <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>y</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> è una parabola: rappresenta la quota nel tempo. <strong>La traiettoria nello spazio è invece una retta verticale.</strong>"
             },
             {
               "title": "Tornare alla quota di partenza",
-              "html": "Se il corpo può proseguire fino a tornare a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>y</mi><mn>0</mn></msub></mrow></math>, il tempo totale è <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>t</mi><mrow><mrow><mi mathvariant=\"normal\">r</mi><mi mathvariant=\"normal\">i</mi><mi mathvariant=\"normal\">t</mi><mi mathvariant=\"normal\">o</mi><mi mathvariant=\"normal\">r</mi><mi mathvariant=\"normal\">n</mi><mi mathvariant=\"normal\">o</mi></mrow></mrow></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>2</mn><msub><mi>v</mi><mn>0</mn></msub></mrow><mrow><mi>g</mi></mrow></mfrac></mrow></math></span> Nel nostro esempio vale <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>4</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math>; la velocità al ritorno è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x02212;</mo><mn>20</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>.<br><br>Salita e ritorno alla stessa quota durano lo stesso tempo. Se il punto di arrivo è a una quota diversa, non usiamo automaticamente questa simmetria: imponiamo quella quota nella legge oraria."
+              "html": "Se il corpo può proseguire fino a tornare a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>y</mi><mn>0</mn></msub></mrow></math>, il tempo totale è <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>t</mi><mrow><mrow><mi mathvariant=\"normal\">r</mi><mi mathvariant=\"normal\">i</mi><mi mathvariant=\"normal\">t</mi><mi mathvariant=\"normal\">o</mi><mi mathvariant=\"normal\">r</mi><mi mathvariant=\"normal\">n</mi><mi mathvariant=\"normal\">o</mi></mrow></mrow></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>2</mn><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub></mrow><mrow><mi>g</mi></mrow></mfrac></mrow></math></span> Nel nostro esempio vale <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>4</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math>; la velocità al ritorno è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x02212;</mo><mn>20</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>.<br><br>Salita e ritorno alla stessa quota durano lo stesso tempo. Se il punto di arrivo è a una quota diversa, non usiamo automaticamente questa simmetria: imponiamo quella quota nella legge oraria."
             }
           ],
           "illustration": {
-            "src": "assets/images/reader/kinematics/lancio-posizione.svg?v=2",
+            "src": "assets/images/reader/kinematics/lancio-posizione.svg?vₛ=2",
             "alt": "Grafico quota-tempo del lancio con y iniziale zero: sale fino a 20 m a t=2 s e torna a y=0 a t=4 s. Non rappresenta la traiettoria nello spazio.",
             "width": 640,
             "height": 400
@@ -1308,9 +1308,9 @@ window.READER_LESSONS["cinematica-caduta"] = {
             "question": "Alla quota massima di un lancio verticale, velocità e accelerazione sono…",
             "options": [
               "Entrambe nulle.",
-              "v=0 e a=−g, con verso positivo verso l’alto.",
-              "v=+g e a=0.",
-              "v=0 e a=+g."
+              "vₛ=0 e aₛ=−g, con verso positivo verso l’alto.",
+              "vₛ=+g e aₛ=0.",
+              "vₛ=0 e aₛ=+g."
             ],
             "answer": 1,
             "feedback": "La velocità è momentaneamente nulla, ma la gravità continua a cambiarla.",
@@ -1322,7 +1322,7 @@ window.READER_LESSONS["cinematica-caduta"] = {
             ]
           },
           {
-            "question": "Con v₀=20 m/s e g=10 m/s², il tempo di salita è…",
+            "question": "Con vₛ₀=20 m/s e g=10 m/s², il tempo di salita è…",
             "options": [
               "4 s",
               "20 s",
@@ -1330,12 +1330,12 @@ window.READER_LESSONS["cinematica-caduta"] = {
               "1 s"
             ],
             "answer": 2,
-            "feedback": "t salita=v₀/g=20/10=2 s.",
+            "feedback": "t salita=vₛ₀/g=20/10=2 s.",
             "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. t salita=v₀/g=20/10=2 s.",
-              "Rivedi la relazione fra le grandezze. t salita=v₀/g=20/10=2 s.",
-              "t salita=v₀/g=20/10=2 s.",
-              "Rivedi la relazione fra le grandezze. t salita=v₀/g=20/10=2 s."
+              "Rivedi la relazione fra le grandezze. t salita=vₛ₀/g=20/10=2 s.",
+              "Rivedi la relazione fra le grandezze. t salita=vₛ₀/g=20/10=2 s.",
+              "t salita=vₛ₀/g=20/10=2 s.",
+              "Rivedi la relazione fra le grandezze. t salita=vₛ₀/g=20/10=2 s."
             ]
           },
           {
@@ -1355,7 +1355,7 @@ window.READER_LESSONS["cinematica-caduta"] = {
               "Rivedi la relazione fra le grandezze. Gli assi sono tempo e quota: il grafico non è il disegno della traiettoria."
             ],
             "illustration": {
-              "src": "assets/images/reader/kinematics/lancio-posizione.svg?v=2",
+              "src": "assets/images/reader/kinematics/lancio-posizione.svg?vₛ=2",
               "alt": "Grafico quota-tempo del lancio con y iniziale zero: sale fino a 20 m a t=2 s e torna a y=0 a t=4 s. Non rappresenta la traiettoria nello spazio.",
               "width": 640,
               "height": 400
@@ -1374,11 +1374,11 @@ window.READER_LESSONS["cinematica-caduta"] = {
           "steps": [
             {
               "title": "Quota, verso e intervallo",
-              "html": "Prima di sostituire i numeri, fissa l’origine delle quote e il verso positivo. Distingui la quota iniziale <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>y</mi><mn>0</mn></msub></mrow></math>, la velocità iniziale <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mn>0</mn></msub></mrow></math> e l’istante da cui conti il tempo.<br><br>Per cercare un istante di arrivo, imponi la quota richiesta nella legge <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>y</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math>. Se trovi più soluzioni, scegli quelle che appartengono al tratto fisico considerato: dopo il lancio e prima di eventuali urti."
+              "html": "Prima di sostituire i numeri, fissa l’origine delle quote e il verso positivo. Distingui la quota iniziale <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>y</mi><mn>0</mn></msub></mrow></math>, la velocità iniziale <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub></mrow></math> e l’istante da cui conti il tempo.<br><br>Per cercare un istante di arrivo, imponi la quota richiesta nella legge <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>y</mi><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math>. Se trovi più soluzioni, scegli quelle che appartengono al tratto fisico considerato: dopo il lancio e prima di eventuali urti."
             },
             {
               "title": "Distanza e spostamento nel lancio",
-              "html": "Nell’esempio che sale di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>20</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math> e torna alla quota di partenza, lo spostamento totale è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>0</mn></mrow></math>, ma la distanza percorsa è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>40</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>.<br><br>La velocità media sull’intero viaggio è zero, anche se il corpo si è mosso. L’accelerazione media, invece, è <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>a</mi><mi>m</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mo>&#x02212;</mo><mn>20</mn><mo>&#x02212;</mo><mn>20</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>10</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math></span> Ritroviamo la stessa accelerazione gravitazionale costante."
+              "html": "Nell’esempio che sale di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>20</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math> e torna alla quota di partenza, lo spostamento totale è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>0</mn></mrow></math>, ma la distanza percorsa è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>40</mn><mspace width=\"0.167em\" /><mi>&#x0006D;</mi></mrow></math>.<br><br>La velocità media sull’intero viaggio è zero, anche se il corpo si è mosso. L’accelerazione media, invece, è <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>a</mi><mrow><mi>s</mi><mo>,</mo><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><mfrac><mrow><mo>&#x02212;</mo><mn>20</mn><mo>&#x02212;</mo><mn>20</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>10</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math></span> Ritroviamo la stessa accelerazione gravitazionale costante."
             }
           ]
         }
@@ -1420,7 +1420,7 @@ window.READER_LESSONS["cinematica-caduta"] = {
             ]
           },
           {
-            "question": "Nell’esempio, v passa da +20 a −20 m/s in 4 s. L’accelerazione media vale…",
+            "question": "Nell’esempio, vₛ passa da +20 a −20 m/s in 4 s. L’accelerazione media vale…",
             "options": [
               "0 m/s²",
               "−5 m/s²",
@@ -1428,12 +1428,12 @@ window.READER_LESSONS["cinematica-caduta"] = {
               "−10 m/s²"
             ],
             "answer": 3,
-            "feedback": "Δv=−20−20=−40 m/s; dividi per 4 s.",
+            "feedback": "Δvₛ=−20−20=−40 m/s; dividi per 4 s.",
             "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. Δv=−20−20=−40 m/s; dividi per 4 s.",
-              "Rivedi la relazione fra le grandezze. Δv=−20−20=−40 m/s; dividi per 4 s.",
-              "Rivedi la relazione fra le grandezze. Δv=−20−20=−40 m/s; dividi per 4 s.",
-              "Δv=−20−20=−40 m/s; dividi per 4 s."
+              "Rivedi la relazione fra le grandezze. Δvₛ=−20−20=−40 m/s; dividi per 4 s.",
+              "Rivedi la relazione fra le grandezze. Δvₛ=−20−20=−40 m/s; dividi per 4 s.",
+              "Rivedi la relazione fra le grandezze. Δvₛ=−20−20=−40 m/s; dividi per 4 s.",
+              "Δvₛ=−20−20=−40 m/s; dividi per 4 s."
             ]
           }
         ]
@@ -1449,7 +1449,7 @@ window.READER_LESSONS["cinematica-caduta"] = {
           "steps": [
             {
               "title": "",
-              "html": "<ul><li><strong>Caduta libera:</strong> sola gravità nel modello; trascuriamo l’aria.</li><li><strong>Verso positivo in alto:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>g</mi></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>v</mi><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mo>&#x02212;</mo><mi>g</mi><mi>t</mi></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>y</mi><mo>&#x0003D;</mo><msub><mi>y</mi><mn>0</mn></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>t</mi><mo>&#x02212;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>g</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></math>.</li><li><strong>Da fermi, da altezza h:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><msqrt><mrow><mn>2</mn><mi>h</mi><mo>&#x0002F;</mo><mi>g</mi></mrow></msqrt></mrow></math>.</li><li><strong>Lancio verso l’alto:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mrow><mrow><mi mathvariant=\"normal\">s</mi><mi mathvariant=\"normal\">a</mi><mi mathvariant=\"normal\">l</mi><mi mathvariant=\"normal\">i</mi><mi mathvariant=\"normal\">t</mi><mi mathvariant=\"normal\">a</mi></mrow></mrow></msub></mrow></math>=v_0/g}}; l’aumento di quota è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msubsup><mi>v</mi><mn>0</mn><mn>2</mn></msubsup><mo>&#x0002F;</mo><mo stretchy=\"false\">&#x00028;</mo><mn>2</mn><mi>g</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math>.</li><li><strong>Alla sommità:</strong> velocità nulla, accelerazione ancora diretta verso il basso.</li><li><strong>Stessa quota di ritorno:</strong> stessa rapidità, verso opposto; distanza e spostamento restano grandezze diverse.</li></ul>"
+              "html": "<ul><li><strong>Caduta libera:</strong> sola gravità nel modello; trascuriamo l’aria.</li><li><strong>Verso positivo in alto:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>g</mi></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mo>&#x02212;</mo><mi>g</mi><mi>t</mi></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>y</mi><mo>&#x0003D;</mo><msub><mi>y</mi><mn>0</mn></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>0</mn></mrow></msub><mi>t</mi><mo>&#x02212;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>g</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></math>.</li><li><strong>Da fermi, da altezza h:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><msqrt><mrow><mn>2</mn><mi>h</mi><mo>&#x0002F;</mo><mi>g</mi></mrow></msqrt></mrow></math>.</li><li><strong>Lancio verso l’alto:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mrow><mrow><mi mathvariant=\"normal\">s</mi><mi mathvariant=\"normal\">a</mi><mi mathvariant=\"normal\">l</mi><mi mathvariant=\"normal\">i</mi><mi mathvariant=\"normal\">t</mi><mi mathvariant=\"normal\">a</mi></mrow></mrow></msub></mrow></math>=vₛ_0/g}}; l’aumento di quota è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msubsup><msub><mi>v</mi><mi>s</mi></msub><mn>0</mn><mn>2</mn></msubsup><mo>&#x0002F;</mo><mo stretchy=\"false\">&#x00028;</mo><mn>2</mn><mi>g</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math>.</li><li><strong>Alla sommità:</strong> velocità nulla, accelerazione ancora diretta verso il basso.</li><li><strong>Stessa quota di ritorno:</strong> stessa rapidità, verso opposto; distanza e spostamento restano grandezze diverse.</li></ul>"
             }
           ]
         }
@@ -1457,4 +1457,4 @@ window.READER_LESSONS["cinematica-caduta"] = {
     }
   ]
 };
-if(window.READER_LESSONS["cinematica-velocita"]) window.READER_LESSONS["cinematica-velocita"].nextLesson={id:"cinematica-accelerazione"};
+if(window.READER_LESSONS["cinematica-velocita"])window.READER_LESSONS["cinematica-velocita"].nextLesson={id:"cinematica-accelerazione"};

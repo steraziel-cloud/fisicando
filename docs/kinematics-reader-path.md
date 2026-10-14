@@ -21,3 +21,7 @@ Quattro lezioni nel reader: accelerazione scalare, moto rettilineo uniforme, mot
 ## Verifica
 
 Controllati i calcoli degli esempi, le condizioni di uso delle formule, i collegamenti del glossario, la progressione fra lezioni, l’ordine del catalogo e la struttura dei checkpoint. I due reader di cinematica già revisionati restano invariati; il collegamento successivo della velocità è aggiornato dal nuovo modulo.
+
+## Convenzione obbligatoria per la notazione
+
+Dal 14 ottobre 2026 velocità e accelerazione scalari con segno si indicano con v_s e a_s, e le rispettive funzioni con v_s(t) e a_s(t). Gli eventuali altri pedici si conservano: v_{s,0}, v_{s,m}, a_{s,m}. Il modulo del vettore velocità è la rapidità |v_s|; il modulo del vettore accelerazione non coincide in generale con |a_s| sulle traiettorie curve. Usare questa convenzione in ogni futuro testo, formula, grafico, quiz e lavagna. La coordinata s e la legge oraria s(t) non cambiano notazione.
