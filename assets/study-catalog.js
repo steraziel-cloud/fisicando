@@ -1008,6 +1008,22 @@ window.LESSON_CATALOG = [
                 "id": "cinematica-velocita"
               },
               {
+                "title": "L’accelerazione scalare",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "id": "cinematica-accelerazione",
+                "url": "reader.html?lezione=cinematica-accelerazione",
+                "kind": "Teoria",
+                "status": "work-in-progress"
+              },
+              {
                 "title": "Velocità media e velocità istantanea",
                 "levels": [
                   "terzo-quarto",
@@ -1028,19 +1044,11 @@ window.LESSON_CATALOG = [
                   "triennio",
                   "universita-avanzata",
                   "universita"
-                ]
-              },
-              {
-                "title": "Accelerazione media e accelerazione istantanea",
-                "levels": [
-                  "biennio",
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio",
-                  "universita-avanzata",
-                  "universita"
-                ]
+                ],
+                "id": "cinematica-mru",
+                "url": "reader.html?lezione=cinematica-mru",
+                "kind": "Teoria",
+                "status": "work-in-progress"
               },
               {
                 "title": "Moto rettilineo uniformemente accelerato",
@@ -1052,7 +1060,11 @@ window.LESSON_CATALOG = [
                   "triennio",
                   "universita-avanzata",
                   "universita"
-                ]
+                ],
+                "id": "cinematica-mrua",
+                "url": "reader.html?lezione=cinematica-mrua",
+                "kind": "Teoria",
+                "status": "work-in-progress"
               },
               {
                 "title": "Caduta libera e lancio verticale",
@@ -1064,7 +1076,11 @@ window.LESSON_CATALOG = [
                   "triennio",
                   "universita-avanzata",
                   "universita"
-                ]
+                ],
+                "id": "cinematica-caduta",
+                "url": "reader.html?lezione=cinematica-caduta",
+                "kind": "Teoria",
+                "status": "work-in-progress"
               }
             ]
           },
