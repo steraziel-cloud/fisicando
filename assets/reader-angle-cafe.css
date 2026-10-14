@@ -102,3 +102,8 @@
 
 
 .ag-ray-handle{cursor:grab;touch-action:none;pointer-events:stroke}.ag-ray-handle.ag-grabbing{cursor:grabbing}.ag-ray-handle:focus{outline:none;stroke:#118e9c18}.ag-named-points{pointer-events:none}
+
+
+.ag-regions .ag-rotation-region{cursor:grab!important;touch-action:none}.ag-regions .ag-rotation-region.ag-grabbing{cursor:grabbing!important}
+
+.ag-map[data-fixed=true] .ag-regions path{cursor:default!important}

@@ -76,13 +76,8 @@ window.READER_LESSONS["geometria-angoli"] = {
               "html": "Un <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-angolo\">angolo</button> è <strong>ciascuna delle due regioni del <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button> individuate da due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> con la stessa origine, comprese le <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button></strong>."
             },
             {
-              "title": "Un segno nella figura",
-              "html": "Gli <strong>archetti</strong> vicino al vertice distinguono le due regioni: in questa figura ne usiamo uno per una regione e due per l’altra.<br><br>Trascinando i lati, le aperture cambiano: <strong>il numero di archetti non indica l’ampiezza dell’angolo</strong>. L’angolo comprende tutta la regione indicata, non soltanto la zona vicina al vertice.",
-              "cafeStage": 1
-            },
-            {
               "title": "Lati e vertice",
-              "cafeStage": 2,
+              "cafeStage": 0,
               "html": "Le due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> sono i <strong>lati</strong> dell’angolo; la loro origine comune è il <strong>vertice</strong>. L’angolo comprende tutta la regione scelta, anche oltre ciò che riusciamo a disegnare.",
               "cloze": [
                 {
@@ -98,14 +93,19 @@ window.READER_LESSONS["geometria-angoli"] = {
               ]
             },
             {
+              "title": "Un segno grafico per riconoscerlo",
+              "html": "Gli <strong>archetti</strong> vicino al vertice distinguono le due regioni: in questa figura ne usiamo uno per una regione e due per l’altra. <strong>Non confonderli con l’angolo</strong>, che comprende tutta la regione indicata.",
+              "cafeStage": 1
+            },
+            {
               "title": "Dalla stanza alla geometria",
-              "html": "Nel linguaggio quotidiano, «vicino all’angolo» ci ha indicato una zona vicino all’incontro delle pareti. In geometria, invece, l’angolo comprende <strong>l’intera regione scelta, che continua senza limite</strong>.",
+              "html": "Morgana ha cercato la scatolina vicino all’angolo formato dalle due pareti dritte della caffetteria. Anche nella stanza possiamo riconoscere un angolo: osserviamo le tracce delle pareti sul pavimento.",
               "cafeStage": 3,
               "cumulativeFrom": 3
             },
             {
               "title": "Oltre il disegno",
-              "html": "La stanza ha dei confini. Il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button> geometrico e le <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> continuano oltre il disegno. Il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> O è il vertice, non tutto l’angolo.",
+              "html": "Le tracce delle pareti hanno una lunghezza limitata: sono <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-segmento\">segmenti</button>. Nel modello geometrico li prolunghiamo in due <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-semiretta\">semirette</button> con la stessa origine.<br><br>L’angolo comprende la regione del <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-piano\">piano</button> che esse individuano, anche oltre i confini della stanza. Il <button type=\"button\" class=\"rm-keyword\" data-term=\"geo-punto\">punto</button> O è il vertice, non tutto l’angolo.",
               "cafeStage": 3,
               "cumulativeFrom": 3
             }
@@ -133,7 +133,7 @@ window.READER_LESSONS["geometria-angoli"] = {
             },
             {
               "title": "Due cappelli per due angoli",
-              "html": "Nelle nostre figure usiamo il <strong>cappello normale</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˆ</mo></mover></math> per indicare l’angolo segnato con un archetto. Il <strong>cappello rovesciato</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˇ</mo></mover></math> indica l’altra regione, segnata con due archetti.<br><br>Se i lati sono opposti, le due regioni hanno la stessa apertura: osserviamo il disegno per distinguere quale stiamo indicando. Se coincidono, i due simboli ci permettono di distinguere <strong>l’angolo nullo dall’angolo giro</strong>.",
+              "html": "Nelle nostre figure usiamo il <strong>cappello normale</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˆ</mo></mover></math> per indicare l’angolo segnato con un archetto. Il <strong>cappello rovesciato</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mover accent=\"true\"><mrow><mi mathvariant=\"normal\">A</mi><mi mathvariant=\"normal\">O</mi><mi mathvariant=\"normal\">B</mi></mrow><mo stretchy=\"true\">ˇ</mo></mover></math> indica l’altra regione, segnata con due archetti.",
               "cafeStage": 13
             },
             {
@@ -2117,6 +2117,7 @@ window.READER_LESSONS["geometria-perpendicolari"] = {
     }
   ]
 };
+
 
 
 
