@@ -21,7 +21,7 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
   "steps": [
     {
       "title": "Una sfida fino al traguardo",
-      "html": "Al campo sportivo della scuola, <strong>Red, Morgana e Bjorne si sfidano in una gara di corsa.</strong> Red dà tutto per vincere. Morgana cerca di mantenere il contegno, ma perdere contro di lui? Non se ne parla. Bjorne, intanto, corre felice per conto suo.<br><br>La gara è già iniziata e <strong>mancano gli ultimi cento metri al traguardo.</strong> È qui che comincia la nostra osservazione: qualcuno aumenta la velocità, qualcuno rallenta, qualcuno mantiene la stessa andatura.<br><br>Seguiamoli per capire <strong>come cambia la velocità durante il movimento.</strong>"
+      "html": "Al campo sportivo della scuola, <strong>Red, Morgana e Bjorne si sfidano in una gara di corsa.</strong><br><br>La gara è già iniziata e <strong>mancano gli ultimi cento metri al traguardo.</strong> È qui che comincia la nostra osservazione.<br><br>Seguiamoli per capire <strong>come cambia la velocità durante il movimento.</strong>"
     }
   ]
 },
