@@ -102,10 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const cards = document.getElementById('lesson-cards'); cards.replaceChildren();
     const types = l.kind==='Progetto' ? [['Progetto','Un tachimetro con Arduino','Costruire uno strumento per misurare la velocità.']] : [['Teoria','Capire i concetti','Leggi la spiegazione nel reader.'],['Esercizi','Metterti alla prova','Applica i concetti e allena il ragionamento.'],['Laboratorio','Esplorare e sperimentare','Osserva e manipola i fenomeni.']];
     types.forEach(([kind,title,description],i) => {
-      const active = !l.unpublished && l.url && l.kind === kind;
+      const materialUrl = l.kind === kind ? l.url : kind === 'Esercizi' ? l.exercisesUrl : null;
+      const active = !l.unpublished && materialUrl;
       const card = document.createElement(active ? 'a' : 'div'); card.className = 'rm-material-card rm-choice-card' + (active ? ' rm-choice-card-ready' : ' rm-choice-card-disabled');
       if (active) {
-        const url = new URL(kind === 'Teoria' && !l.id ? 'reader.html' : l.url, location.href);
+        const url = new URL(kind === 'Teoria' && !l.id ? 'reader.html' : materialUrl, location.href);
         if (kind === 'Teoria' && !l.id) url.searchParams.set('materiale', l.url);
         url.searchParams.set('livello',level && l.levels.includes(level) ? level : l.levels[0]);
         if (['studente','altro'].includes(params.get('ruolo'))) url.searchParams.set('ruolo',params.get('ruolo'));

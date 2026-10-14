@@ -820,7 +820,8 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "analisi1"
                 ],
-                "status": "work-in-progress"
+                "status": "work-in-progress",
+                "exercisesUrl": "integrali-allenamento.html#immediati"
               },
               {
                 "title": "Funzioni composte e integrazione per sostituzione",
@@ -830,7 +831,8 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "analisi1"
                 ],
-                "status": "work-in-progress"
+                "status": "work-in-progress",
+                "exercisesUrl": "integrali-allenamento.html#sostituzione"
               },
               {
                 "title": "Funzioni razionali fratte: divisione e fratti semplici",
@@ -840,7 +842,8 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "analisi1"
                 ],
-                "status": "work-in-progress"
+                "status": "work-in-progress",
+                "exercisesUrl": "integrali-allenamento.html#lineari"
               },
               {
                 "title": "Funzioni razionali fratte: denominatori quadratici",
@@ -850,7 +853,8 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "analisi1"
                 ],
-                "status": "work-in-progress"
+                "status": "work-in-progress",
+                "exercisesUrl": "integrali-allenamento.html#quadratici"
               },
               {
                 "title": "Integrazione per parti",
@@ -860,7 +864,8 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "analisi1"
                 ],
-                "status": "work-in-progress"
+                "status": "work-in-progress",
+                "exercisesUrl": "integrali-allenamento.html#parti"
               },
               {
                 "title": "Integrali definiti: significato e calcolo",
@@ -870,7 +875,8 @@ window.LESSON_CATALOG = [
                 "levels": [
                   "analisi1"
                 ],
-                "status": "work-in-progress"
+                "status": "work-in-progress",
+                "exercisesUrl": "integrali-allenamento.html#definiti"
               },
               {
                 "title": "Integrali · Allenamento con suggerimenti e soluzioni",
