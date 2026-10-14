@@ -21,7 +21,7 @@ Testi, esempi e allenamento sono una rielaborazione originale. Il riferimento or
 5. Integrazione per parti (`integrali-parti`).
 6. Integrali definiti: significato e calcolo (`integrali-definiti`).
 
-L’ordine anticipa la ricerca delle primitive per soddisfare l’urgenza degli esercizi. L’ultima lezione ricongiunge tecniche e significato del definito, con un esempio di costo marginale e costo fisso. La distinzione fra definito e indefinito è esplicitata già nella prima lezione.
+L’ordine anticipa la ricerca delle primitive per soddisfare l’urgenza degli esercizi. L’ultima lezione ricongiunge tecniche e significato del definito, con un esempio generale di ricostruzione di una funzione da derivata e dato iniziale. La distinzione fra definito e indefinito è esplicitata già nella prima lezione.
 
 ## Linea editoriale e interazioni
 
@@ -30,12 +30,12 @@ L’ordine anticipa la ricerca delle primitive per soddisfare l’urgenza degli 
 - 57 quesiti distribuiti fra i checkpoint: almeno tre per sezione, quattro alternative e feedback legato al passaggio matematico.
 - Glossario dedicato `int-*` per primitive, indefinito, definito, linearità, sostituzione, fratti semplici e altri prerequisiti locali.
 - Formule MathML native generate in fase di preparazione: nessun motore remoto necessario a leggere la pagina.
-- Allenamento separato: 21 esercizi, suggerimento opzionale e soluzione a passaggi. Lo studente svolge sul quaderno; non è un risolutore automatico né il futuro copilota.
+- Allenamento separato: 70 esercizi, suggerimento opzionale e soluzione a passaggi. Lo studente svolge sul quaderno; non è un risolutore automatico né il futuro copilota.
 - Menù e lezioni conservano “in lavorazione”: prima bozza pronta per la revisione, senza completamento delle lavagne e delle immagini.
 
 ## Verifiche
 
-La verifica automatica svolta prima della pubblicazione controlla simbolicamente 45 identità di primitive e sei valutazioni definite; controlla inoltre struttura delle lezioni, numero di alternative e validità XML di 331 formule nel reader. Nei controlli simbolici log|g| è trattato tramite la derivata g′/g sugli intervalli dove g non si annulla. Le condizioni di dominio sono esplicitate nei testi. Controlli JavaScript e verifica nel browser prima della consegna.
+La verifica automatica svolta prima della pubblicazione controlla simbolicamente 86 identità di primitive e 14 valutazioni definite; controlla inoltre struttura delle lezioni, numero di alternative e validità XML di 328 formule nel reader. Nei controlli simbolici log|g| è trattato tramite la derivata g′/g sugli intervalli dove g non si annulla. Le condizioni di dominio sono esplicitate nei testi. Controlli JavaScript e verifica nel browser prima della consegna.
 
 ## Prossima revisione
 

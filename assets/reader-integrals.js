@@ -37,7 +37,7 @@ window.READER_LESSONS["integrali-immediati"] = {
             },
             {
               "title": "Un dato iniziale sceglie una primitiva",
-              "html": "Se conosciamo anche <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>F</mi><mo stretchy=\"false\">&#x00028;</mo><mn>0</mn><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mn>7</mn></mrow></math>, dalla famiglia <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>F</mi><mo stretchy=\"false\">&#x00028;</mo><mi>x</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msup><mi>x</mi><mn>3</mn></msup><mo>&#x0002B;</mo><mi>C</mi></mrow></math> otteniamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>C</mi><mo>&#x0003D;</mo><mn>7</mn></mrow></math>.<br><br>In economia, conoscere un costo marginale permette di ricostruire il costo totale; per determinarlo completamente serve anche un dato come il costo fisso."
+              "html": "Se conosciamo anche <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>F</mi><mo stretchy=\"false\">&#x00028;</mo><mn>0</mn><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mn>7</mn></mrow></math>, dalla famiglia <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>F</mi><mo stretchy=\"false\">&#x00028;</mo><mi>x</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msup><mi>x</mi><mn>3</mn></msup><mo>&#x0002B;</mo><mi>C</mi></mrow></math> otteniamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>C</mi><mo>&#x0003D;</mo><mn>7</mn></mrow></math>."
             }
           ]
         }
@@ -1467,7 +1467,7 @@ window.READER_LESSONS["integrali-definiti"] = {
             },
             {
               "title": "La scrittura",
-              "html": "<span class=\"int-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msubsup><mo>&#x0222B;</mo><mi>a</mi><mi>b</mi></msubsup><mi>f</mi><mo stretchy=\"false\">&#x00028;</mo><mi>x</mi><mo stretchy=\"false\">&#x00029;</mo><mspace width=\"0.167em\" /><mi>d</mi><mi>x</mi></mrow></math></span> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>b</mi></mrow></math> sono gli <strong>estremi di integrazione</strong>. A differenza dell’integrale indefinito, il risultato è <strong>un numero</strong>.<br><br>Per un tasso costante <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>k</mi></mrow></math>, <span class=\"int-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msubsup><mo>&#x0222B;</mo><mi>a</mi><mi>b</mi></msubsup><mi>k</mi><mspace width=\"0.167em\" /><mi>d</mi><mi>x</mi><mo>&#x0003D;</mo><mi>k</mi><mo stretchy=\"false\">&#x00028;</mo><mi>b</mi><mo>&#x02212;</mo><mi>a</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math></span> Per esempio, un’entrata continua di 8 euro al minuto per 5 minuti accumula 40 euro."
+              "html": "<span class=\"int-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msubsup><mo>&#x0222B;</mo><mi>a</mi><mi>b</mi></msubsup><mi>f</mi><mo stretchy=\"false\">&#x00028;</mo><mi>x</mi><mo stretchy=\"false\">&#x00029;</mo><mspace width=\"0.167em\" /><mi>d</mi><mi>x</mi></mrow></math></span> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>a</mi></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>b</mi></mrow></math> sono gli <strong>estremi di integrazione</strong>. A differenza dell’integrale indefinito, il risultato è <strong>un numero</strong>.<br><br>Per un tasso costante <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>k</mi></mrow></math>, <span class=\"int-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msubsup><mo>&#x0222B;</mo><mi>a</mi><mi>b</mi></msubsup><mi>k</mi><mspace width=\"0.167em\" /><mi>d</mi><mi>x</mi><mo>&#x0003D;</mo><mi>k</mi><mo stretchy=\"false\">&#x00028;</mo><mi>b</mi><mo>&#x02212;</mo><mi>a</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math></span> Per esempio, con un tasso costante di 8 unità al minuto, in 5 minuti la quantità aumenta di 40 unità."
             }
           ]
         },
@@ -1725,20 +1725,20 @@ window.READER_LESSONS["integrali-definiti"] = {
       }
     },
     {
-      "id": "economia",
-      "title": "Un’applicazione ai costi",
+      "id": "dato-iniziale",
+      "title": "Ricostruire una funzione da un dato iniziale",
       "cards": [
         {
-          "title": "Da costo marginale a costo totale",
+          "title": "Dalla derivata al valore della funzione",
           "stepMode": "replace",
           "steps": [
             {
-              "title": "Il modello",
-              "html": "Supponiamo che il costo totale sia una funzione derivabile <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>K</mi><mo stretchy=\"false\">&#x00028;</mo><mi>q</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> della quantità prodotta, trattata come variabile continua. Il costo marginale è <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>K</mi><mi>&#x02032;</mi><mo stretchy=\"false\">&#x00028;</mo><mi>q</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math>.<br><br>Se <span class=\"int-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>K</mi><mi>&#x02032;</mi><mo stretchy=\"false\">&#x00028;</mo><mi>q</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mn>4</mn><mi>q</mi><mo>&#x0002B;</mo><mn>6</mn><mspace width=\"2em\" /><mi>K</mi><mo stretchy=\"false\">&#x00028;</mo><mn>0</mn><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mn>100</mn></mrow></math></span> l’integrale indefinito ricostruisce la famiglia <span class=\"int-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>K</mi><mo stretchy=\"false\">&#x00028;</mo><mi>q</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mn>2</mn><msup><mi>q</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>6</mn><mi>q</mi><mo>&#x0002B;</mo><mi>C</mi></mrow></math></span> Il costo iniziale impone <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>C</mi><mo>&#x0003D;</mo><mn>100</mn></mrow></math>."
+              "title": "Il dato iniziale",
+              "html": "Supponiamo di conoscere la derivata di una funzione e un suo valore. Se <span class=\"int-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>F</mi><mi>&#x02032;</mi><mo stretchy=\"false\">&#x00028;</mo><mi>x</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mn>4</mn><mi>x</mi><mo>&#x0002B;</mo><mn>6</mn><mspace width=\"2em\" /><mi>F</mi><mo stretchy=\"false\">&#x00028;</mo><mn>0</mn><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mn>100</mn></mrow></math></span> l’integrale indefinito dà la famiglia <span class=\"int-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>F</mi><mo stretchy=\"false\">&#x00028;</mo><mi>x</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mn>2</mn><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>6</mn><mi>x</mi><mo>&#x0002B;</mo><mi>C</mi></mrow></math></span> Il dato iniziale impone <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>C</mi><mo>&#x0003D;</mo><mn>100</mn></mrow></math>."
             },
             {
-              "title": "La variazione e il totale",
-              "html": "Produrre da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>q</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>q</mi><mo>&#x0003D;</mo><mn>5</mn></mrow></math> comporta una variazione di costo <span class=\"int-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msubsup><mo>&#x0222B;</mo><mn>0</mn><mn>5</mn></msubsup><mo stretchy=\"false\">&#x00028;</mo><mn>4</mn><mi>q</mi><mo>&#x0002B;</mo><mn>6</mn><mo stretchy=\"false\">&#x00029;</mo><mspace width=\"0.167em\" /><mi>d</mi><mi>q</mi><mo>&#x0003D;</mo><mn>80</mn></mrow></math></span> Quindi <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>K</mi><mo stretchy=\"false\">&#x00028;</mo><mn>5</mn><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mn>100</mn><mo>&#x0002B;</mo><mn>80</mn><mo>&#x0003D;</mo><mn>180</mn></mrow></math>. <strong>L’integrale del costo marginale dà la variazione di costo, non da solo il costo totale.</strong> Qui le unità monetarie sono euro e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>q</mi></mrow></math> conta unità di prodotto."
+              "title": "La variazione e il valore finale",
+              "html": "La variazione della funzione fra <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>x</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>x</mi><mo>&#x0003D;</mo><mn>5</mn></mrow></math> è <span class=\"int-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msubsup><mo>&#x0222B;</mo><mn>0</mn><mn>5</mn></msubsup><mo stretchy=\"false\">&#x00028;</mo><mn>4</mn><mi>x</mi><mo>&#x0002B;</mo><mn>6</mn><mo stretchy=\"false\">&#x00029;</mo><mspace width=\"0.167em\" /><mi>d</mi><mi>x</mi><mo>&#x0003D;</mo><mn>80</mn></mrow></math></span> Quindi <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>F</mi><mo stretchy=\"false\">&#x00028;</mo><mn>5</mn><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mi>F</mi><mo stretchy=\"false\">&#x00028;</mo><mn>0</mn><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0002B;</mo><mn>80</mn><mo>&#x0003D;</mo><mn>180</mn></mrow></math>. <strong>L’integrale della derivata dà la variazione della funzione; per ottenere il valore finale devi aggiungere il valore iniziale.</strong>"
             },
             {
               "title": "Controlla prima le condizioni",
@@ -1750,24 +1750,24 @@ window.READER_LESSONS["integrali-definiti"] = {
       "quiz": {
         "questions": [
           {
-            "question": "Se K′ è il costo marginale, che cosa dà ∫ da 0 a 5 di K′(q) dq?",
+            "question": "Se conosci F′, che cosa dà ∫ da 0 a 5 di F′(x) dx?",
             "options": [
-              "Sempre il costo totale K(5).",
-              "La variazione K(5)−K(0).",
-              "Il costo fisso K(0).",
-              "La derivata seconda K″(5)."
+              "Sempre il valore F(5).",
+              "La variazione F(5)−F(0).",
+              "Il valore iniziale F(0).",
+              "La derivata seconda F″(5)."
             ],
             "answer": 1,
-            "feedback": "Per ottenere il costo totale devi aggiungere il costo iniziale.",
+            "feedback": "Per ottenere il valore finale devi aggiungere il valore iniziale.",
             "feedbackByOption": [
-              "Controlla questo passaggio: Per ottenere il costo totale devi aggiungere il costo iniziale.",
-              "Per ottenere il costo totale devi aggiungere il costo iniziale.",
-              "Controlla questo passaggio: Per ottenere il costo totale devi aggiungere il costo iniziale.",
-              "Controlla questo passaggio: Per ottenere il costo totale devi aggiungere il costo iniziale."
+              "Controlla questo passaggio: Per ottenere il valore finale devi aggiungere il valore iniziale.",
+              "Per ottenere il valore finale devi aggiungere il valore iniziale.",
+              "Controlla questo passaggio: Per ottenere il valore finale devi aggiungere il valore iniziale.",
+              "Controlla questo passaggio: Per ottenere il valore finale devi aggiungere il valore iniziale."
             ]
           },
           {
-            "question": "Con K′(q)=4q+6 e K(0)=100, quanto vale K(5)?",
+            "question": "Con F′(x)=4x+6 e F(0)=100, quanto vale F(5)?",
             "options": [
               "80",
               "100",
@@ -1775,12 +1775,12 @@ window.READER_LESSONS["integrali-definiti"] = {
               "200"
             ],
             "answer": 2,
-            "feedback": "La variazione è 80; aggiungi il costo iniziale 100.",
+            "feedback": "La variazione è 80; aggiungi il valore iniziale 100.",
             "feedbackByOption": [
-              "Controlla questo passaggio: La variazione è 80; aggiungi il costo iniziale 100.",
-              "Controlla questo passaggio: La variazione è 80; aggiungi il costo iniziale 100.",
-              "La variazione è 80; aggiungi il costo iniziale 100.",
-              "Controlla questo passaggio: La variazione è 80; aggiungi il costo iniziale 100."
+              "Controlla questo passaggio: La variazione è 80; aggiungi il valore iniziale 100.",
+              "Controlla questo passaggio: La variazione è 80; aggiungi il valore iniziale 100.",
+              "La variazione è 80; aggiungi il valore iniziale 100.",
+              "Controlla questo passaggio: La variazione è 80; aggiungi il valore iniziale 100."
             ]
           },
           {
@@ -1813,7 +1813,7 @@ window.READER_LESSONS["integrali-definiti"] = {
           "steps": [
             {
               "title": "",
-              "html": "<ul><li><strong>Definito:</strong> un’accumulazione con segno su un intervallo, quindi un numero.</li><li><strong>Con una primitiva:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>F</mi><mo stretchy=\"false\">&#x00028;</mo><mi>b</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x02212;</mo><mi>F</mi><mo stretchy=\"false\">&#x00028;</mo><mi>a</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math>, senza <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x0002B;</mo><mi>C</mi></mrow></math>.</li><li><strong>Area geometrica:</strong> considera il valore assoluto se la funzione cambia segno.</li><li><strong>Sostituzione:</strong> cambia anche gli estremi, oppure torna alla variabile originale prima di valutarli.</li><li><strong>In economia:</strong> integrando un tasso marginale trovi la variazione; il dato iniziale completa il totale.</li></ul>"
+              "html": "<ul><li><strong>Definito:</strong> un’accumulazione con segno su un intervallo, quindi un numero.</li><li><strong>Con una primitiva:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>F</mi><mo stretchy=\"false\">&#x00028;</mo><mi>b</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x02212;</mo><mi>F</mi><mo stretchy=\"false\">&#x00028;</mo><mi>a</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math>, senza <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x0002B;</mo><mi>C</mi></mrow></math>.</li><li><strong>Area geometrica:</strong> considera il valore assoluto se la funzione cambia segno.</li><li><strong>Sostituzione:</strong> cambia anche gli estremi, oppure torna alla variabile originale prima di valutarli.</li><li><strong>Integrando la derivata trovi una variazione:</strong> il valore iniziale permette di ricostruire il valore finale.</li></ul>"
             }
           ]
         }
