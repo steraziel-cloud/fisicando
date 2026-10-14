@@ -2,7 +2,7 @@
 body[data-reader-lesson^="integrali-"] .rm-card-text{max-width:none!important;margin-left:0!important;margin-right:0!important;text-align:left}
 body[data-reader-lesson^="integrali-"] .rm-reader-step{max-width:none!important}
 .int-formula{display:block;max-width:100%;overflow-x:auto;padding:12px 2px;margin:12px 0;background:color-mix(in srgb,var(--rm-accent,#16a6af) 7%,transparent);border-left:3px solid #16a6af;border-radius:0 10px 10px 0}
-.int-formula math[display="block"]{display:block;text-align:left;margin:0 14px;min-width:max-content;font-size:1.08em}
+.int-formula math[display="block"]{display:block;text-align:left;margin:0 14px;min-width:max-content;font-size:1.25em}
 body[data-reader-lesson^="integrali-"] math{font-family:math,serif}
 .int-practice-main{max-width:1120px;margin:36px auto;padding:0 22px 60px;color:var(--rm-text,#213641)}
 .int-practice-main h1{font-size:clamp(2rem,4vw,3.3rem);line-height:1.12}.int-practice-main .int-lead{font-size:1.18rem;line-height:1.65;max-width:850px}
@@ -10,4 +10,4 @@ body[data-reader-lesson^="integrali-"] math{font-family:math,serif}
 .int-practice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 .int-practice-card{padding:24px;background:var(--rm-panel,white);border:1px solid #16a6af30;border-radius:18px;font-size:1.08rem;line-height:1.6}
 .int-practice-card h3{font-size:1.15rem;margin:0 0 12px}.int-practice-card details{border-top:1px solid #16a6af30;margin-top:16px;padding-top:12px}.int-practice-card summary{cursor:pointer;font-weight:600;color:#118e9c}.int-practice-card details p{margin:16px 0}.int-practice-section{scroll-margin-top:90px;margin:40px 0}.int-practice-section h2{font-size:1.6rem}
-@media(max-width:760px){.int-practice-grid{grid-template-columns:1fr}.int-practice-card{padding:18px}.int-formula math[display="block"]{font-size:1em}}
+@media(max-width:760px){.int-practice-grid{grid-template-columns:1fr}.int-practice-card{padding:18px}.int-formula math[display="block"]{font-size:1.12em}}

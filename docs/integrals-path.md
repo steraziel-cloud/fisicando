@@ -35,7 +35,7 @@ L’ordine anticipa la ricerca delle primitive per soddisfare l’urgenza degli 
 
 ## Verifiche
 
-`verify_integrals.py` controlla simbolicamente 45 identità di primitive e sei valutazioni definite; controlla inoltre struttura delle lezioni, numero di alternative e validità XML di 331 formule nel reader. Nei controlli simbolici log|g| è trattato tramite la derivata g′/g sugli intervalli dove g non si annulla. Le condizioni di dominio sono esplicitate nei testi. Controlli JavaScript e verifica nel browser prima della consegna.
+La verifica automatica svolta prima della pubblicazione controlla simbolicamente 45 identità di primitive e sei valutazioni definite; controlla inoltre struttura delle lezioni, numero di alternative e validità XML di 331 formule nel reader. Nei controlli simbolici log|g| è trattato tramite la derivata g′/g sugli intervalli dove g non si annulla. Le condizioni di dominio sono esplicitate nei testi. Controlli JavaScript e verifica nel browser prima della consegna.
 
 ## Prossima revisione
 
