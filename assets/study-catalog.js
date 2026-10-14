@@ -70,7 +70,6 @@ window.LESSON_CATALOG = [
                   "medie",
                   "biennio"
                 ],
-                "status": "work-in-progress",
                 "id": "aritmetica-divisibilita",
                 "url": "reader.html?lezione=aritmetica-divisibilita",
                 "kind": "Teoria"
@@ -81,7 +80,6 @@ window.LESSON_CATALOG = [
                   "medie",
                   "biennio"
                 ],
-                "status": "work-in-progress",
                 "id": "aritmetica-criteri-divisibilita",
                 "url": "reader.html?lezione=aritmetica-criteri-divisibilita",
                 "kind": "Teoria"
@@ -92,7 +90,6 @@ window.LESSON_CATALOG = [
                   "medie",
                   "biennio"
                 ],
-                "status": "work-in-progress",
                 "id": "aritmetica-primi",
                 "url": "reader.html?lezione=aritmetica-primi",
                 "kind": "Teoria"
@@ -103,7 +100,6 @@ window.LESSON_CATALOG = [
                   "medie",
                   "biennio"
                 ],
-                "status": "work-in-progress",
                 "id": "aritmetica-scomposizione",
                 "url": "reader.html?lezione=aritmetica-scomposizione",
                 "kind": "Teoria"
@@ -114,7 +110,6 @@ window.LESSON_CATALOG = [
                   "medie",
                   "biennio"
                 ],
-                "status": "work-in-progress",
                 "id": "aritmetica-mcd",
                 "url": "reader.html?lezione=aritmetica-mcd",
                 "kind": "Teoria"
@@ -125,7 +120,6 @@ window.LESSON_CATALOG = [
                   "medie",
                   "biennio"
                 ],
-                "status": "work-in-progress",
                 "id": "aritmetica-mcm",
                 "url": "reader.html?lezione=aritmetica-mcm",
                 "kind": "Teoria"
@@ -424,7 +418,6 @@ window.LESSON_CATALOG = [
                       "medie",
                       "biennio"
                     ],
-                    "status": "work-in-progress",
                     "kind": "Teoria"
                   },
                   {
@@ -435,7 +428,6 @@ window.LESSON_CATALOG = [
                       "medie",
                       "biennio"
                     ],
-                    "status": "work-in-progress",
                     "kind": "Teoria"
                   },
                   {
@@ -446,7 +438,6 @@ window.LESSON_CATALOG = [
                       "medie",
                       "biennio"
                     ],
-                    "status": "work-in-progress",
                     "kind": "Teoria"
                   },
                   {
@@ -457,7 +448,6 @@ window.LESSON_CATALOG = [
                       "medie",
                       "biennio"
                     ],
-                    "status": "work-in-progress",
                     "kind": "Teoria"
                   },
                   {
@@ -468,7 +458,6 @@ window.LESSON_CATALOG = [
                       "medie",
                       "biennio"
                     ],
-                    "status": "work-in-progress",
                     "kind": "Teoria"
                   },
                   {
@@ -479,7 +468,6 @@ window.LESSON_CATALOG = [
                       "medie",
                       "biennio"
                     ],
-                    "status": "work-in-progress",
                     "kind": "Teoria"
                   },
                   {
@@ -513,7 +501,6 @@ window.LESSON_CATALOG = [
                       "medie",
                       "biennio"
                     ],
-                    "status": "work-in-progress",
                     "kind": "Teoria"
                   }
                 ]
