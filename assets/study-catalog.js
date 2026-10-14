@@ -821,7 +821,7 @@ window.LESSON_CATALOG = [
                   "analisi1"
                 ],
                 "status": "work-in-progress",
-                "exercisesUrl": "integrali-allenamento.html#immediati"
+                "exercisesUrl": "integrali-allenamento.html?gruppo=immediati"
               },
               {
                 "title": "Funzioni composte e integrazione per sostituzione",
@@ -832,7 +832,7 @@ window.LESSON_CATALOG = [
                   "analisi1"
                 ],
                 "status": "work-in-progress",
-                "exercisesUrl": "integrali-allenamento.html#sostituzione"
+                "exercisesUrl": "integrali-allenamento.html?gruppo=sostituzione"
               },
               {
                 "title": "Funzioni razionali fratte: divisione e fratti semplici",
@@ -843,7 +843,7 @@ window.LESSON_CATALOG = [
                   "analisi1"
                 ],
                 "status": "work-in-progress",
-                "exercisesUrl": "integrali-allenamento.html#lineari"
+                "exercisesUrl": "integrali-allenamento.html?gruppo=lineari"
               },
               {
                 "title": "Funzioni razionali fratte: denominatori quadratici",
@@ -854,7 +854,7 @@ window.LESSON_CATALOG = [
                   "analisi1"
                 ],
                 "status": "work-in-progress",
-                "exercisesUrl": "integrali-allenamento.html#quadratici"
+                "exercisesUrl": "integrali-allenamento.html?gruppo=quadratici"
               },
               {
                 "title": "Integrazione per parti",
@@ -865,7 +865,7 @@ window.LESSON_CATALOG = [
                   "analisi1"
                 ],
                 "status": "work-in-progress",
-                "exercisesUrl": "integrali-allenamento.html#parti"
+                "exercisesUrl": "integrali-allenamento.html?gruppo=parti"
               },
               {
                 "title": "Integrali definiti: significato e calcolo",
@@ -876,7 +876,7 @@ window.LESSON_CATALOG = [
                   "analisi1"
                 ],
                 "status": "work-in-progress",
-                "exercisesUrl": "integrali-allenamento.html#definiti"
+                "exercisesUrl": "integrali-allenamento.html?gruppo=definiti"
               },
               {
                 "title": "Integrali · Allenamento con suggerimenti e soluzioni",
