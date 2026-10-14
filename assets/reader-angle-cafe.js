@@ -212,7 +212,21 @@ function game(host,state,onNext){
  sync();raf=requestAnimationFrame(now=>{map.focus({preventScroll:true});loop(now);});
  return ()=>{disposed=true;cancelAnimationFrame(raf);keys.clear();sound.dispose();document.removeEventListener('keydown',keydown,true);document.removeEventListener('keyup',keyup);window.removeEventListener('blur',blur);document.removeEventListener('visibilitychange',blur);};
 }
-function closing(host){host.classList.add('ag-box-closing');host.closest('.ag-card').classList.add('ag-box-closing-card');const scene=node('div','ag-box-scene'),img=node('img','ag-box-cat');img.src='assets/images/reader/bjorne-box-angoli-v1.png';img.alt='Bjorne sorride felice nella sua scatolina rettangolare ritrovata.';img.width=600;img.height=560;const speech=node('div','ag-box-balloon');const lines=['Uno…','Due…','Tre…','Quattro!','Quattro angoli retti!','Ahh… qui è tutto preciso. Che bella sensazione!'];speech.textContent=lines[0];scene.append(img,speech);host.replaceChildren(scene);let index=0,timer,swap,disposed=false;function advance(){if(disposed)return;speech.classList.add('ag-box-balloon-out');swap=setTimeout(()=>{if(disposed)return;index=(index+1)%lines.length;speech.textContent=lines[index];speech.classList.remove('ag-box-balloon-out');timer=setTimeout(advance,index<4?1400:index===4?2600:6500);},220);}timer=setTimeout(advance,1600);return()=>{disposed=true;clearTimeout(timer);clearTimeout(swap);};}
+function closing(host){
+ host.classList.add('ag-box-closing');host.closest('.ag-card').classList.add('ag-box-closing-card');
+ const scene=node('div','ag-box-scene'),img=node('img','ag-box-cat');
+ img.src='assets/images/reader/bjorne-box-angoli-v2.png';img.alt='Bjorne sorride felice nella sua scatolina preferita, contrassegnata da una zampina turchese.';img.width=600;img.height=560;
+ const speech=node('div','ag-box-balloon');speech.setAttribute('role','img');
+ const lines=['Uno…','Due…','Tre…','Quattro!','Quattro angoli retti!','Ahh… qui è tutto preciso. Che bella sensazione!'];
+ const frames=[[114,35,627,314],[786,35,628,314],[114,356,628,311],[786,355,634,314],[113,668,636,337],[787,665,639,341]];
+ const art=svg('svg',{class:'ag-box-balloon-art',preserveAspectRatio:'none','aria-hidden':'true'});
+ art.append(svg('image',{href:'assets/images/reader/bjorne-box-balloons-v1.png',x:0,y:0,width:1536,height:1024}));speech.append(art);
+ function show(i){const f=frames[i];art.setAttribute('viewBox',f.join(' '));speech.style.aspectRatio=f[2]+'/'+f[3];speech.setAttribute('aria-label',lines[i]);}
+ show(0);scene.append(img,speech);host.replaceChildren(scene);
+ let index=0,timer,swap,disposed=false;
+ function advance(){if(disposed)return;speech.classList.add('ag-box-balloon-out');swap=setTimeout(()=>{if(disposed)return;index=(index+1)%lines.length;show(index);speech.classList.remove('ag-box-balloon-out');timer=setTimeout(advance,index<4?1400:index===4?2600:6500);},220);}
+ timer=setTimeout(advance,1600);return()=>{disposed=true;clearTimeout(timer);clearTimeout(swap);};
+}
  function mount(box,type,state,options={}){
   box.classList.add('ag-card',type==='cafe-story'?'ag-story-card':'ag-board-card');
   const host=node('div','ag-host rm-reader-board');box.append(host);

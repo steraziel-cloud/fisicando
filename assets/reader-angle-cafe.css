@@ -107,3 +107,10 @@
 .ag-regions .ag-rotation-region{cursor:grab!important;touch-action:none}.ag-regions .ag-rotation-region.ag-grabbing{cursor:grabbing!important}
 
 .ag-map[data-fixed=true] .ag-regions path{cursor:default!important}
+
+/* Illustrated PNG balloons keep the same persistent scene and automatic sequence. */
+.ag-box-scene{padding-top:165px;min-height:490px}
+.ag-box-balloon{top:0;left:4%;right:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;overflow:hidden;clip-path:inset(0)}
+.ag-box-balloon::after{display:none}
+.ag-box-balloon-art{display:block;width:100%!important;height:100%!important;overflow:hidden!important;clip-path:inset(0)}
+@media(max-width:780px){.ag-box-scene{padding-top:150px;min-height:420px}}
