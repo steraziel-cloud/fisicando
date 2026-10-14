@@ -1,7 +1,7 @@
 Object.assign(window.READER_GLOSSARY, {
   "int-primitiva": {
     "title": "Primitiva",
-    "text": "Su un intervallo I, F è una primitiva di f se F è derivabile e F′(x)=f(x) per ogni x di I. Due primitive della stessa funzione sullo stesso intervallo differiscono per una costante.",
+    "text": "Su un intervallo I, F è una primitiva di f se F è derivabile e F′(x)=f(x) per ogni x di I. La condizione F′=f deve valere dove cerchiamo la primitiva: f deve essere definita e F derivabile. Due primitive sullo stesso intervallo differiscono per una costante; su parti separate del dominio le costanti possono essere diverse.",
     "kind": "Definizione di analisi"
   },
   "int-indefinito": {
@@ -21,7 +21,7 @@ Object.assign(window.READER_GLOSSARY, {
   },
   "int-linearita": {
     "title": "Linearità dell’integrazione",
-    "text": "L’integrale di una somma è la somma degli integrali e un fattore costante può essere portato fuori dall’integrale. Queste proprietà non si estendono in generale a prodotti o quozienti.",
+    "text": "L’integrale di una somma è la somma degli integrali e un fattore costante può essere portato fuori dall’integrale. Un fattore costante non dipende dalla variabile d’integrazione. Se invece moltiplichiamo due funzioni che dipendono da quella variabile, non possiamo in generale moltiplicare le loro primitive per integrare il prodotto. Lo stesso limite vale per i quozienti.",
     "kind": "Definizione di analisi"
   },
   "int-sostituzione": {
