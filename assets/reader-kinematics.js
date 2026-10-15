@@ -47,11 +47,11 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
             },
             {
               "title": "Quanto rapidamente cambia?",
-              "html": "Nei primi <strong>2 secondi</strong>, la velocità di Red passa da <strong>6 a 7,2 m/s</strong>; quella di Morgana da <strong>4 a 5 m/s</strong>.<br><br>Entrambi aumentano la velocità, ma nello stesso intervallo Red la aumenta di più: <strong>1,2 m/s contro 1 m/s</strong>.<br><br>Non ci interessa soltanto quale velocità hanno. Ora chiediamoci: <strong>quanto rapidamente cambia la loro velocità?</strong>"
+              "html": "Nei primi <strong>2 secondi</strong>, la velocità di Red passa da <strong>5 a 7 m/s</strong>; quella di Morgana da <strong>5 a 6 m/s</strong>.<br><br>Entrambi aumentano la velocità, ma nello stesso intervallo Red la aumenta di più: <strong>2 m/s contro 1 m/s</strong>.<br><br>Non ci interessa soltanto quale velocità hanno. Ora chiediamoci: <strong>quanto rapidamente cambia la loro velocità?</strong>"
             },
             {
               "title": "L’accelerazione scalare",
-              "html": "L’<button type=\"button\" class=\"rm-keyword\" data-term=\"ks-accelerazione\">accelerazione scalare</button> descrive <strong>quanto rapidamente cambia la velocità scalare nel tempo</strong>. La indichiamo con <strong>aₛ</strong>.<br><br>Bjorne ha accelerazione nulla: corre, ma la sua velocità non cambia. Red ha un’accelerazione che cambia durante la corsa: prima la velocità cresce, poi diminuisce. Morgana mantiene un’accelerazione costante: in intervalli di tempo uguali la sua velocità aumenta della stessa quantità.",
+              "html": "L’<button type=\"button\" class=\"rm-keyword\" data-term=\"ks-accelerazione\">accelerazione scalare</button> descrive <strong>quanto rapidamente cambia la velocità scalare nel tempo</strong>. La indichiamo con <strong>aₛ</strong>.<br><br>Bjorne ha accelerazione nulla: corre, ma la sua velocità non cambia. Red cambia accelerazione: nei primi 4 secondi la velocità aumenta regolarmente; poi diminuisce, ancora con regolarità, ma più lentamente. Morgana mantiene un’accelerazione costante: in intervalli di tempo uguali la sua velocità aumenta della stessa quantità.",
               "cloze": [
                 {
                   "before": "Un’accelerazione nulla indica una velocità ",
@@ -67,7 +67,7 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
             },
             {
               "title": "Misurare il cambiamento",
-              "html": "Come per la posizione, confrontiamo due letture. La <strong>variazione della velocità scalare</strong> si ottiene sottraendo la velocità iniziale da quella finale:<span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>Δ</mi><msub><mi>v</mi><mi>s</mi></msub><mo>=</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>2</mn></mrow></msub><mo>−</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>1</mn></mrow></msub></mrow></math></span>Per Red, nei primi 2 secondi, otteniamo <strong>7,2 − 6 = 1,2 m/s</strong>.<br><br>La variazione, però, non basta: lo stesso aumento ottenuto in 2 secondi oppure in 10 secondi corrisponde a un cambiamento più o meno rapido. <strong>Dobbiamo tenere conto anche del tempo impiegato.</strong>"
+              "html": "Come per la posizione, confrontiamo due letture. La <strong>variazione della velocità scalare</strong> si ottiene sottraendo la velocità iniziale da quella finale:<span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>Δ</mi><msub><mi>v</mi><mi>s</mi></msub><mo>=</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>2</mn></mrow></msub><mo>−</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>1</mn></mrow></msub></mrow></math></span>Per Red, nei primi 2 secondi, otteniamo <strong>7 − 5 = 2 m/s</strong>.<br><br>La variazione, però, non basta: lo stesso aumento ottenuto in 2 secondi oppure in 10 secondi corrisponde a un cambiamento più o meno rapido. <strong>Dobbiamo tenere conto anche del tempo impiegato.</strong>"
             }
           ],
           "board": "acceleration-race"
@@ -1506,4 +1506,5 @@ window.READER_LESSONS["cinematica-caduta"] = {
   ]
 };
 if(window.READER_LESSONS["cinematica-velocita"])window.READER_LESSONS["cinematica-velocita"].nextLesson={id:"cinematica-accelerazione"};
+
 
