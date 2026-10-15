@@ -404,6 +404,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  function updateCard(item,direction){
   const view=mountedCard;cancelSlide();
+  if(item.card.board==='acceleration-class'&&window.GatitoAccelerationClass)window.GatitoAccelerationClass.setMode(view.box,item.step.classMode||'');
   if(item.card.board?.startsWith('cafe-')&&window.GatitoAngleCafe)window.GatitoAngleCafe.setStage(view.box,item.step.cafeStage??0);
   const cumulative=Number.isInteger(item.step.cumulativeFrom),replace=!cumulative&&(item.card.stepMode==='replace'||!!item.step.replace);
   const wanted=cardSteps(item);
@@ -456,6 +457,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.board?.startsWith('cafe-')&&window.GatitoAngleCafe)disposeWidget=window.GatitoAngleCafe.mount(box,card.board,cafeState,{stage:steps.at(-1)?.cafeStage??0});
   if(card.board==='elevator'&&window.GatitoElevator)disposeWidget=window.GatitoElevator.mount(box,state[current].elevator,()=>{actions();if(!referenceMode&&!allMode)$('reader-next').click();},archived||allMode);
   if(card.board==='velocity-instant'&&window.GatitoVelocityScene){box.classList.add('rm-velocity-instant-card');disposeWidget=window.GatitoVelocityScene.mount(box,{instant:true,graph:steps.some(step=>step.velocityGraph)});}
+  if(card.board==='acceleration-class'&&window.GatitoAccelerationClass)disposeWidget=window.GatitoAccelerationClass.mount(box,card.classScene,state[current]['ac-'+card.classScene]||(state[current]['ac-'+card.classScene]={t:0}),steps.at(-1)?.classMode||'');
   if(card.board==='acceleration-race'&&window.GatitoAccelerationRace)disposeWidget=window.GatitoAccelerationRace.mount(box,state[current].accelerationRace||(state[current].accelerationRace={t:0}));
   if(card.board==='law-motion'&&window.GatitoLawMotion){box.classList.add('rm-law-card');disposeWidget=window.GatitoLawMotion.mount(box,state[current].lawMotion||(state[current].lawMotion={time:0}),{graph:steps.some(step=>step.lawGraph)});}
   if(card.board==='velocity-story'&&window.GatitoVelocityScene){box.classList.add('rm-velocity-story-card');disposeWidget=window.GatitoVelocityScene.mount(box);}
@@ -532,6 +534,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
+
 
 
 

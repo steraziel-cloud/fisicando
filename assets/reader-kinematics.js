@@ -2,7 +2,7 @@
 window.READER_LESSONS["cinematica-accelerazione"] = {
   "title": "L’accelerazione scalare",
   "subtitle": "Biennio e ripasso · Meccanica · Cinematica scalare · In lavorazione",
-  "version": 1,
+  "version": 2,
   "status": "work-in-progress",
   "sections": [
     {
@@ -10,75 +10,42 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
       "title": "Quando cambia la velocità",
       "cards": [
         {
-          "title": "Gli ultimi cento metri",
+          "title": "La velocità può cambiare",
+          "board": "acceleration-class",
+          "classScene": "observe",
           "stepMode": "replace",
-          "illustration": {
-            "src": "assets/images/reader/kinematics/ultimi-cento-metri.webp",
-            "alt": "Red e Morgana quasi alla pari corrono verso il traguardo del campo sportivo della scuola; Bjorne li segue sorridendo.",
-            "width": 1774,
-            "height": 887
-          },
           "steps": [
             {
-              "title": "Una sfida fino al traguardo",
-              "html": "Al campo sportivo della scuola, <strong>Red, Morgana e Bjorne si sfidano in una gara di corsa.</strong><br><br>La gara è già iniziata e <strong>mancano gli ultimi cento metri al traguardo.</strong> È qui che comincia la nostra osservazione.<br><br>Seguiamoli per capire <strong>come cambia la velocità durante il movimento.</strong>"
+              "title": "Una macchinina sulla lavagna",
+              "html": "Red e Bjorne osservano una macchinina disegnata sulla lavagna: <strong>può prendere velocità, rallentare oppure procedere sempre alla stessa velocità.</strong><br><br>La velocità scalare vₛ ci dice quanto rapidamente cambia la posizione lungo la traiettoria orientata. Per descrivere <strong>quanto rapidamente cambia la velocità stessa</strong> usiamo un’altra grandezza: l’<button type=\"button\" class=\"rm-keyword\" data-term=\"ks-accelerazione\">accelerazione scalare</button>, indicata con <strong>aₛ</strong>."
+            },
+            {
+              "title": "Che cosa osserviamo?",
+              "html": "Quando la macchinina passa da <strong>2 a 10 m/s</strong>, la sua velocità cambia. Se invece continua a muoversi a <strong>6 m/s</strong>, la velocità rimane costante.<br><br><strong>Muoversi non significa necessariamente accelerare.</strong> Nella lavagna puoi confrontare le tre situazioni.",
+              "cloze": [
+                {
+                  "before": "Se la velocità rimane costante, l’accelerazione è ",
+                  "options": [
+                    "nulla",
+                    "sempre positiva"
+                  ],
+                  "answer": 0,
+                  "after": ".",
+                  "feedback": "La posizione cambia, ma la velocità resta la stessa."
+                }
+              ]
             }
           ]
         },
         {
-          "title": "Tre moti, una nuova domanda",
+          "title": "La variazione non basta",
+          "board": "acceleration-class",
+          "classScene": "compare",
           "stepMode": "replace",
           "steps": [
             {
-              "title": "La velocità non resta sempre uguale",
-              "html": "Seguiamo la corsa per <strong>12 secondi</strong>. Scegliamo l’origine all’inizio degli ultimi cento metri e il verso positivo diretto al traguardo. Il cronometro parte mentre i gatti stanno già correndo.<br><br><strong>Bjorne mantiene la stessa velocità.</strong> Red prima aumenta il ritmo, poi comincia a rallentare. Morgana, invece, aumenta la propria velocità con regolarità.<br><br>Il grafico di <strong>vₛ(t)</strong> si traccia mentre i gatti avanzano: ogni punto indica la velocità di un gatto nell’istante osservato.",
-              "cloze": [
-                {
-                  "before": "La curva orizzontale della velocità appartiene a ",
-                  "options": [
-                    "Red",
-                    "Bjorne"
-                  ],
-                  "answer": 1,
-                  "after": ".",
-                  "feedback": "La velocità di Bjorne resta uguale mentre il tempo passa."
-                }
-              ]
-            },
-            {
-              "title": "Quanto rapidamente cambia?",
-              "html": "Nei primi <strong>2 secondi</strong>, la velocità di Red passa da <strong>5 a 7 m/s</strong>; quella di Morgana da <strong>5 a 6 m/s</strong>.<br><br>Entrambi aumentano la velocità, ma nello stesso intervallo Red la aumenta di più: <strong>2 m/s contro 1 m/s</strong>.<br><br>Non ci interessa soltanto quale velocità hanno. Ora chiediamoci: <strong>quanto rapidamente cambia la loro velocità?</strong>"
-            },
-            {
-              "title": "L’accelerazione scalare",
-              "html": "L’<button type=\"button\" class=\"rm-keyword\" data-term=\"ks-accelerazione\">accelerazione scalare</button> descrive <strong>quanto rapidamente cambia la velocità scalare nel tempo</strong>. La indichiamo con <strong>aₛ</strong>.<br><br>Bjorne ha accelerazione nulla: corre, ma la sua velocità non cambia. Red cambia accelerazione: nei primi 4 secondi la velocità aumenta regolarmente; poi diminuisce, ancora con regolarità, ma più lentamente. Morgana mantiene un’accelerazione costante: in intervalli di tempo uguali la sua velocità aumenta della stessa quantità.",
-              "cloze": [
-                {
-                  "before": "Un’accelerazione nulla indica una velocità ",
-                  "options": [
-                    "costante",
-                    "necessariamente nulla"
-                  ],
-                  "answer": 0,
-                  "after": ".",
-                  "feedback": "Bjorne continua a correre anche se la sua accelerazione è nulla."
-                }
-              ]
-            },
-            {
-              "title": "Misurare il cambiamento",
-              "html": "Come per la posizione, confrontiamo due letture. La <strong>variazione della velocità scalare</strong> si ottiene sottraendo la velocità iniziale da quella finale:<span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>Δ</mi><msub><mi>v</mi><mi>s</mi></msub><mo>=</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>2</mn></mrow></msub><mo>−</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>1</mn></mrow></msub></mrow></math></span>Per Red, nei primi 2 secondi, otteniamo <strong>7 − 5 = 2 m/s</strong>.<br><br>La variazione, però, non basta: lo stesso aumento ottenuto in 2 secondi oppure in 10 secondi corrisponde a un cambiamento più o meno rapido. <strong>Dobbiamo tenere conto anche del tempo impiegato.</strong>"
-            }
-          ],
-          "board": "acceleration-race"
-        },
-        {
-          "title": "La velocità può cambiare anche con segno negativo",
-          "stepMode": "replace",
-          "steps": [
-            {
-              "title": "Il riferimento rimane lo stesso",
-              "html": "Usiamo ancora la traiettoria orientata e il verso positivo scelto. Una velocità <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x02212;</mo><mn>6</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> indica un movimento nel verso negativo.<br><br>Passare da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x02212;</mo><mn>6</mn></mrow></math> a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mo>&#x02212;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> significa avere <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>&#x00394;</mi><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mo stretchy=\"false\">&#x00028;</mo><mo>&#x02212;</mo><mn>2</mn><mo stretchy=\"false\">&#x00029;</mo><mo>&#x02212;</mo><mo stretchy=\"false\">&#x00028;</mo><mo>&#x02212;</mo><mn>6</mn><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x0002B;</mo><mn>4</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math></span> La velocità scalare aumenta, ma la <strong>rapidità diminuisce</strong>: il suo valore assoluto passa da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>6</mn></mrow></math> a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>. <strong>Il segno della variazione, da solo, non ci dice se il corpo sta andando più veloce.</strong>"
+              "title": "La stessa variazione, tempi diversi",
+              "html": "La velocità aumenta da <strong>2 a 10 m/s</strong>: la variazione è <strong>10 − 2 = 8 m/s</strong>.<br><br>Questo aumento può avvenire in <strong>4 secondi</strong> oppure in <strong>8 secondi</strong>. La variazione è la stessa, ma nel primo caso la velocità cambia più rapidamente.<br><br>Per misurare questo cambiamento dobbiamo mettere in relazione <strong>la variazione della velocità e il tempo impiegato</strong>."
             }
           ]
         }
@@ -89,165 +56,110 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
             "question": "Quale cambiamento descrive l’accelerazione scalare?",
             "options": [
               "Il cambiamento della velocità scalare nel tempo.",
-              "La posizione del corpo in un istante.",
-              "La lunghezza totale del percorso.",
-              "La massa del corpo."
+              "Il cambiamento della posizione nel tempo.",
+              "La distanza totale percorsa.",
+              "La velocità più alta raggiunta."
             ],
             "answer": 0,
-            "feedback": "L’accelerazione mette in relazione una variazione della velocità scalare con il tempo.",
-            "feedbackByOption": [
-              "L’accelerazione mette in relazione una variazione della velocità scalare con il tempo.",
-              "Rivedi la relazione fra le grandezze. L’accelerazione mette in relazione una variazione della velocità scalare con il tempo.",
-              "Rivedi la relazione fra le grandezze. L’accelerazione mette in relazione una variazione della velocità scalare con il tempo.",
-              "Rivedi la relazione fra le grandezze. L’accelerazione mette in relazione una variazione della velocità scalare con il tempo."
-            ]
+            "feedback": "La velocità descrive il cambiamento della posizione; l’accelerazione descrive il cambiamento della velocità."
           },
           {
-            "question": "La velocità passa da −6 m/s a −2 m/s. Quanto vale Δvₛ?",
+            "question": "Una macchinina procede sempre a 6 m/s. La sua accelerazione è…",
             "options": [
-              "−8 m/s",
-              "−4 m/s",
-              "+4 m/s",
-              "+8 m/s"
+              "6 m/s², perché si muove.",
+              "Positiva, perché la velocità è positiva.",
+              "Nulla, perché la velocità non cambia.",
+              "Impossibile da determinare, anche sapendo che la velocità è costante."
             ],
             "answer": 2,
-            "feedback": "Sottrai la lettura iniziale: (−2)−(−6)=+4 m/s.",
-            "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. Sottrai la lettura iniziale: (−2)−(−6)=+4 m/s.",
-              "Rivedi la relazione fra le grandezze. Sottrai la lettura iniziale: (−2)−(−6)=+4 m/s.",
-              "Sottrai la lettura iniziale: (−2)−(−6)=+4 m/s.",
-              "Rivedi la relazione fra le grandezze. Sottrai la lettura iniziale: (−2)−(−6)=+4 m/s."
-            ]
+            "feedback": "Essere in movimento e cambiare velocità sono due cose diverse."
           },
           {
-            "question": "Passando da −6 m/s a −2 m/s, il corpo…",
+            "question": "La stessa variazione di velocità avviene in 4 s oppure in 8 s. In quale caso il cambiamento medio è più rapido?",
             "options": [
-              "Cambia necessariamente verso.",
-              "Si muove più rapidamente.",
-              "È fermo per tutto l’intervallo.",
-              "Si muove nel verso negativo con minore rapidità."
+              "In 8 s.",
+              "In 4 s.",
+              "È uguale, perché la variazione è uguale.",
+              "Dipende soltanto dalla posizione iniziale."
             ],
-            "answer": 3,
-            "feedback": "La velocità resta negativa e il suo valore assoluto scende da 6 a 2 m/s.",
-            "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. La velocità resta negativa e il suo valore assoluto scende da 6 a 2 m/s.",
-              "Rivedi la relazione fra le grandezze. La velocità resta negativa e il suo valore assoluto scende da 6 a 2 m/s.",
-              "Rivedi la relazione fra le grandezze. La velocità resta negativa e il suo valore assoluto scende da 6 a 2 m/s.",
-              "La velocità resta negativa e il suo valore assoluto scende da 6 a 2 m/s."
-            ]
+            "answer": 1,
+            "feedback": "A parità di variazione della velocità, un tempo minore corrisponde a un cambiamento medio più rapido."
           }
         ]
       }
     },
     {
       "id": "media",
-      "title": "L’accelerazione media",
+      "title": "Calcolare e interpretare l’accelerazione",
       "cards": [
         {
-          "title": "Un rapporto che conosciamo già",
+          "title": "L’accelerazione scalare media",
+          "board": "acceleration-class",
+          "classScene": "mean",
           "stepMode": "replace",
           "steps": [
             {
               "title": "La definizione",
-              "html": "L’<button type=\"button\" class=\"rm-keyword\" data-term=\"ks-accelerazione-media\">accelerazione scalare media</button> è il rapporto tra la variazione della velocità e l’intervallo di tempo in cui avviene: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>a</mi><mrow><mi>s</mi><mo>,</mo><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><mfrac><mrow><mi>&#x00394;</mi><msub><mi>v</mi><mi>s</mi></msub></mrow><mrow><mi>&#x00394;</mi><mi>t</mi></mrow></mfrac><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>2</mn></mrow></msub><mo>&#x02212;</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>1</mn></mrow></msub></mrow><mrow><msub><mi>t</mi><mn>2</mn></msub><mo>&#x02212;</mo><msub><mi>t</mi><mn>1</mn></msub></mrow></mfrac></mrow></math></span> con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>t</mi><mn>2</mn></msub><mo>&#x0003E;</mo><msub><mi>t</mi><mn>1</mn></msub></mrow></math>. Il simbolo <button type=\"button\" class=\"rm-keyword\" data-term=\"delta\">Δ</button> indica una variazione: non è un fattore da cancellare nel rapporto. La struttura è la stessa della velocità media: cambia la grandezza di cui misuriamo la variazione."
+              "html": "L’<button type=\"button\" class=\"rm-keyword\" data-term=\"ks-accelerazione-media\">accelerazione scalare media</button> è il <strong>rapporto fra la variazione della velocità scalare e l’intervallo di tempo in cui avviene</strong>:<span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>a</mi><mrow><mi>s</mi><mo>,</mo><mi>m</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>Δ</mi><msub><mi>v</mi><mi>s</mi></msub></mrow><mrow><mi>Δ</mi><mi>t</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>2</mn></mrow></msub><mo>−</mo><msub><mi>v</mi><mrow><mi>s</mi><mo>,</mo><mn>1</mn></mrow></msub></mrow><mrow><msub><mi>t</mi><mn>2</mn></msub><mo>−</mo><msub><mi>t</mi><mn>1</mn></msub></mrow></mfrac></mrow></math></span>Il simbolo <button type=\"button\" class=\"rm-keyword\" data-term=\"delta\">Δ</button> indica la differenza fra il valore finale e quello iniziale. Consideriamo un intervallo di durata positiva."
             },
             {
-              "title": "Che cosa significa il numero",
-              "html": "Nel grafico la velocità passa da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn></mrow></math> a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>10</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> in <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>4</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math>: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>a</mi><mrow><mi>s</mi><mo>,</mo><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>10</mn><mo>&#x02212;</mo><mn>2</mn></mrow><mrow><mn>4</mn></mrow></mfrac><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math></span> In questo intervallo, la velocità è aumentata <strong>mediamente di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> per ogni secondo</strong>. Il grafico mostra anche che, in questo esempio, l’aumento è regolare."
-            }
-          ],
-          "illustration": {
-            "src": "assets/images/reader/kinematics/accelerazione-positiva.svg?vₛ=2",
-            "alt": "Grafico velocità-tempo: la velocità cresce linearmente da 2 m/s a t=0 a 10 m/s a t=4 s.",
-            "width": 640,
-            "height": 400
-          }
-        },
-        {
-          "title": "Un’unità da leggere bene",
-          "stepMode": "replace",
-          "steps": [
-            {
-              "title": "Metri al secondo, per secondo",
-              "html": "La velocità si misura in <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>; dividendo la sua variazione per un tempo in secondi otteniamo <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mfrac><mrow><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow><mrow><mi>&#x00073;</mi></mrow></mfrac><mo>&#x0003D;</mo><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math></span> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math> non indica una distanza percorsa in un secondo: indica una variazione di velocità di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> per secondo."
+              "title": "Facciamo il calcolo",
+              "html": "Tra <strong>t₁ = 0 s</strong> e <strong>t₂ = 4 s</strong>, la velocità passa da <strong>vₛ,₁ = 2 m/s</strong> a <strong>vₛ,₂ = 10 m/s</strong>.<br><br>Prima calcoliamo le due differenze: <strong>Δvₛ = 8 m/s</strong> e <strong>Δt = 4 s</strong>. Poi eseguiamo il rapporto:<span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>a</mi><mrow><mi>s</mi><mo>,</mo><mi>m</mi></mrow></msub><mo>=</mo><mfrac><mrow><mn>8</mn><mtext> m/s</mtext></mrow><mrow><mn>4</mn><mtext> s</mtext></mrow></mfrac><mo>=</mo><mn>2</mn><mtext> m/s²</mtext></mrow></math></span>La velocità è aumentata <strong>mediamente di 2 m/s per ogni secondo</strong>."
             }
           ]
         },
         {
-          "title": "Anche questa media perde informazioni",
+          "title": "Che cosa significa m/s²?",
+          "board": "acceleration-class",
+          "classScene": "units",
           "stepMode": "replace",
           "steps": [
             {
-              "title": "Un risultato uguale, cambiamenti diversi",
-              "html": "Nel grafico la velocità parte da <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>, sale a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>10</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> e torna a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math>. La variazione complessiva è zero, quindi <strong>l’accelerazione media è nulla</strong>.<br><br>Avremmo lo stesso risultato mantenendo <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>2</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><mi mathvariant=\"normal\">s</mi></mrow></mrow></math> per tutto il tempo. <strong>La media non distingue ciò che accade dentro l’intervallo.</strong><br><br>Due letture uguali non dimostrano che la velocità sia rimasta costante: per scoprirlo servono osservazioni intermedie."
+              "title": "Metri al secondo, per secondo",
+              "html": "Dividiamo una variazione di velocità, espressa in <strong>m/s</strong>, per un tempo espresso in <strong>s</strong>. L’unità dell’accelerazione è quindi <strong>m/s²</strong>: metri al secondo per secondo.<br><br>Se l’accelerazione rimane costante a <strong>+2 m/s²</strong>, la velocità aumenta di <strong>2 m/s in ogni secondo</strong>. Partendo da 2 m/s, leggiamo 4, poi 6, poi 8, poi 10 m/s."
+            },
+            {
+              "title": "La media guarda l’intero intervallo",
+              "html": "Un’accelerazione <strong>media</strong> di +2 m/s², da sola, non garantisce un aumento uguale in ogni secondo: descrive il cambiamento complessivo nell’intervallo.<br><br>Per lo stesso motivo, se la velocità iniziale e quella finale coincidono, <strong>l’accelerazione media è zero</strong>. In mezzo, però, la velocità potrebbe essere cambiata. Per sapere che cosa accade in ogni istante ci serve l’accelerazione istantanea.",
+              "classMode": "average"
             }
-          ],
-          "illustration": {
-            "src": "assets/images/reader/kinematics/media-nulla.svg?vₛ=2",
-            "alt": "La velocità cresce da 2 a 10 m/s nei primi due secondi e torna a 2 m/s nei successivi due.",
-            "width": 640,
-            "height": 400
-          }
+          ]
         }
       ],
       "quiz": {
         "questions": [
           {
-            "question": "Da 2 m/s a 10 m/s in 4 s: quanto vale l’accelerazione media?",
+            "question": "La velocità passa da 2 m/s a 10 m/s in 4 s. Qual è l’accelerazione media?",
             "options": [
-              "2 m/s²",
               "8 m/s²",
-              "0,5 m/s²",
-              "3 m/s²"
-            ],
-            "answer": 0,
-            "feedback": "Δvₛ=8 m/s e Δt=4 s: il rapporto è 2 m/s².",
-            "feedbackByOption": [
-              "Δvₛ=8 m/s e Δt=4 s: il rapporto è 2 m/s².",
-              "Rivedi la relazione fra le grandezze. Δvₛ=8 m/s e Δt=4 s: il rapporto è 2 m/s².",
-              "Rivedi la relazione fra le grandezze. Δvₛ=8 m/s e Δt=4 s: il rapporto è 2 m/s².",
-              "Rivedi la relazione fra le grandezze. Δvₛ=8 m/s e Δt=4 s: il rapporto è 2 m/s²."
-            ]
-          },
-          {
-            "question": "Qual è l’unità SI dell’accelerazione?",
-            "options": [
-              "m/s",
-              "m²/s",
-              "s/m",
-              "m/s²"
-            ],
-            "answer": 3,
-            "feedback": "Dividiamo una variazione di velocità in m/s per un tempo in s.",
-            "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. Dividiamo una variazione di velocità in m/s per un tempo in s.",
-              "Rivedi la relazione fra le grandezze. Dividiamo una variazione di velocità in m/s per un tempo in s.",
-              "Rivedi la relazione fra le grandezze. Dividiamo una variazione di velocità in m/s per un tempo in s.",
-              "Dividiamo una variazione di velocità in m/s per un tempo in s."
-            ]
-          },
-          {
-            "question": "Nel grafico, l’accelerazione media fra 0 s e 4 s è…",
-            "options": [
-              "Positiva perché la velocità è sempre positiva.",
-              "Nulla perché le velocità iniziale e finale coincidono.",
-              "Sempre uguale a 2 m/s².",
-              "Negativa perché il corpo si ferma."
+              "2 m/s²",
+              "3 m/s²",
+              "0,5 m/s²"
             ],
             "answer": 1,
-            "feedback": "L’accelerazione media usa soltanto la differenza delle velocità alle estremità. Qui vₛ finale e vₛ iniziale sono entrambe 2 m/s.",
-            "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. L’accelerazione media usa soltanto la differenza delle velocità alle estremità. Qui vₛ finale e vₛ iniziale sono entrambe 2 m/s.",
-              "L’accelerazione media usa soltanto la differenza delle velocità alle estremità. Qui vₛ finale e vₛ iniziale sono entrambe 2 m/s.",
-              "Rivedi la relazione fra le grandezze. L’accelerazione media usa soltanto la differenza delle velocità alle estremità. Qui vₛ finale e vₛ iniziale sono entrambe 2 m/s.",
-              "Rivedi la relazione fra le grandezze. L’accelerazione media usa soltanto la differenza delle velocità alle estremità. Qui vₛ finale e vₛ iniziale sono entrambe 2 m/s."
+            "feedback": "La variazione è 10−2=8 m/s. Dividendo per 4 s otteniamo 2 m/s²."
+          },
+          {
+            "question": "Un’accelerazione costante di +2 m/s² significa che…",
+            "options": [
+              "Il corpo percorre 2 m in ogni secondo.",
+              "La velocità vale sempre 2 m/s.",
+              "La velocità aumenta di 2 m/s in ogni secondo.",
+              "La velocità raddoppia in ogni secondo."
             ],
-            "illustration": {
-              "src": "assets/images/reader/kinematics/media-nulla.svg?vₛ=2",
-              "alt": "La velocità cresce da 2 a 10 m/s nei primi due secondi e torna a 2 m/s nei successivi due.",
-              "width": 640,
-              "height": 400
-            }
+            "answer": 2,
+            "feedback": "m/s² esprime una variazione di velocità per unità di tempo."
+          },
+          {
+            "question": "La velocità vale 2 m/s all’inizio e alla fine di un intervallo. Che cosa possiamo concludere?",
+            "options": [
+              "Il corpo è rimasto fermo.",
+              "L’accelerazione è stata sempre nulla.",
+              "La velocità è stata sempre 2 m/s.",
+              "L’accelerazione media nell’intervallo è nulla."
+            ],
+            "answer": 3,
+            "feedback": "La differenza fra le due velocità è zero. Questo non rivela tutti i cambiamenti avvenuti fra le due letture."
           }
         ]
       }
@@ -257,40 +169,31 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
       "title": "L’accelerazione in ogni istante",
       "cards": [
         {
-          "title": "Dalla media all’istante",
+          "title": "L’accelerazione istantanea e aₛ(t)",
+          "board": "acceleration-class",
+          "classScene": "instant",
           "stepMode": "replace",
           "steps": [
             {
-              "title": "La stessa idea usata per la velocità",
-              "html": "Per sapere come cambia la velocità in un momento preciso, restringiamo l’intervallo verso quell’istante e confrontiamo le letture di velocità sempre più vicine.<br><br>L’<button type=\"button\" class=\"rm-keyword\" data-term=\"ks-accelerazione-istantanea\">accelerazione scalare istantanea</button> descrive quanto rapidamente cambia la velocità scalare in un determinato istante. La ricaviamo considerando intervalli di durata sempre più vicina a zero."
+              "title": "In un determinato istante",
+              "html": "L’<button type=\"button\" class=\"rm-keyword\" data-term=\"ks-accelerazione-istantanea\">accelerazione scalare istantanea</button> descrive <strong>quanto rapidamente cambia la velocità scalare in un determinato istante</strong>.<br><br>Il passaggio dalla media all’istante segue l’idea già usata per la velocità: confrontiamo letture su intervalli sempre più brevi attorno all’istante che ci interessa.<br><br>Quando diciamo semplicemente «accelerazione» e la indichiamo con <strong>aₛ</strong>, ci riferiamo a quella istantanea."
             },
             {
-              "title": "La funzione accelerazione aₛ(t)",
-              "html": "Associando a ogni istante il valore dell’accelerazione otteniamo una <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button>: <span class=\"ks-formula\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003D;</mo><msub><mi>a</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math></span> La scrittura si legge «a di t». Il grafico di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> ci dice, istante per istante, come cambia la velocità; il grafico di <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> ci dice invece quale velocità ha il corpo."
-            }
-          ]
-        },
-        {
-          "title": "Il rapporto diventa sempre più preciso",
-          "stepMode": "replace",
-          "steps": [
-            {
-              "title": "Un’accelerazione che varia",
-              "html": "Consideriamo un esempio teorico in cui <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo><mo>&#x0003D;</mo><msup><mi>t</mi><mn>2</mn></msup></mrow></math>, con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi></mrow></math> espresso in secondi e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub></mrow></math> in metri al secondo. Vogliamo descrivere il cambiamento della velocità all’istante <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>2</mn><mspace width=\"0.167em\" /><mi>&#x00073;</mi></mrow></math>. Confrontiamo questa lettura con letture successive sempre più vicine:<div class=\"ks-data-table\"><table><thead><tr><th>Δt (s)</th><th>Δvₛ (m/s)</th><th>Δvₛ / Δt (m/s²)</th></tr></thead><tbody><tr><td>1</td><td>5</td><td>5</td></tr><tr><td>0,1</td><td>0,41</td><td>4,1</td></tr><tr><td>0,01</td><td>0,0401</td><td>4,01</td></tr></tbody></table></div>Le accelerazioni medie si avvicinano a <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mn>4</mn><mspace width=\"0.167em\" /><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>: è il valore dell’accelerazione nell’istante scelto. <strong>Le variazioni diventano piccole, mentre il loro rapporto si avvicina a un valore preciso.</strong>"
-            }
-          ]
-        },
-        {
-          "title": "Leggere il cambiamento nel grafico di vₛ(t)",
-          "stepMode": "replace",
-          "steps": [
-            {
-              "title": "La pendenza parla di accelerazione",
-              "html": "Quando il grafico della velocità sale, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub></mrow></math> aumenta e l’accelerazione è positiva; quando scende, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub></mrow></math> diminuisce e l’accelerazione è negativa. In un tratto orizzontale la velocità resta costante e l’accelerazione è nulla.<br><br>A parità di scala degli assi, una variazione più ripida corrisponde a una variazione di velocità più rapida. <strong>Non confondere l’altezza del grafico, che indica <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub></mrow></math>, con la sua pendenza, che descrive <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub></mrow></math>.</strong>"
-            },
-            {
-              "title": "Sulle traiettorie curve",
-              "html": "Qui parliamo di <strong>accelerazione scalare</strong>: descrive il cambiamento della velocità lungo la traiettoria orientata. Su una curva, però, il movimento cambia anche direzione. La descrizione completa di quel cambiamento richiede l’accelerazione vettoriale, che studieremo nel suo percorso.<br><br><strong>Accelerazione scalare nulla non significa, su una curva, accelerazione vettoriale nulla.</strong>"
+              "title": "Una funzione del tempo",
+              "html": "Associando a ogni istante t la sua accelerazione otteniamo una <button type=\"button\" class=\"rm-keyword\" data-term=\"funzione\">funzione</button>, che scriviamo <strong>aₛ(t)</strong> e leggiamo «a con pedice s di t».<br><br>Nel grafico mettiamo <strong>il tempo sull’asse orizzontale</strong> e <strong>l’accelerazione sull’asse verticale</strong>. L’altezza di un punto indica l’accelerazione in quell’istante.<br><br>In questa sequenza la macchinina prima prende velocità, poi la mantiene e infine rallenta.",
+              "classMode": "graph",
+              "cloze": [
+                {
+                  "before": "Nel grafico aₛ(t), all’istante t = 6 s l’accelerazione vale ",
+                  "options": [
+                    "−1 m/s²",
+                    "4 m/s"
+                  ],
+                  "answer": 0,
+                  "after": ".",
+                  "feedback": "Si legge l’ordinata del grafico dell’accelerazione: a 6 s vale −1 m/s²."
+                }
+              ]
             }
           ]
         }
@@ -298,74 +201,87 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
       "quiz": {
         "questions": [
           {
-            "question": "Su un tratto in cui vₛ(t) è orizzontale, l’accelerazione scalare è…",
+            "question": "Nel grafico aₛ(t), che cosa leggiamo sull’asse verticale?",
             "options": [
-              "Uguale al valore della velocità.",
-              "Nulla.",
-              "Sempre positiva.",
-              "Sempre negativa."
-            ],
-            "answer": 1,
-            "feedback": "La velocità non cambia nel tempo su quel tratto.",
-            "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. La velocità non cambia nel tempo su quel tratto.",
-              "La velocità non cambia nel tempo su quel tratto.",
-              "Rivedi la relazione fra le grandezze. La velocità non cambia nel tempo su quel tratto.",
-              "Rivedi la relazione fra le grandezze. La velocità non cambia nel tempo su quel tratto."
-            ]
-          },
-          {
-            "question": "Quale informazione contiene aₛ(t)?",
-            "options": [
-              "La posizione per ogni istante.",
-              "La distanza totale percorsa.",
-              "L’accelerazione scalare per ogni istante.",
-              "La traiettoria nello spazio."
+              "La posizione del corpo.",
+              "La velocità scalare.",
+              "L’accelerazione scalare.",
+              "La distanza percorsa."
             ],
             "answer": 2,
-            "feedback": "La funzione aₛ(t) associa un valore di accelerazione scalare a ciascun istante.",
-            "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. La funzione aₛ(t) associa un valore di accelerazione scalare a ciascun istante.",
-              "Rivedi la relazione fra le grandezze. La funzione aₛ(t) associa un valore di accelerazione scalare a ciascun istante.",
-              "La funzione aₛ(t) associa un valore di accelerazione scalare a ciascun istante.",
-              "Rivedi la relazione fra le grandezze. La funzione aₛ(t) associa un valore di accelerazione scalare a ciascun istante."
-            ]
+            "feedback": "Il nome della funzione indica quale grandezza è associata al tempo."
           },
           {
-            "question": "Nel grafico vₛ(t), l’altezza di un punto indica…",
+            "question": "Osserva il grafico: quanto vale aₛ all’istante t = 2 s?",
             "options": [
-              "L’accelerazione, mentre la pendenza indica la posizione.",
-              "La velocità, mentre la pendenza descrive l’accelerazione.",
-              "La posizione, mentre la pendenza indica il tempo.",
-              "Sempre la rapidità, anche se il valore è negativo."
+              "2 m/s",
+              "+2 m/s²",
+              "0 m/s²",
+              "−1 m/s²"
             ],
             "answer": 1,
-            "feedback": "Leggi vₛ sull’asse verticale; il modo in cui vₛ cambia nel tempo è descritto dalla pendenza.",
-            "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. Leggi vₛ sull’asse verticale; il modo in cui vₛ cambia nel tempo è descritto dalla pendenza.",
-              "Leggi vₛ sull’asse verticale; il modo in cui vₛ cambia nel tempo è descritto dalla pendenza.",
-              "Rivedi la relazione fra le grandezze. Leggi vₛ sull’asse verticale; il modo in cui vₛ cambia nel tempo è descritto dalla pendenza.",
-              "Rivedi la relazione fra le grandezze. Leggi vₛ sull’asse verticale; il modo in cui vₛ cambia nel tempo è descritto dalla pendenza."
-            ]
+            "feedback": "A 2 s il grafico si trova sul tratto di ordinata +2 m/s².",
+            "illustration": {
+              "src": "assets/images/reader/kinematics/classroom/a-tempo-schema.svg",
+              "alt": "Accelerazione-tempo: +2 m/s² da 0 a 3 s; 0 da 3 a 5 s; −1 m/s² da 5 a 9 s.",
+              "width": 600,
+              "height": 310
+            }
+          },
+          {
+            "question": "Nel tratto fra 3 s e 5 s, l’accelerazione è zero. Che cosa possiamo dire della velocità in quel tratto?",
+            "options": [
+              "È sicuramente zero.",
+              "Aumenta.",
+              "Diminuisce.",
+              "Rimane costante."
+            ],
+            "answer": 3,
+            "feedback": "Un tratto di accelerazione nulla indica che la velocità non cambia: può essere diversa da zero.",
+            "illustration": {
+              "src": "assets/images/reader/kinematics/classroom/a-tempo-schema.svg",
+              "alt": "Accelerazione-tempo: +2 m/s² da 0 a 3 s; 0 da 3 a 5 s; −1 m/s² da 5 a 9 s.",
+              "width": 600,
+              "height": 310
+            }
           }
         ]
       }
     },
     {
       "id": "segno",
-      "title": "Accelerare e rallentare",
+      "title": "Il segno e l’accelerazione nulla",
       "cards": [
         {
-          "title": "Due segni da confrontare",
+          "title": "Il segno dell’accelerazione",
+          "board": "acceleration-class",
+          "classScene": "sign",
           "stepMode": "replace",
           "steps": [
             {
-              "title": "Il segno di aₛₛ non basta",
-              "html": "Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003E;</mo><mn>0</mn></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003E;</mo><mn>0</mn></mrow></math>, la velocità cresce e il corpo aumenta la propria rapidità. Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003E;</mo><mn>0</mn></mrow></math> e <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003C;</mo><mn>0</mn></mrow></math>, la velocità scende verso zero e il corpo rallenta.<br><br>Con <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003C;</mo><mn>0</mn></mrow></math>, il ragionamento si inverte: se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003C;</mo><mn>0</mn></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub></mrow></math> diventa più negativa e la rapidità aumenta; se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo>&#x0003E;</mo><mn>0</mn></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub></mrow></math> si avvicina a zero e la rapidità diminuisce."
+              "title": "Aumenta o diminuisce il valore della velocità?",
+              "html": "Se <strong>aₛ è positiva</strong>, la velocità scalare aumenta; se <strong>aₛ è negativa</strong>, la velocità scalare diminuisce.<br><br>Nel verso positivo, passare da <strong>+2 a +6 m/s</strong> significa andare più rapidamente; passare da <strong>+6 a +2 m/s</strong> significa rallentare.<br><br>Ma la velocità può anche essere negativa. <strong>Per capire se il corpo acquista o perde rapidità, dobbiamo considerare entrambi i segni.</strong>"
             },
             {
-              "title": "La regola pratica",
-              "html": "Finché il corpo si muove, <strong>velocità e accelerazione dello stesso segno fanno aumentare la rapidità; segni opposti la fanno diminuire</strong>.<br><br>Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math> in un istante, il corpo è momentaneamente fermo: può restare fermo oppure ripartire. L’accelerazione può essere diversa da zero anche in quell’istante."
+              "title": "Quando il corpo va nel verso negativo",
+              "html": "Passando da <strong>−6 a −2 m/s</strong>, il valore della velocità aumenta, ma la rapidità diminuisce: il corpo rallenta, pur avendo accelerazione positiva.<br><br>Passando da <strong>−2 a −6 m/s</strong>, invece, la velocità diventa più negativa e la rapidità aumenta.<br><br>Finché il corpo si muove: <strong>vₛ e aₛ dello stesso segno → aumenta la rapidità; di segno opposto → diminuisce la rapidità.</strong>",
+              "classMode": "negative"
+            }
+          ]
+        },
+        {
+          "title": "Accelerazione zero: possiamo ancora muoverci",
+          "board": "acceleration-class",
+          "classScene": "zero",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Il cambiamento è nullo",
+              "html": "Se l’accelerazione resta <strong>nulla durante un intervallo</strong>, la velocità rimane costante.<br><br>La macchinina può essere ferma, con <strong>vₛ = 0</strong>, oppure continuare a muoversi, per esempio a <strong>6 m/s</strong>. In entrambi i casi l’accelerazione è zero.<br><br><strong>Accelerazione nulla non significa velocità nulla.</strong>"
+            },
+            {
+              "title": "Attenzione a un solo istante",
+              "html": "Sapere che <strong>aₛ = 0 in un singolo istante</strong> non basta per dire che la velocità sia costante prima e dopo.<br><br>Allo stesso modo, un corpo può avere <strong>velocità nulla in un istante e accelerazione diversa da zero</strong>: per esempio nel momento in cui si ferma prima di invertire il verso. Non confondiamo il valore della velocità con il suo cambiamento."
             }
           ]
         }
@@ -373,74 +289,118 @@ window.READER_LESSONS["cinematica-accelerazione"] = {
       "quiz": {
         "questions": [
           {
-            "question": "Con vₛ=−4 m/s e aₛ=−2 m/s², la rapidità sta…",
+            "question": "La velocità passa da −6 m/s a −2 m/s. L’accelerazione media è…",
             "options": [
-              "Aumentando.",
-              "Diminuendo.",
-              "Restando costante.",
-              "Diventando negativa."
-            ],
-            "answer": 0,
-            "feedback": "La velocità diventa più negativa: aumenta il suo valore assoluto.",
-            "feedbackByOption": [
-              "La velocità diventa più negativa: aumenta il suo valore assoluto.",
-              "Rivedi la relazione fra le grandezze. La velocità diventa più negativa: aumenta il suo valore assoluto.",
-              "Rivedi la relazione fra le grandezze. La velocità diventa più negativa: aumenta il suo valore assoluto.",
-              "Rivedi la relazione fra le grandezze. La velocità diventa più negativa: aumenta il suo valore assoluto."
-            ]
-          },
-          {
-            "question": "Con vₛ=+4 m/s e aₛ=−2 m/s², il corpo sta…",
-            "options": [
-              "Andando necessariamente nel verso negativo.",
-              "Rallentando mentre si muove nel verso positivo.",
-              "Aumentando la propria rapidità.",
-              "Restando fermo."
+              "Negativa e il corpo rallenta.",
+              "Positiva e il corpo rallenta.",
+              "Positiva e il corpo acquista rapidità.",
+              "Nulla perché il verso non cambia."
             ],
             "answer": 1,
-            "feedback": "Il segno positivo di vₛ dà il verso; il segno opposto di aₛ riduce la rapidità.",
-            "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. Il segno positivo di vₛ dà il verso; il segno opposto di aₛ riduce la rapidità.",
-              "Il segno positivo di vₛ dà il verso; il segno opposto di aₛ riduce la rapidità.",
-              "Rivedi la relazione fra le grandezze. Il segno positivo di vₛ dà il verso; il segno opposto di aₛ riduce la rapidità.",
-              "Rivedi la relazione fra le grandezze. Il segno positivo di vₛ dà il verso; il segno opposto di aₛ riduce la rapidità."
-            ]
+            "feedback": "Δvₛ=(−2)−(−6)=+4 m/s: l’accelerazione media è positiva. La rapidità scende da 6 a 2 m/s."
           },
           {
-            "question": "Un corpo ha vₛ=0 in un istante. Possiamo concludere che aₛ=0?",
+            "question": "Un corpo ha vₛ negativa e aₛ negativa. In quel tratto…",
             "options": [
-              "Sì, sempre.",
-              "Sì, se la posizione è positiva.",
-              "No: può essere un istante di arresto prima di un’inversione.",
-              "No, perché a deve sempre essere positiva."
+              "Rallenta sempre.",
+              "È fermo.",
+              "Aumenta la propria rapidità.",
+              "Si muove nel verso positivo."
             ],
             "answer": 2,
-            "feedback": "La velocità può passare per zero mentre continua a cambiare.",
-            "feedbackByOption": [
-              "Rivedi la relazione fra le grandezze. La velocità può passare per zero mentre continua a cambiare.",
-              "Rivedi la relazione fra le grandezze. La velocità può passare per zero mentre continua a cambiare.",
-              "La velocità può passare per zero mentre continua a cambiare.",
-              "Rivedi la relazione fra le grandezze. La velocità può passare per zero mentre continua a cambiare."
-            ]
+            "feedback": "La velocità diventa più negativa e il suo valore assoluto cresce."
+          },
+          {
+            "question": "L’accelerazione è nulla per tutto un intervallo. La velocità…",
+            "options": [
+              "È sicuramente nulla.",
+              "Resta costante, anche se diversa da zero.",
+              "Deve essere positiva.",
+              "Può cambiare liberamente."
+            ],
+            "answer": 1,
+            "feedback": "L’assenza di variazione della velocità non impedisce al corpo di muoversi."
+          },
+          {
+            "question": "In un istante vₛ = 0. Possiamo concludere che anche aₛ = 0?",
+            "options": [
+              "Sì, perché il corpo è momentaneamente fermo.",
+              "Sì, ma solo se il tempo è positivo.",
+              "No: in quell’istante il corpo potrebbe stare invertendo il verso.",
+              "No, perché l’accelerazione deve essere sempre positiva."
+            ],
+            "answer": 2,
+            "feedback": "Una velocità nulla in un istante non implica una variazione di velocità nulla."
           }
         ]
       }
     },
     {
       "id": "recap",
-      "title": "La lezione in pillole",
+      "title": "In conclusione",
       "cards": [
         {
+          "title": "Dobbiamo introdurre altre grandezze?",
+          "board": "acceleration-class",
+          "classScene": "closure",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "La descrizione del moto",
+              "html": "Se conosciamo la <strong>legge oraria s(t)</strong>, sappiamo dove si trova il corpo in ogni istante lungo la traiettoria: il moto è già descritto.<br><br>Velocità e accelerazione mettono in evidenza due aspetti di quella descrizione: <strong>come cambia la posizione</strong> e <strong>come cambia la velocità</strong>.<br><br>Potremmo misurare anche quanto rapidamente cambia l’accelerazione: è utile in alcuni problemi particolari. <strong>Per studiare i moti che affronteremo, però, queste grandezze ci bastano.</strong> Non occorre introdurne altre."
+            }
+          ]
+        },
+        {
           "title": "La lezione in pillole",
+          "board": "acceleration-class",
+          "classScene": "recap",
           "stepMode": "replace",
           "steps": [
             {
               "title": "",
-              "html": "<ul><li><strong>Accelerazione scalare:</strong> descrive come cambia la velocità scalare nel tempo.</li><li><strong>Media:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mrow><mi>s</mi><mo>,</mo><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><mi>&#x00394;</mi><msub><mi>v</mi><mi>s</mi></msub><mo>&#x0002F;</mo><mi>&#x00394;</mi><mi>t</mi></mrow></math>; non racconta tutti i cambiamenti interni all’intervallo.</li><li><strong>Unità:</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mrow><mi mathvariant=\"normal\">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant=\"normal\">s</mi><mn>2</mn></msup></mrow></mrow></math>, cioè metri al secondo per secondo.</li><li><strong>Istantanea:</strong> la funzione <math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msub><mi>a</mi><mi>s</mi></msub><mo stretchy=\"false\">&#x00028;</mo><mi>t</mi><mo stretchy=\"false\">&#x00029;</mo></mrow></math> descrive il cambiamento momento per momento.</li><li><strong>Confronta i segni di vₛ e aₛ:</strong> uguali, la rapidità aumenta; opposti, diminuisce.</li><li><strong>Sulle curve:</strong> il cambiamento di direzione richiede anche la descrizione vettoriale.</li></ul>"
+              "html": "<ul><li><strong>Che cosa misura:</strong> l’accelerazione scalare descrive quanto rapidamente cambia la velocità scalare.</li><li><strong>Come si calcola la media:</strong> differenza delle velocità divisa per il tempo trascorso, aₛ,ₘ = Δvₛ / Δt.</li><li><strong>Come si misura:</strong> in m/s², cioè metri al secondo per secondo.</li><li><strong>Come si interpreta il segno:</strong> aₛ positiva fa aumentare vₛ; aₛ negativa la fa diminuire. Per la rapidità, confronta anche il segno di vₛ.</li><li><strong>Accelerazione nulla:</strong> la velocità non cambia; il corpo può continuare a muoversi.</li><li><strong>Istante per istante:</strong> aₛ(t) associa al tempo l’accelerazione e si rappresenta con un grafico.</li></ul>"
             }
           ]
         }
-      ]
+      ],
+      "quiz": {
+        "questions": [
+          {
+            "question": "La velocità passa da 10 m/s a 2 m/s in 4 s. Qual è l’accelerazione media?",
+            "options": [
+              "+2 m/s²",
+              "−8 m/s²",
+              "−2 m/s²",
+              "+3 m/s²"
+            ],
+            "answer": 2,
+            "feedback": "(2−10)/4=−2 m/s². L’ordine è sempre valore finale meno valore iniziale."
+          },
+          {
+            "question": "Quale affermazione è corretta?",
+            "options": [
+              "Un’accelerazione negativa significa sempre rallentare.",
+              "Per sapere se aumenta la rapidità bisogna confrontare i segni di velocità e accelerazione.",
+              "Un’accelerazione nulla significa sempre essere fermi.",
+              "Il grafico aₛ(t) mostra direttamente la posizione."
+            ],
+            "answer": 1,
+            "feedback": "Segni uguali fanno aumentare la rapidità, segni opposti la fanno diminuire, finché il corpo si muove."
+          },
+          {
+            "question": "Conosci soltanto l’accelerazione media in un intervallo. Conosci necessariamente l’accelerazione in ogni istante?",
+            "options": [
+              "Sì, la media vale in ogni istante.",
+              "Sì, se la velocità iniziale è positiva.",
+              "Sì, perché le due grandezze hanno la stessa unità.",
+              "No: cambiamenti diversi possono produrre la stessa media."
+            ],
+            "answer": 3,
+            "feedback": "L’accelerazione media sintetizza l’intero intervallo. La funzione aₛ(t) descrive ciò che accade istante per istante."
+          }
+        ]
+      }
     }
   ],
   "nextLesson": {
@@ -1506,5 +1466,6 @@ window.READER_LESSONS["cinematica-caduta"] = {
   ]
 };
 if(window.READER_LESSONS["cinematica-velocita"])window.READER_LESSONS["cinematica-velocita"].nextLesson={id:"cinematica-accelerazione"};
+
 
 

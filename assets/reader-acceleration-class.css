@@ -1,0 +1,31 @@
+/* Le immagini sono livelli persistenti. Testi, formule e diagrammi restano accessibili. */
+.ac-class-card{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)!important;gap:18px 26px;align-items:start}
+.ac-class-card>.rm-card-title{grid-column:1/-1}
+.ac-class-card>.rm-card-text{grid-column:1;grid-row:2;min-width:0;margin:0!important}
+.ac-class-card>.ac-class-board{grid-column:2;grid-row:2;min-width:0}
+.ac-room{position:relative;isolation:isolate;aspect-ratio:3/2;width:100%;overflow:hidden;border-radius:22px;background:#c9dce0;box-shadow:0 8px 26px #284c5420}
+.ac-backdrop,.ac-desks{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:fill}
+.ac-backdrop{z-index:0}.ac-desks{z-index:4;clip-path:inset(75% 0 0 0);pointer-events:none}
+.ac-chalk{position:absolute;left:10.2%;top:6.4%;width:84%;height:55%;z-index:1;display:flex;align-items:center}
+.ac-drawing{width:100%;height:auto;max-height:100%;overflow:visible;color:#fff8e8}
+.ac-drawing text{fill:currentColor;font-family:'Comic Sans MS','Trebuchet MS',sans-serif;font-size:28px;letter-spacing:.1px}
+.ac-drawing .ac-small{font-size:22px}.ac-drawing .ac-heading{font-size:26px;font-weight:600}.ac-drawing .ac-formula{font-size:39px}.ac-drawing .ac-symbol{font-size:34px;fill:#a6e8e2}.ac-drawing .ac-speed{font-size:28px;fill:#ffe7a2}
+.ac-pupil{position:absolute;bottom:12%;height:29%;z-index:3}.ac-red{left:13%;width:19%}.ac-bjorne{right:8%;width:24%}
+.ac-pose{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;transition:opacity .25s ease;pointer-events:none}
+.ac-balloon{position:absolute;z-index:5;width:37%;right:3%;bottom:25%;height:auto;filter:drop-shadow(0 3px 3px #203b4520);pointer-events:none}
+.ac-options,.ac-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.ac-options[hidden],.ac-controls[hidden],.ac-balloon[hidden]{display:none}
+.ac-options button,.ac-controls button{font:inherit;font-size:13px;line-height:1.3;min-height:36px;border-radius:10px;border:1px solid var(--rm-border);background:var(--rm-panel);color:inherit;padding:7px 11px;cursor:pointer}
+.ac-options button[aria-pressed=true]{background:#168b8720;border-color:#168b87;color:#117f7b;font-weight:600}
+.ac-controls .ac-play{background:#168b87;color:#fff;border-color:#168b87;min-width:65px}
+.ac-controls label{flex:1;min-width:115px;font-size:11px}.ac-controls label span{display:block}.ac-controls input{width:100%;accent-color:#168b87;cursor:grab}.ac-time{font-size:12px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+body[data-reader-lesson="cinematica-accelerazione"] .ac-class-card .rm-card-text{max-width:none}
+@media(max-width:950px){.ac-class-card{grid-template-columns:minmax(0,1fr)!important}.ac-class-card>.rm-card-text{grid-column:1;grid-row:2}.ac-class-card>.ac-class-board{grid-column:1;grid-row:3;width:100%;max-width:650px;margin:auto}}
+@media(prefers-reduced-motion:reduce){.ac-pose{transition:none}}
+/* Prevale sulle regole delle illustrazioni statiche delle altre lezioni di cinematica. */
+.ac-class-board .ac-room img.ac-backdrop,.ac-class-board .ac-room img.ac-desks{width:100%;height:100%;max-height:none;object-fit:fill}
+.ac-class-board .ac-room img.ac-balloon{left:17%;right:auto;bottom:27%;width:48%;height:auto;max-height:none;object-fit:contain}
+
+.ac-balloon:not([hidden]){animation:ac-balloon-arrive .4s .3s both}
+@keyframes ac-balloon-arrive{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.ac-balloon:not([hidden]){animation:none}}
