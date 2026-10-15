@@ -350,6 +350,29 @@ window.LESSON_CATALOG = [
                 ]
               }
             ]
+          },
+          {
+            "title": "Numeri complessi",
+            "icon": "coordinates",
+            "aliases": [
+              "piano di Gauss",
+              "coniugato",
+              "modulo",
+              "argomento",
+              "forma polare"
+            ],
+            "lessons": [
+              {
+                "id": "algebra-numeri-complessi",
+                "title": "Introduzione ai numeri complessi",
+                "url": "reader.html?lezione=algebra-numeri-complessi",
+                "kind": "Teoria",
+                "levels": [
+                  "analisi1"
+                ],
+                "status": "work-in-progress"
+              }
+            ]
           }
         ]
       },

@@ -1,0 +1,24 @@
+RIFERIMENTI VISIVI — INTERNI, NON ASSET APPROVATI PER LA PUBBLICAZIONE
+Fonte comune: riferimenti_visivi/Root.pdf, fornito da Stefano, autore da confermare.
+Permesso/licenza: non indicato; usato come materiale redazionale interno.
+Il PDF non viene pubblicato tra gli asset del sito.
+
+rif-01 · pag. 1 · card equazione, unita-immaginaria, teorema.
+Contenuto: motivazione attraverso x²+1=0 e ampliamento dei reali.
+Conservare: problema iniziale, due soluzioni; precisare la molteplicità.
+
+rif-02 · pag. 2 · card forma, uguaglianza, coniugato, modulo.
+Contenuto: z=x+iy, esempio 3+2i, Re/Im, coniugato e modulo.
+Proposta: piano geometrico con proiezioni e simmetria. Distinguere y e iy.
+
+rif-03 · pag. 3 · card piano, argomento, algebra-equazione.
+Contenuto: piano di Gauss e z²+1=0 per separazione delle parti.
+Conservare: posizione del punto e del coniugato, entrambi i rami del sistema.
+
+rif-04 · pag. 4 · card quadrante, polare, polare-equazione.
+Contenuto: coordinate polari, esponenziale, equazione per modulo e fase.
+Correggere: quadrante, zero, periodicità completa degli argomenti.
+Proposta: schema polare e due radici sulla circonferenza unitaria.
+
+Tutti gli schemi pubblicati sono disegni geometrici originali della redazione.
+Le figure descrivono relazioni matematiche, non osservazioni sperimentali.

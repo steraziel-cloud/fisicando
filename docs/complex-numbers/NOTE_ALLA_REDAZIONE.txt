@@ -1,0 +1,56 @@
+BOZZA PER REVISIONE — 15 ottobre 2026
+Fonte: Root.pdf, lavagna manoscritta di quattro pagine fornita dall’utente.
+Autore della fonte: coautore del progetto; nome DA CONFERMARE.
+Destinatari: primo anno universitario, indicato dall’utente.
+Titolo editoriale: Introduzione ai numeri complessi.
+Percorso: Matematica / Algebra / Numeri complessi.
+
+RIFORMULAZIONI E RIORDINO
+- Progressione: esigenza dell’ampliamento; i; forma algebrica e piano;
+  coniugato e modulo; argomento e forme polari; esempio z²+1=0; recap.
+- Conservati x e y reali, z*, esempio 3+2i ed equazione z²+1=0.
+- Non è una trattazione completa delle operazioni in C. Somma, quoziente,
+  potenze generali e radici n-esime non vengono aggiunti automaticamente.
+- I richiami all’oscillatore e all’equazione di Schrödinger (p. 1) sono
+  rinviati: richiedono prerequisiti estranei a questa introduzione.
+
+AGGIUNTE DERIVATE DAL CONTENUTO
+- Recap, nove keyword con definizioni generali, 18 domande con 4 opzioni
+  e feedback specifici; completano i concetti effettivamente spiegati.
+- Schemi originali redazionali del piano, del coniugato, del modulo,
+  delle coordinate polari e delle due radici. Non sono ritagli della fonte.
+- Definizione esplicita dell’uguaglianza di complessi per giustificare
+  il sistema nelle parti reale e immaginaria.
+
+PRECISAZIONI SCIENTIFICHE DA FAR CONTROLLARE AL COAUTORE
+1. P. 1: non si può presumere di trovare sempre soluzioni reali di un
+   polinomio. Il teorema fondamentale dell’algebra riguarda coefficienti
+   complessi, grado n>=1 e n radici CONTATE CON MOLTEPLICITÀ.
+2. P. 1: nella formula risolutiva di x²+1=0 bisogna conservare ±. Si evita
+   di introdurre i attraverso manipolazioni di radici reali non definite.
+3. P. 2: Im(z) è y, non iy; zz*=|z|². La radice dà il modulo non negativo.
+4. P. 3: da 2xy=0 segue x=0 OPPURE y=0. Il secondo ramo si scarta solo
+   dopo aver sostituito y=0 nell’altra equazione e usato x reale.
+5. P. 4: θ=arctan(Im(z)/Re(z)) non è una formula universale.
+   Occorre il quadrante; sugli assi si procede direttamente. L’argomento
+   di zero non è definito. Gli argomenti differiscono per 2kπ.
+6. P. 4: in z²=-1 gli argomenti soddisfano 2θ=π+2kπ, quindi
+   θ=π/2+kπ. Non si deve perdere la seconda radice.
+
+AGGIUNTE SOSTANZIALI PROPOSTE
+- Argomento principale scelto in (-π,π], distinto dall’argomento generico.
+- Controesempio -3-2i per rendere visibile il problema del quadrante.
+- Indicazione della molteplicità delle radici nel teorema.
+Queste integrazioni rendono corrette le formule della fonte, ma devono
+restare esplicite nel confronto con il coautore.
+
+QUESTIONI APERTE
+- Confermare il nome e la modalità di attribuzione del coautore.
+- Confermare il peso da dare al teorema e alla forma esponenziale.
+- La formula di Eulero è enunciata, non dimostrata. La definizione rigorosa
+  dell’esponenziale complesso è fuori dallo scopo di questa introduzione.
+- Gli schemi sono una prima proposta redazionale; animazioni e laboratori
+  restano da progettare con Stefano. Nessuna approvazione scientifica
+  del coautore è stata presunta.
+
+STATO: in lavorazione. La bozza pubblicata consente la revisione nel reader.

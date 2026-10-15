@@ -1,0 +1,11 @@
+
+body[data-reader-lesson="algebra-numeri-complessi"] .rm-reader-card{max-width:none;width:100%}
+body[data-reader-lesson="algebra-numeri-complessi"] .rm-card-text{max-width:none;width:100%;line-height:1.75;min-width:0}
+body[data-reader-lesson="algebra-numeri-complessi"] .rm-reader-card:has(.rm-reference-scene){display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,1fr);gap:0 30px;align-items:start}
+body[data-reader-lesson="algebra-numeri-complessi"] .rm-card-title{grid-column:1/-1}
+body[data-reader-lesson="algebra-numeri-complessi"] .rm-reference-scene{grid-column:2;grid-row:2;position:static!important;max-width:none!important;width:100%!important;margin:0!important;align-self:start}
+body[data-reader-lesson="algebra-numeri-complessi"] .rm-reference-scene img{width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important;filter:none!important;transform:none!important;mask:none!important}
+body[data-reader-lesson="algebra-numeri-complessi"] .rm-reader-card:has(.rm-reference-scene) .rm-card-text{grid-column:1;grid-row:2}
+.cx-formula{display:block;max-width:100%;overflow-x:auto;padding:14px 16px;margin:18px 0;background:#0b9ca511;border-left:3px solid #169ca8;border-radius:0 10px 10px 0;font-size:1.12em}
+.cx-formula math{min-width:max-content}
+@media(max-width:1000px){body[data-reader-lesson="algebra-numeri-complessi"] .rm-reader-card:has(.rm-reference-scene){display:flex;flex-direction:column}body[data-reader-lesson="algebra-numeri-complessi"] .rm-reference-scene{order:2;margin-top:20px!important;max-width:560px!important;align-self:center}body[data-reader-lesson="algebra-numeri-complessi"] .rm-card-text{order:1}}

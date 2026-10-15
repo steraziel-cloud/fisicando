@@ -1,0 +1,596 @@
+# GATITOMATH — SORGENTE EDITORIALE TXT, modello v1.1
+@lezione
+Titolo: Introduzione ai numeri complessi
+ID proposto: algebra-numeri-complessi
+Materia: Matematica
+Percorso: Algebra / Numeri complessi
+Destinatari: Primo anno universitario
+Autore: [DA CONFERMARE: nome del coautore che ha fornito Root.pdf]
+Versione e data: Bozza 1 / 15 ottobre 2026
+Obiettivi: Interpretare forma algebrica e polare; distinguere Re e Im;
+calcolare coniugato e modulo; risolvere z²+1=0 nei due linguaggi.
+Prerequisiti: Numeri reali; prodotti notevoli; equazioni di secondo grado;
+coordinate cartesiane; teorema di Pitagora; seno, coseno, radianti.
+@fine-lezione
+@nota
+Stato: BOZZA PER REVISIONE. Correzioni e aggiunte in NOTE_ALLA_REDAZIONE.txt.
+Difficoltà: Im(z) e iy; segni del coniugato; quadranti; periodicità; casi esclusi.
+Aiuti: Keyword e schemi geometrici riferiti allo stesso esempio persistente.
+@fine-nota
+
+@sezione Oltre i numeri reali
+
+@card equazione
+Titolo: Un’equazione senza soluzioni reali
+Modalità: cumulativi
+Disposizione proposta: solo testo
+Scopo: Far nascere la necessità dell’ampliamento dall’equazione della lavagna.
+
+@passaggio
+Sottotitolo: La domanda di partenza
+Cerchiamo le soluzioni di \[x^2+1=0.\] Se \(x\) è reale, \(x^2\ge0\): il primo membro è almeno 1 e non può essere zero. **L’equazione non ha soluzioni in \(\mathbb R\)**.
+@fine-passaggio
+
+@passaggio
+Sottotitolo: Cambiare l’insieme in cui cerchiamo
+Questo non impedisce di ampliare il nostro insieme di numeri. Cerchiamo un sistema che contenga i reali e nel quale esista anche un numero il cui quadrato sia \(-1\). È il punto di partenza dei **numeri complessi**.
+@fine-passaggio
+@fine-card
+
+@card unita-immaginaria
+Titolo: L’unità immaginaria
+Modalità: cumulativi
+Disposizione proposta: solo testo
+Scopo: Definire i senza usare proprietà non valide delle radici reali.
+
+@passaggio
+Sottotitolo: La nuova regola
+Introduciamo l’[[unità immaginaria|cx-unita]] \(i\), caratterizzata dalla relazione \[i^2=-1.\] Nei calcoli useremo le usuali regole algebriche, insieme a questa nuova relazione.
+@fine-passaggio
+
+@passaggio
+Sottotitolo: Due soluzioni
+Il quadrato di \(i\) è \(-1\), ma lo è anche quello di \(-i\): \[(-i)^2=(-1)^2i^2=-1.\] Perciò \(i\) e \(-i\) risolvono entrambe l’equazione \(z^2+1=0\). Usiamo la lettera \(z\) per un’incognita che può essere complessa.
+@fine-passaggio
+@fine-card
+
+@card teorema
+Titolo: Che cosa guadagniamo con questo ampliamento?
+Modalità: singolo
+Disposizione proposta: solo testo
+Scopo: Precisare il risultato richiamato nella fonte, senza richiederne la dimostrazione.
+
+@passaggio
+Nei complessi vale il [[teorema fondamentale dell’algebra|cx-tfa]]: **ogni polinomio non costante a coefficienti complessi ha almeno una radice complessa**. Di conseguenza, un polinomio di grado \(n\) ha esattamente \(n\) radici, **contate con la loro molteplicità**. Non devono essere tutte distinte. Non dimostriamo qui il teorema: ci dice perché questo ampliamento è così importante.
+@fine-passaggio
+@fine-card
+
+@quiz oltre-reali-1
+Collocazione: fine sezione Oltre i numeri reali
+Tipo: scelta singola
+Domanda: Perché x² + 1 = 0 non ha soluzioni reali?
+A: Perché il quadrato di un reale è sempre non negativo.
+B: Perché un’equazione di secondo grado non può avere termine noto positivo.
+C: Perché zero non è un numero reale.
+D: Perché x² vale sempre 1.
+Risposta corretta: A
+Feedback A: x² ≥ 0, quindi x² + 1 ≥ 1.
+Feedback B: Un termine noto positivo non basta: x² − 3x + 2 = 0 ha soluzioni reali.
+Feedback C: Zero è reale, ma non risolve questa equazione.
+Feedback D: Il quadrato dipende da x; ciò che conta è che non sia negativo.
+@fine-quiz
+
+@quiz oltre-reali-2
+Collocazione: fine sezione Oltre i numeri reali
+Tipo: scelta singola
+Domanda: Quale relazione caratterizza l’unità immaginaria i?
+A: i² = 1
+B: i = −1
+C: i² = −1
+D: i² = 0
+Risposta corretta: C
+Feedback A: Il quadrato di i non è 1.
+Feedback B: −1 è reale e il suo quadrato è 1.
+Feedback C: È la regola che useremo nei calcoli complessi.
+Feedback D: Un quadrato nullo non darebbe una soluzione di z² + 1 = 0.
+@fine-quiz
+
+@quiz oltre-reali-3
+Collocazione: fine sezione Oltre i numeri reali
+Tipo: scelta singola
+Domanda: Se i² = −1, quanto vale (−i)²?
+A: 1
+B: −1
+C: −i
+D: i
+Risposta corretta: B
+Feedback A: Il fattore (−1)² è 1, ma resta da moltiplicarlo per i² = −1.
+Feedback B: (−i)² = (−1)²i² = −1.
+Feedback C: Elevare al quadrato significa moltiplicare −i per sé stesso.
+Feedback D: Il risultato è un numero reale: −1.
+@fine-quiz
+
+@sezione La forma algebrica e il piano complesso
+
+@card forma
+Titolo: Due numeri reali in un numero complesso
+Modalità: cumulativi
+Disposizione proposta: testo a sinistra / visuale a destra
+Scopo: Distinguere la parte immaginaria dal termine immaginario.
+Visuale persistente: piano (schema geometrico proposto dalla redazione)
+
+@passaggio
+Sottotitolo: La scrittura
+Un numero complesso si scrive in [[forma algebrica|cx-forma]] come \[z=x+iy,\qquad x,y\in\mathbb R.\] La coppia di numeri reali \((x,y)\) lo individua in modo univoco. L’insieme di tutti questi numeri si indica con \(\mathbb C\).
+@fine-passaggio
+
+@passaggio
+Sottotitolo: Parte reale e parte immaginaria
+Chiamiamo \(x=\operatorname{Re}(z)\) **parte reale** e \(y=\operatorname{Im}(z)\) **parte immaginaria**. Per \(z=3+2i\), \[\operatorname{Re}(z)=3,\qquad\operatorname{Im}(z)=2.\] **La parte immaginaria è 2, non \(2i\)**: è il coefficiente reale di \(i\).
+@fine-passaggio
+@fine-card
+
+@card uguaglianza
+Titolo: Quando due complessi sono uguali?
+Modalità: cumulativi
+Disposizione proposta: solo testo
+Scopo: Preparare il confronto fra parti reali e immaginarie nelle equazioni.
+
+@passaggio
+Sottotitolo: Confrontare le due parti
+Due numeri complessi sono uguali se e solo se hanno la stessa parte reale e la stessa parte immaginaria: \[x+iy=u+iv\quad\Longleftrightarrow\quad x=u\ \text{e}\ y=v.\] In particolare, \(x+iy=0\) richiede **sia \(x=0\) sia \(y=0\)**.
+@fine-passaggio
+
+@passaggio
+Sottotitolo: I reali sono ancora qui
+Ponendo \(y=0\) ritroviamo i numeri reali: \(4=4+0i\). Ponendo \(x=0\) otteniamo numeri immaginari puri, come \(2i=0+2i\). L’ampliamento conserva quindi i reali: \[\mathbb R\subset\mathbb C.\]
+@fine-passaggio
+@fine-card
+
+@card piano
+Titolo: Il piano di Gauss
+Modalità: singolo
+Disposizione proposta: testo a sinistra / visuale a destra
+Scopo: Collegare la coppia algebrica alle coordinate cartesiane.
+Visuale persistente: piano (schema geometrico proposto dalla redazione)
+
+@passaggio
+Possiamo rappresentare \(z=x+iy\) con il punto di coordinate \((x,y)\). L’asse orizzontale è l’**asse reale**; quello verticale è l’**asse immaginario**. Il numero \(3+2i\) corrisponde al punto \((3,2)\). Questa rappresentazione si chiama [[piano complesso o piano di Gauss|cx-piano]]. La geometria ci aiuterà a leggere modulo, coniugato e argomento.
+@fine-passaggio
+@fine-card
+
+@quiz forma-algebrica-1
+Collocazione: fine sezione La forma algebrica e il piano complesso
+Tipo: scelta singola
+Domanda: Per z = 5 − 3i, quanto valgono Re(z) e Im(z)?
+A: 5 e −3i
+B: 5 e −3
+C: −3 e 5
+D: 5 e 3
+Risposta corretta: B
+Feedback A: Im(z) è il coefficiente reale di i, quindi −3.
+Feedback B: La parte reale è 5 e quella immaginaria è −3.
+Feedback C: Le due parti non si scambiano.
+Feedback D: Il segno meno fa parte del coefficiente di i.
+@fine-quiz
+
+@quiz forma-algebrica-2
+Collocazione: fine sezione La forma algebrica e il piano complesso
+Tipo: scelta singola
+Domanda: Quale punto rappresenta il numero −2 + 4i nel piano complesso?
+A: (4, −2)
+B: (−2, 4i)
+C: (−2, 4)
+D: (2, 4)
+Risposta corretta: C
+Feedback A: La prima coordinata è la parte reale.
+Feedback B: Le coordinate sono entrambe reali: la seconda è 4.
+Feedback C: Parte reale sull’asse orizzontale, parte immaginaria su quello verticale.
+Feedback D: La parte reale è negativa.
+@fine-quiz
+
+@quiz forma-algebrica-3
+Collocazione: fine sezione La forma algebrica e il piano complesso
+Tipo: scelta singola
+Domanda: Quando x + iy = 0, con x e y reali?
+A: Quando x = 0, qualunque sia y.
+B: Quando y = 0, qualunque sia x.
+C: Quando x + y = 0.
+D: Quando x = 0 e y = 0.
+Risposta corretta: D
+Feedback A: Se y non è zero rimane il termine iy.
+Feedback B: Se x non è zero il numero non è zero.
+Feedback C: Le due parti non si possono cancellare tra loro come due termini reali.
+Feedback D: Devono annullarsi entrambe le parti.
+@fine-quiz
+
+@sezione Coniugato e modulo
+
+@card coniugato
+Titolo: Riflettere rispetto all’asse reale
+Modalità: cumulativi
+Disposizione proposta: testo a sinistra / visuale a destra
+Scopo: Unire definizione e significato geometrico del coniugato.
+Visuale persistente: coniugato (schema geometrico proposto dalla redazione)
+
+@passaggio
+Sottotitolo: Il coniugato
+Il [[coniugato|cx-coniugato]] di \(z=x+iy\) è \[z^*=x-iy.\] La parte reale resta uguale e la parte immaginaria cambia segno. Per esempio, il coniugato di \(3+2i\) è \(3-2i\). Si usa anche la notazione \(\overline z\).
+@fine-passaggio
+
+@passaggio
+Sottotitolo: Il significato geometrico
+Nel piano i punti \((x,y)\) e \((x,-y)\) sono simmetrici rispetto all’asse reale. Il coniugato **non è in generale l’opposto**: l’opposto di \(3+2i\) è \(-3-2i\), mentre il coniugato è \(3-2i\).
+@fine-passaggio
+@fine-card
+
+@card modulo
+Titolo: La distanza dall’origine
+Modalità: cumulativi
+Disposizione proposta: testo a sinistra / visuale a destra
+Scopo: Derivare il legame fra modulo e coniugato senza confondere y e iy.
+Visuale persistente: modulo (schema geometrico proposto dalla redazione)
+
+@passaggio
+Sottotitolo: Il modulo
+Il [[modulo|cx-modulo]] di \(z=x+iy\) è la distanza del suo punto dall’origine. Per il teorema di Pitagora, \[|z|=\sqrt{x^2+y^2}.\] Per \(z=3+2i\) otteniamo \(|z|=\sqrt{3^2+2^2}=\sqrt{13}\). Si elevano al quadrato **le parti reali \(x\) e \(y\)**, non i termini \(x\) e \(iy\).
+@fine-passaggio
+
+@passaggio
+Sottotitolo: Un prodotto utile
+Moltiplichiamo un numero per il suo coniugato: \[zz^*=(x+iy)(x-iy)=x^2-i^2y^2=x^2+y^2.\] I termini misti si cancellano e \(i^2=-1\). Perciò \[zz^*=|z|^2,\qquad |z|=\sqrt{zz^*}.\] Il prodotto \(zz^*\) è sempre reale e non negativo.
+@fine-passaggio
+@fine-card
+
+@quiz coniugato-modulo-1
+Collocazione: fine sezione Coniugato e modulo
+Tipo: scelta singola
+Domanda: Qual è il coniugato di −2 + 5i?
+A: 2 − 5i
+B: −2 − 5i
+C: 2 + 5i
+D: −2 + 5i
+Risposta corretta: B
+Feedback A: Questo è l’opposto: hai cambiato anche la parte reale.
+Feedback B: La parte reale resta −2; quella immaginaria diventa −5.
+Feedback C: Nel coniugato cambia solo il segno della parte immaginaria.
+Feedback D: La parte immaginaria non è nulla: il coniugato è diverso.
+@fine-quiz
+
+@quiz coniugato-modulo-2
+Collocazione: fine sezione Coniugato e modulo
+Tipo: scelta singola
+Domanda: Quanto vale |3 + 2i|?
+A: √5
+B: 13
+C: √13
+D: 5
+Risposta corretta: C
+Feedback A: Il modulo usa 3² + 2², non 3² + (2i)².
+Feedback B: 13 è il quadrato del modulo.
+Feedback C: Per Pitagora: √(9 + 4) = √13.
+Feedback D: Le distanze lungo i due assi non si sommano direttamente.
+@fine-quiz
+
+@quiz coniugato-modulo-3
+Collocazione: fine sezione Coniugato e modulo
+Tipo: scelta singola
+Domanda: Che cosa rappresenta il prodotto zz*?
+A: Il modulo |z|.
+B: L’opposto −z.
+C: Un numero immaginario puro.
+D: Il quadrato del modulo |z|².
+Risposta corretta: D
+Feedback A: Per avere il modulo devi estrarre la radice quadrata non negativa.
+Feedback B: Il coniugato non coincide in generale con l’opposto.
+Feedback C: I termini immaginari si cancellano.
+Feedback D: zz* = x² + y² = |z|².
+@fine-quiz
+
+@sezione Modulo, argomento e forma polare
+
+@card argomento
+Titolo: Distanza e direzione
+Modalità: cumulativi
+Disposizione proposta: testo a sinistra / visuale a destra
+Scopo: Distinguere modulo univoco e argomento definito modulo un giro.
+Visuale persistente: polare (schema geometrico proposto dalla redazione)
+
+@passaggio
+Sottotitolo: L’argomento
+Per \(z\ne0\), oltre alla distanza \(\rho=|z|\), possiamo indicare la direzione con un [[argomento|cx-argomento]] \(\theta\): un angolo orientato dall’asse reale positivo verso il segmento che unisce l’origine al punto. Lo misuriamo in radianti.
+@fine-passaggio
+
+@passaggio
+Sottotitolo: Uno stesso punto, più angoli
+Un giro completo non cambia direzione: \(\theta\) e \(\theta+2k\pi\), con \(k\in\mathbb Z\), sono argomenti dello stesso numero. Se serve un unico valore, possiamo scegliere quello in \((-\pi,\pi]\), detto **argomento principale**. Per \(z=0\) il modulo è zero, ma **l’argomento non è definito**.
+@fine-passaggio
+@fine-card
+
+@card quadrante
+Titolo: Il rapporto non basta
+Modalità: slidati
+Disposizione proposta: solo testo
+Scopo: Correggere l’uso indiscriminato di arctan(y/x) presente nella lavagna.
+
+@passaggio
+Sottotitolo: Dalle coordinate all’angolo
+Dal triangolo nel piano otteniamo \[x=\rho\cos\theta,\qquad y=\rho\sin\theta.\] Se \(x\ne0\), allora \(\tan\theta=y/x\). Ma la tangente ha periodo \(\pi\): il rapporto da solo non distingue direzioni opposte.
+@fine-passaggio
+
+@passaggio
+Sottotitolo: Controllare il quadrante
+Per \(3+2i\), il punto è nel primo quadrante e possiamo scegliere \(\theta=\arctan(2/3)\). Per \(-3-2i\) il rapporto è ancora \(2/3\), ma il punto è nel terzo quadrante: un argomento principale è \(-\pi+\arctan(2/3)\). **Prima individua il quadrante, poi scegli l’angolo**. Sull’asse immaginario non dividere per \(x=0\): per esempio \(i\) ha argomento \(\pi/2\).
+@fine-passaggio
+@fine-card
+
+@card polare
+Titolo: Due forme dello stesso numero
+Modalità: cumulativi
+Disposizione proposta: testo a sinistra / visuale a destra
+Scopo: Introdurre la forma esponenziale e la regola usata nell’ultimo esempio.
+Visuale persistente: polare (schema geometrico proposto dalla redazione)
+
+@passaggio
+Sottotitolo: La forma trigonometrica
+Sostituendo le coordinate in \(z=x+iy\), otteniamo la [[forma polare|cx-polare]]: \[z=\rho(\cos\theta+i\sin\theta).\] \(\rho\) descrive la distanza dall’origine e \(\theta\) la direzione. Non è un altro numero: è lo stesso numero descritto con altre coordinate.
+@fine-passaggio
+
+@passaggio
+Sottotitolo: La forma esponenziale
+La [[formula di Eulero|cx-eulero]] \[e^{i\theta}=\cos\theta+i\sin\theta\] permette di scrivere \(z=\rho e^{i\theta}\). Per \(\theta=\pi\) dà \(e^{i\pi}=-1\). Useremo anche la regola \[(\rho e^{i\theta})^2=\rho^2e^{2i\theta}:\] elevando al quadrato, il modulo si eleva al quadrato e l’argomento raddoppia.
+@fine-passaggio
+@fine-card
+
+@quiz forma-polare-1
+Collocazione: fine sezione Modulo, argomento e forma polare
+Tipo: scelta singola
+Domanda: Quale affermazione sugli argomenti di un numero complesso non nullo è corretta?
+A: θ e θ + π indicano sempre lo stesso numero.
+B: θ e θ + 2π indicano la stessa direzione.
+C: Ogni numero ha un solo argomento, senza convenzioni.
+D: L’argomento è sempre positivo.
+Risposta corretta: B
+Feedback A: Mezzo giro porta nella direzione opposta.
+Feedback B: Un giro completo non cambia la direzione.
+Feedback C: Per scegliere un solo valore serve una convenzione.
+Feedback D: Gli angoli orientati possono anche essere negativi.
+@fine-quiz
+
+@quiz forma-polare-2
+Collocazione: fine sezione Modulo, argomento e forma polare
+Tipo: scelta singola
+Domanda: Perché arctan(y/x) da sola può dare l’argomento sbagliato?
+A: Perché il modulo è sempre zero.
+B: Perché seno e coseno non valgono nei complessi.
+C: Perché il rapporto non distingue due quadranti opposti.
+D: Perché la parte reale deve essere positiva per definizione.
+Risposta corretta: C
+Feedback A: Per z non nullo il modulo è positivo.
+Feedback B: Le coordinate usano seno e coseno di un angolo reale.
+Feedback C: Punti opposti hanno lo stesso rapporto y/x: devi controllare i segni delle coordinate.
+Feedback D: La parte reale può essere positiva, nulla o negativa.
+@fine-quiz
+
+@quiz forma-polare-3
+Collocazione: fine sezione Modulo, argomento e forma polare
+Tipo: scelta singola
+Domanda: Quale descrizione è corretta per z = 0?
+A: Modulo 0 e argomento non definito.
+B: Modulo 1 e argomento 0.
+C: Modulo 0 e unico argomento 0.
+D: Nessun modulo e argomento π.
+Risposta corretta: A
+Feedback A: Il punto coincide con l’origine e non individua una direzione.
+Feedback B: La distanza dell’origine da sé stessa è zero.
+Feedback C: Si può scrivere 0·e^(iθ) per ogni θ, ma non si ricava una direzione propria dello zero.
+Feedback D: Il modulo esiste: è zero.
+@fine-quiz
+
+@sezione La stessa equazione, due strade
+
+@card algebra-equazione
+Titolo: Risolvere in forma algebrica
+Modalità: slidati
+Disposizione proposta: solo testo
+Scopo: Mostrare il ramo impossibile invece di dedurre direttamente x=0.
+
+@passaggio
+Sottotitolo: Separare le due parti
+Torniamo a \(z^2+1=0\) e scriviamo \(z=x+iy\), con \(x,y\) reali: \[(x+iy)^2+1=(x^2-y^2+1)+i(2xy)=0.\] Uguagliare a zero un complesso significa annullare entrambe le parti: \[\begin{cases}x^2-y^2+1=0,\\2xy=0.\end{cases}\]
+@fine-passaggio
+
+@passaggio
+Sottotitolo: Controllare entrambi i casi
+Da \(2xy=0\) segue \(x=0\) **oppure** \(y=0\). Se \(y=0\), rimane \(x^2+1=0\), impossibile per \(x\) reale. Se \(x=0\), invece, \(-y^2+1=0\), quindi \(y=\pm1\). Otteniamo \[z=i\qquad\text{oppure}\qquad z=-i.\]
+@fine-passaggio
+@fine-card
+
+@card polare-equazione
+Titolo: Risolvere in forma polare
+Modalità: slidati
+Disposizione proposta: testo a sinistra / visuale a destra
+Scopo: Recuperare entrambe le radici senza perdere la periodicità.
+Visuale persistente: radici (schema geometrico proposto dalla redazione)
+
+@passaggio
+Sottotitolo: Il modulo
+Dall’equazione \(z^2=-1\) sappiamo che \(z\ne0\). Scriviamo \(z=\rho e^{i\theta}\), con \(\rho>0\). Il quadrato ha modulo \(\rho^2\); il numero \(-1\) ha modulo 1. Quindi \[\rho^2=1\quad\Longrightarrow\quad\rho=1.\] Il modulo non può essere negativo.
+@fine-passaggio
+
+@passaggio
+Sottotitolo: Gli argomenti
+Gli argomenti di \(-1\) sono \(\pi+2k\pi\). Poiché il quadrato raddoppia l’argomento, \[2\theta=\pi+2k\pi\quad\Longrightarrow\quad\theta=\frac\pi2+k\pi,\qquad k\in\mathbb Z.\] In un giro troviamo due direzioni: \(\pi/2\) e \(3\pi/2\), che corrispondono a \(i\) e \(-i\). Gli altri valori ripetono gli stessi due numeri.
+@fine-passaggio
+@fine-card
+
+@quiz equazione-1
+Collocazione: fine sezione La stessa equazione, due strade
+Tipo: scelta singola
+Domanda: Se (x² − y² + 1) + i(2xy) = 0, quale sistema devi risolvere?
+A: Solo x² − y² + 1 = 0.
+B: Solo 2xy = 0.
+C: x² − y² + 1 = 0 e 2xy = 0.
+D: x² − y² + 1 = 2xy.
+Risposta corretta: C
+Feedback A: Deve annullarsi anche la parte immaginaria.
+Feedback B: Deve annullarsi anche la parte reale.
+Feedback C: Un numero complesso è zero se e solo se entrambe le parti sono zero.
+Feedback D: Le due parti non devono essere uguali: devono essere entrambe nulle.
+@fine-quiz
+
+@quiz equazione-2
+Collocazione: fine sezione La stessa equazione, due strade
+Tipo: scelta singola
+Domanda: Se z² = −1 e ρ = |z|, quanto vale ρ?
+A: −1
+B: ±1
+C: 0
+D: 1
+Risposta corretta: D
+Feedback A: Il modulo è non negativo.
+Feedback B: L’equazione ρ² = 1 ha due soluzioni reali, ma il modulo ammette solo quella positiva.
+Feedback C: Un quadrato nullo non può essere −1.
+Feedback D: ρ² = 1 e ρ > 0, quindi ρ = 1.
+@fine-quiz
+
+@quiz equazione-3
+Collocazione: fine sezione La stessa equazione, due strade
+Tipo: scelta singola
+Domanda: Dalla relazione 2θ = π + 2kπ, quale espressione ottieni?
+A: θ = π/2 + kπ
+B: θ = π + kπ
+C: θ = π/2 + 2kπ
+D: θ = π/2, senza altri valori
+Risposta corretta: A
+Feedback A: Dividendo tutto per 2 ottieni π/2 + kπ.
+Feedback B: Anche il primo termine va diviso per 2.
+Feedback C: Il termine 2kπ diventa kπ: mantenere 2kπ perderebbe una radice.
+Feedback D: Devi conservare anche il termine che descrive la periodicità.
+@fine-quiz
+
+@sezione La lezione in pillole
+
+@card recap
+Titolo: Una mappa per orientarti
+Modalità: singolo
+Disposizione proposta: solo testo
+Scopo: Riunire soltanto le relazioni costruite nel percorso.
+
+@passaggio
+**Forma algebrica:** \(z=x+iy\), con \(i^2=-1\), \(\operatorname{Re}(z)=x\) e \(\operatorname{Im}(z)=y\).
+
+**Piano complesso:** lo stesso numero è il punto \((x,y)\).
+
+**Coniugato e modulo:** \(z^*=x-iy\), \(|z|=\sqrt{x^2+y^2}\) e \(zz^*=|z|^2\).
+
+**Forma polare:** per \(z\ne0\), \(z=\rho(\cos\theta+i\sin\theta)=\rho e^{i\theta}\), con \(\rho=|z|\). L’argomento dipende dalla direzione e si ripete ogni \(2\pi\).
+
+**Equazioni:** in forma algebrica confronta le due parti; in forma polare confronta modulo e argomenti, conservando tutti i casi.
+@fine-passaggio
+@fine-card
+
+@quiz pillole-1
+Collocazione: fine sezione La lezione in pillole
+Tipo: scelta singola
+Domanda: Quale numero ha modulo 5 e coniugato 3 − 4i?
+A: −3 + 4i
+B: 3 + 4i
+C: 3 − 4i
+D: 5i
+Risposta corretta: B
+Feedback A: Il coniugato conserverebbe la parte reale −3.
+Feedback B: Il coniugato è 3 − 4i e il modulo è √(9 + 16) = 5.
+Feedback C: Il suo coniugato sarebbe 3 + 4i.
+Feedback D: Il modulo è 5, ma il coniugato sarebbe −5i.
+@fine-quiz
+
+@quiz pillole-2
+Collocazione: fine sezione La lezione in pillole
+Tipo: scelta singola
+Domanda: Quali sono le soluzioni di z² + 1 = 0?
+A: Solo i.
+B: 1 e −1.
+C: i e −i.
+D: Nessuna, anche nei complessi.
+Risposta corretta: C
+Feedback A: Anche −i ha quadrato −1.
+Feedback B: 1 e −1 hanno quadrato 1.
+Feedback C: Entrambe hanno quadrato −1.
+Feedback D: L’equazione non ha radici reali, ma ha queste due radici complesse.
+@fine-quiz
+
+@quiz pillole-3
+Collocazione: fine sezione La lezione in pillole
+Tipo: scelta singola
+Domanda: Quale cambiamento di argomento lascia invariato un numero complesso di modulo fissato e positivo?
+A: Aggiungere π/2.
+B: Aggiungere π.
+C: Cambiare sempre il segno dell’angolo.
+D: Aggiungere 2π.
+Risposta corretta: D
+Feedback A: Un quarto di giro cambia direzione.
+Feedback B: Mezzo giro dà il punto opposto.
+Feedback C: Cambiare segno dà in generale il coniugato, non lo stesso numero.
+Feedback D: Un giro completo riporta alla stessa direzione.
+@fine-quiz
+
+@nota
+GLOSSARIO PROPOSTO
+ID: cx-unita
+Parola visibile: Unità immaginaria
+Categoria: concetto della lezione
+Voce esistente: nuova proposta verificata nel reader
+Definizione generale: Il numero complesso i, definito dalla relazione i² = −1. Con i e i numeri reali si scrivono tutti i complessi nella forma x + iy.
+
+ID: cx-forma
+Parola visibile: Forma algebrica di un numero complesso
+Categoria: concetto della lezione
+Voce esistente: nuova proposta verificata nel reader
+Definizione generale: La rappresentazione unica z = x + iy, con x e y reali. x è la parte reale, y la parte immaginaria; la parte immaginaria non comprende il fattore i.
+
+ID: cx-piano
+Parola visibile: Piano complesso
+Categoria: concetto della lezione
+Voce esistente: nuova proposta verificata nel reader
+Definizione generale: Il piano cartesiano nel quale z = x + iy è rappresentato dal punto (x,y). L’asse orizzontale è reale, quello verticale immaginario.
+
+ID: cx-coniugato
+Parola visibile: Coniugato
+Categoria: concetto della lezione
+Voce esistente: nuova proposta verificata nel reader
+Definizione generale: Dato z = x + iy con x e y reali, il coniugato è x − iy. Si indica con z* o con una barra sopra z; nel piano è il simmetrico rispetto all’asse reale.
+
+ID: cx-modulo
+Parola visibile: Modulo di un numero complesso
+Categoria: concetto della lezione
+Voce esistente: nuova proposta verificata nel reader
+Definizione generale: Per z = x + iy, il modulo |z| = √(x²+y²) è la distanza dall’origine del punto che lo rappresenta. È reale, non negativo e nullo soltanto per z = 0.
+
+ID: cx-argomento
+Parola visibile: Argomento di un numero complesso
+Categoria: concetto della lezione
+Voce esistente: nuova proposta verificata nel reader
+Definizione generale: Per z non nullo, ogni angolo orientato dall’asse reale positivo alla direzione del punto che rappresenta z. Due argomenti dello stesso numero differiscono per un multiplo intero di 2π. L’argomento dello zero non è definito.
+
+ID: cx-polare
+Parola visibile: Forma polare
+Categoria: concetto della lezione
+Voce esistente: nuova proposta verificata nel reader
+Definizione generale: Per un numero complesso non nullo, la rappresentazione z = ρ(cos θ + i sin θ), dove ρ = |z| > 0 e θ è un suo argomento. Si può scrivere anche ρe^(iθ).
+
+ID: cx-eulero
+Parola visibile: Formula di Eulero
+Categoria: concetto della lezione
+Voce esistente: nuova proposta verificata nel reader
+Definizione generale: Per ogni angolo reale θ, espresso in radianti, e^(iθ) = cos θ + i sin θ. Collega la forma trigonometrica a quella esponenziale dei numeri complessi.
+
+ID: cx-tfa
+Parola visibile: Teorema fondamentale dell’algebra
+Categoria: concetto della lezione
+Voce esistente: nuova proposta verificata nel reader
+Definizione generale: Ogni polinomio non costante a coefficienti complessi ammette almeno una radice in C. Ne segue che un polinomio di grado n ha esattamente n radici complesse contate con la loro molteplicità, non necessariamente distinte.
+
+FONTI: Root.pdf, pp. 1–4, fornito dall’utente. Nessuna attribuzione inventata.
+Per modifiche, richieste visive e questioni aperte: NOTE_ALLA_REDAZIONE.txt e RIFERIMENTI_VISIVI.txt.
+@fine-nota
