@@ -6,21 +6,43 @@ document.addEventListener('DOMContentLoaded',()=>{
  const titles=document.getElementById('int-practice-title'),lead=document.getElementById('int-practice-lead');
  const lessons={immediati:'integrali-immediati',sostituzione:'integrali-sostituzione',lineari:'integrali-razionali-lineari',quadratici:'integrali-razionali-quadratiche',parti:'integrali-parti',definiti:'integrali-definiti',misti:'integrali-immediati'};
  const link=document.getElementById('int-theory-link');
- if(!group){lead.textContent='Scegli un gruppo: troverai soltanto i suoi dieci esercizi, con suggerimenti e soluzioni a passaggi.';return;}
+ if(!group){lead.textContent='Scegli un gruppo: troverai soltanto i suoi venti esercizi, con suggerimenti e soluzioni a passaggi.';return;}
  const section=sections.find(s=>s.dataset.group===group);section.hidden=false;
  document.getElementById('int-group-index').hidden=true;document.getElementById('int-all-groups').hidden=false;
  titles.textContent=section.dataset.title+': esercizi';document.title='GatitoMath – '+section.dataset.title+': esercizi';
- lead.textContent='Dieci esercizi di questo gruppo. Seleziona un numero per aprire la sua card; svolgi il calcolo sul quaderno prima di confrontare la soluzione.';
+ lead.textContent='Venti esercizi di questo gruppo. Seleziona un numero per aprire la sua card; svolgi il calcolo sul quaderno prima di confrontare la soluzione.';
  link.hidden=false;const theory=new URL('reader.html',location.href);theory.searchParams.set('lezione',lessons[group]);theory.searchParams.set('livello',params.get('livello')||'analisi1');link.querySelector('a').href=theory.href;
  const cards=[...section.querySelectorAll('[data-exercise]')],buttons=[...section.querySelectorAll('[data-open-exercise]')];
+
+ const board=section.querySelector('.int-support-board'),boardBody=board.querySelector('.int-board-body');
+ let boardTrigger=null;
+ function closeBoard(focus=true){
+  board.hidden=true;section.querySelector('.int-workspace').classList.remove('int-board-open');
+  section.querySelectorAll('[data-board]').forEach(b=>b.setAttribute('aria-expanded','false'));
+  if(focus&&boardTrigger&&!boardTrigger.closest('[hidden]'))boardTrigger.focus({preventScroll:true});
+ }
+ section.querySelectorAll('[data-board]').forEach(button=>button.addEventListener('click',()=>{
+  if(button.getAttribute('aria-expanded')==='true'){closeBoard();return;}
+  const card=button.closest('[data-exercise]'),template=card.querySelector('template[data-board-content="'+button.dataset.board+'"]');
+  section.querySelectorAll('[data-board]').forEach(b=>b.setAttribute('aria-expanded','false'));
+  button.setAttribute('aria-expanded','true');boardTrigger=button;
+  board.querySelector('h3').textContent=(button.dataset.board==='formule'?'Formulario':'Metodo e suggerimenti')+' · esercizio '+card.dataset.exercise;
+  boardBody.replaceChildren(template.content.cloneNode(true));board.hidden=false;
+  section.querySelector('.int-workspace').classList.add('int-board-open');
+  board.querySelector('h3').focus({preventScroll:true});
+  if(matchMedia('(max-width: 880px)').matches)board.scrollIntoView({block:'start',behavior:'auto'});
+ }));
+ board.querySelector('.int-board-close').addEventListener('click',()=>closeBoard());
+ board.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();closeBoard();}});
  function urlFor(exercise){const u=new URL(location.href);u.hash='';u.searchParams.set('gruppo',group);if(exercise)u.searchParams.set('esercizio',exercise);else u.searchParams.delete('esercizio');history.replaceState(null,'',u);}
  function select(exercise,focus=true){
+  closeBoard(false);
   const chosen=cards.find(c=>c.dataset.exercise===String(exercise));if(!chosen)return;
   cards.forEach(c=>c.hidden=c!==chosen);buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.openExercise===String(exercise))));
   section.classList.add('int-exercise-open');urlFor(exercise);
   if(focus){chosen.scrollIntoView({block:'start',behavior:'auto'});chosen.querySelector('h3').focus({preventScroll:true});}
  }
- function overview(){cards.forEach(c=>c.hidden=true);buttons.forEach(b=>b.setAttribute('aria-pressed','false'));section.classList.remove('int-exercise-open');urlFor(null);section.scrollIntoView({block:'start',behavior:'auto'});buttons[0].focus({preventScroll:true});}
+ function overview(){closeBoard(false);cards.forEach(c=>c.hidden=true);buttons.forEach(b=>b.setAttribute('aria-pressed','false'));section.classList.remove('int-exercise-open');urlFor(null);section.scrollIntoView({block:'start',behavior:'auto'});buttons[0].focus({preventScroll:true});}
  buttons.forEach(b=>b.addEventListener('click',()=>select(b.dataset.openExercise)));
  section.querySelectorAll('.int-return-index').forEach(b=>b.addEventListener('click',overview));
  section.querySelectorAll('.int-solution').forEach(details=>{
@@ -42,5 +64,5 @@ document.addEventListener('DOMContentLoaded',()=>{
   previous.addEventListener('click',()=>render(index-1,-1));next.addEventListener('click',()=>render(index+1,1));
   details.addEventListener('keydown',e=>{if(!details.open||!['ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();render(index+(e.key==='ArrowRight'?1:-1),e.key==='ArrowRight'?1:-1);});
  });
- const exercise=Number(params.get('esercizio'));urlFor(exercise>=1&&exercise<=10?exercise:null);if(Number.isInteger(exercise)&&exercise>=1&&exercise<=10)select(exercise,false);
+ const exercise=Number(params.get('esercizio'));urlFor(exercise>=1&&exercise<=cards.length?exercise:null);if(Number.isInteger(exercise)&&exercise>=1&&exercise<=cards.length)select(exercise,false);
 });

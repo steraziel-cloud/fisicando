@@ -13,3 +13,27 @@
 .int-solution-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:22px;padding-top:15px;border-top:1px solid #16a6af30}
 .int-solution-controls button{padding:10px 16px;border-radius:11px;border:1px solid #16a6af;background:#16a6af;color:white;cursor:pointer;font-size:1rem}.int-solution-controls button:disabled{opacity:.45;cursor:default}.int-step-progress{font-size:.92rem;text-align:center}
 @media(max-width:680px){.int-exercise-index{grid-template-columns:1fr}.int-exercise-open .int-exercise-index{grid-template-columns:repeat(5,minmax(0,1fr))}.int-current-exercise .int-practice-card{padding:18px}.int-solution-controls{flex-wrap:wrap}.int-step-progress{flex:1;min-width:85px}.int-solution-controls button{padding:10px 12px;font-size:.9rem}.int-card-heading{align-items:flex-start}}
+
+/* Optional tools share the workspace; neither hides the exercise nor reveals its solution. */
+.int-practice-main{max-width:1360px!important;width:calc(100% - 40px);margin-inline:auto}
+.int-workspace{display:grid;grid-template-columns:minmax(0,1fr);align-items:start;gap:24px}
+.int-workspace.int-board-open{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+.int-current-exercise{width:100%;min-width:0;max-width:960px}.int-board-open .int-current-exercise{max-width:none}
+.int-exercise-kind{font-size:.91rem;line-height:1.5;color:var(--rm-muted,#536a72);margin:0 0 22px}
+.int-exercise-kind span{display:inline-block;padding:3px 8px;margin-right:6px;background:#16a6af18;border-radius:7px;color:inherit}
+.int-index-guide{color:var(--rm-muted,#536a72);font-size:.95rem}.int-exercise-open .int-index-guide{display:none}
+.int-tool-buttons{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0}
+.int-tool-buttons button{font:inherit;font-size:.95rem;color:inherit;border:1px solid #16a6af60;background:var(--rm-panel,#fff);padding:10px 14px;border-radius:10px;cursor:pointer}
+.int-tool-buttons button:hover,.int-tool-buttons button[aria-expanded=true]{background:#16a6af22;border-color:#168f99}
+.int-support-board{min-width:0;border:1px solid #16a6af60;border-radius:20px;background:var(--rm-panel,#fff);box-shadow:0 10px 35px #153b4710;overflow:hidden;scroll-margin-top:90px}
+.int-support-board>header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 24px;background:#16a6af12;border-bottom:1px solid #16a6af30}
+.int-support-board h3{font-size:1.08rem;margin:4px 0}.int-board-eyebrow{letter-spacing:.12em;font-size:.69rem;font-weight:700;color:#16838e;margin:0}
+.int-board-close{background:transparent;border:1px solid #16a6af45;border-radius:50%;width:38px;height:38px;flex-shrink:0;font-size:1.6rem;color:inherit;cursor:pointer}
+.int-board-body{padding:22px 24px;line-height:1.65}.int-board-body h4{margin:0 0 12px;font-size:1.05rem}.int-board-body h5{font-size:1rem;margin:0 0 12px;color:var(--rm-ink,inherit)}
+.int-board-body p{font-size:.95rem}.int-board-body li{margin:0 0 10px}.int-board-body ol{padding-left:22px}
+.int-formula-family{margin-top:24px;padding-top:20px;border-top:1px solid #16a6af25}.int-formula-family .int-formula{font-size:1.1rem;margin:12px 0}.int-formula-family p{margin:6px 0 18px;color:var(--rm-muted,inherit)}
+.int-board-body details{margin:18px 0;border:1px solid #16a6af35;border-radius:10px;padding:12px 14px}.int-board-body summary{cursor:pointer;font-weight:600;font-size:.95rem}.int-target-hint{background:#f4bc3410}
+.int-formula{max-width:100%;overflow-x:auto;padding-block:8px}.int-formula math{min-width:max-content}.int-step-text{overflow-wrap:anywhere}.int-step-text p{margin:0 0 14px}
+.int-practice-card>details{margin-top:14px}.int-index-formula math{font-size:1.05em}.int-exercise-index button:focus-visible,.int-tool-buttons button:focus-visible,.int-board-close:focus-visible{outline:3px solid #e8aa39;outline-offset:3px}
+@media(max-width:880px){.int-workspace.int-board-open{grid-template-columns:minmax(0,1fr)}.int-support-board{max-width:960px}.int-board-body{padding:18px}.int-practice-main{width:calc(100% - 24px)}}
+@media(prefers-reduced-motion:reduce){.int-workspace *{scroll-behavior:auto!important}}
