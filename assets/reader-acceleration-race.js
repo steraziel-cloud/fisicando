@@ -1,6 +1,6 @@
 /* Una sola legge per posizione, velocità e accelerazione: nessun moto disgiunto dal grafico. */
 (() => {
-  const T=12, names=['bjorne','red','morgana'];
+  const T=12, names=['red','morgana','bjorne'];
   const labels={bjorne:'Bjorne',red:'Red',morgana:'Morgana'};
   const colors={bjorne:'#168b87',red:'#d96528',morgana:'#9462c3'};
   const model=(name,t)=>{
