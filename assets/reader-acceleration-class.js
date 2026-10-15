@@ -61,11 +61,11 @@
    text(300,20,'verso positivo',{class:'ac-small','text-anchor':'middle'});
    if(!carCache){
     const g=make('g',{},undefined,drawing);
-    const crop=make('svg',{x:-61,y:-32,width:122,height:58,viewBox:'0 0 1536 512',preserveAspectRatio:'xMidYMid meet'},undefined,g);
+    const crop=make('svg',{x:-80,y:-42,width:160,height:76,viewBox:'0 0 1536 512',preserveAspectRatio:'xMidYMid meet'},undefined,g);
     make('image',{href:ROOT+'auto-frames-v1.png',width:1536,height:1024},undefined,crop);
     carCache={g,crop};
    }
-   carCache.g.style.display='';carCache.g.setAttribute('transform',`translate(${pos} 80) scale(${negative?-1:1} 1)`);
+   carCache.g.style.display='';carCache.g.setAttribute('transform',`translate(${pos} 94) scale(${negative?-1:1} 1)`);
    const row=running&&Math.abs(m.v)>.01?Math.floor(state.t*8)%2:0;
    carCache.crop.setAttribute('viewBox',`0 ${row*512} 1536 512`);
    text(300,small?140:158,`vₛ = ${fmt(m.v)} m/s`,{'text-anchor':'middle',class:'ac-speed'});
