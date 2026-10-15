@@ -61,7 +61,7 @@
    text(300,20,'verso positivo',{class:'ac-small','text-anchor':'middle'});
    if(!carCache){
     const g=make('g',{},undefined,drawing);
-    const crop=make('svg',{x:-80,y:-42,width:160,height:76,viewBox:'0 0 1536 512',preserveAspectRatio:'xMidYMid meet'},undefined,g);
+    const crop=make('svg',{x:-80,y:-31,width:160,height:53.333333,viewBox:'0 0 1536 512',preserveAspectRatio:'xMidYMid meet',style:'overflow:hidden'},undefined,g);
     make('image',{href:ROOT+'auto-frames-v1.png',width:1536,height:1024},undefined,crop);
     carCache={g,crop};
    }
