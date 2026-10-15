@@ -1,0 +1,20 @@
+/* Lavagna persistente: corsa, letture e grafico condividono lo stesso istante. */
+.ar-race-card{display:grid!important;grid-template-columns:minmax(0,.9fr) minmax(0,1.25fr);gap:20px 28px;align-items:start}
+.ar-race-card>.rm-card-title{grid-column:1/-1}
+.ar-race-card>.rm-card-text{grid-column:1;grid-row:2;min-width:0;margin:0!important}
+.ar-race-card>.ar-race{grid-column:2;grid-row:2;min-width:0}
+.ar-race{padding:16px;border:1px solid var(--rm-border);border-radius:20px;background:var(--rm-panel);color:var(--rm-text);margin:0}
+.ar-board-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:16px}
+.ar-time{font-variant-numeric:tabular-nums;font-weight:700;color:#168b87;white-space:nowrap}
+.ar-race svg{display:block;width:100%;height:auto;overflow:visible;color:inherit}
+.ar-race svg text{fill:currentColor;font-family:inherit;font-size:14px}
+.ar-race .ar-track{margin:10px 0 0}
+.ar-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;font-size:13px;margin:0 0 9px}
+.ar-legend span{display:flex;gap:5px;align-items:center}.ar-legend i{width:9px;height:9px;background:var(--runner);border-radius:50%}.ar-legend strong{font-variant-numeric:tabular-nums;font-size:12px}
+.ar-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:4px}
+.ar-controls button{font:inherit;font-size:13px;padding:8px 11px;border:1px solid var(--rm-border);border-radius:10px;background:var(--rm-card);color:inherit;cursor:pointer;min-height:36px}
+.ar-controls .ar-play{background:#168b87;color:#fff;border-color:#168b87;min-width:65px}
+.ar-timeline{flex:1;min-width:120px;font-size:11px;line-height:1.2}.ar-timeline span{display:block;margin-bottom:3px}.ar-timeline input{width:100%;accent-color:#168b87;cursor:grab}
+.ar-race .ar-caption{font-size:12px;line-height:1.45;margin:10px 0 0;opacity:.78}
+.ar-race-card .rm-reader-step p{line-height:1.65}
+@media(max-width:1000px){.ar-race-card{grid-template-columns:minmax(0,1fr)}.ar-race-card>.rm-card-text{grid-column:1;grid-row:2}.ar-race-card>.ar-race{grid-column:1;grid-row:3;max-width:650px;width:100%;box-sizing:border-box;margin:auto}}
