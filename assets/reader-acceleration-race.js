@@ -80,10 +80,15 @@
       });
       // Separa le etichette quando le velocità coincidono, mantenendo il collegamento al punto.
       const ordered=names.map(name=>({name,py:y(model(name,t).v)})).sort((a,b)=>a.py-b.py);
+      const toRight=x(t)<390;
       let previous=-Infinity;
-      ordered.forEach(item=>{item.top=Math.max(30,item.py-12,previous+29);previous=item.top;});
+      ordered.forEach(item=>{
+        const a=model(item.name,t).a;
+        const preferred=toRight?item.py-12:(a>0?item.py-36:item.py+10);
+        item.top=Math.max(30,preferred,previous+29);previous=item.top;
+      });
       const overflow=Math.max(0,ordered.at(-1).top+24-202);
-      const toRight=x(t)<390,bx=toRight?x(t)+14:x(t)-156;
+      const bx=toRight?x(t)+14:x(t)-156;
       ordered.forEach(({name,top,py})=>{
         top-=overflow;tags[name].body.setAttribute('transform',`translate(${bx} ${top})`);
         tags[name].link.setAttribute('d',`M${x(t)} ${py} L${toRight?bx:bx+142} ${top+12}`);
