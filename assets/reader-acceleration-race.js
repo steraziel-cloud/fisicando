@@ -28,12 +28,11 @@
         <path d="M46 26V170" stroke="#fff" stroke-width="2"/>
         <g aria-hidden="true">${Array.from({length:12},(_,i)=>`<rect x="${530+i%2*8}" y="${26+Math.floor(i/2)*24}" width="8" height="24" fill="${i%4===0||i%4===3?'#fff':'#303b48'}"/>`).join('')}</g>
         <rect x="498" y="-1" width="82" height="22" rx="6" fill="#263746"/>
-        <text x="539" y="15" text-anchor="middle" style="fill:#fff;font-size:12px;font-weight:700">ARRIVO</text>
+        <text x="539" y="15" text-anchor="middle" style="fill:#fff;font-size:11px;font-weight:700">ARRIVO</text>
         <path d="M66 17H478l-6-4m6 4-6 4" stroke="currentColor" fill="none" stroke-width="1.5"/>
         <text x="270" y="12" text-anchor="middle">verso positivo</text>
         <text x="46" y="194" text-anchor="middle">0 m</text><text x="546" y="194" text-anchor="middle">100 m</text>
       </svg>
-      <div class="ar-legend">${names.map(n=>`<span style="--runner:${colors[n]}"><i></i>${labels[n]}</span>`).join('')}</div>
       <svg class="ar-graph" viewBox="0 0 600 245" role="img" aria-label="Grafico della velocità scalare in funzione del tempo: Bjorne mantiene 4 m/s; Red e Morgana partono da 5 m/s. La velocità di Red cresce fino a 9 m/s nei primi 4 secondi, poi diminuisce gradualmente; quella di Morgana aumenta regolarmente.">
         <text x="52" y="18">v<tspan baseline-shift="sub" font-size="11">s</tspan> (m/s)</text>
         ${[0,2,4,6,8,10,12].map(v=>`<path d="M52 ${202-13*v}H552" stroke="currentColor" stroke-opacity=".12"/><text x="39" y="${207-13*v}" text-anchor="end">${v}</text>`).join('')}
@@ -60,8 +59,8 @@
       const g=svg('g',{'class':'ar-speed-tag'},tagLayer);
       const link=svg('path',{fill:'none',stroke:colors[name],'stroke-width':1.3,'stroke-opacity':.75},g);
       const body=svg('g',{},g);
-      svg('rect',{width:142,height:24,rx:8,fill:'var(--rm-card,#fff)',stroke:colors[name],'stroke-width':1.3},body);
-      const text=svg('text',{x:71,y:16.5,'text-anchor':'middle',style:'font-size:12px;font-weight:700'},body);
+      svg('rect',{width:120,height:20,rx:6,fill:'var(--rm-card,#fff)',stroke:colors[name],'stroke-width':1.3},body);
+      const text=svg('text',{x:60,y:13.8,'text-anchor':'middle',style:'font-size:12px;font-weight:700'},body);
       tags[name]={body,link,text};
     });
     const play=board.querySelector('.ar-play'),slider=board.querySelector('input'),readout=board.querySelector('.ar-time');
@@ -84,14 +83,14 @@
       let previous=-Infinity;
       ordered.forEach(item=>{
         const a=model(item.name,t).a;
-        const preferred=toRight?item.py-12:(a>0?item.py-36:item.py+10);
-        item.top=Math.max(30,preferred,previous+29);previous=item.top;
+        const preferred=toRight?item.py-10:(a>0?item.py-30:item.py+9);
+        item.top=Math.max(30,preferred,previous+25);previous=item.top;
       });
-      const overflow=Math.max(0,ordered.at(-1).top+24-202);
-      const bx=toRight?x(t)+14:x(t)-156;
+      const overflow=Math.max(0,ordered.at(-1).top+20-202);
+      const bx=toRight?x(t)+14:x(t)-134;
       ordered.forEach(({name,top,py})=>{
         top-=overflow;tags[name].body.setAttribute('transform',`translate(${bx} ${top})`);
-        tags[name].link.setAttribute('d',`M${x(t)} ${py} L${toRight?bx:bx+142} ${top+12}`);
+        tags[name].link.setAttribute('d',`M${x(t)} ${py} L${toRight?bx:bx+120} ${top+10}`);
       });
       board.querySelector('.ar-guide').setAttribute('d',`M${x(t)} 32V202`);
       play.textContent=running?'Pausa':t>=T?'Rivedi':'Avvia';slider.setAttribute('aria-valuetext',number(t)+' secondi');
