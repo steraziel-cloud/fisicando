@@ -114,3 +114,7 @@
 .ag-box-balloon::after{display:none}
 .ag-box-balloon-art{display:block;width:100%!important;height:100%!important;overflow:hidden!important;clip-path:inset(0)}
 @media(max-width:780px){.ag-box-scene{padding-top:150px;min-height:420px}}
+
+/* Selected null/full examples use the same distinct colors as the main board. */
+.ag-angle-example[data-angle-type="Nullo"][aria-pressed="true"]{border-color:#07845f;background:#21ad821f}
+.ag-angle-example[data-angle-type="Giro"][aria-pressed="true"]{border-color:#c34838;background:#ed614d24}
