@@ -1,11 +1,31 @@
 /* Catalog rendering is separate from the legacy navigation on learning pages. */
 document.addEventListener('DOMContentLoaded', () => {
-  const catalog = window.LESSON_CATALOG;
+  let catalog = window.LESSON_CATALOG;
   const nav = document.getElementById('sidebar');
   if (!catalog || !nav) return;
   const levels = window.STUDY_LEVELS;
   const params = new URLSearchParams(location.search);
   const level = Object.hasOwn(levels, params.get('livello')) ? params.get('livello') : null;
+  // Alle medie le discipline scientifiche appartengono alla materia Scienze.
+  // La proiezione conserva gli oggetti lezione e i loro URL; gli altri livelli
+  // continuano a usare il catalogo originale.
+  if (level === 'medie') {
+    const subjects = catalog;
+    const discipline = (id, title, icon) => {
+      const source = subjects.find(s => s.id === id);
+      return { title, icon, planned: true, topics: (source?.areas || []).map(a => ({
+        title: a.title, icon: a.icon, children: a.topics || []
+      })) };
+    };
+    catalog = [subjects.find(s => s.id === 'matematica'), {
+      id: 'scienze', title: 'Scienze', icon: 'microscope', areas: [
+        discipline('fisica', 'Fisica', 'atom'),
+        discipline('chimica', 'Chimica', 'molecule'),
+        discipline('biologia', 'Biologia', 'dna'),
+        discipline('scienze-terra', 'Scienze della Terra', 'earth')
+      ]
+    }].filter(Boolean);
+  }
   const search = document.getElementById('lesson-search');
   const subject = document.getElementById('subject-filter');
   const area = document.getElementById('area-filter');
@@ -30,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     measure:'M3 17 17 3l4 4L7 21Z M8 12l3 3 M12 8l3 3 M16 4l3 3',
     gear:'M9 3h6l1 4 4 1v8l-4 1-1 4H9l-1-4-4-1V8l4-1Z M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z',
     thermometer:'M9 14V5a3 3 0 0 1 6 0v9a5 5 0 1 1-6 0Z M12 8v10 M18 6h3 M18 10h3',
+    earth:'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z M3 12h18 M12 3c5 5 5 13 0 18 M12 3c-5 5-5 13 0 18 M5 7h14 M5 17h14',
     bolt:'m13 2-9 12h7l-1 8 10-13h-7Z'
   };
   Object.assign(paths, {
@@ -154,10 +175,15 @@ document.addEventListener('DOMContentLoaded', () => {
           if(td.children.length>1)parent.append(td);
         }
         a.topics.forEach((t,ti)=>visitTopic(t,s.id+'/'+ai+'/'+ti,ad,[]));
+        if(ad.children.length===1 && a.planned && !tokens.length && !available.checked) {
+          const note=document.createElement('p'); note.className='rm-topics-hint';
+          note.textContent='In lavorazione · Le lezioni saranno aggiunte qui.';
+          ad.append(note);
+        }
         if(ad.children.length>1)sd.append(ad);
       });if(sd.children.length>1)fragment.append(sd);
     });nav.replaceChildren(fragment);
-    document.getElementById('topics-empty').hidden=count!==0;
+    document.getElementById('topics-empty').hidden=nav.childElementCount!==0;
     document.getElementById('catalog-count').textContent=`${count} ${count===1?'voce':'voci'} · ${ready} materiali disponibili · ${all.checked || !level?'Tutti i livelli':levels[level]}`;
   }
   document.getElementById('catalog-filters').addEventListener('submit',e=>e.preventDefault());
