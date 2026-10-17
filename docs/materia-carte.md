@@ -44,3 +44,15 @@ Solo queste tre carte sono animate, sia nel reader sia nella tavola interna di c
 Proiezione e scala restano fisse. Tempi e velocità non sono in scala fisica. Pausa/Riprendi mantiene il fotogramma e la scelta durante le fasi della carta. L'animazione è arrestata sul fronte, nelle schede browser non visibili e quando il widget viene smontato. La preferenza di movimento ridotto parte in pausa; l'utente può avviare esplicitamente. Rendering limitato a 24 fps.
 
 `node tests/matter-motion.cjs`: 20 secondi simulati per campione, confini, conteggi, distanze intramolecolari costanti, vibrazioni limitate, scala fissa, pausa/ripresa senza salti, visibilità e rilascio dei callback.
+
+
+
+## Estensione a tutte le 18 carte
+
+Tutte le carte hanno ora un motore di movimento e il comando Pausa/Riprendi. Gas: elio, aria, CO2. Liquidi: acqua, acqua del rubinetto e mercurio. Solidi molecolari: saccarosio e ghiaccio, con oscillazioni/rotazioni limitate dei gruppi rigidi. Altri solidi: vibrazioni di piccola ampiezza proporzionate alla scala del modello, senza traslazione del reticolo. Le masse e le energie dei moti non sono quantitative: gli urti tra gruppi sono idealizzati.
+
+Nelle miscele eterogenee il disegno è composto da motori distinti: gas e goccioline liquide nella nebbia; liquido e frammenti solidi nella spremuta; matrice solida e inclusioni solide nel biscotto. I contorni e le maschere delle inclusioni restano separati dai legami molecolari; le goccioline hanno ora un contorno ellittico. Il lento spostamento dei frammenti nella spremuta e delle goccioline è illustrativo, non una legge quantitativa di sedimentazione. Le parti della miscela restano nelle regioni rappresentate.
+
+Saccarosio: quattro gruppi più grandi, due anelli con ponte glicosidico e gruppi OH esterni. Idrogeni posizionati evitando le direzioni dei legami esistenti; formula C12H22O11 controllata per ciascuna molecola. La stereochimica non è una conformazione sperimentale e non va usata per insegnare stereoisomeria. I gruppi restano integri nel movimento. La carta dello zucchero da cucina resta saccarosio, non glucosio.
+
+Il rendering fuori dallo schermo è sospeso tramite IntersectionObserver per contenere il consumo della tavola con 18 modelli. Le prove numeriche coprono ora tutti i 18 campioni per 20 secondi simulati, oltre a pausa/ripresa e integrità dei gruppi. Le immagini restano modelli da rivedere didatticamente carta per carta.

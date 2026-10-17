@@ -40,14 +40,28 @@ window.GatitoMatterModels=(()=>{
   return`<path d="${path}" fill="${fill}" stroke="#72a2bb" stroke-width="1.4"/>${draw(w,rect)}`;
  }
  function sucrose(w,center,angle,size){
+  /* Correct heavy-atom connectivity; enlarged rings and outward OH/H placement.
+     This is a readable molecular model, not a stereochemical conformer. */
   const m=world(),rings=[];
-  for(const [n,x,y] of [[6,-.95,0],[5,1,.15]]){const ring=[];for(let k=0;k<n;k++){const a=k*2*Math.PI/n;ring.push(atom(m,[x+Math.cos(a)*.66,y+Math.sin(a)*.66,Math.sin(k*1.7)*.17],k===0?'O':'C',k===0?.19:.2));}ring.forEach((id,i)=>bond(m,id,ring[(i+1)%n]));rings.push(ring);}
-  const bridge=atom(m,[.1,.54,.15],'O',.19);bond(m,rings[0][1],bridge);bond(m,bridge,rings[1][1]);
-  const branches=[[rings[0][5],[-1.7,-.72,.15]],[rings[1][1],[1.7,1.1,.15]],[rings[1][4],[1.9,-.7,-.1]]];
-  const carbons=branches.map(([id,p])=>{const c=atom(m,p,'C',.2);bond(m,id,c);return c;});
-  const oh=[rings[0][2],rings[0][3],rings[0][4],carbons[0],rings[1][2],rings[1][3],carbons[1],carbons[2]];
-  oh.forEach((id,i)=>{const p=m.atoms[id].p,delta=[Math.cos(i*2.1)*.53,Math.sin(i*2.1)*.53,i%2?.3:-.3],o=atom(m,add(p,delta),'O',.19);bond(m,id,o);});
-  const heavy=m.atoms.length;for(let i=0;i<heavy;i++){const degree=m.bonds.filter(e=>e.includes(i)).length,missing=(m.atoms[i].k==='C'?4:2)-degree;for(let j=0;j<missing;j++){const h=atom(m,add(m.atoms[i].p,[Math.cos(i*2.4+j*2)*.36,Math.sin(i*2.4+j*2)*.36,j%2?.29:-.29]),'H',.12);bond(m,i,h);}}
+  for(const [n,cx,phase] of [[6,-1.22,0],[5,1.22,Math.PI-2*Math.PI/5]]){
+   const ring=[];for(let i=0;i<n;i++){const a=i*2*Math.PI/n+phase;ring.push(atom(m,[cx+Math.cos(a)*.72,Math.sin(a)*.72,Math.sin(i*2.1)*.15],i===0?'O':'C',i===0?.185:.19));}
+   ring.forEach((id,i)=>bond(m,id,ring[(i+1)%n]));rings.push(ring);
+  }
+  const bridge=atom(m,[-.13,.32,.1],'O',.185);bond(m,rings[0][1],bridge);bond(m,bridge,rings[1][1]);
+  const branch=(id,offset)=>{const c=atom(m,add(m.atoms[id].p,offset),'C',.19);bond(m,id,c);return c;};
+  const ex=[branch(rings[0][5],[.4,-.54,.1]),branch(rings[1][1],[-.12,.66,.4]),branch(rings[1][4],[.5,.43,-.1])];
+  const hydroxyls=[[rings[0][2],[-.35,.57,.15]],[rings[0][3],[-.66,-.04,-.1]],[rings[0][4],[-.36,-.59,.16]],[ex[0],[.45,-.4,-.1]],[rings[1][2],[-.28,-.58,-.12]],[rings[1][3],[.53,-.42,.12]],[ex[1],[-.2,.52,.25]],[ex[2],[.5,.35,.12]]];
+  hydroxyls.forEach(([id,offset])=>{const o=atom(m,add(m.atoms[id].p,offset),'O',.185);bond(m,id,o);});
+  const heavy=m.atoms.length;
+  for(let id=0;id<heavy;id++){
+   const neighbours=m.bonds.filter(e=>e.includes(id)).map(e=>e[0]===id?e[1]:e[0]),directions=neighbours.map(j=>{const p=m.atoms[j].p.map((v,k)=>v-m.atoms[id].p[k]);return mul(p,1/Math.hypot(...p));});
+   const missing=(m.atoms[id].k==='C'?4:2)-neighbours.length;
+   for(let h=0;h<missing;h++){
+    let best=null,score=-Infinity;
+    for(let i=0;i<60;i++){const z=1-2*(i+.5)/60,r=Math.sqrt(1-z*z),a=i*2.39996323,v=[r*Math.cos(a),r*Math.sin(a),z],s=Math.min(...directions.map(q=>1-v.reduce((sum,x,k)=>sum+x*q[k],0)));if(s>score){score=s;best=v;}}
+    directions.push(best);const j=atom(m,add(m.atoms[id].p,mul(best,.4)),'H',.105);bond(m,id,j);
+   }
+  }
   const offset=w.atoms.length;m.atoms.forEach(a=>atom(w,add(center,mul(rotate(a.p,angle),size)),a.k,a.r*size));m.bonds.forEach(([a,b])=>bond(w,a+offset,b+offset));
  }
  function build(id){
@@ -86,7 +100,7 @@ window.GatitoMatterModels=(()=>{
    for(const [p,k] of [[[.4697,0,0],'Si'],[[.4133,.2672,.1188],'O']])for(const q of orbit(p))for(let x=0;x<2;x++)for(let y=0;y<2;y++)for(let z=0;z<2;z++){const a=q[0]+x,b=q[1]+y,c=q[2]+z;atom(w,[a-b*.5,b*Math.sqrt(3)/2,c*5.4047/4.9137],k,k==='Si'?.1:.075);}
    w.atoms.forEach((a,i)=>w.atoms.forEach((b,j)=>{if(j>i&&a.k!==b.k&&dist(a.p,b.p)<1.7/4.9137)bond(w,i,j);}));
   }
-  if(id==='zucchero')for(let x=0;x<3;x++)for(let y=0;y<2;y++)sucrose(w,[x*3.6,y*3.2,(x+y)%2*.3],.7,.6);
+  if(id==='zucchero')for(let x=0;x<2;x++)for(let y=0;y<2;y++)sucrose(w,[x*6.1,y*4.7,(x+y)%2*.25],.12,.88);
   if(id==='pet'){
    for(let chain=0;chain<3;chain++){
     let previous=null;const map=p=>[p[0],p[1]+chain*2.7+Math.sin(p[0]*.55+chain)*.55,p[2]+Math.cos(p[0]*.4+chain)*.45];
@@ -108,74 +122,79 @@ window.GatitoMatterModels=(()=>{
   const body=['nebbia','spremuta','biscotto'].includes(d.id)?heterogeneous(d.id):draw(build(d.id),[28,25,364,266],d.id==='grafite'?{yaw:.22,pitch:.65}:{});
   return{svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 316" role="img" aria-label="Struttura del campione ${d.name.replace(/[&<>\"]/g,'')}"><defs>${defs}</defs><g class="mm-world">${body}</g></svg>`};
  }
- const supportsMotion=id=>['elio','acqua','sale'].includes(id);
- function createMotion(id){
-  if(!supportsMotion(id))return null;
-  const w=build(id),base=w.atoms.map(a=>({...a,p:[...a.p]})),random=rng(id==='elio'?111:213);
-  let time=0;
-  const solid=id==='sale',water=id==='acqua',size=water?3:1;
-  const groups=Array.from({length:w.atoms.length/size},(_,i)=>{
-   const center=[...base[i*size].p],velocity=[random()-.5,random()-.5,random()-.5],n=Math.hypot(...velocity)||1,speed=water?.28:.56;
-   return{center,velocity:mul(velocity,speed/n),offsets:base.slice(i*size,(i+1)*size).map(a=>a.p.map((v,k)=>v-center[k])),spin:(random()-.5)*.5};
-  });
-  const radius=water?.43:.22;
-  const lo=[0,1,2].map(k=>Math.min(...groups.map(g=>g.center[k]))-(water?.22:.5));
-  const hi=[0,1,2].map(k=>Math.max(...groups.map(g=>g.center[k]))+(water?.22:.5));
-  /* Stable projection bounds: motion never changes the drawing scale or the camera. */
-  const reference=world();if(solid)base.forEach(a=>reference.atoms.push({...a,r:a.r+.04}));
-  else for(let i=0;i<8;i++)reference.atoms.push({p:[0,1,2].map(k=>(i&(1<<k)?hi:lo)[k]),k:'H',r:water?.78:.26});
+ const motionIds=['elio','acqua','grafite','aria','sale','spremuta','zucchero','ottone','co2','quarzo','rubinetto','nebbia','mercurio','calcio','biscotto','sic','pet','ghiaccio'];
+ const supportsMotion=id=>motionIds.includes(id);
+ function connectedGroups(w){
+  const adjacency=w.atoms.map(()=>[]);w.bonds.forEach(([a,b])=>{adjacency[a].push(b);adjacency[b].push(a);});
+  const visited=new Set(),result=[];w.atoms.forEach((_,i)=>{if(visited.has(i))return;const group=[],queue=[i];visited.add(i);while(queue.length){const j=queue.pop();group.push(j);adjacency[j].forEach(k=>{if(!visited.has(k)){visited.add(k);queue.push(k);}});}result.push(group);});return result;
+ }
+ function movingWorld(w,kind,seed=213,camera={}){
+  const base=w.atoms.map(a=>({...a,p:[...a.p]})),random=rng(seed),solid=kind==='solid'||kind==='molecular-solid',molecular=kind==='molecular-solid',liquid=kind==='liquid';let time=0;
+  const span=[0,1,2].map(k=>Math.max(...base.map(a=>a.p[k]))-Math.min(...base.map(a=>a.p[k]))),amplitude=Math.max(...base.map(a=>a.r))*.065+Math.hypot(...span)*.001;
+  const groups=connectedGroups(w).map(indices=>{const center=[0,1,2].map(k=>indices.reduce((v,i)=>v+base[i].p[k],0)/indices.length),v=[random()-.5,random()-.5,random()-.5],norm=Math.hypot(...v)||1,speed=liquid?.26:.56;return{indices,center,velocity:mul(v,speed/norm),offsets:indices.map(i=>base[i].p.map((v,k)=>v-center[k])),spin:(random()-.5)*.5,radius:liquid?(indices.length===1?base[indices[0]].r*.9:.43):Math.max(...indices.map(i=>dist(base[i].p,center)+base[i].r))*.8};});
+  const lo=[0,1,2].map(k=>Math.min(...groups.map(g=>g.center[k]))-(liquid?.22:.5)),hi=[0,1,2].map(k=>Math.max(...groups.map(g=>g.center[k]))+(liquid?.22:.5));
+  const reference=world();if(solid)base.forEach(a=>reference.atoms.push({...a,r:a.r+amplitude*2}));else for(let i=0;i<8;i++)reference.atoms.push({p:[0,1,2].map(k=>(i&(1<<k)?hi:lo)[k]),k:'H',r:Math.max(...groups.map(g=>Math.max(...g.offsets.map(p=>Math.hypot(...p)))))+.28});
   const spin=(p,a,b)=>{const c=Math.cos(a),s=Math.sin(a),u=[p[0]*c-p[1]*s,p[0]*s+p[1]*c,p[2]],cb=Math.cos(b),sb=Math.sin(b);return[u[0],u[1]*cb-u[2]*sb,u[1]*sb+u[2]*cb];};
   function update(){
-   if(solid)w.atoms.forEach((a,i)=>{a.p=base[i].p.map((v,k)=>v+.018*Math.sin(time*(5.6+k*.7)+i*2.13+k));});
-   else groups.forEach((g,i)=>g.offsets.forEach((p,j)=>{const offset=water?spin(p,g.spin*time,.13*Math.sin(time*.7+i)):p;w.atoms[i*size+j].p=add(g.center,offset);}));
+   if(solid&&!molecular)w.atoms.forEach((a,i)=>{a.p=base[i].p.map((v,k)=>v+amplitude*Math.sin(time*(5.6+k*.7)+i*2.13+k));});
+   else groups.forEach((g,i)=>g.offsets.forEach((p,j)=>{const offset=spin(p,molecular?.018*Math.sin(time*2.2+i):g.spin*time,molecular?.012*Math.sin(time*2.8+i):.13*Math.sin(time*.7+i));w.atoms[g.indices[j]].p=add(g.center,offset).map((v,k)=>v+(molecular?amplitude*Math.sin(time*4.5+i*1.7+k):0));}));
   }
   function integrate(dt){
-   for(const g of groups)for(let k=0;k<3;k++){
-    g.center[k]+=g.velocity[k]*dt;
-    if(g.center[k]<lo[k]){g.center[k]=lo[k]+(lo[k]-g.center[k]);g.velocity[k]=Math.abs(g.velocity[k]);}
-    if(g.center[k]>hi[k]){g.center[k]=hi[k]-(g.center[k]-hi[k]);g.velocity[k]=-Math.abs(g.velocity[k]);}
-   }
+   groups.forEach(g=>g.center.forEach((_,k)=>{g.center[k]+=g.velocity[k]*dt;if(g.center[k]<lo[k]){g.center[k]=lo[k]+(lo[k]-g.center[k]);g.velocity[k]=Math.abs(g.velocity[k]);}if(g.center[k]>hi[k]){g.center[k]=hi[k]-(g.center[k]-hi[k]);g.velocity[k]=-Math.abs(g.velocity[k]);}}));
    for(let i=0;i<groups.length;i++)for(let j=i+1;j<groups.length;j++){
-    const a=groups[i],b=groups[j],delta=b.center.map((v,k)=>v-a.center[k]),distance=Math.hypot(...delta);
-    if(distance>=2*radius||distance<1e-8)continue;
-    const normal=mul(delta,1/distance),overlap=(2*radius-distance)/2;
-    for(let k=0;k<3;k++){a.center[k]-=normal[k]*overlap;b.center[k]+=normal[k]*overlap;}
-    const approach=b.velocity.reduce((v,x,k)=>v+(x-a.velocity[k])*normal[k],0);
-    if(approach<0)for(let k=0;k<3;k++){a.velocity[k]+=approach*normal[k];b.velocity[k]-=approach*normal[k];}
+    const a=groups[i],b=groups[j],delta=b.center.map((v,k)=>v-a.center[k]),distance=Math.hypot(...delta),minimum=a.radius+b.radius;if(distance>=minimum||distance<1e-8)continue;
+    const normal=mul(delta,1/distance),overlap=(minimum-distance)/2;for(let k=0;k<3;k++){a.center[k]-=normal[k]*overlap;b.center[k]+=normal[k]*overlap;}
+    const approach=b.velocity.reduce((v,x,k)=>v+(x-a.velocity[k])*normal[k],0);if(approach<0)for(let k=0;k<3;k++){a.velocity[k]+=approach*normal[k];b.velocity[k]-=approach*normal[k];}
    }
-   /* A collision close to a wall may push a centre past the wall by a tiny amount. */
    groups.forEach(g=>g.center.forEach((v,k)=>{if(v<lo[k]){g.center[k]=lo[k];g.velocity[k]=Math.abs(g.velocity[k]);}if(v>hi[k]){g.center[k]=hi[k];g.velocity[k]=-Math.abs(g.velocity[k]);}}));
   }
-  function advance(dt){
-   const elapsed=Math.max(0,Math.min(Number.isFinite(dt)?dt:0,.2));time+=elapsed;
-   if(!solid){const steps=Math.max(1,Math.ceil(elapsed/.012));for(let i=0;i<steps;i++)integrate(elapsed/steps);}
-   update();return w;
+  function advance(dt){const elapsed=Math.max(0,Math.min(Number.isFinite(dt)?dt:0,.2));time+=elapsed;if(!solid){const n=Math.max(1,Math.ceil(elapsed/.012));for(let i=0;i<n;i++)integrate(elapsed/n);}update();return w;}
+  function frame(){return draw(w,[28,25,364,266],camera,reference);}
+  update();return{advance,frame,world:w,base,groups,lo,hi,kind,amplitude,reference,get time(){return time;}};
+ }
+ function fragment(seed=3,large=false){const w=world(),random=rng(seed),cols=large?10:6,rows=large?7:5;for(let z=0;z<(large?2:1);z++)for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){const i=atom(w,[x*.5,y*.46,z*.55+(x%2)*.1],random()<.32?'O':'C',.18);if(x)bond(w,i-1,i);if(y&&x%2===0)bond(w,i-cols,i);}return w;}
+ function mixtureMotion(id){
+  const background=id==='nebbia'?createMotion('aria'):id==='spremuta'?createMotion('acqua'):movingWorld(fragment(4,true),'solid');
+  const parts=Array.from({length:2},(_,i)=>id==='nebbia'?createMotion('acqua'):movingWorld(fragment(10+i),'solid'));parts[1].advance(.19);
+  const components=[background,...parts],w=world();components.forEach(c=>{const offset=w.atoms.length;w.atoms.push(...c.world.atoms);c.world.bonds.forEach(([a,b])=>w.bonds.push([a+offset,b+offset]));});let time=0;const base=w.atoms.map(a=>({...a,p:[...a.p]}));
+  function advance(dt){const t=Math.max(0,Math.min(dt,.2));time+=t;components.forEach(c=>c.advance(t));return w;}
+  function frame(){
+   const rects=[[53,45,125,106],[239,169,120,100]].map((r,i)=>r.map((v,k)=>v+(id!=='biscotto'&&k<2?4*Math.sin(time*.22+i*2+k):0)));
+   const holes=rects.map(([x,y,a,b])=>`<ellipse cx="${x+a/2}" cy="${y+b/2}" rx="${a/2+10}" ry="${b/2+10}" fill="black"/>`).join('');
+   let svg=`<defs><mask id="mm-mixture-${id}"><rect width="420" height="316" fill="white"/>${holes}</mask></defs><g mask="url(#mm-mixture-${id})">${draw(background.world,[20,15,380,285],{},background.reference)}</g>`;
+   parts.forEach((p,i)=>{const [x,y,a,b]=rects[i],cx=x+a/2,cy=y+b/2,rx=a/2+9,ry=b/2+9,fill=id==='nebbia'?'#d7effc':id==='spremuta'?'#f4d5a7':'#d3c0b4';svg+=`<defs><clipPath id="mm-drop-${id}-${i}"><ellipse cx="${cx}" cy="${cy}" rx="${rx-2}" ry="${ry-2}"/></clipPath></defs><ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="${fill}" stroke="#72a2bb" stroke-width="1.3"/><g clip-path="url(#mm-drop-${id}-${i})">${draw(p.world,rects[i],{},p.reference)}</g>`;});return svg;
   }
-  function frame(){return draw(w,[28,25,364,266],{},reference);}
-  update();return{advance,frame,world:w,base,groups,lo,hi,get time(){return time;}};
+  return{advance,frame,world:w,base,components,kind:'mixture',get time(){return time;}};
+ }
+ function createMotion(id){
+  if(!supportsMotion(id))return null;if(['nebbia','spremuta','biscotto'].includes(id))return mixtureMotion(id);
+  const kind=['elio','aria','co2'].includes(id)?'gas':['acqua','rubinetto','mercurio'].includes(id)?'liquid':['zucchero','ghiaccio'].includes(id)?'molecular-solid':'solid';
+  return movingWorld(build(id),kind,id==='elio'?111:213,id==='grafite'?{yaw:.22,pitch:.65}:{});
  }
  function animate(root,d,engine,{paused=false}={}){
   if(!engine)return null;
   const layer=root.querySelector('.mm-world');if(!layer)return null;
-  let stopped=false,handle=0,last=0,previousDraw=0;
+  let stopped=false,visible=true,observer=null,handle=0,last=0,previousDraw=0;
   const paint=()=>{layer.innerHTML=engine.frame();};
   const cancel=()=>{if(handle)cancelAnimationFrame(handle);handle=0;last=0;previousDraw=0;};
   function tick(now){
-   handle=0;if(stopped||paused||document.hidden)return;
+   handle=0;if(stopped||paused||!visible||document.hidden)return;
    if(!root.isConnected){dispose();return;}
    if(!last){last=now;previousDraw=now;}
    /* 24 fps is sufficient for this explanatory motion and avoids excessive SVG work. */
    if(now-previousDraw>=1000/24){engine.advance(Math.min((now-last)/1000,.06));last=now;previousDraw=now;paint();}
    handle=requestAnimationFrame(tick);
   }
-  const start=()=>{if(!stopped&&!paused&&!document.hidden&&!handle)handle=requestAnimationFrame(tick);};
+  const start=()=>{if(!stopped&&!paused&&visible&&!document.hidden&&!handle)handle=requestAnimationFrame(tick);};
   function setPaused(value){paused=!!value;cancel();if(!paused)start();}
   function visibility(){cancel();start();}
-  function dispose(){stopped=true;cancel();document.removeEventListener('visibilitychange',visibility);}
+  function dispose(){stopped=true;cancel();observer?.disconnect();document.removeEventListener('visibilitychange',visibility);}
+  if(typeof IntersectionObserver==='function'){observer=new IntersectionObserver(entries=>{visible=entries.some(e=>e.isIntersecting);cancel();start();},{rootMargin:'50px'});observer.observe(root);}
   document.addEventListener('visibilitychange',visibility);paint();start();
   return{setPaused,dispose,get paused(){return paused;}};
  }
 
  return{scene,build,projection,hull,createMotion,animate,supportsMotion};
 })();
+
 

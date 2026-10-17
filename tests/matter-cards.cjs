@@ -10,7 +10,8 @@ for(let i=1;i<18;i++){const d=api.deck[i];click(b,'Guarda dentro →');const k=a
 assert(state.done);assert.equal(state.answers.filter(a=>a.model&&a.state).length,18);click(b,'← Carta precedente');assert(state.done);assert.equal(state.index,16);
 for(const d of api.deck){const svg=models.scene(d).svg;assert(!svg.includes('NaN'));assert(svg.includes('<radialGradient'));}
 let w=models.build('calcio');assert.equal(w.atoms.filter(a=>a.k==='Cl').length,2*w.atoms.filter(a=>a.k==='Ca').length);
-w=models.build('zucchero');for(const [k,n]of [['C',12],['H',22],['O',11]])assert.equal(w.atoms.filter(a=>a.k===k).length,n*6);
+w=models.build('zucchero');for(const [k,n]of [['C',12],['H',22],['O',11]])assert.equal(w.atoms.filter(a=>a.k===k).length,n*4);
 w=models.build('quarzo');w.atoms.forEach((a,i)=>assert(w.bonds.filter(e=>e.includes(i)).length<=(a.k==='Si'?4:2)));
 console.log('PASS: 18 turns, 4 fixed options, subgroup retries, 3 phases, state preservation, completion and molecular invariants.');
+
 
