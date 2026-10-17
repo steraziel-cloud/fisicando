@@ -148,15 +148,21 @@ function mount(box,st,onChange){
  host.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight'].includes(e.key))e.stopPropagation();});
  const node=(tag,cls,text)=>{const n=document.createElement(tag);n.className=cls||'';if(text!==undefined)n.textContent=text;return n;};
  const btn=(text,fn,cls='')=>{const n=node('button','mc-button '+cls,text);n.type='button';n.onclick=fn;return n;};
- let branch=null;
+ let branch=null,motion=null;const engines=new Map();
+ st.motionPaused??=(typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion: reduce)').matches);
  function render(focus=false){
-  host.replaceChildren();const d=deck[st.index],a=st.answers[st.index]||(st.answers[st.index]={model:false,state:false,phase:0});a.phase??=a.model&&a.state?3:0;
+  motion?.dispose();motion=null;host.replaceChildren();const d=deck[st.index],a=st.answers[st.index]||(st.answers[st.index]={model:false,state:false,phase:0});a.phase??=a.model&&a.state?3:0;
   const phase=a.phase,back=st.frontOverride===undefined?(phase===1||phase===3):!st.frontOverride;
   const top=node('div','mc-top');top.append(node('span','mc-eyebrow','SCOPRI CHE COSA C’È DENTRO'),node('span','mc-count',`Carta ${st.index+1} di ${deck.length}`));
-  const note=node('details','mc-model-info'),summary=node('summary','','Come leggere i modelli');note.append(summary,node('p','','Le palline e i collegamenti sono modelli della struttura dei materiali. Colori, dimensioni e distanze sono convenzionali; alcuni dettagli sono semplificati. Le cornici dei reticoli e i contorni delle zone sono guide grafiche, non altre particelle.'));
+  const note=node('details','mc-model-info'),summary=node('summary','','Come leggere i modelli');note.append(summary,node('p','','Le palline e i collegamenti sono modelli della struttura dei materiali. Colori, dimensioni e distanze sono convenzionali; alcuni dettagli sono semplificati. Le cornici dei reticoli e i contorni delle zone sono guide grafiche, non altre particelle. Anche i movimenti sono illustrativi: tempi e velocità non sono in scala.'));
   const progress=node('progress');progress.max=deck.length;progress.value=st.answers.filter(a=>a?.model&&a?.state).length;progress.setAttribute('aria-label','Carte completate');host.append(top,note,progress);
   const layout=node('div','mc-layout'),card=node('div','mc-playing-card'+(back?' mc-back':''));card.append(node('span','mc-side',back?'DENTRO IL MATERIALE':'IL CAMPIONE'));
   const art=node('div','mc-art');if(back)art.innerHTML=scene(d).svg;else{const img=node('img');img.src=`assets/images/reader/chemistry/cards/${d.id}.webp`;img.alt=d.name;img.width=640;img.height=640;art.append(img);}card.append(art,node('h4','',d.name));
+  if(back&&window.GatitoMatterModels.supportsMotion(d.id)){
+   if(!engines.has(d.id))engines.set(d.id,window.GatitoMatterModels.createMotion(d.id));
+   const pause=btn(st.motionPaused?'Riprendi':'Pausa',()=>{st.motionPaused=!st.motionPaused;motion?.setPaused(st.motionPaused);pause.textContent=st.motionPaused?'Riprendi':'Pausa';pause.setAttribute('aria-pressed',String(st.motionPaused));},'mc-motion-toggle');
+   pause.setAttribute('aria-label','Metti in pausa o riprendi il movimento');pause.setAttribute('aria-pressed',String(st.motionPaused));card.append(pause);
+  }
   const question=node('div','mc-question'),heading=node('h4','',phase===0?'Che cosa nasconde questo materiale?':phase===1?(branch?'Come sono organizzate?':'Che cosa vedi?'):phase===2?'In quale stato si trova il campione?':'Carta completata!');heading.tabIndex=-1;question.append(heading);
   const opts=node('div','mc-options'+(phase===2?' mc-states':'')),feedback=node('div','mc-feedback');feedback.setAttribute('role','status');feedback.setAttribute('aria-live','polite');
   const show=(correct,message)=>{if(window.GatitoQuizReactions)window.GatitoQuizReactions.show(feedback,message,{correct,title:correct?'Ci siamo!':'Guarda ancora'});else feedback.textContent=message;};
@@ -173,9 +179,10 @@ function mount(box,st,onChange){
   if(phase>0)nav.append(btn(back?'Rivedi il campione':'Rivedi il modello',()=>{st.frontOverride=back;render();},'mc-secondary'));
   if(st.index>0)nav.append(btn('← Carta precedente',()=>{st.index--;branch=null;delete st.frontOverride;render(true);},'mc-link'));
   if(st.done)nav.append(node('p','mc-finished','Gioco completato! Puoi proseguire nella lezione o rivedere le carte.'));
-  question.append(opts,feedback,nav);layout.append(card,question);host.append(layout);if(focus)heading.focus({preventScroll:true});
+  question.append(opts,feedback,nav);layout.append(card,question);host.append(layout);if(back&&engines.has(d.id))motion=window.GatitoMatterModels.animate(art,d,engines.get(d.id),{paused:st.motionPaused});if(focus)heading.focus({preventScroll:true});
  }
- render();return()=>host.remove();
+ render();return()=>{motion?.dispose();engines.clear();host.remove();};
 }
 return{mount,deck,descriptions,subgroups,classification,subgroup,scene};
 })();
+

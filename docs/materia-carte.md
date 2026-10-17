@@ -30,3 +30,17 @@ Modulo separato `reader-matter-models.js`: coordinate tridimensionali, proiezion
 ## Verifiche
 
 `node tests/matter-cards.cjs`: 18 turni, errori di classificazione e sottogruppo, tre fasi, conservazione in navigazione, completamento, quattro descrizioni, composizione del saccarosio e rapporto Ca:Cl. Il controllo browser verifica navigazione, layout e lettura dei modelli; non sostituisce la revisione scientifica e didattica carta per carta con il curatore.
+
+
+
+## Prova di movimento — elio, acqua e sale
+
+Solo queste tre carte sono animate, sia nel reader sia nella tavola interna di confronto. Le altre restano statiche per la revisione successiva.
+
+- Elio: traslazione di palline separate in tre dimensioni, cambi di direzione tramite rimbalzi ai limiti della finestra e urti elastici idealizzati tra centri.
+- Acqua: gruppi rigidi di tre palline che traslano e ruotano. Le distanze dei legami dentro ciascun gruppo restano costanti. Le interazioni tra i gruppi sono un modello semplificato a sfere di esclusione, non una simulazione quantitativa dell'acqua né dei legami a idrogeno.
+- Sale: oscillazioni limitate a 0.018 unità per coordinata attorno ai siti; il reticolo non scorre e non si disgrega. I moti non rappresentano i modi normali misurati del cristallo.
+
+Proiezione e scala restano fisse. Tempi e velocità non sono in scala fisica. Pausa/Riprendi mantiene il fotogramma e la scelta durante le fasi della carta. L'animazione è arrestata sul fronte, nelle schede browser non visibili e quando il widget viene smontato. La preferenza di movimento ridotto parte in pausa; l'utente può avviare esplicitamente. Rendering limitato a 24 fps.
+
+`node tests/matter-motion.cjs`: 20 secondi simulati per campione, confini, conteggi, distanze intramolecolari costanti, vibrazioni limitate, scala fissa, pausa/ripresa senza salti, visibilità e rilascio dei callback.

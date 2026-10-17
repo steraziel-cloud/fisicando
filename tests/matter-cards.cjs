@@ -1,5 +1,5 @@
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
-class Node{constructor(tag){this.tagName=tag;this.children=[];this.attrs={};this.classList={add(){}};}append(...n){this.children.push(...n);}replaceChildren(...n){this.children=n;}setAttribute(k,v){this.attrs[k]=v;}addEventListener(){}focus(){}remove(){this.children=[];}}
+class Node{constructor(tag){this.tagName=tag;this.children=[];this.attrs={};this.classList={add(){}};}append(...n){this.children.push(...n);}replaceChildren(...n){this.children=n;}setAttribute(k,v){this.attrs[k]=v;}addEventListener(){}querySelector(){return null;}focus(){}remove(){this.children=[];}}
 const ctx={window:{},document:{createElement:t=>new Node(t)}};vm.createContext(ctx);for(const file of ['reader-matter-models.js','reader-matter-cards.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../assets/'+file),'utf8'),ctx);
 const api=ctx.window.GatitoMatterCards,models=ctx.window.GatitoMatterModels;
 const flat=n=>[n,...n.children.flatMap(flat)];function click(box,text){const n=flat(box).find(n=>n.tagName==='button'&&n.textContent===text);assert(n,'Missing '+text);assert(!n.disabled);n.onclick();}
@@ -13,3 +13,4 @@ let w=models.build('calcio');assert.equal(w.atoms.filter(a=>a.k==='Cl').length,2
 w=models.build('zucchero');for(const [k,n]of [['C',12],['H',22],['O',11]])assert.equal(w.atoms.filter(a=>a.k===k).length,n*6);
 w=models.build('quarzo');w.atoms.forEach((a,i)=>assert(w.bonds.filter(e=>e.includes(i)).length<=(a.k==='Si'?4:2)));
 console.log('PASS: 18 turns, 4 fixed options, subgroup retries, 3 phases, state preservation, completion and molecular invariants.');
+

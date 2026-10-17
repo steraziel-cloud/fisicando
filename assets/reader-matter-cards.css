@@ -31,3 +31,6 @@ body[data-reader-lesson="chimica-materia"] .rm-reader-card.mc-game-card{display:
 }
 @media(max-width:420px){.mc-states{grid-template-columns:1fr 1fr}.mc-playing-card{padding:10px}.mc-playing-card h4{font-size:1.05rem}.mc-nav .mc-button{flex:1 1 auto;text-align:center}}
 
+
+
+.mc-motion-toggle{display:block;margin:12px auto 2px;min-height:36px;padding:6px 18px;font-size:.79rem;border-color:#88aeb8;color:#355b6d;background:#ffffff65;text-align:center}.mc-motion-toggle[aria-pressed=true]{background:#dfedf2}

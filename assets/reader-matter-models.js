@@ -16,9 +16,9 @@ window.GatitoMatterModels=(()=>{
  }
  function frame(w,origin,basis){const p=[];for(let i=0;i<8;i++)p.push(add(origin,basis.reduce((v,b,k)=>add(v,mul(b,(i>>k)&1)),[0,0,0])));for(let i=0;i<8;i++)for(let k=0;k<3;k++)if(!(i&(1<<k)))w.frames.push([p[i],p[i|(1<<k)]]);}
  function projection(p,yaw=.58,pitch=.39){const c=Math.cos(yaw),s=Math.sin(yaw),u=c*p[0]-s*p[1],v=s*p[0]+c*p[1];return[u,Math.sin(pitch)*v-Math.cos(pitch)*p[2],Math.cos(pitch)*v+Math.sin(pitch)*p[2]];}
- function draw(w,rect=[20,18,380,280],camera={}){
+ function draw(w,rect=[20,18,380,280],camera={},reference=null){
   const project=p=>projection(p,camera.yaw??.58,camera.pitch??.39),a=w.atoms.map(o=>({...o,q:project(o.p)}));
-  const bounds=a.flatMap(o=>[[o.q[0]-o.r,o.q[1]-o.r],[o.q[0]+o.r,o.q[1]+o.r]]);
+  const bounds=(reference?reference.atoms.map(o=>({...o,q:project(o.p)})):a).flatMap(o=>[[o.q[0]-o.r,o.q[1]-o.r],[o.q[0]+o.r,o.q[1]+o.r]]);
   w.frames.forEach(e=>e.forEach(p=>bounds.push(project(p))));
   if(!bounds.length)return'';
   const min=[Math.min(...bounds.map(p=>p[0])),Math.min(...bounds.map(p=>p[1]))],max=[Math.max(...bounds.map(p=>p[0])),Math.max(...bounds.map(p=>p[1]))];
@@ -106,7 +106,76 @@ window.GatitoMatterModels=(()=>{
  function scene(d){
   const defs=Object.entries(colors).map(([k,c])=>`<radialGradient id="mm-${k}" cx="30%" cy="24%" r="78%"><stop offset="0" stop-color="white"/><stop offset=".24" stop-color="${c}"/><stop offset=".7" stop-color="${c}"/><stop offset="1" stop-color="#23334c"/></radialGradient>`).join('');
   const body=['nebbia','spremuta','biscotto'].includes(d.id)?heterogeneous(d.id):draw(build(d.id),[28,25,364,266],d.id==='grafite'?{yaw:.22,pitch:.65}:{});
-  return{svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 316" role="img" aria-label="Struttura del campione ${d.name.replace(/[&<>\"]/g,'')}"><defs>${defs}</defs>${body}</svg>`};
+  return{svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 316" role="img" aria-label="Struttura del campione ${d.name.replace(/[&<>\"]/g,'')}"><defs>${defs}</defs><g class="mm-world">${body}</g></svg>`};
  }
- return{scene,build,projection,hull};
+ const supportsMotion=id=>['elio','acqua','sale'].includes(id);
+ function createMotion(id){
+  if(!supportsMotion(id))return null;
+  const w=build(id),base=w.atoms.map(a=>({...a,p:[...a.p]})),random=rng(id==='elio'?111:213);
+  let time=0;
+  const solid=id==='sale',water=id==='acqua',size=water?3:1;
+  const groups=Array.from({length:w.atoms.length/size},(_,i)=>{
+   const center=[...base[i*size].p],velocity=[random()-.5,random()-.5,random()-.5],n=Math.hypot(...velocity)||1,speed=water?.28:.56;
+   return{center,velocity:mul(velocity,speed/n),offsets:base.slice(i*size,(i+1)*size).map(a=>a.p.map((v,k)=>v-center[k])),spin:(random()-.5)*.5};
+  });
+  const radius=water?.43:.22;
+  const lo=[0,1,2].map(k=>Math.min(...groups.map(g=>g.center[k]))-(water?.22:.5));
+  const hi=[0,1,2].map(k=>Math.max(...groups.map(g=>g.center[k]))+(water?.22:.5));
+  /* Stable projection bounds: motion never changes the drawing scale or the camera. */
+  const reference=world();if(solid)base.forEach(a=>reference.atoms.push({...a,r:a.r+.04}));
+  else for(let i=0;i<8;i++)reference.atoms.push({p:[0,1,2].map(k=>(i&(1<<k)?hi:lo)[k]),k:'H',r:water?.78:.26});
+  const spin=(p,a,b)=>{const c=Math.cos(a),s=Math.sin(a),u=[p[0]*c-p[1]*s,p[0]*s+p[1]*c,p[2]],cb=Math.cos(b),sb=Math.sin(b);return[u[0],u[1]*cb-u[2]*sb,u[1]*sb+u[2]*cb];};
+  function update(){
+   if(solid)w.atoms.forEach((a,i)=>{a.p=base[i].p.map((v,k)=>v+.018*Math.sin(time*(5.6+k*.7)+i*2.13+k));});
+   else groups.forEach((g,i)=>g.offsets.forEach((p,j)=>{const offset=water?spin(p,g.spin*time,.13*Math.sin(time*.7+i)):p;w.atoms[i*size+j].p=add(g.center,offset);}));
+  }
+  function integrate(dt){
+   for(const g of groups)for(let k=0;k<3;k++){
+    g.center[k]+=g.velocity[k]*dt;
+    if(g.center[k]<lo[k]){g.center[k]=lo[k]+(lo[k]-g.center[k]);g.velocity[k]=Math.abs(g.velocity[k]);}
+    if(g.center[k]>hi[k]){g.center[k]=hi[k]-(g.center[k]-hi[k]);g.velocity[k]=-Math.abs(g.velocity[k]);}
+   }
+   for(let i=0;i<groups.length;i++)for(let j=i+1;j<groups.length;j++){
+    const a=groups[i],b=groups[j],delta=b.center.map((v,k)=>v-a.center[k]),distance=Math.hypot(...delta);
+    if(distance>=2*radius||distance<1e-8)continue;
+    const normal=mul(delta,1/distance),overlap=(2*radius-distance)/2;
+    for(let k=0;k<3;k++){a.center[k]-=normal[k]*overlap;b.center[k]+=normal[k]*overlap;}
+    const approach=b.velocity.reduce((v,x,k)=>v+(x-a.velocity[k])*normal[k],0);
+    if(approach<0)for(let k=0;k<3;k++){a.velocity[k]+=approach*normal[k];b.velocity[k]-=approach*normal[k];}
+   }
+   /* A collision close to a wall may push a centre past the wall by a tiny amount. */
+   groups.forEach(g=>g.center.forEach((v,k)=>{if(v<lo[k]){g.center[k]=lo[k];g.velocity[k]=Math.abs(g.velocity[k]);}if(v>hi[k]){g.center[k]=hi[k];g.velocity[k]=-Math.abs(g.velocity[k]);}}));
+  }
+  function advance(dt){
+   const elapsed=Math.max(0,Math.min(Number.isFinite(dt)?dt:0,.2));time+=elapsed;
+   if(!solid){const steps=Math.max(1,Math.ceil(elapsed/.012));for(let i=0;i<steps;i++)integrate(elapsed/steps);}
+   update();return w;
+  }
+  function frame(){return draw(w,[28,25,364,266],{},reference);}
+  update();return{advance,frame,world:w,base,groups,lo,hi,get time(){return time;}};
+ }
+ function animate(root,d,engine,{paused=false}={}){
+  if(!engine)return null;
+  const layer=root.querySelector('.mm-world');if(!layer)return null;
+  let stopped=false,handle=0,last=0,previousDraw=0;
+  const paint=()=>{layer.innerHTML=engine.frame();};
+  const cancel=()=>{if(handle)cancelAnimationFrame(handle);handle=0;last=0;previousDraw=0;};
+  function tick(now){
+   handle=0;if(stopped||paused||document.hidden)return;
+   if(!root.isConnected){dispose();return;}
+   if(!last){last=now;previousDraw=now;}
+   /* 24 fps is sufficient for this explanatory motion and avoids excessive SVG work. */
+   if(now-previousDraw>=1000/24){engine.advance(Math.min((now-last)/1000,.06));last=now;previousDraw=now;paint();}
+   handle=requestAnimationFrame(tick);
+  }
+  const start=()=>{if(!stopped&&!paused&&!document.hidden&&!handle)handle=requestAnimationFrame(tick);};
+  function setPaused(value){paused=!!value;cancel();if(!paused)start();}
+  function visibility(){cancel();start();}
+  function dispose(){stopped=true;cancel();document.removeEventListener('visibilitychange',visibility);}
+  document.addEventListener('visibilitychange',visibility);paint();start();
+  return{setPaused,dispose,get paused(){return paused;}};
+ }
+
+ return{scene,build,projection,hull,createMotion,animate,supportsMotion};
 })();
+
