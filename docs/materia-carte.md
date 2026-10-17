@@ -1,58 +1,59 @@
-# Materia sotto copertura — revisione visiva e classificazione
+# Materia sotto copertura — 18 campioni, revisione del 18 ottobre 2026
 
-18 campioni. Flusso: fronte del campione → osservazione del modello → classificazione dello stato → carta successiva. Quattro descrizioni fisse; gli elementi aprono tre sottoscelte (palline separate, gruppetti, struttura) e i composti due (gruppetti uguali, strutture). Nessun nome di categoria anticipato. PET trattato come campione idealizzato di catene uguali, non come miscela di additivi del prodotto commerciale.
+Lezione per le medie, ancora in lavorazione. L'osservazione dei modelli precede la definizione delle categorie. Flusso: campione → descrizione di ciò che si vede → stato → carta successiva. Quattro descrizioni fisse; elementi con tre sottoscelte, composti con due. Omogeneità = uniformità della composizione alle scale osservate, non ordine geometrico. Nebbia e spremuta con polpa hanno più stati e richiedono Altro.
 
-Le scelte delle miscele confrontano distribuzione e proporzioni, non ordine/disordine. La nebbia e la spremuta con polpa richiedono Altro perché includono più stati. I messaggi descrittivi di ogni singola carta sono stati eliminati; una nota espandibile vicino al titolo raccoglie i limiti generali dei modelli.
+## Sostituzioni richieste dal curatore
 
-## Disegno
+| Campione precedente | Campione attuale | Modello / scopo |
+| --- | --- | --- |
+| Ottone della chiave | Acciaio inox del cucchiaio | Soluzione solida austenitica Fe–Cr–Ni idealizzata, reticolo FCC; esempio di miscela omogenea solida |
+| Quarzo | Sabbia di quarzo | Stesso modello di α-quarzo, contesto più familiare; campione selezionato di sabbia silicea, non qualunque sabbia di spiaggia |
+| Mercurio | Alluminio da cucina | Solido metallico FCC, palline tutte uguali |
+| Cloruro di calcio | Bicarbonato da cucina | Solido ionico con Na+ e ioni poliatomici HCO3−; modello schematico ripetuto |
+| Carburo di silicio | Diamante | Reticolo covalente di solo carbonio, confronto possibile con la grafite; è un elemento, non un composto |
+| Ghiaccio | Ossigeno | Gas di molecole biatomiche O2, gruppetti di palline tutte uguali |
 
-Modulo separato `reader-matter-models.js`: coordinate tridimensionali, proiezione ortografica obliqua con asse verticale, sfere con gradiente radiale e ordinamento in profondità. Le cornici dei reticoli sono guide grafiche, non legami. Nessun bordo microscopico viene usato per delimitare una singola molecola d'acqua. I contorni delle inclusioni sono invece calcolati dall'inviluppo delle sfere proiettate, con margine esterno: i gruppi restano racchiusi e centrati.
+Le altre 12 carte restano: elio, acqua distillata, grafite, aria, sale, spremuta con polpa, saccarosio, anidride carbonica, acqua del rubinetto, nebbia, biscotto con cioccolato, PET. Nuove immagini originali dei sei campioni generate con imagegen; i modelli particellari sono invece disegni originali controllati in codice. Le vecchie immagini restano nell'archivio ma non nel mazzo.
 
-- NaCl: frammento cubico alternato, 3×3×3 siti; differenza di raggio illustrativa. Gli atomi di bordo non danno da soli il rapporto stechiometrico bulk; il conteggio nella cella richiede pesi di condivisione, non trattati qui.
-- CaCl2 anidro: motivo Pnnm, due Ca e quattro Cl per cella, ripetuto 2×2×2; x e y e rapporti delle lunghezze sono approssimati. Non si sostituisce con un reticolo cubico generico né con molecole isolate.
-- Grafite: tre strati esagonali, nessun legame tra gli strati; distanze relative degli strati amplificate per leggibilità.
-- SiC: cella cubica della forma zincblenda, basi FCC sfalsate di (1/4,1/4,1/4), legami ai primi vicini.
-- Quarzo: sostituito il precedente schema derivato dal diamante con un frammento di α-quarzo P3221. Dati CMU: a=4.9137 Å,c=5.4047 Å; Si(.4697,0,0), O(.4133,.2672,.1188). Orbite di simmetria, collegamenti Si–O a distanza <1.7 Å. Il test controlla che Si non superi coordinazione 4 e O coordinazione 2; i siti al bordo del frammento possono avere legami mancanti.
-- Saccarosio: due anelli, ponte glicosidico, gruppi OH; conteggio C12H22O11 controllato per gruppo. Conformazioni e stereochimica non sono una geometria sperimentale; non usarlo per insegnare stereoisomeria.
-- PET: ripetizioni con anelli aromatici e gruppi estere, catene ondulate nello spazio; idrogeni omessi. Non è polietilene.
-- Acqua, ghiaccio e gas: gruppi ruotati nello spazio; la disposizione del ghiaccio serve a evidenziare un solido molecolare e non riproduce la cella completa del ghiaccio Ih. Mercurio compatto disordinato, elio monatomico.
-- Ottone: modello di soluzione solida sostituzionale FCC idealizzata monofase. Acqua del rubinetto: specie disciolte ingrandite; composizione illustrativa.
-- Nebbia: gruppi d'acqua dentro goccioline, gas fuori. Spremuta e biscotto: schemi a più scale, strutture alimentari semplificate; non esistono una molecola della polpa o del biscotto. La forma delle inclusioni non è una geometria cristallografica.
+## Strutture, limiti e fonti
 
-## Fonti di controllo
+- Alluminio: frammento FCC monocomponente. Involucro di ossido superficiale e impurezze commerciali non rappresentati; il campione osservato è il metallo.
+- Acciaio: esempio selezionato di inox austenitico monofase, non un modello universale di ogni acciaio. Palline Fe, Cr, Ni distribuite su siti FCC. Carbonio e altri elementi in tracce omessi; proporzioni solo illustrative. Non è un reticolo di ferro puro in cui il carbonio sostituisce erroneamente il ferro. https://worldstainless.org/about-stainless/what-are-stainless-steels/categories-grades-and-product-forms/ e https://worldstainless.org/about-stainless/what-are-stainless-steels/introduction-to-stainless-steels/
+- Bicarbonato: rapporto Na:H:C:O = 1:1:1:3; ogni gruppo HCO3 presenta tre ossigeni attorno al carbonio, idrogeno legato a un ossigeno. Nessun legame disegnato Na–C e nessuna molecola isolata NaHCO3. Disposizione periodica illustrativa, NON la cella monoclinica sperimentale della nahcolite; dimensioni e distanze ingrandite per distinguere gli ioni. I legami a idrogeno non sono rappresentati. Fonte di controllo chimico/cristallografico: https://aflowlib.duke.edu/prototype-encyclopedia/ABCD3_mP24_14_e_e_e_3e-001/ e https://chemed.chem.purdue.edu/genchem/topicreview/bp/ch2/names.php
+- Diamante: cella cubica con due sottoreticoli FCC di C sfalsati di (1/4,1/4,1/4), collegamenti ai primi vicini; gli atomi di bordo hanno legami mancanti. https://openstax.org/books/chemistry-2e/pages/10-6-lattice-structures-in-crystalline-solids
+- Grafite: tre strati esagonali; nessun legame covalente tra strati, separazione amplificata per leggibilità.
+- Sabbia di quarzo: α-quarzo P3221, a=4.9137 Å,c=5.4047 Å; Si(.4697,0,0), O(.4133,.2672,.1188); simmetrie e vicini Si–O a distanza <1.7 Å. Non è silicio né una copia del diamante. https://som.web.cmu.edu/structures/S097-alpha-quartz.html
+- NaCl: frammento cubico alternato; i siti di bordo non danno da soli il rapporto stechiometrico bulk. Le cornici sono guide, non legami.
+- Saccarosio: quattro gruppi C12H22O11, ciascuno con due anelli e ponte glicosidico. Conteggio e connettività controllati; geometria illustrativa, non conformazione/stereochimica sperimentale. Vista dall'alto obliqua per distinguere gli anelli.
+- Ossigeno O2, CO2, acqua e aria: gruppi rigidi durante il movimento. Aria illustrativa, non campionamento quantitativo esatto. Elio monatomico.
+- PET: anelli aromatici e gruppi estere; idrogeni omessi. Campione idealizzato di catene uguali senza additivi commerciali. https://www.essentialchemicalindustry.org/polymers/polyesters.html
+- Nebbia: goccioline liquide nell'aria. Spremuta e biscotto: zone di composizione diversa, schemi alimentari a più scale; non sono inventate molecole della polpa o del biscotto. Le ellissi delimitano inclusioni, non molecole. Acqua del rubinetto: acqua con specie ioniche disciolte ingrandite.
 
-- https://som.web.cmu.edu/structures/S097-alpha-quartz.html
-- https://aflow.org/p/YTPF/ — Hydrophilite CaCl2 C35, AB2_oP6_58_a_g-001; Hicks et al., Computational Materials Science 199,110450 (2021).
-- https://openstax.org/books/chemistry-2e/pages/10-6-lattice-structures-in-crystalline-solids
-- https://openstax.org/books/chemistry-2e/pages/1-2-phases-and-classification-of-matter
-- https://www.essentialchemicalindustry.org/polymers/polyesters.html
+## Movimento e interfaccia
+
+Tutte le 18 carte hanno movimento e Pausa/Riprendi. Gas e liquidi traslano, gruppetti con legami ruotano restando integri; i solidi vibrano attorno ai siti e non diffondono. Per il saccarosio la vibrazione conserva i gruppi molecolari. Miscela: moti separati delle componenti, inclusioni mobili solo quando compatibili con la fase. Non è una dinamica molecolare quantitativa; tempi, velocità, distanze e dimensioni non sono in scala. Colori convenzionali, non colori degli atomi reali.
+
+Proiezione e scala fisse; 24 fps; arresto fuori schermo, su fronte della carta, scheda browser nascosta e smontaggio del widget. Movimento ridotto: avvio in pausa. Nota generale espandibile, nessuna didascalia didattica su ogni carta. Versione del mazzo 3: eventuali risposte del mazzo precedente vengono azzerate per non attribuire risposte alle carte sostituite.
 
 ## Verifiche
 
-`node tests/matter-cards.cjs`: 18 turni, errori di classificazione e sottogruppo, tre fasi, conservazione in navigazione, completamento, quattro descrizioni, composizione del saccarosio e rapporto Ca:Cl. Il controllo browser verifica navigazione, layout e lettura dei modelli; non sostituisce la revisione scientifica e didattica carta per carta con il curatore.
+- `node tests/matter-cards.cjs`: percorso completo di 18 turni, errori e sottoscelte, stati, avanzamento, persistenza; composizione del bicarbonato e del saccarosio, natura dei nuovi elementi, coordinazione massima Si/O del quarzo.
+- `node tests/matter-motion.cjs`: 20 secondi simulati per ciascuno dei 18 modelli; coordinate finite, conteggi invariati, limiti del movimento, integrità molecolare, scala fissa, pausa/ripresa senza salti, visibilità e rilascio dei callback.
+- Verifica visiva nella tavola `tests/matter-visual-review.html` e nel reader pubblicato. Revisione didattica carta per carta ancora aperta con il curatore.
 
+## Produzione dei fronti (imagegen integrato)
 
+File pubblicati in `assets/images/reader/chemistry/cards/`: `acciaio.webp`, `bicarbonato.webp`, `diamante.webp`, `sabbia.webp`, `alluminio.webp`, `ossigeno.webp`. Conversione WebP 640×640, qualità 89; nessuna immagine esterna riutilizzata.
 
-## Prova di movimento — elio, acqua e sale
+Prompt comune effettivo, con inserimento di ciascun Subject:
 
-Solo queste tre carte sono animate, sia nel reader sia nella tavola interna di confronto. Le altre restano statiche per la revisione successiva.
+> Use case: stylized-concept. Asset: square illustration for an Italian middle-school material sample card. Subject: [SUBJECT] Style: polished soft 3D storybook cartoon object illustration, painted textures and gentle shading, consistent with GatitoMath educational cards. Pale sky-blue textured tabletop/background, daytime soft light, object centered occupying 75 percent of square, clear silhouette, generous margins. No card border, no UI, no scientific particles or diagrams. No watermarks. Generate one square standalone asset.
 
-- Elio: traslazione di palline separate in tre dimensioni, cambi di direzione tramite rimbalzi ai limiti della finestra e urti elastici idealizzati tra centri.
-- Acqua: gruppi rigidi di tre palline che traslano e ruotano. Le distanze dei legami dentro ciascun gruppo restano costanti. Le interazioni tra i gruppi sono un modello semplificato a sfere di esclusione, non una simulazione quantitativa dell'acqua né dei legami a idrogeno.
-- Sale: oscillazioni limitate a 0.018 unità per coordinata attorno ai siti; il reticolo non scorre e non si disgrega. I moti non rappresentano i modi normali misurati del cristallo.
+Subject per file:
 
-Proiezione e scala restano fisse. Tempi e velocità non sono in scala fisica. Pausa/Riprendi mantiene il fotogramma e la scelta durante le fasi della carta. L'animazione è arrestata sul fronte, nelle schede browser non visibili e quando il widget viene smontato. La preferenza di movimento ridotto parte in pausa; l'utente può avviare esplicitamente. Rendering limitato a 24 fps.
-
-`node tests/matter-motion.cjs`: 20 secondi simulati per campione, confini, conteggi, distanze intramolecolari costanti, vibrazioni limitate, scala fissa, pausa/ripresa senza salti, visibilità e rilascio dei callback.
-
-
-
-## Estensione a tutte le 18 carte
-
-Tutte le carte hanno ora un motore di movimento e il comando Pausa/Riprendi. Gas: elio, aria, CO2. Liquidi: acqua, acqua del rubinetto e mercurio. Solidi molecolari: saccarosio e ghiaccio, con oscillazioni/rotazioni limitate dei gruppi rigidi. Altri solidi: vibrazioni di piccola ampiezza proporzionate alla scala del modello, senza traslazione del reticolo. Le masse e le energie dei moti non sono quantitative: gli urti tra gruppi sono idealizzati.
-
-Nelle miscele eterogenee il disegno è composto da motori distinti: gas e goccioline liquide nella nebbia; liquido e frammenti solidi nella spremuta; matrice solida e inclusioni solide nel biscotto. I contorni e le maschere delle inclusioni restano separati dai legami molecolari; le goccioline hanno ora un contorno ellittico. Il lento spostamento dei frammenti nella spremuta e delle goccioline è illustrativo, non una legge quantitativa di sedimentazione. Le parti della miscela restano nelle regioni rappresentate.
-
-Saccarosio: quattro gruppi più grandi, due anelli con ponte glicosidico e gruppi OH esterni. Idrogeni posizionati evitando le direzioni dei legami esistenti; formula C12H22O11 controllata per ciascuna molecola. La stereochimica non è una conformazione sperimentale e non va usata per insegnare stereoisomeria. I gruppi restano integri nel movimento. La carta dello zucchero da cucina resta saccarosio, non glucosio.
-
-Il rendering fuori dallo schermo è sospeso tramite IntersectionObserver per contenere il consumo della tavola con 18 modelli. Le prove numeriche coprono ora tutti i 18 campioni per 20 secondi simulati, oltre a pausa/ripresa e integrità dei gruppi. Le immagini restano modelli da rivedere didatticamente carta per carta.
+- acciaio: a single ordinary stainless steel school-lunch spoon, polished silver metal, lying diagonally. No food.
+- bicarbonato: a small open unbranded white paper kitchen packet labelled exactly 'BICARBONATO', beside a small mound of fine white baking soda powder. No spoon or other material.
+- diamante: one clear faceted diamond gemstone, recognizable brilliant cut, close view, modest sparkles, no jewelry metal setting.
+- sabbia: a small mound of pale almost white quartz sand, many fine grains, a subtle beach cue in background but no shells or rocks. The sand is the subject.
+- alluminio: a kitchen aluminium foil roll with a partially unrolled crumpled shiny sheet, silver metal, no food or packaging.
+- ossigeno: a small upright medical oxygen cylinder with valve and pressure gauge, white body and turquoise shoulder, clearly labelled exactly 'OSSIGENO', clean friendly educational illustration. No mask, person, flame or smoke.

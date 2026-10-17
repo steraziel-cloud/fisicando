@@ -52,8 +52,8 @@ const deck=[
   "model": "sugar"
  },
  {
-  "id": "ottone",
-  "name": "Ottone di una chiave",
+  "id": "acciaio",
+  "name": "Acciaio inox del cucchiaio",
   "state": "Solido",
   "kind": "miscela omogenea",
   "model": "alloy"
@@ -66,8 +66,8 @@ const deck=[
   "model": "gas"
  },
  {
-  "id": "quarzo",
-  "name": "Quarzo",
+  "id": "sabbia",
+  "name": "Sabbia di quarzo",
   "state": "Solido",
   "kind": "composto reticolare covalente",
   "model": "network"
@@ -87,15 +87,15 @@ const deck=[
   "model": "fog"
  },
  {
-  "id": "mercurio",
-  "name": "Mercurio",
-  "state": "Liquido",
+  "id": "alluminio",
+  "name": "Alluminio da cucina",
+  "state": "Solido",
   "kind": "elemento",
-  "model": "liquidAtoms"
+  "model": "metal"
  },
  {
-  "id": "calcio",
-  "name": "Granuli di cloruro di calcio",
+  "id": "bicarbonato",
+  "name": "Bicarbonato da cucina",
   "state": "Solido",
   "kind": "composto ionico",
   "model": "ions2"
@@ -108,10 +108,10 @@ const deck=[
   "model": "biscuit"
  },
  {
-  "id": "sic",
-  "name": "Carburo di silicio",
+  "id": "diamante",
+  "name": "Diamante",
   "state": "Solido",
-  "kind": "composto reticolare covalente",
+  "kind": "elemento",
   "model": "network"
  },
  {
@@ -122,11 +122,11 @@ const deck=[
   "model": "chains"
  },
  {
-  "id": "ghiaccio",
-  "name": "Ghiaccio",
-  "state": "Solido",
-  "kind": "composto molecolare",
-  "model": "ice"
+  "id": "ossigeno",
+  "name": "Ossigeno",
+  "state": "Gassoso",
+  "kind": "elemento",
+  "model": "diatomic"
  }
 ];
 const descriptions={
@@ -140,10 +140,10 @@ const subgroups={
  compound:[['groups','Le palline formano gruppetti tutti uguali.'],['structures','Le palline sono organizzate in strutture.']]
 };
 function classification(d){return d.kind==='elemento'?'element':d.kind==='miscela omogenea'?'homogeneous':d.kind==='miscela eterogenea'?'heterogeneous':'compound';}
-function subgroup(d){return ['isolated','liquidAtoms'].includes(d.model)?'separate':['layers','ions','ions2','network','chains'].includes(d.model)?'structures':'groups';}
+function subgroup(d){return ['isolated','liquidAtoms'].includes(d.model)?'separate':['layers','ions','ions2','network','chains','metal'].includes(d.model)?'structures':'groups';}
 function scene(d){return window.GatitoMatterModels.scene(d);}
 function mount(box,st,onChange){
- box.classList.add('mc-game-card');st.index??=0;st.answers??=[];st.version=2;
+ box.classList.add('mc-game-card');if(st.version!==3){st.index=0;st.answers=[];st.done=false;delete st.frontOverride;}st.index??=0;st.answers??=[];st.version=3;
  const host=document.createElement('div');host.className='mc-game';box.append(host);
  host.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight'].includes(e.key))e.stopPropagation();});
  const node=(tag,cls,text)=>{const n=document.createElement(tag);n.className=cls||'';if(text!==undefined)n.textContent=text;return n;};
@@ -185,4 +185,5 @@ function mount(box,st,onChange){
 }
 return{mount,deck,descriptions,subgroups,classification,subgroup,scene};
 })();
+
 

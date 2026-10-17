@@ -2,7 +2,7 @@
    depth-sorted shaded spheres. Scientific sources and simplifications: docs/materia-carte.md. */
 window.GatitoMatterModels=(()=>{
  'use strict';
- const colors={H:'#dcefff',O:'#e84966',C:'#4b5366',N:'#477cdc',He:'#ecb740',Ar:'#a783cf',Na:'#a476d4',Cl:'#51b985',Ca:'#459dce',Si:'#d3a353',Cu:'#c47a48',Zn:'#78b8c9',Hg:'#a4b5c9'};
+ const colors={H:'#dcefff',O:'#e84966',C:'#4b5366',N:'#477cdc',He:'#ecb740',Ar:'#a783cf',Na:'#a476d4',Cl:'#51b985',Ca:'#459dce',Si:'#d3a353',Cu:'#c47a48',Zn:'#78b8c9',Hg:'#a4b5c9',Al:'#a4b5c9',Fe:'#8ca1b8',Cr:'#b47cd1',Ni:'#65bbad'};
  const add=(a,b)=>a.map((v,i)=>v+b[i]),mul=(a,k)=>a.map(v=>v*k),dist=(a,b)=>Math.hypot(...a.map((v,i)=>v-b[i]));
  function rng(seed=19){return()=>{seed=(Math.imul(1664525,seed)+1013904223)>>>0;return seed/4294967296;};}
  function world(){return{atoms:[],bonds:[],frames:[]};}
@@ -66,34 +66,47 @@ window.GatitoMatterModels=(()=>{
  }
  function build(id){
   const w=world(),random=rng(203),jitter=(a=.4)=>(random()-.5)*a;
-  if(['elio','aria','co2','acqua','rubinetto','ghiaccio'].includes(id)){
-   const gas=['elio','aria','co2'].includes(id),spacing=gas?2.5:1.15;
+  if(['elio','aria','co2','acqua','rubinetto','ossigeno'].includes(id)){
+   const gas=['elio','aria','co2','ossigeno'].includes(id),spacing=gas?2.5:1.15;
    let count=0;for(let z=0;z<2;z++)for(let y=0;y<3;y++)for(let x=0;x<3;x++){
-    const p=id==='ghiaccio'?[(x+(y%2)*.5)*spacing,y*spacing*.87,z*1.15]:[x*spacing+jitter(gas?1.4:.6),y*spacing+jitter(gas?1.4:.6),z*spacing+jitter(gas?1.4:.6)];
+    const p=[x*spacing+jitter(gas?1.4:.6),y*spacing+jitter(gas?1.4:.6),z*spacing+jitter(gas?1.4:.6)];
     if(id==='elio')atom(w,p,'He',.22);
     else if(id==='aria'){if(count===17)atom(w,p,'Ar',.22);else molecule(w,p,count%5?'N':'O',random()*6.28);}
+    else if(id==='ossigeno')molecule(w,p,'O',random()*6.28);
     else if(id==='co2')molecule(w,p,'co2',random()*6.28);
     else if(id==='rubinetto'&&(count===4||count===13))atom(w,p,count===4?'Na':'Cl',count===4?.24:.3);
-    else molecule(w,p,'water',id==='ghiaccio'?(x+y+z)%2*Math.PI:random()*6.28);
+    else molecule(w,p,'water',random()*6.28);
     count++;
    }
   }
-  if(id==='mercurio'){while(w.atoms.length<65){const p=[random()*4,random()*3,random()*2.4];if(w.atoms.every(a=>dist(a.p,p)>.64))atom(w,p,'Hg',.36);}}
-  if(id==='ottone'){const fcc=[[0,0,0],[0,.5,.5],[.5,0,.5],[.5,.5,0]];for(let x=0;x<3;x++)for(let y=0;y<2;y++)for(let z=0;z<2;z++)fcc.forEach(q=>atom(w,add(q,[x,y,z]),random()<.25?'Zn':'Cu',.29));}
+  if(['alluminio','acciaio'].includes(id)){
+   /* FCC aluminium / selected single-phase austenitic stainless steel.
+      Fe/Cr/Ni only; trace C and minor alloying elements intentionally omitted. */
+   const fcc=[[0,0,0],[0,.5,.5],[.5,0,.5],[.5,.5,0]];let i=0;
+   for(let x=0;x<3;x++)for(let y=0;y<2;y++)for(let z=0;z<2;z++)fcc.forEach(q=>{
+    const n=(i++*19)%48,k=id==='alluminio'?'Al':n<9?'Cr':n<14?'Ni':'Fe';atom(w,add(q,[x,y,z]),k,.29);
+   });
+  }
   if(id==='sale'){for(let x=0;x<3;x++)for(let y=0;y<3;y++)for(let z=0;z<3;z++)atom(w,[x,y,z],(x+y+z)%2?'Na':'Cl',(x+y+z)%2?.25:.37);frame(w,[0,0,0],[[2,0,0],[0,2,0],[0,0,2]]);}
-  if(id==='calcio'){
-   const a=1.25,b=1.29,c=.84,u=.275,v=.325,wrap=x=>(x+1)%1;
-   const basis=[[0,0,0,'Ca'],[.5,.5,.5,'Ca'],[u,v,0,'Cl'],[wrap(-u),wrap(-v),0,'Cl'],[.5-u,.5+v,.5,'Cl'],[.5+u,.5-v,.5,'Cl']];
-   for(let x=0;x<2;x++)for(let y=0;y<2;y++)for(let z=0;z<2;z++)basis.forEach(q=>atom(w,[(x+q[0])*a,(y+q[1])*b,(z+q[2])*c],q[3],q[3]==='Ca'?.14:.21));frame(w,[0,0,0],[[2*a,0,0],[0,2*b,0],[0,0,2*c]]);
+  if(id==='bicarbonato'){
+   /* Schematic repeating ionic solid: Na+ and planar HCO3- ions in 1:1 count.
+      Internal covalent links only; no discrete NaHCO3 molecules or fake Na-C bonds.
+      Placement is an observation model, NOT the crystallographic unit cell. */
+   for(let x=0;x<3;x++)for(let y=0;y<2;y++)for(let z=0;z<2;z++){
+    const center=[x*2,y*1.8,z*1.6],c=atom(w,center,'C',.2),o=[];
+    for(let j=0;j<3;j++){const a=j*2*Math.PI/3+.2,p=add(center,[Math.cos(a)*.58,Math.sin(a)*.58,0]);o.push(atom(w,p,'O',.22));bond(w,c,o[j]);}
+    const h=atom(w,add(w.atoms[o[0]].p,[.3,.12,.12]),'H',.12);bond(w,o[0],h);
+    atom(w,add(center,[1,.85,.8]),'Na',.28);
+   }
   }
   if(id==='grafite'){
    for(let layer=0;layer<3;layer++){const points=new Map(),pairs=new Map();for(let x=0;x<4;x++)for(let y=0;y<2;y++){const ring=[];for(let k=0;k<6;k++){const a=k*Math.PI/3,p=[x*1.5+Math.cos(a),y*Math.sqrt(3)+(x%2)*Math.sqrt(3)/2+Math.sin(a),layer*1.7],key=p.map(v=>v.toFixed(5)).join(',');if(!points.has(key))points.set(key,atom(w,p,'C',.17));ring.push(points.get(key));}ring.forEach((v,i)=>{const e=[v,ring[(i+1)%6]].sort((a,b)=>a-b);pairs.set(e.join(','),e);});}pairs.forEach(e=>bond(w,...e));}
   }
-  if(id==='sic'){
-   const fcc=[[0,0,0],[0,.5,.5],[.5,0,.5],[.5,.5,0]],seen=new Set();for(let x=0;x<=1;x++)for(let y=0;y<=1;y++)for(let z=0;z<=1;z++)for(const q of fcc)for(let b=0;b<2;b++){const p=q.map((v,i)=>v+[x,y,z][i]+b*.25),key=p.join(',');if(p.every(v=>v<=1)&&!seen.has(key)){seen.add(key);atom(w,p,b?'C':'Si',b?.06:.085);}}
+  if(id==='diamante'){
+   const fcc=[[0,0,0],[0,.5,.5],[.5,0,.5],[.5,.5,0]],seen=new Set();for(let x=0;x<=1;x++)for(let y=0;y<=1;y++)for(let z=0;z<=1;z++)for(const q of fcc)for(let b=0;b<2;b++){const p=q.map((v,i)=>v+[x,y,z][i]+b*.25),key=p.join(',');if(p.every(v=>v<=1)&&!seen.has(key)){seen.add(key);atom(w,p,'C',.065);}}
    w.atoms.forEach((a,i)=>w.atoms.forEach((b,j)=>{if(j>i&&Math.abs(dist(a.p,b.p)-Math.sqrt(3)/4)<1e-5)bond(w,i,j);}));frame(w,[0,0,0],[[1,0,0],[0,1,0],[0,0,1]]);
   }
-  if(id==='quarzo'){
+  if(id==='sabbia'){
    /* CMU alpha quartz: P3221, a=4.9137 Å,c=5.4047 Å. Generate orbit then real Si–O neighbours. */
    const R=p=>[-p[1],p[0]-p[1],p[2]+2/3],S=p=>[p[0]-p[1],-p[1],-p[2]],wrap=x=>((x%1)+1)%1;
    const orbit=p=>{const out=[];for(let q of [p,S(p)])for(let k=0;k<3;k++){const a=q.map(wrap);if(!out.some(b=>dist(a,b)<1e-5))out.push(a);q=R(q);}return out;};
@@ -122,7 +135,7 @@ window.GatitoMatterModels=(()=>{
   const body=['nebbia','spremuta','biscotto'].includes(d.id)?heterogeneous(d.id):draw(build(d.id),[28,25,364,266],d.id==='grafite'?{yaw:.22,pitch:.65}:d.id==='zucchero'?{yaw:.1,pitch:1.25}:{});
   return{svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 316" role="img" aria-label="Struttura del campione ${d.name.replace(/[&<>\"]/g,'')}"><defs>${defs}</defs><g class="mm-world">${body}</g></svg>`};
  }
- const motionIds=['elio','acqua','grafite','aria','sale','spremuta','zucchero','ottone','co2','quarzo','rubinetto','nebbia','mercurio','calcio','biscotto','sic','pet','ghiaccio'];
+ const motionIds=['elio','acqua','grafite','aria','sale','spremuta','zucchero','acciaio','co2','sabbia','rubinetto','nebbia','alluminio','bicarbonato','biscotto','diamante','pet','ossigeno'];
  const supportsMotion=id=>motionIds.includes(id);
  function connectedGroups(w){
   const adjacency=w.atoms.map(()=>[]);w.bonds.forEach(([a,b])=>{adjacency[a].push(b);adjacency[b].push(a);});
@@ -168,7 +181,7 @@ window.GatitoMatterModels=(()=>{
  }
  function createMotion(id){
   if(!supportsMotion(id))return null;if(['nebbia','spremuta','biscotto'].includes(id))return mixtureMotion(id);
-  const kind=['elio','aria','co2'].includes(id)?'gas':['acqua','rubinetto','mercurio'].includes(id)?'liquid':['zucchero','ghiaccio'].includes(id)?'molecular-solid':'solid';
+  const kind=['elio','aria','co2','ossigeno'].includes(id)?'gas':['acqua','rubinetto'].includes(id)?'liquid':['zucchero'].includes(id)?'molecular-solid':'solid';
   return movingWorld(build(id),kind,id==='elio'?111:213,id==='grafite'?{yaw:.22,pitch:.65}:id==='zucchero'?{yaw:.1,pitch:1.25}:{});
  }
  function animate(root,d,engine,{paused=false}={}){
