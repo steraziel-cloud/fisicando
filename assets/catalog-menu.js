@@ -17,7 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
         title: a.title, icon: a.icon, children: a.topics || []
       })) };
     };
-    catalog = [subjects.find(s => s.id === 'matematica'), {
+    const math = subjects.find(s => s.id === 'matematica');
+    const middleSchoolMath = math && { ...math, areas: math.areas.map(a =>
+      a.title === 'Algebra' ? { ...a, planned: true } : a
+    ) };
+    catalog = [middleSchoolMath, {
       id: 'scienze', title: 'Scienze', icon: 'microscope', areas: [
         discipline('fisica', 'Fisica', 'atom'),
         discipline('chimica', 'Chimica', 'molecule'),
