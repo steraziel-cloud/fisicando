@@ -119,7 +119,7 @@ window.GatitoMatterModels=(()=>{
  }
  function scene(d){
   const defs=Object.entries(colors).map(([k,c])=>`<radialGradient id="mm-${k}" cx="30%" cy="24%" r="78%"><stop offset="0" stop-color="white"/><stop offset=".24" stop-color="${c}"/><stop offset=".7" stop-color="${c}"/><stop offset="1" stop-color="#23334c"/></radialGradient>`).join('');
-  const body=['nebbia','spremuta','biscotto'].includes(d.id)?heterogeneous(d.id):draw(build(d.id),[28,25,364,266],d.id==='grafite'?{yaw:.22,pitch:.65}:{});
+  const body=['nebbia','spremuta','biscotto'].includes(d.id)?heterogeneous(d.id):draw(build(d.id),[28,25,364,266],d.id==='grafite'?{yaw:.22,pitch:.65}:d.id==='zucchero'?{yaw:.1,pitch:1.25}:{});
   return{svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 316" role="img" aria-label="Struttura del campione ${d.name.replace(/[&<>\"]/g,'')}"><defs>${defs}</defs><g class="mm-world">${body}</g></svg>`};
  }
  const motionIds=['elio','acqua','grafite','aria','sale','spremuta','zucchero','ottone','co2','quarzo','rubinetto','nebbia','mercurio','calcio','biscotto','sic','pet','ghiaccio'];
@@ -169,7 +169,7 @@ window.GatitoMatterModels=(()=>{
  function createMotion(id){
   if(!supportsMotion(id))return null;if(['nebbia','spremuta','biscotto'].includes(id))return mixtureMotion(id);
   const kind=['elio','aria','co2'].includes(id)?'gas':['acqua','rubinetto','mercurio'].includes(id)?'liquid':['zucchero','ghiaccio'].includes(id)?'molecular-solid':'solid';
-  return movingWorld(build(id),kind,id==='elio'?111:213,id==='grafite'?{yaw:.22,pitch:.65}:{});
+  return movingWorld(build(id),kind,id==='elio'?111:213,id==='grafite'?{yaw:.22,pitch:.65}:id==='zucchero'?{yaw:.1,pitch:1.25}:{});
  }
  function animate(root,d,engine,{paused=false}={}){
   if(!engine)return null;
