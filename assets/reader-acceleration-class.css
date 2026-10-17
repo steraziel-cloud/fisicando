@@ -1,5 +1,5 @@
 /* Le immagini sono livelli persistenti. Testi, formule e diagrammi restano accessibili. */
-.ac-class-card{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)!important;gap:18px 26px;align-items:start}
+.ac-class-card{display:grid!important;grid-template-columns:minmax(0,.8fr) minmax(0,1.3fr)!important;gap:18px 26px;align-items:start}
 .ac-class-card>.rm-card-title{grid-column:1/-1}
 .ac-class-card>.rm-card-text{grid-column:1;grid-row:2;min-width:0;margin:0!important}
 .ac-class-card>.ac-class-board{grid-column:2;grid-row:2;min-width:0}
@@ -46,3 +46,5 @@ body[data-reader-lesson="cinematica-accelerazione"] .ac-class-card .rm-card-text
 .ac-controls .ac-reset{font-size:0;width:36px;min-width:36px;border-radius:50%;padding:0;background:#edf4fa;border:0}
 .ac-controls .ac-reset::after{content:'↻';font-size:25px;line-height:1}
 .ac-controls .ac-play{background:#00a2b5;border-color:#00a2b5}
+
+.ac-drawing text{font-size:30px}.ac-drawing .ac-small{font-size:24px}.ac-drawing .ac-heading{font-size:28px}
