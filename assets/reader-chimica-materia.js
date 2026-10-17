@@ -13,7 +13,7 @@ window.READER_LESSONS["chimica-materia"] = {
           "title": "Un mondo di differenze",
           "stepMode": "replace",
           "illustration": {
-            "src": "assets/images/reader/chemistry/red-morgana-carte-cortile-v2.png",
+            "src": "assets/images/reader/chemistry/red-morgana-carte-cortile-v3.png",
             "alt": "Red e Morgana giocano con carte illustrate al tavolo del cortile della scuola.",
             "width": 1536,
             "height": 1024
