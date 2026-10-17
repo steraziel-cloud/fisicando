@@ -1,4 +1,4 @@
-/* Regia essenziale in classe: un fondale PNG, pose persistenti e due fotogrammi della macchinina. */
+/* Aula e primo piano persistenti; allievi statici, contenuto della lavagna indipendente. */
 (()=>{
  const ROOT='assets/images/reader/kinematics/classroom/';
  const views=new WeakMap();
@@ -17,11 +17,9 @@
  function mount(box,scene,state,mode=''){
   box.classList.add('ac-class-card');
   const board=document.createElement('section');board.className='ac-class-board';board.setAttribute('aria-label','La lavagna di Red e Bjorne');
-  board.innerHTML=`<div class="ac-room"><img class="ac-backdrop" src="${ROOT}aula-v1.png" alt="Aula luminosa: Red e Bjorne osservano la lavagna dai loro banchi." width="1536" height="1024">
+  board.innerHTML=`<div class="ac-room"><img class="ac-backdrop" src="${ROOT}aula-rear-v2.png" alt="Aula luminosa: Red e Bjorne osservano la lavagna dai loro banchi." width="1536" height="1024">
    <div class="ac-chalk"><svg viewBox="0 0 600 300" class="ac-drawing" role="img" aria-label=""></svg></div>
-   <div class="ac-pupil ac-red" aria-hidden="true">${[1,2,3].map(n=>`<img src="assets/images/morgana-classroom/red-0${n}.png" class="ac-pose" alt="">`).join('')}</div>
-   <div class="ac-pupil ac-bjorne" aria-hidden="true">${[1,2,3].map(n=>`<img src="assets/images/morgana-classroom/bjorne-0${n}.png" class="ac-pose" alt="">`).join('')}</div>
-   <img class="ac-desks" src="${ROOT}aula-v1.png" alt="" aria-hidden="true" width="1536" height="1024">
+   <div class="ac-seated-group" data-pose="seated" aria-hidden="true"><img class="ac-seated-scene" src="${ROOT}alunni-banchi-v2.png" alt="" width="1536" height="1024"></div>
    <img class="ac-balloon" src="${ROOT}balloon-bjorne-v1.png" alt="Accelerazione zero… posso muovermi lo stesso!" hidden>
    </div><div class="ac-options" role="group" aria-label="Situazioni sulla lavagna"></div>
    <div class="ac-controls"><button type="button" class="ac-play">Avvia</button><button type="button" class="ac-reset">Ricomincia</button><label><span>Istante osservato</span><input type="range" min="0" max="4" step="0.05" value="0" aria-label="Istante osservato in secondi"></label><output class="ac-time"></output></div>`;
@@ -49,8 +47,6 @@
    opts.replaceChildren();menu.forEach(([k,label])=>{const b=document.createElement('button');b.type='button';b.textContent=label;b.setAttribute('aria-pressed',String(kind===k));b.addEventListener('click',()=>{pause();kind=k;setup(true);draw();});opts.append(b);});opts.hidden=!menu.length;
    const staticView=scene==='closure'||scene==='recap'||(scene==='units'&&currentMode==='average');controls.hidden=staticView;
    slider.max=duration;
-   const pose=scene==='recap'?2:['mean','units','closure'].includes(scene)?1:0;
-   board.querySelectorAll('.ac-pupil').forEach(p=>[...p.children].forEach((img,i)=>{img.style.opacity=i===pose?'1':'0';}));
    board.querySelector('.ac-balloon').hidden=scene!=='recap';
   }
   function car(m,small=false){
