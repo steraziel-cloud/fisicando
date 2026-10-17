@@ -1,0 +1,74 @@
+{
+  "pet": {
+    "original": "exec-c7221f6c-5ed6-4caf-a5f3-72969ce87b16.png",
+    "published": "assets/images/reader/chemistry/cards/pet.webp"
+  },
+  "acqua": {
+    "original": "exec-0bc479be-21de-4cd3-ad78-25abacca2a70.png",
+    "published": "assets/images/reader/chemistry/cards/acqua.webp"
+  },
+  "spremuta": {
+    "original": "exec-d3d4a896-a247-4d34-8481-7e62a1b0af87.png",
+    "published": "assets/images/reader/chemistry/cards/spremuta.webp"
+  },
+  "grafite": {
+    "original": "exec-41e2072a-22a5-4367-9908-a5b31e901702.png",
+    "published": "assets/images/reader/chemistry/cards/grafite.webp"
+  },
+  "elio": {
+    "original": "exec-ddf97c39-9f6c-4d8f-809e-121b944e4590.png",
+    "published": "assets/images/reader/chemistry/cards/elio.webp"
+  },
+  "aria": {
+    "original": "exec-776d230b-19ec-4f95-9b5c-a1cb383854bd.png",
+    "published": "assets/images/reader/chemistry/cards/aria.webp"
+  },
+  "ghiaccio": {
+    "original": "exec-7797181e-f5e4-4a5a-bb3c-0e5cf96f9f3f.png",
+    "published": "assets/images/reader/chemistry/cards/ghiaccio.webp"
+  },
+  "sale": {
+    "original": "exec-9e90ed1e-3b2f-44fb-b18a-6453ded3dd85.png",
+    "published": "assets/images/reader/chemistry/cards/sale.webp"
+  },
+  "zucchero": {
+    "original": "exec-90f8c8f9-fd48-4aa6-a9ed-4a430fcc9fa4.png",
+    "published": "assets/images/reader/chemistry/cards/zucchero.webp"
+  },
+  "co2": {
+    "original": "exec-ae4e69be-fbba-44f2-b26a-e1ef9760d7cf.png",
+    "published": "assets/images/reader/chemistry/cards/co2.webp"
+  },
+  "ottone": {
+    "original": "exec-b1ddbf30-25a0-4905-9031-8de2f6f5c7bc.png",
+    "published": "assets/images/reader/chemistry/cards/ottone.webp"
+  },
+  "rubinetto": {
+    "original": "exec-56bba9d1-929e-4e3f-8def-270956d40a30.png",
+    "published": "assets/images/reader/chemistry/cards/rubinetto.webp"
+  },
+  "mercurio": {
+    "original": "exec-b712868d-3a75-427f-ad13-0456b23cf960.png",
+    "published": "assets/images/reader/chemistry/cards/mercurio.webp"
+  },
+  "calcio": {
+    "original": "exec-f14a9fa5-49f4-48e1-8d5f-60d29edab955.png",
+    "published": "assets/images/reader/chemistry/cards/calcio.webp"
+  },
+  "biscotto": {
+    "original": "exec-41ac3b0c-3454-43b6-859e-dd81e5ac49fc.png",
+    "published": "assets/images/reader/chemistry/cards/biscotto.webp"
+  },
+  "nebbia": {
+    "original": "exec-5f6495d3-7f15-46c0-91e4-3b47b8ee06cb.png",
+    "published": "assets/images/reader/chemistry/cards/nebbia.webp"
+  },
+  "quarzo": {
+    "original": "exec-f90e8430-13ac-42f3-b0cc-0633ae334b61.png",
+    "published": "assets/images/reader/chemistry/cards/quarzo.webp"
+  },
+  "sic": {
+    "original": "exec-17e465e1-9af2-4355-8535-87e8c4e5f7df.png",
+    "published": "assets/images/reader/chemistry/cards/sic.webp"
+  }
+}

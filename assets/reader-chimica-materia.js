@@ -1,8 +1,8 @@
-/* Prima bozza: apertura della lezione. Il gioco delle carte sarà sviluppato nel prossimo passaggio. */
+/* Prima attività esplorativa: campioni e modelli, prima delle definizioni. */
 window.READER_LESSONS["chimica-materia"] = {
   "title": "La materia",
   "subtitle": "Scuole medie · Scienze · Chimica · In lavorazione",
-  "version": 1,
+  "version": 2,
   "status": "work-in-progress",
   "sections": [
     {
@@ -26,6 +26,29 @@ window.READER_LESSONS["chimica-materia"] = {
             {
               "title": "Scopriamolo insieme",
               "html": "Per iniziare, abbiamo preparato <strong>un gioco per te</strong>.<br><br>Red e Morgana hanno già iniziato a giocare con le carte. Ora tocca a te."
+            }
+          ]
+        },
+        {
+          "title": "Il mazzo della materia",
+          "board": "matter-cards",
+          "steps": [
+            {
+              "html": "Osserva il campione e riconosci la struttura mostrata nel modello."
+            }
+          ]
+        },
+        {
+          "title": "Dentro la materia",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "La varietà non è solo in superficie",
+              "html": "Hai incontrato palline separate, piccoli gruppi, reticoli e lunghe catene. Hai visto anche materiali in cui convivono strutture diverse.<br><br><strong>La materia non è tutta organizzata allo stesso modo.</strong> La sua struttura microscopica ci aiuta a spiegare molte delle differenze che osserviamo."
+            },
+            {
+              "title": "Una domanda rimane",
+              "html": "Nei modelli abbiamo usato delle palline per rappresentare la struttura dei materiali.<br><br><strong>Ma che cosa rappresentano quelle palline?</strong><br><br>Da questa domanda partirà il prossimo passo."
             }
           ]
         }

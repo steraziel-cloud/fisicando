@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    else retry($('reader-feedback'),'Per passare da km/h a m/s devi dividere per 3,6. Riprova.');
   }));
  }
- function stepBlocked(item){if(reviewAccess)return false;return cardSteps(item).some(step=>step.cloze?.some((q,i)=>sentenceAnswers.get(step)?.[i]!==q.answer));}
+ function stepBlocked(item){if(reviewAccess)return false;if(item.card.board==='matter-cards'&&!state[current].matterCards?.done)return true;return cardSteps(item).some(step=>step.cloze?.some((q,i)=>sentenceAnswers.get(step)?.[i]!==q.answer));}
  function instantSpeedsExercise(box,interactive=true){
   const st=state[current].instantSpeeds,labels=['Morgana lungo il percorso','Red prima del chiosco','Red durante la pausa','Red dopo la pausa'],expected=[2,6,0,2],host=el('div','rm-instant-speeds');
   const inputs=labels.map((text,i)=>{const label=el('label','',text+' '),input=el('input');input.type='text';input.inputMode='decimal';input.setAttribute('aria-label',text+': velocità in m/s');input.value=interactive?st.values[i]:String(expected[i]);input.disabled=!interactive||st.done;input.oninput=()=>st.values[i]=input.value;label.append(input,el('span','','m/s'));host.append(label);return input;});
@@ -457,6 +457,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.board?.startsWith('cafe-')&&window.GatitoAngleCafe)disposeWidget=window.GatitoAngleCafe.mount(box,card.board,cafeState,{stage:steps.at(-1)?.cafeStage??0});
   if(card.board==='elevator'&&window.GatitoElevator)disposeWidget=window.GatitoElevator.mount(box,state[current].elevator,()=>{actions();if(!referenceMode&&!allMode)$('reader-next').click();},archived||allMode);
   if(card.board==='velocity-instant'&&window.GatitoVelocityScene){box.classList.add('rm-velocity-instant-card');disposeWidget=window.GatitoVelocityScene.mount(box,{instant:true,graph:steps.some(step=>step.velocityGraph)});}
+  if(card.board==='matter-cards'&&window.GatitoMatterCards)disposeWidget=window.GatitoMatterCards.mount(box,state[current].matterCards||(state[current].matterCards={}),actions);
   if(card.board==='acceleration-class'&&window.GatitoAccelerationClass)disposeWidget=window.GatitoAccelerationClass.mount(box,card.classScene,state[current]['ac-'+card.classScene]||(state[current]['ac-'+card.classScene]={t:0}),steps.at(-1)?.classMode||'');
   if(card.board==='acceleration-race'&&window.GatitoAccelerationRace)disposeWidget=window.GatitoAccelerationRace.mount(box,state[current].accelerationRace||(state[current].accelerationRace={t:0}));
   if(card.board==='law-motion'&&window.GatitoLawMotion){box.classList.add('rm-law-card');disposeWidget=window.GatitoLawMotion.mount(box,state[current].lawMotion||(state[current].lawMotion={time:0}),{graph:steps.some(step=>step.lawGraph)});}
@@ -534,6 +535,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
+
 
 
 
