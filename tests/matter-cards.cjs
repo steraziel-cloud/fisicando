@@ -1,15 +1,15 @@
-const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
-class Node{constructor(tag){this.tagName=tag;this.children=[];this.attrs={};this.classList={add(){}};}append(...nodes){this.children.push(...nodes);}replaceChildren(...nodes){this.children=nodes;}setAttribute(k,v){this.attrs[k]=v;}addEventListener(){}focus(){}remove(){this.children=[];}}
-const ctx={window:{},document:{createElement:t=>new Node(t)}};vm.createContext(ctx);vm.runInContext(fs.readFileSync(require('node:path').join(__dirname,'../assets/reader-matter-cards.js'),'utf8'),ctx);const api=ctx.window.GatitoMatterCards;
-function flatten(n){return [n,...n.children.flatMap(flatten)]}function click(box,text){const button=flatten(box).find(n=>n.tagName==='button'&&n.textContent===text);assert(button,'Missing button '+text);assert(!button.disabled);button.onclick();}
-assert.equal(api.deck.length,18);assert.equal(new Set(api.deck.map(x=>x.id)).size,18);
-for(const [i,d] of api.deck.entries()){const choices=api.choices(d,i);assert.equal(choices.length,4);assert.equal(new Set(choices.map(x=>x.key)).size,4);assert(choices.some(x=>x.key===d.model));assert(!api.scene(d).svg.includes('NaN'));}
-const state={},box=new Node('article');let changes=0;let dispose=api.mount(box,state,()=>changes++);
-click(box,'Solido');assert.equal(state.answers[0].state,false,'Wrong answer must not unlock model');
-click(box,'Gassoso');assert.equal(state.answers[0].state,true);assert.equal(state.answers[0].model,false);
-click(box,api.descriptions[api.choices(api.deck[0],0).find(x=>x.key!==api.deck[0].model).key]);assert.equal(state.answers[0].model,false);
-click(box,api.descriptions.isolated);assert.equal(state.answers[0].model,true);
-click(box,'Prossima carta →');assert.equal(state.index,1);dispose();
-const box2=new Node('article');api.mount(box2,state,()=>changes++);assert.equal(state.index,1);assert.equal(state.answers[0].model,true,'Unmount preserves progress');
-for(let i=1;i<18;i++){const d=api.deck[i];click(box2,d.state);click(box2,api.descriptions[d.model]);assert.equal(state.answers[i].model,true);assert(!state.done,'Completion requires explicit final confirmation');click(box2,i===17?'Completa il mazzo ✓':'Prossima carta →');}
-assert(state.done);assert.equal(state.answers.filter(x=>x.model).length,18);click(box2,'← Carta precedente');assert(state.done);assert.equal(state.index,16);console.log('PASS: 18 cards, wrong answers, remount, navigation, completion and model choices. Changes:',changes);
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
+class Node{constructor(tag){this.tagName=tag;this.children=[];this.attrs={};this.classList={add(){}};}append(...n){this.children.push(...n);}replaceChildren(...n){this.children=n;}setAttribute(k,v){this.attrs[k]=v;}addEventListener(){}focus(){}remove(){this.children=[];}}
+const ctx={window:{},document:{createElement:t=>new Node(t)}};vm.createContext(ctx);for(const file of ['reader-matter-models.js','reader-matter-cards.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../assets/'+file),'utf8'),ctx);
+const api=ctx.window.GatitoMatterCards,models=ctx.window.GatitoMatterModels;
+const flat=n=>[n,...n.children.flatMap(flat)];function click(box,text){const n=flat(box).find(n=>n.tagName==='button'&&n.textContent===text);assert(n,'Missing '+text);assert(!n.disabled);n.onclick();}
+assert.equal(api.deck.length,18);assert.equal(Object.keys(api.descriptions).length,4);assert.equal(api.subgroups.element.length,3);assert.equal(api.subgroups.compound.length,2);
+const state={},box=new Node('article');let change=0,dispose=api.mount(box,state,()=>change++);click(box,'Guarda dentro →');click(box,api.descriptions.heterogeneous);assert(!state.answers[0].model);click(box,api.descriptions.element);click(box,api.subgroups.element[2][1]);assert(!state.answers[0].model);click(box,'← Cambia scelta');click(box,api.descriptions.element);click(box,api.subgroups.element[0][1]);assert(state.answers[0].model);assert(!state.answers[0].state);click(box,'Ora lo stato →');click(box,'Solido');assert(!state.answers[0].state);click(box,'Gassoso');click(box,'Prossima carta →');dispose();
+const b=new Node('article');api.mount(b,state,()=>change++);assert.equal(state.index,1);assert(state.answers[0].model&&state.answers[0].state);
+for(let i=1;i<18;i++){const d=api.deck[i];click(b,'Guarda dentro →');const k=api.classification(d);click(b,api.descriptions[k]);if(api.subgroups[k])click(b,api.subgroups[k].find(([key])=>key===api.subgroup(d))[1]);click(b,'Ora lo stato →');click(b,d.state);assert(!state.done);click(b,i===17?'Completa il gioco ✓':'Prossima carta →');}
+assert(state.done);assert.equal(state.answers.filter(a=>a.model&&a.state).length,18);click(b,'← Carta precedente');assert(state.done);assert.equal(state.index,16);
+for(const d of api.deck){const svg=models.scene(d).svg;assert(!svg.includes('NaN'));assert(svg.includes('<radialGradient'));}
+let w=models.build('calcio');assert.equal(w.atoms.filter(a=>a.k==='Cl').length,2*w.atoms.filter(a=>a.k==='Ca').length);
+w=models.build('zucchero');for(const [k,n]of [['C',12],['H',22],['O',11]])assert.equal(w.atoms.filter(a=>a.k===k).length,n*6);
+w=models.build('quarzo');w.atoms.forEach((a,i)=>assert(w.bonds.filter(e=>e.includes(i)).length<=(a.k==='Si'?4:2)));
+console.log('PASS: 18 turns, 4 fixed options, subgroup retries, 3 phases, state preservation, completion and molecular invariants.');

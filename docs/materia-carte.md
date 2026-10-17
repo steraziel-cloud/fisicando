@@ -1,37 +1,32 @@
-# La materia — mazzo esplorativo (18 carte)
+# Materia sotto copertura — revisione visiva e classificazione
 
-Attività per la seconda media: prima riconoscere lo stato del campione, poi descrivere il modello. I nomi delle classificazioni in `kind` sono metadati redazionali, non risposte richieste allo studente. Le carte sono aggiungibili all'array `deck`; il totale e l'avanzamento si aggiornano automaticamente.
+18 campioni. Flusso: fronte del campione → osservazione del modello → classificazione dello stato → carta successiva. Quattro descrizioni fisse; gli elementi aprono tre sottoscelte (palline separate, gruppetti, struttura) e i composti due (gruppetti uguali, strutture). Nessun nome di categoria anticipato. PET trattato come campione idealizzato di catene uguali, non come miscela di additivi del prodotto commerciale.
 
-## Regia e controlli
+Le scelte delle miscele confrontano distribuzione e proporzioni, non ordine/disordine. La nebbia e la spremuta con polpa richiedono Altro perché includono più stati. I messaggi descrittivi di ogni singola carta sono stati eliminati; una nota espandibile vicino al titolo raccoglie i limiti generali dei modelli.
 
-- Un turno alla volta, quattro opzioni per domanda, possibilità di ritentare e reaction condivise.
-- Lo stato è conservato durante la navigazione nel reader. La ricarica della pagina avvia una nuova attività, come negli altri laboratori del reader.
-- Continua richiede il completamento del mazzo. Sblocca tutto conserva la navigazione per passaggi e permette la revisione senza rispondere.
-- Le descrizioni sono accessibili anche senza distinguere i colori: non si richiede di riconoscere un elemento dal colore.
+## Disegno
 
-## Campioni e limiti dei modelli
+Modulo separato `reader-matter-models.js`: coordinate tridimensionali, proiezione ortografica obliqua con asse verticale, sfere con gradiente radiale e ordinamento in profondità. Le cornici dei reticoli sono guide grafiche, non legami. Nessun bordo microscopico viene usato per delimitare una singola molecola d'acqua. I contorni delle inclusioni sono invece calcolati dall'inviluppo delle sfere proiettate, con margine esterno: i gruppi restano racchiusi e centrati.
 
-Tre elementi nei tre stati: grafite, mercurio, elio. Tre composti molecolari: zucchero, acqua distillata, anidride carbonica. Due composti ionici solidi: NaCl e CaCl2 anidro. Due composti reticolari covalenti solidi: quarzo e carburo di silicio. Tre miscele omogenee: ottone monofase, acqua del rubinetto, aria secca semplificata. Tre eterogenee: biscotto, spremuta con polpa, nebbia. Due carte ulteriori: PET e ghiaccio.
+- NaCl: frammento cubico alternato, 3×3×3 siti; differenza di raggio illustrativa. Gli atomi di bordo non danno da soli il rapporto stechiometrico bulk; il conteggio nella cella richiede pesi di condivisione, non trattati qui.
+- CaCl2 anidro: motivo Pnnm, due Ca e quattro Cl per cella, ripetuto 2×2×2; x e y e rapporti delle lunghezze sono approssimati. Non si sostituisce con un reticolo cubico generico né con molecole isolate.
+- Grafite: tre strati esagonali, nessun legame tra gli strati; distanze relative degli strati amplificate per leggibilità.
+- SiC: cella cubica della forma zincblenda, basi FCC sfalsate di (1/4,1/4,1/4), legami ai primi vicini.
+- Quarzo: sostituito il precedente schema derivato dal diamante con un frammento di α-quarzo P3221. Dati CMU: a=4.9137 Å,c=5.4047 Å; Si(.4697,0,0), O(.4133,.2672,.1188). Orbite di simmetria, collegamenti Si–O a distanza <1.7 Å. Il test controlla che Si non superi coordinazione 4 e O coordinazione 2; i siti al bordo del frammento possono avere legami mancanti.
+- Saccarosio: due anelli, ponte glicosidico, gruppi OH; conteggio C12H22O11 controllato per gruppo. Conformazioni e stereochimica non sono una geometria sperimentale; non usarlo per insegnare stereoisomeria.
+- PET: ripetizioni con anelli aromatici e gruppi estere, catene ondulate nello spazio; idrogeni omessi. Non è polietilene.
+- Acqua, ghiaccio e gas: gruppi ruotati nello spazio; la disposizione del ghiaccio serve a evidenziare un solido molecolare e non riproduce la cella completa del ghiaccio Ih. Mercurio compatto disordinato, elio monatomico.
+- Ottone: modello di soluzione solida sostituzionale FCC idealizzata monofase. Acqua del rubinetto: specie disciolte ingrandite; composizione illustrativa.
+- Nebbia: gruppi d'acqua dentro goccioline, gas fuori. Spremuta e biscotto: schemi a più scale, strutture alimentari semplificate; non esistono una molecola della polpa o del biscotto. La forma delle inclusioni non è una geometria cristallografica.
 
-- Le immagini sono illustrazioni originali; i retri sono modelli SVG controllati, non fotografie al microscopio.
-- Campioni puri e condizioni sono specificati: non si identifica la mina intera con la grafite pura, né tutta la carta abrasiva con SiC, né tutti i prodotti assorbiumidità con CaCl2 anidro puro.
-- Nebbia e spremuta comprendono più stati: Altro è la risposta corretta e viene spiegata dopo la scelta.
-- I solidi ionici sono rappresentati senza coppie isolate; il rapporto Ca:Cl è 1:2. L'array non pretende di riprodurre la cella reale del CaCl2.
-- La grafite mostra strati esagonali con collegamenti dentro gli strati, non tra gli strati.
-- I reticoli tetraedrici sono frammenti proiettati. Il modello del quarzo illustra la connessione Si–O–Si ma non la geometria cristallografica del quarzo; questa limitazione è visibile nella carta.
-- Il saccarosio è rappresentato come gruppi uguali con composizione C12H22O11, non come geometria molecolare esatta.
-- Il PET mostra lo scheletro del suo motivo ripetuto, con anello aromatico e gruppi estere; gli H sono omessi. Non è una catena di polietilene.
-- Le miscele alimentari richiedono schemi a più scale: non si inventa una molecola del biscotto o della polpa. Le inclusioni evidenziano regioni di composizione diversa.
-- Ogni gocciolina della nebbia contiene molti gruppi d'acqua; il gas circostante è rappresentato separatamente. Distanze, concentrazioni e dimensioni sono illustrative.
-- Una struttura microscopica è un livello di spiegazione delle proprietà, non una pretesa di dedurre ogni proprietà da una singola immagine statica.
+## Fonti di controllo
 
-## Riferimenti di controllo
+- https://som.web.cmu.edu/structures/S097-alpha-quartz.html
+- https://aflow.org/p/YTPF/ — Hydrophilite CaCl2 C35, AB2_oP6_58_a_g-001; Hicks et al., Computational Materials Science 199,110450 (2021).
+- https://openstax.org/books/chemistry-2e/pages/10-6-lattice-structures-in-crystalline-solids
+- https://openstax.org/books/chemistry-2e/pages/1-2-phases-and-classification-of-matter
+- https://www.essentialchemicalindustry.org/polymers/polyesters.html
 
-- OpenStax, Chemistry: Atoms First 2e, The Solid State of Matter: https://openstax.org/books/chemistry-atoms-first-2e/pages/10-5-the-solid-state-of-matter
-- ACS, Middle School Chemistry, Ionic Bonding: https://www.acs.org/middleschoolchemistry/lessonplans/chapter4/lesson5.html
-- Essential Chemical Industry, Polyesters: https://www.essentialchemicalindustry.org/polymers/polyesters.html
-- Università di Bologna, PET: https://adu.unibo.it/pack/en/materials/polietilene-tereftalato-pet
+## Verifiche
 
-## Immagini
-
-Generatore integrato, illustrazioni singole originali. Prompt comune: “Single square educational playing-card front artwork; soft charming high-quality cartoon painted style; recognizable objects centered entirely visible with generous margin; delicate pale blue background; original art for GatitoMath middle school chemistry; no text, logos, characters, labels, molecules, panels or card border.” Soggetto specifico: il campione indicato nel titolo, con contesto riconoscibile (pompa/palloncino, bombola/gasatore, rubinetto/bicchiere, matita/grafite, assorbiumidità/granuli, carta abrasiva/grani). Il file `materia-carte-assets.json` conserva l'associazione con gli originali.
+`node tests/matter-cards.cjs`: 18 turni, errori di classificazione e sottogruppo, tre fasi, conservazione in navigazione, completamento, quattro descrizioni, composizione del saccarosio e rapporto Ca:Cl. Il controllo browser verifica navigazione, layout e lettura dei modelli; non sostituisce la revisione scientifica e didattica carta per carta con il curatore.

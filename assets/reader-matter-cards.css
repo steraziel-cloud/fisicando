@@ -11,3 +11,23 @@ body[data-reader-lesson="chimica-materia"] .rm-reader-card.mc-game-card{display:
 @keyframes mc-reveal{from{opacity:.5;transform:translateY(5px) rotateY(5deg)}to{opacity:1;transform:none}}
 @media(max-width:700px){.mc-layout{grid-template-columns:1fr;gap:20px}.mc-playing-card{max-width:320px}.mc-art{aspect-ratio:1.45}.mc-question h4{font-size:1.2rem}.mc-feedback{min-height:0}.mc-eyebrow{font-size:.6rem}.mc-button{padding:11px 12px}.mc-count{font-size:.76rem}}
 @media(prefers-reduced-motion:reduce){.mc-playing-card{animation:none}.mc-button{transition:none}}
+
+/* Layout follows the space available inside the reader, not the window width. */
+.mc-game{container:mc / inline-size;min-width:0}
+.mc-layout{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(16px,2.5vw,34px)}
+.mc-layout>*{min-width:0}.mc-question,.mc-options,.mc-nav{min-width:0;max-width:100%}
+.mc-button{max-width:100%;overflow-wrap:anywhere;white-space:normal;box-sizing:border-box}
+.mc-playing-card{max-width:370px;padding:14px}.mc-playing-card h4{margin-bottom:3px}
+.mc-model-info{font-size:.76rem;color:var(--rm-muted);margin:8px 0 12px}
+.mc-model-info summary{cursor:help;width:fit-content;text-decoration:underline;text-underline-offset:3px}
+.mc-model-info p{font-size:.8rem;line-height:1.5;max-width:70ch;margin:8px 0}
+.mc-game progress{margin:8px 0 18px}.mc-selection{margin:0;padding:10px 13px;border-left:3px solid #59aaa3;background:#59aaa30d;font-size:.91rem;line-height:1.5;border-radius:0 9px 9px 0}
+.mc-feedback:empty{display:none}.mc-feedback{min-height:0}.mc-nav{margin-top:15px}.mc-state-result{font-size:.92rem}
+@container mc (max-width:670px){
+ .mc-layout{grid-template-columns:minmax(0,1fr);gap:20px}
+ .mc-playing-card{max-width:330px}.mc-art{aspect-ratio:1.42}
+ .mc-question h4{font-size:1.2rem}.mc-options{gap:8px}.mc-button{font-size:.92rem}
+ .mc-top{flex-wrap:wrap;gap:5px}.mc-eyebrow{font-size:.62rem}
+}
+@media(max-width:420px){.mc-states{grid-template-columns:1fr 1fr}.mc-playing-card{padding:10px}.mc-playing-card h4{font-size:1.05rem}.mc-nav .mc-button{flex:1 1 auto;text-align:center}}
+

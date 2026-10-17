@@ -30,7 +30,7 @@ window.READER_LESSONS["chimica-materia"] = {
           ]
         },
         {
-          "title": "Il mazzo della materia",
+          "title": "Materia sotto copertura",
           "board": "matter-cards",
           "steps": [
             {
@@ -56,3 +56,4 @@ window.READER_LESSONS["chimica-materia"] = {
     }
   ]
 };
+
