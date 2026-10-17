@@ -2275,5 +2275,37 @@ window.LESSON_CATALOG = [
         ]
       }
     ]
+  },
+  {
+    "id": "chimica",
+    "title": "Chimica",
+    "icon": "molecule",
+    "visibleLevels": [
+      "medie"
+    ],
+    "areas": [
+      {
+        "title": "La materia",
+        "icon": "molecule",
+        "topics": [
+          {
+            "title": "Esplorare la materia",
+            "icon": "microscope",
+            "lessons": [
+              {
+                "id": "chimica-materia",
+                "title": "La materia",
+                "levels": [
+                  "medie"
+                ],
+                "status": "work-in-progress",
+                "kind": "Teoria",
+                "url": "reader.html?lezione=chimica-materia"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ];
