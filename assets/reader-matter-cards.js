@@ -192,7 +192,7 @@ function mount(box,st,onChange){
  }
  function tools(){
   const target=dialog.open?dialogTools:cardTools;target.replaceChildren();
-  target.append(btn(st.face==='back'?'Vedi il campione':'Guarda dentro',()=>{st.face=st.face==='back'?'front':'back';card.classList.toggle('mc-show-back',st.face==='back');card.setAttribute('aria-label','Ispeziona '+current().name+(st.face==='back'?', modello microscopico':', campione'));animateModel();tools();},'mc-flip'));
+  target.append(btn(st.face==='back'?'Vedi il campione':'Guarda dentro',()=>{st.face=st.face==='back'?'front':'back';card.classList.toggle('mc-show-back',st.face==='back');card.querySelector('.mc-front').setAttribute('aria-hidden',String(st.face==='back'));card.querySelector('.mc-back').setAttribute('aria-hidden',String(st.face!=='back'));card.setAttribute('aria-label','Ispeziona '+current().name+(st.face==='back'?', modello microscopico':', campione'));animateModel();tools();},'mc-flip'));
   target.lastChild.textContent=st.face==='back'?'Vedi il campione':'Guarda dentro';
   if(st.face==='back'){
    const pause=btn(st.motionPaused?'Riprendi':'Pausa',()=>{st.motionPaused=!st.motionPaused;motion?.setPaused(st.motionPaused);tools();},'mc-motion-toggle');pause.setAttribute('aria-pressed',String(st.motionPaused));target.append(pause);
@@ -203,9 +203,9 @@ function mount(box,st,onChange){
  function paintCard(dealing=false){
   motion?.dispose();motion=null;cardHome.replaceChildren();cardTools.replaceChildren();card=null;art=null;
   if(!st.drawn){const empty=node('div','mc-empty-slot');empty.innerHTML=paw;empty.append(node('span','','La prossima scoperta parte dal mazzo.'));cardHome.append(empty);return;}
-  const d=current();card=btn('',inspect,'mc-playing-card'+(st.face==='back'?' mc-show-back':'')+(dealing?' mc-dealt':''));card.setAttribute('aria-label','Ispeziona '+d.name);card.title='Osserva da vicino';
+  const d=current();card=btn('',inspect,'mc-playing-card'+(st.face==='back'?' mc-show-back':'')+(dealing?' mc-dealt':''));card.setAttribute('aria-label','Ispeziona '+d.name+(st.face==='back'?', modello microscopico':', campione')); card.title='Osserva da vicino';
   const flipper=node('span','mc-flipper'),front=node('span','mc-card-face mc-front'),back=node('span','mc-card-face mc-back');
-  const img=node('img');img.src=`assets/images/reader/chemistry/cards/${d.id}.webp`;img.alt=d.name;img.width=640;img.height=640;front.append(node('span','mc-side','IL CAMPIONE'),img,node('span','mc-card-name',d.name));
+  front.setAttribute('aria-hidden',String(st.face==='back'));back.setAttribute('aria-hidden',String(st.face!=='back'));const img=node('img');img.src=`assets/images/reader/chemistry/cards/${d.id}.webp`;img.alt=d.name;img.width=640;img.height=640;front.append(node('span','mc-side','IL CAMPIONE'),img,node('span','mc-card-name',d.name));
   art=node('span','mc-art');art.innerHTML=scene(d).svg;back.append(node('span','mc-side','DENTRO IL MATERIALE'),art,node('span','mc-card-name',d.name));flipper.append(front,back);card.append(flipper);if(dealing){const cover=node('span','mc-draw-cover');cover.innerHTML=paw;card.append(cover);}cardHome.append(card);tools();animateModel();
  }
  function status(){count.textContent=`Carta ${st.drawn?st.index+1:0} / ${st.order.length}`;points.textContent=`✦ ${score(st)} indizi`;remaining.textContent=`${st.order.length-st.index-(st.drawn?1:0)} nel mazzo`;pileLabel.textContent=!st.drawn?'Pesca una carta':st.answers[st.index]?(st.done?'Round concluso':'Pesca la prossima'):'Carta sul tabellone';pile.disabled=st.drawn&&!st.answers[st.index]||st.done;pile.setAttribute('aria-label',pileLabel.textContent);}
@@ -213,7 +213,7 @@ function mount(box,st,onChange){
   if(st.done)return;if(st.drawn){if(!st.answers[st.index])return;st.index++;}
   st.drawn=true;st.face='front';st.draft={};st.panel='closed';status();paintCard(true);paintSheet();onChange();
  }
- function openPanel(stage='structure'){st.panel=stage;paintSheet();}
+ function openPanel(stage='structure'){st.panel=stage;paintSheet();const h=sheet.querySelector('h4');if(h){h.tabIndex=-1;h.focus({preventScroll:true});}}
  function summaryLine(title,value,good){const p=node('p','mc-result-line'+(good===undefined?'':good?' mc-hit':' mc-miss'));p.append(node('strong','',title+' '),node('span','',value));return p;}
  function paintSheet(){
   sheet.replaceChildren();if(st.finished){finishPanel();return;}
@@ -249,7 +249,7 @@ function mount(box,st,onChange){
   }
  }
  function finishPanel(){
-  const total=st.order.length*2;sheet.append(node('span','mc-sheet-eyebrow','ROUND CONCLUSO'),node('h4','','Caso risolto!'),node('p','mc-final-score',`${score(st)} / ${total}`),node('p','','indizi riconosciuti'));
+  const total=st.order.length*2;sheet.append(node('span','mc-sheet-eyebrow','ROUND CONCLUSO'),node('h4','','Round completato!'),node('p','mc-final-score',`${score(st)} / ${total}`),node('p','','indizi riconosciuti'));
   const list=node('details','mc-answer-review');list.append(node('summary','','Rivedi le '+st.order.length+' carte'));
   st.answers.forEach(a=>{const d=deck.find(d=>d.id===a.id),line=node('details','mc-round-review');line.append(node('summary','',((a.structureCorrect&&a.stateCorrect)?'✓ ':'↻ ')+d.name),summaryLine('La tua scelta:',modelLabel(a.type,a.subtype)),summaryLine('Nel modello:',modelLabel(classification(d),subgroup(d))),summaryLine('Stato:',a.state+' → '+d.state));list.append(line);});sheet.append(list,node('p','mc-replay-label','Un altro round?'));
   const replay=node('div','mc-round-options');[5,10,deck.length].forEach(n=>replay.append(btn(n===deck.length?'Tutte · 18':String(n),()=>{resetRound(st,n);status();paintCard();paintSheet();onChange();})));sheet.append(replay);

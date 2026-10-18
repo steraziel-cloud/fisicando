@@ -29,3 +29,4 @@ body[data-reader-lesson="chimica-materia"] .rm-reader-card.mc-game-card{display:
 .mc-draw-cover{position:absolute;inset:0;pointer-events:none;border:6px solid #fffaf0;border-radius:15px;background:#35777c;display:grid;place-items:center;animation:mc-cover .8s steps(1) forwards}.mc-draw-cover svg{fill:#f1d890;width:50%}@keyframes mc-cover{0%{opacity:1}42%,100%{opacity:0}}@keyframes mc-deal{0%{opacity:0;translate:-110% -14%;rotate:-25deg;scale:.65}30%{opacity:1;rotate:-8deg;scale:.45 .8}42%{scale:.05 .9}65%{scale:1 1;rotate:5deg}100%{opacity:1;translate:0 0;rotate:0deg;scale:1}}
 @media(prefers-reduced-motion:reduce){.mc-draw-cover{display:none}}
 .mc-game.rm-reader-board{margin:0;padding:0;border:0;border-radius:0;background:none}
+.mc-sheet .mc-final-score{font-size:2.7rem!important;line-height:1.1!important;padding:14px 0}.mc-sheet .mc-stamp{font-size:1.05rem!important}.mc-sheet h4:focus{outline:none}
