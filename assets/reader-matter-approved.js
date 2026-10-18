@@ -11,8 +11,26 @@ window.GatitoMatterApproved=(()=>{
  const rand=n=>{let x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x)};
  const sphere=(x,y,r,k)=>`<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="${r}" fill="url(#gm-${k})" stroke="#66796b" stroke-width=".3"/>`;
  const link=(a,b,w=1.4)=>`<line class="gm-bond" stroke="#84958c" stroke-linecap="round" x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke-width="${w}"/>`;
- function gas(exclude=[]){let s='';for(let i=0;i<192;i++){const x=9+(i%16)*24+rand(i+9)*15+5*Math.sin(renderTime*.7+i),y=9+Math.floor(i/16)*28+rand(i+201)*15+5*Math.sin(renderTime*.9+i*1.9),a=rand(i+400)*Math.PI*2+renderTime*.1,k=i%5===0?'O':'N';if(exclude.some(([cx,cy,r])=>Math.hypot(x-5*Math.sin(renderTime*.7+i)-cx,y-5*Math.sin(renderTime*.9+i*1.9)-cy)<r+15))continue;if(i%41===0){s+=sphere(x,y,2.5,'Ar');continue;}if(i%47===0){const p=[x-5,y],q=[x+5,y];s+=link(p,q,.9)+sphere(...p,2.2,'O')+sphere(x,y,2,'C')+sphere(...q,2.2,'O');continue;}const p=[x+Math.cos(a)*2.5,y+Math.sin(a)*2.5],q=[x-Math.cos(a)*2.5,y-Math.sin(a)*2.5];s+=link(p,q,.8)+sphere(...p,2.2,k)+sphere(...q,2.2,k)}return s}
- function fog(){const drops=[[95,87,58],[292,240,69],[104,306,45]];let s=gas(drops);drops.forEach(([x,y,r],j)=>{s+=`<circle class="gm-droplet" fill="#cae7f1" fill-opacity=".31" stroke="#6ca1b4" cx="${x}" cy="${y}" r="${r}"/>`;for(let i=0;i<170;i++){let a=rand(i+j*192+12)*Math.PI*2+renderTime*(.04+rand(i)*.04),d=Math.sqrt(rand(i+j*283+92))*(r-7),px=x+Math.cos(a)*d,py=y+Math.sin(a)*d,theta=rand(i+123)*6.28+renderTime*.18;const p=[px+Math.cos(theta)*3.4,py+Math.sin(theta)*3.4],q=[px+Math.cos(theta+1.82)*3.4,py+Math.sin(theta+1.82)*3.4];s+=link([px,py],p,.7)+link([px,py],q,.7)+sphere(...p,1.25,'H')+sphere(...q,1.25,'H')+sphere(px,py,2.1,'O')}});return s}
+ // Move intact molecules as groups: their bonds and spheres stay in the DOM.
+ const gasTemplates={};
+ function gas(exclude=[]){let s='';for(let i=0;i<192;i++){
+  const bx=9+(i%16)*24+rand(i+9)*15,by=9+Math.floor(i/16)*28+rand(i+201)*15;
+  if(exclude.some(([cx,cy,r])=>Math.hypot(bx-cx,by-cy)<r+15))continue;
+  const x=bx+5*Math.sin(renderTime*.7+i),y=by+5*Math.sin(renderTime*.9+i*1.9),k=i%41===0?'Ar':i%47===0?'CO2':i%5===0?'O':'N';
+  if(!gasTemplates[k])gasTemplates[k]=k==='Ar'?sphere(0,0,2.5,'Ar'):k==='CO2'?link([-5,0],[5,0],.9)+sphere(-5,0,2.2,'O')+sphere(0,0,2,'C')+sphere(5,0,2.2,'O'):link([2.5,0],[-2.5,0],.8)+sphere(2.5,0,2.2,k)+sphere(-2.5,0,2.2,k);
+  const angle=['Ar','CO2'].includes(k)?0:(rand(i+400)*Math.PI*2+renderTime*.1)*180/Math.PI;
+  s+=`<g transform="translate(${x.toFixed(2)} ${y.toFixed(2)}) rotate(${angle.toFixed(2)})">${gasTemplates[k]}</g>`;
+ }return s;}
+ let fogWater;
+ function fog(){
+  if(!fogWater){const p=[3.4,0],q=[Math.cos(1.82)*3.4,Math.sin(1.82)*3.4];fogWater=link([0,0],p,.7)+link([0,0],q,.7)+sphere(...p,1.25,'H')+sphere(...q,1.25,'H')+sphere(0,0,2.1,'O');}
+  const drops=[[95,87,58],[292,240,69],[104,306,45]];let s=gas(drops);
+  drops.forEach(([x,y,r],j)=>{s+=`<circle class="gm-droplet" fill="#cae7f1" fill-opacity=".31" stroke="#6ca1b4" cx="${x}" cy="${y}" r="${r}"/>`;
+   for(let i=0;i<170;i++){const a=rand(i+j*192+12)*Math.PI*2+renderTime*(.04+rand(i)*.04),d=Math.sqrt(rand(i+j*283+92))*(r-7),px=x+Math.cos(a)*d,py=y+Math.sin(a)*d,theta=(rand(i+123)*6.28+renderTime*.18)*180/Math.PI;
+    s+=`<g transform="translate(${px.toFixed(2)} ${py.toFixed(2)}) rotate(${theta.toFixed(2)})">${fogWater}</g>`;
+   }
+  });return s;
+ }
  const worlds={};
  const zones={air:[[46,42,112],[153,139,112],[252,236,112]],fog:[[39,31,112],[226,20,112],[237,185,112]],crystal:[[71,59,112],[157,132,112],[231,206,112]]};
  const defs=`<defs>${Object.entries(palette).map(([k,c])=>`<radialGradient id="gm-${k}" cx="30%" cy="25%" r="75%"><stop offset="0" stop-color="${c}"/><stop offset=".65" stop-color="${c}"/><stop offset="1" stop-color="${c}" stop-opacity=".7"/></radialGradient>`).join('')}</defs>`;
@@ -40,7 +58,7 @@ window.GatitoMatterApproved=(()=>{
   }return s;
  }
  function graphiteSheets(){
-  const w=baseModels.build('grafite');let s='';
+  const w=cached('grafite',()=>baseModels.build('grafite'));let s='';
   const first=w.atoms.filter(a=>a.p[2]===0),minX=Math.min(...first.map(a=>a.p[0])),minY=Math.min(...first.map(a=>a.p[1]));
   const screen=(a,layer)=>[35+(a.p[0]-minX)*34+layer*23+.3*Math.sin(renderTime*4+a.p[0]),26+(a.p[1]-minY)*20+layer*63+.3*Math.cos(renderTime*4+a.p[1])];
   // A few dashed interlayer interactions, distinct from covalent in-plane bonds.
@@ -56,7 +74,7 @@ window.GatitoMatterApproved=(()=>{
   if(id==='grafite')return graphiteSheets();
   if(id==='sale'||id==='bicarbonato')return ions(id);
   if(['spremuta','biscotto'].includes(id)){
-   const original=baseModels.scene({id,name:id}).svg;
+   const original=cached('static-'+id,()=>baseModels.scene({id,name:id}).svg);
    return `<g transform="translate(0 12) scale(.95 1.03)">${original.slice(original.indexOf('<defs>'),original.lastIndexOf('</svg>'))}</g>`;
   }
   const w=activeWorlds.get(id)?.world||baseModels.build(id);
@@ -85,8 +103,10 @@ window.GatitoMatterApproved=(()=>{
   a.forEach(o=>items.push({z:o.q[2],html:sphere(...p(o),Math.max(1,o.r*scale),o.k)}));
   return s+items.sort((a,b)=>a.z-b.z).map(o=>o.html).join('');
  }
- let alternateView=false; let renderTime=0; const activeWorlds=new Map();
- function volumeWorld(kind){
+ let alternateView=false; let renderTime=0; const activeWorlds=new Map(),geometryCache=new Map();
+ function cached(key,build){if(!geometryCache.has(key))geometryCache.set(key,build());return geometryCache.get(key);}
+ function volumeWorld(kind){return cached('volume-'+kind,()=>buildVolumeWorld(kind));}
+ function buildVolumeWorld(kind){
   const w={atoms:[],bonds:[],frames:[]};
   if(['acciaio','alluminio'].includes(kind)){
    const fcc=[[0,0,0],[0,.5,.5],[.5,0,.5],[.5,.5,0]];
@@ -146,6 +166,10 @@ window.GatitoMatterApproved=(()=>{
   }s+=`<g opacity="${[1,.45,.22][z]}">${t}</g>`}return s;
  }
  function iceCrystal(){
+  const {w,interactions}=cached('ice-crystal',buildIceCrystal);
+  return spatial(w,{yaw:alternateView?-.32:.25,pitch:alternateView?.5:.91,interactions});
+ }
+ function buildIceCrystal(){
   // Idealized tetrahedral oxygen network (hexagonal ice); finite surface fragment.
   // Hydrogen orientations obey two covalent H per O and one H per O...O contact.
   const oxygen=[],basis=[[0,0,0],[0,0,3/8],[1/3,2/3,.5],[1/3,2/3,7/8]];
@@ -165,7 +189,7 @@ window.GatitoMatterApproved=(()=>{
    while(dirs.length<2){let best=null,score=-Infinity;for(let n=0;n<80;n++){const z=1-2*(n+.5)/80,r=Math.sqrt(1-z*z),v=[r*Math.cos(n*2.39996),r*Math.sin(n*2.39996),z];const others=dirs.map(d=>d.map(x=>x/Math.hypot(...d)));const sc=others.length?Math.min(...others.map(d=>-Math.abs(v.reduce((s,x,k)=>s+x*d[k],0)+1/3))):1;if(sc>score){score=sc;best=v}}dirs.push(best)}
    dirs.forEach((d,n)=>{const len=Math.hypot(...d),h=w.atoms.length;w.atoms.push({p:p.map((v,k)=>v+d[k]/len*.21),k:'H',r:.045});w.bonds.push([i,h]);if(out[i][n]!==undefined)interactions.push([h,out[i][n]])});
   });
-  return spatial(w,{yaw:alternateView?-.32:.25,pitch:alternateView?.5:.91,interactions});
+  return {w,interactions};
  }
  function model(id){
   if(id==='aria')return gas();
@@ -231,8 +255,8 @@ window.GatitoMatterApproved=(()=>{
   return {id,prefix,physical,advance(dt){const elapsed=Math.max(0,Math.min(Number.isFinite(dt)?dt:0,.15));time+=elapsed;physical?.advance(elapsed);},frame,
    definitions:()=>prefixIds(extraDefs(),prefix),setView(value){view=!!value;},get view(){return view;},get time(){return time;}};
  }
- function scene(d){
-  const engine=createMotion(d.id);if(!engine)return baseModels.scene(d);
+ function scene(d,existingEngine){
+  const engine=existingEngine||createMotion(d.id);if(!engine)return baseModels.scene(d);
   return {svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 356" role="img" aria-label="Modello del campione ${escape(d.name)}"><defs>${engine.definitions()}</defs><g class="mm-world">${engine.frame()}</g></svg>`,engine};
  }
  function run(root,engine,paint,{paused=false}={}){
@@ -247,11 +271,21 @@ window.GatitoMatterApproved=(()=>{
   if(typeof IntersectionObserver==='function'){observer=new IntersectionObserver(entries=>{visible=entries.some(e=>e.isIntersecting);cancel();start();});observer.observe(root);}
   document.addEventListener('visibilitychange',visibility);paint();start();return{dispose,setPaused(v){paused=!!v;cancel();start();}};
  }
+ // Reuse the SVG DOM. Rebuild only when depth sorting changes its tag topology.
+ function painter(layer){
+  let nodes=null,previous=[],tags='';
+  const tokenize=markup=>{const out=[];for(const m of markup.matchAll(/<([A-Za-z][\w:-]*)([^<>]*?)\/?\s*>/g)){const attrs={};for(const a of m[2].matchAll(/([\w:-]+)="([^"]*)"/g))attrs[a[1]]=a[2];out.push({tag:m[1].toLowerCase(),attrs,text:m[1].toLowerCase()==='text'?markup.slice(m.index+m[0].length).split('</text>')[0]:null});}return out;};
+  return markup=>{
+   const next=tokenize(markup),signature=next.map(x=>x.tag).join(',');
+   if(!nodes||signature!==tags){layer.innerHTML=markup;nodes=Array.from(layer.querySelectorAll('*'));tags=signature;previous=next;return;}
+   next.forEach((entry,i)=>{const old=previous[i].attrs,node=nodes[i];for(const key in entry.attrs)if(entry.attrs[key]!==old[key])node.setAttribute(key,entry.attrs[key]);for(const key in old)if(!(key in entry.attrs))node.removeAttribute(key);if(entry.text!==null&&entry.text!==previous[i].text)node.textContent=entry.text;});previous=next;
+  };
+ }
  function animate(root,d,engine,options={}){
   const layer=root.querySelector('.mm-world');if(!layer||!engine)return null;
   // Preserve this engine's gradient IDs when the existing card changes inspection mode.
   root.querySelector('defs').innerHTML=engine.definitions();
-  return run(root,engine,()=>{layer.innerHTML=engine.frame();},options);
+  const paint=painter(layer);return run(root,engine,()=>paint(engine.frame()),options);
  }
  function mountInspection(root,d,engine,options={}){
   let selected=0;
@@ -263,10 +297,12 @@ window.GatitoMatterApproved=(()=>{
   const layer=root.querySelector('.mc-shared-world'),detail=root.querySelector('.mc-model-detail'),rect=root.querySelector('.mc-region'),label=root.querySelector('.mc-region-label'),heading=root.querySelector('#'+n+'-label');
   function select(i){selected=i;const [x,y,w]=zones[d.id][i],letter='ABC'[i];rect.setAttribute('x',x);rect.setAttribute('y',y);rect.setAttribute('width',w);rect.setAttribute('height',w);label.setAttribute('transform',`translate(${x+3} ${y+3})`);label.querySelector('text').textContent=letter;detail.setAttribute('viewBox',`${x} ${y} ${w} ${w}`);heading.textContent='Dentro la zona '+letter;root.querySelectorAll('[data-mc-zone]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.mcZone===i)));}
   root.querySelectorAll('[data-mc-zone]').forEach(b=>{b.onclick=()=>select(+b.dataset.mcZone);});
-  const angle=root.querySelector('.mc-view-angle');if(angle)angle.onclick=()=>{engine.setView(!engine.view);layer.innerHTML=displayFrame();};
+  const paint=painter(layer);
+  const angle=root.querySelector('.mc-view-angle');if(angle)angle.onclick=()=>{engine.setView(!engine.view);paint(displayFrame());};
   heading.setAttribute('aria-live','polite');select(selected);
-  const running=run(root,engine,()=>{layer.innerHTML=displayFrame();},options);
+  const running=run(root,engine,()=>{paint(displayFrame());},options);
   return {dispose(){running.dispose();root.replaceChildren();},setPaused:running.setPaused};
  }
  return {scene,createMotion,animate,mountInspection,supportsMotion:id=>supported.includes(id),zones};
 })();
+

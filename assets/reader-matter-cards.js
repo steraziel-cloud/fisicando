@@ -168,6 +168,7 @@ function mountIntro(box,st,onChange){
  box.addEventListener('click',choose);const observer=new MutationObserver(sync);observer.observe(box,{childList:true,subtree:true});sync();return()=>{observer.disconnect();box.removeEventListener('click',choose);};
 }
 function mount(box,st,onChange){
+ const imageRoot=new URL('assets/images/reader/chemistry/cards/',new URL('../reader.html',document.querySelector('script[src*="reader-matter-cards.js"]')?.src||new URL('assets/reader-matter-cards.js',document.baseURI))).href;
  ensureRound(st);box.classList.add('mc-game-card');
  const node=(tag,cls='',text)=>{const n=document.createElement(tag);n.className=cls;if(text!==undefined)n.textContent=text;return n;};
  const btn=(text,fn,cls='')=>{const n=node('button','mc-button '+cls,text);n.type='button';n.onclick=fn;return n;};
@@ -192,6 +193,7 @@ function mount(box,st,onChange){
   const expanded=dialog.open&&st.face==='back';dialog.classList.toggle('mc-inspection-double',expanded);inspectionModel.hidden=!expanded;dialogSlot.hidden=expanded;
   if(!art||st.face!=='back')return;const d=current();if(!engines.has(d.id))engines.set(d.id,window.GatitoMatterApproved.createMotion(d.id));
   const engine=engines.get(d.id),options={paused:reducedMotion};
+  if(!art.firstChild)art.innerHTML=window.GatitoMatterApproved.scene(d,engine).svg;
   motion=expanded?window.GatitoMatterApproved.mountInspection(inspectionModel,d,engine,options):window.GatitoMatterApproved.animate(art,d,engine,options);
  }
  function tools(){
@@ -207,10 +209,12 @@ function mount(box,st,onChange){
   if(!st.drawn){const empty=node('div','mc-empty-slot');empty.innerHTML=paw;empty.append(node('span','','La prossima scoperta parte dal mazzo.'));cardHome.append(empty);return;}
   const d=current();card=btn('',inspect,'mc-playing-card'+(st.face==='back'?' mc-show-back':'')+(dealing?' mc-dealt':''));card.setAttribute('aria-label','Ispeziona '+d.name+(st.face==='back'?', modello microscopico':', campione')); card.addEventListener('animationend',e=>{if(e.target===card&&e.animationName==='mc-deal')settleCard();});
   const flipper=node('span','mc-flipper'),front=node('span','mc-card-face mc-front'),back=node('span','mc-card-face mc-back');
-  front.setAttribute('aria-hidden',String(st.face==='back'));back.setAttribute('aria-hidden',String(st.face!=='back'));const img=node('img');img.src=`assets/images/reader/chemistry/cards/${d.id}.webp`;img.alt=d.name;img.width=640;img.height=640;front.append(node('span','mc-side','IL CAMPIONE'),img,node('span','mc-card-name',d.name));
-  art=node('span','mc-art');art.innerHTML=scene(d).svg;back.append(node('span','mc-side','DENTRO IL MATERIALE'),art,node('span','mc-card-name',d.name));flipper.append(front,back);card.append(flipper);if(dealing){const cover=node('span','mc-draw-cover');cover.innerHTML=paw;card.append(cover);}cardHome.append(card);if(dealing){const source=pile.querySelector('.mc-deck-back').getBoundingClientRect(),target=cardHome.getBoundingClientRect();card.style.setProperty('--mc-deal-x',source.left-target.left+'px');card.style.setProperty('--mc-deal-y',source.top-target.top+'px');}tools();animateModel();
+  front.setAttribute('aria-hidden',String(st.face==='back'));back.setAttribute('aria-hidden',String(st.face!=='back'));const img=node('img');img.src=`${imageRoot}${d.id}.webp`;img.decoding='async';img.fetchPriority='high';img.alt=d.name;img.width=640;img.height=640;front.append(node('span','mc-side','IL CAMPIONE'),img,node('span','mc-card-name',d.name));
+  art=node('span','mc-art');back.append(node('span','mc-side','DENTRO IL MATERIALE'),art,node('span','mc-card-name',d.name));flipper.append(front,back);card.append(flipper);if(dealing){const cover=node('span','mc-draw-cover');cover.innerHTML=paw;card.append(cover);}cardHome.append(card);if(dealing){const source=pile.querySelector('.mc-deck-back').getBoundingClientRect(),target=cardHome.getBoundingClientRect();card.style.setProperty('--mc-deal-x',source.left-target.left+'px');card.style.setProperty('--mc-deal-y',source.top-target.top+'px');}tools();animateModel();
  }
- function status(){count.textContent=`Carta ${st.drawn?st.index+1:0} / ${st.order.length}`;points.textContent=`✦ ${score(st)} indizi`;remaining.textContent=`${st.order.length-st.index-(st.drawn?1:0)} nel mazzo`;pileLabel.textContent=!st.drawn?'Pesca una carta':st.answers[st.index]?(st.done?'Round concluso':'Pesca la prossima'):'Carta sul tabellone';pile.disabled=st.drawn&&!st.answers[st.index]||st.done;pile.setAttribute('aria-label',pileLabel.textContent);}
+ const warmed=new Set();
+ function warmCards(){st.order.slice(st.index,st.index+2).forEach(id=>{if(warmed.has(id))return;warmed.add(id);const img=new Image();img.decoding='async';img.fetchPriority='low';img.src=`${imageRoot}${id}.webp`;});}
+ function status(){warmCards();count.textContent=`Carta ${st.drawn?st.index+1:0} / ${st.order.length}`;points.textContent=`✦ ${score(st)} indizi`;remaining.textContent=`${st.order.length-st.index-(st.drawn?1:0)} nel mazzo`;pileLabel.textContent=!st.drawn?'Pesca una carta':st.answers[st.index]?(st.done?'Round concluso':'Pesca la prossima'):'Carta sul tabellone';pile.disabled=st.drawn&&!st.answers[st.index]||st.done;pile.setAttribute('aria-label',pileLabel.textContent);}
  function draw(){
   if(st.done)return;if(st.drawn){if(!st.answers[st.index])return;st.index++;}
   st.drawn=true;st.face='front';st.draft={};st.panel='closed';status();paintCard(true);paintSheet();onChange();
@@ -261,5 +265,6 @@ function mount(box,st,onChange){
 }
 return{mount,mountIntro,deck,descriptions,subgroups,classification,subgroup,scene,createRound,resetRound,ensureRound,recordAnswer,score};
 })();
+
 
 

@@ -98,3 +98,7 @@ body[data-reader-lesson="chimica-materia"] .rm-reader-card.mc-game-card{display:
  .mc-zone-controls .mc-view-angle{margin-left:0}
 }
 
+
+
+/* The paper feedback must not inherit white lettering from the tabletop. */
+.mc-feedback .rm-celebration-copy,.mc-feedback .rm-celebration-copy strong,.mc-feedback .rm-celebration-copy span{color:#293e43!important;text-shadow:none!important}
