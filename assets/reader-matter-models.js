@@ -125,7 +125,7 @@ window.GatitoMatterModels=(()=>{
   return w;
  }
  function heterogeneous(id){
-  const background=world(),random=rng(91),rects=id==='nebbia'?[[58,36,114,104],[238,170,110,94]]:[[48,52,125,98],[236,161,120,98]];
+  const background=world(),random=rng(91),rects=id==='nebbia'?[[58,36,114,104],[238,170,110,94]]:id==='spremuta'?[[43,217,150,79],[204,218,164,78]]:[[48,52,125,98],[236,161,120,98]];
   const excluded=(x,y)=>rects.some(([a,b,w,h])=>x>a-14&&x<a+w+14&&y>b-14&&y<b+h+14);
   let base='';for(let i=0;i<58;i++){const x=20+random()*380,y=18+random()*280;if(excluded(x,y))continue;const m=world();if(id==='nebbia'){if(i%3)continue;molecule(m,[0,0,0],i%5?'N':'O',random()*6.28);}else if(id==='spremuta')molecule(m,[0,0,0],'water',random()*6.28);else{for(let j=0;j<5;j++){const v=atom(m,[j*.45,Math.sin(j*2)*.3,Math.cos(j)*.2],j%3?'C':'O',.2);if(j)bond(m,v-1,v);}}base+=draw(m,[x,y,id==='nebbia'?13:21,id==='nebbia'?10:18]);}
   rects.forEach((rect,index)=>{const w=world();if(id==='nebbia'){for(let i=0;i<22;i++){const a=i*2.4,r=Math.sqrt(i)*.3;molecule(w,[Math.cos(a)*r,Math.sin(a)*r,(random()-.5)*1.4],'water',random()*6.28,.7);}}else{for(let row=0;row<5;row++)for(let col=0;col<6;col++){const p=[col*.5,row*.46,(col%2)*.2+random()*.14],v=atom(w,p,id==='biscotto'?(random()<.7?'C':'O'):(col%3?'C':'O'),.19);if(col)bond(w,v-1,v);if(row&&col%2===0)bond(w,v-6,v);}}base+=phase(w,rect,id==='nebbia'?'#d7effc':id==='spremuta'?'#f4d5a7':'#d3c0b4');});return base;

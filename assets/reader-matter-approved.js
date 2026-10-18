@@ -255,14 +255,17 @@ window.GatitoMatterApproved=(()=>{
  }
  function mountInspection(root,d,engine,options={}){
   let selected=0;
-  const worldId=engine.prefix+'shared',n='mc-inspect-'+(++nextId);
-  root.innerHTML=`<h3 class="mc-inspect-name">${escape(d.name)}</h3><div class="mc-model-panes"><section><h4>Il campione nel suo insieme</h4><svg class="mc-model-canvas" viewBox="0 0 400 356" role="img" aria-label="Vista d’insieme di ${escape(d.name)}"><defs>${engine.definitions()}</defs><g id="${worldId}" class="mc-shared-world"></g><rect class="mc-region" rx="5"/><g class="mc-region-label"><rect width="24" height="24" rx="5"/><text x="12" y="17" text-anchor="middle">A</text></g></svg></section><section><h4 id="${n}-label">Dentro la zona A</h4><svg class="mc-model-canvas mc-model-detail" viewBox="0 0 125 125" role="img" aria-labelledby="${n}-label"><use href="#${worldId}"/></svg></section></div><div class="mc-zone-controls"><span>Esplora una zona</span>${['A','B','C'].map((l,i)=>`<button type="button" class="mc-button" data-mc-zone="${i}" aria-pressed="${i===0}">${l}</button>`).join('')}${d.id==='ghiaccio'?'<button type="button" class="mc-button mc-view-angle">Cambia punto di vista</button>':''}</div>`;
+  // The hidden physical card stays in the DOM: inspection must have separate gradient IDs.
+  const displayPrefix=engine.prefix+'inspect-',worldId=displayPrefix+'shared',n='mc-inspect-'+(++nextId);
+  const displayFrame=()=>engine.frame().replaceAll(engine.prefix,displayPrefix);
+  const displayDefinitions=()=>engine.definitions().replaceAll(engine.prefix,displayPrefix);
+  root.innerHTML=`<h3 class="mc-inspect-name">${escape(d.name)}</h3><div class="mc-model-panes"><section><h4>Il campione nel suo insieme</h4><svg class="mc-model-canvas" viewBox="0 0 400 356" role="img" aria-label="Vista d’insieme di ${escape(d.name)}"><defs>${displayDefinitions()}</defs><g id="${worldId}" class="mc-shared-world"></g><rect class="mc-region" rx="5"/><g class="mc-region-label"><rect width="24" height="24" rx="5"/><text x="12" y="17" text-anchor="middle">A</text></g></svg></section><section><h4 id="${n}-label">Dentro la zona A</h4><svg class="mc-model-canvas mc-model-detail" viewBox="0 0 125 125" role="img" aria-labelledby="${n}-label"><use href="#${worldId}"/></svg></section></div><div class="mc-zone-controls"><span>Esplora una zona</span>${['A','B','C'].map((l,i)=>`<button type="button" class="mc-button" data-mc-zone="${i}" aria-pressed="${i===0}">${l}</button>`).join('')}${d.id==='ghiaccio'?'<button type="button" class="mc-button mc-view-angle">Cambia punto di vista</button>':''}</div>`;
   const layer=root.querySelector('.mc-shared-world'),detail=root.querySelector('.mc-model-detail'),rect=root.querySelector('.mc-region'),label=root.querySelector('.mc-region-label'),heading=root.querySelector('#'+n+'-label');
   function select(i){selected=i;const [x,y,w]=zones[d.id][i],letter='ABC'[i];rect.setAttribute('x',x);rect.setAttribute('y',y);rect.setAttribute('width',w);rect.setAttribute('height',w);label.setAttribute('transform',`translate(${x+3} ${y+3})`);label.querySelector('text').textContent=letter;detail.setAttribute('viewBox',`${x} ${y} ${w} ${w}`);heading.textContent='Dentro la zona '+letter;root.querySelectorAll('[data-mc-zone]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.mcZone===i)));}
   root.querySelectorAll('[data-mc-zone]').forEach(b=>{b.onclick=()=>select(+b.dataset.mcZone);});
-  const angle=root.querySelector('.mc-view-angle');if(angle)angle.onclick=()=>{engine.setView(!engine.view);layer.innerHTML=engine.frame();};
+  const angle=root.querySelector('.mc-view-angle');if(angle)angle.onclick=()=>{engine.setView(!engine.view);layer.innerHTML=displayFrame();};
   heading.setAttribute('aria-live','polite');select(selected);
-  const running=run(root,engine,()=>{layer.innerHTML=engine.frame();},options);
+  const running=run(root,engine,()=>{layer.innerHTML=displayFrame();},options);
   return {dispose(){running.dispose();root.replaceChildren();},setPaused:running.setPaused};
  }
  return {scene,createMotion,animate,mountInspection,supportsMotion:id=>supported.includes(id),zones};
