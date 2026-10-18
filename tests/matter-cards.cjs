@@ -1,6 +1,6 @@
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
-const ctx={window:{}};vm.createContext(ctx);for(const file of ['reader-matter-models.js','reader-matter-cards.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../assets/'+file),'utf8'),ctx);
-const a=ctx.window.GatitoMatterCards,m=ctx.window.GatitoMatterModels;
+const ctx={window:{}};vm.createContext(ctx);for(const file of ['reader-matter-models.js','reader-matter-approved.js','reader-matter-cards.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../assets/'+file),'utf8'),ctx);
+const a=ctx.window.GatitoMatterCards,m=ctx.window.GatitoMatterApproved;
 assert.equal(a.deck.length,18);assert.equal(Object.keys(a.descriptions).length,4);
 for(const n of [5,10,18]){
  const st={};a.resetRound(st,n,()=>.4);assert.equal(st.order.length,n);assert.equal(new Set(st.order).size,n);assert.equal(a.score(st),0);

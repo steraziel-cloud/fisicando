@@ -1,4 +1,28 @@
-# Materia sotto copertura — 18 campioni, revisione del 18 ottobre 2026
+# Identikit della materia — 18 campioni, revisione del 18 ottobre 2026
+
+## Stato attuale: revisione visiva approvata carta per carta
+
+Questa sezione sostituisce le precedenti indicazioni relative a saccarosio, sabbia e controlli Pausa/Riprendi.
+
+- Nuovo modulo `reader-matter-approved.js`: resa approvata con vista d’insieme e ingrandimento delle zone A/B/C. L’ingrandimento usa un riferimento SVG allo stesso mondo animato: nessuna seconda generazione casuale, nessun disallineamento temporale.
+- Ghiaccio al posto dello zucchero: molecole H₂O, rete tetraedrica idealizzata dell’ossigeno, due H covalenti per O, contatti intermolecolari tratteggiati. Frammento finito e orientazioni illustrative; non una simulazione molecolare. Possibile cambiare punto di vista.
+- Silicio di un microchip al posto della sabbia: elemento reticolare, non composto. Si rappresenta il materiale di base idealizzato puro, non l’intero chip. Struttura tipo diamante e legami sottili.
+- Acciaio inox: maggior numero di siti metallici, ferro prevalente, Cr/Ni sostituzionali distribuiti senza un motivo periodico dei colori. Riferimento: esempio di acciaio austenitico monofasico; non tutti gli acciai.
+- Alluminio: reticolo metallico FCC esteso. Cornice del volume osservato, non legami.
+- Sale: reticolo tridimensionale con cariche; bicarbonato: tre livelli di ioni Na⁺ e HCO₃⁻, con − riferito al gruppetto. Disposizione del bicarbonato illustrativa, non cella cristallografica; nessuna molecola NaHCO₃ isolata.
+- Grafite: tre fogli di esagoni leggibili; contatti tra piani tratteggiati. Spremuta: polpa sul fondo, campione lasciato a riposo.
+- Aria e aria della nebbia: N₂/O₂ con Ar e CO₂ minoritari enfatizzati. Gas diversi nella stessa fase; la nebbia comprende goccioline d’acqua e aria. Densità e dimensioni schematiche.
+- Acqua del rubinetto: più ioni disciolti, coppie aggiuntive bilanciate; composizione semplificata.
+- Nessun pulsante di pausa nel gioco. Si rispettano riduzione movimento, visibilità della pagina e rilascio dei callback. Rendering a 12 fps, una sola scena condivisa tra le due viste.
+- Versione dello stato 5: i round precedenti vengono reinizializzati perché due campioni sono stati sostituiti. Restano casualità, round 5/10/18, risposte errate accettate e reaction.
+
+Fonti: https://openstax.org/books/biology-2e/pages/2-2-water ; https://www.iue.tuwien.ac.at/phd/wessner/node29.html ; https://www.intel.com/content/www/us/en/newsroom/tech101/explaining-common-chip-terms.html .
+
+Illustrazione nuova: `assets/images/reader/chemistry/cards/silicio.webp`, generata con lo strumento immagini integrato. Prompt: illustrazione scolastica quadrata di un microchip nero su circuito verde acqua, piccolo spaccato con die di silicio visibile, vista di tre quarti, fondo crema, nessun testo/logo/personaggio o modello atomico. Il fronte del ghiaccio riutilizza l’illustrazione originale del progetto.
+
+Verifiche: `node tests/matter-cards.cjs` e `node tests/matter-approved.cjs`; pagina di verifica `tests/matter-integration-review.html`.
+
+## Cronologia precedente
 
 Lezione per le medie, ancora in lavorazione. L'osservazione dei modelli precede la definizione delle categorie. Flusso: campione → descrizione di ciò che si vede → stato → carta successiva. Quattro descrizioni fisse; elementi con tre sottoscelte, composti con due. Omogeneità = uniformità della composizione alle scale osservate, non ordine geometrico. Nebbia e spremuta con polpa hanno più stati e richiedono Altro.
 
@@ -74,3 +98,4 @@ Verifiche nuove: `tests/matter-cards.cjs` controlla round unici e casuali da 5/1
 
 Prompt finale dello sfondo:
 > Use case: illustration-story. Create a single wide landscape background asset for an interactive tabletop card game in GatitoMath. Reference image is style and location reference only: same warm honey-brown wooden school courtyard picnic table where Red and Morgana play. Camera directly above table, overhead flat-lay, 3:2 wide composition. The entire central 90% is empty wooden tabletop with subtle realistic painted wood grain, soft diffuse daylight and very faint dappled leaf shadows ONLY along outer edges. A tiny sliver of soft garden greenery can appear at far top corners. NO characters, NO paws, NO cards, NO game board, NO letters, NO text, NO objects: interactive game board and deck will be overlaid by code. Beautiful polished cartoon illustration, soft warm wood, not dark, not photorealistic. Uniform overhead projection so UI can be naturally placed on the surface. Avoid harsh distracting knots and stripes in center. Final asset is only empty table background.
+

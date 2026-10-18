@@ -45,8 +45,8 @@ const deck=[
   "model": "pulp"
  },
  {
-  "id": "zucchero",
-  "name": "Zucchero",
+  "id": "ghiaccio",
+  "name": "Ghiaccio",
   "state": "Solido",
   "kind": "composto molecolare",
   "model": "sugar"
@@ -66,10 +66,10 @@ const deck=[
   "model": "gas"
  },
  {
-  "id": "sabbia",
-  "name": "Sabbia di quarzo",
+  "id": "silicio",
+  "name": "Silicio di un microchip",
   "state": "Solido",
-  "kind": "composto reticolare covalente",
+  "kind": "elemento",
   "model": "network"
  },
  {
@@ -131,18 +131,18 @@ const deck=[
 ];
 const descriptions={
  element:'Palline tutte uguali.',
- compound:'Palline di tipi diversi.',
+ compound:'Palline di tipi diversi legate tra loro in gruppetti uguali o in una struttura.',
  homogeneous:'Palline, sole o in gruppetti, di tipi diversi mescolati ovunque nelle stesse proporzioni.',
  heterogeneous:'Palline, sole o in gruppetti, di tipi diversi: da una zona all’altra cambia quali troviamo o in quali proporzioni.'
 };
 const subgroups={
  element:[['separate','Ogni pallina è separata dalle altre.'],['groups','Le palline formano gruppetti separati.'],['structures','Le palline sono organizzate in una struttura.']],
- compound:[['groups','Le palline formano gruppetti tutti uguali.'],['structures','Le palline sono organizzate in strutture.']]
+ compound:[['groups','Gruppetti tutti uguali, separati oppure tenuti vicini tra loro.'],['structures','Una struttura estesa: non ci sono molecole separate.']]
 };
 function classification(d){return d.kind==='elemento'?'element':d.kind==='miscela omogenea'?'homogeneous':d.kind==='miscela eterogenea'?'heterogeneous':'compound';}
 function subgroup(d){return ['isolated','liquidAtoms'].includes(d.model)?'separate':['layers','ions','ions2','network','chains','metal'].includes(d.model)?'structures':'groups';}
-function scene(d){return window.GatitoMatterModels.scene(d);}
-const VERSION=4;
+function scene(d){return window.GatitoMatterApproved.scene(d);}
+const VERSION=5;
 function createRound(size=5,random=Math.random){
  const ids=deck.map(d=>d.id);for(let i=ids.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[ids[i],ids[j]]=[ids[j],ids[i]];}
  return ids.slice(0,[5,10,deck.length].includes(Number(size))?Number(size):5);
@@ -173,22 +173,26 @@ function mount(box,st,onChange){
  const btn=(text,fn,cls='')=>{const n=node('button','mc-button '+cls,text);n.type='button';n.onclick=fn;return n;};
  const host=node('div','mc-game rm-reader-board'),top=node('div','mc-top'),count=node('span','mc-count'),points=node('span','mc-score');
  top.append(node('span','mc-eyebrow','IDENTIKIT DELLA MATERIA'),count,points);
- const note=node('details','mc-model-info');note.append(node('summary','','Come leggere i modelli'),node('p','','Le palline e i collegamenti sono modelli dei materiali. Colori, dimensioni e distanze sono convenzionali; alcuni dettagli sono semplificati. Cornici e contorni sono guide grafiche. Anche i movimenti sono illustrativi: tempi e velocità non sono in scala.'));
+ const note=node('details','mc-model-info');note.append(node('summary','','Come leggere i modelli'),node('p','','Le palline e i collegamenti sono modelli dei materiali. Colori, dimensioni, distanze e proporzioni sono convenzionali; alcuni dettagli sono semplificati. I bastoncini indicano legami interni, i tratteggi alcune interazioni tra molecole o tra piani. I segni + e − indicano cariche. Cornici e contorni sono guide grafiche. Anche i movimenti sono illustrativi: tempi e velocità non sono in scala.'));
  const table=node('div','mc-table'),mat=node('div','mc-mat'),deckZone=node('div','mc-deck-zone'),slot=node('div','mc-card-zone'),sheet=node('section','mc-sheet'),board=node('section','mc-identikit'),boardBody=node('div','mc-identikit-body');
  board.setAttribute('aria-label','Il tuo identikit, tabellone');sheet.setAttribute('aria-label','Le tue risposte');board.append(node('h4','mc-identikit-title','Il tuo identikit'),boardBody);boardBody.append(slot,sheet);
  const paw='<svg viewBox="0 0 100 100" aria-hidden="true"><ellipse cx="25" cy="30" rx="10" ry="13" transform="rotate(-25 25 30)"/><ellipse cx="47" cy="20" rx="10" ry="13"/><ellipse cx="70" cy="25" rx="10" ry="13" transform="rotate(20 70 25)"/><ellipse cx="84" cy="47" rx="9" ry="12" transform="rotate(35 84 47)"/><path d="M25 63C30 51 37 41 48 42C59 42 62 54 72 61C91 76 74 88 62 82C51 77 48 78 36 82C21 87 14 76 25 63Z"/></svg>';
  const pile=btn('',draw,'mc-deck');pile.innerHTML='<span class="mc-deck-back">'+paw+'<span>GatitoMath</span></span>';const pileLabel=node('span','mc-deck-label'),remaining=node('span','mc-remaining');pile.append(pileLabel);deckZone.append(pile,remaining);
  const cardHome=node('div','mc-card-home'),cardTools=node('div','mc-card-tools');slot.append(node('span','mc-zone-label','LA CARTA PESCATA'),cardHome,cardTools);
- const dialog=node('dialog','mc-inspection'),dialogClose=btn('Torna al tavolo ×',()=>dialog.close(),'mc-close'),dialogSlot=node('div','mc-inspection-slot'),dialogTools=node('div','mc-card-tools');dialog.setAttribute('aria-label','Osserva la carta da vicino');dialog.append(dialogClose,dialogSlot,dialogTools);
+ const dialog=node('dialog','mc-inspection'),dialogClose=btn('Torna al tavolo ×',()=>dialog.close(),'mc-close'),dialogSlot=node('div','mc-inspection-slot'),inspectionModel=node('div','mc-inspection-model'),dialogTools=node('div','mc-card-tools');dialog.setAttribute('aria-label','Osserva la carta da vicino');inspectionModel.hidden=true;dialog.append(dialogClose,dialogSlot,inspectionModel,dialogTools);
  let card=null,art=null,motion=null,disposed=false;const engines=new Map();
  const reducedMotion=typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion: reduce)').matches;
  host.append(top,note,table,dialog);mat.append(deckZone,board);table.append(mat);box.append(host);
  host.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight'].includes(e.key))e.stopPropagation();});
- dialog.addEventListener('close',()=>{if(card){settleCard();cardHome.append(card);cardTools.append(...dialogTools.children);card.classList.remove('mc-inspected');tools();card.focus({preventScroll:true});}});
+ dialog.addEventListener('close',()=>{if(card){settleCard();cardHome.append(card);cardTools.append(...dialogTools.children);card.classList.remove('mc-inspected');tools();animateModel();card.focus({preventScroll:true});}});
  dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
  function current(){return deck.find(d=>d.id===st.order[st.index]);}
  function animateModel(){
-  motion?.dispose();motion=null;if(!art||st.face!=='back')return;const d=current();if(!engines.has(d.id))engines.set(d.id,window.GatitoMatterModels.createMotion(d.id));motion=window.GatitoMatterModels.animate(art,d,engines.get(d.id),{paused:reducedMotion});
+  motion?.dispose();motion=null;
+  const expanded=dialog.open&&st.face==='back';dialog.classList.toggle('mc-inspection-double',expanded);inspectionModel.hidden=!expanded;dialogSlot.hidden=expanded;
+  if(!art||st.face!=='back')return;const d=current();if(!engines.has(d.id))engines.set(d.id,window.GatitoMatterApproved.createMotion(d.id));
+  const engine=engines.get(d.id),options={paused:reducedMotion};
+  motion=expanded?window.GatitoMatterApproved.mountInspection(inspectionModel,d,engine,options):window.GatitoMatterApproved.animate(art,d,engine,options);
  }
  function tools(){
   const target=dialog.open?dialogTools:cardTools;target.replaceChildren();
@@ -197,7 +201,7 @@ function mount(box,st,onChange){
 
  }
  function settleCard(){if(!card)return;card.classList.remove('mc-dealt');card.querySelector('.mc-draw-cover')?.remove();}
- function inspect(){if(!card||dialog.open)return;settleCard();dialogSlot.append(card);dialogTools.append(...cardTools.children);card.classList.add('mc-inspected');dialog.showModal();tools();}
+ function inspect(){if(!card||dialog.open)return;settleCard();dialogSlot.append(card);dialogTools.append(...cardTools.children);card.classList.add('mc-inspected');dialog.showModal();tools();animateModel();}
  function paintCard(dealing=false){
   motion?.dispose();motion=null;cardHome.replaceChildren();cardTools.replaceChildren();card=null;art=null;
   if(!st.drawn){const empty=node('div','mc-empty-slot');empty.innerHTML=paw;empty.append(node('span','','La prossima scoperta parte dal mazzo.'));cardHome.append(empty);return;}
@@ -257,4 +261,5 @@ function mount(box,st,onChange){
 }
 return{mount,mountIntro,deck,descriptions,subgroups,classification,subgroup,scene,createRound,resetRound,ensureRound,recordAnswer,score};
 })();
+
 
