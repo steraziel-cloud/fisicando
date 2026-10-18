@@ -30,3 +30,37 @@ body[data-reader-lesson="chimica-materia"] .rm-reader-card.mc-game-card{display:
 @media(prefers-reduced-motion:reduce){.mc-draw-cover{display:none}}
 .mc-game.rm-reader-board{margin:0;padding:0;border:0;border-radius:0;background:none}
 .mc-sheet .mc-final-score{font-size:2.7rem!important;line-height:1.1!important;padding:14px 0}.mc-sheet .mc-stamp{font-size:1.05rem!important}.mc-sheet h4:focus{outline:none}
+
+/* The identikit sheet IS the board: the dealt card has its own reserved slot. */
+.mc-invitation strong{transform:none}
+.mc-game{--mc-card-width:110px}
+.mc-mat{grid-template-columns:var(--mc-card-width) minmax(0,1fr);gap:28px;padding:0;border:0;border-radius:0;background:none;box-shadow:none;min-height:430px;align-items:center}
+.mc-mat:before{display:none}
+.mc-identikit{min-width:0;background:repeating-linear-gradient(0deg,transparent,transparent 25px,#9aa78b10 25px,#9aa78b10 26px),#fff9e9;border:1px solid #d4c6a5;border-radius:10px 18px 16px 9px;padding:22px;box-shadow:4px 8px 14px #40302350;transform:rotate(.25deg)}
+.mc-identikit-title{font:900 clamp(1.2rem,2vw,1.6rem)/1.2 "Trebuchet MS",sans-serif!important;color:#334f4c!important;margin:0 0 20px!important}
+.mc-identikit-body{display:grid;grid-template-columns:154px minmax(0,1fr);gap:22px;align-items:stretch}
+.mc-identikit .mc-card-zone{width:154px;max-width:none;min-height:270px;padding:15px 10px;align-self:stretch;border:2px dashed #cabd98;border-radius:12px;background:#efecd933;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.mc-zone-label{font-size:.5rem;letter-spacing:.06em;margin-bottom:12px;max-width:100%}
+.mc-card-home{width:var(--mc-card-width);max-width:none;aspect-ratio:.69;margin:0 auto;flex:none}
+.mc-deck{width:var(--mc-card-width)}
+.mc-deck-back{width:var(--mc-card-width);aspect-ratio:.69}
+.mc-card-face{border-width:4px;padding:4px;border-radius:9px}
+.mc-card-face .mc-side{font-size:.35rem;letter-spacing:.04em;margin:1px 0 3px}
+.mc-card-face .mc-card-name{font-size:.58rem;line-height:1.13;margin-top:3px;min-height:2.4em}
+.mc-card-face .mc-front img{border-radius:4px}
+.mc-empty-slot{border:0;padding:8px;gap:8px;background:none}
+.mc-empty-slot svg{width:34px}.mc-empty-slot span{font-size:.67rem;line-height:1.3}
+.mc-card-tools{width:100%;margin-top:12px}.mc-card-tools .mc-button{font-size:.68rem;padding:7px 8px;min-height:34px}
+.mc-sheet{transform:none;border:0;border-left:1px solid #c9c5ac;border-radius:0;background:none;box-shadow:none;padding:0 0 0 20px;min-height:330px;justify-content:center}
+.mc-sheet:before{display:none}.mc-sheet h4{font-size:1.15rem!important}.mc-open-file{min-height:220px}.mc-answer-option{font-size:.85rem}.mc-deck-label{font-size:.7rem;color:#344e43;text-shadow:0 1px 2px #fff9e9}.mc-remaining{color:#344e43;text-shadow:0 1px 2px #fff9e9}
+/* Moving an existing card between table and inspection never replays dealing. */
+.mc-inspection .mc-card-face{padding:10px;border-width:6px;border-radius:15px}
+.mc-inspection .mc-card-name{font-size:1.35rem;line-height:1.2;margin-top:8px}
+.mc-inspection .mc-side{font-size:.65rem;letter-spacing:.13em}
+.mc-inspection .mc-card-tools{width:auto}
+@container mc (max-width:740px){
+ .mc-mat{--mc-card-width:90px;grid-template-columns:var(--mc-card-width) minmax(0,1fr);gap:18px;padding:0;border:0}.mc-table{padding:18px}.mc-identikit{padding:16px}.mc-identikit-body{grid-template-columns:120px minmax(0,1fr);gap:15px}.mc-identikit .mc-card-zone{width:120px;padding:10px 7px}.mc-sheet{padding:0 0 0 14px}.mc-answer-option{font-size:.79rem}.mc-card-tools .mc-button{font-size:.6rem}
+}
+@container mc (max-width:590px){
+ .mc-mat{--mc-card-width:76px;display:flex;flex-direction:column;align-items:stretch;gap:16px;min-height:0}.mc-table{padding:14px}.mc-deck-zone{width:var(--mc-card-width);align-self:flex-start;margin:5px 0 5px 12px}.mc-identikit{width:100%;padding:16px}.mc-identikit-body{grid-template-columns:minmax(0,1fr);gap:18px}.mc-identikit .mc-card-zone{width:100%;min-height:0;flex-direction:row;flex-wrap:wrap;gap:12px;padding:14px}.mc-zone-label{width:100%;margin-bottom:0;text-align:center}.mc-card-home{margin:0}.mc-card-tools{width:auto;max-width:115px;margin-top:0}.mc-sheet{border-left:0;border-top:1px solid #c9c5ac;padding:18px 0 0;min-height:250px}.mc-deck-label{font-size:.64rem}.mc-remaining{font-size:.6rem}.mc-answer-option{font-size:.83rem}
+}
