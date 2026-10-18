@@ -1,0 +1,12 @@
+/* A brief light shimmer around Morgana's existing aura; the character stays still. */
+.rm-quiz-reaction .rm-celebration-cat.rm-morgana-shine{
+ animation:morgana-aura-shine 1.4s ease-in-out 2;
+}
+@keyframes morgana-aura-shine{
+ 0%,100%{filter:drop-shadow(0 0 0 rgba(170,91,225,0))}
+ 35%{filter:drop-shadow(0 0 3px rgba(181,103,237,.42)) drop-shadow(0 0 7px rgba(202,150,247,.18))}
+ 65%{filter:drop-shadow(0 0 1px rgba(181,103,237,.16))}
+}
+@media(prefers-reduced-motion:reduce){
+ .rm-quiz-reaction .rm-celebration-cat.rm-morgana-shine{animation:none;filter:none}
+}

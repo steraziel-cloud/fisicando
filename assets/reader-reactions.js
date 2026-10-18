@@ -8,7 +8,7 @@ window.GatitoQuizReactions=(()=>{
   const name=names[correct?(final?finalNames[finalPositive++%finalNames.length]:positiveNames[positive++%positiveNames.length]):negative++%2?'surprised':'thinking'];
   const src='assets/images/reactions/'+name;
   const card=document.createElement('span');card.className='rm-celebration rm-quiz-reaction'+(correct?'':' rm-quiz-reaction-retry');
-  const cat=document.createElement('img');cat.className='rm-celebration-cat';cat.width=96;cat.height=96;cat.alt='';cat.setAttribute('aria-hidden','true');
+  const cat=document.createElement('img');cat.className='rm-celebration-cat'+(name.startsWith('morgana_')?' rm-morgana-shine':'');cat.width=96;cat.height=96;cat.alt='';cat.setAttribute('aria-hidden','true');
   cat.src=src+(matchMedia('(prefers-reduced-motion: reduce)').matches?'-still.webp':'.webp')+'?v=2';
   const copy=document.createElement('span');copy.className='rm-celebration-copy';
   const heading=document.createElement('strong');heading.textContent=title||(correct?'Ottimo lavoro!':'Riproviamo');
