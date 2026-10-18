@@ -132,8 +132,8 @@ const deck=[
 const descriptions={
  element:'Palline tutte uguali.',
  compound:'Palline di tipi diversi legate tra loro in gruppetti uguali o in una struttura.',
- homogeneous:'Palline, sole o in gruppetti, di tipi diversi mescolati ovunque nelle stesse proporzioni.',
- heterogeneous:'Palline, sole o in gruppetti, di tipi diversi: da una zona all’altra cambia quali troviamo o in quali proporzioni.'
+ homogeneous:'Ci sono palline o gruppetti diversi. Osservando zone diverse, troviamo gli stessi tipi, mescolati più o meno nelle stesse proporzioni.',
+ heterogeneous:'Ci sono palline o gruppetti diversi. Osservando zone diverse, troviamo parti con una composizione diversa: cambiano i tipi di palline o le loro proporzioni.'
 };
 const subgroups={
  element:[['separate','Ogni pallina è separata dalle altre.'],['groups','Le palline formano gruppetti separati.'],['structures','Le palline sono organizzate in una struttura.']],
