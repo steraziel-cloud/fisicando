@@ -457,6 +457,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.board?.startsWith('cafe-')&&window.GatitoAngleCafe)disposeWidget=window.GatitoAngleCafe.mount(box,card.board,cafeState,{stage:steps.at(-1)?.cafeStage??0});
   if(card.board==='elevator'&&window.GatitoElevator)disposeWidget=window.GatitoElevator.mount(box,state[current].elevator,()=>{actions();if(!referenceMode&&!allMode)$('reader-next').click();},archived||allMode);
   if(card.board==='velocity-instant'&&window.GatitoVelocityScene){box.classList.add('rm-velocity-instant-card');disposeWidget=window.GatitoVelocityScene.mount(box,{instant:true,graph:steps.some(step=>step.velocityGraph)});}
+  if(card.matterIntro&&window.GatitoMatterCards)disposeWidget=window.GatitoMatterCards.mountIntro(box,state[current].matterCards||(state[current].matterCards={}),actions);
   if(card.board==='matter-cards'&&window.GatitoMatterCards)disposeWidget=window.GatitoMatterCards.mount(box,state[current].matterCards||(state[current].matterCards={}),actions);
   if(card.board==='acceleration-class'&&window.GatitoAccelerationClass)disposeWidget=window.GatitoAccelerationClass.mount(box,card.classScene,state[current]['ac-'+card.classScene]||(state[current]['ac-'+card.classScene]={t:0}),steps.at(-1)?.classMode||'');
   if(card.board==='acceleration-race'&&window.GatitoAccelerationRace)disposeWidget=window.GatitoAccelerationRace.mount(box,state[current].accelerationRace||(state[current].accelerationRace={t:0}));
@@ -535,6 +536,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
+
 
 
 

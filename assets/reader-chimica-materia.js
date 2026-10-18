@@ -11,6 +11,7 @@ window.READER_LESSONS["chimica-materia"] = {
       "cards": [
         {
           "title": "Un mondo di differenze",
+          "matterIntro": true,
           "stepMode": "replace",
           "illustration": {
             "src": "assets/images/reader/chemistry/red-morgana-carte-cortile-v3.png",
@@ -25,12 +26,12 @@ window.READER_LESSONS["chimica-materia"] = {
             },
             {
               "title": "Scopriamolo insieme",
-              "html": "Per iniziare, abbiamo preparato <strong>un gioco per te</strong>.<br><br>Red e Morgana hanno già iniziato a giocare con le carte. Ora tocca a te."
+              "html": "<span class=\"mc-invitation\">Red e Morgana sono già al tavolo.<br><strong>Ora tocca a te!</strong></span><span class=\"mc-invitation-sub\">Pesca, osserva e prova a riconoscere gli indizi della materia.</span><div class=\"mc-round-picker\"><p>Quanto vuoi giocare?</p><div class=\"mc-round-options\" role=\"group\" aria-label=\"Numero di carte del round\"><button type=\"button\" data-mc-round=\"5\"><strong>5</strong><span>Un assaggio</span></button><button type=\"button\" data-mc-round=\"10\"><strong>10</strong><span>La sfida</span></button><button type=\"button\" data-mc-round=\"18\"><strong>Tutte</strong><span>18 carte</span></button></div></div>"
             }
           ]
         },
         {
-          "title": "Materia sotto copertura",
+          "title": "Identikit della materia",
           "board": "matter-cards",
           "steps": [
             {
@@ -56,4 +57,5 @@ window.READER_LESSONS["chimica-materia"] = {
     }
   ]
 };
+
 

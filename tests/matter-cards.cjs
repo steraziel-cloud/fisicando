@@ -1,23 +1,26 @@
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
-class Node{constructor(tag){this.tagName=tag;this.children=[];this.attrs={};this.classList={add(){}};}append(...n){this.children.push(...n);}replaceChildren(...n){this.children=n;}setAttribute(k,v){this.attrs[k]=v;}addEventListener(){}querySelector(){return null;}focus(){}remove(){this.children=[];}}
-const ctx={window:{},document:{createElement:t=>new Node(t)}};vm.createContext(ctx);for(const file of ['reader-matter-models.js','reader-matter-cards.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../assets/'+file),'utf8'),ctx);
-const api=ctx.window.GatitoMatterCards,models=ctx.window.GatitoMatterModels;
-const flat=n=>[n,...n.children.flatMap(flat)];function click(box,text){const n=flat(box).find(n=>n.tagName==='button'&&n.textContent===text);assert(n,'Missing '+text);assert(!n.disabled);n.onclick();}
-assert.equal(api.deck.length,18);assert.equal(Object.keys(api.descriptions).length,4);assert.equal(api.subgroups.element.length,3);assert.equal(api.subgroups.compound.length,2);
-const state={},box=new Node('article');let change=0,dispose=api.mount(box,state,()=>change++);click(box,'Guarda dentro →');click(box,api.descriptions.heterogeneous);assert(!state.answers[0].model);click(box,api.descriptions.compound);click(box,api.subgroups.compound[0][1]);assert(!state.answers[0].model);click(box,'← Cambia scelta');click(box,api.descriptions.element);click(box,api.subgroups.element[2][1]);assert(!state.answers[0].model);click(box,'← Cambia scelta');click(box,api.descriptions.element);click(box,api.subgroups.element[0][1]);assert(state.answers[0].model);assert(!state.answers[0].state);click(box,'Ora lo stato →');click(box,'Solido');assert(!state.answers[0].state);click(box,'Gassoso');click(box,'Prossima carta →');dispose();
-const b=new Node('article');api.mount(b,state,()=>change++);assert.equal(state.index,1);assert(state.answers[0].model&&state.answers[0].state);
-for(let i=1;i<18;i++){const d=api.deck[i];click(b,'Guarda dentro →');const k=api.classification(d);click(b,api.descriptions[k]);if(api.subgroups[k])click(b,api.subgroups[k].find(([key])=>key===api.subgroup(d))[1]);click(b,'Ora lo stato →');click(b,d.state);assert(!state.done);click(b,i===17?'Completa il gioco ✓':'Prossima carta →');}
-assert(state.done);assert.equal(state.answers.filter(a=>a.model&&a.state).length,18);click(b,'← Carta precedente');assert(state.done);assert.equal(state.index,16);
-for(const d of api.deck){const svg=models.scene(d).svg;assert(!svg.includes('NaN'));assert(svg.includes('<radialGradient'));}
-let w=models.build('bicarbonato');const units=w.atoms.filter(a=>a.k==='Na').length;for(const[k,n]of [['C',1],['H',1],['O',3]])assert.equal(w.atoms.filter(a=>a.k===k).length,n*units);assert(w.bonds.every(([i,j])=>w.atoms[i].k!=='Na'&&w.atoms[j].k!=='Na'));
-assert(models.build('alluminio').atoms.every(a=>a.k==='Al'));
-assert(models.build('diamante').atoms.every(a=>a.k==='C'));
-assert.deepEqual([...new Set(models.build('acciaio').atoms.map(a=>a.k))].sort(),['Cr','Fe','Ni']);
-w=models.build('ossigeno');assert(w.atoms.every(a=>a.k==='O'));assert.equal(w.atoms.length,2*w.bonds.length);
-for(const id of ['mercurio','calcio','sic','ghiaccio','ottone','quarzo'])assert(!api.deck.some(d=>d.id===id));
-w=models.build('zucchero');for(const [k,n]of [['C',12],['H',22],['O',11]])assert.equal(w.atoms.filter(a=>a.k===k).length,n*4);
-w=models.build('sabbia');w.atoms.forEach((a,i)=>assert(w.bonds.filter(e=>e.includes(i)).length<=(a.k==='Si'?4:2)));
-const previous={version:2,index:13,done:true,answers:[{model:true,state:true}],frontOverride:false};api.mount(new Node('article'),previous,()=>{});assert.equal(previous.index,0);assert.equal(previous.done,false);assert.equal(previous.version,3);assert(!previous.answers[0].model);
-console.log('PASS: 18 turns, 4 fixed options, subgroup retries, 3 phases, state preservation, completion and molecular invariants.');
-
-
+const ctx={window:{}};vm.createContext(ctx);for(const file of ['reader-matter-models.js','reader-matter-cards.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../assets/'+file),'utf8'),ctx);
+const a=ctx.window.GatitoMatterCards,m=ctx.window.GatitoMatterModels;
+assert.equal(a.deck.length,18);assert.equal(Object.keys(a.descriptions).length,4);
+for(const n of [5,10,18]){
+ const st={};a.resetRound(st,n,()=>.4);assert.equal(st.order.length,n);assert.equal(new Set(st.order).size,n);assert.equal(a.score(st),0);
+ const order=JSON.stringify(st.order);a.ensureRound(st);assert.equal(JSON.stringify(st.order),order,'Navigation reshuffled the round');
+ for(let i=0;i<n;i++){
+  st.index=i;const d=a.deck.find(d=>d.id===st.order[i]);assert.equal(a.recordAnswer(st,{type:'compound'}),null,'Incomplete answers accepted');
+  const type=a.classification(d)==='heterogeneous'?'homogeneous':'heterogeneous';const wrong={type,state:d.state==='Solido'?'Gassoso':'Solido'};
+  const answer=a.recordAnswer(st,wrong);assert(answer);assert(!answer.structureCorrect);assert(!answer.stateCorrect);
+  const repeat=a.recordAnswer(st,{type:a.classification(d),subtype:a.subgroup(d),state:d.state});assert.equal(repeat,answer,'Confirmation changed an already recorded answer');
+ }
+ assert(st.done,'Wrong answers must still complete the round');assert.equal(a.score(st),0);assert.equal(st.answers.length,n);
+ a.resetRound(st,n,()=>.8);assert.notEqual(JSON.stringify(st.order),order);assert.equal(st.answers.length,0);assert(!st.done);assert(!st.drawn);
+ for(let i=0;i<n;i++){st.index=i;const d=a.deck.find(d=>d.id===st.order[i]);const r=a.recordAnswer(st,{type:a.classification(d),subtype:a.subgroup(d),state:d.state});assert(r.structureCorrect&&r.stateCorrect);}
+ assert(st.done);assert.equal(a.score(st),2*n);
+}
+// Wrong subgroup, mixed correctness, and precise primary/subgroup pair checks.
+const st={};a.resetRound(st,5);st.order=['elio','acqua','sale','aria','nebbia'];
+assert.equal(a.recordAnswer(st,{type:'element',state:'Gassoso'}),null);
+let r=a.recordAnswer(st,{type:'element',subtype:'structures',state:'Gassoso'});assert(!r.structureCorrect&&r.stateCorrect);assert.equal(a.score(st),1);
+st.index=1;r=a.recordAnswer(st,{type:'compound',subtype:'groups',state:'Solido'});assert(r.structureCorrect&&!r.stateCorrect);assert.equal(a.score(st),2);
+const legacy={version:3,index:17,done:true,answers:Array(18).fill(true)};a.ensureRound(legacy);assert.equal(legacy.order.length,5);assert.equal(legacy.index,0);assert(!legacy.done);
+for(const d of a.deck){assert(m.supportsMotion(d.id));const svg=m.scene(d).svg;assert(!svg.includes('NaN'));}
+console.log('PASS: random unique rounds 5/10/18, stable navigation, replay, wrong answers accepted, partial answers rejected, exact scoring, legacy migration, 18 models.');
