@@ -169,3 +169,14 @@ body[data-reader-lesson="chimica-materia"] .rm-chemistry-periodic>.ch-board{widt
 .rm-chemistry-periodic .ch-element-info{padding:8px 0}
 .rm-chemistry-periodic .ch-specimen{min-height:100px}
 .rm-chemistry-periodic .ch-specimen img{width:100px;height:100px}
+
+/* Periodic-table card: reading on the left, interactive board on the right. */
+@media(min-width:1100px){
+ body[data-reader-lesson="chimica-materia"] .rm-reader-card.rm-chemistry-periodic{grid-template-columns:minmax(250px,.8fr) minmax(0,1.35fr);gap:10px 24px;align-items:start}
+ body[data-reader-lesson="chimica-materia"] .rm-chemistry-periodic>.rm-card-title{grid-column:1;grid-row:1}
+ body[data-reader-lesson="chimica-materia"] .rm-chemistry-periodic>.rm-card-text{grid-column:1;grid-row:2}
+ body[data-reader-lesson="chimica-materia"] .rm-chemistry-periodic>.ch-board{grid-column:2;grid-row:1/span 2;align-self:start;max-width:none;padding:10px}
+ .rm-chemistry-periodic .ch-periodic-grid{min-width:520px;grid-template-columns:16px repeat(18,minmax(23px,1fr));gap:2px}
+ .rm-chemistry-periodic .ch-periodic-grid button.ch-element{font-size:.7rem}
+ .rm-chemistry-periodic .ch-specimen{gap:12px}
+}
