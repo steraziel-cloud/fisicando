@@ -180,3 +180,11 @@ body[data-reader-lesson="chimica-materia"] .rm-chemistry-periodic>.ch-board{widt
  .rm-chemistry-periodic .ch-periodic-grid button.ch-element{font-size:.7rem}
  .rm-chemistry-periodic .ch-specimen{gap:12px}
 }
+
+/* Clickable teaching terms highlight periods or groups on the live table. */
+.ch-table-keyword{font:inherit;font-weight:750;padding:0;border:0;border-bottom:1px dashed currentColor;background:none;color:var(--rm-accent-2);cursor:pointer}
+.ch-table-keyword[aria-pressed="true"]{background:color-mix(in srgb,var(--rm-accent-2) 18%,transparent);border-bottom-style:solid;border-radius:3px}
+.ch-table-keyword:focus-visible{outline:2px solid var(--rm-accent-2);outline-offset:4px}
+.ch-board .ch-periodic-grid .ch-element[data-ch-band]{background:hsl(var(--ch-band-hue) 55% 86%);border-color:hsl(var(--ch-band-hue) 38% 48%);color:#193d40;box-shadow:none}
+.ch-board .ch-periodic-grid .ch-element[data-ch-band][aria-pressed="true"]{outline:2px solid #236d70;outline-offset:-3px}
+.ch-highlight-periods .ch-period-label,.ch-highlight-groups .ch-group-label{font-weight:900;color:#183e40}
