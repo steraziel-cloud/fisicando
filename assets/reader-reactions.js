@@ -1,7 +1,7 @@
 /* Shared quiz reactions: feedback stays readable and motion is brief. */
 window.GatitoQuizReactions=(()=>{
- const names={success:'red_successo_6frame',trophy:'red_primo_posto',thinking:'red_buffer_spinner_fronte_grigio_destra_basso',surprised:'red_mente_esplosa_shaking_da_frame',morganaOttimo:'morgana_ottimo',morganaAura:'morgana_aura',morganaFacepaw:'morgana_facepaw',morganaConcentrazione:'morgana_concentrazione',bjorneFesteggiamento:'bjorne_festeggiamento',bjorneDubbio:'bjorne_dubbio'};
- const positiveNames=['success','morganaOttimo','bjorneFesteggiamento','trophy','morganaAura'],finalNames=['trophy','morganaAura','bjorneFesteggiamento'],negativeNames=['thinking','morganaConcentrazione','bjorneDubbio','surprised','morganaFacepaw'];
+ const names={success:'red_successo_6frame',trophy:'red_primo_posto',thinking:'red_buffer_spinner_fronte_grigio_destra_basso',surprised:'red_mente_esplosa_shaking_da_frame',morganaOttimo:'morgana_ottimo_v2',morganaAura:'morgana_aura_v2',morganaFacepaw:'morgana_facepaw',morganaConcentrazione:'morgana_concentrazione',bjorneFesteggiamento:'bjorne_festeggiamento',bjorneDubbio:'bjorne_dubbio',bjorneScatolina:'bjorne_scatolina',bjorneRiprova:'bjorne_riprova'};
+ const positiveNames=['success','morganaOttimo','bjorneFesteggiamento','trophy','morganaAura','bjorneScatolina'],finalNames=['trophy','morganaAura','bjorneFesteggiamento','bjorneScatolina'],negativeNames=['thinking','morganaConcentrazione','bjorneDubbio','surprised','morganaFacepaw','bjorneRiprova'];
  const imageRoot=new URL('images/reactions/',document.currentScript?.src||new URL('assets/reader-reactions.js',document.baseURI)).href;
  const cached=new Map();
  const url=(name,still=false)=>imageRoot+name+(still?'-still':'')+'-quiz.webp';
@@ -14,7 +14,7 @@ window.GatitoQuizReactions=(()=>{
   const name=names[correct?(final?finalNames[finalPositive++%finalNames.length]:positiveNames[positive++%positiveNames.length]):negativeNames[negative++%negativeNames.length]];
   const still=url(name,true),animated=url(name);
   const card=document.createElement('span');card.className='rm-celebration rm-quiz-reaction'+(correct?'':' rm-quiz-reaction-retry');
-  const cat=document.createElement('img');cat.className='rm-celebration-cat'+(correct&&name.startsWith('morgana_')?' rm-morgana-shine':'');cat.width=96;cat.height=96;cat.alt='';cat.setAttribute('aria-hidden','true');
+  const cat=document.createElement('img');cat.className='rm-celebration-cat'+(correct&&name.startsWith('morgana_')&&!name.endsWith('_v2')?' rm-morgana-shine':'');cat.width=96;cat.height=96;cat.alt='';cat.setAttribute('aria-hidden','true');
   cat.decoding='async';cat.style.visibility='hidden';cat.onload=()=>{cat.style.visibility='';};
   cat.onerror=()=>{if(cat.getAttribute('src')!==still)cat.src=still;else cat.style.visibility='hidden';};
   cat.src=matchMedia('(prefers-reduced-motion: reduce)').matches?still:animated;
@@ -25,5 +25,6 @@ window.GatitoQuizReactions=(()=>{
  }
  return{show};
 })();
+
 
 
