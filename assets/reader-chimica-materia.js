@@ -1,7 +1,7 @@
 window.READER_LESSONS["chimica-materia"] = {
   "title": "La materia",
   "subtitle": "Scuole medie · Scienze · Chimica · In lavorazione",
-  "version": 4,
+  "version": 5,
   "status": "work-in-progress",
   "sections": [
     {
@@ -56,7 +56,7 @@ window.READER_LESSONS["chimica-materia"] = {
     },
     {
       "id": "atomi-elementi",
-      "title": "Dalle palline agli atomi",
+      "title": "Atomi, elementi e teoria atomica",
       "cards": [
         {
           "title": "I costituenti della materia",
@@ -84,6 +84,35 @@ window.READER_LESSONS["chimica-materia"] = {
               "title": "Un modello per rappresentarli",
               "html": "Un atomo è troppo piccolo per essere visto a occhio nudo. Le palline ci aiutano a rappresentarlo: <strong>sono modelli, non fotografie</strong>.<br><br>Oggi l’esistenza degli atomi è sostenuta da moltissime prove sperimentali. Ma l’idea che la materia fosse fatta di atomi è molto più antica.",
               "chemView": "atoms"
+            }
+          ]
+        },
+        {
+          "title": "Tipi diversi di atomi",
+          "board": "chem-simple-substances",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Gli elementi chimici",
+              "html": "Gli atomi dello stesso tipo appartengono allo stesso <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"elemento-chimico\">elemento chimico</button></strong>. L’elio, l’ossigeno e l’alluminio sono elementi diversi.<br><br><strong>Un atomo è una particella; l’elemento è il tipo a cui appartiene.</strong>",
+              "chemView": "simple-substances",
+              "cloze": [
+                {
+                  "before": "Due atomi di ossigeno appartengono ",
+                  "options": [
+                    "allo stesso elemento",
+                    "a due elementi diversi"
+                  ],
+                  "answer": 0,
+                  "after": ".",
+                  "feedback": "Il numero di particelle non cambia il tipo di atomi."
+                }
+              ]
+            },
+            {
+              "title": "Tre modi di organizzarsi",
+              "html": "In natura gli atomi di uno stesso elemento possono essere organizzati in modi diversi.<br><br>Nell’<strong>elio</strong> sono separati; nell’<strong>ossigeno</strong> sono uniti in gruppetti di due; nell’<strong>alluminio</strong> formano una struttura reticolare estesa.",
+              "chemView": "simple-substances"
             }
           ]
         },
@@ -173,6 +202,28 @@ window.READER_LESSONS["chimica-materia"] = {
             "feedback": "I colori sono una convenzione del modello: distinguono i tipi di atomi."
           },
           {
+            "question": "Un campione contiene moltissimi atomi, tutti di elio. Quanti elementi sono presenti?",
+            "options": [
+              "Tanti quanti sono gli atomi.",
+              "Due, perché gli atomi sono separati.",
+              "Non si può sapere senza pesarlo.",
+              "Uno: l’elio."
+            ],
+            "answer": 3,
+            "feedback": "Moltissimi atomi possono appartenere tutti a un solo elemento."
+          },
+          {
+            "question": "Gli atomi nell’alluminio formano una struttura reticolare estesa. Quanti tipi di atomi contiene un campione di alluminio puro?",
+            "options": [
+              "Uno: atomi di alluminio.",
+              "Due: uno per ogni lato del reticolo.",
+              "Un tipo diverso per ogni pallina.",
+              "Non si può sapere perché gli atomi sono uniti."
+            ],
+            "answer": 0,
+            "feedback": "La disposizione in un reticolo non cambia il tipo di atomi: sono tutti di alluminio."
+          },
+          {
             "question": "Che cosa significava «atomo» per Leucippo e Democrito?",
             "options": [
               "Una particella indivisibile.",
@@ -193,148 +244,6 @@ window.READER_LESSONS["chimica-materia"] = {
             ],
             "answer": 2,
             "feedback": "L’unione degli atomi in rapporti definiti è un punto centrale della teoria."
-          }
-        ]
-      }
-    },
-    {
-      "id": "elementi",
-      "title": "Un tipo di atomi, un elemento",
-      "cards": [
-        {
-          "title": "Atomo ed elemento: due idee diverse",
-          "board": "chem-elements",
-          "stepMode": "replace",
-          "steps": [
-            {
-              "title": "La particella e il suo tipo",
-              "html": "Un <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"elemento-chimico\">elemento chimico</button></strong> è un tipo di atomi. L’elio è un elemento; il carbonio è un altro; l’ossigeno un altro ancora.<br><br><strong>Un atomo è una singola particella. L’elemento identifica il tipo a cui appartiene.</strong> Due atomi di ossigeno sono due particelle dello stesso elemento.",
-              "cloze": [
-                {
-                  "before": "Due atomi di ossigeno appartengono ",
-                  "options": [
-                    "allo stesso elemento",
-                    "a due elementi diversi"
-                  ],
-                  "answer": 0,
-                  "after": ".",
-                  "feedback": "Il numero di particelle non cambia il tipo di atomi."
-                }
-              ],
-              "chemView": "elements"
-            },
-            {
-              "title": "Una sostanza fatta di un solo elemento",
-              "html": "Una <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"sostanza-semplice\">sostanza semplice</button></strong> è formata soltanto da atomi dello stesso elemento.<br><br>Questi atomi possono rimanere <strong>separati</strong>, unirsi in <strong>piccoli gruppi</strong> oppure legarsi in <strong>strutture estese</strong>. Non devono per forza trovarsi tutti nella stessa disposizione.",
-              "chemView": "simple-substances",
-              "cloze": [
-                {
-                  "before": "Una sostanza semplice contiene ",
-                  "options": [
-                    "almeno due tipi di atomi",
-                    "un solo tipo di atomi"
-                  ],
-                  "answer": 1,
-                  "after": ".",
-                  "feedback": "Gli atomi possono essere separati o uniti, ma appartengono tutti allo stesso elemento."
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Tre carte, tre modi di stare insieme",
-          "board": "chem-simple-substances",
-          "stepMode": "replace",
-          "steps": [
-            {
-              "title": "Ritroviamo i modelli del gioco",
-              "html": "Nell’<strong>elio</strong> del palloncino gli atomi restano separati. Nell’<strong>ossigeno</strong> sono legati a coppie. Nella <strong>grafite</strong> gli atomi di carbonio formano piani di esagoni, sovrapposti tra loro.<br><br>Sono tutte sostanze semplici: <strong>ogni campione contiene un solo tipo di atomi</strong>.",
-              "cloze": [
-                {
-                  "before": "L’ossigeno è una sostanza semplice perché ogni coppia contiene ",
-                  "options": [
-                    "atomi dello stesso elemento",
-                    "atomi di elementi diversi"
-                  ],
-                  "answer": 0,
-                  "after": ".",
-                  "feedback": "Essere legati a coppie non rende diversi i due atomi."
-                }
-              ],
-              "chemView": "simple-substances"
-            },
-            {
-              "title": "Perché si organizzano diversamente?",
-              "html": "Dipende dalle <strong>proprietà dei singoli tipi di atomi e dalle loro interazioni</strong>. Le studieremo nelle prossime lezioni.<br><br>Per ora ci basta distinguere due domande: <strong>quali atomi ci sono?</strong> E <strong>come sono organizzati?</strong>",
-              "chemView": "simple-substances"
-            }
-          ]
-        },
-        {
-          "title": "Quanti tipi di atomi conosciamo?",
-          "board": "chem-element-count",
-          "stepMode": "replace",
-          "steps": [
-            {
-              "title": "118 elementi riconosciuti",
-              "html": "Oggi sono riconosciuti <strong>118 elementi chimici</strong>: 118 tipi di atomi.<br><br>Alcuni sono molto comuni, altri rarissimi; altri ancora sono stati prodotti soltanto in laboratorio. Contando anche le presenze naturali in tracce, <strong>94 elementi si trovano in natura</strong>.",
-              "cloze": [
-                {
-                  "before": "A ogni elemento corrisponde ",
-                  "options": [
-                    "un diverso stato della materia",
-                    "un tipo di atomi"
-                  ],
-                  "answer": 1,
-                  "after": ".",
-                  "feedback": "Solido, liquido e gas sono stati della materia, non tipi di atomi."
-                }
-              ],
-              "chemView": "element-count"
-            },
-            {
-              "title": "Una precisazione sul numero",
-              "html": "Nei libri puoi trovare il numero <strong>92</strong>: è il conteggio tradizionale che si ferma all’uranio. Anche nettunio e plutonio sono però presenti in natura in quantità piccolissime: includendoli si arriva a <strong>94</strong>.<br><br>Per orientarci tra tanti nomi, ci serviranno dei simboli e una tabella che li organizzi.",
-              "chemView": "element-count"
-            }
-          ]
-        }
-      ],
-      "quiz": {
-        "questions": [
-          {
-            "question": "Un campione contiene moltissimi atomi, tutti di elio. Quanti elementi sono presenti?",
-            "options": [
-              "Tanti quanti sono gli atomi.",
-              "Due, perché gli atomi sono separati.",
-              "Non si può sapere senza pesarlo.",
-              "Uno: l’elio."
-            ],
-            "answer": 3,
-            "feedback": "Moltissimi atomi possono appartenere tutti a un solo elemento."
-          },
-          {
-            "question": "Elio, ossigeno e grafite hanno strutture diverse. Perché sono tutti esempi di sostanze semplici?",
-            "options": [
-              "Sono tutti gas.",
-              "Ogni campione contiene un solo tipo di atomi.",
-              "I loro atomi sono tutti separati.",
-              "Tutti i loro atomi hanno lo stesso colore reale."
-            ],
-            "answer": 1,
-            "feedback": "Conta il tipo di atomi presente in ogni sostanza, non la loro disposizione."
-          },
-          {
-            "question": "Nella grafite troviamo molti atomi di carbonio legati in una struttura estesa. Quale frase è corretta?",
-            "options": [
-              "La struttura contiene un solo elemento.",
-              "Ogni esagono è un elemento diverso.",
-              "Ogni legame crea un nuovo tipo di atomo.",
-              "Gli atomi non sono più di carbonio perché sono uniti."
-            ],
-            "answer": 0,
-            "feedback": "Gli atomi restano di carbonio anche quando sono legati tra loro."
           }
         ]
       }
@@ -379,7 +288,7 @@ window.READER_LESSONS["chimica-materia"] = {
           "steps": [
             {
               "title": "Una mappa degli elementi",
-              "html": "La <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"tavola-periodica\">tavola periodica degli elementi</button></strong> raccoglie e organizza gli elementi secondo regolarità nelle loro proprietà.<br><br><strong>Ogni casella corrisponde a un elemento</strong>. Selezionandola puoi leggerne il nome. Per alcuni trovi anche un’illustrazione del campione: la raccolta delle immagini crescerà nel tempo.",
+              "html": "Conosciamo <strong>118 elementi chimici</strong>, di cui <strong>94 presenti in natura</strong>.<br><br>La <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"tavola-periodica\">tavola periodica degli elementi</button></strong> raccoglie e organizza gli elementi secondo regolarità nelle loro proprietà.<br><br><strong>Ogni casella corrisponde a un elemento</strong>. Selezionandola puoi leggerne il nome. Per alcuni trovi anche un’illustrazione del campione: la raccolta delle immagini crescerà nel tempo.",
               "cloze": [
                 {
                   "before": "La casella He corrisponde ",
@@ -485,7 +394,7 @@ window.READER_LESSONS["chimica-materia"] = {
             },
             {
               "title": "Una definizione che ci accompagna",
-              "html": "Un <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"atomo\">atomo</button></strong> è <strong>la più piccola unità che conserva l’identità chimica di un elemento</strong>.<br><br>Non significa che un singolo atomo possieda tutte le proprietà del materiale: per esempio, la durezza della grafite riguarda l’insieme degli atomi e la loro organizzazione.<br><br><strong>Che cosa c’è dentro un atomo?</strong> Sarà il punto di partenza della prossima lezione.",
+              "html": "Un <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"atomo\">atomo</button></strong> è <strong>la più piccola unità che conserva l’identità chimica di un elemento</strong>.<br><br>Non significa che un singolo atomo possieda tutte le proprietà del materiale: per esempio, la durezza dell’alluminio riguarda l’insieme degli atomi e la loro organizzazione.<br><br><strong>Che cosa c’è dentro un atomo?</strong> Sarà il punto di partenza della prossima lezione.",
               "chemView": "today",
               "cloze": [
                 {
@@ -509,7 +418,7 @@ window.READER_LESSONS["chimica-materia"] = {
           "steps": [
             {
               "title": "Dalle carte ai nomi",
-              "html": "<strong>Atomi:</strong> sono le piccolissime unità rappresentate dalle palline. I colori sono una nostra convenzione.<br><br><strong>Elemento:</strong> identifica un tipo di atomi. Una <strong>sostanza semplice</strong> contiene soltanto atomi di quel tipo, separati o uniti.<br><br><strong>Struttura:</strong> gli atomi possono stare da soli, in piccoli gruppi o in strutture estese.",
+              "html": "<strong>Atomi:</strong> sono le piccolissime unità rappresentate dalle palline. I colori sono una nostra convenzione.<br><br><strong>Elemento:</strong> identifica un tipo di atomi.<br><br><strong>Organizzazione:</strong> gli atomi di uno stesso elemento possono essere separati, in piccoli gruppi o in strutture reticolari estese.",
               "chemView": "simple-substances"
             },
             {
@@ -534,15 +443,15 @@ window.READER_LESSONS["chimica-materia"] = {
             "feedback": "Identità dell’elemento e proprietà del materiale non sono la stessa cosa."
           },
           {
-            "question": "Quale frase distingue correttamente atomo e sostanza semplice?",
+            "question": "Quale frase distingue correttamente atomo ed elemento?",
             "options": [
-              "La sostanza semplice è sempre un singolo atomo.",
-              "Una sostanza semplice contiene sempre atomi diversi.",
-              "L’atomo è una particella; la sostanza semplice è formata da un solo tipo di atomi.",
-              "L’atomo è visibile a occhio nudo; la sostanza semplice no."
+              "L’atomo è una particella; l’elemento identifica il tipo di atomi.",
+              "Un elemento è sempre una coppia di atomi.",
+              "Ogni atomo di alluminio appartiene a un elemento diverso.",
+              "Atomo ed elemento indicano entrambi lo stato solido, liquido o gassoso."
             ],
-            "answer": 2,
-            "feedback": "Una sostanza semplice può contenere un numero enorme di atomi, ma tutti dello stesso elemento."
+            "answer": 0,
+            "feedback": "Due atomi di ossigeno sono due particelle dello stesso elemento."
           },
           {
             "question": "Quale scoperta ha corretto una delle ipotesi storiche sugli atomi?",

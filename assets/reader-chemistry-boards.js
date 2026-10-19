@@ -41,7 +41,7 @@ window.GatitoChemistryBoards=(()=>{
  const assetRoot=new URL('images/reader/chemistry/',document.currentScript?.src||new URL('assets/reader-chemistry-boards.js',location.href)).href;
  const samplePictures={C:['grafite','solido'],Al:['alluminio','solido'],Si:['silicio','solido'],S:['zolfo','solido'],Fe:['ferro','solido'],Cu:['rame','solido'],Au:['oro','solido'],Hg:['mercurio','liquido'],Br:['bromo','liquido']};
  const colourlessGases=['H','He','N','O','Ne','Ar','Kr','Xe'];
- const simpleSamples=[['elio','Elio · atomi separati'],['ossigeno','Ossigeno · atomi a coppie'],['grafite','Grafite · una struttura estesa']];
+ const simpleSamples=[['elio','Elio · atomi separati'],['ossigeno','Ossigeno · atomi a coppie'],['alluminio','Alluminio · struttura reticolare estesa']];
  function showSimpleSample(host,state){
   state.motion?.dispose();state.motion=null;
   const d=simpleSamples.find(x=>x[0]===state.sample)||simpleSamples[0];state.sample=d[0];
@@ -77,7 +77,7 @@ window.GatitoChemistryBoards=(()=>{
    host.innerHTML=museum(view==='museum'?'democrito':view==='dalton-start'?'dalton':'mendeleev');return;
   }
   if(view==='simple-substances'){
-   host.innerHTML='<div class="ch-sample-picks" role="group" aria-label="Ritrova una struttura delle carte">'+simpleSamples.map(([id,name])=>`<button type="button" data-ch-sample="${id}">${name.split(' · ')[0]}</button>`).join('')+'</div><div class="ch-sample-visual"></div><p class="ch-sample-name" aria-live="polite"></p>';
+   host.innerHTML='<div class="ch-sample-picks" role="group" aria-label="Esplora come sono organizzati gli atomi">'+simpleSamples.map(([id,name])=>`<button type="button" data-ch-sample="${id}">${name.split(' · ')[0]}</button>`).join('')+'</div><div class="ch-sample-visual"></div><p class="ch-sample-name" aria-live="polite"></p>';
    showSimpleSample(host,state);return;
   }
   if(view==='dalton-join'){host.innerHTML='<div class="ch-dalton ch-ratio-board">'+diagram(view)+'</div>';return;}
@@ -135,6 +135,7 @@ window.GatitoChemistryBoards=(()=>{
  const quizCompounds=svg(ball(52,105,'He',22)+ball(108,105,'He',22)+oxygen(300,105)+water(500,83)+text(80,35,'A',23)+text(300,35,'B',23)+text(500,35,'C',23),'A: elio separato. B: ossigeno in coppie. C: acqua con H e O.',600,220);
  return {mount,setView,records,diagram,quizOxygen,quizCompounds};
 })();
+
 
 
 

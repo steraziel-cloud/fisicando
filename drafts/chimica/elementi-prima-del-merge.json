@@ -1,0 +1,142 @@
+{
+  "id": "elementi",
+  "title": "Un tipo di atomi, un elemento",
+  "cards": [
+    {
+      "title": "Atomo ed elemento: due idee diverse",
+      "board": "chem-elements",
+      "stepMode": "replace",
+      "steps": [
+        {
+          "title": "La particella e il suo tipo",
+          "html": "Un <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"elemento-chimico\">elemento chimico</button></strong> è un tipo di atomi. L’elio è un elemento; il carbonio è un altro; l’ossigeno un altro ancora.<br><br><strong>Un atomo è una singola particella. L’elemento identifica il tipo a cui appartiene.</strong> Due atomi di ossigeno sono due particelle dello stesso elemento.",
+          "cloze": [
+            {
+              "before": "Due atomi di ossigeno appartengono ",
+              "options": [
+                "allo stesso elemento",
+                "a due elementi diversi"
+              ],
+              "answer": 0,
+              "after": ".",
+              "feedback": "Il numero di particelle non cambia il tipo di atomi."
+            }
+          ],
+          "chemView": "elements"
+        },
+        {
+          "title": "Una sostanza fatta di un solo elemento",
+          "html": "Una <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"sostanza-semplice\">sostanza semplice</button></strong> è formata soltanto da atomi dello stesso elemento.<br><br>Questi atomi possono rimanere <strong>separati</strong>, unirsi in <strong>piccoli gruppi</strong> oppure legarsi in <strong>strutture estese</strong>. Non devono per forza trovarsi tutti nella stessa disposizione.",
+          "chemView": "simple-substances",
+          "cloze": [
+            {
+              "before": "Una sostanza semplice contiene ",
+              "options": [
+                "almeno due tipi di atomi",
+                "un solo tipo di atomi"
+              ],
+              "answer": 1,
+              "after": ".",
+              "feedback": "Gli atomi possono essere separati o uniti, ma appartengono tutti allo stesso elemento."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tre carte, tre modi di stare insieme",
+      "board": "chem-simple-substances",
+      "stepMode": "replace",
+      "steps": [
+        {
+          "title": "Ritroviamo i modelli del gioco",
+          "html": "Nell’<strong>elio</strong> del palloncino gli atomi restano separati. Nell’<strong>ossigeno</strong> sono legati a coppie. Nella <strong>grafite</strong> gli atomi di carbonio formano piani di esagoni, sovrapposti tra loro.<br><br>Sono tutte sostanze semplici: <strong>ogni campione contiene un solo tipo di atomi</strong>.",
+          "cloze": [
+            {
+              "before": "L’ossigeno è una sostanza semplice perché ogni coppia contiene ",
+              "options": [
+                "atomi dello stesso elemento",
+                "atomi di elementi diversi"
+              ],
+              "answer": 0,
+              "after": ".",
+              "feedback": "Essere legati a coppie non rende diversi i due atomi."
+            }
+          ],
+          "chemView": "simple-substances"
+        },
+        {
+          "title": "Perché si organizzano diversamente?",
+          "html": "Dipende dalle <strong>proprietà dei singoli tipi di atomi e dalle loro interazioni</strong>. Le studieremo nelle prossime lezioni.<br><br>Per ora ci basta distinguere due domande: <strong>quali atomi ci sono?</strong> E <strong>come sono organizzati?</strong>",
+          "chemView": "simple-substances"
+        }
+      ]
+    },
+    {
+      "title": "Quanti tipi di atomi conosciamo?",
+      "board": "chem-element-count",
+      "stepMode": "replace",
+      "steps": [
+        {
+          "title": "118 elementi riconosciuti",
+          "html": "Oggi sono riconosciuti <strong>118 elementi chimici</strong>: 118 tipi di atomi.<br><br>Alcuni sono molto comuni, altri rarissimi; altri ancora sono stati prodotti soltanto in laboratorio. Contando anche le presenze naturali in tracce, <strong>94 elementi si trovano in natura</strong>.",
+          "cloze": [
+            {
+              "before": "A ogni elemento corrisponde ",
+              "options": [
+                "un diverso stato della materia",
+                "un tipo di atomi"
+              ],
+              "answer": 1,
+              "after": ".",
+              "feedback": "Solido, liquido e gas sono stati della materia, non tipi di atomi."
+            }
+          ],
+          "chemView": "element-count"
+        },
+        {
+          "title": "Una precisazione sul numero",
+          "html": "Nei libri puoi trovare il numero <strong>92</strong>: è il conteggio tradizionale che si ferma all’uranio. Anche nettunio e plutonio sono però presenti in natura in quantità piccolissime: includendoli si arriva a <strong>94</strong>.<br><br>Per orientarci tra tanti nomi, ci serviranno dei simboli e una tabella che li organizzi.",
+          "chemView": "element-count"
+        }
+      ]
+    }
+  ],
+  "quiz": {
+    "questions": [
+      {
+        "question": "Un campione contiene moltissimi atomi, tutti di elio. Quanti elementi sono presenti?",
+        "options": [
+          "Tanti quanti sono gli atomi.",
+          "Due, perché gli atomi sono separati.",
+          "Non si può sapere senza pesarlo.",
+          "Uno: l’elio."
+        ],
+        "answer": 3,
+        "feedback": "Moltissimi atomi possono appartenere tutti a un solo elemento."
+      },
+      {
+        "question": "Elio, ossigeno e grafite hanno strutture diverse. Perché sono tutti esempi di sostanze semplici?",
+        "options": [
+          "Sono tutti gas.",
+          "Ogni campione contiene un solo tipo di atomi.",
+          "I loro atomi sono tutti separati.",
+          "Tutti i loro atomi hanno lo stesso colore reale."
+        ],
+        "answer": 1,
+        "feedback": "Conta il tipo di atomi presente in ogni sostanza, non la loro disposizione."
+      },
+      {
+        "question": "Nella grafite troviamo molti atomi di carbonio legati in una struttura estesa. Quale frase è corretta?",
+        "options": [
+          "La struttura contiene un solo elemento.",
+          "Ogni esagono è un elemento diverso.",
+          "Ogni legame crea un nuovo tipo di atomo.",
+          "Gli atomi non sono più di carbonio perché sono uniti."
+        ],
+        "answer": 0,
+        "feedback": "Gli atomi restano di carbonio anche quando sono legati tra loro."
+      }
+    ]
+  }
+}
