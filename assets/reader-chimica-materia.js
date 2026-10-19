@@ -1,8 +1,7 @@
 window.READER_LESSONS["chimica-materia"] = {
-  "title": "La materia",
-  "subtitle": "Scuole medie · Scienze · Chimica · In lavorazione",
+  "title": "Atomi ed elementi chimici",
+  "subtitle": "Scuole medie · Scienze · Chimica",
   "version": 5,
-  "status": "work-in-progress",
   "sections": [
     {
       "id": "intorno-a-noi",
