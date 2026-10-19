@@ -137,3 +137,28 @@ body[data-reader-lesson="chimica-materia"] .rm-chemistry-card:has(.ch-ratio-boar
 .ch-ratio-detail form button{border:0;background:transparent;color:inherit;font-size:20px;cursor:pointer}
 .ch-ratio-example{background:#f0f7f2;border-radius:16px;padding:8px}
 .ch-ratio-example svg{display:block;width:100%;height:auto;max-height:340px}
+
+
+/* Berzelius: the controls live on the museum's enamel exhibit. */
+.ch-symbol-gallery{container-type:inline-size}
+.ch-board .ch-berzelius-portrait{left:9%;top:0;width:28%;height:49%}
+.ch-symbol-room>img{mask-image:none;border-radius:18px}
+.ch-symbol-exhibit{position:absolute;left:13%;top:54%;width:54%;height:23%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:4px;color:#fff6d9;text-align:center}
+.ch-symbol-label{font-size:clamp(10px,2.6cqi,14px);font-weight:650;line-height:1.2;color:#f3d6a2}
+.ch-symbol-exhibit .ch-symbol-picks{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.ch-symbol-exhibit button{min-width:0;min-height:30px;padding:4px 0;border:1px solid #d7b772;border-radius:5px;background:#fbf2da;color:#234e50;font-size:clamp(14px,3.2cqi,20px);font-weight:750;line-height:1}
+.ch-symbol-exhibit button[aria-pressed=true]{background:#e3b556;color:#193d40;border-color:#fff0bd;box-shadow:0 0 0 2px #ffe3a352}
+.ch-symbol-exhibit button:focus-visible{outline-color:#fff6db;outline-offset:2px}
+.ch-symbol-exhibit .ch-element-info{padding:0;min-height:0;gap:0}
+.ch-symbol-exhibit .ch-element-identity{gap:8px;line-height:1.1}
+.ch-symbol-exhibit .ch-element-identity>strong{font-size:clamp(16px,3.7cqi,23px);color:#ffdb94}
+.ch-symbol-exhibit .ch-element-identity>span{font-size:clamp(12px,3cqi,17px);color:#fff6d9}
+@container(max-width:430px){
+ .ch-symbol-room{margin-bottom:65px}
+ .ch-symbol-exhibit{left:12%;top:53%;width:56%;height:auto;min-height:112px;padding:8px;background:#154348;border:2px solid #b99048;border-radius:5px;box-shadow:0 4px 0 #58432a;gap:6px}
+ .ch-symbol-exhibit .ch-symbol-picks{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .ch-symbol-exhibit button{min-height:30px;font-size:16px}
+ .ch-symbol-label{font-size:10px}
+ .ch-symbol-exhibit .ch-element-identity>strong{font-size:17px}
+ .ch-symbol-exhibit .ch-element-identity>span{font-size:12px}
+}

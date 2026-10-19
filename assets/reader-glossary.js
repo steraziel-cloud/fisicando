@@ -606,7 +606,7 @@ window.READER_GLOSSARY = {
         "text": "Jöns Jacob Berzelius (1779–1848) introdusse tra il 1813 e il 1814 una notazione alfabetica degli elementi, basata soprattutto sui nomi latini. Contribuì anche alla determinazione delle masse atomiche relative e allo sviluppo della chimica analitica."
       }
     },
-    "html": "<p><a href=\"https://web.lemoyne.edu/giunta/berzelius.html\" target=\"_blank\" rel=\"noopener noreferrer\">Fonte e approfondimento ↗</a></p>"
+    "html": "<figure class=\"ch-bio-portrait\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"100 0 345 395\" role=\"img\" aria-label=\"Ritratto illustrato di Jöns Jacob Berzelius\"><image href=\"assets/images/reader/chemistry/hall-berzelius.webp\" width=\"1200\" height=\"800\"/></svg><figcaption>Interpretazione illustrata di Berzelius, realizzata per GatitoMath.</figcaption></figure><p class=\"ch-bio-links\"><a href=\"https://it.wikipedia.org/wiki/J%C3%B6ns_Jacob_Berzelius\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia in italiano ↗</a><a href=\"https://web.lemoyne.edu/giunta/berzelius.html\" target=\"_blank\" rel=\"noopener noreferrer\">Fonte e approfondimento ↗</a></p>"
   },
   "mendeleev": {
     "title": "Dmitrij Mendeleev · Dare un posto anche all’ignoto",
@@ -655,3 +655,4 @@ window.READER_GLOSSARY = {
     "html": "<p><a href=\"https://goldbook.iupac.org/terms/view/C01039\" target=\"_blank\" rel=\"noopener noreferrer\">Fonte: IUPAC Gold Book ↗</a></p>"
   }
 };
+

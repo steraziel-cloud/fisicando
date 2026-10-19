@@ -68,6 +68,9 @@ window.GatitoChemistryBoards=(()=>{
 
   return `<div class="ch-hall-heading">Hall of Fame della scienza</div><div class="ch-museum"><img src="${assetRoot}${p.file}" width="1200" height="800" alt="${escape(p.alt)}" decoding="async"><button type="button" class="ch-portrait" style="left:${r[0]}%;top:${r[1]}%;width:${r[2]}%;height:${r[3]}%" data-term="${id}" aria-label="${p.name}: apri la biografia"></button></div>${quote}`;
  }
+ function symbolGallery(){
+  return `<div class="ch-symbol-gallery"><div class="ch-hall-heading">Hall of Fame della scienza</div><div class="ch-museum ch-symbol-room"><img src="${assetRoot}hall-berzelius.webp" width="1200" height="800" alt="Red e Morgana visitano la sala di Berzelius, con il suo ritratto e un banco interattivo dedicato ai simboli chimici." decoding="async"><button type="button" class="ch-portrait ch-berzelius-portrait" data-term="berzelius" aria-label="Jöns Jacob Berzelius: apri la biografia"></button><section class="ch-symbol-exhibit" aria-label="Il banco dei simboli"><div class="ch-symbol-label">Esplora i simboli di oggi</div><div class="ch-symbol-picks" role="group" aria-label="Scegli un simbolo chimico">${['H','O','C','He','Fe','Na','Au'].map(k=>`<button type="button" data-ch-element="${k}" aria-pressed="false">${k}</button>`).join('')}</div><div class="ch-element-info" aria-live="polite" aria-atomic="true"></div></section></div><blockquote class="ch-hall-quote"><p>«I simboli chimici dovrebbero essere lettere, per la maggiore facilità di scrittura.»</p><footer><cite>Jöns Jacob Berzelius</cite> · <a href="https://web.lemoyne.edu/giunta/berzelius.html" target="_blank" rel="noopener noreferrer">1813–1814 · traduzione italiana ↗</a></footer></blockquote></div>`;
+ }
  const mounted=new WeakMap();
  function render(host,state){
   state.motion?.dispose();state.motion=null;
@@ -90,7 +93,7 @@ window.GatitoChemistryBoards=(()=>{
    updateSelection(host,state);return;
   }
   if(view==='symbols'){
-   host.innerHTML='<div class="ch-symbol-picks">'+['H','O','C','He','Fe','Na','Au'].map(k=>`<button type="button" data-ch-element="${k}" aria-pressed="${k===state.selected}">${k}</button>`).join('')+'</div><div class="ch-element-info" aria-live="polite"></div>';updateSelection(host,state);return;
+   host.innerHTML=symbolGallery();updateSelection(host,state);return;
   }
   if(view==='history'||view==='today'){
    host.innerHTML='<div class="ch-timeline"><div><span>Antica Grecia</span><strong>Leucippo e Democrito</strong><p>L’idea di particelle indivisibili.</p></div><div><span>Inizio Ottocento</span><strong>John Dalton</strong><p>Una teoria per spiegare i risultati degli esperimenti.</p></div><div class="'+(view==='today'?'ch-timeline-current':'')+'"><span>Scoperte successive</span><strong>Dentro l’atomo</strong><p>Una struttura più complessa: sarà il nostro prossimo passo.</p></div></div>';return;
@@ -123,7 +126,7 @@ window.GatitoChemistryBoards=(()=>{
  }
  function mount(box,board,{view}={}){
   box.classList.add('rm-chemistry-card');if(board==='chem-periodic')box.classList.add('rm-chemistry-periodic');
-  const host=document.createElement('div');host.className='ch-board';const state={view:view||board.slice(5),selected:'C',sample:'elio',motion:null};box.append(host);mounted.set(box,{host,state});render(host,state);
+  const host=document.createElement('div');host.className='ch-board';const state={view:view||board.slice(5),selected:'H',sample:'elio',motion:null};box.append(host);mounted.set(box,{host,state});render(host,state);
   const click=e=>{const sample=e.target.closest('[data-ch-sample]');if(sample&&host.contains(sample)){state.sample=sample.dataset.chSample;showSimpleSample(host,state);return;}const b=e.target.closest('[data-ch-element]');if(!b||!host.contains(b))return;state.selected=b.dataset.chElement;updateSelection(host,state);};host.addEventListener('click',click);
   let detail=null;
   const inspect=e=>{const trigger=e.target.closest('[data-ch-ratios]');if(!trigger||!box.contains(trigger))return;if(!detail)detail=ratioDetail();detail.showModal();};
@@ -135,6 +138,7 @@ window.GatitoChemistryBoards=(()=>{
  const quizCompounds=svg(ball(52,105,'He',22)+ball(108,105,'He',22)+oxygen(300,105)+water(500,83)+text(80,35,'A',23)+text(300,35,'B',23)+text(500,35,'C',23),'A: elio separato. B: ossigeno in coppie. C: acqua con H e O.',600,220);
  return {mount,setView,records,diagram,quizOxygen,quizCompounds};
 })();
+
 
 
 
