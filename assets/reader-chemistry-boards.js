@@ -48,12 +48,30 @@ window.GatitoChemistryBoards=(()=>{
   else visual.innerHTML=diagram('elements');
   host.querySelector('.ch-sample-name').textContent=d[1];
  }
+ const hallPortraits={
+  democrito:{file:'hall-democrito.webp',name:'Democrito',rect:[40,2,44,54],alt:'Red e Morgana ammirano il ritratto immaginario di Democrito nella sala dell’atomismo antico.'},
+  dalton:{file:'hall-dalton.webp',name:'John Dalton',rect:[13,0,30,50],alt:'Red e Morgana visitano la sala degli esperimenti e il ritratto illustrato di John Dalton.'},
+  mendeleev:{file:'hall-mendeleev.webp',name:'Dmitrij Mendeleev',rect:[54,0,41,64],alt:'Red e Morgana esplorano una sala dedicata agli elementi e al ritratto illustrato di Mendeleev.'}
+ };
+ function museum(id){
+  const p=hallPortraits[id],r=p.rect;
+  const quotations={
+   democrito:{text:'Per convenzione il colore, per convenzione il dolce, per convenzione l’amaro: in realtà solo atomi e vuoto.',label:'frammento 68 B 125',url:'https://www.treccani.it/enciclopedia/anassagora-e-democrito_(Storia-della-civilta-Europea)/'},
+   dalton:{text:'Tutti i cambiamenti che possiamo produrre consistono nel separare particelle […] e nell’unire quelle che prima erano distanti.',label:'1808 · traduzione italiana',url:'https://web.lemoyne.edu/Giunta/Dalton.html'},
+   mendeleev:{text:'Si può prevedere la scoperta di molti nuovi elementi […].',label:'1869 · traduzione italiana',url:'https://webserver.lemoyne.edu/giunta/mendeleev.html'}
+  };
+  const q=quotations[id];
+  const quote=`<blockquote class="ch-hall-quote"><p>«${q.text}»</p><footer><cite>${p.name}</cite> · <a href="${q.url}" target="_blank" rel="noopener noreferrer">${q.label} ↗</a></footer></blockquote>`;
+
+  return `<div class="ch-hall-heading">Hall of Fame della scienza</div><div class="ch-museum"><img src="${assetRoot}${p.file}" width="1200" height="800" alt="${escape(p.alt)}" decoding="async"><button type="button" class="ch-portrait" style="left:${r[0]}%;top:${r[1]}%;width:${r[2]}%;height:${r[3]}%" data-term="${id}" aria-label="${p.name}: apri la biografia"></button></div>${quote}`;
+ }
  const mounted=new WeakMap();
  function render(host,state){
   state.motion?.dispose();state.motion=null;
   const {view}=state;
-  if(view==='museum'){
-   host.innerHTML=`<div class="ch-museum"><img src="${assetRoot}hall-democrito.webp" width="1200" height="800" alt="Red e Morgana ammirano il ritratto immaginario di Democrito nel museo della scienza." decoding="async"><button type="button" class="ch-portrait" data-term="democrito" aria-label="Democrito: apri la biografia"><span>Democrito · scopri la sua storia ↗</span></button></div>`;return;
+  host.parentElement.classList.toggle('rm-chemistry-periodic',view==='periodic');
+  if(view==='museum'||view==='dalton-start'||view==='hall-mendeleev'){
+   host.innerHTML=museum(view==='museum'?'democrito':view==='dalton-start'?'dalton':'mendeleev');return;
   }
   if(view==='simple-substances'){
    host.innerHTML='<div class="ch-sample-picks" role="group" aria-label="Ritrova una struttura delle carte">'+simpleSamples.map(([id,name])=>`<button type="button" data-ch-sample="${id}">${name.split(' · ')[0]}</button>`).join('')+'</div><div class="ch-sample-visual"></div><p class="ch-sample-name" aria-live="polite"></p>';
@@ -103,5 +121,6 @@ window.GatitoChemistryBoards=(()=>{
  const quizCompounds=svg(ball(52,105,'He',22)+ball(108,105,'He',22)+oxygen(300,105)+water(500,83)+text(80,35,'A',23)+text(300,35,'B',23)+text(500,35,'C',23),'A: elio separato. B: ossigeno in coppie. C: acqua con H e O.',600,220);
  return {mount,setView,records,diagram,quizOxygen,quizCompounds};
 })();
+
 
 

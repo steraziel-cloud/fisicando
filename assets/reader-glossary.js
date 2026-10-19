@@ -556,7 +556,7 @@ window.READER_GLOSSARY = {
         "text": "Democrito di Abdera (circa 460–370 a.C.) è uno dei principali esponenti dell’atomismo antico. Gli atomi della sua filosofia non sono gli atomi dei modelli moderni. La ricostruzione del suo pensiero dipende in larga parte da testimonianze e frammenti; non è corretto attribuirgli una scoperta sperimentale degli atomi."
       }
     },
-    "html": "<p><a href=\"https://plato.stanford.edu/entries/democritus/\" target=\"_blank\" rel=\"noopener noreferrer\">Fonte e approfondimento ↗</a></p>"
+    "html": "<figure class=\"ch-bio-portrait\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"480 16 528 432\" role=\"img\" aria-label=\"Quadro illustrato di Democrito\"><title>Quadro illustrato di Democrito</title><image href=\"assets/images/reader/chemistry/hall-democrito.webp\" x=\"0\" y=\"0\" width=\"1200\" height=\"800\"/></svg><figcaption>Ritratto immaginario realizzato per GatitoMath; non riproduce una statua o un dipinto storico.</figcaption></figure><p class=\"ch-bio-links\"><a href=\"https://it.wikipedia.org/wiki/Democrito\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia in italiano ↗</a><a href=\"https://plato.stanford.edu/entries/democritus/\" target=\"_blank\" rel=\"noopener noreferrer\">Approfondimento e fonti ↗</a></p>"
   },
   "dalton": {
     "title": "John Dalton · Le misure diventano una teoria",
@@ -579,7 +579,7 @@ window.READER_GLOSSARY = {
         "text": "John Dalton (1766–1844) sviluppò la teoria atomica chimica nei primi anni dell’Ottocento e la espose in A New System of Chemical Philosophy (1808). La spiegazione atomica delle combinazioni stechiometriche è distinta dai successivi modelli della struttura dell’atomo."
       }
     },
-    "html": "<p><a href=\"https://openstax.org/books/chemistry-2e/pages/2-1-early-ideas-in-atomic-theory\" target=\"_blank\" rel=\"noopener noreferrer\">Fonte e approfondimento ↗</a></p>"
+    "html": "<figure class=\"ch-bio-portrait\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"156 0 360 400\" role=\"img\" aria-label=\"Quadro illustrato di John Dalton\"><title>Quadro illustrato di John Dalton</title><image href=\"assets/images/reader/chemistry/hall-dalton.webp\" x=\"0\" y=\"0\" width=\"1200\" height=\"800\"/></svg><figcaption>Interpretazione illustrata di John Dalton, realizzata per GatitoMath.</figcaption></figure><p class=\"ch-bio-links\"><a href=\"https://it.wikipedia.org/wiki/John_Dalton\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia in italiano ↗</a><a href=\"https://openstax.org/books/chemistry-2e/pages/2-1-early-ideas-in-atomic-theory\" target=\"_blank\" rel=\"noopener noreferrer\">Approfondimento e fonti ↗</a></p>"
   },
   "berzelius": {
     "title": "Jöns Jacob Berzelius · Scrivere la chimica",
@@ -625,6 +625,6 @@ window.READER_GLOSSARY = {
         "text": "Dmitrij Ivanovič Mendeleev (1834–1907) formulò una classificazione periodica nel 1869, confrontando masse atomiche e proprietà chimiche. Previsioni come quelle di gallio e germanio ne sostennero l’efficacia. La tavola moderna è ordinata per numero atomico, non per massa."
       }
     },
-    "html": "<p><a href=\"https://periodic-table.rsc.org/history\" target=\"_blank\" rel=\"noopener noreferrer\">Fonte e approfondimento ↗</a></p>"
+    "html": "<figure class=\"ch-bio-portrait\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"648 0 492 512\" role=\"img\" aria-label=\"Quadro illustrato di Dmitrij Mendeleev\"><title>Quadro illustrato di Dmitrij Mendeleev</title><image href=\"assets/images/reader/chemistry/hall-mendeleev.webp\" x=\"0\" y=\"0\" width=\"1200\" height=\"800\"/></svg><figcaption>Interpretazione illustrata di Mendeleev, realizzata per GatitoMath.</figcaption></figure><p class=\"ch-bio-links\"><a href=\"https://it.wikipedia.org/wiki/Dmitrij_Ivanovi%C4%8D_Mendeleev\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia in italiano ↗</a><a href=\"https://periodic-table.rsc.org/history\" target=\"_blank\" rel=\"noopener noreferrer\">Approfondimento e fonti ↗</a></p>"
   }
 };

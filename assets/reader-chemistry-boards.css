@@ -46,7 +46,6 @@ body[data-reader-lesson="chimica-materia"] .rm-chemistry-card:has(.ch-museum)>.c
 .ch-museum{position:relative;width:100%;isolation:isolate}
 .ch-museum>img{display:block;width:100%;height:auto;border-radius:9% 5% 8% 5% / 6% 10% 6% 9%;mask-image:radial-gradient(ellipse at center,#000 53%,#000d 69%,transparent 98%)}
 .ch-board .ch-portrait{position:absolute;left:40%;top:2%;width:44%;height:54%;background:transparent!important;border:0;border-radius:8px;box-shadow:none;padding:0;min-width:0;cursor:help}
-.ch-portrait span{position:absolute;left:0;right:0;bottom:-32px;font-size:.7rem;font-weight:700;border-radius:8px;padding:6px 8px;background:#faf5e8;color:#375151;box-shadow:0 2px 8px #273e371f}
 .ch-portrait:hover,.ch-portrait:focus-visible{outline:3px solid #f0ca7d;outline-offset:2px}
 .ch-sample-picks{display:flex;justify-content:center;gap:7px;flex-wrap:wrap}
 .ch-sample-visual{width:100%;max-width:400px;margin:8px auto 0}
@@ -91,3 +90,17 @@ body[data-reader-lesson="chimica-materia"] .ch-inside-question{
 .ch-model-note summary:focus-visible{outline:3px solid #b98331;outline-offset:3px}
 .ch-model-note-content{position:absolute;bottom:40px;right:0;width:min(280px,65vw);padding:16px;border:1px solid #b7cdca;border-radius:14px;background:#fbfcf4;color:#294a4c;box-shadow:0 6px 24px #183e3a26}
 .ch-model-note-content p{margin:8px 0 0}
+
+
+.ch-hall-heading{font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--rm-accent-2);margin:0 0 10px;text-align:center}
+.ch-hall-quote{margin:18px 6px 0;padding:0 0 0 18px;border-left:3px solid var(--rm-accent-2);color:var(--rm-text)}
+.ch-hall-quote p{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:clamp(18px,1.4vw,23px)!important;line-height:1.5!important;margin:0 0 10px!important;color:var(--rm-text)!important}
+.ch-hall-quote footer{font-family:inherit;font-size:12px;line-height:1.5;color:var(--rm-muted)}
+.ch-hall-quote cite{font-style:normal;font-weight:700}
+.ch-hall-quote a{color:var(--rm-accent-2);text-decoration:none}
+.ch-hall-quote a:hover{text-decoration:underline}
+.ch-bio-portrait{max-width:290px;margin:18px auto 12px}
+.ch-bio-portrait svg{display:block;width:100%;height:auto;border-radius:10px;box-shadow:0 6px 18px #0003}
+.ch-bio-portrait figcaption{font-size:12px;line-height:1.5;text-align:center;margin-top:8px;color:var(--rm-muted)}
+.ch-bio-links{display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:center}
+.ch-bio-links a{color:var(--rm-accent-2)}

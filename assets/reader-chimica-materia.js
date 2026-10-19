@@ -401,7 +401,7 @@ window.READER_LESSONS["chimica-materia"] = {
             {
               "title": "Mendeleev cercava un ordine",
               "html": "Nel 1869 <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"mendeleev\">Dmitrij Mendeleev</button></strong> organizzò gli elementi allora conosciuti confrontandone le proprietà. Lavorò anche con carte dedicate ai singoli elementi: spostarle aiutava a cercare somiglianze.<br><br>Lasciò dei posti vuoti e previde le proprietà di elementi ancora da scoprire. <strong>Le scoperte successive confermarono molte delle sue previsioni.</strong>",
-              "chemView": "periodic"
+              "chemView": "hall-mendeleev"
             },
             {
               "title": "L’ordine ha un significato",
@@ -564,4 +564,3 @@ window.READER_LESSONS["chimica-materia"] = {
     }
   ]
 };
-
