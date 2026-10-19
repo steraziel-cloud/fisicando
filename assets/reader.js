@@ -56,6 +56,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   dialog.append(choices);dialog.addEventListener('close',()=>dialog.remove(),{once:true});document.body.append(dialog);dialog.showModal();
  }
  function actions(){
+  const activeItem=flat(lesson.sections[current])[state[current].cursor];
+  const skippingGame=activeItem?.card.board==='matter-cards'&&!state[current].matterCards?.done;
   if(reviewAccess&&!allMode){const count=flat(lesson.sections[current]).length,st=state[current];$('reader-prev').hidden=current===0&&st.cursor===0;$('reader-next').hidden=current===state.length-1&&st.cursor===count;$('reader-next').disabled=false;$('reader-next').textContent=st.cursor<count?'Continua →':'Passa alla parte successiva →';$('reader-step-count').textContent=(st.cursor<count?'Passaggio '+(st.cursor+1)+' di '+count:'Checkpoint facoltativo')+' · Navigazione libera';return;}
   if(referenceMode){
    const st=state[current],item=flat(lesson.sections[current])[st.cursor];
@@ -71,6 +73,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   let blocked=false;if(st.cursor<count){const item=flat(lesson.sections[current])[st.cursor];blocked=stepBlocked(item);}
   $('reader-next').disabled=blocked||(st.cursor===count&&!!lesson.sections[current].quiz&&!st.complete);
   $('reader-next').textContent=st.cursor<count-1?'Continua →':st.cursor<count?(lesson.sections[current].quiz?'Controlla l’idea →':current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione'):current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione';
+  if(skippingGame)$('reader-next').textContent='Salta il gioco →';
   $('reader-step-count').textContent=allMode?'':st.cursor<count?'Passaggio '+(st.cursor+1)+' di '+count:lesson.sections[current].quiz?'Verifica finale':'Parte completata';
  }
  function showGlossary(id){
@@ -310,7 +313,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    else retry($('reader-feedback'),'Per passare da km/h a m/s devi dividere per 3,6. Riprova.');
   }));
  }
- function stepBlocked(item){if(reviewAccess)return false;if(item.card.board==='matter-cards'&&!state[current].matterCards?.done)return true;return cardSteps(item).some(step=>step.cloze?.some((q,i)=>sentenceAnswers.get(step)?.[i]!==q.answer));}
+ function stepBlocked(item){if(reviewAccess)return false;return cardSteps(item).some(step=>step.cloze?.some((q,i)=>sentenceAnswers.get(step)?.[i]!==q.answer));}
  function instantSpeedsExercise(box,interactive=true){
   const st=state[current].instantSpeeds,labels=['Morgana lungo il percorso','Red prima del chiosco','Red durante la pausa','Red dopo la pausa'],expected=[2,6,0,2],host=el('div','rm-instant-speeds');
   const inputs=labels.map((text,i)=>{const label=el('label','',text+' '),input=el('input');input.type='text';input.inputMode='decimal';input.setAttribute('aria-label',text+': velocità in m/s');input.value=interactive?st.values[i]:String(expected[i]);input.disabled=!interactive||st.done;input.oninput=()=>st.values[i]=input.value;label.append(input,el('span','','m/s'));host.append(label);return input;});
