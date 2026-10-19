@@ -188,3 +188,14 @@ body[data-reader-lesson="chimica-materia"] .rm-chemistry-periodic>.ch-board{widt
 .ch-board .ch-periodic-grid .ch-element[data-ch-band]{background:hsl(var(--ch-band-hue) 55% 86%);border-color:hsl(var(--ch-band-hue) 38% 48%);color:#193d40;box-shadow:none}
 .ch-board .ch-periodic-grid .ch-element[data-ch-band][aria-pressed="true"]{outline:2px solid #236d70;outline-offset:-3px}
 .ch-highlight-periods .ch-period-label,.ch-highlight-groups .ch-group-label{font-weight:900;color:#183e40}
+
+/* Closing recap returns to the card game from the opening scene. */
+body[data-reader-lesson="chimica-materia"] .rm-reader-card.rm-visual-closing{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:10px 26px;align-items:center}
+body[data-reader-lesson="chimica-materia"] .rm-visual-closing>.rm-card-title{grid-column:1;grid-row:1}
+body[data-reader-lesson="chimica-materia"] .rm-visual-closing>.rm-card-text{grid-column:1;grid-row:2;align-self:start}
+body[data-reader-lesson="chimica-materia"] .rm-visual-closing>.rm-reference-scene{grid-column:2;grid-row:1/span 2;margin:0;min-width:0}
+body[data-reader-lesson="chimica-materia"] .rm-visual-closing>.rm-reference-scene img{width:100%;max-width:none;height:auto;max-height:none;border-radius:18px}
+@media(max-width:850px){
+ body[data-reader-lesson="chimica-materia"] .rm-reader-card.rm-visual-closing{grid-template-columns:1fr}
+ body[data-reader-lesson="chimica-materia"] .rm-visual-closing>.rm-reference-scene{grid-column:1;grid-row:3}
+}
