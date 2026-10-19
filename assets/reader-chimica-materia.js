@@ -277,18 +277,6 @@ window.READER_LESSONS["chimica-materia"] = {
             {
               "title": "Una mappa degli elementi",
               "html": "Oggi conosciamo <strong>118 elementi chimici</strong>, di cui <strong>94 presenti in natura</strong>.<br><br>La <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"tavola-periodica\">tavola periodica degli elementi</button></strong> raccoglie e organizza gli elementi secondo regolarità nelle loro proprietà. La tavola moderna si è sviluppata dal lavoro di Mendeleev e dai contributi successivi.<br><br><strong>Ogni casella corrisponde a un elemento</strong>. Selezionala per scoprirne il nome e, quando disponibile, vedere un’illustrazione del campione.",
-              "cloze": [
-                {
-                  "before": "La casella He corrisponde ",
-                  "options": [
-                    "a due elementi chiamati H ed e",
-                    "all’elemento elio"
-                  ],
-                  "answer": 1,
-                  "after": ".",
-                  "feedback": "Le due lettere formano un unico simbolo."
-                }
-              ],
               "chemView": "periodic"
             },
             {
