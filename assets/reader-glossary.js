@@ -2,38 +2,45 @@ window.READER_GLOSSARY = {
   "atomo": {
     "title": "Atomo",
     "kind": "Definizione di chimica",
-    "text": "Un atomo è la più piccola parte di un elemento chimico che ne conserva l’identità. Per esempio, esistono atomi di carbonio e atomi di ossigeno. Gli atomi possono legarsi tra loro formando molecole o strutture estese.",
+    "text": "La più piccola unità che conserva l’identità chimica di un elemento. Un atomo di carbonio appartiene all’elemento carbonio, anche quando si lega ad altri atomi. Non possiede, da solo, tutte le proprietà di un campione del materiale.",
     "byLevel": {
+      "medie": {
+        "text": "La più piccola unità che conserva l’identità chimica di un elemento. Un atomo di carbonio appartiene all’elemento carbonio, anche quando si lega ad altri atomi. Non possiede, da solo, tutte le proprietà di un campione del materiale."
+      },
       "biennio": {
-        "text": "La più piccola entità che conserva l’identità di un elemento chimico. È costituita da un nucleo, contenente protoni ed eventualmente neutroni, e da elettroni. In un atomo neutro il numero di elettroni è uguale al numero di protoni; quest’ultimo determina l’elemento chimico."
+        "text": "La più piccola particella che caratterizza un elemento chimico. È costituita da un nucleo di carica +Ze e da Z elettroni, se neutra; il numero Z di protoni identifica l’elemento. Ioni e isotopi mantengono l’identità dell’elemento finché non cambia Z. Le proprietà macroscopiche di una sostanza non si trasferiscono tutte al singolo atomo."
       },
       "triennio": {
-        "text": "La più piccola entità che conserva l’identità di un elemento chimico. È costituita da un nucleo, contenente protoni ed eventualmente neutroni, e da elettroni. In un atomo neutro il numero di elettroni è uguale al numero di protoni; quest’ultimo determina l’elemento chimico."
+        "text": "La più piccola particella che caratterizza un elemento chimico. È costituita da un nucleo di carica +Ze e da Z elettroni, se neutra; il numero Z di protoni identifica l’elemento. Ioni e isotopi mantengono l’identità dell’elemento finché non cambia Z. Le proprietà macroscopiche di una sostanza non si trasferiscono tutte al singolo atomo."
       },
       "universita": {
-        "text": "La più piccola entità che conserva l’identità di un elemento chimico. È costituita da un nucleo, contenente protoni ed eventualmente neutroni, e da elettroni. In un atomo neutro il numero di elettroni è uguale al numero di protoni; quest’ultimo determina l’elemento chimico."
+        "text": "La più piccola particella che caratterizza un elemento chimico. È costituita da un nucleo di carica +Ze e da Z elettroni, se neutra; il numero Z di protoni identifica l’elemento. Ioni e isotopi mantengono l’identità dell’elemento finché non cambia Z. Le proprietà macroscopiche di una sostanza non si trasferiscono tutte al singolo atomo."
       },
       "universita-avanzata": {
-        "text": "La più piccola entità che conserva l’identità di un elemento chimico. È costituita da un nucleo, contenente protoni ed eventualmente neutroni, e da elettroni. In un atomo neutro il numero di elettroni è uguale al numero di protoni; quest’ultimo determina l’elemento chimico."
+        "text": "La più piccola particella che caratterizza un elemento chimico. È costituita da un nucleo di carica +Ze e da Z elettroni, se neutra; il numero Z di protoni identifica l’elemento. Ioni e isotopi mantengono l’identità dell’elemento finché non cambia Z. Le proprietà macroscopiche di una sostanza non si trasferiscono tutte al singolo atomo."
       }
-    }
+    },
+    "html": "<p><a href=\"https://goldbook.iupac.org/terms/view/A00493\" target=\"_blank\" rel=\"noopener noreferrer\">Fonte e approfondimento ↗</a></p>"
   },
   "materia": {
     "title": "Materia",
-    "kind": "Definizione di scienze",
-    "text": "La materia è ciò di cui sono fatti i corpi: ha una massa e occupa spazio. Anche l’aria è materia, pur essendo di solito invisibile.",
+    "kind": "Definizione di chimica",
+    "text": "Ciò che ha massa e occupa spazio. L’acqua, l’aria e i materiali degli oggetti sono esempi di materia. La luce, invece, non è materia.",
     "byLevel": {
+      "medie": {
+        "text": "Ciò che ha massa e occupa spazio. L’acqua, l’aria e i materiali degli oggetti sono esempi di materia. La luce, invece, non è materia."
+      },
       "biennio": {
-        "text": "Nel contesto della chimica e della fisica classica, la materia è ciò che possiede massa e occupa un volume. La descriviamo attraverso la sua composizione, la sua struttura e le sue proprietà. Un campione di materia può essere una sostanza pura oppure una miscela di sostanze."
+        "text": "Nel contesto della chimica e della fisica classica, ciò che possiede massa e occupa spazio; si descrive attraverso particelle e le loro interazioni. La radiazione elettromagnetica non è classificata come materia. La distinzione richiede precisazioni nelle teorie relativistiche e quantistiche."
       },
       "triennio": {
-        "text": "Nel contesto della chimica e della fisica classica, la materia è ciò che possiede massa e occupa un volume. La descriviamo attraverso la sua composizione, la sua struttura e le sue proprietà. Un campione di materia può essere una sostanza pura oppure una miscela di sostanze."
+        "text": "Nel contesto della chimica e della fisica classica, ciò che possiede massa e occupa spazio; si descrive attraverso particelle e le loro interazioni. La radiazione elettromagnetica non è classificata come materia. La distinzione richiede precisazioni nelle teorie relativistiche e quantistiche."
       },
       "universita": {
-        "text": "Nel contesto della chimica e della fisica classica, la materia è ciò che possiede massa e occupa un volume. La descriviamo attraverso la sua composizione, la sua struttura e le sue proprietà. Un campione di materia può essere una sostanza pura oppure una miscela di sostanze."
+        "text": "Nel contesto della chimica e della fisica classica, ciò che possiede massa e occupa spazio; si descrive attraverso particelle e le loro interazioni. La radiazione elettromagnetica non è classificata come materia. La distinzione richiede precisazioni nelle teorie relativistiche e quantistiche."
       },
       "universita-avanzata": {
-        "text": "Nel contesto della chimica e della fisica classica, la materia è ciò che possiede massa e occupa un volume. La descriviamo attraverso la sua composizione, la sua struttura e le sue proprietà. Un campione di materia può essere una sostanza pura oppure una miscela di sostanze."
+        "text": "Nel contesto della chimica e della fisica classica, ciò che possiede massa e occupa spazio; si descrive attraverso particelle e le loro interazioni. La radiazione elettromagnetica non è classificata come materia. La distinzione richiede precisazioni nelle teorie relativistiche e quantistiche."
       }
     }
   },
@@ -302,21 +309,25 @@ window.READER_GLOSSARY = {
   "elemento-chimico": {
     "title": "Elemento chimico",
     "kind": "Definizione di chimica",
-    "text": "Un tipo di atomo. Carbonio, ossigeno ed elio sono elementi diversi. Una sostanza semplice è formata da un solo elemento: può avere atomi separati, molecole o strutture estese.",
+    "text": "Un tipo di atomi. Tutti gli atomi di ossigeno appartengono all’elemento ossigeno, quelli di carbonio all’elemento carbonio. Una sostanza semplice è fatta soltanto di atomi di un elemento: possono essere separati oppure uniti.",
     "byLevel": {
+      "medie": {
+        "text": "Un tipo di atomi. Tutti gli atomi di ossigeno appartengono all’elemento ossigeno, quelli di carbonio all’elemento carbonio. Una sostanza semplice è fatta soltanto di atomi di un elemento: possono essere separati oppure uniti."
+      },
       "biennio": {
-        "text": "Una specie di atomi caratterizzati dallo stesso numero di protoni nel nucleo, cioè dallo stesso numero atomico Z. Va distinta dalla sostanza semplice, un materiale costituito da un solo elemento, che può presentarsi in forme allotropiche diverse."
+        "text": "Specie di atomi con lo stesso numero di protoni nel nucleo, cioè lo stesso numero atomico Z. Va distinta dalla sostanza semplice: ossigeno molecolare e ozono sono sostanze semplici diverse dello stesso elemento. La definizione dell’elemento non richiede che gli atomi siano legati tra loro."
       },
       "triennio": {
-        "text": "Una specie di atomi caratterizzati dallo stesso numero di protoni nel nucleo, cioè dallo stesso numero atomico Z. Va distinta dalla sostanza semplice, un materiale costituito da un solo elemento, che può presentarsi in forme allotropiche diverse."
+        "text": "Specie di atomi con lo stesso numero di protoni nel nucleo, cioè lo stesso numero atomico Z. Va distinta dalla sostanza semplice: ossigeno molecolare e ozono sono sostanze semplici diverse dello stesso elemento. La definizione dell’elemento non richiede che gli atomi siano legati tra loro."
       },
       "universita": {
-        "text": "Una specie di atomi caratterizzati dallo stesso numero di protoni nel nucleo, cioè dallo stesso numero atomico Z. Va distinta dalla sostanza semplice, un materiale costituito da un solo elemento, che può presentarsi in forme allotropiche diverse."
+        "text": "Specie di atomi con lo stesso numero di protoni nel nucleo, cioè lo stesso numero atomico Z. Va distinta dalla sostanza semplice: ossigeno molecolare e ozono sono sostanze semplici diverse dello stesso elemento. La definizione dell’elemento non richiede che gli atomi siano legati tra loro."
       },
       "universita-avanzata": {
-        "text": "Una specie di atomi caratterizzati dallo stesso numero di protoni nel nucleo, cioè dallo stesso numero atomico Z. Va distinta dalla sostanza semplice, un materiale costituito da un solo elemento, che può presentarsi in forme allotropiche diverse."
+        "text": "Specie di atomi con lo stesso numero di protoni nel nucleo, cioè lo stesso numero atomico Z. Va distinta dalla sostanza semplice: ossigeno molecolare e ozono sono sostanze semplici diverse dello stesso elemento. La definizione dell’elemento non richiede che gli atomi siano legati tra loro."
       }
-    }
+    },
+    "html": "<p><a href=\"https://goldbook.iupac.org/terms/view/C01022\" target=\"_blank\" rel=\"noopener noreferrer\">Fonte e approfondimento ↗</a></p>"
   },
   "molecola": {
     "title": "Molecola",
@@ -359,40 +370,47 @@ window.READER_GLOSSARY = {
   "simbolo-chimico": {
     "title": "Simbolo chimico",
     "kind": "Definizione di chimica",
-    "text": "Il segno che identifica un elemento. I simboli degli elementi riconosciuti hanno una o due lettere: la prima maiuscola, la seconda, se c’è, minuscola. H indica l’idrogeno; He l’elio.",
+    "text": "La scrittura che identifica un elemento chimico. I simboli degli elementi riconosciuti hanno una o due lettere: prima maiuscola, seconda minuscola. Per esempio, O indica l’ossigeno e He l’elio.",
     "byLevel": {
+      "medie": {
+        "text": "La scrittura che identifica un elemento chimico. I simboli degli elementi riconosciuti hanno una o due lettere: prima maiuscola, seconda minuscola. Per esempio, O indica l’ossigeno e He l’elio."
+      },
       "biennio": {
-        "text": "La notazione convenzionale internazionale che identifica un elemento chimico, usata anche per rappresentare atomi dell’elemento nelle formule. La distinzione tra maiuscole e minuscole è significativa."
+        "text": "Notazione convenzionale internazionale per un elemento chimico. I simboli degli elementi con nome definitivo hanno una o due lettere, con la prima maiuscola. I nomi sistematici provvisori degli elementi non ancora riconosciuti o denominati possono impiegare simboli a tre lettere. Il simbolo va distinto dalla formula di una sostanza."
       },
       "triennio": {
-        "text": "La notazione convenzionale internazionale che identifica un elemento chimico, usata anche per rappresentare atomi dell’elemento nelle formule. La distinzione tra maiuscole e minuscole è significativa."
+        "text": "Notazione convenzionale internazionale per un elemento chimico. I simboli degli elementi con nome definitivo hanno una o due lettere, con la prima maiuscola. I nomi sistematici provvisori degli elementi non ancora riconosciuti o denominati possono impiegare simboli a tre lettere. Il simbolo va distinto dalla formula di una sostanza."
       },
       "universita": {
-        "text": "La notazione convenzionale internazionale che identifica un elemento chimico, usata anche per rappresentare atomi dell’elemento nelle formule. La distinzione tra maiuscole e minuscole è significativa."
+        "text": "Notazione convenzionale internazionale per un elemento chimico. I simboli degli elementi con nome definitivo hanno una o due lettere, con la prima maiuscola. I nomi sistematici provvisori degli elementi non ancora riconosciuti o denominati possono impiegare simboli a tre lettere. Il simbolo va distinto dalla formula di una sostanza."
       },
       "universita-avanzata": {
-        "text": "La notazione convenzionale internazionale che identifica un elemento chimico, usata anche per rappresentare atomi dell’elemento nelle formule. La distinzione tra maiuscole e minuscole è significativa."
+        "text": "Notazione convenzionale internazionale per un elemento chimico. I simboli degli elementi con nome definitivo hanno una o due lettere, con la prima maiuscola. I nomi sistematici provvisori degli elementi non ancora riconosciuti o denominati possono impiegare simboli a tre lettere. Il simbolo va distinto dalla formula di una sostanza."
       }
     }
   },
   "tavola-periodica": {
     "title": "Tavola periodica",
     "kind": "Definizione di chimica",
-    "text": "La tabella che raccoglie gli elementi chimici. Le righe si chiamano periodi e le colonne gruppi. La posizione degli elementi mette in evidenza relazioni tra i loro comportamenti chimici.",
+    "text": "La tabella che raccoglie e organizza gli elementi chimici. Ogni casella rappresenta un elemento. Le righe si chiamano periodi, le colonne gruppi: elementi dello stesso gruppo hanno spesso comportamenti chimici simili.",
     "byLevel": {
+      "medie": {
+        "text": "La tabella che raccoglie e organizza gli elementi chimici. Ogni casella rappresenta un elemento. Le righe si chiamano periodi, le colonne gruppi: elementi dello stesso gruppo hanno spesso comportamenti chimici simili."
+      },
       "biennio": {
-        "text": "La disposizione degli elementi per numero atomico crescente, in periodi e gruppi, che rende evidente la periodicità di proprietà legate alla configurazione elettronica. Le due serie del blocco f sono comunemente riportate sotto il corpo principale della tabella."
+        "text": "Ordinamento degli elementi per numero atomico crescente, disposto in periodi e gruppi che evidenziano regolarità nelle configurazioni elettroniche e nelle proprietà chimico-fisiche. L’ordinamento moderno va distinto dalla classificazione storica per massa atomica di Mendeleev."
       },
       "triennio": {
-        "text": "La disposizione degli elementi per numero atomico crescente, in periodi e gruppi, che rende evidente la periodicità di proprietà legate alla configurazione elettronica. Le due serie del blocco f sono comunemente riportate sotto il corpo principale della tabella."
+        "text": "Ordinamento degli elementi per numero atomico crescente, disposto in periodi e gruppi che evidenziano regolarità nelle configurazioni elettroniche e nelle proprietà chimico-fisiche. L’ordinamento moderno va distinto dalla classificazione storica per massa atomica di Mendeleev."
       },
       "universita": {
-        "text": "La disposizione degli elementi per numero atomico crescente, in periodi e gruppi, che rende evidente la periodicità di proprietà legate alla configurazione elettronica. Le due serie del blocco f sono comunemente riportate sotto il corpo principale della tabella."
+        "text": "Ordinamento degli elementi per numero atomico crescente, disposto in periodi e gruppi che evidenziano regolarità nelle configurazioni elettroniche e nelle proprietà chimico-fisiche. L’ordinamento moderno va distinto dalla classificazione storica per massa atomica di Mendeleev."
       },
       "universita-avanzata": {
-        "text": "La disposizione degli elementi per numero atomico crescente, in periodi e gruppi, che rende evidente la periodicità di proprietà legate alla configurazione elettronica. Le due serie del blocco f sono comunemente riportate sotto il corpo principale della tabella."
+        "text": "Ordinamento degli elementi per numero atomico crescente, disposto in periodi e gruppi che evidenziano regolarità nelle configurazioni elettroniche e nelle proprietà chimico-fisiche. L’ordinamento moderno va distinto dalla classificazione storica per massa atomica di Mendeleev."
       }
-    }
+    },
+    "html": "<p><a href=\"https://iupac.org/what-we-do/periodic-table-of-elements/\" target=\"_blank\" rel=\"noopener noreferrer\">Fonte e approfondimento ↗</a></p>"
   },
   "formula-chimica": {
     "title": "Formula chimica",
@@ -435,19 +453,22 @@ window.READER_GLOSSARY = {
   "teoria-atomica": {
     "title": "Teoria atomica",
     "kind": "Definizione di chimica",
-    "text": "Una spiegazione scientifica della materia attraverso gli atomi e il loro modo di combinarsi. La teoria proposta da Dalton all’inizio dell’Ottocento è stata ampliata e corretta dalle scoperte successive.",
+    "text": "Una spiegazione scientifica della materia basata sull’esistenza degli atomi e sul loro modo di combinarsi. La teoria di Dalton usava gli atomi per spiegare risultati sperimentali. Le scoperte successive ne hanno corretto e ampliato alcune ipotesi.",
     "byLevel": {
+      "medie": {
+        "text": "Una spiegazione scientifica della materia basata sull’esistenza degli atomi e sul loro modo di combinarsi. La teoria di Dalton usava gli atomi per spiegare risultati sperimentali. Le scoperte successive ne hanno corretto e ampliato alcune ipotesi."
+      },
       "biennio": {
-        "text": "Il quadro teorico che descrive la materia in termini di atomi, della loro struttura e delle loro interazioni. La teoria chimica di Dalton è una tappa storica, distinta dai modelli nucleari e quantistici successivi."
+        "text": "Quadro teorico che descrive la materia in termini di atomi, struttura e interazioni. La teoria chimica di Dalton spiegava le leggi ponderali attraverso combinazioni stechiometriche. Indivisibilità e uguaglianza delle masse di tutti gli atomi di un elemento sono ipotesi storiche superate, rispettivamente, dalla struttura subatomica e dagli isotopi."
       },
       "triennio": {
-        "text": "Il quadro teorico che descrive la materia in termini di atomi, della loro struttura e delle loro interazioni. La teoria chimica di Dalton è una tappa storica, distinta dai modelli nucleari e quantistici successivi."
+        "text": "Quadro teorico che descrive la materia in termini di atomi, struttura e interazioni. La teoria chimica di Dalton spiegava le leggi ponderali attraverso combinazioni stechiometriche. Indivisibilità e uguaglianza delle masse di tutti gli atomi di un elemento sono ipotesi storiche superate, rispettivamente, dalla struttura subatomica e dagli isotopi."
       },
       "universita": {
-        "text": "Il quadro teorico che descrive la materia in termini di atomi, della loro struttura e delle loro interazioni. La teoria chimica di Dalton è una tappa storica, distinta dai modelli nucleari e quantistici successivi."
+        "text": "Quadro teorico che descrive la materia in termini di atomi, struttura e interazioni. La teoria chimica di Dalton spiegava le leggi ponderali attraverso combinazioni stechiometriche. Indivisibilità e uguaglianza delle masse di tutti gli atomi di un elemento sono ipotesi storiche superate, rispettivamente, dalla struttura subatomica e dagli isotopi."
       },
       "universita-avanzata": {
-        "text": "Il quadro teorico che descrive la materia in termini di atomi, della loro struttura e delle loro interazioni. La teoria chimica di Dalton è una tappa storica, distinta dai modelli nucleari e quantistici successivi."
+        "text": "Quadro teorico che descrive la materia in termini di atomi, struttura e interazioni. La teoria chimica di Dalton spiegava le leggi ponderali attraverso combinazioni stechiometriche. Indivisibilità e uguaglianza delle masse di tutti gli atomi di un elemento sono ipotesi storiche superate, rispettivamente, dalla struttura subatomica e dagli isotopi."
       }
     }
   },
@@ -469,5 +490,141 @@ window.READER_GLOSSARY = {
         "text": "Una trasformazione che converte reagenti in prodotti mediante un riassetto degli elettroni e dei legami chimici. Conserva il numero di atomi per ciascun elemento e la carica totale; va distinta dalle trasformazioni nucleari."
       }
     }
+  },
+  "sostanza-semplice": {
+    "title": "Sostanza semplice",
+    "kind": "Definizione di chimica",
+    "text": "Una sostanza formata soltanto da atomi di uno stesso elemento. Gli atomi possono essere separati, come nell’elio, legati in piccoli gruppi, come nell’ossigeno, oppure in strutture estese, come nella grafite.",
+    "byLevel": {
+      "medie": {
+        "text": "Una sostanza formata soltanto da atomi di uno stesso elemento. Gli atomi possono essere separati, come nell’elio, legati in piccoli gruppi, come nell’ossigeno, oppure in strutture estese, come nella grafite."
+      },
+      "biennio": {
+        "text": "Una sostanza costituita da un solo elemento chimico. Può avere struttura monoatomica, molecolare o estesa. Uno stesso elemento può dare sostanze semplici con strutture e proprietà differenti, dette forme allotropiche. Va distinta da un composto e da una miscela."
+      },
+      "triennio": {
+        "text": "Una sostanza costituita da un solo elemento chimico. Può avere struttura monoatomica, molecolare o estesa. Uno stesso elemento può dare sostanze semplici con strutture e proprietà differenti, dette forme allotropiche. Va distinta da un composto e da una miscela."
+      },
+      "universita": {
+        "text": "Una sostanza costituita da un solo elemento chimico. Può avere struttura monoatomica, molecolare o estesa. Uno stesso elemento può dare sostanze semplici con strutture e proprietà differenti, dette forme allotropiche. Va distinta da un composto e da una miscela."
+      },
+      "universita-avanzata": {
+        "text": "Una sostanza costituita da un solo elemento chimico. Può avere struttura monoatomica, molecolare o estesa. Uno stesso elemento può dare sostanze semplici con strutture e proprietà differenti, dette forme allotropiche. Va distinta da un composto e da una miscela."
+      }
+    }
+  },
+  "atomismo": {
+    "title": "Atomismo",
+    "kind": "Definizione di chimica",
+    "text": "La concezione secondo cui la materia è composta da particelle indivisibili chiamate atomi. Nell’antica Grecia Leucippo e Democrito la proposero come spiegazione filosofica: non era ancora una teoria verificata con esperimenti.",
+    "byLevel": {
+      "medie": {
+        "text": "La concezione secondo cui la materia è composta da particelle indivisibili chiamate atomi. Nell’antica Grecia Leucippo e Democrito la proposero come spiegazione filosofica: non era ancora una teoria verificata con esperimenti."
+      },
+      "biennio": {
+        "text": "Dottrina filosofica, sviluppata nell’antica Grecia da Leucippo e Democrito, che spiega la realtà mediante atomi e vuoto. Non coincide con la teoria atomica chimica di Dalton né con i modelli fisici moderni: mancava una verifica sperimentale quantitativa."
+      },
+      "triennio": {
+        "text": "Dottrina filosofica, sviluppata nell’antica Grecia da Leucippo e Democrito, che spiega la realtà mediante atomi e vuoto. Non coincide con la teoria atomica chimica di Dalton né con i modelli fisici moderni: mancava una verifica sperimentale quantitativa."
+      },
+      "universita": {
+        "text": "Dottrina filosofica, sviluppata nell’antica Grecia da Leucippo e Democrito, che spiega la realtà mediante atomi e vuoto. Non coincide con la teoria atomica chimica di Dalton né con i modelli fisici moderni: mancava una verifica sperimentale quantitativa."
+      },
+      "universita-avanzata": {
+        "text": "Dottrina filosofica, sviluppata nell’antica Grecia da Leucippo e Democrito, che spiega la realtà mediante atomi e vuoto. Non coincide con la teoria atomica chimica di Dalton né con i modelli fisici moderni: mancava una verifica sperimentale quantitativa."
+      }
+    }
+  },
+  "democrito": {
+    "title": "Democrito · Un’idea oltre ciò che si vede",
+    "kind": "Hall of Fame della scienza",
+    "text": "Filosofo greco vissuto tra il V e il IV secolo a.C. Insieme alla tradizione avviata da Leucippo, sviluppò l’atomismo: la materia sarebbe formata da particelle indivisibili in movimento nel vuoto. Non aveva le prove sperimentali che abbiamo oggi. Il suo contributo fu porre una domanda radicale: di che cosa è fatto ciò che vediamo?",
+    "byLevel": {
+      "medie": {
+        "text": "Filosofo greco vissuto tra il V e il IV secolo a.C. Insieme alla tradizione avviata da Leucippo, sviluppò l’atomismo: la materia sarebbe formata da particelle indivisibili in movimento nel vuoto. Non aveva le prove sperimentali che abbiamo oggi. Il suo contributo fu porre una domanda radicale: di che cosa è fatto ciò che vediamo?"
+      },
+      "biennio": {
+        "text": "Democrito di Abdera (circa 460–370 a.C.) è uno dei principali esponenti dell’atomismo antico. Gli atomi della sua filosofia non sono gli atomi dei modelli moderni. La ricostruzione del suo pensiero dipende in larga parte da testimonianze e frammenti; non è corretto attribuirgli una scoperta sperimentale degli atomi."
+      },
+      "triennio": {
+        "text": "Democrito di Abdera (circa 460–370 a.C.) è uno dei principali esponenti dell’atomismo antico. Gli atomi della sua filosofia non sono gli atomi dei modelli moderni. La ricostruzione del suo pensiero dipende in larga parte da testimonianze e frammenti; non è corretto attribuirgli una scoperta sperimentale degli atomi."
+      },
+      "universita": {
+        "text": "Democrito di Abdera (circa 460–370 a.C.) è uno dei principali esponenti dell’atomismo antico. Gli atomi della sua filosofia non sono gli atomi dei modelli moderni. La ricostruzione del suo pensiero dipende in larga parte da testimonianze e frammenti; non è corretto attribuirgli una scoperta sperimentale degli atomi."
+      },
+      "universita-avanzata": {
+        "text": "Democrito di Abdera (circa 460–370 a.C.) è uno dei principali esponenti dell’atomismo antico. Gli atomi della sua filosofia non sono gli atomi dei modelli moderni. La ricostruzione del suo pensiero dipende in larga parte da testimonianze e frammenti; non è corretto attribuirgli una scoperta sperimentale degli atomi."
+      }
+    },
+    "html": "<p><a href=\"https://plato.stanford.edu/entries/democritus/\" target=\"_blank\" rel=\"noopener noreferrer\">Fonte e approfondimento ↗</a></p>"
+  },
+  "dalton": {
+    "title": "John Dalton · Le misure diventano una teoria",
+    "kind": "Hall of Fame della scienza",
+    "text": "Chimico, fisico e insegnante inglese (1766–1844). All’inizio dell’Ottocento formulò una teoria atomica per spiegare regolarità nelle combinazioni delle sostanze. Il suo merito fu collegare l’idea degli atomi a risultati misurabili. Non tutte le sue ipotesi sono rimaste valide: è così che una teoria può essere migliorata.",
+    "byLevel": {
+      "medie": {
+        "text": "Chimico, fisico e insegnante inglese (1766–1844). All’inizio dell’Ottocento formulò una teoria atomica per spiegare regolarità nelle combinazioni delle sostanze. Il suo merito fu collegare l’idea degli atomi a risultati misurabili. Non tutte le sue ipotesi sono rimaste valide: è così che una teoria può essere migliorata."
+      },
+      "biennio": {
+        "text": "John Dalton (1766–1844) sviluppò la teoria atomica chimica nei primi anni dell’Ottocento e la espose in A New System of Chemical Philosophy (1808). La spiegazione atomica delle combinazioni stechiometriche è distinta dai successivi modelli della struttura dell’atomo."
+      },
+      "triennio": {
+        "text": "John Dalton (1766–1844) sviluppò la teoria atomica chimica nei primi anni dell’Ottocento e la espose in A New System of Chemical Philosophy (1808). La spiegazione atomica delle combinazioni stechiometriche è distinta dai successivi modelli della struttura dell’atomo."
+      },
+      "universita": {
+        "text": "John Dalton (1766–1844) sviluppò la teoria atomica chimica nei primi anni dell’Ottocento e la espose in A New System of Chemical Philosophy (1808). La spiegazione atomica delle combinazioni stechiometriche è distinta dai successivi modelli della struttura dell’atomo."
+      },
+      "universita-avanzata": {
+        "text": "John Dalton (1766–1844) sviluppò la teoria atomica chimica nei primi anni dell’Ottocento e la espose in A New System of Chemical Philosophy (1808). La spiegazione atomica delle combinazioni stechiometriche è distinta dai successivi modelli della struttura dell’atomo."
+      }
+    },
+    "html": "<p><a href=\"https://openstax.org/books/chemistry-2e/pages/2-1-early-ideas-in-atomic-theory\" target=\"_blank\" rel=\"noopener noreferrer\">Fonte e approfondimento ↗</a></p>"
+  },
+  "berzelius": {
+    "title": "Jöns Jacob Berzelius · Scrivere la chimica",
+    "kind": "Hall of Fame della scienza",
+    "text": "Chimico svedese (1779–1848). Tra il 1813 e il 1814 propose di indicare gli elementi con lettere ricavate dai loro nomi. Il sistema si sviluppò nella notazione che usiamo ancora oggi. Un linguaggio condiviso rende più facile confrontare risultati e comunicare le scoperte.",
+    "byLevel": {
+      "medie": {
+        "text": "Chimico svedese (1779–1848). Tra il 1813 e il 1814 propose di indicare gli elementi con lettere ricavate dai loro nomi. Il sistema si sviluppò nella notazione che usiamo ancora oggi. Un linguaggio condiviso rende più facile confrontare risultati e comunicare le scoperte."
+      },
+      "biennio": {
+        "text": "Jöns Jacob Berzelius (1779–1848) introdusse tra il 1813 e il 1814 una notazione alfabetica degli elementi, basata soprattutto sui nomi latini. Contribuì anche alla determinazione delle masse atomiche relative e allo sviluppo della chimica analitica."
+      },
+      "triennio": {
+        "text": "Jöns Jacob Berzelius (1779–1848) introdusse tra il 1813 e il 1814 una notazione alfabetica degli elementi, basata soprattutto sui nomi latini. Contribuì anche alla determinazione delle masse atomiche relative e allo sviluppo della chimica analitica."
+      },
+      "universita": {
+        "text": "Jöns Jacob Berzelius (1779–1848) introdusse tra il 1813 e il 1814 una notazione alfabetica degli elementi, basata soprattutto sui nomi latini. Contribuì anche alla determinazione delle masse atomiche relative e allo sviluppo della chimica analitica."
+      },
+      "universita-avanzata": {
+        "text": "Jöns Jacob Berzelius (1779–1848) introdusse tra il 1813 e il 1814 una notazione alfabetica degli elementi, basata soprattutto sui nomi latini. Contribuì anche alla determinazione delle masse atomiche relative e allo sviluppo della chimica analitica."
+      }
+    },
+    "html": "<p><a href=\"https://web.lemoyne.edu/giunta/berzelius.html\" target=\"_blank\" rel=\"noopener noreferrer\">Fonte e approfondimento ↗</a></p>"
+  },
+  "mendeleev": {
+    "title": "Dmitrij Mendeleev · Dare un posto anche all’ignoto",
+    "kind": "Hall of Fame della scienza",
+    "text": "Chimico russo (1834–1907). Nel 1869 propose una classificazione periodica degli elementi. Lasciò posti vuoti e previde proprietà di elementi non ancora scoperti. Le conferme successive mostrarono la forza della sua idea: una buona classificazione può aiutare a scoprire ciò che ancora non conosciamo.",
+    "byLevel": {
+      "medie": {
+        "text": "Chimico russo (1834–1907). Nel 1869 propose una classificazione periodica degli elementi. Lasciò posti vuoti e previde proprietà di elementi non ancora scoperti. Le conferme successive mostrarono la forza della sua idea: una buona classificazione può aiutare a scoprire ciò che ancora non conosciamo."
+      },
+      "biennio": {
+        "text": "Dmitrij Ivanovič Mendeleev (1834–1907) formulò una classificazione periodica nel 1869, confrontando masse atomiche e proprietà chimiche. Previsioni come quelle di gallio e germanio ne sostennero l’efficacia. La tavola moderna è ordinata per numero atomico, non per massa."
+      },
+      "triennio": {
+        "text": "Dmitrij Ivanovič Mendeleev (1834–1907) formulò una classificazione periodica nel 1869, confrontando masse atomiche e proprietà chimiche. Previsioni come quelle di gallio e germanio ne sostennero l’efficacia. La tavola moderna è ordinata per numero atomico, non per massa."
+      },
+      "universita": {
+        "text": "Dmitrij Ivanovič Mendeleev (1834–1907) formulò una classificazione periodica nel 1869, confrontando masse atomiche e proprietà chimiche. Previsioni come quelle di gallio e germanio ne sostennero l’efficacia. La tavola moderna è ordinata per numero atomico, non per massa."
+      },
+      "universita-avanzata": {
+        "text": "Dmitrij Ivanovič Mendeleev (1834–1907) formulò una classificazione periodica nel 1869, confrontando masse atomiche e proprietà chimiche. Previsioni come quelle di gallio e germanio ne sostennero l’efficacia. La tavola moderna è ordinata per numero atomico, non per massa."
+      }
+    },
+    "html": "<p><a href=\"https://periodic-table.rsc.org/history\" target=\"_blank\" rel=\"noopener noreferrer\">Fonte e approfondimento ↗</a></p>"
   }
 };

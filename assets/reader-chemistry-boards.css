@@ -40,3 +40,29 @@ body[data-reader-lesson="chimica-materia"] .rm-chemistry-periodic>.ch-board{grid
 @media(prefers-reduced-motion:reduce){.ch-board button{transition:none}}
 
 .ch-model-caption{font-size:.9rem!important;text-align:center;color:#294a4c!important;margin:8px 0 0!important}
+
+/* Hall of Fame: keep the complete scene, with a soft irregular perimeter. */
+body[data-reader-lesson="chimica-materia"] .rm-chemistry-card:has(.ch-museum)>.ch-board{padding:0;border:0;background:none;box-shadow:none}
+.ch-museum{position:relative;width:100%;isolation:isolate}
+.ch-museum>img{display:block;width:100%;height:auto;border-radius:9% 5% 8% 5% / 6% 10% 6% 9%;mask-image:radial-gradient(ellipse at center,#000 53%,#000d 69%,transparent 98%)}
+.ch-board .ch-portrait{position:absolute;left:40%;top:2%;width:44%;height:54%;background:transparent!important;border:0;border-radius:8px;box-shadow:none;padding:0;min-width:0;cursor:help}
+.ch-portrait span{position:absolute;left:0;right:0;bottom:-32px;font-size:.7rem;font-weight:700;border-radius:8px;padding:6px 8px;background:#faf5e8;color:#375151;box-shadow:0 2px 8px #273e371f}
+.ch-portrait:hover,.ch-portrait:focus-visible{outline:3px solid #f0ca7d;outline-offset:2px}
+.ch-sample-picks{display:flex;justify-content:center;gap:7px;flex-wrap:wrap}
+.ch-sample-visual{width:100%;max-width:400px;margin:8px auto 0}
+.ch-sample-visual svg{max-height:340px}
+.ch-sample-name{text-align:center;font-size:.9rem!important;color:#294a4c!important;margin:7px 0 0!important}
+.ch-eyebrow{display:block;font-size:.75rem;letter-spacing:.04em;color:#526d6d;margin-bottom:7px}
+.ch-dalton{text-align:center}
+.ch-board .ch-historian{font-size:1.1rem;font-weight:800}
+.ch-dalton p{font-size:.86rem!important;color:#294a4c!important;text-align:center;margin:0!important}
+.ch-element-info{flex-direction:column;gap:8px;padding:12px 0}
+.ch-element-identity{display:flex;gap:14px;justify-content:center;align-items:center}
+.ch-element-identity>strong{font-size:2.7rem;line-height:1;color:#236d70}
+.ch-element-identity>span{font-size:1.2rem;font-weight:750;text-transform:capitalize}
+.ch-specimen{display:flex;gap:18px;align-items:center;max-width:660px;margin:0 auto;min-height:150px}
+.ch-specimen img{width:150px;height:150px;object-fit:cover;border-radius:18px;flex:0 0 auto}
+.ch-specimen figcaption{font-size:.94rem;line-height:1.5;color:#294a4c}
+.ch-specimen small{display:block;font-size:.72rem;margin-top:7px;color:#5a6a64;line-height:1.4}
+.ch-specimen-pending{font-size:.85rem!important;text-align:center;color:#526d6d!important;max-width:600px}
+@media(max-width:500px){.ch-specimen{gap:10px}.ch-specimen img{width:100px;height:100px}.ch-specimen figcaption{font-size:.85rem}.ch-portrait span{font-size:.6rem;bottom:-30px}}

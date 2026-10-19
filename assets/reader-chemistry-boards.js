@@ -17,8 +17,10 @@ window.GatitoChemistryBoards=(()=>{
  function water(x,y){return line(x,y,x-32,y+36)+line(x,y,x+32,y+36)+ball(x,y,'O',29)+ball(x-32,y+36,'H',20)+ball(x+32,y+36,'H',20);}
  function co2(x,y){return line(x-56,y,x+56,y)+ball(x,y,'C')+ball(x-56,y,'O')+ball(x+56,y,'O');}
  function svg(body,label,w=480,h=320){return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="${escape(label)}"><title>${escape(label)}</title>${body}</svg>`;}
+ const bareBall=(...args)=>ball(...args).replace(/<text[^>]*>.*?<\/text>/g,'');
  function diagram(view){
-  if(view==='atoms')return svg(ball(120,135,'H',40)+ball(240,135,'O',47)+ball(365,135,'C',45)+text(120,225,'idrogeno')+text(240,225,'ossigeno')+text(365,225,'carbonio')+text(240,45,'Tre tipi di atomi',22)+text(240,283,'Colori convenzionali · modelli non in scala',13),'Modelli schematici di un atomo di idrogeno, uno di ossigeno e uno di carbonio.');
+  if(view==='dalton-join')return svg(bareBall(110,105,'H')+bareBall(180,105,'H')+bareBall(310,105,'O')+line(185,225,235,195)+line(235,195,285,225)+bareBall(185,225,'H')+bareBall(235,195,'O')+bareBall(285,225,'H')+text(240,38,'Gli atomi possono unirsi',23)+text(240,305,'Tipi diversi · rapporti definiti',17),'Due atomi di un tipo e uno di un altro tipo, prima separati e poi uniti.');
+  if(view==='atoms')return svg(bareBall(120,135,'H',40)+bareBall(240,135,'O',47)+bareBall(365,135,'C',45)+text(120,225,'idrogeno')+text(240,225,'ossigeno')+text(365,225,'carbonio')+text(240,45,'Tre tipi di atomi',22)+text(240,283,'Colori convenzionali · modelli non in scala',13),'Modelli schematici di un atomo di idrogeno, uno di ossigeno e uno di carbonio.');
   if(view==='elements')return svg(ball(70,90,'He',20)+ball(140,142,'He',20)+ball(65,170,'He',20)+oxygen(340,104)+oxygen(340,190)+text(107,258,'elio: atomi separati',16)+text(340,258,'ossigeno: coppie di atomi',16)+text(240,36,'Un solo elemento in ogni campione',21),'A sinistra tre atomi separati di elio; a destra due coppie di ossigeno. Ogni campione contiene un solo elemento.');
   if(['molecules','compounds','recap'].includes(view))return svg(oxygen(125,130)+water(350,113)+text(125,230,'O₂',27)+text(350,230,'H₂O',27)+text(125,267,'2 atomi · 1 elemento',16)+text(350,267,'3 atomi · 2 elementi',16)+text(240,40,view==='compounds'?'Sostanza semplice e composto':'Due molecole, cinque atomi',21),'Una molecola di ossigeno con due O e una molecola d’acqua con due H e un O.');
   if(view==='water-formula')return svg(water(240,100)+text(240,230,'H₂O',55)+text(240,282,'2 atomi di idrogeno + 1 di ossigeno',18),'La formula H₂O corrisponde a una molecola con due atomi di idrogeno e uno di ossigeno.');
@@ -32,9 +34,34 @@ window.GatitoChemistryBoards=(()=>{
   if(view==='after-reaction')return svg(water(130,118)+water(350,118)+text(240,35,'Dopo: due molecole d’acqua',23)+text(240,294,'Ancora 4 H + 2 O',24),'Dopo la reazione: due molecole H₂O. Il numero di atomi per ciascun elemento non cambia.');
   return '';
  }
+ const assetRoot=new URL('images/reader/chemistry/',document.currentScript?.src||new URL('assets/reader-chemistry-boards.js',location.href)).href;
+ const samplePictures={C:['grafite','solido'],Al:['alluminio','solido'],Si:['silicio','solido'],S:['zolfo','solido'],Fe:['ferro','solido'],Cu:['rame','solido'],Au:['oro','solido'],Hg:['mercurio','liquido'],Br:['bromo','liquido']};
+ const colourlessGases=['H','He','N','O','Ne','Ar','Kr','Xe'];
+ const simpleSamples=[['elio','Elio · atomi separati'],['ossigeno','Ossigeno · atomi a coppie'],['grafite','Grafite · una struttura estesa']];
+ function showSimpleSample(host,state){
+  state.motion?.dispose();state.motion=null;
+  const d=simpleSamples.find(x=>x[0]===state.sample)||simpleSamples[0];state.sample=d[0];
+  host.querySelectorAll('[data-ch-sample]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.chSample===d[0])));
+  const visual=host.querySelector('.ch-sample-visual');
+  if(window.GatitoMatterApproved){const desc={id:d[0],name:d[1]},scene=window.GatitoMatterApproved.scene(desc);visual.innerHTML=scene.svg;state.motion=window.GatitoMatterApproved.animate(visual,desc,scene.engine);}
+  else visual.innerHTML=diagram('elements');
+  host.querySelector('.ch-sample-name').textContent=d[1];
+ }
  const mounted=new WeakMap();
  function render(host,state){
+  state.motion?.dispose();state.motion=null;
   const {view}=state;
+  if(view==='museum'){
+   host.innerHTML=`<div class="ch-museum"><img src="${assetRoot}hall-democrito.webp" width="1200" height="800" alt="Red e Morgana ammirano il ritratto immaginario di Democrito nel museo della scienza." decoding="async"><button type="button" class="ch-portrait" data-term="democrito" aria-label="Democrito: apri la biografia"><span>Democrito · scopri la sua storia ↗</span></button></div>`;return;
+  }
+  if(view==='simple-substances'){
+   host.innerHTML='<div class="ch-sample-picks" role="group" aria-label="Ritrova una struttura delle carte">'+simpleSamples.map(([id,name])=>`<button type="button" data-ch-sample="${id}">${name.split(' · ')[0]}</button>`).join('')+'</div><div class="ch-sample-visual"></div><p class="ch-sample-name" aria-live="polite"></p>';
+   showSimpleSample(host,state);return;
+  }
+  if(view.startsWith('dalton')){
+   const joined=view==='dalton-join';
+   host.innerHTML='<div class="ch-dalton"><span class="ch-eyebrow">Hall of Fame · Inizio Ottocento</span><button type="button" class="rm-keyword ch-historian" data-term="dalton">John Dalton ↗</button>'+diagram(joined?'dalton-join':'atoms')+'<p>'+(joined?'Gli stessi atomi, combinati in rapporti definiti.':'Dalle misure sulle sostanze a una teoria sugli atomi.')+'</p></div>';return;
+  }
   if(view==='periodic'){
    host.innerHTML='<div class="ch-periodic-scroll"><div class="ch-periodic-grid" role="group" aria-label="Tavola periodica: seleziona un elemento">'+Array.from({length:18},(_,i)=>`<span class="ch-group-label" style="grid-column:${i+2};grid-row:1">${i+1}</span>`).join('')+Array.from({length:7},(_,i)=>`<span class="ch-period-label" style="grid-column:1;grid-row:${i+2}">${i+1}</span>`).join('')+records.map(r=>`<button type="button" class="ch-element" style="grid-row:${r.row+1};grid-column:${r.col+1}" data-ch-element="${r.symbol}" aria-label="${r.symbol}, ${r.name}" aria-pressed="${r.symbol===state.selected}">${r.symbol}</button>`).join('')+'<span class="ch-series-marker" style="grid-row:7;grid-column:4">↓</span><span class="ch-series-marker" style="grid-row:8;grid-column:4">↓</span></div></div><div class="ch-element-info" aria-live="polite"></div><div class="ch-element-shortcuts" role="group" aria-label="Elementi già incontrati">'+['H','He','C','O','Na','Cl','Fe','Ne','Ar'].map(k=>`<button type="button" data-ch-element="${k}" aria-pressed="${k===state.selected}">${k}</button>`).join('')+'</div>';
    updateSelection(host,state);return;
@@ -50,16 +77,29 @@ window.GatitoChemistryBoards=(()=>{
  }
  function updateSelection(host,state){
   const r=records.find(r=>r.symbol===state.selected);host.querySelectorAll('[data-ch-element]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.chElement===r.symbol)));
-  const box=host.querySelector('.ch-element-info');box.innerHTML=`<strong>${r.symbol}</strong><span>${r.name}</span>`;
+  const box=host.querySelector('.ch-element-info');let detail='';
+  if(state.view==='periodic'){
+   const item=samplePictures[r.symbol],gas=colourlessGases.includes(r.symbol);
+   if(item||gas){
+    const file=gas?'element-gas.webp':`element-${r.symbol}.webp`;
+    const description=gas?`${r.name}: gas incolore. La fiala sembra vuota perché il gas non si vede.`:`${r.name}: ${item[1]}. ${r.symbol==='C'?'Qui è mostrata la grafite, una delle forme del carbonio.':''}`;
+    detail=`<figure class="ch-specimen"><img src="${assetRoot}${file}" width="180" height="180" alt="Illustrazione generata: ${escape(description)}" loading="lazy" decoding="async"><figcaption>${description}<small>20 °C · 1 atm. Illustrazione generata, non fotografia di laboratorio.${gas?' La stessa immagine della fiala rappresenta i diversi gas incolori.':''}</small></figcaption></figure>`;
+   }else{
+    const message=r.order>=104?'Non esiste un campione macroscopico da fotografare: questo elemento è stato ottenuto soltanto in quantità estremamente piccole.':'Illustrazione del campione non ancora disponibile.';
+    detail=`<p class="ch-specimen-pending">${message}</p>`;
+   }
+  }
+  box.innerHTML=`<div class="ch-element-identity"><strong>${r.symbol}</strong><span>${r.name}</span></div>${detail}`;
  }
  function mount(box,board,{view}={}){
   box.classList.add('rm-chemistry-card');if(board==='chem-periodic')box.classList.add('rm-chemistry-periodic');
-  const host=document.createElement('div');host.className='ch-board';const state={view:view||board.slice(5),selected:'H'};box.append(host);mounted.set(box,{host,state});render(host,state);
-  const click=e=>{const b=e.target.closest('[data-ch-element]');if(!b||!host.contains(b))return;state.selected=b.dataset.chElement;updateSelection(host,state);};host.addEventListener('click',click);
-  return()=>{host.removeEventListener('click',click);mounted.delete(box);};
+  const host=document.createElement('div');host.className='ch-board';const state={view:view||board.slice(5),selected:'C',sample:'elio',motion:null};box.append(host);mounted.set(box,{host,state});render(host,state);
+  const click=e=>{const sample=e.target.closest('[data-ch-sample]');if(sample&&host.contains(sample)){state.sample=sample.dataset.chSample;showSimpleSample(host,state);return;}const b=e.target.closest('[data-ch-element]');if(!b||!host.contains(b))return;state.selected=b.dataset.chElement;updateSelection(host,state);};host.addEventListener('click',click);
+  return()=>{state.motion?.dispose();host.removeEventListener('click',click);mounted.delete(box);};
  }
  function setView(box,view){const found=mounted.get(box);if(!found||!view||found.state.view===view)return;found.state.view=view;render(found.host,found.state);}
  const quizOxygen=svg(oxygen(210,90),'Due atomi di ossigeno legati.',420,190);
  const quizCompounds=svg(ball(52,105,'He',22)+ball(108,105,'He',22)+oxygen(300,105)+water(500,83)+text(80,35,'A',23)+text(300,35,'B',23)+text(500,35,'C',23),'A: elio separato. B: ossigeno in coppie. C: acqua con H e O.',600,220);
  return {mount,setView,records,diagram,quizOxygen,quizCompounds};
 })();
+
