@@ -653,6 +653,18 @@ window.READER_GLOSSARY = {
       }
     },
     "html": "<p><a href=\"https://goldbook.iupac.org/terms/view/C01039\" target=\"_blank\" rel=\"noopener noreferrer\">Fonte: IUPAC Gold Book ↗</a></p>"
+  },
+  "identita-chimica": {
+    "title": "Identità chimica",
+    "kind": "Definizione di chimica",
+    "text": "Indica a quale elemento chimico appartiene un atomo. Un atomo di ossigeno resta un atomo di ossigeno anche quando si lega ad altri atomi, per esempio nell’acqua. Non significa che abbia, da solo, tutte le proprietà del materiale.",
+    "byLevel": {
+      "medie": {
+        "text": "Indica a quale elemento chimico appartiene un atomo. Un atomo di ossigeno resta un atomo di ossigeno anche quando si lega ad altri atomi, per esempio nell’acqua. Non significa che abbia, da solo, tutte le proprietà del materiale."
+      },
+      "biennio": {
+        "text": "Per un atomo, l’identità chimica è l’appartenenza a un elemento ed è determinata dal numero di protoni nel nucleo (numero atomico). Legami chimici, perdita o acquisto di elettroni e differenze nel numero di neutroni non cambiano l’elemento."
+      }
+    }
   }
 };
-
