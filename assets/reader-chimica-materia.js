@@ -281,7 +281,7 @@ window.READER_LESSONS["chimica-materia"] = {
             },
             {
               "title": "L’ordine ha un significato",
-              "html": "Le righe si chiamano <strong>periodi</strong>, le colonne <strong>gruppi</strong>. Elementi dello stesso gruppo hanno spesso comportamenti simili.<br><br>Il motivo di quest’ordine diventerà più chiaro quando studieremo l’interno degli atomi. <strong>La tavola si consulta: non serve impararla tutta a memoria.</strong>",
+              "html": "Le righe si chiamano <button type=\"button\" class=\"ch-table-keyword\" data-ch-highlight=\"period\" aria-pressed=\"false\">periodi</button>, le colonne <button type=\"button\" class=\"ch-table-keyword\" data-ch-highlight=\"group\" aria-pressed=\"false\">gruppi</button>. Elementi dello stesso gruppo hanno spesso comportamenti simili.<br><br>Il motivo di quest’ordine diventerà più chiaro quando studieremo l’interno degli atomi. <strong>La tavola si consulta: non serve impararla tutta a memoria.</strong>",
               "cloze": [
                 {
                   "before": "La disposizione degli elementi nella tavola ",
