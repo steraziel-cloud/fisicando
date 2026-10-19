@@ -13,8 +13,8 @@ assert(clozes>=12);assert.equal(questions,12);assert.equal(b.records.length,118)
 for(const [symbol,row,col] of [['H',1,1],['He',1,18],['Fe',4,8],['La',8,3],['Lu',8,17],['Hf',6,4],['Ac',9,3],['Lr',9,17],['Og',7,18]]){const r=b.records.find(r=>r.symbol===symbol);assert.equal(r.row,row);assert.equal(r.col,col);}
 assert(!l.sections.slice(1).some(s=>s.cards.some(c=>['chem-compounds','chem-formulas','chem-molecules','chem-reaction'].includes(c.board))));
 const archive=JSON.parse(fs.readFileSync(path.join(root,'drafts/chimica/materia-estesa-prima-della-revisione.json')));assert(archive.sections.some(s=>s.cards.some(c=>c.board==='chem-molecules')));
-for(const key of ['atoms','dalton-join','elements'])assert(b.diagram(key).includes('<svg'));
-const html=fs.readFileSync(path.join(root,'reader.html'),'utf8');assert(html.includes('reader-reactions.js?v=7'));assert(html.includes('reader-chimica-materia.js?v=10'));assert(html.includes('reader-glossary.js?v=17'));
+for(const key of ['atoms','dalton-join','elements','element-count'])assert(b.diagram(key).includes('<svg'));
+const html=fs.readFileSync(path.join(root,'reader.html'),'utf8');assert(html.includes('reader-reactions.js?v=7'));assert(html.includes('reader-chimica-materia.js?v=11'));assert(html.includes('reader-glossary.js?v=17'));
 const script=fs.readFileSync(path.join(root,'assets/reader-chemistry-boards.js'),'utf8');assert(script.includes('data-term="democrito"'));assert(script.includes('state.motion?.dispose()'));assert(script.includes('Illustrazione generata, non fotografia di laboratorio'));
 for(const s of ['C','Al','Si','S','Fe','Cu','Au','Hg','Br','gas'])assert(fs.statSync(path.join(root,'assets/images/reader/chemistry/element-'+s+'.webp')).size>1000);
 console.log(`PASS: logical sequence, preserved game/drafts, ${clozes} inline checks, ${questions} checkpoint questions with four options, contextual definitions, 118 positioned elements, generated specimen assets, no reaction regression.`);

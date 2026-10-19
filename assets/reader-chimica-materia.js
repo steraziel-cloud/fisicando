@@ -277,7 +277,7 @@ window.READER_LESSONS["chimica-materia"] = {
         },
         {
           "title": "Quanti tipi di atomi conosciamo?",
-          "board": "chem-periodic",
+          "board": "chem-element-count",
           "stepMode": "replace",
           "steps": [
             {
@@ -295,12 +295,12 @@ window.READER_LESSONS["chimica-materia"] = {
                   "feedback": "Solido, liquido e gas sono stati della materia, non tipi di atomi."
                 }
               ],
-              "chemView": "periodic"
+              "chemView": "element-count"
             },
             {
               "title": "Una precisazione sul numero",
-              "html": "Nei libri puoi trovare il numero <strong>92</strong>: è il conteggio tradizionale che si ferma all’uranio. Anche nettunio e plutonio sono però presenti in natura in quantità piccolissime: includendoli si arriva a <strong>94</strong>.<br><br>La <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"tavola-periodica\">tavola periodica</button></strong> qui raccoglie tutti i 118 elementi riconosciuti. Tra poco vedremo come leggerla.",
-              "chemView": "periodic"
+              "html": "Nei libri puoi trovare il numero <strong>92</strong>: è il conteggio tradizionale che si ferma all’uranio. Anche nettunio e plutonio sono però presenti in natura in quantità piccolissime: includendoli si arriva a <strong>94</strong>.<br><br>Per orientarci tra tanti nomi, ci serviranno dei simboli e una tabella che li organizzi.",
+              "chemView": "element-count"
             }
           ]
         }
