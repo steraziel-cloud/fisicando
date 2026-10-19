@@ -74,7 +74,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('reader-step-count').textContent=allMode?'':st.cursor<count?'Passaggio '+(st.cursor+1)+' di '+count:lesson.sections[current].quiz?'Verifica finale':'Parte completata';
  }
  function showGlossary(id){
-  const term=window.READER_GLOSSARY[id];if(!term)return;
+  const baseTerm=window.READER_GLOSSARY[id];if(!baseTerm)return;
+  const term={...baseTerm,...baseTerm.byLevel?.[selectedLevel]};
   $('glossary-title').textContent=term.title;$('glossary-kind').textContent=term.kind;$('glossary-text').textContent=term.text;if(term.html){const extra=el('div','rm-glossary-extra');extra.innerHTML=term.html;$('glossary-text').append(extra);}
   $('reader-glossary').querySelector('.rm-glossary-links')?.remove();
   if(term.links?.length){const links=el('div','rm-glossary-links');term.links.forEach(ref=>{

@@ -22,7 +22,7 @@ window.READER_LESSONS["chimica-materia"] = {
           "steps": [
             {
               "title": "Partiamo da un fatto",
-              "html": "L’acqua che bevi, il letto su cui dormi, il tuo stesso corpo: sono tutti fatti di <strong>materia</strong>. Anche l’aria è materia. Non la vediamo, ma la sentiamo quando tira il vento.<br><br>Eppure la materia si presenta ai nostri sensi in modi molto diversi: pensa alla trasparenza del vetro, alla morbidezza di un tessuto o alla durezza di un sasso.<br><br><strong>Da dove nasce tutta questa varietà? È un caso oppure c’è una ragione?</strong>"
+              "html": "L’acqua che bevi, il letto su cui dormi, il tuo stesso corpo: sono tutti fatti di <button class=\"rm-keyword\" data-term=\"materia\" type=\"button\">materia</button>. Anche l’aria è materia. Non la vediamo, ma la sentiamo quando tira il vento.<br><br>Eppure la materia si presenta ai nostri sensi in modi molto diversi: pensa alla trasparenza del vetro, alla morbidezza di un tessuto o alla durezza di un sasso.<br><br><strong>Da dove nasce tutta questa varietà? È un caso oppure c’è una ragione?</strong>"
             },
             {
               "title": "Scopriamolo insieme",

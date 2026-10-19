@@ -1,4 +1,23 @@
 window.READER_GLOSSARY = {
+  "materia": {
+  "title": "Materia",
+  "kind": "Definizione di scienze",
+  "text": "La materia è ciò di cui sono fatti i corpi: ha una massa e occupa spazio. Anche l’aria è materia, pur essendo di solito invisibile.",
+  "byLevel": {
+    "biennio": {
+      "text": "Nel contesto della chimica e della fisica classica, la materia è ciò che possiede massa e occupa un volume. La descriviamo attraverso la sua composizione, la sua struttura e le sue proprietà. Un campione di materia può essere una sostanza pura oppure una miscela di sostanze."
+    },
+    "triennio": {
+      "text": "Nel contesto della chimica e della fisica classica, la materia è ciò che possiede massa e occupa un volume. La descriviamo attraverso la sua composizione, la sua struttura e le sue proprietà. Un campione di materia può essere una sostanza pura oppure una miscela di sostanze."
+    },
+    "universita": {
+      "text": "Nel contesto della chimica e della fisica classica, la materia è ciò che possiede massa e occupa un volume. La descriviamo attraverso la sua composizione, la sua struttura e le sue proprietà. Un campione di materia può essere una sostanza pura oppure una miscela di sostanze."
+    },
+    "universita-avanzata": {
+      "text": "Nel contesto della chimica e della fisica classica, la materia è ciò che possiede massa e occupa un volume. La descriviamo attraverso la sua composizione, la sua struttura e le sue proprietà. Un campione di materia può essere una sostanza pura oppure una miscela di sostanze."
+    }
+  }
+},
   "movimento": {
     "title": "Movimento (o moto)",
     "text": "Un corpo è in movimento quando la sua posizione cambia nel tempo rispetto al sistema di riferimento scelto. Se la posizione rimane invariata, il corpo è in quiete rispetto a quel riferimento.",
