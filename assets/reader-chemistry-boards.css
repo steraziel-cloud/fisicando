@@ -162,3 +162,10 @@ body[data-reader-lesson="chimica-materia"] .rm-chemistry-card:has(.ch-ratio-boar
  .ch-symbol-exhibit .ch-element-identity>strong{font-size:17px}
  .ch-symbol-exhibit .ch-element-identity>span{font-size:12px}
 }
+
+/* Keep the interactive table readable without filling the entire desktop card. */
+body[data-reader-lesson="chimica-materia"] .rm-chemistry-periodic>.ch-board{width:100%;max-width:880px;justify-self:center}
+.rm-chemistry-periodic .ch-periodic-grid{grid-template-rows:18px repeat(7,30px) 10px 30px 30px}
+.rm-chemistry-periodic .ch-element-info{padding:8px 0}
+.rm-chemistry-periodic .ch-specimen{min-height:100px}
+.rm-chemistry-periodic .ch-specimen img{width:100px;height:100px}
