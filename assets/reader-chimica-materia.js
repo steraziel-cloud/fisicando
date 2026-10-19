@@ -390,7 +390,6 @@ window.READER_LESSONS["chimica-materia"] = {
       "cards": [
         {
           "title": "La lezione in pillole",
-          "board": "chem-atoms",
           "stepMode": "replace",
           "steps": [
             {
@@ -403,7 +402,14 @@ window.READER_LESSONS["chimica-materia"] = {
               "html": "<strong>Leucippo e Democrito:</strong> immaginarono particelle indivisibili.<br><br><strong>Dalton:</strong> costruì una teoria atomica per spiegare risultati sperimentali e combinazioni tra atomi.<br><br><strong>Simboli e tavola periodica:</strong> ci permettono di indicare e organizzare i 118 elementi riconosciuti.<br><br><strong>L’atomo ha una struttura interna:</strong> la scopriremo nella prossima lezione.",
               "chemView": "atoms"
             }
-          ]
+          ],
+          "visualLayout": "closing",
+          "illustration": {
+            "src": "assets/images/reader/chemistry/red-morgana-carte-finale.webp",
+            "alt": "Red e Morgana tornano alle carte della materia nel cortile della scuola, osservando insieme i campioni e i modelli dopo la partita.",
+            "width": 1536,
+            "height": 1024
+          }
         }
       ],
       "quiz": {
