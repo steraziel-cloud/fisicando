@@ -2289,19 +2289,63 @@ window.LESSON_CATALOG = [
         "icon": "molecule",
         "topics": [
           {
-            "title": "Esplorare la materia",
+            "title": "Atomi, sostanze e trasformazioni",
             "icon": "microscope",
             "lessons": [
               {
                 "id": "chimica-materia",
-                "title": "La materia",
+                "title": "Atomi ed elementi chimici",
                 "levels": [
                   "medie"
                 ],
-                "status": "work-in-progress",
                 "kind": "Teoria",
                 "url": "reader.html?lezione=chimica-materia"
+              },
+              {
+                "id": "chimica-struttura-atomo",
+                "title": "Dentro l’atomo: protoni, neutroni ed elettroni",
+                "levels": [
+                  "medie"
+                ],
+                "kind": "Teoria"
+              },
+              {
+                "id": "chimica-legami",
+                "title": "Come si uniscono gli atomi",
+                "levels": [
+                  "medie"
+                ],
+                "kind": "Teoria"
+              },
+              {
+                "id": "chimica-sostanze-miscugli",
+                "title": "Sostanze pure e miscugli",
+                "levels": [
+                  "medie"
+                ],
+                "kind": "Teoria"
+              },
+              {
+                "id": "chimica-stati-materia",
+                "title": "Stati della materia e passaggi di stato",
+                "levels": [
+                  "medie"
+                ],
+                "kind": "Teoria"
+              },
+              {
+                "id": "chimica-trasformazioni",
+                "title": "Trasformazioni fisiche e chimiche",
+                "levels": [
+                  "medie"
+                ],
+                "kind": "Teoria"
               }
+            ],
+            "aliases": [
+              "materia",
+              "elementi",
+              "chimica"
             ]
           }
         ]
