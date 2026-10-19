@@ -1,7 +1,7 @@
 /* Shared quiz reactions: feedback stays readable and motion is brief. */
 window.GatitoQuizReactions=(()=>{
- const names={success:'red_successo_6frame',trophy:'red_primo_posto',thinking:'red_buffer_spinner_fronte_grigio_destra_basso',surprised:'red_mente_esplosa_shaking_da_frame',morganaOttimo:'morgana_ottimo',morganaAura:'morgana_aura',morganaFacepaw:'morgana_facepaw',morganaConcentrazione:'morgana_concentrazione'};
- const positiveNames=['success','morganaOttimo','trophy','morganaAura'],finalNames=['trophy','morganaAura'],negativeNames=['thinking','morganaConcentrazione','surprised','morganaFacepaw'];
+ const names={success:'red_successo_6frame',trophy:'red_primo_posto',thinking:'red_buffer_spinner_fronte_grigio_destra_basso',surprised:'red_mente_esplosa_shaking_da_frame',morganaOttimo:'morgana_ottimo',morganaAura:'morgana_aura',morganaFacepaw:'morgana_facepaw',morganaConcentrazione:'morgana_concentrazione',bjorneFesteggiamento:'bjorne_festeggiamento',bjorneDubbio:'bjorne_dubbio'};
+ const positiveNames=['success','morganaOttimo','bjorneFesteggiamento','trophy','morganaAura'],finalNames=['trophy','morganaAura','bjorneFesteggiamento'],negativeNames=['thinking','morganaConcentrazione','bjorneDubbio','surprised','morganaFacepaw'];
  const imageRoot=new URL('images/reactions/',document.currentScript?.src||new URL('assets/reader-reactions.js',document.baseURI)).href;
  const cached=new Map();
  const url=(name,still=false)=>imageRoot+name+(still?'-still':'')+'-quiz.webp';
@@ -25,4 +25,5 @@ window.GatitoQuizReactions=(()=>{
  }
  return{show};
 })();
+
 
