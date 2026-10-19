@@ -109,3 +109,6 @@ body[data-reader-lesson="chimica-materia"] .ch-inside-question{
 /* Keep the museum vignette proportional to these brief historical passages. */
 body[data-reader-lesson="chimica-materia"] .rm-chemistry-card:has(.ch-museum)>.ch-board{max-width:440px;justify-self:center}
 .ch-hall-quote p{font-size:clamp(18px,1.2vw,21px)!important}
+
+
+body[data-reader-lesson="chimica-materia"] .rm-chemistry-card:has(.ch-ratio-board)>.ch-board{max-width:480px;justify-self:center}

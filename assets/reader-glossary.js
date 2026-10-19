@@ -473,9 +473,9 @@ window.READER_GLOSSARY = {
     }
   },
   "reazione-chimica": {
-    "title": "Reazione chimica",
+    "title": "Trasformazione chimica · reazione chimica",
     "kind": "Definizione di chimica",
-    "text": "Una trasformazione in cui si formano nuove sostanze. Gli atomi si riorganizzano cambiando i legami: non vengono creati o distrutti e non cambiano elemento.",
+    "text": "Un cambiamento in cui si formano sostanze diverse da quelle iniziali. Gli atomi si separano e si uniscono in nuove combinazioni: non vengono creati o distrutti e non cambiano tipo. Si chiama anche reazione chimica.",
     "byLevel": {
       "biennio": {
         "text": "Una trasformazione che converte reagenti in prodotti mediante un riassetto degli elettroni e dei legami chimici. Conserva il numero di atomi per ciascun elemento e la carica totale; va distinta dalle trasformazioni nucleari."
@@ -488,8 +488,12 @@ window.READER_GLOSSARY = {
       },
       "universita-avanzata": {
         "text": "Una trasformazione che converte reagenti in prodotti mediante un riassetto degli elettroni e dei legami chimici. Conserva il numero di atomi per ciascun elemento e la carica totale; va distinta dalle trasformazioni nucleari."
+      },
+      "medie": {
+        "text": "Un cambiamento in cui si formano sostanze diverse da quelle iniziali. Gli atomi si separano e si uniscono in nuove combinazioni: non vengono creati o distrutti e non cambiano tipo. Si chiama anche reazione chimica."
       }
-    }
+    },
+    "html": "<p><a href=\"https://goldbook.iupac.org/terms/view/C01033\" target=\"_blank\" rel=\"noopener noreferrer\">Fonte: IUPAC Gold Book ↗</a></p>"
   },
   "sostanza-semplice": {
     "title": "Sostanza semplice",
@@ -626,5 +630,28 @@ window.READER_GLOSSARY = {
       }
     },
     "html": "<figure class=\"ch-bio-portrait\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"648 0 492 512\" role=\"img\" aria-label=\"Quadro illustrato di Dmitrij Mendeleev\"><title>Quadro illustrato di Dmitrij Mendeleev</title><image href=\"assets/images/reader/chemistry/hall-mendeleev.webp\" x=\"0\" y=\"0\" width=\"1200\" height=\"800\"/></svg><figcaption>Interpretazione illustrata di Mendeleev, realizzata per GatitoMath.</figcaption></figure><p class=\"ch-bio-links\"><a href=\"https://it.wikipedia.org/wiki/Dmitrij_Ivanovi%C4%8D_Mendeleev\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia in italiano ↗</a><a href=\"https://periodic-table.rsc.org/history\" target=\"_blank\" rel=\"noopener noreferrer\">Approfondimento e fonti ↗</a></p>"
+  },
+  "sostanza": {
+    "title": "Sostanza",
+    "kind": "Definizione di chimica",
+    "text": "Un tipo di materia con una composizione ben definita e proprietà caratteristiche. Per esempio, l’acqua pura è una sostanza, mentre l’acqua del rubinetto contiene più sostanze mescolate.",
+    "byLevel": {
+      "medie": {
+        "text": "Un tipo di materia con una composizione ben definita e proprietà caratteristiche. Per esempio, l’acqua pura è una sostanza, mentre l’acqua del rubinetto contiene più sostanze mescolate."
+      },
+      "biennio": {
+        "text": "Una forma di materia dalla composizione chimica definita e dalle proprietà caratteristiche, identificata dalle entità chimiche che la costituiscono. Può essere semplice o composta e va distinta da una miscela."
+      },
+      "triennio": {
+        "text": "Materia di composizione chimica definita, caratterizzata dalle entità chimiche costitutive (atomi, molecole o unità formula) e da proprietà fisiche e chimiche caratteristiche. Una sostanza può presentarsi in fasi diverse; una miscela contiene più sostanze."
+      },
+      "universita": {
+        "text": "Materia di composizione chimica definita, caratterizzata dalle entità chimiche costitutive (atomi, molecole o unità formula) e da proprietà fisiche e chimiche caratteristiche. Una sostanza può presentarsi in fasi diverse; una miscela contiene più sostanze."
+      },
+      "universita-avanzata": {
+        "text": "Materia di composizione chimica definita, caratterizzata dalle entità chimiche costitutive (atomi, molecole o unità formula) e da proprietà fisiche e chimiche caratteristiche. Una sostanza può presentarsi in fasi diverse; una miscela contiene più sostanze."
+      }
+    },
+    "html": "<p><a href=\"https://goldbook.iupac.org/terms/view/C01039\" target=\"_blank\" rel=\"noopener noreferrer\">Fonte: IUPAC Gold Book ↗</a></p>"
   }
 };

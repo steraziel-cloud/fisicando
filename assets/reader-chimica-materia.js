@@ -133,17 +133,17 @@ window.READER_LESSONS["chimica-materia"] = {
             },
             {
               "title": "Gli atomi possono unirsi",
-              "html": "Il passaggio decisivo è questo: <strong>gli atomi possono unirsi tra loro</strong> e formare sostanze diverse. Secondo Dalton, in una stessa sostanza i tipi di atomi si combinano in <strong>rapporti numerici semplici e costanti</strong>.<br><br>Nelle trasformazioni chimiche gli atomi si separano e si ricombinano: <strong>non vengono creati o distrutti e non cambiano tipo</strong>.",
+              "html": "Gli atomi possono unirsi tra loro e formare <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"sostanza\">sostanze</button></strong> diverse. Secondo Dalton, queste combinazioni seguono <strong>rapporti numerici semplici e costanti</strong>.<br><br>Prendiamo un esempio che conosciamo oggi: <strong>ogni gruppetto dell’acqua contiene 2 atomi di idrogeno e 1 di ossigeno</strong>. In due gruppetti ne contiamo 4 e 2: <strong>restano sempre due atomi di idrogeno per ogni atomo di ossigeno</strong>.<br><br>Nelle <button type=\"button\" class=\"rm-keyword\" data-term=\"reazione-chimica\">trasformazioni chimiche</button> gli atomi si separano e si ricombinano: <strong>non vengono creati o distrutti e non cambiano tipo</strong>.",
               "cloze": [
                 {
-                  "before": "In una trasformazione chimica cambia ",
+                  "before": "In tre gruppetti d’acqua troviamo ",
                   "options": [
-                    "il tipo di ogni atomo",
-                    "il modo in cui gli atomi sono uniti"
+                    "6 atomi di idrogeno e 3 di ossigeno",
+                    "3 atomi di idrogeno e 3 di ossigeno"
                   ],
-                  "answer": 1,
+                  "answer": 0,
                   "after": ".",
-                  "feedback": "Gli atomi si riorganizzano; non si trasformano in atomi di un altro elemento."
+                  "feedback": "Ogni gruppetto contiene 2 atomi di idrogeno e 1 di ossigeno: per tre gruppetti, moltiplichiamo entrambi i numeri per 3."
                 }
               ],
               "chemView": "dalton-join"
