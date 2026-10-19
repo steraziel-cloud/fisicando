@@ -1,4 +1,23 @@
 window.READER_GLOSSARY = {
+ "atomo": {
+  "title": "Atomo",
+  "kind": "Definizione di chimica",
+  "text": "Un atomo è la più piccola parte di un elemento chimico che ne conserva l’identità. Per esempio, esistono atomi di carbonio e atomi di ossigeno. Gli atomi possono legarsi tra loro formando molecole o strutture estese.",
+  "byLevel": {
+    "biennio": {
+      "text": "La più piccola entità che conserva l’identità di un elemento chimico. È costituita da un nucleo, contenente protoni ed eventualmente neutroni, e da elettroni. In un atomo neutro il numero di elettroni è uguale al numero di protoni; quest’ultimo determina l’elemento chimico."
+    },
+    "triennio": {
+      "text": "La più piccola entità che conserva l’identità di un elemento chimico. È costituita da un nucleo, contenente protoni ed eventualmente neutroni, e da elettroni. In un atomo neutro il numero di elettroni è uguale al numero di protoni; quest’ultimo determina l’elemento chimico."
+    },
+    "universita": {
+      "text": "La più piccola entità che conserva l’identità di un elemento chimico. È costituita da un nucleo, contenente protoni ed eventualmente neutroni, e da elettroni. In un atomo neutro il numero di elettroni è uguale al numero di protoni; quest’ultimo determina l’elemento chimico."
+    },
+    "universita-avanzata": {
+      "text": "La più piccola entità che conserva l’identità di un elemento chimico. È costituita da un nucleo, contenente protoni ed eventualmente neutroni, e da elettroni. In un atomo neutro il numero di elettroni è uguale al numero di protoni; quest’ultimo determina l’elemento chimico."
+    }
+  }
+},
   "materia": {
   "title": "Materia",
   "kind": "Definizione di scienze",
