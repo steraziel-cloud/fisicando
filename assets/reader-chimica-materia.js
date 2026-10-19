@@ -365,7 +365,7 @@ window.READER_LESSONS["chimica-materia"] = {
             },
             {
               "title": "Una definizione che ci accompagna",
-              "html": "Un <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"atomo\">atomo</button></strong> è <strong>la più piccola unità che conserva l’identità chimica di un elemento</strong>.<br><br>Non significa che un singolo atomo possieda tutte le proprietà del materiale: per esempio, la durezza dell’alluminio riguarda l’insieme degli atomi e la loro organizzazione.<br><br><strong>Che cosa c’è dentro un atomo?</strong> Sarà il punto di partenza della prossima lezione.",
+              "html": "Un <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"atomo\">atomo</button></strong> è <strong>la più piccola unità che conserva l’<button type=\"button\" class=\"rm-keyword\" data-term=\"identita-chimica\">identità chimica</button> di un elemento</strong>.<br><br>Non significa che un singolo atomo possieda tutte le proprietà del materiale: per esempio, la durezza dell’alluminio riguarda l’insieme degli atomi e la loro organizzazione.<br><br><strong>Che cosa c’è dentro un atomo?</strong> Sarà il punto di partenza della prossima lezione.",
               "chemView": "today",
               "cloze": [
                 {
