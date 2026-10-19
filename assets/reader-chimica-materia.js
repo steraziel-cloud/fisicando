@@ -59,13 +59,13 @@ window.READER_LESSONS["chimica-materia"] = {
       "title": "Dalle palline agli atomi",
       "cards": [
         {
-          "title": "Le palline hanno un nome",
+          "title": "I costituenti della materia",
           "board": "chem-atoms",
           "stepMode": "replace",
           "steps": [
             {
-              "title": "Ecco gli atomi",
-              "html": "Le palline delle carte rappresentavano gli <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"atomo\">atomi</button></strong>: le piccolissime unità da cui partiamo per descrivere la materia.<br><br>Esistono <strong>tipi diversi di atomi</strong>. Nel gioco li abbiamo distinti con colori diversi. È una scelta del nostro modello: <strong>gli atomi non hanno quei colori</strong>.",
+              "title": "Gli atomi",
+              "html": "La materia è formata da <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"atomo\">atomi</button></strong>, particelle piccolissime che nelle carte abbiamo rappresentato con le palline.<br><br>Esistono <strong>tipi diversi di atomi</strong>. Nel gioco li abbiamo distinti con colori diversi. È una scelta del nostro modello: <strong>gli atomi non hanno quei colori</strong>.",
               "cloze": [
                 {
                   "before": "Due palline dello stesso colore rappresentano ",
@@ -81,7 +81,7 @@ window.READER_LESSONS["chimica-materia"] = {
               "chemView": "atoms"
             },
             {
-              "title": "Non si vedono, ma ci sono",
+              "title": "Un modello per rappresentarli",
               "html": "Un atomo è troppo piccolo per essere visto a occhio nudo. Le palline ci aiutano a rappresentarlo: <strong>sono modelli, non fotografie</strong>.<br><br>Oggi l’esistenza degli atomi è sostenuta da moltissime prove sperimentali. Ma l’idea che la materia fosse fatta di atomi è molto più antica.",
               "chemView": "atoms"
             }
@@ -564,3 +564,4 @@ window.READER_LESSONS["chimica-materia"] = {
     }
   ]
 };
+

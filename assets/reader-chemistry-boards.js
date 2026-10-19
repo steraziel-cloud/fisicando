@@ -21,7 +21,7 @@ window.GatitoChemistryBoards=(()=>{
  function diagram(view){
   if(view==='dalton-join')return svg(bareBall(110,105,'H')+bareBall(180,105,'H')+bareBall(310,105,'O')+line(185,225,235,195)+line(235,195,285,225)+bareBall(185,225,'H')+bareBall(235,195,'O')+bareBall(285,225,'H')+text(240,38,'Gli atomi possono unirsi',23)+text(240,305,'Tipi diversi · rapporti definiti',17),'Due atomi di un tipo e uno di un altro tipo, prima separati e poi uniti.');
   if(view==='element-count')return svg(text(240,115,'118',92)+text(240,165,'elementi riconosciuti',25)+bareBall(132,220,'He',19)+bareBall(205,220,'O',19)+bareBall(278,220,'C',19)+bareBall(351,220,'Na',19)+text(240,282,'Tipi diversi di atomi',20),'118 elementi riconosciuti, ciascuno corrisponde a un tipo di atomo. I colori sono convenzionali.');
-  if(view==='atoms')return svg(bareBall(120,135,'H',40)+bareBall(240,135,'O',47)+bareBall(365,135,'C',45)+text(120,225,'idrogeno')+text(240,225,'ossigeno')+text(365,225,'carbonio')+text(240,45,'Tre tipi di atomi',22)+text(240,283,'Colori convenzionali · modelli non in scala',13),'Modelli schematici di un atomo di idrogeno, uno di ossigeno e uno di carbonio.');
+  if(view==='atoms')return svg(bareBall(120,135,'H',40)+bareBall(240,135,'O',47)+bareBall(365,135,'C',45)+text(120,225,'idrogeno')+text(240,225,'ossigeno')+text(365,225,'carbonio')+text(240,45,'Alcuni tipi di atomi',22),'Modelli schematici di un atomo di idrogeno, uno di ossigeno e uno di carbonio.',480,270);
   if(view==='elements')return svg(bareBall(70,90,'He',20)+bareBall(140,142,'He',20)+bareBall(65,170,'He',20)+line(310,104,370,104)+bareBall(310,104,'O')+bareBall(370,104,'O')+line(310,190,370,190)+bareBall(310,190,'O')+bareBall(370,190,'O')+text(107,258,'elio: atomi separati',16)+text(340,258,'ossigeno: coppie di atomi',16)+text(240,36,'Un solo elemento in ogni campione',21),'A sinistra tre atomi separati di elio; a destra due coppie di ossigeno. Ogni campione contiene un solo elemento.');
   if(['molecules','compounds','recap'].includes(view))return svg(oxygen(125,130)+water(350,113)+text(125,230,'O₂',27)+text(350,230,'H₂O',27)+text(125,267,'2 atomi · 1 elemento',16)+text(350,267,'3 atomi · 2 elementi',16)+text(240,40,view==='compounds'?'Sostanza semplice e composto':'Due molecole, cinque atomi',21),'Una molecola di ossigeno con due O e una molecola d’acqua con due H e un O.');
   if(view==='water-formula')return svg(water(240,100)+text(240,230,'H₂O',55)+text(240,282,'2 atomi di idrogeno + 1 di ossigeno',18),'La formula H₂O corrisponde a una molecola con due atomi di idrogeno e uno di ossigeno.');
@@ -74,7 +74,7 @@ window.GatitoChemistryBoards=(()=>{
    host.innerHTML='<div class="ch-timeline"><div><span>Antica Grecia</span><strong>Leucippo e Democrito</strong><p>L’idea di particelle indivisibili.</p></div><div><span>Inizio Ottocento</span><strong>John Dalton</strong><p>Una teoria per spiegare i risultati degli esperimenti.</p></div><div class="'+(view==='today'?'ch-timeline-current':'')+'"><span>Scoperte successive</span><strong>Dentro l’atomo</strong><p>Una struttura più complessa: sarà il nostro prossimo passo.</p></div></div>';return;
   }
   if(view==='lattice'&&window.GatitoMatterApproved){host.innerHTML=window.GatitoMatterApproved.scene({id:'sale',name:'Sale da cucina'}).svg+'<p class="ch-model-caption">NaCl · rapporto 1 a 1</p>';return;}
-  host.innerHTML=diagram(view);
+  host.innerHTML=diagram(view)+(view==='atoms'?'<details class="ch-model-note"><summary aria-label="Informazioni sul modello" title="Informazioni sul modello">i</summary><div class="ch-model-note-content"><strong>Come leggere il modello</strong><p>I colori sono scelti da noi per distinguere i tipi di atomi. Le dimensioni e le distanze non sono in scala: il disegno è un modello, non una fotografia.</p></div></details>':'');
  }
  function updateSelection(host,state){
   const r=records.find(r=>r.symbol===state.selected);host.querySelectorAll('[data-ch-element]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.chElement===r.symbol)));
@@ -103,4 +103,5 @@ window.GatitoChemistryBoards=(()=>{
  const quizCompounds=svg(ball(52,105,'He',22)+ball(108,105,'He',22)+oxygen(300,105)+water(500,83)+text(80,35,'A',23)+text(300,35,'B',23)+text(500,35,'C',23),'A: elio separato. B: ossigeno in coppie. C: acqua con H e O.',600,220);
  return {mount,setView,records,diagram,quizOxygen,quizCompounds};
 })();
+
 

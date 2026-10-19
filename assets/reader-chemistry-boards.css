@@ -81,3 +81,13 @@ body[data-reader-lesson="chimica-materia"] .ch-inside-question{
  font-size:clamp(28px,2.7vw,42px);line-height:1.2;font-weight:800;letter-spacing:-.025em;color:var(--rm-accent-2);
 }
 @media(max-width:600px){body[data-reader-lesson="chimica-materia"] .ch-inside-question{margin-top:20px;padding-top:18px}}
+
+
+/* Optional model information, outside the reading flow. */
+.ch-board:has(.ch-model-note){position:relative}
+.ch-model-note{position:absolute;right:12px;bottom:12px;z-index:2;font-size:14px;line-height:1.5}
+.ch-model-note summary{list-style:none;display:grid;place-items:center;width:30px;height:30px;border:1px solid #78958e;border-radius:50%;background:#f5f9ed;color:#294a4c;font-weight:800;font-family:Georgia,serif;cursor:pointer}
+.ch-model-note summary::-webkit-details-marker{display:none}
+.ch-model-note summary:focus-visible{outline:3px solid #b98331;outline-offset:3px}
+.ch-model-note-content{position:absolute;bottom:40px;right:0;width:min(280px,65vw);padding:16px;border:1px solid #b7cdca;border-radius:14px;background:#fbfcf4;color:#294a4c;box-shadow:0 6px 24px #183e3a26}
+.ch-model-note-content p{margin:8px 0 0}
