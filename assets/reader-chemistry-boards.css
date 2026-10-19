@@ -66,3 +66,18 @@ body[data-reader-lesson="chimica-materia"] .rm-chemistry-card:has(.ch-museum)>.c
 .ch-specimen small{display:block;font-size:.72rem;margin-top:7px;color:#5a6a64;line-height:1.4}
 .ch-specimen-pending{font-size:.85rem!important;text-align:center;color:#526d6d!important;max-width:600px}
 @media(max-width:500px){.ch-specimen{gap:10px}.ch-specimen img{width:100px;height:100px}.ch-specimen figcaption{font-size:.85rem}.ch-portrait span{font-size:.6rem;bottom:-30px}}
+
+
+/* The post-game reflection has no illustration: do not reserve an empty column. */
+body[data-reader-lesson="chimica-materia"] .rm-reader-card:has(.ch-inside-copy){
+ display:block;max-width:1000px;width:100%;box-sizing:border-box;min-height:0;
+}
+body[data-reader-lesson="chimica-materia"] .rm-reader-card:has(.ch-inside-copy)>.rm-card-title{margin-bottom:14px}
+body[data-reader-lesson="chimica-materia"] .rm-reader-card:has(.ch-inside-copy)>.rm-card-text{width:100%;max-width:none;margin:0}
+body[data-reader-lesson="chimica-materia"] .rm-reader-card:has(.ch-inside-copy) .rm-reader-step{padding:6px 0}
+.ch-inside-copy{display:block;line-height:1.7}
+body[data-reader-lesson="chimica-materia"] .ch-inside-question{
+ display:block;margin-top:24px;padding-top:22px;border-top:1px solid var(--rm-line);
+ font-size:clamp(28px,2.7vw,42px);line-height:1.2;font-weight:800;letter-spacing:-.025em;color:var(--rm-accent-2);
+}
+@media(max-width:600px){body[data-reader-lesson="chimica-materia"] .ch-inside-question{margin-top:20px;padding-top:18px}}

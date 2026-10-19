@@ -43,12 +43,12 @@ window.READER_LESSONS["chimica-materia"] = {
           "stepMode": "replace",
           "steps": [
             {
-              "title": "La varietà non è solo in superficie",
-              "html": "Hai incontrato palline separate, piccoli gruppi, reticoli e lunghe catene. Hai visto anche materiali in cui convivono strutture diverse.<br><br><strong>La materia non è tutta organizzata allo stesso modo.</strong> La sua struttura microscopica ci aiuta a spiegare molte delle differenze che osserviamo."
+              "title": "Strutture diverse",
+              "html": "<span class=\"ch-inside-copy\">Ispezionando i campioni di materia hai incontrato <strong>palline isolate, libere di muoversi</strong>, <strong>piccoli raggruppamenti</strong> e <strong>grandi strutture reticolari</strong>. Hai visto anche materiali in cui convivono strutture diverse.<br><br><strong>Molte delle proprietà e delle differenze che osserviamo dipendono proprio da questa organizzazione microscopica.</strong></span>"
             },
             {
-              "title": "Una domanda rimane",
-              "html": "Nei modelli abbiamo usato delle palline per rappresentare la struttura dei materiali.<br><br><strong>Ma che cosa rappresentano quelle palline?</strong><br><br>Partiamo da qui per dare un nome a ciò che abbiamo osservato."
+              "title": "Qualcosa in comune",
+              "html": "<span class=\"ch-inside-copy\">Tante strutture, tante differenze. Eppure, in tutti i modelli c’era qualcosa in comune: <strong>le palline</strong>.<strong class=\"ch-inside-question\">Ma che cosa sono quelle palline?</strong></span>"
             }
           ]
         }
