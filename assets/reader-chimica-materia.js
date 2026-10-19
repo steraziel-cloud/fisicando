@@ -405,8 +405,8 @@ window.READER_LESSONS["chimica-materia"] = {
           ],
           "visualLayout": "closing",
           "illustration": {
-            "src": "assets/images/reader/chemistry/red-morgana-carte-finale.webp",
-            "alt": "Red e Morgana tornano alle carte della materia nel cortile della scuola, osservando insieme i campioni e i modelli dopo la partita.",
+            "src": "assets/images/reader/chemistry/red-morgana-carte-finale-v2.webp",
+            "alt": "Morgana conclude la spiegazione a Red davanti alle carte dei materiali: «Visto, Red? La materia è fatta di atomi! E ogni tipo di atomo appartiene a un elemento chimico».",
             "width": 1536,
             "height": 1024
           }

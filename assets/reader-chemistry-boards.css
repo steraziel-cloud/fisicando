@@ -199,3 +199,6 @@ body[data-reader-lesson="chimica-materia"] .rm-visual-closing>.rm-reference-scen
  body[data-reader-lesson="chimica-materia"] .rm-reader-card.rm-visual-closing{grid-template-columns:1fr}
  body[data-reader-lesson="chimica-materia"] .rm-visual-closing>.rm-reference-scene{grid-column:1;grid-row:3}
 }
+
+/* Morgana's closing dialogue is a transparent PNG above the card-game scene. */
+body[data-reader-lesson="chimica-materia"] .rm-visual-closing>.rm-reference-scene::before{content:"";display:block;width:100%;aspect-ratio:3/1;background:url("images/reader/chemistry/morgana-finale-baloon.png") center/contain no-repeat;position:relative;z-index:1;margin:0 0 -8px}
