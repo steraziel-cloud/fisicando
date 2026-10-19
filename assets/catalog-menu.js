@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const subjects = catalog;
     const discipline = (id, title, icon) => {
       const source = subjects.find(s => s.id === id);
+      if (id === 'chimica') return { title, icon, planned: true, topics: (source?.areas || []).flatMap(a => a.topics || []).map(t => ({ ...t, inlineLessons: true })) };
       return { title, icon, planned: true, topics: (source?.areas || []).map(a => ({
         title: a.title, icon: a.icon, children: a.topics || []
       })) };
@@ -176,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             li.append(label);list.append(li);
           });if(lessons.length)td.append(list);
           (t.children || []).forEach((child,ci)=>visitTopic(child,topicKey+'/child/'+ci,td,[...ancestors,t.title]));
-          if(td.children.length>1)parent.append(td);
+          if(td.children.length>1){if(t.inlineLessons)parent.append(...[...td.children].slice(1));else parent.append(td);}
         }
         a.topics.forEach((t,ti)=>visitTopic(t,s.id+'/'+ai+'/'+ti,ad,[]));
         if(ad.children.length===1 && a.planned && !tokens.length && !available.checked) {
