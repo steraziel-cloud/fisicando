@@ -81,38 +81,14 @@ window.READER_LESSONS["chimica-materia"] = {
               "chemView": "atoms"
             },
             {
+              "title": "Gli elementi chimici",
+              "html": "Gli atomi dello stesso tipo appartengono allo stesso <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"elemento-chimico\">elemento chimico</button></strong>. L’elio, l’ossigeno e il carbonio sono elementi diversi.<br><br><strong>Un atomo è una particella; l’elemento è il tipo a cui appartiene.</strong>",
+              "chemView": "atoms"
+            },
+            {
               "title": "Un modello per rappresentarli",
               "html": "Un atomo è troppo piccolo per essere visto a occhio nudo. Le palline ci aiutano a rappresentarlo: <strong>sono modelli, non fotografie</strong>.<br><br>Oggi l’esistenza degli atomi è sostenuta da moltissime prove sperimentali. Ma l’idea che la materia fosse fatta di atomi è molto più antica.",
               "chemView": "atoms"
-            }
-          ]
-        },
-        {
-          "title": "Tipi diversi di atomi",
-          "board": "chem-simple-substances",
-          "stepMode": "replace",
-          "steps": [
-            {
-              "title": "Gli elementi chimici",
-              "html": "Gli atomi dello stesso tipo appartengono allo stesso <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"elemento-chimico\">elemento chimico</button></strong>. L’elio, l’ossigeno e l’alluminio sono elementi diversi.<br><br><strong>Un atomo è una particella; l’elemento è il tipo a cui appartiene.</strong>",
-              "chemView": "simple-substances",
-              "cloze": [
-                {
-                  "before": "Due atomi di ossigeno appartengono ",
-                  "options": [
-                    "allo stesso elemento",
-                    "a due elementi diversi"
-                  ],
-                  "answer": 0,
-                  "after": ".",
-                  "feedback": "Il numero di particelle non cambia il tipo di atomi."
-                }
-              ]
-            },
-            {
-              "title": "Tre modi di organizzarsi",
-              "html": "In natura gli atomi di uno stesso elemento possono essere organizzati in modi diversi.<br><br>Nell’<strong>elio</strong> sono separati; nell’<strong>ossigeno</strong> sono uniti in gruppetti di due; nell’<strong>alluminio</strong> formano una struttura reticolare estesa.",
-              "chemView": "simple-substances"
             }
           ]
         },
@@ -213,15 +189,15 @@ window.READER_LESSONS["chimica-materia"] = {
             "feedback": "Moltissimi atomi possono appartenere tutti a un solo elemento."
           },
           {
-            "question": "Gli atomi nell’alluminio formano una struttura reticolare estesa. Quanti tipi di atomi contiene un campione di alluminio puro?",
+            "question": "Le palline con cui rappresentiamo gli atomi sono:",
             "options": [
-              "Uno: atomi di alluminio.",
-              "Due: uno per ogni lato del reticolo.",
-              "Un tipo diverso per ogni pallina.",
-              "Non si può sapere perché gli atomi sono uniti."
+              "Fotografie ingrandite degli atomi.",
+              "Modelli che ci aiutano a rappresentarli.",
+              "Atomi visibili a occhio nudo.",
+              "I colori reali delle particelle."
             ],
-            "answer": 0,
-            "feedback": "La disposizione in un reticolo non cambia il tipo di atomi: sono tutti di alluminio."
+            "answer": 1,
+            "feedback": "Gli atomi sono troppo piccoli per essere visti a occhio nudo: le palline sono un modello, non fotografie."
           },
           {
             "question": "Che cosa significava «atomo» per Leucippo e Democrito?",
@@ -413,18 +389,18 @@ window.READER_LESSONS["chimica-materia"] = {
         },
         {
           "title": "La lezione in pillole",
-          "board": "chem-simple-substances",
+          "board": "chem-atoms",
           "stepMode": "replace",
           "steps": [
             {
               "title": "Dalle carte ai nomi",
-              "html": "<strong>Atomi:</strong> sono le piccolissime unità rappresentate dalle palline. I colori sono una nostra convenzione.<br><br><strong>Elemento:</strong> identifica un tipo di atomi.<br><br><strong>Organizzazione:</strong> gli atomi di uno stesso elemento possono essere separati, in piccoli gruppi o in strutture reticolari estese.",
-              "chemView": "simple-substances"
+              "html": "<strong>Atomi:</strong> sono le piccolissime particelle rappresentate dalle palline.<br><br><strong>Elemento chimico:</strong> identifica il tipo a cui appartiene un atomo.<br><br><strong>Modelli:</strong> le palline e i loro colori ci aiutano a rappresentare e distinguere gli atomi; non sono fotografie.",
+              "chemView": "atoms"
             },
             {
               "title": "Un’idea che si sviluppa",
               "html": "<strong>Leucippo e Democrito:</strong> immaginarono particelle indivisibili.<br><br><strong>Dalton:</strong> costruì una teoria atomica per spiegare risultati sperimentali e combinazioni tra atomi.<br><br><strong>Simboli e tavola periodica:</strong> ci permettono di indicare e organizzare i 118 elementi riconosciuti.<br><br><strong>L’atomo ha una struttura interna:</strong> la scopriremo nella prossima lezione.",
-              "chemView": "simple-substances"
+              "chemView": "atoms"
             }
           ]
         }
