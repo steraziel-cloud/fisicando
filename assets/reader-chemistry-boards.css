@@ -1,0 +1,42 @@
+/* Scoped to the chemistry teaching cards; shared reader layouts are unchanged. */
+body[data-reader-lesson="chimica-materia"] .rm-reader-card>.rm-card-text{width:100%;max-width:none;margin-inline:0;min-width:0}
+body[data-reader-lesson="chimica-materia"] .rm-reader-card.rm-chemistry-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.95fr);gap:10px 30px;align-items:center}
+body[data-reader-lesson="chimica-materia"] .rm-chemistry-card>.rm-card-title{grid-column:1/-1;grid-row:1;margin:0 0 8px}
+body[data-reader-lesson="chimica-materia"] .rm-chemistry-card>.rm-card-text{grid-column:1;grid-row:2;align-self:start}
+body[data-reader-lesson="chimica-materia"] .rm-chemistry-card>.ch-board{grid-column:2;grid-row:2;min-width:0;width:100%;box-sizing:border-box;border:1px solid #b7cdca;border-radius:24px;background:linear-gradient(140deg,#f5f9ed,#e1eee6);color:#294a4c;padding:16px;box-shadow:0 7px 0 #c5d5cc55}
+.ch-board svg{display:block;width:100%;height:auto;max-height:390px;overflow:visible;font-family:inherit}
+.ch-symbol-picks,.ch-element-shortcuts{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}
+.ch-board button{font:inherit;cursor:pointer;background:#fbfcf4;color:#294a4c;border:1px solid #b7cbc4;border-radius:9px;padding:8px 11px;min-width:40px;transition:background .15s,box-shadow .15s}
+.ch-board button[aria-pressed=true]{background:#236d70;color:white;border-color:#236d70;box-shadow:0 0 0 2px #74afaa66}
+.ch-board button:focus-visible{outline:3px solid #b98331;outline-offset:3px}
+.ch-element-info{display:flex;justify-content:center;align-items:center;gap:18px;min-height:116px}
+.ch-element-info>strong{font-size:3.7rem;line-height:1;color:#236d70}
+.ch-element-info>span{font-size:1.2rem;font-weight:750;text-transform:capitalize}
+.ch-timeline{display:grid;gap:12px;padding:6px}
+.ch-timeline>div{border-left:3px solid #76a6a2;padding:2px 0 2px 16px}
+.ch-timeline span{display:block;font-size:.76rem;color:#4f6d6b;margin-bottom:4px}
+.ch-timeline strong{font-size:1.03rem;display:block;color:#294a4c}
+.ch-timeline p{font-size:.86rem!important;margin:6px 0!important;color:#294a4c!important;line-height:1.45!important}
+.ch-timeline-current{background:#f8f8df;border-radius:0 12px 12px 0}
+body[data-reader-lesson="chimica-materia"] .rm-reader-card.rm-chemistry-periodic{grid-template-columns:minmax(0,1fr)}
+body[data-reader-lesson="chimica-materia"] .rm-chemistry-periodic>.rm-card-text{grid-column:1;grid-row:2}
+body[data-reader-lesson="chimica-materia"] .rm-chemistry-periodic>.ch-board{grid-column:1;grid-row:3;padding:13px}
+.ch-periodic-scroll{overflow-x:auto;max-width:100%;padding:4px 4px 10px;overscroll-behavior-x:contain}
+.ch-periodic-grid{display:grid;grid-template-columns:20px repeat(18,minmax(27px,1fr));grid-template-rows:18px repeat(7,35px) 12px 35px 35px;gap:3px;min-width:640px;align-items:stretch}
+.ch-periodic-grid button.ch-element{min-width:0;padding:3px 0;font-size:.78rem;font-weight:800;border-radius:5px}
+.ch-group-label,.ch-period-label{font-size:.65rem;color:#526d6d;align-self:center;text-align:center}
+.ch-series-marker{display:grid;place-items:center;font-size:20px;color:#526d6d}
+/* The two detached rows are visually separated from the seven periods. */
+.ch-periodic-grid button[style*="grid-row:9"]{grid-row:10!important}
+.ch-periodic-grid button[style*="grid-row:10"]{grid-row:11!important}
+.rm-chemistry-periodic .ch-element-info{min-height:68px}
+.rm-chemistry-periodic .ch-element-info>strong{font-size:2.7rem}
+@media(max-width:850px){
+ body[data-reader-lesson="chimica-materia"] .rm-reader-card.rm-chemistry-card{grid-template-columns:minmax(0,1fr);gap:12px}
+ body[data-reader-lesson="chimica-materia"] .rm-chemistry-card>.rm-card-title{grid-column:1;grid-row:1}
+ body[data-reader-lesson="chimica-materia"] .rm-chemistry-card>.rm-card-text{grid-column:1;grid-row:2}
+ body[data-reader-lesson="chimica-materia"] .rm-chemistry-card>.ch-board{grid-column:1;grid-row:3;max-width:620px;justify-self:center}
+}
+@media(prefers-reduced-motion:reduce){.ch-board button{transition:none}}
+
+.ch-model-caption{font-size:.9rem!important;text-align:center;color:#294a4c!important;margin:8px 0 0!important}

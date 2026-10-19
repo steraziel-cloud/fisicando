@@ -1,42 +1,42 @@
 window.READER_GLOSSARY = {
- "atomo": {
-  "title": "Atomo",
-  "kind": "Definizione di chimica",
-  "text": "Un atomo è la più piccola parte di un elemento chimico che ne conserva l’identità. Per esempio, esistono atomi di carbonio e atomi di ossigeno. Gli atomi possono legarsi tra loro formando molecole o strutture estese.",
-  "byLevel": {
-    "biennio": {
-      "text": "La più piccola entità che conserva l’identità di un elemento chimico. È costituita da un nucleo, contenente protoni ed eventualmente neutroni, e da elettroni. In un atomo neutro il numero di elettroni è uguale al numero di protoni; quest’ultimo determina l’elemento chimico."
-    },
-    "triennio": {
-      "text": "La più piccola entità che conserva l’identità di un elemento chimico. È costituita da un nucleo, contenente protoni ed eventualmente neutroni, e da elettroni. In un atomo neutro il numero di elettroni è uguale al numero di protoni; quest’ultimo determina l’elemento chimico."
-    },
-    "universita": {
-      "text": "La più piccola entità che conserva l’identità di un elemento chimico. È costituita da un nucleo, contenente protoni ed eventualmente neutroni, e da elettroni. In un atomo neutro il numero di elettroni è uguale al numero di protoni; quest’ultimo determina l’elemento chimico."
-    },
-    "universita-avanzata": {
-      "text": "La più piccola entità che conserva l’identità di un elemento chimico. È costituita da un nucleo, contenente protoni ed eventualmente neutroni, e da elettroni. In un atomo neutro il numero di elettroni è uguale al numero di protoni; quest’ultimo determina l’elemento chimico."
+  "atomo": {
+    "title": "Atomo",
+    "kind": "Definizione di chimica",
+    "text": "Un atomo è la più piccola parte di un elemento chimico che ne conserva l’identità. Per esempio, esistono atomi di carbonio e atomi di ossigeno. Gli atomi possono legarsi tra loro formando molecole o strutture estese.",
+    "byLevel": {
+      "biennio": {
+        "text": "La più piccola entità che conserva l’identità di un elemento chimico. È costituita da un nucleo, contenente protoni ed eventualmente neutroni, e da elettroni. In un atomo neutro il numero di elettroni è uguale al numero di protoni; quest’ultimo determina l’elemento chimico."
+      },
+      "triennio": {
+        "text": "La più piccola entità che conserva l’identità di un elemento chimico. È costituita da un nucleo, contenente protoni ed eventualmente neutroni, e da elettroni. In un atomo neutro il numero di elettroni è uguale al numero di protoni; quest’ultimo determina l’elemento chimico."
+      },
+      "universita": {
+        "text": "La più piccola entità che conserva l’identità di un elemento chimico. È costituita da un nucleo, contenente protoni ed eventualmente neutroni, e da elettroni. In un atomo neutro il numero di elettroni è uguale al numero di protoni; quest’ultimo determina l’elemento chimico."
+      },
+      "universita-avanzata": {
+        "text": "La più piccola entità che conserva l’identità di un elemento chimico. È costituita da un nucleo, contenente protoni ed eventualmente neutroni, e da elettroni. In un atomo neutro il numero di elettroni è uguale al numero di protoni; quest’ultimo determina l’elemento chimico."
+      }
     }
-  }
-},
+  },
   "materia": {
-  "title": "Materia",
-  "kind": "Definizione di scienze",
-  "text": "La materia è ciò di cui sono fatti i corpi: ha una massa e occupa spazio. Anche l’aria è materia, pur essendo di solito invisibile.",
-  "byLevel": {
-    "biennio": {
-      "text": "Nel contesto della chimica e della fisica classica, la materia è ciò che possiede massa e occupa un volume. La descriviamo attraverso la sua composizione, la sua struttura e le sue proprietà. Un campione di materia può essere una sostanza pura oppure una miscela di sostanze."
-    },
-    "triennio": {
-      "text": "Nel contesto della chimica e della fisica classica, la materia è ciò che possiede massa e occupa un volume. La descriviamo attraverso la sua composizione, la sua struttura e le sue proprietà. Un campione di materia può essere una sostanza pura oppure una miscela di sostanze."
-    },
-    "universita": {
-      "text": "Nel contesto della chimica e della fisica classica, la materia è ciò che possiede massa e occupa un volume. La descriviamo attraverso la sua composizione, la sua struttura e le sue proprietà. Un campione di materia può essere una sostanza pura oppure una miscela di sostanze."
-    },
-    "universita-avanzata": {
-      "text": "Nel contesto della chimica e della fisica classica, la materia è ciò che possiede massa e occupa un volume. La descriviamo attraverso la sua composizione, la sua struttura e le sue proprietà. Un campione di materia può essere una sostanza pura oppure una miscela di sostanze."
+    "title": "Materia",
+    "kind": "Definizione di scienze",
+    "text": "La materia è ciò di cui sono fatti i corpi: ha una massa e occupa spazio. Anche l’aria è materia, pur essendo di solito invisibile.",
+    "byLevel": {
+      "biennio": {
+        "text": "Nel contesto della chimica e della fisica classica, la materia è ciò che possiede massa e occupa un volume. La descriviamo attraverso la sua composizione, la sua struttura e le sue proprietà. Un campione di materia può essere una sostanza pura oppure una miscela di sostanze."
+      },
+      "triennio": {
+        "text": "Nel contesto della chimica e della fisica classica, la materia è ciò che possiede massa e occupa un volume. La descriviamo attraverso la sua composizione, la sua struttura e le sue proprietà. Un campione di materia può essere una sostanza pura oppure una miscela di sostanze."
+      },
+      "universita": {
+        "text": "Nel contesto della chimica e della fisica classica, la materia è ciò che possiede massa e occupa un volume. La descriviamo attraverso la sua composizione, la sua struttura e le sue proprietà. Un campione di materia può essere una sostanza pura oppure una miscela di sostanze."
+      },
+      "universita-avanzata": {
+        "text": "Nel contesto della chimica e della fisica classica, la materia è ciò che possiede massa e occupa un volume. La descriviamo attraverso la sua composizione, la sua struttura e le sue proprietà. Un campione di materia può essere una sostanza pura oppure una miscela di sostanze."
+      }
     }
-  }
-},
+  },
   "movimento": {
     "title": "Movimento (o moto)",
     "text": "Un corpo è in movimento quando la sua posizione cambia nel tempo rispetto al sistema di riferimento scelto. Se la posizione rimane invariata, il corpo è in quiete rispetto a quel riferimento.",
@@ -298,5 +298,176 @@ window.READER_GLOSSARY = {
     "title": "Velocità e accelerazione scalari",
     "kind": "Convenzione di fisica",
     "text": "Indichiamo con vₛ la velocità scalare con segno lungo una traiettoria orientata e con aₛ la sua variazione per unità di tempo. Le funzioni sono vₛ(t) e aₛ(t). La rapidità è |vₛ| e coincide con il modulo del vettore velocità. Il modulo del vettore accelerazione non coincide in generale con |aₛ|: su una traiettoria curva la direzione del moto può cambiare anche con velocità scalare costante."
+  },
+  "elemento-chimico": {
+    "title": "Elemento chimico",
+    "kind": "Definizione di chimica",
+    "text": "Un tipo di atomo. Carbonio, ossigeno ed elio sono elementi diversi. Una sostanza semplice è formata da un solo elemento: può avere atomi separati, molecole o strutture estese.",
+    "byLevel": {
+      "biennio": {
+        "text": "Una specie di atomi caratterizzati dallo stesso numero di protoni nel nucleo, cioè dallo stesso numero atomico Z. Va distinta dalla sostanza semplice, un materiale costituito da un solo elemento, che può presentarsi in forme allotropiche diverse."
+      },
+      "triennio": {
+        "text": "Una specie di atomi caratterizzati dallo stesso numero di protoni nel nucleo, cioè dallo stesso numero atomico Z. Va distinta dalla sostanza semplice, un materiale costituito da un solo elemento, che può presentarsi in forme allotropiche diverse."
+      },
+      "universita": {
+        "text": "Una specie di atomi caratterizzati dallo stesso numero di protoni nel nucleo, cioè dallo stesso numero atomico Z. Va distinta dalla sostanza semplice, un materiale costituito da un solo elemento, che può presentarsi in forme allotropiche diverse."
+      },
+      "universita-avanzata": {
+        "text": "Una specie di atomi caratterizzati dallo stesso numero di protoni nel nucleo, cioè dallo stesso numero atomico Z. Va distinta dalla sostanza semplice, un materiale costituito da un solo elemento, che può presentarsi in forme allotropiche diverse."
+      }
+    }
+  },
+  "molecola": {
+    "title": "Molecola",
+    "kind": "Definizione di chimica",
+    "text": "Un gruppo definito di due o più atomi legati tra loro. Gli atomi possono appartenere allo stesso elemento, come in O₂, oppure a elementi diversi, come in H₂O. Non tutte le sostanze sono formate da molecole.",
+    "byLevel": {
+      "biennio": {
+        "text": "Un’entità elettricamente neutra costituita da due o più atomi legati chimicamente. Ha composizione e struttura definite; non coincide con l’unità formula di un solido ionico o reticolare."
+      },
+      "triennio": {
+        "text": "Un’entità elettricamente neutra costituita da due o più atomi legati chimicamente. Ha composizione e struttura definite; non coincide con l’unità formula di un solido ionico o reticolare."
+      },
+      "universita": {
+        "text": "Un’entità elettricamente neutra costituita da due o più atomi legati chimicamente. Ha composizione e struttura definite; non coincide con l’unità formula di un solido ionico o reticolare."
+      },
+      "universita-avanzata": {
+        "text": "Un’entità elettricamente neutra costituita da due o più atomi legati chimicamente. Ha composizione e struttura definite; non coincide con l’unità formula di un solido ionico o reticolare."
+      }
+    }
+  },
+  "ione": {
+    "title": "Ione",
+    "kind": "Definizione di chimica",
+    "text": "Una particella con una carica elettrica: può essere un atomo oppure un gruppo di atomi. Nei modelli i segni + e − indicano cariche positive e negative.",
+    "byLevel": {
+      "biennio": {
+        "text": "Un’entità atomica o molecolare con carica elettrica netta. Un atomo che perde elettroni diventa un catione; se acquista elettroni diventa un anione. Esistono anche ioni poliatomici."
+      },
+      "triennio": {
+        "text": "Un’entità atomica o molecolare con carica elettrica netta. Un atomo che perde elettroni diventa un catione; se acquista elettroni diventa un anione. Esistono anche ioni poliatomici."
+      },
+      "universita": {
+        "text": "Un’entità atomica o molecolare con carica elettrica netta. Un atomo che perde elettroni diventa un catione; se acquista elettroni diventa un anione. Esistono anche ioni poliatomici."
+      },
+      "universita-avanzata": {
+        "text": "Un’entità atomica o molecolare con carica elettrica netta. Un atomo che perde elettroni diventa un catione; se acquista elettroni diventa un anione. Esistono anche ioni poliatomici."
+      }
+    }
+  },
+  "simbolo-chimico": {
+    "title": "Simbolo chimico",
+    "kind": "Definizione di chimica",
+    "text": "Il segno che identifica un elemento. I simboli degli elementi riconosciuti hanno una o due lettere: la prima maiuscola, la seconda, se c’è, minuscola. H indica l’idrogeno; He l’elio.",
+    "byLevel": {
+      "biennio": {
+        "text": "La notazione convenzionale internazionale che identifica un elemento chimico, usata anche per rappresentare atomi dell’elemento nelle formule. La distinzione tra maiuscole e minuscole è significativa."
+      },
+      "triennio": {
+        "text": "La notazione convenzionale internazionale che identifica un elemento chimico, usata anche per rappresentare atomi dell’elemento nelle formule. La distinzione tra maiuscole e minuscole è significativa."
+      },
+      "universita": {
+        "text": "La notazione convenzionale internazionale che identifica un elemento chimico, usata anche per rappresentare atomi dell’elemento nelle formule. La distinzione tra maiuscole e minuscole è significativa."
+      },
+      "universita-avanzata": {
+        "text": "La notazione convenzionale internazionale che identifica un elemento chimico, usata anche per rappresentare atomi dell’elemento nelle formule. La distinzione tra maiuscole e minuscole è significativa."
+      }
+    }
+  },
+  "tavola-periodica": {
+    "title": "Tavola periodica",
+    "kind": "Definizione di chimica",
+    "text": "La tabella che raccoglie gli elementi chimici. Le righe si chiamano periodi e le colonne gruppi. La posizione degli elementi mette in evidenza relazioni tra i loro comportamenti chimici.",
+    "byLevel": {
+      "biennio": {
+        "text": "La disposizione degli elementi per numero atomico crescente, in periodi e gruppi, che rende evidente la periodicità di proprietà legate alla configurazione elettronica. Le due serie del blocco f sono comunemente riportate sotto il corpo principale della tabella."
+      },
+      "triennio": {
+        "text": "La disposizione degli elementi per numero atomico crescente, in periodi e gruppi, che rende evidente la periodicità di proprietà legate alla configurazione elettronica. Le due serie del blocco f sono comunemente riportate sotto il corpo principale della tabella."
+      },
+      "universita": {
+        "text": "La disposizione degli elementi per numero atomico crescente, in periodi e gruppi, che rende evidente la periodicità di proprietà legate alla configurazione elettronica. Le due serie del blocco f sono comunemente riportate sotto il corpo principale della tabella."
+      },
+      "universita-avanzata": {
+        "text": "La disposizione degli elementi per numero atomico crescente, in periodi e gruppi, che rende evidente la periodicità di proprietà legate alla configurazione elettronica. Le due serie del blocco f sono comunemente riportate sotto il corpo principale della tabella."
+      }
+    }
+  },
+  "formula-chimica": {
+    "title": "Formula chimica",
+    "kind": "Definizione di chimica",
+    "text": "Una scrittura che usa i simboli per indicare quali elementi costituiscono una sostanza. Nelle formule molecolari i numeri in basso indicano quanti atomi di ogni elemento sono presenti in una molecola. Se il numero è 1, non si scrive.",
+    "byLevel": {
+      "biennio": {
+        "text": "Una notazione simbolica della composizione chimica. Una formula molecolare indica il numero di atomi per molecola; una formula minima indica il più semplice rapporto intero tra gli elementi. Per i solidi ionici si usa un’unità formula, non una molecola isolata."
+      },
+      "triennio": {
+        "text": "Una notazione simbolica della composizione chimica. Una formula molecolare indica il numero di atomi per molecola; una formula minima indica il più semplice rapporto intero tra gli elementi. Per i solidi ionici si usa un’unità formula, non una molecola isolata."
+      },
+      "universita": {
+        "text": "Una notazione simbolica della composizione chimica. Una formula molecolare indica il numero di atomi per molecola; una formula minima indica il più semplice rapporto intero tra gli elementi. Per i solidi ionici si usa un’unità formula, non una molecola isolata."
+      },
+      "universita-avanzata": {
+        "text": "Una notazione simbolica della composizione chimica. Una formula molecolare indica il numero di atomi per molecola; una formula minima indica il più semplice rapporto intero tra gli elementi. Per i solidi ionici si usa un’unità formula, non una molecola isolata."
+      }
+    }
+  },
+  "composto-chimico": {
+    "title": "Composto chimico",
+    "kind": "Definizione di chimica",
+    "text": "Una sostanza formata da elementi diversi combinati chimicamente in proporzioni definite. Acqua e sale da cucina sono composti. I composti possono avere molecole oppure strutture estese.",
+    "byLevel": {
+      "biennio": {
+        "text": "Una sostanza costituita da due o più elementi chimicamente combinati. Nel modello introduttivo dei composti stechiometrici, gli elementi sono presenti in rapporti definiti. Il composto si distingue da una miscela e può avere struttura molecolare, ionica o covalente estesa."
+      },
+      "triennio": {
+        "text": "Una sostanza costituita da due o più elementi chimicamente combinati. Nel modello introduttivo dei composti stechiometrici, gli elementi sono presenti in rapporti definiti. Il composto si distingue da una miscela e può avere struttura molecolare, ionica o covalente estesa."
+      },
+      "universita": {
+        "text": "Una sostanza costituita da due o più elementi chimicamente combinati. Nel modello introduttivo dei composti stechiometrici, gli elementi sono presenti in rapporti definiti. Il composto si distingue da una miscela e può avere struttura molecolare, ionica o covalente estesa."
+      },
+      "universita-avanzata": {
+        "text": "Una sostanza costituita da due o più elementi chimicamente combinati. Nel modello introduttivo dei composti stechiometrici, gli elementi sono presenti in rapporti definiti. Il composto si distingue da una miscela e può avere struttura molecolare, ionica o covalente estesa."
+      }
+    }
+  },
+  "teoria-atomica": {
+    "title": "Teoria atomica",
+    "kind": "Definizione di chimica",
+    "text": "Una spiegazione scientifica della materia attraverso gli atomi e il loro modo di combinarsi. La teoria proposta da Dalton all’inizio dell’Ottocento è stata ampliata e corretta dalle scoperte successive.",
+    "byLevel": {
+      "biennio": {
+        "text": "Il quadro teorico che descrive la materia in termini di atomi, della loro struttura e delle loro interazioni. La teoria chimica di Dalton è una tappa storica, distinta dai modelli nucleari e quantistici successivi."
+      },
+      "triennio": {
+        "text": "Il quadro teorico che descrive la materia in termini di atomi, della loro struttura e delle loro interazioni. La teoria chimica di Dalton è una tappa storica, distinta dai modelli nucleari e quantistici successivi."
+      },
+      "universita": {
+        "text": "Il quadro teorico che descrive la materia in termini di atomi, della loro struttura e delle loro interazioni. La teoria chimica di Dalton è una tappa storica, distinta dai modelli nucleari e quantistici successivi."
+      },
+      "universita-avanzata": {
+        "text": "Il quadro teorico che descrive la materia in termini di atomi, della loro struttura e delle loro interazioni. La teoria chimica di Dalton è una tappa storica, distinta dai modelli nucleari e quantistici successivi."
+      }
+    }
+  },
+  "reazione-chimica": {
+    "title": "Reazione chimica",
+    "kind": "Definizione di chimica",
+    "text": "Una trasformazione in cui si formano nuove sostanze. Gli atomi si riorganizzano cambiando i legami: non vengono creati o distrutti e non cambiano elemento.",
+    "byLevel": {
+      "biennio": {
+        "text": "Una trasformazione che converte reagenti in prodotti mediante un riassetto degli elettroni e dei legami chimici. Conserva il numero di atomi per ciascun elemento e la carica totale; va distinta dalle trasformazioni nucleari."
+      },
+      "triennio": {
+        "text": "Una trasformazione che converte reagenti in prodotti mediante un riassetto degli elettroni e dei legami chimici. Conserva il numero di atomi per ciascun elemento e la carica totale; va distinta dalle trasformazioni nucleari."
+      },
+      "universita": {
+        "text": "Una trasformazione che converte reagenti in prodotti mediante un riassetto degli elettroni e dei legami chimici. Conserva il numero di atomi per ciascun elemento e la carica totale; va distinta dalle trasformazioni nucleari."
+      },
+      "universita-avanzata": {
+        "text": "Una trasformazione che converte reagenti in prodotti mediante un riassetto degli elettroni e dei legami chimici. Conserva il numero di atomi per ciascun elemento e la carica totale; va distinta dalle trasformazioni nucleari."
+      }
+    }
   }
 };
