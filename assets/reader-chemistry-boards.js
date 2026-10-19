@@ -89,7 +89,7 @@ window.GatitoChemistryBoards=(()=>{
    host.innerHTML='<div class="ch-dalton"><span class="ch-eyebrow">Hall of Fame · Inizio Ottocento</span><button type="button" class="rm-keyword ch-historian" data-term="dalton">John Dalton ↗</button>'+diagram(joined?'dalton-join':'atoms')+'<p>'+(joined?'Gli stessi atomi, combinati in rapporti definiti.':'Dalle misure sulle sostanze a una teoria sugli atomi.')+'</p></div>';return;
   }
   if(view==='periodic'){
-   host.innerHTML='<div class="ch-periodic-scroll"><div class="ch-periodic-grid" role="group" aria-label="Tavola periodica: seleziona un elemento">'+Array.from({length:18},(_,i)=>`<span class="ch-group-label" style="grid-column:${i+2};grid-row:1">${i+1}</span>`).join('')+Array.from({length:7},(_,i)=>`<span class="ch-period-label" style="grid-column:1;grid-row:${i+2}">${i+1}</span>`).join('')+records.map(r=>`<button type="button" class="ch-element" style="grid-row:${r.row+1};grid-column:${r.col+1}" data-ch-element="${r.symbol}" aria-label="${r.symbol}, ${r.name}" aria-pressed="${r.symbol===state.selected}">${r.symbol}</button>`).join('')+'<span class="ch-series-marker" style="grid-row:7;grid-column:4">↓</span><span class="ch-series-marker" style="grid-row:8;grid-column:4">↓</span></div></div><div class="ch-element-info" aria-live="polite"></div>';
+   host.innerHTML='<div class="ch-periodic-scroll"><div class="ch-periodic-grid" role="group" aria-label="Tavola periodica: seleziona un elemento">'+Array.from({length:18},(_,i)=>`<span class="ch-group-label" style="grid-column:${i+2};grid-row:1">${i+1}</span>`).join('')+Array.from({length:7},(_,i)=>`<span class="ch-period-label" style="grid-column:1;grid-row:${i+2}">${i+1}</span>`).join('')+records.map(r=>`<button type="button" class="ch-element" style="grid-row:${r.row+1};grid-column:${r.col+1}" data-ch-period="${r.row===8?6:r.row===9?7:r.row}" data-ch-group="${r.row<=7?r.col:''}" data-ch-element="${r.symbol}" aria-label="${r.symbol}, ${r.name}" aria-pressed="${r.symbol===state.selected}">${r.symbol}</button>`).join('')+'<span class="ch-series-marker" style="grid-row:7;grid-column:4">↓</span><span class="ch-series-marker" style="grid-row:8;grid-column:4">↓</span></div></div><div class="ch-element-info" aria-live="polite"></div>';
    updateSelection(host,state);return;
   }
   if(view==='symbols'){
@@ -124,12 +124,25 @@ window.GatitoChemistryBoards=(()=>{
   detail.addEventListener('click',e=>{if(e.target===detail){const r=detail.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)detail.close();}});
   document.body.append(detail);return detail;
  }
+
+ function highlightTable(box,host,state,axis){
+  state.highlight=state.highlight===axis?null:axis;
+  box.querySelectorAll('[data-ch-highlight]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.chHighlight===state.highlight)));
+  host.querySelectorAll('.ch-element').forEach(cell=>{
+   const band=state.highlight==='period'?cell.dataset.chPeriod:state.highlight==='group'?cell.dataset.chGroup:null;
+   if(band){cell.dataset.chBand=band;cell.style.setProperty('--ch-band-hue',String(((Number(band)-1)*137.5)%360));}
+   else{delete cell.dataset.chBand;cell.style.removeProperty('--ch-band-hue');}
+  });
+  host.classList.toggle('ch-highlight-periods',state.highlight==='period');
+  host.classList.toggle('ch-highlight-groups',state.highlight==='group');
+ }
+
  function mount(box,board,{view}={}){
   box.classList.add('rm-chemistry-card');if(board==='chem-periodic')box.classList.add('rm-chemistry-periodic');
   const host=document.createElement('div');host.className='ch-board';const state={view:view||board.slice(5),selected:'H',sample:'elio',motion:null};box.append(host);mounted.set(box,{host,state});render(host,state);
   const click=e=>{const sample=e.target.closest('[data-ch-sample]');if(sample&&host.contains(sample)){state.sample=sample.dataset.chSample;showSimpleSample(host,state);return;}const b=e.target.closest('[data-ch-element]');if(!b||!host.contains(b))return;state.selected=b.dataset.chElement;updateSelection(host,state);};host.addEventListener('click',click);
   let detail=null;
-  const inspect=e=>{const trigger=e.target.closest('[data-ch-ratios]');if(!trigger||!box.contains(trigger))return;if(!detail)detail=ratioDetail();detail.showModal();};
+  const inspect=e=>{const axis=e.target.closest('[data-ch-highlight]');if(axis&&box.contains(axis)&&state.view==='periodic'){highlightTable(box,host,state,axis.dataset.chHighlight);return;}const trigger=e.target.closest('[data-ch-ratios]');if(!trigger||!box.contains(trigger))return;if(!detail)detail=ratioDetail();detail.showModal();};
   box.addEventListener('click',inspect);
   return()=>{state.motion?.dispose();host.removeEventListener('click',click);box.removeEventListener('click',inspect);if(detail){detail.close();detail.remove();}mounted.delete(box);};
  }
