@@ -125,3 +125,15 @@ body[data-reader-lesson="chimica-materia"] .rm-chemistry-card:has(.ch-museum)>.c
 
 body[data-reader-lesson="chimica-materia"] .rm-chemistry-card:has(.ch-ratio-board)>.ch-board{max-width:480px;justify-self:center}
 
+
+
+/* Dalton: five cumulative hypotheses, with an optional worked example. */
+.rm-chemistry-card:has(.ch-dalton-hypothesis) .rm-reader-step{padding-block:7px!important;border-top:0!important}
+.ch-dalton-hypothesis{display:flex;gap:12px;align-items:flex-start;margin-top:5px}
+.ch-hypothesis-number{flex:0 0 26px;height:26px;display:inline-grid;place-items:center;border-radius:50%;background:color-mix(in srgb,var(--rm-accent) 18%,transparent);color:var(--rm-accent);font-size:14px;font-weight:700;line-height:1;margin-top:3px}
+.ch-insight-keyword{color:#c18b38!important;border-bottom-style:dashed!important}
+.ch-ratio-detail{width:min(680px,calc(100% - 36px))}
+.ch-ratio-detail h2{margin:8px 0 14px}
+.ch-ratio-detail form button{border:0;background:transparent;color:inherit;font-size:20px;cursor:pointer}
+.ch-ratio-example{background:#f0f7f2;border-radius:16px;padding:8px}
+.ch-ratio-example svg{display:block;width:100%;height:auto;max-height:340px}

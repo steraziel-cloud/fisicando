@@ -114,17 +114,28 @@ window.GatitoChemistryBoards=(()=>{
   }
   box.innerHTML=`<div class="ch-element-identity"><strong>${r.symbol}</strong><span>${r.name}</span></div>${detail}`;
  }
+ function ratioDetail(){
+  const detail=document.createElement('dialog');detail.className='rm-glossary ch-ratio-detail';
+  detail.setAttribute('aria-labelledby','ch-ratio-title');
+  detail.innerHTML='<form method="dialog"><button type="submit" aria-label="Chiudi l’approfondimento">✕</button></form><span class="rm-eyebrow">Per capire meglio</span><h2 id="ch-ratio-title">Sempre la stessa combinazione</h2><p>Prendiamo un esempio che conosciamo oggi: <strong>l’acqua</strong>. Ogni suo gruppetto contiene <strong>2 atomi di idrogeno e 1 di ossigeno</strong>.</p><div class="ch-ratio-example">'+diagram('dalton-join')+'</div><p><strong>Semplici</strong>: per contare gli atomi bastano piccoli numeri interi, come 2 e 1.<br><strong>Costanti</strong>: se aumentano i gruppetti, aumentano entrambi i conteggi, ma restano <strong>sempre due atomi di idrogeno per ogni atomo di ossigeno</strong>.</p>';
+  detail.addEventListener('click',e=>{if(e.target===detail){const r=detail.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)detail.close();}});
+  document.body.append(detail);return detail;
+ }
  function mount(box,board,{view}={}){
   box.classList.add('rm-chemistry-card');if(board==='chem-periodic')box.classList.add('rm-chemistry-periodic');
   const host=document.createElement('div');host.className='ch-board';const state={view:view||board.slice(5),selected:'C',sample:'elio',motion:null};box.append(host);mounted.set(box,{host,state});render(host,state);
   const click=e=>{const sample=e.target.closest('[data-ch-sample]');if(sample&&host.contains(sample)){state.sample=sample.dataset.chSample;showSimpleSample(host,state);return;}const b=e.target.closest('[data-ch-element]');if(!b||!host.contains(b))return;state.selected=b.dataset.chElement;updateSelection(host,state);};host.addEventListener('click',click);
-  return()=>{state.motion?.dispose();host.removeEventListener('click',click);mounted.delete(box);};
+  let detail=null;
+  const inspect=e=>{const trigger=e.target.closest('[data-ch-ratios]');if(!trigger||!box.contains(trigger))return;if(!detail)detail=ratioDetail();detail.showModal();};
+  box.addEventListener('click',inspect);
+  return()=>{state.motion?.dispose();host.removeEventListener('click',click);box.removeEventListener('click',inspect);if(detail){detail.close();detail.remove();}mounted.delete(box);};
  }
  function setView(box,view){const found=mounted.get(box);if(!found||!view||found.state.view===view)return;found.state.view=view;render(found.host,found.state);}
  const quizOxygen=svg(oxygen(210,90),'Due atomi di ossigeno legati.',420,190);
  const quizCompounds=svg(ball(52,105,'He',22)+ball(108,105,'He',22)+oxygen(300,105)+water(500,83)+text(80,35,'A',23)+text(300,35,'B',23)+text(500,35,'C',23),'A: elio separato. B: ossigeno in coppie. C: acqua con H e O.',600,220);
  return {mount,setView,records,diagram,quizOxygen,quizCompounds};
 })();
+
 
 
 

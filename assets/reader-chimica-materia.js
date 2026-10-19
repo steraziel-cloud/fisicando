@@ -128,25 +128,33 @@ window.READER_LESSONS["chimica-materia"] = {
             },
             {
               "title": "Le ipotesi di Dalton",
-              "html": "Secondo Dalton:<br>• la materia è formata da <strong>atomi indivisibili</strong>;<br>• gli atomi dello stesso tipo hanno <strong>la stessa massa e le stesse proprietà</strong>;<br>• atomi di tipi diversi hanno caratteristiche diverse.<br><br>Queste sono <strong>le ipotesi storiche della sua teoria</strong>: oggi sappiamo che alcune devono essere corrette.",
+              "html": "Secondo Dalton:<br><span class=\"ch-dalton-hypothesis\"><span class=\"ch-hypothesis-number\">1</span><span>La materia è formata da <strong>atomi indivisibili e indistruttibili</strong>.</span></span>",
+              "cumulativeFrom": 1,
               "chemView": "dalton-start"
             },
             {
-              "title": "Gli atomi possono unirsi",
-              "html": "Gli atomi possono unirsi tra loro e formare <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"sostanza\">sostanze</button></strong> diverse. Secondo Dalton, queste combinazioni seguono <strong>rapporti numerici semplici e costanti</strong>.<br><br>Prendiamo un esempio che conosciamo oggi: <strong>ogni gruppetto dell’acqua contiene 2 atomi di idrogeno e 1 di ossigeno</strong>. In due gruppetti ne contiamo 4 e 2: <strong>restano sempre due atomi di idrogeno per ogni atomo di ossigeno</strong>.<br><br>Nelle <button type=\"button\" class=\"rm-keyword\" data-term=\"reazione-chimica\">trasformazioni chimiche</button> gli atomi si separano e si ricombinano: <strong>non vengono creati o distrutti e non cambiano tipo</strong>.",
-              "cloze": [
-                {
-                  "before": "In tre gruppetti d’acqua troviamo ",
-                  "options": [
-                    "6 atomi di idrogeno e 3 di ossigeno",
-                    "3 atomi di idrogeno e 3 di ossigeno"
-                  ],
-                  "answer": 0,
-                  "after": ".",
-                  "feedback": "Ogni gruppetto contiene 2 atomi di idrogeno e 1 di ossigeno: per tre gruppetti, moltiplichiamo entrambi i numeri per 3."
-                }
-              ],
-              "chemView": "dalton-join"
+              "title": "",
+              "html": "<span class=\"ch-dalton-hypothesis\"><span class=\"ch-hypothesis-number\">2</span><span>Gli atomi dello stesso tipo hanno <strong>la stessa massa e le stesse proprietà</strong>.</span></span>",
+              "cumulativeFrom": 1,
+              "chemView": "dalton-start"
+            },
+            {
+              "title": "",
+              "html": "<span class=\"ch-dalton-hypothesis\"><span class=\"ch-hypothesis-number\">3</span><span>Atomi di tipi diversi hanno <strong>masse e proprietà diverse</strong>.</span></span>",
+              "cumulativeFrom": 1,
+              "chemView": "dalton-start"
+            },
+            {
+              "title": "",
+              "html": "<span class=\"ch-dalton-hypothesis\"><span class=\"ch-hypothesis-number\">4</span><span>Gli atomi di tipi diversi si uniscono per formare <button type=\"button\" class=\"rm-keyword\" data-term=\"sostanza\">sostanze</button> chiamate <button type=\"button\" class=\"rm-keyword\" data-term=\"composto-chimico\">composti</button>. In uno stesso composto si combinano in <button type=\"button\" class=\"rm-keyword ch-insight-keyword\" data-ch-ratios aria-haspopup=\"dialog\">rapporti numerici semplici e costanti</button>.</span></span>",
+              "cumulativeFrom": 1,
+              "chemView": "dalton-start"
+            },
+            {
+              "title": "",
+              "html": "<span class=\"ch-dalton-hypothesis\"><span class=\"ch-hypothesis-number\">5</span><span>Nelle <button type=\"button\" class=\"rm-keyword\" data-term=\"reazione-chimica\">trasformazioni chimiche</button> gli atomi si separano, si uniscono e si riorganizzano: <strong>non vengono creati o distrutti e non cambiano tipo</strong>.</span></span>",
+              "cumulativeFrom": 1,
+              "chemView": "dalton-start"
             }
           ]
         }
