@@ -100,7 +100,8 @@ body[data-reader-lesson="chimica-materia"] .ch-inside-question{
 .ch-hall-quote a{color:var(--rm-accent-2);text-decoration:none}
 .ch-hall-quote a:hover{text-decoration:underline}
 .ch-bio-portrait{max-width:290px;margin:18px auto 12px}
-.ch-bio-portrait svg{display:block;width:100%;height:auto;border-radius:10px;box-shadow:0 6px 18px #0003}
+.ch-bio-portrait svg,.ch-bio-portrait img{display:block;width:100%;height:auto;border-radius:10px;box-shadow:0 6px 18px #0003}
 .ch-bio-portrait figcaption{font-size:12px;line-height:1.5;text-align:center;margin-top:8px;color:var(--rm-muted)}
 .ch-bio-links{display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:center}
 .ch-bio-links a{color:var(--rm-accent-2)}
+
