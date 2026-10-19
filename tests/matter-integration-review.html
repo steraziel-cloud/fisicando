@@ -3,7 +3,7 @@
 <style>body{margin:0;padding:22px;background:#eff4ed;color:#293e43;font:16px system-ui}main{max-width:1100px;margin:auto}header{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px}select,button{font:inherit;padding:10px}#compact{border:1px solid #6b8b78;width:360px;max-width:100%}#compact iframe{border:0;width:100%;height:950px}.qa-only{margin:0 0 20px}</style>
 <main><header><h1>Identikit della materia</h1><label>Carta da verificare <select id="sample"></select></label><button id="compact-toggle">Vista da telefono</button></header><div id="game"></div><div id="compact" hidden><iframe title="Gioco a larghezza telefono"></iframe></div></main>
 <script src="../assets/reader-matter-models.js?v=6"></script><script src="../assets/reader-matter-approved.js?v=4"></script><script src="../assets/reader-matter-cards.js?v=12"></script>
-<script src="../assets/reader-reactions.js?v=8"></script>
+<script src="../assets/reader-reactions.js?v=9"></script>
 <script>
  const api=window.GatitoMatterCards,select=document.querySelector('#sample'),game=document.querySelector('#game');let dispose=null;
  select.innerHTML=api.deck.map(d=>`<option value="${d.id}">${d.name}</option>`).join('');
