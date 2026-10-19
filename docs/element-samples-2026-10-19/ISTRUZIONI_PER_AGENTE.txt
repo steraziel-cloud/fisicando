@@ -1,0 +1,8 @@
+Integra nella tavola periodica interattiva di GatitoMath le 36 nuove immagini di campioni contenute nello ZIP allegato.
+
+1. Verifica prima dove e come il progetto carica le immagini degli elementi; riutilizza la convenzione attuale senza duplicare sistemi.
+2. Associa i file in `immagini/` tramite il simbolo (es. `element-Ge.png` -> Ge). NON sovrascrivere le 17 immagini già presenti nella tavola.
+3. Leggi `inventario.csv` o `inventario.json` per descrizioni, testo alternativo, tipo di campione, lotto e revisione. Per le immagini conservate sotto olio o in fiale, specificare la circostanza nella scheda. Mantieni 20 °C e 1 atm come condizioni di riferimento dello stato fisico.
+4. Queste sono illustrazioni generate con IA: non chiamarle fotografie. Trattale come asset provvisori fino all'approvazione scientifica definitiva; il boro B è esplicitamente DA_RIVEDERE.
+5. Controlla miniature, percorsi e responsive e riporta l'elenco dei file effettivamente importati, gli eventuali conflitti, e ogni immagine che richieda interventi.
+6. Non modificare la logica, gli stili e le interazioni non pertinenti all'integrazione delle immagini.
