@@ -141,7 +141,7 @@ window.READER_LESSONS["chimica-materia"] = {
                   "feedback": "È una sua ipotesi storica: scopriremo più avanti perché la massa non è sempre identica."
                 }
               ],
-              "chemView": "dalton-types"
+              "chemView": "dalton-start"
             },
             {
               "title": "Gli atomi possono unirsi",
