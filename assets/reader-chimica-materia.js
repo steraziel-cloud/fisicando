@@ -258,13 +258,25 @@ window.READER_LESSONS["chimica-materia"] = {
           ]
         },
         {
+          "title": "Mendeleev: un ordine tra gli elementi",
+          "board": "chem-hall-mendeleev",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Mendeleev cercava un ordine",
+              "html": "Nel 1869 <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"mendeleev\">Dmitrij Mendeleev</button></strong> organizzò gli elementi allora conosciuti confrontandone le proprietà. Lavorò anche con carte dedicate ai singoli elementi: spostarle aiutava a cercare somiglianze.<br><br>Lasciò dei posti vuoti e previde le proprietà di elementi ancora da scoprire. <strong>Le scoperte successive confermarono molte delle sue previsioni.</strong>",
+              "chemView": "hall-mendeleev"
+            }
+          ]
+        },
+        {
           "title": "La tavola periodica",
           "board": "chem-periodic",
           "stepMode": "replace",
           "steps": [
             {
               "title": "Una mappa degli elementi",
-              "html": "Conosciamo <strong>118 elementi chimici</strong>, di cui <strong>94 presenti in natura</strong>.<br><br>La <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"tavola-periodica\">tavola periodica degli elementi</button></strong> raccoglie e organizza gli elementi secondo regolarità nelle loro proprietà.<br><br><strong>Ogni casella corrisponde a un elemento</strong>. Selezionandola puoi leggerne il nome. Per alcuni trovi anche un’illustrazione del campione: la raccolta delle immagini crescerà nel tempo.",
+              "html": "Oggi conosciamo <strong>118 elementi chimici</strong>, di cui <strong>94 presenti in natura</strong>.<br><br>La <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"tavola-periodica\">tavola periodica degli elementi</button></strong> raccoglie e organizza gli elementi secondo regolarità nelle loro proprietà. La tavola moderna si è sviluppata dal lavoro di Mendeleev e dai contributi successivi.<br><br><strong>Ogni casella corrisponde a un elemento</strong>. Selezionala per scoprirne il nome e, quando disponibile, vedere un’illustrazione del campione.",
               "cloze": [
                 {
                   "before": "La casella He corrisponde ",
@@ -280,13 +292,8 @@ window.READER_LESSONS["chimica-materia"] = {
               "chemView": "periodic"
             },
             {
-              "title": "Mendeleev cercava un ordine",
-              "html": "Nel 1869 <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"mendeleev\">Dmitrij Mendeleev</button></strong> organizzò gli elementi allora conosciuti confrontandone le proprietà. Lavorò anche con carte dedicate ai singoli elementi: spostarle aiutava a cercare somiglianze.<br><br>Lasciò dei posti vuoti e previde le proprietà di elementi ancora da scoprire. <strong>Le scoperte successive confermarono molte delle sue previsioni.</strong>",
-              "chemView": "hall-mendeleev"
-            },
-            {
               "title": "L’ordine ha un significato",
-              "html": "La tavola moderna si è sviluppata da quel lavoro. Le righe si chiamano <strong>periodi</strong>, le colonne <strong>gruppi</strong>. Elementi dello stesso gruppo hanno spesso comportamenti simili.<br><br>Il motivo di quest’ordine diventerà più chiaro quando studieremo l’interno degli atomi. <strong>La tavola si consulta: non serve impararla tutta a memoria.</strong>",
+              "html": "Le righe si chiamano <strong>periodi</strong>, le colonne <strong>gruppi</strong>. Elementi dello stesso gruppo hanno spesso comportamenti simili.<br><br>Il motivo di quest’ordine diventerà più chiaro quando studieremo l’interno degli atomi. <strong>La tavola si consulta: non serve impararla tutta a memoria.</strong>",
               "cloze": [
                 {
                   "before": "La disposizione degli elementi nella tavola ",
@@ -386,7 +393,13 @@ window.READER_LESSONS["chimica-materia"] = {
               ]
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "id": "lezione-in-pillole",
+      "title": "La lezione in pillole",
+      "cards": [
         {
           "title": "La lezione in pillole",
           "board": "chem-atoms",
