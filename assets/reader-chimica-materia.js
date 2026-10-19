@@ -123,24 +123,12 @@ window.READER_LESSONS["chimica-materia"] = {
           "steps": [
             {
               "title": "Entrano in gioco gli esperimenti",
-              "html": "All’inizio dell’Ottocento il chimico inglese <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"dalton\">John Dalton</button></strong> riprese l’idea degli atomi per spiegare i risultati degli esperimenti sulle sostanze.<br><br>La sua <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"teoria-atomica\">teoria atomica</button></strong> non si limitava a immaginare particelle invisibili: doveva spiegare le regolarità osservate nelle misure.",
+              "html": "All’inizio dell’Ottocento il chimico inglese <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"dalton\">John Dalton</button></strong> riprese l’idea degli atomi per spiegare i risultati degli esperimenti.<br><br>La sua <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"teoria-atomica\">teoria atomica</button></strong> non si limitava a immaginare particelle invisibili: doveva spiegare le regolarità osservate nelle misure.",
               "chemView": "dalton-start"
             },
             {
               "title": "Le ipotesi di Dalton",
               "html": "Secondo Dalton:<br>• la materia è formata da <strong>atomi indivisibili</strong>;<br>• gli atomi dello stesso tipo hanno <strong>la stessa massa e le stesse proprietà</strong>;<br>• atomi di tipi diversi hanno caratteristiche diverse.<br><br>Queste sono <strong>le ipotesi storiche della sua teoria</strong>: oggi sappiamo che alcune devono essere corrette.",
-              "cloze": [
-                {
-                  "before": "Per Dalton, atomi dello stesso tipo avevano ",
-                  "options": [
-                    "la stessa massa",
-                    "masse sempre diverse"
-                  ],
-                  "answer": 0,
-                  "after": ".",
-                  "feedback": "È una sua ipotesi storica: scopriremo più avanti perché la massa non è sempre identica."
-                }
-              ],
               "chemView": "dalton-start"
             },
             {
