@@ -107,7 +107,7 @@ body[data-reader-lesson="chimica-materia"] .ch-inside-question{
 
 
 /* Museum scenes begin beside the title and fill their available column. */
-body[data-reader-lesson="chimica-materia"] .rm-reader-card.rm-chemistry-card:has(.ch-museum){grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:6px 26px;align-items:start;padding-block:24px}
+body[data-reader-lesson="chimica-materia"] .rm-reader-card.rm-chemistry-card:has(.ch-museum){grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);grid-template-rows:min-content 1fr;gap:6px 26px;align-items:start;padding-block:24px}
 body[data-reader-lesson="chimica-materia"] .rm-chemistry-card:has(.ch-museum)>.rm-card-title{grid-column:1;grid-row:1;margin-bottom:2px}
 body[data-reader-lesson="chimica-materia"] .rm-chemistry-card:has(.ch-museum)>.rm-card-text{grid-column:1;grid-row:2}
 body[data-reader-lesson="chimica-materia"] .rm-chemistry-card:has(.ch-museum) .rm-reader-step{padding-top:6px;padding-bottom:0}
@@ -124,3 +124,4 @@ body[data-reader-lesson="chimica-materia"] .rm-chemistry-card:has(.ch-museum)>.c
 
 
 body[data-reader-lesson="chimica-materia"] .rm-chemistry-card:has(.ch-ratio-board)>.ch-board{max-width:480px;justify-self:center}
+
