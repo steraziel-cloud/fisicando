@@ -5,7 +5,7 @@ Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
     "title": "L’insieme dei numeri razionali assoluti",
     "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
-    "version": 4,
+    "version": 5,
     "status": "work-in-progress",
     "sections": [
       {
@@ -17,12 +17,16 @@ Object.assign(window.READER_LESSONS,{
             "stepMode": "replace",
             "steps": [
               {
-                "title": "Un problema concreto",
-                "html": "Un nastro lungo <strong>3 metri</strong> va diviso in <strong>2 parti uguali</strong>. Ogni parte misura un metro e mezzo: il risultato di 3 : 2 non è un numero naturale.<br><br>La divisione <strong>non è un’operazione interna a ℕ</strong>: anche quando il divisore è diverso da zero, il quoziente può non appartenere a ℕ."
+                "title": "Una divisione che conosci già",
+                "html": "Quante volte ti è capitato di svolgere una <strong>divisione in colonna</strong> e di trovare un <strong>resto diverso da zero</strong>? Riprendiamo, con Bjorne, <strong>246 : 5</strong>.<br><br><span class=\"qr-division-scene\"><span class=\"qr-division-board\"><span class=\"qr-division-caption\">Bjorne ripassa la divisione in colonna</span><svg viewBox=\"0 0 440 260\" role=\"img\" aria-label=\"246 diviso 5: 24 meno 20 dà 4; abbasso il 6 e ottengo 46; 46 meno 45 dà 1. Quoziente intero 49, resto 1.\"><g class=\"qr-chalk-numbers\"><text x=\"85\" y=\"44\">2</text><text x=\"121\" y=\"44\">4</text><text x=\"157\" y=\"44\">6</text><text x=\"236\" y=\"44\">5</text><text x=\"227\" y=\"90\" class=\"qr-chalk-accent\">49</text><text x=\"44\" y=\"88\">−</text><text x=\"85\" y=\"88\">2</text><text x=\"121\" y=\"88\">0</text><text x=\"121\" y=\"139\">4</text><text x=\"157\" y=\"139\" class=\"qr-chalk-accent\">6</text><text x=\"80\" y=\"184\">−</text><text x=\"121\" y=\"184\">4</text><text x=\"157\" y=\"184\">5</text><text x=\"157\" y=\"235\" class=\"qr-chalk-accent\">1</text></g><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M203 15V101 M203 57H292 M76 102H148 M111 198H184\"/><path d=\"M165 54V107 M160 101L165 107L170 101\" class=\"qr-chalk-accent\"/></g><g class=\"qr-chalk-labels\"><text x=\"307\" y=\"39\">divisore</text><text x=\"307\" y=\"88\">quoziente</text><text x=\"307\" y=\"107\">intero</text><text x=\"203\" y=\"235\" class=\"qr-chalk-accent\">resto</text></g></svg><span class=\"qr-division-check\">246 = 5 × 49 + <strong>1</strong></span></span><img class=\"qr-division-bjorne\" src=\"assets/images/morgana-classroom/bjorne-01.png\" alt=\"Bjorne accanto alla lavagnetta\" width=\"1080\" height=\"1440\" loading=\"eager\" decoding=\"async\"></span><br><strong>1.</strong> Il 5 nel 24 sta 4 volte: scriviamo 4 nel quoziente e sottraiamo 20. Resta 4.<br><br><strong>2.</strong> Abbassiamo il 6: otteniamo 46. Il 5 nel 46 sta 9 volte: scriviamo 9 e sottraiamo 45. <strong>Resta 1.</strong>"
+              },
+              {
+                "title": "Che cosa ci dice quel resto?",
+                "html": "Abbiamo trovato <strong>49 come quoziente intero e 1 come resto</strong>. La divisione non è esatta: 5 × 49 = 245, mentre 5 × 50 = 250. <strong>Nessun numero naturale, moltiplicato per 5, dà 246.</strong><br><br>Il quoziente esatto di 246 : 5, quindi, <strong>non è un numero naturale</strong>.<br><br>La divisione <strong>non è un’operazione interna a ℕ</strong>: anche con un divisore diverso da zero, il risultato esatto può non appartenere a ℕ. Per questo dobbiamo ampliare l’insieme."
               },
               {
                 "title": "Dai naturali ai razionali assoluti",
-                "html": "Per avere un insieme che contenga questi quozienti, ampliamo ℕ all’<strong>insieme dei numeri razionali assoluti</strong>, indicato con <strong>ℚₐ</strong>.<br><br>I suoi elementi sono tutti i numeri rappresentabili con una frazione <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span>, dove <strong>a e b sono numeri naturali e b ≠ 0</strong>.<br><br>In ℚₐ la divisione dà ancora un elemento di ℚₐ, <strong>purché il divisore sia diverso da zero</strong>."
+                "html": "Per avere un insieme che contenga questi quozienti, ampliamo ℕ all’<strong>insieme dei numeri razionali assoluti</strong>, indicato con <strong>ℚₐ</strong>.<br><br>I suoi elementi sono tutti i numeri rappresentabili con una frazione <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span>, dove <strong>a e b sono numeri naturali e b ≠ 0</strong>.<br><br>Il quoziente esatto del nostro esempio si rappresenta con <span class=\"qr-fraction\" role=\"math\" aria-label=\"246 fratto 5\"><span aria-hidden=\"true\">246</span><span aria-hidden=\"true\">5</span></span>.<br><br>In ℚₐ la divisione dà ancora un elemento di ℚₐ, <strong>purché il divisore sia diverso da zero</strong>."
               }
             ]
           },
@@ -32,11 +36,31 @@ Object.assign(window.READER_LESSONS,{
             "steps": [
               {
                 "title": "Il rapporto tra due numeri",
-                "html": "Il risultato della divisione tra a e b, con b ≠ 0, si chiama <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-rapporto\">rapporto</button> tra a e b e si indica con una <strong>frazione</strong>:<br><br><span class=\"qr-formula\">a : b = <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span></span><br><br>Il simbolo che separa i due termini si chiama <strong>linea di frazione</strong>; a è il <strong>numeratore</strong> e b il <strong>denominatore</strong>. Nel problema del nastro, il rapporto è <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 2\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">2</span></span>."
+                "html": "Il risultato della divisione tra a e b, con b ≠ 0, si chiama <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-rapporto\">rapporto</button> tra a e b e si indica con una <strong>frazione</strong>:<br><br><span class=\"qr-formula\">a : b = <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span></span><br><br>Il simbolo che separa i due termini si chiama <strong>linea di frazione</strong>; a è il <strong>numeratore</strong> e b il <strong>denominatore</strong>. Nella divisione di Bjorne, il rapporto è <span class=\"qr-fraction\" role=\"math\" aria-label=\"246 fratto 5\"><span aria-hidden=\"true\">246</span><span aria-hidden=\"true\">5</span></span>."
               },
               {
                 "title": "Perché è un ampliamento di ℕ?",
                 "html": "Ponendo <strong>b = 1</strong> ritroviamo tutti i numeri naturali:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"n fratto 1\"><span aria-hidden=\"true\">n</span><span aria-hidden=\"true\">1</span></span> = n</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 1\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">1</span></span> = 4. Ogni numero naturale, compreso lo zero, appartiene quindi anche a ℚₐ:<br><br><span class=\"qr-formula\">ℕ ⊂ ℚₐ</span>"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "zero",
+        "title": "I casi con lo zero",
+        "cards": [
+          {
+            "title": "I casi con lo zero",
+            "stepMode": "replace",
+            "steps": [
+              {
+                "title": "Zero al numeratore",
+                "html": "Se il denominatore è diverso da zero, il rapporto vale zero:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto b\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">b</span></span> = 0 &nbsp; (b ≠ 0)</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 5\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">5</span></span> = 0, perché 0 × 5 = 0."
+              },
+              {
+                "title": "Zero al denominatore",
+                "html": "Se <strong>a ≠ 0</strong>, <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto 0\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">0</span></span> è una divisione <strong>impossibile</strong>: nessun numero moltiplicato per zero dà a.<br><br><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 0\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">0</span></span> è invece <strong>indeterminato</strong>: ogni numero moltiplicato per zero dà zero, quindi non si individua un unico quoziente.<br><br>In entrambi i casi la divisione non è definita: nelle frazioni che rappresentano gli elementi di ℚₐ il <strong>denominatore deve essere diverso da zero</strong>."
               }
             ]
           }
@@ -119,26 +143,6 @@ Object.assign(window.READER_LESSONS,{
               {
                 "title": "Nessun successivo immediato",
                 "html": "Fra a e b, con a &lt; b, il numero <strong>(a + b) : 2</strong> è razionale e sta esattamente a metà. Possiamo ripetere il procedimento senza fermarci.<br><br>Perciò un razionale non ha un <strong>successivo immediato</strong> come accade in ℕ. ℚₐ ha minimo 0, ma non ha un minimo positivo né un massimo.<details class=\"qr-deeper\"><summary>Denso non significa che ogni punto sia razionale</summary><p>Dire che fra due razionali c’è sempre un razionale non equivale a dire che ogni punto della retta rappresenti un razionale. Gli altri numeri saranno oggetto di una lezione successiva.</p></details>"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "zero",
-        "title": "I casi con lo zero",
-        "cards": [
-          {
-            "title": "I casi con lo zero",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Zero al numeratore",
-                "html": "Se il denominatore è diverso da zero, il rapporto vale zero:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto b\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">b</span></span> = 0 &nbsp; (b ≠ 0)</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 5\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">5</span></span> = 0, perché 0 × 5 = 0."
-              },
-              {
-                "title": "Zero al denominatore",
-                "html": "Se <strong>a ≠ 0</strong>, <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto 0\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">0</span></span> è una divisione <strong>impossibile</strong>: nessun numero moltiplicato per zero dà a.<br><br><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 0\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">0</span></span> è invece <strong>indeterminato</strong>: ogni numero moltiplicato per zero dà zero, quindi non si individua un unico quoziente.<br><br>In entrambi i casi la divisione non è definita: nelle frazioni che rappresentano gli elementi di ℚₐ il <strong>denominatore deve essere diverso da zero</strong>."
               }
             ]
           }
