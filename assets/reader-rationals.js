@@ -5,7 +5,7 @@ Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
     "title": "L’insieme dei numeri razionali assoluti",
     "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
-    "version": 12,
+    "version": 13,
     "status": "work-in-progress",
     "sections": [
       {
@@ -135,7 +135,7 @@ Object.assign(window.READER_LESSONS,{
               },
               {
                 "title": "Il caso particolare: zero diviso zero",
-                "html": "Che cosa succede con <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 0\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">0</span></span>?<br><br>Ogni numero moltiplicato per zero dà zero: 0 × 0 = 0, 1 × 0 = 0, 2 × 0 = 0… La relazione non individua quindi <strong>un unico quoziente</strong>: il caso è <strong>indeterminato</strong> e la divisione non è definita.<br><br>Nelle frazioni che rappresentano gli elementi di ℚₐ il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> deve essere <strong>diverso da zero</strong>.<br><br><small>Un piccolo spoiler 👀 Questa scrittura tornerà nello studio dei limiti, con il nome di <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-forma-indeterminata\">forma indeterminata</button>.</small>"
+                "html": "Che cosa succede con <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 0\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">0</span></span>?<br><br>Ogni numero moltiplicato per zero dà zero: 0 × 0 = 0, 1 × 0 = 0, 2 × 0 = 0… La relazione non individua quindi <strong>un unico quoziente</strong>: il caso è <strong>indeterminato</strong> e la divisione non è definita.<br><br>Nelle frazioni che rappresentano gli elementi di ℚₐ il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> deve essere <strong>diverso da zero</strong>."
               }
             ],
             "board": "qr-zero-illustration"
@@ -1304,9 +1304,16 @@ Object.assign(window.READER_LESSONS,{
   }
 });
 Object.assign(window.READER_GLOSSARY,{
-"qr-forma-indeterminata": {"title":"Forma indeterminata · Uno spoiler sui limiti","kind":"Curiosità · Un incontro dal futuro","text":"Quando studierai i limiti, incontrerai rapporti in cui numeratore e denominatore tendono entrambi a zero. Sapere soltanto questo non basta per determinare il limite: conta come si avvicinano a zero. Si parla allora di forma indeterminata 0/0. Non significa che la divisione 0/0 abbia un valore: quella resta non definita."},
-"qr-numeratore": {"title": "Numeratore", "kind": "Matematica · Frazioni", "text": "È il termine scritto sopra la linea di frazione. Nella frazione a/b il numeratore è a: è il dividendo della divisione a : b."},
-"qr-denominatore": {"title": "Denominatore", "kind": "Matematica · Frazioni", "text": "È il termine scritto sotto la linea di frazione. Nella frazione a/b il denominatore è b: è il divisore e deve essere diverso da zero."},
+  "qr-numeratore": {
+    "title": "Numeratore",
+    "kind": "Matematica · Frazioni",
+    "text": "È il termine scritto sopra la linea di frazione. Nella frazione a/b il numeratore è a: è il dividendo della divisione a : b."
+  },
+  "qr-denominatore": {
+    "title": "Denominatore",
+    "kind": "Matematica · Frazioni",
+    "text": "È il termine scritto sotto la linea di frazione. Nella frazione a/b il denominatore è b: è il divisore e deve essere diverso da zero."
+  },
   "qr-frazione": {
     "title": "Frazione",
     "kind": "Matematica · Numeri razionali assoluti",
