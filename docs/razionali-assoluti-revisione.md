@@ -41,4 +41,4 @@ Prima stesura completa e utilizzabile, da rivedere con il docente per quantità 
 - Collegamenti fra lezioni e voci del catalogo univoci; keyword risolte.
 - 5.040 casi di calcolo intero controllati per intervalli, arrotondamenti e sviluppi decimali; verificati anche il riporto 9,995 → 10,00 e i casi già esatti.
 - Sintassi JavaScript verificata per contenuti, lavagne, catalogo e reader.
-- Verifica visiva del reader prevista dopo la pubblicazione; gli esiti saranno comunicati nel resoconto.
+- Verifica visiva desktop del reader eseguita online per tutte le cinque lezioni. Provati lo slider di equivalenza, il glossario con ritorno allo stato precedente, il completamento che sblocca la navigazione, i cinque passaggi della lavagna espressioni, la divisione periodica 1/6 e l’arrotondamento di 9,995 a 10,00. Nessun overflow della pagina nel viewport desktop osservato. La verifica su un dispositivo mobile reale resta da fare.
