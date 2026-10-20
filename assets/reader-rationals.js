@@ -5,7 +5,7 @@ Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
     "title": "L’insieme dei numeri razionali assoluti",
     "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
-    "version": 8,
+    "version": 9,
     "status": "work-in-progress",
     "sections": [
       {
@@ -52,7 +52,8 @@ Object.assign(window.READER_LESSONS,{
                 "title": "Perché è un ampliamento di ℕ?",
                 "html": "Ponendo <strong>b = 1</strong> ritroviamo tutti i numeri naturali:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"n fratto 1\"><span aria-hidden=\"true\">n</span><span aria-hidden=\"true\">1</span></span> = n</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 1\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">1</span></span> = 4. Ogni numero naturale, compreso lo zero, appartiene quindi anche a ℚₐ:<br><br><span class=\"qr-formula\">ℕ ⊂ ℚₐ</span>"
               }
-            ]
+            ],
+            "board": "qr-sets"
           }
         ]
       },
