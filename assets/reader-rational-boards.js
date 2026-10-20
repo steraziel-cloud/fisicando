@@ -94,7 +94,7 @@ window.GatitoRationalBoards=(()=>{
  }
  function render(s){s.host.innerHTML=draw(s);}
  function mount(box,card,{view}={}){
-  if(card.board==='qr-zero-illustration'){const host=document.createElement('aside');host.className='qr-board qr-zero-illustration';const img=document.createElement('img');img.src='assets/images/reader/bjorne-zero-cactus-v2.webp';img.alt='Bjorne perplesso osserva un cactus a forma di zero, con alcuni punti interrogativi sopra la testa';img.width=1536;img.height=1024;img.decoding='async';host.append(img);box.classList.add('qr-reader-card');box.append(host);return()=>{};}
+  if(card.board==='qr-zero-illustration'){const host=document.createElement('aside');host.className='qr-board qr-zero-illustration';const img=document.createElement('img');img.src='assets/images/reader/bjorne-zero-cactus-v3.webp';img.alt='Bjorne perplesso osserva un cactus a forma di zero, con alcuni punti interrogativi sopra la testa';img.width=1536;img.height=1024;img.decoding='async';host.append(img);box.classList.add('qr-reader-card');box.append(host);return()=>{};}
   if(card.copilot&&window.GatitoFractionCopilot){box.classList.add('qr-reader-card','qr-copilot-card');const workbench=window.GatitoFractionCopilot.mount(box,{sessionKey:'razionali-assoluti-insieme',initial:card.copilotExample,example:card.copilotExample,embedded:true});return()=>workbench.dispose();}
 
   const host=document.createElement('aside');host.className='qr-board';host.setAttribute('aria-label','Lavagna digitale');
