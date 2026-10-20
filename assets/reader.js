@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   const track=el('span','rm-total-progress');track.setAttribute('aria-hidden','true');const fill=el('span');fill.style.width=completed/state.length*100+'%';track.append(fill);$('reader-progress').append(track);
   $('reader-show-all').hidden=false;
  }
- function celebrate(target,message,title='Ottimo lavoro!'){window.GatitoQuizReactions.show(target,message,{correct:true,title,final:target===$('reader-feedback')});}
- function retry(target,message){window.GatitoQuizReactions.show(target,message,{correct:false});}
+ function celebrate(target,message,title='Ottimo lavoro!'){window.GatitoQuizReactions.show(target,message,{correct:true,title,final:target===$('reader-feedback')});formatRationalFractions(target);}
+ function retry(target,message){window.GatitoQuizReactions.show(target,message,{correct:false});formatRationalFractions(target);}
  function completeSection(message){if(reviewAccess){celebrate($('reader-feedback'),message,'Verifica completata');actions();return;}const first=!state[current].complete;state[current].complete=true;state[current].reached=flat(lesson.sections[current]).length;index();celebrate($('reader-feedback'),message,first?'Una parte in più, ci sei!':'Perfetto!');actions();if(pendingSection!==null){const target=pendingSection,remaining=requiredBefore(target);if(remaining.length){current=remaining[0];state[current].cursor=flat(lesson.sections[current]).length;quizState(current).gateOnly=true;render();top();}else{pendingSection=null;open(target,true,1);}return;}if(first&&lesson.sections[current].optionalNext)showOptionalParts();if(current===state.length-1)completionLinks();}
  function finish(message){const qs=quizState(current),quiz=lesson.sections[current].quiz;if(quiz?.type&&quiz.questions?.length&&!qs.special){qs.special=true;checkpoint();$('reader-feedback').textContent='Attività completata. Ora verifica le idee con le domande.';actions();return;}completeSection(message);}
  function showOptionalParts(){
@@ -76,6 +76,13 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(skippingGame)$('reader-next').textContent='Salta il gioco →';
   $('reader-step-count').textContent=allMode?'':st.cursor<count?'Passaggio '+(st.cursor+1)+' di '+count:lesson.sections[current].quiz?'Verifica finale':'Parte completata';
  }
+ function formatRationalFractions(root){
+  if(params.get('lezione')!=='razionali-assoluti-insieme'||!root)return;
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];
+  while(walker.nextNode()){const n=walker.currentNode;if(n.data.includes('/')&&n.parentElement&&!n.parentElement.closest('.qr-fraction,svg,script,style,textarea,option'))nodes.push(n);}
+  const pattern=/(?<![\p{L}\p{N}_])(\d+|[abnq])\s*\/\s*(\d+|[abnq])(?![\p{L}\p{N}_])/gu;
+  nodes.forEach(n=>{const matches=[...n.data.matchAll(pattern)];if(!matches.length)return;const fragment=document.createDocumentFragment();let last=0;matches.forEach(m=>{fragment.append(document.createTextNode(n.data.slice(last,m.index)));const f=el('span','qr-fraction');f.setAttribute('role','math');f.setAttribute('aria-label',m[1]+' fratto '+m[2]);[m[1],m[2]].forEach(value=>{const part=el('span','',value);part.setAttribute('aria-hidden','true');f.append(part);});fragment.append(f);last=m.index+m[0].length;});fragment.append(document.createTextNode(n.data.slice(last)));n.replaceWith(fragment);});
+ }
  function showGlossary(id){
   const baseTerm=window.READER_GLOSSARY[id];if(!baseTerm)return;
   const term={...baseTerm,...baseTerm.byLevel?.[selectedLevel]};
@@ -86,11 +93,13 @@ document.addEventListener('DOMContentLoaded',()=>{
    ['livello','ruolo'].forEach(k=>{if(params.has(k))url.searchParams.set(k,params.get(k));});
    const line=el('p'),a=el('a','',ref.label+' ↗');a.href=url.href;a.target='_blank';a.rel='noopener';line.append(a);links.append(line);
   });$('reader-glossary').append(links);}
+  formatRationalFractions($('glossary-text'));
   $('reader-glossary').showModal();
  }
 
  // Link the delta symbol in both lesson text and changing measurement readouts.
  function linkDeltaSymbols(root){
+  formatRationalFractions(root);
   const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];
   while(walker.nextNode()){
    const node=walker.currentNode,parent=node.parentElement;
@@ -343,6 +352,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    celebrate($('reader-feedback'),'Corretto. '+feedback);
    box.append(button('Prossima domanda →',()=>{qs.index=position+1;$('reader-feedback').replaceChildren();checkpoint();actions();},'rm-btn'));
   }));
+  formatRationalFractions(box);
   if(state[current].complete)$('reader-feedback').textContent='Checkpoint già superato. Puoi ripassare o proseguire.';
  }
  function completionLinks(){

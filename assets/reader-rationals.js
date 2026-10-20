@@ -5,7 +5,7 @@ Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
     "title": "L’insieme dei numeri razionali assoluti",
     "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
-    "version": 10,
+    "version": 11,
     "status": "work-in-progress",
     "sections": [
       {
@@ -18,7 +18,7 @@ Object.assign(window.READER_LESSONS,{
             "steps": [
               {
                 "title": "Una divisione che conosci già",
-                "html": "Quante volte ti è capitato di svolgere una <strong>divisione in colonna</strong> e di trovare un <strong>resto diverso da zero</strong>?<br><br>Bjorne sta ripassando <strong>246 : 5</strong> sul suo tablet. Entriamo a vedere i passaggi.",
+                "html": "Quante volte ti è capitato di svolgere una <strong>divisione in colonna</strong> e di trovare un <strong>resto diverso da zero</strong>?<br><br>Bjorne sta ripassando una divisione sul suo tablet. Entriamo a vedere i passaggi.",
                 "divisionView": "scene"
               },
               {
@@ -46,7 +46,7 @@ Object.assign(window.READER_LESSONS,{
             "steps": [
               {
                 "title": "Il rapporto tra due numeri",
-                "html": "Il risultato della divisione tra a e b, con b ≠ 0, si chiama <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-rapporto\">rapporto</button> tra a e b e si indica con una <strong>frazione</strong>:<br><br><span class=\"qr-formula\">a : b = <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span></span><br><br>Il simbolo che separa i due termini si chiama <strong>linea di frazione</strong>; a è il <strong>numeratore</strong> e b il <strong>denominatore</strong>. Nella divisione di Bjorne, il rapporto è <span class=\"qr-fraction\" role=\"math\" aria-label=\"246 fratto 5\"><span aria-hidden=\"true\">246</span><span aria-hidden=\"true\">5</span></span>."
+                "html": "Il risultato della divisione tra a e b, con b ≠ 0, si chiama <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-rapporto\">rapporto</button> tra a e b e si indica con una <strong>frazione</strong>:<br><br><span class=\"qr-formula\">a : b = <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span></span><br><br>Il simbolo che separa i due termini si chiama <strong>linea di frazione</strong>; a è il <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button></strong> e b il <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button></strong>. Nella divisione di Bjorne, il rapporto è <span class=\"qr-fraction\" role=\"math\" aria-label=\"246 fratto 5\"><span aria-hidden=\"true\">246</span><span aria-hidden=\"true\">5</span></span>."
               },
               {
                 "title": "Perché è un ampliamento di ℕ?",
@@ -131,13 +131,14 @@ Object.assign(window.READER_LESSONS,{
             "steps": [
               {
                 "title": "Zero al numeratore",
-                "html": "Se il denominatore è diverso da zero, il rapporto vale zero:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto b\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">b</span></span> = 0 &nbsp; (b ≠ 0)</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 5\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">5</span></span> = 0, perché 0 × 5 = 0."
+                "html": "Se il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> è diverso da zero, il rapporto vale zero:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto b\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">b</span></span> = 0 &nbsp; (b ≠ 0)</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 5\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">5</span></span> = 0, perché 0 × 5 = 0."
               },
               {
                 "title": "Zero al denominatore",
-                "html": "Se <strong>a ≠ 0</strong>, <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto 0\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">0</span></span> è una divisione <strong>impossibile</strong>: nessun numero moltiplicato per zero dà a.<br><br><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 0\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">0</span></span> è invece <strong>indeterminato</strong>: ogni numero moltiplicato per zero dà zero, quindi non si individua un unico quoziente.<br><br>In entrambi i casi la divisione non è definita: nelle frazioni che rappresentano gli elementi di ℚₐ il <strong>denominatore deve essere diverso da zero</strong>."
+                "html": "Se <strong>a ≠ 0</strong>, <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto 0\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">0</span></span> è una divisione <strong>impossibile</strong>: nessun numero moltiplicato per zero dà a.<br><br><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 0\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">0</span></span> è invece <strong>indeterminato</strong>: ogni numero moltiplicato per zero dà zero, quindi non si individua un unico quoziente.<br><br>In entrambi i casi la divisione non è definita: nelle frazioni che rappresentano gli elementi di ℚₐ il <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> deve essere diverso da zero</strong>."
               }
-            ]
+            ],
+            "board": "qr-zero-illustration"
           }
         ],
         "quiz": {
@@ -218,7 +219,7 @@ Object.assign(window.READER_LESSONS,{
               },
               {
                 "title": "Quando ci fermiamo?",
-                "html": "Una frazione è <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-minimi\">ridotta ai minimi termini</button> se numeratore e denominatore sono <strong>primi tra loro</strong>: il loro M.C.D. è 1.<br><br>3 e 4 non hanno divisori comuni maggiori di 1: <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span> non si può più semplificare dividendo i termini per un naturale maggiore di 1."
+                "html": "Una frazione è <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-minimi\">ridotta ai minimi termini</button> se <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button> e <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> sono <strong>primi tra loro</strong>: il loro M.C.D. è 1.<br><br>3 e 4 non hanno divisori comuni maggiori di 1: <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span> non si può più semplificare dividendo i termini per un naturale maggiore di 1."
               }
             ]
           },
@@ -297,11 +298,11 @@ Object.assign(window.READER_LESSONS,{
             "steps": [
               {
                 "title": "Parti della stessa grandezza",
-                "html": "Con lo stesso denominatore basta confrontare i numeratori: <span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 7\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">7</span></span> &lt; <span class=\"qr-fraction\" role=\"math\" aria-label=\"5 fratto 7\"><span aria-hidden=\"true\">5</span><span aria-hidden=\"true\">7</span></span></span>.<br><br>Con denominatori diversi non possiamo contare direttamente i pezzi: un terzo e un quarto non hanno la stessa grandezza. Prima li trasformiamo in <strong>parti della stessa unità e della stessa grandezza</strong>."
+                "html": "Con lo stesso <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> basta confrontare i numeratori: <span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 7\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">7</span></span> &lt; <span class=\"qr-fraction\" role=\"math\" aria-label=\"5 fratto 7\"><span aria-hidden=\"true\">5</span><span aria-hidden=\"true\">7</span></span></span>.<br><br>Con denominatori diversi non possiamo contare direttamente i pezzi: un terzo e un quarto non hanno la stessa grandezza. Prima li trasformiamo in <strong>parti della stessa unità e della stessa grandezza</strong>."
               },
               {
                 "title": "Una procedura affidabile",
-                "html": "Per confrontare <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span> scegliamo <strong>m.c.m.(3, 4) = 12</strong>: otteniamo <span class=\"qr-fraction\" role=\"math\" aria-label=\"8 fratto 12\"><span aria-hidden=\"true\">8</span><span aria-hidden=\"true\">12</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"9 fratto 12\"><span aria-hidden=\"true\">9</span><span aria-hidden=\"true\">12</span></span>. Ora le parti hanno la stessa grandezza e 8 &lt; 9.<br><br>Una frazione <strong>propria</strong> ha numeratore minore del denominatore ed è minore di 1; una <strong>impropria</strong> ha numeratore maggiore o uguale al denominatore ed è almeno 1."
+                "html": "Per confrontare <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span> scegliamo <strong>m.c.m.(3, 4) = 12</strong>: otteniamo <span class=\"qr-fraction\" role=\"math\" aria-label=\"8 fratto 12\"><span aria-hidden=\"true\">8</span><span aria-hidden=\"true\">12</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"9 fratto 12\"><span aria-hidden=\"true\">9</span><span aria-hidden=\"true\">12</span></span>. Ora le parti hanno la stessa grandezza e 8 &lt; 9.<br><br>Una frazione <strong>propria</strong> ha <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button> minore del <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> ed è minore di 1; una <strong>impropria</strong> ha <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button> maggiore o uguale al <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> ed è almeno 1."
               }
             ]
           },
@@ -1303,6 +1304,8 @@ Object.assign(window.READER_LESSONS,{
   }
 });
 Object.assign(window.READER_GLOSSARY,{
+"qr-numeratore": {"title": "Numeratore", "kind": "Matematica · Frazioni", "text": "È il termine scritto sopra la linea di frazione. Nella frazione a/b il numeratore è a: è il dividendo della divisione a : b."},
+"qr-denominatore": {"title": "Denominatore", "kind": "Matematica · Frazioni", "text": "È il termine scritto sotto la linea di frazione. Nella frazione a/b il denominatore è b: è il divisore e deve essere diverso da zero."},
   "qr-frazione": {
     "title": "Frazione",
     "kind": "Matematica · Numeri razionali assoluti",

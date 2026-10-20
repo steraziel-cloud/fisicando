@@ -16,3 +16,5 @@
 /* Compact calculation view: indicator above text and one control row. */
 .qd-dialog{padding:20px}.qd-dialog-top{margin-bottom:17px}.qd-dialog-content{gap:24px}.qd-progress{margin:0 0 18px}.qd-narration{min-height:0}.qd-controls{flex-wrap:nowrap;justify-content:safe center;overflow-x:auto;gap:8px;margin-top:18px;padding:3px 2px 5px;scrollbar-width:thin}.qd-controls .qd-button{flex:0 0 auto;white-space:nowrap}.qd-controls .qd-finish{display:inline-flex;align-items:center;margin:0}.qd-controls .qd-finish[hidden]{display:none}.qd-dialog .qd-stage-title{margin:0 0 12px}
 @media(max-width:800px){.qd-dialog{padding:16px}.qd-dialog-top{margin-bottom:14px}.qd-dialog-content{gap:16px}.qd-progress{margin-bottom:14px}.qd-controls{justify-content:flex-start;margin-top:14px}}
+
+.qd-dialog-top .qd-close{width:40px;height:40px;min-height:40px;padding:0;display:grid;place-items:center;font-size:28px;line-height:1;border-radius:50%;margin-left:auto;flex:0 0 auto}

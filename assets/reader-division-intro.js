@@ -26,7 +26,7 @@
   let mode=view,stage=0,playing=false,timer=null,disposed=false,skipNext=false,opener=null,hoverTimer=null,lastClosedAt=0;
   const dialog=el('dialog','qd-dialog');dialog.setAttribute('aria-label','Il tablet di Bjorne: divisione in colonna');
   const top=el('header','qd-dialog-top');top.append(el('span','qd-eyebrow','Il tablet di Bjorne'));
-  const close=button('Chiudi ×',()=>closeDialog());close.setAttribute('aria-label','Chiudi il tablet e torna alla lezione');
+  const close=button('×',()=>closeDialog(),'qd-close');close.setAttribute('aria-label','Chiudi il tablet e torna alla lezione');
   const content=el('div','qd-dialog-content'),blackboard=el('div','qd-blackboard');blackboard.innerHTML=svg;
   const check=el('p','qd-check','246 = 5 × 49 + 1');blackboard.append(check);
   const guide=el('div','qd-guide'),title=el('h2','qd-stage-title'),narration=el('p','qd-narration');narration.setAttribute('role','status');narration.setAttribute('aria-live','polite');
@@ -39,7 +39,7 @@
   const restart=button('↺ Ricomincia',()=>{pause();setStage(0);});
   controls.append(prev,play,next,restart);
   const finish=button('Continua la lezione →',()=>{closeDialog(false);if(mode==='scene'&&!passive){skipNext=true;document.getElementById('reader-next')?.click();skipNext=false;}else trigger.focus({preventScroll:true});},'qd-finish qd-primary');
-  controls.append(finish,close);dialog.append(top,content,controls);document.body.append(dialog);
+  top.append(close);controls.append(finish);dialog.append(top,content,controls);document.body.append(dialog);
   function pause(){playing=false;clearTimeout(timer);timer=null;play.textContent=stage===stages.length-1?'↺ Rivedi l’animazione':'▶ Guarda l’animazione';}
   function setStage(n){stage=Math.max(0,Math.min(stages.length-1,n));const groups=blackboard.querySelectorAll('[data-reveal]');for(const group of groups){const at=Number(group.dataset.reveal);group.classList.toggle('qd-hidden',at>stage);group.classList.toggle('qd-new',at===stage&&stage>0);}
    blackboard.querySelector('.qd-focus').classList.toggle('qd-hidden',stage!==1);check.hidden=stage<9;dots.setAttribute('aria-valuenow',String(stage));dots.setAttribute('aria-valuetext',stages[stage][0]);title.textContent=stages[stage][0];narration.textContent=stages[stage][1];
