@@ -20,12 +20,10 @@
  function mount(box,{view='scene',passive=false}={}){
   box.classList.add('qd-reader-card');
   const scene=el('aside','qd-scene');scene.setAttribute('aria-label','Bjorne alla scrivania con il tablet');
-  const trigger=button('',()=>open(),'qd-scene-trigger');trigger.setAttribute('aria-label','Apri il tablet di Bjorne e guarda la divisione 246 diviso 5');
-  const art=el('span','qd-art');const img=el('img','qd-scene-image');img.src='assets/images/reader/bjorne-tablet-studio-v1.webp';img.alt='Bjorne alla scrivania scrive sul tablet con il pennino';img.width=1536;img.height=1024;img.decoding='async';
-  const preview=el('span','qd-scene-writing');preview.innerHTML='<span>246 <span class="qd-preview-divider">5<br><span>&nbsp;</span></span></span>';
-  const chalk=el('span','qd-chalk');chalk.setAttribute('aria-hidden','true');art.append(img,preview,chalk);trigger.append(art,el('span','qd-open-hint','Tocca il tablet per entrare ↗'));
-  scene.append(el('p','qd-scene-problem','246 : 5'),trigger,el('p','qd-scene-note','Oppure premi «Continua»: ripassiamo insieme i passaggi.'));box.append(scene);
-  let mode=view,stage=0,playing=false,timer=null,disposed=false,skipNext=false,opener=null;
+  const art=el('span','qd-art');const img=el('img','qd-scene-image');img.src='assets/images/reader/bjorne-tablet-facing-v2.webp';img.alt='Bjorne alla scrivania scrive con il pennino sul tablet rivolto verso di lui';img.width=1536;img.height=1024;img.decoding='async';
+  const trigger=button('',()=>open(),'qd-tablet-hotspot');trigger.classList.remove('qd-button');trigger.setAttribute('aria-label','Apri il tablet di Bjorne e guarda la divisione 246 diviso 5');
+  art.append(img,trigger);scene.append(art);box.append(scene);
+  let mode=view,stage=0,playing=false,timer=null,disposed=false,skipNext=false,opener=null,hoverTimer=null,lastClosedAt=0;
   const dialog=el('dialog','qd-dialog');dialog.setAttribute('aria-label','Il tablet di Bjorne: divisione in colonna');
   const top=el('header','qd-dialog-top');top.append(el('span','qd-eyebrow','Il tablet di Bjorne'));
   const close=button('Chiudi ×',()=>closeDialog());close.setAttribute('aria-label','Chiudi il tablet e torna alla lezione');top.append(close);
@@ -51,15 +49,18 @@
   }
   function tick(){clearTimeout(timer);if(!playing||disposed||!dialog.open)return;if(stage===stages.length-1){pause();return;}timer=setTimeout(()=>{if(!playing||disposed)return;setStage(stage+1);tick();},stage===0?1300:stage===5?3300:2700);}
   function start(){if(stage===stages.length-1)setStage(0);playing=true;play.textContent='Ⅱ Pausa';tick();}
-  function open(){if(disposed||dialog.open)return;opener=document.activeElement;dialog.showModal();setStage(stage);close.focus({preventScroll:true});if(!matchMedia('(prefers-reduced-motion: reduce)').matches)start();}
-  function closeDialog(restore=true){pause();dialog.close();if(restore&&(opener?.isConnected))opener.focus({preventScroll:true});}
+  function open(){clearTimeout(hoverTimer);hoverTimer=null;if(disposed||dialog.open)return;opener=document.activeElement;dialog.showModal();setStage(stage);close.focus({preventScroll:true});if(!matchMedia('(prefers-reduced-motion: reduce)').matches)start();}
+  function closeDialog(restore=true){pause();lastClosedAt=Date.now();dialog.close();if(restore&&(opener?.isConnected))opener.focus({preventScroll:true});}
   const cancel=e=>{e.preventDefault();closeDialog();};dialog.addEventListener('cancel',cancel);
   const intercept=e=>{if(skipNext||passive||mode!=='scene'||!box.isConnected)return;e.preventDefault();e.stopImmediatePropagation();open();};
   const readerNext=document.getElementById('reader-next');readerNext?.addEventListener('click',intercept,true);
   const visibility=()=>{if(document.hidden)pause();};document.addEventListener('visibilitychange',visibility);
   const key=e=>{if(!['ArrowRight','ArrowLeft'].includes(e.key))return;e.preventDefault();e.stopPropagation();if(e.key==='ArrowRight'&&!next.disabled){pause();setStage(stage+1);}if(e.key==='ArrowLeft'&&!prev.disabled){pause();setStage(stage-1);}};dialog.addEventListener('keydown',key);
   setStage(0);
-  const api={setView(v){mode=v||'done';scene.classList.toggle('qd-scene-done',mode!=='scene');scene.querySelector('.qd-scene-note').textContent=mode==='scene'?'Oppure premi «Continua»: ripassiamo insieme i passaggi.':'Puoi riaprire il tablet per rivedere la divisione.';},dispose(){disposed=true;pause();if(dialog.open)dialog.close();dialog.remove();readerNext?.removeEventListener('click',intercept,true);document.removeEventListener('visibilitychange',visibility);dialog.removeEventListener('cancel',cancel);dialog.removeEventListener('keydown',key);mounted.delete(box);}};
+  const onHover=e=>{if(e.pointerType!=='mouse'||!matchMedia('(hover: hover)').matches||dialog.open||Date.now()-lastClosedAt<800)return;clearTimeout(hoverTimer);hoverTimer=setTimeout(()=>{hoverTimer=null;if(!disposed&&trigger.matches(':hover'))open();},350);};
+  const leave=()=>{clearTimeout(hoverTimer);hoverTimer=null;};
+  trigger.addEventListener('pointerenter',onHover);trigger.addEventListener('pointerleave',leave);
+  const api={setView(v){mode=v||'done';},dispose(){disposed=true;pause();leave();if(dialog.open)dialog.close();dialog.remove();readerNext?.removeEventListener('click',intercept,true);document.removeEventListener('visibilitychange',visibility);dialog.removeEventListener('cancel',cancel);dialog.removeEventListener('keydown',key);trigger.removeEventListener('pointerenter',onHover);trigger.removeEventListener('pointerleave',leave);mounted.delete(box);}};
   api.setView(view);mounted.set(box,api);return()=>api.dispose();
  }
  window.GatitoDivisionIntro={mount,setView(box,view){mounted.get(box)?.setView(view);}};

@@ -13,3 +13,6 @@ Immagine creata con lo strumento integrato imagegen, riferimento Bjorne esistent
 L'insieme e la divisione restano la prima sezione; i casi con lo zero sono la seconda. Il copilota delle frazioni non viene reinserito.
 
 Revisione richiesta: tablet portatile A4 sul tavolo al posto della grande lavagna; Bjorne è il soggetto principale. Stanza raccolta con parete turchese, libri, finestra e luce calda; nessuna formula nel bitmap. Secondo riferimento: scena delle monetine fornita dall’utente.
+
+
+Revisione del 20 ottobre: tablet rivolto verso Bjorne, retro visibile allo studente. Nuovo asset `assets/images/reader/bjorne-tablet-facing-v2.webp`; edit con imagegen, stesso personaggio/stanza, sola rotazione tablet e adattamento pennino. Eliminati titolo numerico sopra l'immagine, inviti testuali, sovrimpressioni sullo schermo e pallino animato. Un'area trasparente sul tablet apre il calcolo al passaggio del mouse (350 ms, dispositivi con hover), oppure al clic/tocco. Il pulsante Continua mantiene la stessa apertura. Chiusura e cambio card cancellano l'attesa del passaggio del mouse; breve protezione dalla riapertura involontaria alla chiusura.
