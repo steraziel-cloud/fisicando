@@ -5,7 +5,7 @@ Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
     "title": "L’insieme dei numeri razionali assoluti",
     "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
-    "version": 5,
+    "version": 6,
     "status": "work-in-progress",
     "sections": [
       {
@@ -18,17 +18,21 @@ Object.assign(window.READER_LESSONS,{
             "steps": [
               {
                 "title": "Una divisione che conosci già",
-                "html": "Quante volte ti è capitato di svolgere una <strong>divisione in colonna</strong> e di trovare un <strong>resto diverso da zero</strong>? Riprendiamo, con Bjorne, <strong>246 : 5</strong>.<br><br><span class=\"qr-division-scene\"><span class=\"qr-division-board\"><span class=\"qr-division-caption\">Bjorne ripassa la divisione in colonna</span><svg viewBox=\"0 0 440 260\" role=\"img\" aria-label=\"246 diviso 5: 24 meno 20 dà 4; abbasso il 6 e ottengo 46; 46 meno 45 dà 1. Quoziente intero 49, resto 1.\"><g class=\"qr-chalk-numbers\"><text x=\"85\" y=\"44\">2</text><text x=\"121\" y=\"44\">4</text><text x=\"157\" y=\"44\">6</text><text x=\"236\" y=\"44\">5</text><text x=\"227\" y=\"90\" class=\"qr-chalk-accent\">49</text><text x=\"44\" y=\"88\">−</text><text x=\"85\" y=\"88\">2</text><text x=\"121\" y=\"88\">0</text><text x=\"121\" y=\"139\">4</text><text x=\"157\" y=\"139\" class=\"qr-chalk-accent\">6</text><text x=\"80\" y=\"184\">−</text><text x=\"121\" y=\"184\">4</text><text x=\"157\" y=\"184\">5</text><text x=\"157\" y=\"235\" class=\"qr-chalk-accent\">1</text></g><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M203 15V101 M203 57H292 M76 102H148 M111 198H184\"/><path d=\"M165 54V107 M160 101L165 107L170 101\" class=\"qr-chalk-accent\"/></g><g class=\"qr-chalk-labels\"><text x=\"307\" y=\"39\">divisore</text><text x=\"307\" y=\"88\">quoziente</text><text x=\"307\" y=\"107\">intero</text><text x=\"203\" y=\"235\" class=\"qr-chalk-accent\">resto</text></g></svg><span class=\"qr-division-check\">246 = 5 × 49 + <strong>1</strong></span></span><img class=\"qr-division-bjorne\" src=\"assets/images/morgana-classroom/bjorne-01.png\" alt=\"Bjorne accanto alla lavagnetta\" width=\"1080\" height=\"1440\" loading=\"eager\" decoding=\"async\"></span><br><strong>1.</strong> Il 5 nel 24 sta 4 volte: scriviamo 4 nel quoziente e sottraiamo 20. Resta 4.<br><br><strong>2.</strong> Abbassiamo il 6: otteniamo 46. Il 5 nel 46 sta 9 volte: scriviamo 9 e sottraiamo 45. <strong>Resta 1.</strong>"
+                "html": "Quante volte ti è capitato di svolgere una <strong>divisione in colonna</strong> e di trovare un <strong>resto diverso da zero</strong>?<br><br>Bjorne sta ripassando <strong>246 : 5</strong> sulla sua lavagnetta. Entriamo a vedere i passaggi.",
+                "divisionView": "scene"
               },
               {
                 "title": "Che cosa ci dice quel resto?",
-                "html": "Abbiamo trovato <strong>49 come quoziente intero e 1 come resto</strong>. La divisione non è esatta: 5 × 49 = 245, mentre 5 × 50 = 250. <strong>Nessun numero naturale, moltiplicato per 5, dà 246.</strong><br><br>Il quoziente esatto di 246 : 5, quindi, <strong>non è un numero naturale</strong>.<br><br>La divisione <strong>non è un’operazione interna a ℕ</strong>: anche con un divisore diverso da zero, il risultato esatto può non appartenere a ℕ. Per questo dobbiamo ampliare l’insieme."
+                "html": "Abbiamo trovato <strong>49 come quoziente intero e 1 come resto</strong>. La divisione non è esatta: 5 × 49 = 245, mentre 5 × 50 = 250. <strong>Nessun numero naturale, moltiplicato per 5, dà 246.</strong><br><br>Il quoziente esatto di 246 : 5, quindi, <strong>non è un numero naturale</strong>.<br><br>La divisione <strong>non è un’operazione interna a ℕ</strong>: anche con un divisore diverso da zero, il risultato esatto può non appartenere a ℕ. Per questo dobbiamo ampliare l’insieme.",
+                "divisionView": "done"
               },
               {
                 "title": "Dai naturali ai razionali assoluti",
-                "html": "Per avere un insieme che contenga questi quozienti, ampliamo ℕ all’<strong>insieme dei numeri razionali assoluti</strong>, indicato con <strong>ℚₐ</strong>.<br><br>I suoi elementi sono tutti i numeri rappresentabili con una frazione <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span>, dove <strong>a e b sono numeri naturali e b ≠ 0</strong>.<br><br>Il quoziente esatto del nostro esempio si rappresenta con <span class=\"qr-fraction\" role=\"math\" aria-label=\"246 fratto 5\"><span aria-hidden=\"true\">246</span><span aria-hidden=\"true\">5</span></span>.<br><br>In ℚₐ la divisione dà ancora un elemento di ℚₐ, <strong>purché il divisore sia diverso da zero</strong>."
+                "html": "Per avere un insieme che contenga questi quozienti, ampliamo ℕ all’<strong>insieme dei numeri razionali assoluti</strong>, indicato con <strong>ℚₐ</strong>.<br><br>I suoi elementi sono tutti i numeri rappresentabili con una frazione <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span>, dove <strong>a e b sono numeri naturali e b ≠ 0</strong>.<br><br>Il quoziente esatto del nostro esempio si rappresenta con <span class=\"qr-fraction\" role=\"math\" aria-label=\"246 fratto 5\"><span aria-hidden=\"true\">246</span><span aria-hidden=\"true\">5</span></span>.<br><br>In ℚₐ la divisione dà ancora un elemento di ℚₐ, <strong>purché il divisore sia diverso da zero</strong>.",
+                "divisionView": "done"
               }
-            ]
+            ],
+            "board": "division-intro"
           },
           {
             "title": "Rapporto e scrittura frazionaria",
