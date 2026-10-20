@@ -132,69 +132,82 @@ window.LESSON_CATALOG = [
             ]
           },
           {
-            "title": "Frazioni e numeri razionali",
+            "title": "Numeri razionali assoluti",
             "icon": "numbers",
             "aliases": [
+              "frazioni",
+              "Qₐ",
+              "Qa",
               "Q+",
-              "razionali positivi"
+              "razionali non negativi",
+              "numeri decimali"
             ],
             "lessons": [
               {
-                "title": "Frazioni: significato e rappresentazione",
+                "title": "L’insieme dei numeri razionali assoluti",
+                "id": "razionali-assoluti-insieme",
+                "url": "reader.html?lezione=razionali-assoluti-insieme",
                 "levels": [
                   "medie",
                   "biennio"
                 ],
+                "kind": "Teoria",
                 "status": "work-in-progress"
               },
               {
-                "title": "Frazioni equivalenti e riduzione ai minimi termini",
+                "title": "Le operazioni in ℚₐ",
+                "id": "razionali-assoluti-operazioni",
+                "url": "reader.html?lezione=razionali-assoluti-operazioni",
                 "levels": [
                   "medie",
                   "biennio"
                 ],
+                "kind": "Teoria",
                 "status": "work-in-progress"
               },
               {
-                "title": "Numeri razionali positivi e confronto",
+                "title": "Le espressioni con le frazioni",
+                "id": "razionali-assoluti-espressioni",
+                "url": "reader.html?lezione=razionali-assoluti-espressioni",
                 "levels": [
                   "medie",
                   "biennio"
                 ],
+                "kind": "Teoria",
                 "status": "work-in-progress"
               },
               {
-                "title": "Addizione e sottrazione di frazioni",
+                "title": "Frazioni e numeri decimali",
+                "id": "razionali-assoluti-decimali",
+                "url": "reader.html?lezione=razionali-assoluti-decimali",
                 "levels": [
                   "medie",
                   "biennio"
                 ],
+                "kind": "Teoria",
                 "status": "work-in-progress"
               },
               {
-                "title": "Moltiplicazione e divisione di frazioni",
+                "title": "I valori approssimati di un numero razionale",
+                "id": "razionali-assoluti-approssimazioni",
+                "url": "reader.html?lezione=razionali-assoluti-approssimazioni",
                 "levels": [
                   "medie",
                   "biennio"
                 ],
+                "kind": "Teoria",
                 "status": "work-in-progress"
-              },
-              {
-                "title": "Potenze di frazioni",
-                "levels": [
-                  "medie",
-                  "biennio"
-                ],
-                "status": "work-in-progress"
-              },
-              {
-                "title": "Espressioni con le frazioni",
-                "levels": [
-                  "medie",
-                  "biennio"
-                ],
-                "status": "work-in-progress"
-              },
+              }
+            ]
+          },
+          {
+            "title": "Numeri relativi e reali",
+            "icon": "numbers",
+            "aliases": [
+              "interi relativi",
+              "razionali relativi"
+            ],
+            "lessons": [
               {
                 "title": "Numeri interi relativi",
                 "levels": [

@@ -408,6 +408,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  function updateCard(item,direction){
   const view=mountedCard;cancelSlide();
+  if(item.card.board?.startsWith('qr-')&&window.GatitoRationalBoards)window.GatitoRationalBoards.setView(view.box,item.step.qrView);
   if(item.card.board?.startsWith('chem-')&&window.GatitoChemistryBoards)window.GatitoChemistryBoards.setView(view.box,item.step.chemView);
   if(item.card.board==='acceleration-class'&&window.GatitoAccelerationClass)window.GatitoAccelerationClass.setMode(view.box,item.step.classMode||'');
   if(item.card.board?.startsWith('cafe-')&&window.GatitoAngleCafe)window.GatitoAngleCafe.setStage(view.box,item.step.cafeStage??0);
@@ -459,6 +460,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.visualLayout==='closing')box.classList.add('rm-visual-closing');
   if(card.illustration){const picture=el('div','rm-reference-scene'),img=el('img','rm-train-illustration');img.src=card.illustration.src;img.alt=card.illustration.alt;img.width=card.illustration.width;img.height=card.illustration.height;img.style.objectFit='contain';img.style.mask='none';img.style.webkitMask='none';picture.append(img);box.append(picture);}
   if(card.closingQuote){const quote=el('figure','rm-closing-quote'),words=el('blockquote','', '«'+card.closingQuote.text+'»'),caption=el('figcaption'),author=el('span','rm-quote-author',card.closingQuote.author),work=el('cite','',card.closingQuote.work),note=el('small','rm-quote-note',card.closingQuote.note||'');caption.append(author,work,note);quote.append(words,caption);box.append(quote);}
+  if(card.board?.startsWith('qr-')&&window.GatitoRationalBoards)disposeWidget=window.GatitoRationalBoards.mount(box,card,{view:steps.at(-1)?.qrView});
   if(card.board?.startsWith('chem-')&&window.GatitoChemistryBoards)disposeWidget=window.GatitoChemistryBoards.mount(box,card.board,{view:steps.at(-1)?.chemView});
   if(card.board?.startsWith('cafe-')&&window.GatitoAngleCafe)disposeWidget=window.GatitoAngleCafe.mount(box,card.board,cafeState,{stage:steps.at(-1)?.cafeStage??0});
   if(card.board==='elevator'&&window.GatitoElevator)disposeWidget=window.GatitoElevator.mount(box,state[current].elevator,()=>{actions();if(!referenceMode&&!allMode)$('reader-next').click();},archived||allMode);
