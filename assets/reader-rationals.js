@@ -5,7 +5,7 @@ Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
     "title": "L’insieme dei numeri razionali assoluti",
     "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
-    "version": 11,
+    "version": 12,
     "status": "work-in-progress",
     "sections": [
       {
@@ -130,12 +130,12 @@ Object.assign(window.READER_LESSONS,{
             "stepMode": "replace",
             "steps": [
               {
-                "title": "Zero al numeratore",
-                "html": "Se il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> è diverso da zero, il rapporto vale zero:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto b\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">b</span></span> = 0 &nbsp; (b ≠ 0)</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 5\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">5</span></span> = 0, perché 0 × 5 = 0."
+                "title": "Lo zero al numeratore e al denominatore",
+                "html": "Se il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> è diverso da zero, il rapporto con zero al <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button> vale <strong>zero</strong>:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto b\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">b</span></span> = 0 &nbsp; (b ≠ 0)</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 5\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">5</span></span> = 0, perché 0 × 5 = 0.<br><br>Se invece <strong>il denominatore è zero e a ≠ 0</strong>, la divisione <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto 0\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">0</span></span> è <strong>impossibile</strong>: nessun numero moltiplicato per zero dà a."
               },
               {
-                "title": "Zero al denominatore",
-                "html": "Se <strong>a ≠ 0</strong>, <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto 0\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">0</span></span> è una divisione <strong>impossibile</strong>: nessun numero moltiplicato per zero dà a.<br><br><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 0\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">0</span></span> è invece <strong>indeterminato</strong>: ogni numero moltiplicato per zero dà zero, quindi non si individua un unico quoziente.<br><br>In entrambi i casi la divisione non è definita: nelle frazioni che rappresentano gli elementi di ℚₐ il <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> deve essere diverso da zero</strong>."
+                "title": "Il caso particolare: zero diviso zero",
+                "html": "Che cosa succede con <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 0\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">0</span></span>?<br><br>Ogni numero moltiplicato per zero dà zero: 0 × 0 = 0, 1 × 0 = 0, 2 × 0 = 0… La relazione non individua quindi <strong>un unico quoziente</strong>: il caso è <strong>indeterminato</strong> e la divisione non è definita.<br><br>Nelle frazioni che rappresentano gli elementi di ℚₐ il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> deve essere <strong>diverso da zero</strong>.<br><br><small>Un piccolo spoiler 👀 Questa scrittura tornerà nello studio dei limiti, con il nome di <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-forma-indeterminata\">forma indeterminata</button>.</small>"
               }
             ],
             "board": "qr-zero-illustration"
@@ -1304,6 +1304,7 @@ Object.assign(window.READER_LESSONS,{
   }
 });
 Object.assign(window.READER_GLOSSARY,{
+"qr-forma-indeterminata": {"title":"Forma indeterminata · Uno spoiler sui limiti","kind":"Curiosità · Un incontro dal futuro","text":"Quando studierai i limiti, incontrerai rapporti in cui numeratore e denominatore tendono entrambi a zero. Sapere soltanto questo non basta per determinare il limite: conta come si avvicinano a zero. Si parla allora di forma indeterminata 0/0. Non significa che la divisione 0/0 abbia un valore: quella resta non definita."},
 "qr-numeratore": {"title": "Numeratore", "kind": "Matematica · Frazioni", "text": "È il termine scritto sopra la linea di frazione. Nella frazione a/b il numeratore è a: è il dividendo della divisione a : b."},
 "qr-denominatore": {"title": "Denominatore", "kind": "Matematica · Frazioni", "text": "È il termine scritto sotto la linea di frazione. Nella frazione a/b il denominatore è b: è il divisore e deve essere diverso da zero."},
   "qr-frazione": {
