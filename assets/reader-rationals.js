@@ -5,7 +5,7 @@ Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
     "title": "L’insieme dei numeri razionali assoluti",
     "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
-    "version": 3,
+    "version": 4,
     "status": "work-in-progress",
     "sections": [
       {
@@ -37,20 +37,6 @@ Object.assign(window.READER_LESSONS,{
               {
                 "title": "Perché è un ampliamento di ℕ?",
                 "html": "Ponendo <strong>b = 1</strong> ritroviamo tutti i numeri naturali:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"n fratto 1\"><span aria-hidden=\"true\">n</span><span aria-hidden=\"true\">1</span></span> = n</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 1\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">1</span></span> = 4. Ogni numero naturale, compreso lo zero, appartiene quindi anche a ℚₐ:<br><br><span class=\"qr-formula\">ℕ ⊂ ℚₐ</span>"
-              }
-            ]
-          },
-          {
-            "title": "I casi con lo zero",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Zero al numeratore",
-                "html": "Se il denominatore è diverso da zero, il rapporto vale zero:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto b\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">b</span></span> = 0 &nbsp; (b ≠ 0)</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 5\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">5</span></span> = 0, perché 0 × 5 = 0."
-              },
-              {
-                "title": "Zero al denominatore",
-                "html": "Se <strong>a ≠ 0</strong>, <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto 0\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">0</span></span> è una divisione <strong>impossibile</strong>: nessun numero moltiplicato per zero dà a.<br><br><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 0\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">0</span></span> è invece <strong>indeterminato</strong>: ogni numero moltiplicato per zero dà zero, quindi non si individua un unico quoziente.<br><br>In entrambi i casi la divisione non è definita: nelle frazioni che rappresentano gli elementi di ℚₐ il <strong>denominatore deve essere diverso da zero</strong>."
               }
             ]
           }
@@ -133,6 +119,26 @@ Object.assign(window.READER_LESSONS,{
               {
                 "title": "Nessun successivo immediato",
                 "html": "Fra a e b, con a &lt; b, il numero <strong>(a + b) : 2</strong> è razionale e sta esattamente a metà. Possiamo ripetere il procedimento senza fermarci.<br><br>Perciò un razionale non ha un <strong>successivo immediato</strong> come accade in ℕ. ℚₐ ha minimo 0, ma non ha un minimo positivo né un massimo.<details class=\"qr-deeper\"><summary>Denso non significa che ogni punto sia razionale</summary><p>Dire che fra due razionali c’è sempre un razionale non equivale a dire che ogni punto della retta rappresenti un razionale. Gli altri numeri saranno oggetto di una lezione successiva.</p></details>"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "zero",
+        "title": "I casi con lo zero",
+        "cards": [
+          {
+            "title": "I casi con lo zero",
+            "stepMode": "replace",
+            "steps": [
+              {
+                "title": "Zero al numeratore",
+                "html": "Se il denominatore è diverso da zero, il rapporto vale zero:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto b\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">b</span></span> = 0 &nbsp; (b ≠ 0)</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 5\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">5</span></span> = 0, perché 0 × 5 = 0."
+              },
+              {
+                "title": "Zero al denominatore",
+                "html": "Se <strong>a ≠ 0</strong>, <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto 0\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">0</span></span> è una divisione <strong>impossibile</strong>: nessun numero moltiplicato per zero dà a.<br><br><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 0\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">0</span></span> è invece <strong>indeterminato</strong>: ogni numero moltiplicato per zero dà zero, quindi non si individua un unico quoziente.<br><br>In entrambi i casi la divisione non è definita: nelle frazioni che rappresentano gli elementi di ℚₐ il <strong>denominatore deve essere diverso da zero</strong>."
               }
             ]
           }
