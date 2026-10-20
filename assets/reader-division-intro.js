@@ -22,9 +22,9 @@
   const scene=el('aside','qd-scene');scene.setAttribute('aria-label','Bjorne alla scrivania con il tablet');
   const trigger=button('',()=>open(),'qd-scene-trigger');trigger.setAttribute('aria-label','Apri il tablet di Bjorne e guarda la divisione 246 diviso 5');
   const art=el('span','qd-art');const img=el('img','qd-scene-image');img.src='assets/images/reader/bjorne-tablet-studio-v1.webp';img.alt='Bjorne alla scrivania scrive sul tablet con il pennino';img.width=1536;img.height=1024;img.decoding='async';
-  const preview=el('span','qd-scene-writing');preview.innerHTML='<span>246 <span class="qd-preview-divider">5<br><span>?</span></span></span>';
+  const preview=el('span','qd-scene-writing');preview.innerHTML='<span>246 <span class="qd-preview-divider">5<br><span>&nbsp;</span></span></span>';
   const chalk=el('span','qd-chalk');chalk.setAttribute('aria-hidden','true');art.append(img,preview,chalk);trigger.append(art,el('span','qd-open-hint','Tocca il tablet per entrare ↗'));
-  scene.append(trigger,el('p','qd-scene-note','Oppure premi «Continua»: ripassiamo insieme i passaggi.'));box.append(scene);
+  scene.append(el('p','qd-scene-problem','246 : 5'),trigger,el('p','qd-scene-note','Oppure premi «Continua»: ripassiamo insieme i passaggi.'));box.append(scene);
   let mode=view,stage=0,playing=false,timer=null,disposed=false,skipNext=false,opener=null;
   const dialog=el('dialog','qd-dialog');dialog.setAttribute('aria-label','Il tablet di Bjorne: divisione in colonna');
   const top=el('header','qd-dialog-top');top.append(el('span','qd-eyebrow','Il tablet di Bjorne'));
