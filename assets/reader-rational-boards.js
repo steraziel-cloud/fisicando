@@ -94,6 +94,8 @@ window.GatitoRationalBoards=(()=>{
  }
  function render(s){s.host.innerHTML=draw(s);}
  function mount(box,card,{view}={}){
+  if(card.copilot&&window.GatitoFractionCopilot){box.classList.add('qr-reader-card','qr-copilot-card');const workbench=window.GatitoFractionCopilot.mount(box,{sessionKey:'razionali-assoluti-insieme',initial:card.copilotExample,example:card.copilotExample,embedded:true});return()=>workbench.dispose();}
+
   const host=document.createElement('aside');host.className='qr-board';host.setAttribute('aria-label','Lavagna digitale');
   const status=document.createElement('p');status.className='qr-sr-status';status.setAttribute('role','status');status.setAttribute('aria-live','polite');
   const s={host,kind:view||card.board.slice(3),preset:card.qrPreset,summary:card.qrSummary,a:3,b:2,k:1,power:2,places:2,stage:0,count:0,left:[1,3],right:[2,3]};

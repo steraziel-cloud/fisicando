@@ -152,7 +152,10 @@ window.LESSON_CATALOG = [
                   "biennio"
                 ],
                 "kind": "Teoria",
-                "status": "work-in-progress"
+                "status": "work-in-progress",
+                "labUrl": "copilota-frazioni.html",
+                "labTitle": "Il banco delle frazioni",
+                "labDescription": "Inserisci una frazione, scegli le semplificazioni e conserva i tuoi passaggi."
               },
               {
                 "title": "Le operazioni in ℚₐ",

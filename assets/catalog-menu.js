@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cards = document.getElementById('lesson-cards'); cards.replaceChildren();
     const types = l.kind==='Progetto' ? [['Progetto','Un tachimetro con Arduino','Costruire uno strumento per misurare la velocità.']] : [['Teoria','Capire i concetti','Leggi la spiegazione nel reader.'],['Esercizi','Metterti alla prova','Applica i concetti e allena il ragionamento.'],['Laboratorio','Esplorare e sperimentare','Osserva e manipola i fenomeni.']];
     types.forEach(([kind,title,description],i) => {
-      const materialUrl = l.kind === kind ? l.url : kind === 'Esercizi' ? l.exercisesUrl : null;
+      const materialUrl = l.kind === kind ? l.url : kind === 'Esercizi' ? l.exercisesUrl : kind === 'Laboratorio' ? l.labUrl : null;
       const active = !l.unpublished && materialUrl;
       const card = document.createElement(active ? 'a' : 'div'); card.className = 'rm-material-card rm-choice-card' + (active ? ' rm-choice-card-ready' : ' rm-choice-card-disabled');
       if (active) {
@@ -139,8 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
         card.href = url.href;
       } else card.setAttribute('aria-disabled','true');
       const label = document.createElement('span'); label.className = 'rm-material-label';label.textContent = `0${i+1} · ${kind}`;
-      const heading = document.createElement('h3');heading.textContent = title;
-      const text = document.createElement('p');text.textContent = l.unpublished ? 'In lavorazione · Non ancora disponibile al pubblico.' : active ? description : 'Non ancora disponibile per questa lezione.';
+      const heading = document.createElement('h3');heading.textContent = kind === 'Laboratorio' && l.labTitle ? l.labTitle : title;
+      const text = document.createElement('p');text.textContent = l.unpublished ? 'In lavorazione · Non ancora disponibile al pubblico.' : active ? (kind === 'Laboratorio' && l.labDescription ? l.labDescription : description) : 'Non ancora disponibile per questa lezione.';
       card.append(label,heading,text);cards.append(card);
     });
   }

@@ -1,11 +1,11 @@
-/* Original GatitoMath lessons based on the user-supplied reference pages 75–87. */
+/* Original GatitoMath rational lessons. See docs/razionali-assoluti-revisione.md. */
 (()=>{
 "use strict";
 Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
     "title": "L’insieme dei numeri razionali assoluti",
     "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
-    "version": 1,
+    "version": 2,
     "status": "work-in-progress",
     "sections": [
       {
@@ -38,7 +38,12 @@ Object.assign(window.READER_LESSONS,{
                 ]
               }
             ],
-            "board": "qr-parts"
+            "board": "qr-parts",
+            "copilot": true,
+            "copilotExample": {
+              "n": "3",
+              "d": "2"
+            }
           },
           {
             "title": "Come si legge una frazione",
@@ -50,10 +55,15 @@ Object.assign(window.READER_LESSONS,{
               },
               {
                 "title": "La stessa unità per tutti",
-                "html": "Per confrontare i disegni dobbiamo scegliere la <strong>stessa unità</strong>. Metà di un nastro da un metro e metà di un nastro da due metri non hanno la stessa lunghezza.<br><br>Nella lavagna ogni barra intera rappresenta sempre <strong>un metro</strong>. Cambia numeratore e denominatore e osserva le parti."
+                "html": "Per confrontare quantità dobbiamo scegliere la <strong>stessa unità</strong>. Metà di un nastro da un metro e metà di un nastro da due metri non hanno la stessa lunghezza.<br><br>Qui l’unità è un metro. Nel banco puoi inserire numeratore e denominatore; il pulsante <strong>Carica 3/2</strong> riprende l’esempio della card."
               }
             ],
-            "board": "qr-parts"
+            "board": "qr-parts",
+            "copilot": true,
+            "copilotExample": {
+              "n": "3",
+              "d": "2"
+            }
           }
         ]
       },
@@ -67,14 +77,19 @@ Object.assign(window.READER_LESSONS,{
             "steps": [
               {
                 "title": "Due terzi oppure quattro sesti?",
-                "html": "Coloriamo <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> di una barra. Se dividiamo <strong>ogni terzo in due parti uguali</strong>, la barra contiene sei parti e quelle colorate sono quattro.<br><br>La quantità colorata non cambia: <span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 6\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">6</span></span></span>. Sono <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-equivalenti\">frazioni equivalenti</button>. Cambia il fattore nella lavagna."
+                "html": "Due terzi e quattro sesti rappresentano la <strong>stessa quantità</strong>: quattro parti su sei coprono quanto due parti su tre, se l’unità è la stessa.<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 6\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">6</span></span></span><br><br>Sono <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-equivalenti\">frazioni equivalenti</button>. Per verificare, carica 4/6 nel banco e dividi entrambi i termini per 2."
               },
               {
                 "title": "Proprietà invariantiva",
                 "html": "Moltiplicando o dividendo <strong>entrambi i termini per lo stesso numero naturale diverso da zero</strong>, otteniamo una frazione equivalente. Quando dividiamo, il numero scelto deve essere un <strong>divisore comune</strong> dei due termini.<br><br>Questa è la <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-invariantiva\">proprietà invariantiva</button>. Non vale se cambiamo soltanto un termine."
               }
             ],
-            "board": "qr-equivalent"
+            "board": "qr-equivalent",
+            "copilot": true,
+            "copilotExample": {
+              "n": "4",
+              "d": "6"
+            }
           },
           {
             "title": "Una frazione ridotta ai minimi termini",
@@ -90,7 +105,12 @@ Object.assign(window.READER_LESSONS,{
               }
             ],
             "board": "qr-equivalent",
-            "qrPreset": "18/24"
+            "qrPreset": "18/24",
+            "copilot": true,
+            "copilotExample": {
+              "n": "18",
+              "d": "24"
+            }
           },
           {
             "title": "Molte frazioni, un solo numero",
@@ -106,7 +126,12 @@ Object.assign(window.READER_LESSONS,{
               }
             ],
             "board": "qr-equivalent",
-            "qrPreset": "1/2"
+            "qrPreset": "1/2",
+            "copilot": true,
+            "copilotExample": {
+              "n": "2",
+              "d": "4"
+            }
           }
         ]
       },
@@ -142,7 +167,12 @@ Object.assign(window.READER_LESSONS,{
                 "html": "In ℕ, 3 : 2 non ha un risultato naturale. In ℚₐ il risultato esiste ed è <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 2\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">2</span></span>.<br><br>In generale, <strong>il quoziente di due razionali assoluti appartiene ancora a ℚₐ, purché il divisore sia diverso da zero</strong>. La condizione sul divisore resta indispensabile."
               }
             ],
-            "board": "qr-zero"
+            "board": "qr-zero",
+            "copilot": true,
+            "copilotExample": {
+              "n": "0",
+              "d": "5"
+            }
           },
           {
             "title": "Un rapporto è un quoziente",
