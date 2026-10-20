@@ -16,3 +16,6 @@ Revisione richiesta: tablet portatile A4 sul tavolo al posto della grande lavagn
 
 
 Revisione del 20 ottobre: tablet rivolto verso Bjorne, retro visibile allo studente. Nuovo asset `assets/images/reader/bjorne-tablet-facing-v2.webp`; edit con imagegen, stesso personaggio/stanza, sola rotazione tablet e adattamento pennino. Eliminati titolo numerico sopra l'immagine, inviti testuali, sovrimpressioni sullo schermo e pallino animato. Un'area trasparente sul tablet apre il calcolo al passaggio del mouse (350 ms, dispositivi con hover), oppure al clic/tocco. Il pulsante Continua mantiene la stessa apertura. Chiusura e cambio card cancellano l'attesa del passaggio del mouse; breve protezione dalla riapertura involontaria alla chiusura.
+
+
+Modello canonico del personaggio: `Bjorne(6).png`, fornito dall’utente. Correzione con imagegen: mantello e zampe bruno scuro/carbone senza estremità bianche, occhi ambra e bandana turchese con orma bianca; stessa posa di scrittura, tablet rivolto al gatto e stanza. Asset della scena corretto: `assets/images/reader/bjorne-tablet-model-v3.webp`.

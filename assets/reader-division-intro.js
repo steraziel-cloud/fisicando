@@ -20,7 +20,7 @@
  function mount(box,{view='scene',passive=false}={}){
   box.classList.add('qd-reader-card');
   const scene=el('aside','qd-scene');scene.setAttribute('aria-label','Bjorne alla scrivania con il tablet');
-  const art=el('span','qd-art');const img=el('img','qd-scene-image');img.src='assets/images/reader/bjorne-tablet-facing-v2.webp';img.alt='Bjorne alla scrivania scrive con il pennino sul tablet rivolto verso di lui';img.width=1536;img.height=1024;img.decoding='async';
+  const art=el('span','qd-art');const img=el('img','qd-scene-image');img.src='assets/images/reader/bjorne-tablet-model-v3.webp';img.alt='Bjorne alla scrivania scrive con il pennino sul tablet rivolto verso di lui';img.width=1536;img.height=1024;img.decoding='async';
   const trigger=button('',()=>open(),'qd-tablet-hotspot');trigger.classList.remove('qd-button');trigger.setAttribute('aria-label','Apri il tablet di Bjorne e guarda la divisione 246 diviso 5');
   art.append(img,trigger);scene.append(art);box.append(scene);
   let mode=view,stage=0,playing=false,timer=null,disposed=false,skipNext=false,opener=null,hoverTimer=null,lastClosedAt=0;
