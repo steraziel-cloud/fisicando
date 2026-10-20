@@ -5,7 +5,7 @@ Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
     "title": "L’insieme dei numeri razionali assoluti",
     "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
-    "version": 7,
+    "version": 8,
     "status": "work-in-progress",
     "sections": [
       {
@@ -25,14 +25,20 @@ Object.assign(window.READER_LESSONS,{
                 "title": "Che cosa ci dice quel resto?",
                 "html": "Abbiamo trovato <strong>49 come quoziente intero e 1 come resto</strong>. La divisione non è esatta: 5 × 49 = 245, mentre 5 × 50 = 250. <strong>Nessun numero naturale, moltiplicato per 5, dà 246.</strong><br><br>Il quoziente esatto di 246 : 5, quindi, <strong>non è un numero naturale</strong>.<br><br>Questa osservazione ci porta a dire che la divisione <strong>non è un’<button type=\"button\" class=\"rm-keyword\" data-term=\"qr-interna\">operazione interna</button> a ℕ</strong>.<br><br>Quando in un insieme un’operazione non si può sempre eseguire, in matematica si può ricorrere a un <strong>ampliamento</strong>: si costruisce un insieme più grande, che contiene quello di partenza e nel quale quell’operazione è consentita.",
                 "divisionView": "done"
-              },
-              {
-                "title": "Dai naturali ai razionali assoluti",
-                "html": "Per avere un insieme che contenga questi quozienti, ampliamo ℕ all’<strong>insieme dei numeri razionali assoluti</strong>, indicato con <strong>ℚₐ</strong>.<br><br>I suoi elementi sono tutti i numeri rappresentabili con una frazione <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span>, dove <strong>a e b sono numeri naturali e b ≠ 0</strong>.<br><br>Il quoziente esatto del nostro esempio si rappresenta con <span class=\"qr-fraction\" role=\"math\" aria-label=\"246 fratto 5\"><span aria-hidden=\"true\">246</span><span aria-hidden=\"true\">5</span></span>.<br><br>In ℚₐ la divisione dà ancora un elemento di ℚₐ, <strong>purché il divisore sia diverso da zero</strong>.",
-                "divisionView": "done"
               }
             ],
             "board": "division-intro"
+          },
+          {
+            "title": "L’insieme ℚₐ",
+            "stepMode": "replace",
+            "steps": [
+              {
+                "title": "Dai naturali ai razionali assoluti",
+                "html": "Per avere un insieme che contenga questi quozienti, ampliamo ℕ all’<strong>insieme dei numeri razionali assoluti</strong>, indicato con <strong>ℚₐ</strong>.<br><br>I suoi elementi sono tutti i numeri rappresentabili con una frazione <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span>, dove <strong>a e b sono numeri naturali e b ≠ 0</strong>.<br><br>Il quoziente esatto del nostro esempio si rappresenta con <span class=\"qr-fraction\" role=\"math\" aria-label=\"246 fratto 5\"><span aria-hidden=\"true\">246</span><span aria-hidden=\"true\">5</span></span>.<br><br>In ℚₐ la divisione dà ancora un elemento di ℚₐ, <strong>purché il divisore sia diverso da zero</strong>."
+              }
+            ],
+            "board": "qr-sets"
           },
           {
             "title": "Rapporto e scrittura frazionaria",
