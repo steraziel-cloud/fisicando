@@ -5,7 +5,7 @@ Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
     "title": "L’insieme dei numeri razionali assoluti",
     "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
-    "version": 9,
+    "version": 10,
     "status": "work-in-progress",
     "sections": [
       {
@@ -55,7 +55,71 @@ Object.assign(window.READER_LESSONS,{
             ],
             "board": "qr-sets"
           }
-        ]
+        ],
+        "quiz": {
+          "questions": [
+            {
+              "question": "Nella divisione 246 : 5 troviamo quoziente intero 49 e resto 1. Che cosa ci dice questo resto?",
+              "options": [
+                "Il risultato esatto della divisione è 49.",
+                "Il risultato esatto della divisione non è un numero naturale.",
+                "La divisione non ha risultato neppure in ℚₐ."
+              ],
+              "answer": 1,
+              "feedback": "Il resto non è zero: 5 × 49 = 245 e nessun naturale moltiplicato per 5 dà 246. Il quoziente esatto è rappresentato da 246/5.",
+              "feedbackByOption": [
+                "49 è il quoziente intero: 5 × 49 = 245, quindi manca ancora 1 per arrivare a 246.",
+                "Il resto non nullo mostra che il quoziente esatto non è naturale: lo rappresentiamo con 246/5.",
+                "246/5 rappresenta un numero di ℚₐ: il divisore 5 è diverso da zero."
+              ]
+            },
+            {
+              "question": "Che cosa significa ampliare ℕ a ℚₐ?",
+              "options": [
+                "Costruire un insieme che conserva tutti i naturali e contiene anche altri numeri.",
+                "Sostituire i numeri naturali con numeri che non sono mai naturali.",
+                "Cambiare il valore dei numeri naturali per consentire nuove divisioni."
+              ],
+              "answer": 0,
+              "feedback": "Un ampliamento contiene l’insieme di partenza: ogni naturale n appartiene a ℚₐ perché n = n/1.",
+              "feedbackByOption": [
+                "Tutti i naturali rimangono nel nuovo insieme, insieme a numeri come 1/2 che non sono naturali.",
+                "I numeri naturali non vengono eliminati: sono contenuti nel nuovo insieme.",
+                "Il valore dei naturali non cambia: per esempio 4 e 4/1 rappresentano lo stesso numero."
+              ]
+            },
+            {
+              "question": "Qual è il rapporto tra 7 e 4, in quest’ordine?",
+              "options": [
+                "4/7",
+                "7 − 4",
+                "7/4"
+              ],
+              "answer": 2,
+              "feedback": "Il rapporto tra a e b è il quoziente a : b: qui è 7 : 4 = 7/4.",
+              "feedbackByOption": [
+                "4/7 è il rapporto tra 4 e 7: l’ordine dei due termini è stato invertito.",
+                "7 − 4 è una differenza. Un rapporto esprime invece una divisione.",
+                "7/4 rappresenta il quoziente 7 : 4, rispettando l’ordine richiesto."
+              ]
+            },
+            {
+              "question": "Nel diagramma ℕ ⊂ ℚₐ, dove si colloca il numero rappresentato da 5/1?",
+              "options": [
+                "In ℚₐ, ma fuori da ℕ.",
+                "Fuori da ℚₐ.",
+                "In ℕ, e quindi anche in ℚₐ."
+              ],
+              "answer": 2,
+              "feedback": "5/1 = 5: è un naturale. Una scrittura frazionaria può rappresentare anche un numero naturale.",
+              "feedbackByOption": [
+                "5/1 vale 5, che è un numero naturale: non va collocato fuori da ℕ.",
+                "5 appartiene a ℕ e tutti i naturali appartengono anche a ℚₐ.",
+                "5/1 = 5: si colloca nell’insieme interno ℕ, che è contenuto in ℚₐ."
+              ]
+            }
+          ]
+        }
       },
       {
         "id": "zero",
@@ -75,7 +139,56 @@ Object.assign(window.READER_LESSONS,{
               }
             ]
           }
-        ]
+        ],
+        "quiz": {
+          "questions": [
+            {
+              "question": "Quale affermazione è corretta per 0/8?",
+              "options": [
+                "È impossibile perché compare lo zero.",
+                "Vale 0 perché il denominatore è diverso da zero.",
+                "È indeterminato come 0/0."
+              ],
+              "answer": 1,
+              "feedback": "0/8 = 0 perché 0 × 8 = 0. Lo zero può comparire al numeratore.",
+              "feedbackByOption": [
+                "Lo zero è al numeratore; il denominatore 8 è diverso da zero e la divisione è definita.",
+                "0 è l’unico numero che moltiplicato per 8 dà 0, quindi 0/8 = 0.",
+                "Qui il denominatore è 8: il quoziente è unico e vale 0."
+              ]
+            },
+            {
+              "question": "Perché 8/0 è una divisione impossibile?",
+              "options": [
+                "Perché nessun numero moltiplicato per 0 dà 8.",
+                "Perché ogni numero moltiplicato per 0 dà 8.",
+                "Perché il risultato sarebbe 0, che non appartiene a ℚₐ."
+              ],
+              "answer": 0,
+              "feedback": "Qualunque numero moltiplicato per zero dà zero, mai 8: non esiste un quoziente.",
+              "feedbackByOption": [
+                "Il prodotto di un numero per zero è sempre zero, quindi nessun numero può essere il quoziente 8 : 0.",
+                "Ogni numero moltiplicato per zero dà 0, non 8.",
+                "Lo zero appartiene a ℚₐ, ma non è il quoziente cercato: 0 × 0 non dà 8."
+              ]
+            },
+            {
+              "question": "Perché 0/0 si dice indeterminato?",
+              "options": [
+                "Perché il quoziente è soltanto 0.",
+                "Perché nessun numero moltiplicato per 0 dà 0.",
+                "Perché ogni numero moltiplicato per 0 dà 0 e non si individua un unico quoziente."
+              ],
+              "answer": 2,
+              "feedback": "L’uguaglianza q × 0 = 0 è verificata da ogni q: non determina un unico quoziente. Perciò 0/0 non è definito.",
+              "feedbackByOption": [
+                "Anche 1 × 0, 2 × 0 e molti altri prodotti danno 0: non si può scegliere soltanto 0.",
+                "Tutti i numeri moltiplicati per zero danno zero: il problema è la mancanza di un unico quoziente.",
+                "Ogni numero verifica q × 0 = 0: la divisione non individua un risultato unico e non è definita."
+              ]
+            }
+          ]
+        }
       },
       {
         "id": "frazioni",
@@ -123,7 +236,56 @@ Object.assign(window.READER_LESSONS,{
               }
             ]
           }
-        ]
+        ],
+        "quiz": {
+          "questions": [
+            {
+              "question": "Quale frazione rappresenta lo stesso numero di 6/9?",
+              "options": [
+                "2/9",
+                "2/3",
+                "6/3"
+              ],
+              "answer": 1,
+              "feedback": "Dividendo entrambi i termini di 6/9 per 3 si ottiene 2/3: le frazioni sono equivalenti.",
+              "feedbackByOption": [
+                "Per passare da 6/9 a 2/9 cambia soltanto il numeratore: il valore non si conserva.",
+                "6 : 3 = 2 e 9 : 3 = 3: dividiamo entrambi i termini per lo stesso numero.",
+                "Cambiare soltanto il denominatore da 9 a 3 cambia il valore della frazione."
+              ]
+            },
+            {
+              "question": "Moltiplichiamo entrambi i termini di 7/12 per 3. Che cosa otteniamo?",
+              "options": [
+                "21/36, equivalente a 7/12.",
+                "7/36, equivalente a 7/12.",
+                "21/12, equivalente a 7/12."
+              ],
+              "answer": 0,
+              "feedback": "7 × 3 = 21 e 12 × 3 = 36. La proprietà invariantiva conserva il valore della frazione.",
+              "feedbackByOption": [
+                "Numeratore e denominatore vengono entrambi moltiplicati per 3: il valore resta lo stesso.",
+                "In 7/36 è stato moltiplicato soltanto il denominatore; il valore cambia.",
+                "In 21/12 è stato moltiplicato soltanto il numeratore; il valore cambia."
+              ]
+            },
+            {
+              "question": "Quale frazione è equivalente a 12/18 ed è ridotta ai minimi termini?",
+              "options": [
+                "6/9",
+                "4/6",
+                "2/3"
+              ],
+              "answer": 2,
+              "feedback": "Il M.C.D. di 12 e 18 è 6. Dividendo entrambi i termini per 6 si ottiene 2/3, i cui termini sono primi fra loro.",
+              "feedbackByOption": [
+                "6/9 è equivalente a 12/18, ma si può ancora semplificare dividendo entrambi i termini per 3.",
+                "4/6 è equivalente a 12/18, ma si può ancora semplificare dividendo entrambi i termini per 2.",
+                "2 e 3 non hanno divisori comuni maggiori di 1: la frazione è ridotta ai minimi termini."
+              ]
+            }
+          ]
+        }
       },
       {
         "id": "ordine",
@@ -157,7 +319,56 @@ Object.assign(window.READER_LESSONS,{
               }
             ]
           }
-        ]
+        ],
+        "quiz": {
+          "questions": [
+            {
+              "question": "Quale confronto è corretto?",
+              "options": [
+                "3/7 > 5/7",
+                "3/7 < 5/7",
+                "3/7 = 5/7"
+              ],
+              "answer": 1,
+              "feedback": "A denominatore uguale le parti hanno la stessa grandezza: tre settimi sono meno di cinque settimi.",
+              "feedbackByOption": [
+                "I denominatori sono uguali: confrontiamo i numeratori, e 3 è minore di 5.",
+                "Le parti sono tutte settimi: tre parti sono meno di cinque parti.",
+                "Le parti hanno la stessa grandezza, ma ne stiamo contando quantità diverse: 3 e 5."
+              ]
+            },
+            {
+              "question": "Per confrontare 2/3 e 3/4 le riscriviamo come 8/12 e 9/12. Che cosa concludiamo?",
+              "options": [
+                "2/3 < 3/4",
+                "2/3 > 3/4",
+                "2/3 = 3/4"
+              ],
+              "answer": 0,
+              "feedback": "8/12 < 9/12; le frazioni equivalenti conservano il valore, quindi 2/3 < 3/4.",
+              "feedbackByOption": [
+                "Con lo stesso denominatore confrontiamo 8 e 9: 8/12 è minore di 9/12.",
+                "Dopo aver scelto lo stesso denominatore, 8 è minore di 9: il primo numero è il più piccolo.",
+                "8/12 e 9/12 hanno numeratori diversi e lo stesso denominatore, quindi non sono uguali."
+              ]
+            },
+            {
+              "question": "Quale numero razionale assoluto è compreso strettamente tra 2/5 e 3/5?",
+              "options": [
+                "1/5",
+                "4/5",
+                "1/2"
+              ],
+              "answer": 2,
+              "feedback": "2/5 = 4/10, 1/2 = 5/10 e 3/5 = 6/10: il numero 1/2 è compreso fra gli altri due.",
+              "feedbackByOption": [
+                "1/5 è minore di 2/5: è fuori dall’intervallo richiesto.",
+                "4/5 è maggiore di 3/5: è fuori dall’intervallo richiesto.",
+                "Scrivendo tutto in decimi otteniamo 4/10 < 5/10 < 6/10. Fra due razionali distinti si può sempre trovare un altro razionale."
+              ]
+            }
+          ]
+        }
       },
       {
         "id": "pillole",
