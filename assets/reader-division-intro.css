@@ -12,3 +12,7 @@
 .qd-scene .qd-scene-trigger{background:transparent;border:0;padding:0;box-shadow:none}.qd-scene .qd-scene-trigger:hover{background:transparent}.qd-scene-problem{font:700 clamp(1.25rem,2.2vw,1.65rem)/1.3 ui-monospace,monospace!important;text-align:center;letter-spacing:.05em;margin:0 0 12px!important;color:var(--rm-text,#203e38)}
 /* The illustrated tablet itself is the only entrance in the scene. */
 .qd-tablet-hotspot{position:absolute;left:20%;top:67%;width:46%;height:21%;clip-path:polygon(0 0,90% 11%,100% 83%,2% 100%);border:0;padding:0;background:transparent;cursor:pointer;border-radius:10px}.qd-tablet-hotspot:focus-visible{outline:3px solid #15a9a0;outline-offset:-5px;background:#15a9a026}.qd-art:has(.qd-tablet-hotspot:focus-visible){outline:2px solid #15a9a0;outline-offset:3px}
+
+/* Compact calculation view: indicator above text and one control row. */
+.qd-dialog{padding:20px}.qd-dialog-top{margin-bottom:17px}.qd-dialog-content{gap:24px}.qd-progress{margin:0 0 18px}.qd-narration{min-height:0}.qd-controls{flex-wrap:nowrap;justify-content:safe center;overflow-x:auto;gap:8px;margin-top:18px;padding:3px 2px 5px;scrollbar-width:thin}.qd-controls .qd-button{flex:0 0 auto;white-space:nowrap}.qd-controls .qd-finish{display:inline-flex;align-items:center;margin:0}.qd-controls .qd-finish[hidden]{display:none}.qd-dialog .qd-stage-title{margin:0 0 12px}
+@media(max-width:800px){.qd-dialog{padding:16px}.qd-dialog-top{margin-bottom:14px}.qd-dialog-content{gap:16px}.qd-progress{margin-bottom:14px}.qd-controls{justify-content:flex-start;margin-top:14px}}

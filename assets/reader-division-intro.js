@@ -26,13 +26,12 @@
   let mode=view,stage=0,playing=false,timer=null,disposed=false,skipNext=false,opener=null,hoverTimer=null,lastClosedAt=0;
   const dialog=el('dialog','qd-dialog');dialog.setAttribute('aria-label','Il tablet di Bjorne: divisione in colonna');
   const top=el('header','qd-dialog-top');top.append(el('span','qd-eyebrow','Il tablet di Bjorne'));
-  const close=button('Chiudi ×',()=>closeDialog());close.setAttribute('aria-label','Chiudi il tablet e torna alla lezione');top.append(close);
-  const heading=el('h2','qd-dialog-title','Ripassiamo 246 : 5');
+  const close=button('Chiudi ×',()=>closeDialog());close.setAttribute('aria-label','Chiudi il tablet e torna alla lezione');
   const content=el('div','qd-dialog-content'),blackboard=el('div','qd-blackboard');blackboard.innerHTML=svg;
   const check=el('p','qd-check','246 = 5 × 49 + 1');blackboard.append(check);
-  const guide=el('div','qd-guide'),counter=el('p','qd-counter'),title=el('h3','qd-stage-title'),narration=el('p','qd-narration');narration.setAttribute('role','status');narration.setAttribute('aria-live','polite');
-  const dots=el('div','qd-progress');dots.setAttribute('aria-hidden','true');for(let i=0;i<stages.length;i++)dots.append(el('span',''));
-  guide.append(counter,title,narration,dots);content.append(blackboard,guide);
+  const guide=el('div','qd-guide'),title=el('h2','qd-stage-title'),narration=el('p','qd-narration');narration.setAttribute('role','status');narration.setAttribute('aria-live','polite');
+  const dots=el('div','qd-progress');dots.setAttribute('role','progressbar');dots.setAttribute('aria-label','Avanzamento della divisione');dots.setAttribute('aria-valuemin','0');dots.setAttribute('aria-valuemax',String(stages.length-1));for(let i=0;i<stages.length;i++)dots.append(el('span',''));
+  guide.append(dots,title,narration);content.append(blackboard,guide);
   const controls=el('div','qd-controls');
   const prev=button('← Un passo',()=>{pause();setStage(stage-1);});
   const play=button('▶ Guarda l’animazione',()=>playing?pause():start(),'qd-primary');
@@ -40,10 +39,10 @@
   const restart=button('↺ Ricomincia',()=>{pause();setStage(0);});
   controls.append(prev,play,next,restart);
   const finish=button('Continua la lezione →',()=>{closeDialog(false);if(mode==='scene'&&!passive){skipNext=true;document.getElementById('reader-next')?.click();skipNext=false;}else trigger.focus({preventScroll:true});},'qd-finish qd-primary');
-  dialog.append(top,heading,content,controls,finish);document.body.append(dialog);
+  controls.append(finish,close);dialog.append(top,content,controls);document.body.append(dialog);
   function pause(){playing=false;clearTimeout(timer);timer=null;play.textContent=stage===stages.length-1?'↺ Rivedi l’animazione':'▶ Guarda l’animazione';}
   function setStage(n){stage=Math.max(0,Math.min(stages.length-1,n));const groups=blackboard.querySelectorAll('[data-reveal]');for(const group of groups){const at=Number(group.dataset.reveal);group.classList.toggle('qd-hidden',at>stage);group.classList.toggle('qd-new',at===stage&&stage>0);}
-   blackboard.querySelector('.qd-focus').classList.toggle('qd-hidden',stage!==1);check.hidden=stage<9;counter.textContent=`Passaggio ${stage+1} di ${stages.length}`;title.textContent=stages[stage][0];narration.textContent=stages[stage][1];
+   blackboard.querySelector('.qd-focus').classList.toggle('qd-hidden',stage!==1);check.hidden=stage<9;dots.setAttribute('aria-valuenow',String(stage));dots.setAttribute('aria-valuetext',stages[stage][0]);title.textContent=stages[stage][0];narration.textContent=stages[stage][1];
    dots.querySelectorAll('span').forEach((d,i)=>d.classList.toggle('is-done',i<=stage));prev.disabled=stage===0;next.disabled=stage===stages.length-1;finish.hidden=stage!==stages.length-1;
    const spoken=stages.slice(0,stage+1).map(s=>s[1]).join(' ');blackboard.querySelector('svg').setAttribute('aria-label',spoken);
   }
