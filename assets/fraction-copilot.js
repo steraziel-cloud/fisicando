@@ -82,7 +82,7 @@ window.GatitoFractionCopilot=(()=>{
     view.invalid=null;let result;
     if(action==='load'){result=model.load(view.draft.n,view.draft.d);say(result?'Frazione caricata. Le trasformazioni precedenti si possono recuperare con Annulla.':'Questa frazione è già sul banco.');if(embedded&&!view.expanded)view.editorOpen=false;}
     if(action==='divide'){
-     result=model.divide(view.draft.factor);say(`${result.before.n}/${result.before.d} ÷ ${result.divisor} in entrambi i termini = ${result.after.n}/${result.after.d}.`+(model.reduced?' La frazione è ai minimi termini.':''),'success');view.draft.factor='';
+     result=model.divide(view.draft.factor);say(`Divisi entrambi i termini per ${result.divisor}: ${result.before.n}/${result.before.d} = ${result.after.n}/${result.after.d}.`+(model.reduced?' La frazione è ai minimi termini.':''),'success');view.draft.factor='';
     }
     if(action==='reduce'){
      result=model.reduce();say(result?`Entrambi i termini sono stati divisi per ${result.divisor}: ${result.after.n}/${result.after.d}. La frazione è ai minimi termini.`:'La frazione è già ai minimi termini.','success');view.draft.factor='';
