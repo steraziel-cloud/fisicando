@@ -5,7 +5,7 @@ Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
     "title": "L’insieme dei numeri razionali assoluti",
     "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
-    "version": 6,
+    "version": 7,
     "status": "work-in-progress",
     "sections": [
       {
@@ -18,7 +18,7 @@ Object.assign(window.READER_LESSONS,{
             "steps": [
               {
                 "title": "Una divisione che conosci già",
-                "html": "Quante volte ti è capitato di svolgere una <strong>divisione in colonna</strong> e di trovare un <strong>resto diverso da zero</strong>?<br><br>Bjorne sta ripassando <strong>246 : 5</strong> sulla sua lavagnetta. Entriamo a vedere i passaggi.",
+                "html": "Quante volte ti è capitato di svolgere una <strong>divisione in colonna</strong> e di trovare un <strong>resto diverso da zero</strong>?<br><br>Bjorne sta ripassando <strong>246 : 5</strong> sul suo tablet. Entriamo a vedere i passaggi.",
                 "divisionView": "scene"
               },
               {
