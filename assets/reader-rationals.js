@@ -23,7 +23,7 @@ Object.assign(window.READER_LESSONS,{
               },
               {
                 "title": "Che cosa ci dice quel resto?",
-                "html": "Abbiamo trovato <strong>49 come quoziente intero e 1 come resto</strong>. La divisione non è esatta: 5 × 49 = 245, mentre 5 × 50 = 250. <strong>Nessun numero naturale, moltiplicato per 5, dà 246.</strong><br><br>Il quoziente esatto di 246 : 5, quindi, <strong>non è un numero naturale</strong>.<br><br>La divisione <strong>non è un’operazione interna a ℕ</strong>: anche con un divisore diverso da zero, il risultato esatto può non appartenere a ℕ. Per questo dobbiamo ampliare l’insieme.",
+                "html": "Abbiamo trovato <strong>49 come quoziente intero e 1 come resto</strong>. La divisione non è esatta: 5 × 49 = 245, mentre 5 × 50 = 250. <strong>Nessun numero naturale, moltiplicato per 5, dà 246.</strong><br><br>Il quoziente esatto di 246 : 5, quindi, <strong>non è un numero naturale</strong>.<br><br>Questa osservazione ci porta a dire che la divisione <strong>non è un’<button type=\"button\" class=\"rm-keyword\" data-term=\"qr-interna\">operazione interna</button> a ℕ</strong>.<br><br>Quando in un insieme un’operazione non si può sempre eseguire, in matematica si può ricorrere a un <strong>ampliamento</strong>: si costruisce un insieme più grande, che contiene quello di partenza e nel quale quell’operazione è consentita.",
                 "divisionView": "done"
               },
               {
@@ -1126,9 +1126,10 @@ Object.assign(window.READER_GLOSSARY,{
     "text": "Fra due razionali distinti c’è sempre un altro razionale. Un esempio è il loro punto medio (a + b) : 2. Ripetendo la costruzione si trovano infiniti razionali fra i due iniziali."
   },
   "qr-interna": {
-    "title": "Operazione interna e chiusura",
-    "kind": "Matematica · Numeri razionali assoluti",
-    "text": "Un’operazione definita su tutte le coppie di un insieme è interna se i suoi risultati restano nell’insieme. In ℚₐ lo sono addizione e moltiplicazione. Per la divisione bisogna escludere il divisore zero; per la sottrazione il primo termine deve essere almeno il secondo."
+    "title": "Operazione interna e legge di composizione binaria",
+    "kind": "Matematica · Insiemi e operazioni",
+    "text": "Una legge di composizione binaria è una regola che associa a ogni coppia ordinata di elementi di un insieme A uno e un solo risultato. Si dice interna ad A se il risultato appartiene sempre ad A.",
+    "html": "<p><strong>Perché «binaria»?</strong> La regola combina due elementi. L’ordine può contare: 6 : 3 e 3 : 6 danno risultati diversi.</p><p><strong>Un esempio interno.</strong> L’addizione è interna a ℕ: sommando due numeri naturali si ottiene sempre un numero naturale.</p><p><strong>Un esempio non interno.</strong> La divisione non è interna a ℕ: 3 : 2 non dà un numero naturale. Basta una coppia il cui risultato esca dall’insieme perché venga meno la proprietà.</p><p><strong>E se il risultato non è definito?</strong> Una legge interna deve essere definita per tutte le coppie di A. Nella divisione bisogna escludere il divisore zero: in ℚₐ, per ogni divisore diverso da zero, il quoziente appartiene ancora a ℚₐ.</p>"
   },
   "qr-inverso": {
     "title": "Inverso o reciproco",
