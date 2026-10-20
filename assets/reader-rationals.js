@@ -5,65 +5,54 @@ Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
     "title": "L’insieme dei numeri razionali assoluti",
     "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
-    "version": 2,
+    "version": 3,
     "status": "work-in-progress",
     "sections": [
       {
-        "id": "perche",
-        "title": "Perché ampliare i numeri?",
+        "id": "insieme",
+        "title": "L’insieme ℚₐ e la divisione",
         "cards": [
           {
-            "title": "Tre nastri per due gattini",
+            "title": "Perché ampliare ℕ?",
             "stepMode": "replace",
             "steps": [
               {
-                "title": "Una divisione che non finisce nei naturali",
-                "html": "Red e Morgana hanno <strong>3 nastri lunghi un metro</strong> e vogliono dividerli in parti uguali. Quanti metri spettano a ciascuno?<br><br>Un metro a testa non basta a distribuire tutto. Possiamo dividere a metà anche l’ultimo nastro: ciascuno riceve <strong>un metro e mezzo</strong>."
+                "title": "Un problema concreto",
+                "html": "Un nastro lungo <strong>3 metri</strong> va diviso in <strong>2 parti uguali</strong>. Ogni parte misura un metro e mezzo: il risultato di 3 : 2 non è un numero naturale.<br><br>La divisione <strong>non è un’operazione interna a ℕ</strong>: anche quando il divisore è diverso da zero, il quoziente può non appartenere a ℕ."
               },
               {
-                "title": "Un numero per il quoziente",
-                "html": "Il risultato di 3 : 2 non è un numero naturale. Lo indichiamo con <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 2\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">2</span></span>.<br><br>La scrittura <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 2\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">2</span></span> rappresenta il numero che, moltiplicato per 2, dà 3: <span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 2\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">2</span></span> × 2 = 3</span>. È un <strong>quoziente esatto</strong>, anche se non è intero.",
-                "cloze": [
-                  {
-                    "before": "Tre metà corrispondono a ",
-                    "options": [
-                      "meno di un intero",
-                      "un intero e mezzo",
-                      "tre interi"
-                    ],
-                    "answer": 1,
-                    "after": ".",
-                    "feedback": "Due metà formano un intero; resta una metà."
-                  }
-                ]
+                "title": "Dai naturali ai razionali assoluti",
+                "html": "Per avere un insieme che contenga questi quozienti, ampliamo ℕ all’<strong>insieme dei numeri razionali assoluti</strong>, indicato con <strong>ℚₐ</strong>.<br><br>I suoi elementi sono tutti i numeri rappresentabili con una frazione <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span>, dove <strong>a e b sono numeri naturali e b ≠ 0</strong>.<br><br>In ℚₐ la divisione dà ancora un elemento di ℚₐ, <strong>purché il divisore sia diverso da zero</strong>."
               }
-            ],
-            "board": "qr-parts",
-            "copilot": true,
-            "copilotExample": {
-              "n": "3",
-              "d": "2"
-            }
+            ]
           },
           {
-            "title": "Come si legge una frazione",
+            "title": "Rapporto e scrittura frazionaria",
             "stepMode": "replace",
             "steps": [
               {
-                "title": "Numeratore e denominatore",
-                "html": "Nella <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-frazione\">frazione</button> <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 2\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">2</span></span>, il <strong>denominatore 2</strong> indica in quante parti uguali dividere l’unità; il <strong>numeratore 3</strong> indica quante di quelle parti considerare.<br><br>Le parti possono appartenere a più unità: tre metà sono più di un intero."
+                "title": "Il rapporto tra due numeri",
+                "html": "Il risultato della divisione tra a e b, con b ≠ 0, si chiama <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-rapporto\">rapporto</button> tra a e b e si indica con una <strong>frazione</strong>:<br><br><span class=\"qr-formula\">a : b = <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span></span><br><br>Il simbolo che separa i due termini si chiama <strong>linea di frazione</strong>; a è il <strong>numeratore</strong> e b il <strong>denominatore</strong>. Nel problema del nastro, il rapporto è <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 2\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">2</span></span>."
               },
               {
-                "title": "La stessa unità per tutti",
-                "html": "Per confrontare quantità dobbiamo scegliere la <strong>stessa unità</strong>. Metà di un nastro da un metro e metà di un nastro da due metri non hanno la stessa lunghezza.<br><br>Qui l’unità è un metro. Nel banco puoi inserire numeratore e denominatore; il pulsante <strong>Carica 3/2</strong> riprende l’esempio della card."
+                "title": "Perché è un ampliamento di ℕ?",
+                "html": "Ponendo <strong>b = 1</strong> ritroviamo tutti i numeri naturali:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"n fratto 1\"><span aria-hidden=\"true\">n</span><span aria-hidden=\"true\">1</span></span> = n</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 1\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">1</span></span> = 4. Ogni numero naturale, compreso lo zero, appartiene quindi anche a ℚₐ:<br><br><span class=\"qr-formula\">ℕ ⊂ ℚₐ</span>"
               }
-            ],
-            "board": "qr-parts",
-            "copilot": true,
-            "copilotExample": {
-              "n": "3",
-              "d": "2"
-            }
+            ]
+          },
+          {
+            "title": "I casi con lo zero",
+            "stepMode": "replace",
+            "steps": [
+              {
+                "title": "Zero al numeratore",
+                "html": "Se il denominatore è diverso da zero, il rapporto vale zero:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto b\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">b</span></span> = 0 &nbsp; (b ≠ 0)</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 5\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">5</span></span> = 0, perché 0 × 5 = 0."
+              },
+              {
+                "title": "Zero al denominatore",
+                "html": "Se <strong>a ≠ 0</strong>, <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto 0\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">0</span></span> è una divisione <strong>impossibile</strong>: nessun numero moltiplicato per zero dà a.<br><br><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 0\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">0</span></span> è invece <strong>indeterminato</strong>: ogni numero moltiplicato per zero dà zero, quindi non si individua un unico quoziente.<br><br>In entrambi i casi la divisione non è definita: nelle frazioni che rappresentano gli elementi di ℚₐ il <strong>denominatore deve essere diverso da zero</strong>."
+              }
+            ]
           }
         ]
       },
@@ -77,19 +66,13 @@ Object.assign(window.READER_LESSONS,{
             "steps": [
               {
                 "title": "Due terzi oppure quattro sesti?",
-                "html": "Due terzi e quattro sesti rappresentano la <strong>stessa quantità</strong>: quattro parti su sei coprono quanto due parti su tre, se l’unità è la stessa.<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 6\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">6</span></span></span><br><br>Sono <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-equivalenti\">frazioni equivalenti</button>. Per verificare, carica 4/6 nel banco e dividi entrambi i termini per 2."
+                "html": "Due terzi e quattro sesti rappresentano la <strong>stessa quantità</strong>: quattro parti su sei coprono quanto due parti su tre, se l’unità è la stessa.<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 6\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">6</span></span></span><br><br>Sono <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-equivalenti\">frazioni equivalenti</button>. Dividendo entrambi i termini di 4/6 per 2, otteniamo 2/3."
               },
               {
                 "title": "Proprietà invariantiva",
                 "html": "Moltiplicando o dividendo <strong>entrambi i termini per lo stesso numero naturale diverso da zero</strong>, otteniamo una frazione equivalente. Quando dividiamo, il numero scelto deve essere un <strong>divisore comune</strong> dei due termini.<br><br>Questa è la <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-invariantiva\">proprietà invariantiva</button>. Non vale se cambiamo soltanto un termine."
               }
-            ],
-            "board": "qr-equivalent",
-            "copilot": true,
-            "copilotExample": {
-              "n": "4",
-              "d": "6"
-            }
+            ]
           },
           {
             "title": "Una frazione ridotta ai minimi termini",
@@ -103,14 +86,7 @@ Object.assign(window.READER_LESSONS,{
                 "title": "Quando ci fermiamo?",
                 "html": "Una frazione è <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-minimi\">ridotta ai minimi termini</button> se numeratore e denominatore sono <strong>primi tra loro</strong>: il loro M.C.D. è 1.<br><br>3 e 4 non hanno divisori comuni maggiori di 1: <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span> non si può più semplificare dividendo i termini per un naturale maggiore di 1."
               }
-            ],
-            "board": "qr-equivalent",
-            "qrPreset": "18/24",
-            "copilot": true,
-            "copilotExample": {
-              "n": "18",
-              "d": "24"
-            }
+            ]
           },
           {
             "title": "Molte frazioni, un solo numero",
@@ -124,70 +100,7 @@ Object.assign(window.READER_LESSONS,{
                 "title": "Il nome formale",
                 "html": "Tutte le frazioni equivalenti fra loro formano una <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-classe\">classe di equivalenza</button>. Possiamo pensare al numero razionale come alla quantità comune rappresentata dall’intera classe.<br><br>Di solito scegliamo la frazione ridotta ai minimi termini per indicarlo: per esempio <span class=\"qr-fraction\" role=\"math\" aria-label=\"1 fratto 2\"><span aria-hidden=\"true\">1</span><span aria-hidden=\"true\">2</span></span>."
               }
-            ],
-            "board": "qr-equivalent",
-            "qrPreset": "1/2",
-            "copilot": true,
-            "copilotExample": {
-              "n": "2",
-              "d": "4"
-            }
-          }
-        ]
-      },
-      {
-        "id": "insieme",
-        "title": "L’insieme ℚₐ e la divisione",
-        "cards": [
-          {
-            "title": "Quali numeri appartengono a ℚₐ?",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "La definizione",
-                "html": "Chiamiamo <strong>ℚₐ</strong> l’insieme dei numeri razionali assoluti: i numeri rappresentabili come <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span>, con <strong>a e b naturali e b ≠ 0</strong>.<br><br>Qui i naturali comprendono lo zero. ℚₐ contiene quindi lo zero e i razionali positivi; <strong>non contiene numeri negativi</strong>."
-              },
-              {
-                "title": "I naturali sono già dentro",
-                "html": "Ogni naturale n si può scrivere come <span class=\"qr-fraction\" role=\"math\" aria-label=\"n fratto 1\"><span aria-hidden=\"true\">n</span><span aria-hidden=\"true\">1</span></span>. Per esempio <span class=\"qr-formula\">4 = <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 1\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">1</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"8 fratto 2\"><span aria-hidden=\"true\">8</span><span aria-hidden=\"true\">2</span></span></span>.<br><br>Quindi <strong>ℕ ⊂ ℚₐ</strong>: ampliamo l’insieme senza perdere i numeri che già conosciamo. Una frazione come <span class=\"qr-fraction\" role=\"math\" aria-label=\"8 fratto 2\"><span aria-hidden=\"true\">8</span><span aria-hidden=\"true\">2</span></span>, che rappresenta un naturale, si chiama <strong>apparente</strong>."
-              }
-            ],
-            "board": "qr-sets"
-          },
-          {
-            "title": "Zero e divisioni ammesse",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Zero al numeratore è ammesso",
-                "html": "<span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 5\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">5</span></span> = 0</span> perché 0 × 5 = 0. Tutte le frazioni con numeratore zero e denominatore non nullo rappresentano lo zero.<br><br>Invece <span class=\"qr-fraction\" role=\"math\" aria-label=\"5 fratto 0\"><span aria-hidden=\"true\">5</span><span aria-hidden=\"true\">0</span></span> non rappresenta un numero: nessun numero moltiplicato per zero dà 5. Anche <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 0\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">0</span></span> è esclusa: non determina un quoziente unico."
-              },
-              {
-                "title": "La divisione nel nuovo insieme",
-                "html": "In ℕ, 3 : 2 non ha un risultato naturale. In ℚₐ il risultato esiste ed è <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 2\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">2</span></span>.<br><br>In generale, <strong>il quoziente di due razionali assoluti appartiene ancora a ℚₐ, purché il divisore sia diverso da zero</strong>. La condizione sul divisore resta indispensabile."
-              }
-            ],
-            "board": "qr-zero",
-            "copilot": true,
-            "copilotExample": {
-              "n": "0",
-              "d": "5"
-            }
-          },
-          {
-            "title": "Un rapporto è un quoziente",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "L’ordine conta",
-                "html": "Il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-rapporto\">rapporto</button> tra due numeri a e b, <strong>presi in quest’ordine</strong>, con b ≠ 0, è il quoziente a : b, cioè <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span>.<br><br>Fra 3 e 2 il rapporto è <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 2\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">2</span></span>; invertendo l’ordine otteniamo <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span>: non è lo stesso numero."
-              },
-              {
-                "title": "Interpretare il risultato",
-                "html": "Un nastro di 3 m confrontato con uno di 2 m ha rapporto <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 2\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">2</span></span>: il primo è lungo <strong>una volta e mezza</strong> il secondo.<br><br>Per confrontare lunghezze, esprimiamole prima nella <strong>stessa unità di misura</strong>. Il rapporto ci dà un confronto moltiplicativo, non una differenza."
-              }
-            ],
-            "board": "qr-ratio"
+            ]
           }
         ]
       },
@@ -207,8 +120,7 @@ Object.assign(window.READER_LESSONS,{
                 "title": "Una procedura affidabile",
                 "html": "Per confrontare <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span> scegliamo <strong>m.c.m.(3, 4) = 12</strong>: otteniamo <span class=\"qr-fraction\" role=\"math\" aria-label=\"8 fratto 12\"><span aria-hidden=\"true\">8</span><span aria-hidden=\"true\">12</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"9 fratto 12\"><span aria-hidden=\"true\">9</span><span aria-hidden=\"true\">12</span></span>. Ora le parti hanno la stessa grandezza e 8 &lt; 9.<br><br>Una frazione <strong>propria</strong> ha numeratore minore del denominatore ed è minore di 1; una <strong>impropria</strong> ha numeratore maggiore o uguale al denominatore ed è almeno 1."
               }
-            ],
-            "board": "qr-compare"
+            ]
           },
           {
             "title": "Sulla retta non ci sono buchi fra due razionali",
@@ -222,8 +134,7 @@ Object.assign(window.READER_LESSONS,{
                 "title": "Nessun successivo immediato",
                 "html": "Fra a e b, con a &lt; b, il numero <strong>(a + b) : 2</strong> è razionale e sta esattamente a metà. Possiamo ripetere il procedimento senza fermarci.<br><br>Perciò un razionale non ha un <strong>successivo immediato</strong> come accade in ℕ. ℚₐ ha minimo 0, ma non ha un minimo positivo né un massimo.<details class=\"qr-deeper\"><summary>Denso non significa che ogni punto sia razionale</summary><p>Dire che fra due razionali c’è sempre un razionale non equivale a dire che ogni punto della retta rappresenti un razionale. Gli altri numeri saranno oggetto di una lezione successiva.</p></details>"
               }
-            ],
-            "board": "qr-density"
+            ]
           }
         ]
       },
@@ -239,25 +150,6 @@ Object.assign(window.READER_LESSONS,{
                 "title": "Ricostruiamo il percorso",
                 "html": "• Una frazione a/b, con b ≠ 0, rappresenta il quoziente a : b.<br><br>• Frazioni equivalenti rappresentano lo stesso numero; la proprietà invariantiva conserva il valore.<br><br>• ℕ ⊂ ℚₐ; lo zero appartiene a entrambi gli insiemi.<br><br>• Il quoziente resta in ℚₐ se il divisore non è zero.<br><br>• ℚₐ è infinito, ordinato e denso. Il rapporto è un quoziente in un ordine preciso."
               }
-            ],
-            "board": "qr-summary",
-            "qrSummary": [
-              [
-                "Frazione",
-                "un quoziente"
-              ],
-              [
-                "Equivalenza",
-                "stesso numero"
-              ],
-              [
-                "ℕ ⊂ ℚₐ",
-                "zero incluso"
-              ],
-              [
-                "Densità",
-                "un punto in mezzo"
-              ]
             ]
           }
         ],
