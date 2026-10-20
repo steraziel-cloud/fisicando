@@ -10,3 +10,11 @@
 @media(max-width:560px){.qr-division-scene{grid-template-columns:minmax(0,1fr);position:relative;padding-bottom:30px}.qr-division-board{padding:12px 8px 30px;border-width:5px}.qr-division-bjorne{position:absolute;right:-3px;bottom:0;width:77px!important;max-height:110px}.qr-division-check{padding-right:42px;font-size:.9rem}.qr-division-caption{font-size:.77rem}}
 
 .qr-board .qr-set-diagram .qr-set-name{font:750 30px system-ui;fill:#203e3e}.qr-board .qr-set-diagram .qr-set-caption{font:650 18px system-ui;fill:#203e3e}.qr-board .qr-set-diagram .qr-set-outer{fill:#fff}.qr-board .qr-set-diagram .qr-set-elements{font:22px system-ui;fill:#203e3e}.qr-set-fraction{text-anchor:middle;fill:#203e3e}.qr-set-fraction path{stroke:#203e3e;stroke-width:2}.qr-board.qr-zero-illustration{background:transparent;border:0;box-shadow:none;padding:0;align-self:center}.qr-zero-illustration img{display:block;width:100%;height:auto;max-height:490px;object-fit:contain}
+
+/* The short zero introduction shares the same left edge as its longer follow-up. */
+.qr-zero-card>.rm-card-text{width:100%;max-width:none;margin-inline:0}
+.qr-zero-illustration{position:relative;isolation:isolate}
+.qr-zero-illustration::before,.qr-zero-illustration::after{content:"";position:absolute;pointer-events:none;z-index:0}
+.qr-zero-illustration::before{left:4%;top:17%;width:69%;height:76%;border-radius:45% 55% 38% 62% / 53% 39% 61% 47%;background:rgba(40,170,165,.15);transform:rotate(-9deg)}
+.qr-zero-illustration::after{right:1%;top:30%;width:47%;height:60%;border-radius:58% 42% 61% 39% / 45% 61% 39% 55%;background:rgba(220,171,81,.14);transform:rotate(12deg)}
+.qr-zero-illustration img{position:relative;z-index:1}
