@@ -140,7 +140,7 @@ window.GatitoMathNotebook=(()=>{
    const rect={left:Math.min(d.x,e.clientX),right:Math.max(d.x,e.clientX),top:Math.min(d.y,e.clientY),bottom:Math.max(d.y,e.clientY)},paper=host.querySelector('.nb-paper'),p=paper.getBoundingClientRect();
    let marquee=paper.querySelector('.nb-marquee');if(!marquee){marquee=document.createElement('div');marquee.className='nb-marquee';paper.append(marquee);}
    Object.assign(marquee.style,{left:(rect.left-p.left+paper.scrollLeft)+'px',top:(rect.top-p.top+paper.scrollTop)+'px',width:(rect.right-rect.left)+'px',height:(rect.bottom-rect.top)+'px'});
-   d.keys=[...host.querySelectorAll('.nb-row [data-nb-select]:not(.nb-fraction)')].filter(n=>{const r=n.getBoundingClientRect(),x=(r.left+r.right)/2,y=(r.top+r.bottom)/2;return x>=rect.left&&x<=rect.right&&y>=rect.top&&y<=rect.bottom;}).map(n=>n.dataset.nbSelect);
+   d.keys=[...host.querySelectorAll('.nb-row [data-nb-select]:not(.nb-fraction)')].filter(n=>{const r=n.getBoundingClientRect();return r.right>=rect.left-2&&r.left<=rect.right+2&&r.bottom>=rect.top-2&&r.top<=rect.bottom+2;}).map(n=>n.dataset.nbSelect);
    const keys=selectionRoots(model.rows,[...d.base,...d.keys]);host.querySelectorAll('.nb-row [data-nb-select]').forEach(n=>n.classList.toggle('nb-selected',keys.includes(n.dataset.nbSelect)));host.querySelector('.nb-context')?.setAttribute('hidden','');
   }
   function up(e){const d=v.drag;if(!d||e.pointerId!==d.pointerId)return;v.drag=null;host.querySelector('.nb-marquee')?.remove();if(d.active){select([...d.base,...d.keys]);v.suppressClick={x:e.clientX,y:e.clientY,until:Date.now()+500};}}
