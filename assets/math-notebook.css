@@ -28,3 +28,11 @@
 .nb-selection-tools{display:flex;gap:5px;padding:5px;border:1px solid var(--nb-line);border-radius:11px}.nb-notebook .nb-selection-tools button{border:0;padding:7px 11px;min-height:36px;font-size:14px}.nb-selection-tools button:first-child{color:var(--nb-accent);font-weight:650}.nb-notebook .nb-selection-tools button[data-nb-action=delete]{color:var(--nb-ink);font-size:19px}
 .nb-marquee{position:absolute;z-index:12;pointer-events:none;border:1px solid var(--nb-accent);background:color-mix(in srgb,var(--nb-accent) 10%,transparent);border-radius:3px}.nb-notebook .nb-operator.nb-selected{background:color-mix(in srgb,var(--nb-accent) 10%,var(--nb-paper));outline:2px solid var(--nb-accent)}
 .nb-notebook:focus{outline:none}.nb-notebook:focus-visible{outline:2px solid var(--nb-accent);outline-offset:5px;border-radius:12px}
+
+
+/* Every quotient keeps its own superscript/subscript level when later crossed out. */
+.nb-number-top{--nb-direction:-1}.nb-number-bottom{--nb-direction:1}.nb-number-plain{--nb-direction:0}
+.nb-notebook .nb-number-top{padding-top:calc(.12em + var(--nb-depth,0)*.36em)}.nb-notebook .nb-number-bottom{padding-bottom:calc(.12em + var(--nb-depth,0)*.36em)}
+.nb-number .nb-level{display:inline-block;font-size:1em;transform:translateY(calc(var(--nb-direction,0)*var(--nb-level,0)*.42em))}.nb-number .nb-secondary{font-size:.82em}.nb-number .nb-written{color:inherit}.nb-number .nb-written.nb-secondary{color:var(--nb-accent)}.nb-number .nb-inline-answer{font-size:.82em!important}
+.nb-row{white-space:nowrap}.nb-final-result{display:inline-flex;align-items:center;gap:.35em;vertical-align:middle;margin-left:.45em;font:clamp(24px,2.5vw,34px)/1.25 'Cambria Math',Georgia,serif;color:var(--nb-accent)}.nb-final-result .nb-fraction:hover{background:transparent}.nb-final-result .nb-fraction{cursor:default}
+@media(max-width:600px){.nb-final-result{font-size:27px}}

@@ -52,6 +52,11 @@ window.GatitoMathNotebook=(()=>{
   undo(){if(this.pending){this.cancel();return;}if(this.past.length){this.future.push(copy(this.rows));this.rows=this.past.pop();}}
   redo(){if(this.pending)return;if(this.future.length){this.past.push(copy(this.rows));this.rows=this.future.pop();}}
  }
+ function completedReduction(row,pending=null){
+  if(pending&&find(row,pending.fraction))return false;
+  function ready(n){if(n.type==='fraction'){if(simple(n)&&n.top.items[0].marks.length&&n.bottom.items[0].marks.length&&gcd(BigInt(n.top.items[0].value),BigInt(n.bottom.items[0].value))===1n)return true;return ready(n.top)||ready(n.bottom);}return n.type==='sequence'&&n.items.some(ready);}
+  if(!ready(row))return false;try{evaluate(row);return true;}catch{return false;}
+ }
  const sessions=new Map();
  function mount(parent,{sessionKey}={}){
   const model=sessionKey&&sessions.get(sessionKey)||new Notebook();if(sessionKey)sessions.set(sessionKey,model);
@@ -66,15 +71,18 @@ window.GatitoMathNotebook=(()=>{
   function draftHTML(s,label='Espressione'){
    return `<span class="nb-sequence">${s.items.map(t=>t.type==='number'?`<input class="nb-slot ${v.active===t.id?'nb-active':''}" data-nb-slot="${t.id}" aria-label="${label}" inputmode="numeric" autocomplete="off" maxlength="30" value="${esc(t.value)}" style="--nb-digits:${Math.max(2,t.value.length+1)}" placeholder="□">`:t.type==='operator'?`<span class="nb-operator">${esc(t.value)}</span>`:`<span class="nb-fraction nb-draft-fraction"><span>${draftHTML(t.top,'Numeratore')}</span><span>${draftHTML(t.bottom,'Denominatore')}</span></span>`).join('')}</span>`;
   }
-  function numberHTML(t){
-   const p=model.pending,f=p&&model.locate(p.fraction).node,isPending=f&&f[p.side].items[0].id===t.id;
-   const marks=t.marks.map(m=>`<span class="nb-crossed" title="Diviso per ${esc(m.divisor)}">${esc(m.before)}</span>`).join('');
-   if(isPending)return `<span class="nb-number nb-pending-number">${marks}<span class="nb-crossed">${esc(t.value)}</span><input id="${formId}-q" form="${formId}" name="quotient" class="nb-inline-answer" aria-label="Quoziente del ${p.side==='top'?'numeratore':'denominatore'}" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required></span>`;
-   return `<button type="button" class="nb-number nb-pick ${selected(t.id)?'nb-selected':''}" data-nb-select="${t.id}" aria-label="${t.value?'Seleziona il numero '+esc(t.value):'Completa la casella'}" ${!t.value?'data-nb-empty="true"':''}>${marks}<span class="nb-written">${esc(t.value)||'□'}</span></button>`;
+  function numberHTML(t,side=''){
+   const p=model.pending,f=p&&model.locate(p.fraction).node,isPending=f&&f[p.side].items[0].id===t.id,depth=t.marks.length+(isPending?1:0);
+   const level=(i,classes='')=>`class="nb-level ${i?'nb-secondary ':''}${classes}" style="--nb-level:${i}"`;
+   const marks=t.marks.map((m,i)=>`<span ${level(i,'nb-crossed')} title="Diviso per ${esc(m.divisor)}">${esc(m.before)}</span>`).join('');
+   const layout=`nb-number nb-number-${side||'plain'}`;
+   if(isPending)return `<span class="${layout} nb-pending-number" style="--nb-depth:${depth}">${marks}<span ${level(t.marks.length,'nb-crossed')}>${esc(t.value)}</span><input ${level(depth,'nb-inline-answer')} id="${formId}-q" form="${formId}" name="quotient" aria-label="Quoziente del ${p.side==='top'?'numeratore':'denominatore'}" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required></span>`;
+   return `<button type="button" class="${layout} nb-pick ${selected(t.id)?'nb-selected':''}" style="--nb-depth:${depth}" data-nb-select="${t.id}" aria-label="${t.value?'Seleziona il numero '+esc(t.value):'Completa la casella'}" ${!t.value?'data-nb-empty="true"':''}>${marks}<span ${level(t.marks.length,'nb-written')}>${esc(t.value)||'□'}</span></button>`;
   }
-  function paperHTML(s){
-   return `<span class="nb-sequence">${s.items.map(t=>t.type==='operator'?`<button type="button" class="nb-operator nb-pick ${selected(t.id)?'nb-selected':''}" data-nb-select="${t.id}" aria-label="Seleziona ${esc(t.value)}">${esc(t.value)}</button>`:t.type==='fraction'?`<span class="nb-fraction nb-pick ${selected(t.id)?'nb-selected':''}" data-nb-select="${t.id}" role="button" tabindex="0" aria-label="Seleziona tutta la frazione"><span>${paperHTML(t.top)}</span><span>${paperHTML(t.bottom)}</span></span>`:numberHTML(t)).join('')}</span>`;
+  function paperHTML(s,side=''){
+   return `<span class="nb-sequence">${s.items.map(t=>t.type==='operator'?`<button type="button" class="nb-operator nb-pick ${selected(t.id)?'nb-selected':''}" data-nb-select="${t.id}" aria-label="Seleziona ${esc(t.value)}">${esc(t.value)}</button>`:t.type==='fraction'?`<span class="nb-fraction nb-pick ${selected(t.id)?'nb-selected':''}" data-nb-select="${t.id}" role="button" tabindex="0" aria-label="Seleziona tutta la frazione"><span>${paperHTML(t.top,'top')}</span><span>${paperHTML(t.bottom,'bottom')}</span></span>`:numberHTML(t,side)).join('')}</span>`;
   }
+  function cleanHTML(s){return `<span class="nb-sequence">${s.items.map(t=>t.type==='number'?`<span>${esc(t.value)||'□'}</span>`:t.type==='operator'?`<span class="nb-operator">${esc(t.value)}</span>`:`<span class="nb-fraction" role="math" aria-label="${simple(t)?esc(t.top.items[0].value)+' fratto '+esc(t.bottom.items[0].value):'frazione'}"><span>${cleanHTML(t.top)}</span><span>${cleanHTML(t.bottom)}</span></span>`).join('')}</span>`;}
   function context(){
    if(model.pending){const p=model.pending,f=model.locate(p.fraction).node,n=f[p.side].items[0];return `<form id="${formId}" data-nb-form="answer" class="nb-context nb-action-strip"><label for="${formId}-q">${p.side==='top'?'Numeratore':'Denominatore'}: ${esc(n.value)} ÷ ${esc(p.k)} = ?</label><button type="submit">Scrivi il quoziente</button>${button('cancel-step','Annulla il passaggio')}</form>`;}
    if(v.filling)return `<form data-nb-form="fill" class="nb-context nb-action-strip"><label for="${formId}-fill">Completa la casella</label><input id="${formId}-fill" name="value" aria-label="Numero da inserire" inputmode="numeric" maxlength="30" required><button type="submit">Scrivi</button></form>`;
@@ -92,7 +100,7 @@ window.GatitoMathNotebook=(()=>{
    toolbar.style.left=(x+paper.scrollLeft)+'px';toolbar.style.top=(Math.max(8,y)+paper.scrollTop)+'px';
   }
   function render(){
-   host.innerHTML=`<div class="nb-topbar">${!v.draft&&!model.pending?button('insert','＋ Inserisci','class="nb-insert"'):''}${model.rows.length||model.past.length||model.future.length?`<div class="nb-tools">${button('undo','↶','aria-label="Annulla" '+(!model.past.length&&!model.pending?'disabled':''))}${button('redo','↷','aria-label="Ripristina" '+(!model.future.length||model.pending?'disabled':''))}</div>`:''}</div><div class="nb-paper" aria-label="Pagina del quaderno">${model.rows.map((row,i)=>`<div class="nb-row" aria-label="Espressione ${i+1}">${paperHTML(row)}</div>`).join('')}${v.draft?`<div class="nb-composer" aria-label="Inserisci un’espressione"><div class="nb-draft">${draftHTML(v.draft)}</div><div class="nb-keypad" role="group" aria-label="Tastierino matematico">${['7','8','9','+','4','5','6','−','1','2','3','·','0','(',')','÷'].map(k=>button('key',k,`data-nb-key="${k}"`)).join('')}${button('fraction','<span class="nb-key-frac"><span>□</span><span>□</span></span>','aria-label="Inserisci frazione"')}${button('backspace','⌫','aria-label="Cancella"')}${button('next-slot','⇥','aria-label="Casella successiva"')}</div><div class="nb-composer-actions">${button('write','Scrivi sul quaderno','class="nb-primary"')}${button('cancel-draft','Annulla')}</div></div>`:''}${context()}<div class="nb-message ${v.error?'nb-error':''}" role="status" aria-live="polite">${esc(v.message)}</div></div>`;
+   host.innerHTML=`<div class="nb-topbar">${!v.draft&&!model.pending?button('insert','＋ Inserisci','class="nb-insert"'):''}${model.rows.length||model.past.length||model.future.length?`<div class="nb-tools">${button('undo','↶','aria-label="Annulla" '+(!model.past.length&&!model.pending?'disabled':''))}${button('redo','↷','aria-label="Ripristina" '+(!model.future.length||model.pending?'disabled':''))}</div>`:''}</div><div class="nb-paper" aria-label="Pagina del quaderno">${model.rows.map((row,i)=>`<div class="nb-row" aria-label="Espressione ${i+1}">${paperHTML(row)}${completedReduction(row,model.pending)?`<span class="nb-final-result" aria-label="Risultato della riduzione"><span class="nb-equals">=</span>${cleanHTML(row)}</span>`:''}</div>`).join('')}${v.draft?`<div class="nb-composer" aria-label="Inserisci un’espressione"><div class="nb-draft">${draftHTML(v.draft)}</div><div class="nb-keypad" role="group" aria-label="Tastierino matematico">${['7','8','9','+','4','5','6','−','1','2','3','·','0','(',')','÷'].map(k=>button('key',k,`data-nb-key="${k}"`)).join('')}${button('fraction','<span class="nb-key-frac"><span>□</span><span>□</span></span>','aria-label="Inserisci frazione"')}${button('backspace','⌫','aria-label="Cancella"')}${button('next-slot','⇥','aria-label="Casella successiva"')}</div><div class="nb-composer-actions">${button('write','Scrivi sul quaderno','class="nb-primary"')}${button('cancel-draft','Annulla')}</div></div>`:''}${context()}<div class="nb-message ${v.error?'nb-error':''}" role="status" aria-live="polite">${esc(v.message)}</div></div>`;
    if(v.draft){const input=host.querySelector(`[data-nb-slot="${v.active}"]`);input?.focus({preventScroll:true});if(input)input.setSelectionRange(input.value.length,input.value.length);}
    else if(model.pending)host.querySelector('[name="quotient"]')?.focus({preventScroll:true});
    else if(v.dividing)host.querySelector('[name="divisor"]')?.focus({preventScroll:true});
@@ -163,7 +171,8 @@ window.GatitoMathNotebook=(()=>{
   host.addEventListener('click',click);host.addEventListener('submit',submit);host.addEventListener('input',input);host.addEventListener('focusin',focus);host.addEventListener('keydown',keydown);host.addEventListener('pointerdown',pointer);document.addEventListener('pointermove',move);document.addEventListener('pointerup',up);document.addEventListener('pointerdown',outside);window.addEventListener('resize',positionContext);host.addEventListener('scroll',positionContext,true);host.addEventListener('pointercancel',cancelPointer);render();
   return{model,dispose(){document.removeEventListener('pointermove',move);document.removeEventListener('pointerup',up);document.removeEventListener('pointerdown',outside);window.removeEventListener('resize',positionContext);host.remove();}};
  }
- return{mount,Notebook,math:{evaluate,gcd},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot}};
+ return{mount,Notebook,math:{evaluate,gcd,completedReduction},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot}};
 })();
+
 
 
