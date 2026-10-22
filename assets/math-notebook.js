@@ -56,7 +56,8 @@ window.GatitoMathNotebook=(()=>{
   }
   fill(key,value){const r=this.locate(key);if(!r||r.node.type!=='number'||r.node.value!=='')throw Error('Seleziona una casella vuota.');if(!/^\d{1,30}$/.test(value))throw Error('Inserisci un numero naturale, fino a 30 cifre.');const f=this.fractionFor(key);if(f?.bottom.id===r.parent.id&&r.parent.items.length===1&&BigInt(value)===0n)throw Error('Il denominatore non può essere zero.');const before=copy(this.rows);r.node.value=String(BigInt(value));r.node.marks=[];this.save(before);}
   begin(key,raw){const f=this.fractionFor(key);if(!simple(f))throw Error('Per ora possiamo semplificare una frazione con un numero naturale in ciascun termine.');if(!/^\d{1,30}$/.test(raw))throw Error('Scrivi un divisore naturale maggiore di 1.');const k=BigInt(raw),n=BigInt(f.top.items[0].value),d=BigInt(f.bottom.items[0].value);if(k<=1n)throw Error('Scegli un divisore maggiore di 1.');if(n%k||d%k)throw Error('Questo numero non divide esattamente entrambi i termini. Prova un altro divisore.');this.pending={fraction:f.id,k:String(k),side:'top',before:copy(this.rows)};}
-  answer(raw){const p=this.pending;if(!p)throw Error('Scegli prima un divisore comune.');if(!/^\d{1,30}$/.test(raw))throw Error('Scrivi tu il quoziente nella casella.');const f=this.locate(p.fraction).node,n=f[p.side].items[0];if(BigInt(raw)!==BigInt(n.value)/BigInt(p.k))throw Error('Il quoziente non torna. Riprova la divisione: il numero sul quaderno resta invariato.');n.marks.push({before:n.value,divisor:p.k});n.value=String(BigInt(raw));if(p.side==='top'){p.side='bottom';return false;}this.save(p.before);this.pending=null;return true;}
+  beginEquivalent(key,raw){const f=this.fractionFor(key);if(!simple(f))throw Error('Seleziona una frazione con un numero naturale in ciascun termine.');if(!/^\d{1,30}$/.test(raw)||BigInt(raw)<=1n)throw Error('Scegli un moltiplicatore naturale maggiore di 1.');const k=BigInt(raw);if([f.top,f.bottom].some(s=>String(BigInt(s.items[0].value)*k).length>30))throw Error('Il prodotto supera le 30 cifre consentite.');this.pending={kind:'multiply',fraction:f.id,k:String(k),side:'top',answers:{},before:copy(this.rows)};}
+  answer(raw){const p=this.pending;if(!p)throw Error('Scegli prima come trasformare la frazione.');const multiplying=p.kind==='multiply',word=multiplying?'prodotto':'quoziente';if(!/^\d{1,30}$/.test(raw))throw Error('Scrivi tu il '+word+' nella casella.');const f=this.locate(p.fraction).node,n=f[p.side].items[0],expected=multiplying?BigInt(n.value)*BigInt(p.k):BigInt(n.value)/BigInt(p.k);if(BigInt(raw)!==expected)throw Error('Il '+word+' non torna. Riprova: il numero sul quaderno resta invariato.');if(multiplying)p.answers[p.side]=String(BigInt(raw));else{n.marks.push({before:n.value,divisor:p.k});n.value=String(BigInt(raw));}if(p.side==='top'){p.side='bottom';return false;}if(multiplying){f.equivalentHistory||=[];f.equivalentHistory.push({top:copy(f.top),bottom:copy(f.bottom),factor:p.k});for(const side of ['top','bottom']){f[side].items[0].value=p.answers[side];f[side].items[0].marks=[];}}this.save(p.before);this.pending=null;return true;}
   cancel(){if(this.pending){this.rows=this.pending.before;this.pending=null;}}
   undo(){if(this.pending){this.cancel();return;}if(this.past.length){this.future.push(copy(this.rows));this.rows=this.past.pop();}}
   redo(){if(this.pending)return;if(this.future.length){this.past.push(copy(this.rows));this.rows=this.future.pop();}}
@@ -67,14 +68,24 @@ window.GatitoMathNotebook=(()=>{
   if(!ready(row))return false;try{evaluate(row);return true;}catch{return false;}
  }
  const sessions=new Map();
- function mount(parent,{sessionKey}={}){
+ function comparisonResult(model,pairs,relation){
+  if(model.pending)throw Error('Completa prima la trasformazione in corso.');
+  const fractions=model.rows.map(r=>r.items.length===1?r.items[0]:null);
+  if(fractions.length!==2||!fractions.every(simple))throw Error('Mantieni le due frazioni della prova, una per riga.');
+  fractions.forEach((f,i)=>{if(BigInt(f.top.items[0].value)*BigInt(pairs[i][1])!==BigInt(pairs[i][0])*BigInt(f.bottom.items[0].value))throw Error('Una frazione non è equivalente a quella di partenza. Controlla i termini.');});
+  if(fractions[0].bottom.items[0].value!==fractions[1].bottom.items[0].value)throw Error('Prima riscrivi le due frazioni con lo stesso denominatore.');
+  const a=BigInt(fractions[0].top.items[0].value),b=BigInt(fractions[1].top.items[0].value),expected=a<b?'<':a>b?'>':'=';
+  if(!relation)throw Error('Scegli il simbolo del confronto.');if(relation!==expected)throw Error('Il denominatore è uguale: ricontrolla quale numeratore è maggiore.');return true;
+ }
+ function mount(parent,{sessionKey,comparison}={}){
   const model=sessionKey&&sessions.get(sessionKey)||new Notebook();if(sessionKey)sessions.set(sessionKey,model);
+  if(comparison&&!model.initializedComparison){for(const pair of comparison.fractions){const row=seq(),f=frac();f.top.items[0].value=String(pair[0]);f.bottom.items[0].value=String(pair[1]);row.items=[f];model.add(row);}model.past=[];model.initializedComparison=true;}
   const host=document.createElement('section');host.className='nb-notebook';host.setAttribute('aria-label','Quaderno di prova');parent.append(host);
-  const v={draft:null,active:null,selected:null,dividing:false,message:'',error:false,selection:[],filling:null,drag:null,suppressClick:false},formId=id();
+  const v={draft:null,active:null,selected:null,dividing:false,multiplying:false,relation:null,message:'',error:false,selection:[],filling:null,drag:null,suppressClick:false},formId=id();
   host.tabIndex=0;
   const selected=key=>v.selection.includes(key);
-  function clearSelection(){v.selection=[];v.selected=null;v.filling=null;v.dividing=false;v.message='';}
-  function select(keys){v.selection=selectionRoots(model.rows,keys);v.selected=v.selection[0]||null;v.dividing=false;v.filling=null;v.message='';render();host.focus({preventScroll:true});}
+  function clearSelection(){v.selection=[];v.selected=null;v.filling=null;v.dividing=false;v.multiplying=false;v.message='';}
+  function select(keys){v.selection=selectionRoots(model.rows,keys);v.selected=v.selection[0]||null;v.dividing=false;v.multiplying=false;v.filling=null;v.message='';render();host.focus({preventScroll:true});}
   function selectedFraction(){if(v.selection.length!==1)return null;return model.fractionFor(v.selection[0]);}
   const button=(a,label,extra='')=>`<button type="button" data-nb-action="${a}" ${extra}>${label}</button>`;
   function draftHTML(s,label='Espressione'){
@@ -82,6 +93,7 @@ window.GatitoMathNotebook=(()=>{
   }
   function numberHTML(t,side=''){
    const p=model.pending,f=p&&model.locate(p.fraction).node,isPending=f&&f[p.side].items[0].id===t.id,depth=t.marks.length+(isPending?1:0);
+   if(p?.kind==='multiply'&&f&&[f.top.items[0].id,f.bottom.items[0].id].includes(t.id)){const part=f.top.items[0].id===t.id?'top':'bottom';return `<span class="nb-product-number">${esc(t.value)} <span class="nb-product-operation">· ${esc(p.k)} =</span> ${isPending?`<input class="nb-inline-product" id="${formId}-q" form="${formId}" name="quotient" aria-label="Prodotto del ${part==='top'?'numeratore':'denominatore'}" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required>`:p.answers[part]?esc(p.answers[part]):'<span class="nb-product-placeholder">□</span>'}</span>`;}
    const level=(i,classes='')=>`class="nb-level ${i?'nb-secondary ':''}${classes}" style="--nb-level:${i}"`;
    const marks=t.marks.map((m,i)=>`<span ${level(i,'nb-crossed')} title="Diviso per ${esc(m.divisor)}">${esc(m.before)}</span>`).join('');
    const layout=`nb-number nb-number-${side||'plain'}`;
@@ -89,15 +101,17 @@ window.GatitoMathNotebook=(()=>{
    return `<button type="button" class="${layout} nb-pick ${selected(t.id)?'nb-selected':''}" style="--nb-depth:${depth}" data-nb-select="${t.id}" aria-label="${t.value?'Seleziona il numero '+esc(t.value):'Completa la casella'}" ${!t.value?'data-nb-empty="true"':''}>${marks}<span ${level(t.marks.length,'nb-written')}>${esc(t.value)||'□'}</span></button>`;
   }
   function paperHTML(s,side=''){
-   return `<span class="nb-sequence">${s.items.map(t=>t.type==='operator'?`<button type="button" class="nb-operator nb-pick ${selected(t.id)?'nb-selected':''}" data-nb-select="${t.id}" aria-label="Seleziona ${esc(t.value)}">${esc(t.value)}</button>`:t.type==='fraction'?`<span class="nb-fraction nb-pick ${selected(t.id)?'nb-selected':''}" data-nb-select="${t.id}" role="button" tabindex="0" aria-label="Seleziona tutta la frazione"><span>${paperHTML(t.top,'top')}</span><span>${paperHTML(t.bottom,'bottom')}</span></span>`:numberHTML(t,side)).join('')}</span>`;
+   return `<span class="nb-sequence">${s.items.map(t=>t.type==='operator'?`<button type="button" class="nb-operator nb-pick ${selected(t.id)?'nb-selected':''}" data-nb-select="${t.id}" aria-label="Seleziona ${esc(t.value)}">${esc(t.value)}</button>`:t.type==='fraction'?`${(t.equivalentHistory||[]).map(h=>`<span class="nb-fraction nb-history" role="math" aria-label="Frazione precedente, trasformata moltiplicando per ${esc(h.factor)}"><span>${historyNumber(h.top.items[0],'top')}</span><span>${historyNumber(h.bottom.items[0],'bottom')}</span></span><span class="nb-equals">=</span>`).join('')}<span class="nb-fraction nb-pick ${selected(t.id)?'nb-selected':''}" data-nb-select="${t.id}" role="button" tabindex="0" aria-label="Seleziona tutta la frazione"><span>${paperHTML(t.top,'top')}</span><span>${paperHTML(t.bottom,'bottom')}</span></span>`:numberHTML(t,side)).join('')}</span>`;
   }
+  function historyNumber(t,side){return `<span class="nb-number nb-number-${side}" style="--nb-depth:${t.marks.length}">${t.marks.map((m,i)=>`<span class="nb-level ${i?'nb-secondary ':''}nb-crossed" style="--nb-level:${i}">${esc(m.before)}</span>`).join('')}<span class="nb-level ${t.marks.length?'nb-secondary ':''}nb-written" style="--nb-level:${t.marks.length}">${esc(t.value)}</span></span>`;}
   function cleanHTML(s){return `<span class="nb-sequence">${s.items.map(t=>t.type==='number'?`<span>${esc(t.value)||'□'}</span>`:t.type==='operator'?`<span class="nb-operator">${esc(t.value)}</span>`:`<span class="nb-fraction" role="math" aria-label="${simple(t)?esc(t.top.items[0].value)+' fratto '+esc(t.bottom.items[0].value):'frazione'}"><span>${cleanHTML(t.top)}</span><span>${cleanHTML(t.bottom)}</span></span>`).join('')}</span>`;}
   function context(){
-   if(model.pending){const p=model.pending,f=model.locate(p.fraction).node,n=f[p.side].items[0];return `<form id="${formId}" data-nb-form="answer" class="nb-context nb-action-strip"><label for="${formId}-q">${p.side==='top'?'Numeratore':'Denominatore'}: ${esc(n.value)} ÷ ${esc(p.k)} = ?</label><button type="submit">Scrivi il quoziente</button>${button('cancel-step','Annulla il passaggio')}</form>`;}
+   if(model.pending){const p=model.pending,f=model.locate(p.fraction).node,n=f[p.side].items[0],multiplying=p.kind==='multiply';return `<form id="${formId}" data-nb-form="answer" class="nb-context nb-action-strip"><label for="${formId}-q">${p.side==='top'?'Numeratore':'Denominatore'}: ${esc(n.value)} ${multiplying?'·':'÷'} ${esc(p.k)} = ?</label><button type="submit">Scrivi il ${multiplying?'prodotto':'quoziente'}</button>${button('cancel-step','Annulla il passaggio')}</form>`;}
    if(v.filling)return `<form data-nb-form="fill" class="nb-context nb-action-strip"><label for="${formId}-fill">Completa la casella</label><input id="${formId}-fill" name="value" aria-label="Numero da inserire" inputmode="numeric" maxlength="30" required><button type="submit">Scrivi</button></form>`;
    if(!v.selection.length)return '';
    if(v.dividing)return `<form data-nb-form="divisor" class="nb-context nb-action-strip"><label for="${formId}-divisor">Divisore comune</label><input id="${formId}-divisor" name="divisor" aria-label="Divisore comune" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required><button type="submit">Inizia</button></form>`;
-   const f=selectedFraction();return `<div class="nb-context nb-selection-tools" role="toolbar" aria-label="Azioni sulla selezione">${canSimplify(f)?button('simplify','Semplifica'):''}${button('delete','⌫','aria-label="Elimina selezione" title="Elimina selezione (Canc o Backspace)"')}</div>`;
+   if(v.multiplying)return `<form data-nb-form="multiplier" class="nb-context nb-action-strip"><label for="${formId}-multiplier">Moltiplica entrambi i termini per</label><input id="${formId}-multiplier" name="multiplier" aria-label="Moltiplicatore comune" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required><button type="submit">Inizia</button></form>`;
+   const f=selectedFraction();return `<div class="nb-context nb-selection-tools" role="toolbar" aria-label="Azioni sulla selezione">${canSimplify(f)?button('simplify','Semplifica'):''}${simple(f)&&comparison?button('equivalent','Frazione equivalente'):''}${button('delete','⌫','aria-label="Elimina selezione" title="Elimina selezione (Canc o Backspace)"')}</div>`;
   }
   function positionContext(){
    const toolbar=host.querySelector('.nb-context'),paper=host.querySelector('.nb-paper');if(!toolbar||!paper)return;
@@ -115,9 +129,11 @@ window.GatitoMathNotebook=(()=>{
   }
   function render(){
    host.innerHTML=`<div class="nb-topbar">${!v.draft&&!model.pending?button('insert','＋ Inserisci','class="nb-insert"'):''}${model.rows.length||model.past.length||model.future.length?`<div class="nb-tools">${button('undo','↶','aria-label="Annulla" '+(!model.past.length&&!model.pending?'disabled':''))}${button('redo','↷','aria-label="Ripristina" '+(!model.future.length||model.pending?'disabled':''))}</div>`:''}</div><div class="nb-paper" aria-label="Pagina del quaderno">${model.rows.map((row,i)=>`<div class="nb-row" aria-label="Espressione ${i+1}">${paperHTML(row)}${completedReduction(row,model.pending)?`<span class="nb-final-result" aria-label="Risultato della riduzione"><span class="nb-equals">=</span>${cleanHTML(row)}</span>`:''}</div>`).join('')}${v.draft?composerHTML():''}${context()}<div class="nb-message ${v.error?'nb-error':''}" role="status" aria-live="polite">${esc(v.message)}</div></div>`;
+   if(comparison){host.classList.add('nb-comparison');host.querySelectorAll('.nb-row').forEach((row,i)=>{const label=document.createElement('span');label.className='nb-comparison-label';label.textContent=i===0?'Prima frazione':i===1?'Seconda frazione':'Appunti';row.prepend(label);});host.insertAdjacentHTML('beforeend',`<div class="nb-comparison-answer" role="group" aria-label="Confronta le due frazioni"><span>La prima frazione è</span><div class="nb-relation-choices">${['<','=','>'].map(r=>button('relation',esc(r),`data-nb-key="${esc(r)}" aria-label="${r==='<'?'Minore di':r==='>'?'Maggiore di':'Uguale a'}" aria-pressed="${v.relation===r}"`)).join('')}</div><span>la seconda.</span>${button('check-comparison','Verifica confronto')}</div>`);}
    if(v.draft){const input=host.querySelector(`[data-nb-slot="${v.active}"]`);input?.focus({preventScroll:true});if(input)input.setSelectionRange(input.value.length,input.value.length);}
    else if(model.pending)host.querySelector('[name="quotient"]')?.focus({preventScroll:true});
    else if(v.dividing)host.querySelector('[name="divisor"]')?.focus({preventScroll:true});
+   else if(v.multiplying)host.querySelector('[name="multiplier"]')?.focus({preventScroll:true});
    else if(v.filling)host.querySelector('[name="value"]')?.focus({preventScroll:true});
    positionContext();
   }
@@ -145,6 +161,9 @@ window.GatitoMathNotebook=(()=>{
    if(action==='unselect')clearSelection();
    if(action==='delete'){model.erase(v.selection);clearSelection();}
    if(action==='simplify'){v.dividing=true;v.message='Scegli tu un numero che divida entrambi i termini.';}
+   if(action==='equivalent'){v.multiplying=true;v.message='Scegli lo stesso moltiplicatore per numeratore e denominatore.';}
+   if(action==='relation'){clearSelection();v.relation=key;}
+   if(action==='check-comparison'){try{if(v.draft)throw Error('Conferma prima quello che stai scrivendo.');comparisonResult(model,comparison.fractions,v.relation);clearSelection();v.error=false;v.message='Corretto! Con il denominatore comune basta confrontare i numeratori.';render();}catch(e){message(e.message,true);}return;}
    if(action==='cancel-step'){model.cancel();clearSelection();}
    if(action==='undo'||action==='redo'){model[action]();clearSelection();}
    v.error=false;render();
@@ -155,7 +174,7 @@ window.GatitoMathNotebook=(()=>{
    const pick=e.target.closest('[data-nb-select]');if(pick&&!v.draft&&!model.pending){if(pick.dataset.nbEmpty){v.filling=pick.dataset.nbSelect;v.selection=[v.filling];v.selected=v.filling;render();return;}const key=pick.dataset.nbSelect;select(e.shiftKey||e.ctrlKey||e.metaKey?v.selection.includes(key)?v.selection.filter(k=>k!==key):[...v.selection,key]:[key]);return;}
    if(!v.draft&&!model.pending&&v.selection.length){clearSelection();render();}
   }
-  function submit(e){const form=e.target.closest('[data-nb-form]');if(!form)return;e.preventDefault();try{if(form.dataset.nbForm==='fill'){model.fill(v.filling,form.elements.value.value);clearSelection();}else if(form.dataset.nbForm==='divisor'){model.begin(v.selected,form.elements.divisor.value);v.dividing=false;v.message='Scrivi il quoziente del numeratore. Poi toccherà al denominatore.';}else{const done=model.answer(form.elements.quotient.value);v.message=done?'Passaggio completato. Puoi cercare un altro divisore comune.':'Ora dividi il denominatore per lo stesso divisore.';if(done){const f=model.fractionFor(v.selected);if(simple(f)&&gcd(BigInt(f.top.items[0].value),BigInt(f.bottom.items[0].value))===1n)v.message='Frazione ridotta ai minimi termini.';v.selection=[];v.selected=null;v.dividing=false;v.filling=null;}}v.error=false;render();}catch(err){message(err.message,true);}}
+  function submit(e){const form=e.target.closest('[data-nb-form]');if(!form)return;e.preventDefault();try{if(form.dataset.nbForm==='fill'){model.fill(v.filling,form.elements.value.value);clearSelection();}else if(form.dataset.nbForm==='divisor'){model.begin(v.selected,form.elements.divisor.value);v.dividing=false;v.message='Scrivi il quoziente del numeratore. Poi toccherà al denominatore.';}else if(form.dataset.nbForm==='multiplier'){model.beginEquivalent(v.selected,form.elements.multiplier.value);v.multiplying=false;v.message='Scrivi il prodotto del numeratore. Poi toccherà al denominatore.';}else{const multiplying=model.pending?.kind==='multiply',done=model.answer(form.elements.quotient.value);v.message=done?'Passaggio completato.':'Ora '+(multiplying?'moltiplica':'dividi')+' il denominatore per lo stesso numero.';if(done){const f=model.fractionFor(v.selected);if(!multiplying&&simple(f)&&gcd(BigInt(f.top.items[0].value),BigInt(f.bottom.items[0].value))===1n)v.message='Frazione ridotta ai minimi termini.';if(multiplying)v.message='Frazione equivalente costruita. Il valore è rimasto lo stesso.';v.selection=[];v.selected=null;v.dividing=false;v.multiplying=false;v.filling=null;}}v.error=false;render();}catch(err){message(err.message,true);}}
   function input(e){const key=e.target.dataset.nbSlot;if(!key)return;const r=find(v.draft,key);r.node.value=e.target.value.replace(/[^0-9]/g,'').slice(0,30);e.target.value=r.node.value;e.target.style.setProperty('--nb-digits',Math.max(2,r.node.value.length+1));}
   function focus(e){if(e.target.dataset.nbSlot){v.active=e.target.dataset.nbSlot;host.querySelectorAll('[data-nb-slot]').forEach(x=>x.classList.toggle('nb-active',x===e.target));}}
   function keydown(e){
@@ -191,8 +210,9 @@ window.GatitoMathNotebook=(()=>{
   host.addEventListener('click',click);host.addEventListener('submit',submit);host.addEventListener('input',input);host.addEventListener('focusin',focus);host.addEventListener('keydown',keydown);host.addEventListener('pointerdown',pointer);document.addEventListener('pointermove',move);document.addEventListener('pointerup',up);document.addEventListener('pointerdown',outside);window.addEventListener('resize',positionContext);host.addEventListener('scroll',positionContext,true);host.addEventListener('pointercancel',cancelPointer);render();
   return{model,dispose(){document.removeEventListener('pointermove',move);document.removeEventListener('pointerup',up);document.removeEventListener('pointerdown',outside);window.removeEventListener('resize',positionContext);host.remove();}};
  }
- return{mount,Notebook,math:{evaluate,gcd,completedReduction},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot,arrowSlot,canSimplify}};
+ return{mount,Notebook,math:{evaluate,gcd,completedReduction,comparisonResult},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot,arrowSlot,canSimplify}};
 })();
+
 
 
 

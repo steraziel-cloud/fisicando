@@ -5,7 +5,7 @@ Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
     "title": "L’insieme dei numeri razionali assoluti",
     "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
-    "version": 16,
+    "version": 17,
     "status": "work-in-progress",
     "sections": [
       {
@@ -325,88 +325,148 @@ Object.assign(window.READER_LESSONS,{
         }
       },
       {
-        "id": "ordine",
-        "title": "Confronto e proprietà dell’insieme",
-        "cards": [
-          {
-            "title": "Confrontare nella stessa unità",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Parti della stessa grandezza",
-                "html": "Con lo stesso <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> basta confrontare i numeratori: <span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 7\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">7</span></span> &lt; <span class=\"qr-fraction\" role=\"math\" aria-label=\"5 fratto 7\"><span aria-hidden=\"true\">5</span><span aria-hidden=\"true\">7</span></span></span>.<br><br>Con denominatori diversi non possiamo contare direttamente i pezzi: un terzo e un quarto non hanno la stessa grandezza. Prima li trasformiamo in <strong>parti della stessa unità e della stessa grandezza</strong>."
-              },
-              {
-                "title": "Una procedura affidabile",
-                "html": "Per confrontare <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span> scegliamo <strong>m.c.m.(3, 4) = 12</strong>: otteniamo <span class=\"qr-fraction\" role=\"math\" aria-label=\"8 fratto 12\"><span aria-hidden=\"true\">8</span><span aria-hidden=\"true\">12</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"9 fratto 12\"><span aria-hidden=\"true\">9</span><span aria-hidden=\"true\">12</span></span>. Ora le parti hanno la stessa grandezza e 8 &lt; 9.<br><br>Una frazione <strong>propria</strong> ha <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button> minore del <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> ed è minore di 1; una <strong>impropria</strong> ha <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button> maggiore o uguale al <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> ed è almeno 1."
-              }
-            ]
-          },
-          {
-            "title": "Sulla retta non ci sono buchi fra due razionali",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "L’ordine e la densità",
-                "html": "ℚₐ è un insieme <strong>ordinato</strong>: dati due suoi numeri, possiamo stabilire se il primo è minore, uguale o maggiore del secondo.<br><br>È anche <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denso\">denso</button>: fra due razionali distinti possiamo sempre trovarne un altro. Fra <span class=\"qr-fraction\" role=\"math\" aria-label=\"1 fratto 3\"><span aria-hidden=\"true\">1</span><span aria-hidden=\"true\">3</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span>, per esempio, c’è <span class=\"qr-fraction\" role=\"math\" aria-label=\"1 fratto 2\"><span aria-hidden=\"true\">1</span><span aria-hidden=\"true\">2</span></span>."
-              },
-              {
-                "title": "Nessun successivo immediato",
-                "html": "Fra a e b, con a &lt; b, il numero <strong>(a + b) : 2</strong> è razionale e sta esattamente a metà. Possiamo ripetere il procedimento senza fermarci.<br><br>Perciò un razionale non ha un <strong>successivo immediato</strong> come accade in ℕ. ℚₐ ha minimo 0, ma non ha un minimo positivo né un massimo.<details class=\"qr-deeper\"><summary>Denso non significa che ogni punto sia razionale</summary><p>Dire che fra due razionali c’è sempre un razionale non equivale a dire che ogni punto della retta rappresenti un razionale. Gli altri numeri saranno oggetto di una lezione successiva.</p></details>"
-              }
-            ]
-          }
-        ],
-        "quiz": {
-          "questions": [
-            {
-              "question": "Quale confronto è corretto?",
-              "options": [
-                "3/7 > 5/7",
-                "3/7 < 5/7",
-                "3/7 = 5/7"
-              ],
-              "answer": 1,
-              "feedback": "A denominatore uguale le parti hanno la stessa grandezza: tre settimi sono meno di cinque settimi.",
-              "feedbackByOption": [
-                "I denominatori sono uguali: confrontiamo i numeratori, e 3 è minore di 5.",
-                "Le parti sono tutte settimi: tre parti sono meno di cinque parti.",
-                "Le parti hanno la stessa grandezza, ma ne stiamo contando quantità diverse: 3 e 5."
-              ]
-            },
-            {
-              "question": "Per confrontare 2/3 e 3/4 le riscriviamo come 8/12 e 9/12. Che cosa concludiamo?",
-              "options": [
-                "2/3 < 3/4",
-                "2/3 > 3/4",
-                "2/3 = 3/4"
-              ],
-              "answer": 0,
-              "feedback": "8/12 < 9/12; le frazioni equivalenti conservano il valore, quindi 2/3 < 3/4.",
-              "feedbackByOption": [
-                "Con lo stesso denominatore confrontiamo 8 e 9: 8/12 è minore di 9/12.",
-                "Dopo aver scelto lo stesso denominatore, 8 è minore di 9: il primo numero è il più piccolo.",
-                "8/12 e 9/12 hanno numeratori diversi e lo stesso denominatore, quindi non sono uguali."
-              ]
-            },
-            {
-              "question": "Quale numero razionale assoluto è compreso strettamente tra 2/5 e 3/5?",
-              "options": [
-                "1/5",
-                "4/5",
-                "1/2"
-              ],
-              "answer": 2,
-              "feedback": "2/5 = 4/10, 1/2 = 5/10 e 3/5 = 6/10: il numero 1/2 è compreso fra gli altri due.",
-              "feedbackByOption": [
-                "1/5 è minore di 2/5: è fuori dall’intervallo richiesto.",
-                "4/5 è maggiore di 3/5: è fuori dall’intervallo richiesto.",
-                "Scrivendo tutto in decimi otteniamo 4/10 < 5/10 < 6/10. Fra due razionali distinti si può sempre trovare un altro razionale."
-              ]
-            }
-          ]
+  "id": "ordine",
+  "title": "Confronto e proprietà dell’insieme",
+  "cards": [
+    {
+      "title": "ℚₐ è un insieme ordinato e denso",
+      "stepMode": "replace",
+      "steps": [
+        {
+          "title": "Possiamo confrontare i suoi elementi",
+          "html": "Dati due numeri razionali assoluti, possiamo sempre stabilire se il primo è <strong>minore, uguale o maggiore</strong> del secondo. Per questo diciamo che ℚₐ è un insieme <strong>ordinato</strong>.<br><br>È anche <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denso\">denso</button>: fra due razionali distinti possiamo sempre trovarne un altro. Per esempio: <span class=\"qr-fraction\" role=\"math\" aria-label=\"1 fratto 3\"><span aria-hidden=\"true\">1</span><span aria-hidden=\"true\">3</span></span> &lt; <span class=\"qr-fraction\" role=\"math\" aria-label=\"1 fratto 2\"><span aria-hidden=\"true\">1</span><span aria-hidden=\"true\">2</span></span> &lt; <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span>."
         }
+      ]
+    },
+    {
+      "title": "Nessun successivo immediato",
+      "stepMode": "replace",
+      "steps": [
+        {
+          "title": "Tra due razionali c’è sempre spazio per un altro",
+          "html": "In ℕ, dopo 3 viene subito 4: non c’è un numero naturale tra i due. In ℚₐ, invece, <strong>non esiste il successivo immediato</strong> di un numero.<br><br>Se a &lt; b, il numero <span class=\"qr-fraction\" role=\"math\" aria-label=\"a + b fratto 2\"><span aria-hidden=\"true\">a + b</span><span aria-hidden=\"true\">2</span></span> è razionale ed è strettamente compreso tra a e b. Possiamo ripetere il procedimento, trovando ogni volta un altro numero.<br><br>ℚₐ ha <strong>minimo 0</strong>, ma non ha un minimo positivo: per ogni a &gt; 0, <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto 2\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">2</span></span> è positivo e più piccolo di a. Non ha neppure un massimo: a + 1 è sempre maggiore di a.<details class=\"qr-deeper\"><summary>Denso non significa che ogni punto sia razionale</summary><p>Fra due razionali distinti esiste sempre un altro razionale. Questo non significa che tutti i punti della retta rappresentino numeri razionali: incontreremo altri numeri più avanti.</p></details>"
+        }
+      ]
+    },
+    {
+      "title": "Quando i denominatori sono diversi",
+      "stepMode": "replace",
+      "steps": [
+        {
+          "title": "Confrontare solo i numeratori non basta",
+          "html": "Con lo <strong>stesso <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button></strong>, le parti della stessa unità hanno uguale grandezza: è maggiore la frazione con il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button> maggiore. Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 7\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">7</span></span> &lt; <span class=\"qr-fraction\" role=\"math\" aria-label=\"5 fratto 7\"><span aria-hidden=\"true\">5</span><span aria-hidden=\"true\">7</span></span>.<br><br>Con <strong>denominatori diversi</strong> questa regola non basta: i terzi e i quinti sono parti di grandezza diversa. Non possiamo decidere, per esempio, il confronto tra <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 5\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">5</span></span> guardando soltanto 2 e 3.<br><br>Le frazioni si possono comunque confrontare: dobbiamo prima riscriverle in una forma adatta.<details class=\"qr-deeper\"><summary>Un confronto immediato: rispetto a 1</summary><p>Una frazione con numeratore minore del denominatore è <strong>propria</strong> ed è minore di 1. Se il numeratore è maggiore o uguale al denominatore, la frazione è <strong>impropria</strong> ed è maggiore o uguale a 1. In casi come questi possiamo confrontare anche frazioni con denominatori diversi senza trasformarle.</p></details>"
+        }
+      ]
+    },
+    {
+      "title": "Portiamo le frazioni allo stesso denominatore",
+      "stepMode": "replace",
+      "steps": [
+        {
+          "title": "Frazioni equivalenti, confronto più semplice",
+          "html": "<ol><li>Scegliamo un <strong>multiplo comune dei denominatori</strong>. Il <strong>m.c.m.</strong> è il più piccolo e spesso rende i calcoli più comodi.</li><li>Per ogni frazione dividiamo il denominatore comune per il suo denominatore: troviamo così il numero per cui moltiplicare <strong>entrambi i termini</strong>.</li><li>Usiamo la <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-invariantiva\">proprietà invariantiva</button> per costruire le due frazioni equivalenti. Infine confrontiamo i numeratori.</li></ol>Per <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span>, il m.c.m.(3, 4) è 12. Poiché 12 : 3 = 4 e 12 : 4 = 3, otteniamo:<br><br><span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 · 4 fratto 3 · 4\"><span aria-hidden=\"true\">2 · 4</span><span aria-hidden=\"true\">3 · 4</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"8 fratto 12\"><span aria-hidden=\"true\">8</span><span aria-hidden=\"true\">12</span></span> &emsp; e &emsp; <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 · 3 fratto 4 · 3\"><span aria-hidden=\"true\">3 · 3</span><span aria-hidden=\"true\">4 · 3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"9 fratto 12\"><span aria-hidden=\"true\">9</span><span aria-hidden=\"true\">12</span></span>.<br><br>Dato che 8 &lt; 9, concludiamo che <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> &lt; <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span>. Le frazioni equivalenti conservano il valore di quelle di partenza."
+        }
+      ]
+    },
+    {
+      "title": "Metti in pratica il confronto",
+      "stepMode": "replace",
+      "steps": [
+        {
+          "title": "Qual è la frazione maggiore?",
+          "html": "Confronta <span class=\"qr-fraction\" role=\"math\" aria-label=\"11 fratto 6\"><span aria-hidden=\"true\">11</span><span aria-hidden=\"true\">6</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"9 fratto 4\"><span aria-hidden=\"true\">9</span><span aria-hidden=\"true\">4</span></span>. Sono già ridotte ai minimi termini: scegli un denominatore comune e costruisci le due frazioni equivalenti.<br><br>Nel quaderno seleziona una frazione e scegli <strong>Frazione equivalente</strong>: decidi il moltiplicatore e scrivi tu i due prodotti. Ripeti per l’altra frazione, poi scegli il simbolo del confronto."
+        }
+      ],
+      "board": "qr-compare",
+      "notebookComparison": {
+        "id": "undici-sesti-nove-quarti",
+        "fractions": [
+          [
+            11,
+            6
+          ],
+          [
+            9,
+            4
+          ]
+        ]
+      }
+    },
+    {
+      "title": "Prima semplifica, poi confronta",
+      "stepMode": "replace",
+      "steps": [
+        {
+          "title": "Un passaggio iniziale può rendere i calcoli più semplici",
+          "html": "Confronta <span class=\"qr-fraction\" role=\"math\" aria-label=\"18 fratto 30\"><span aria-hidden=\"true\">18</span><span aria-hidden=\"true\">30</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"7 fratto 10\"><span aria-hidden=\"true\">7</span><span aria-hidden=\"true\">10</span></span>. La prima frazione può essere <strong>ridotta ai minimi termini</strong>: prova a farlo prima di scegliere il denominatore comune.<br><br>Nel quaderno puoi usare <strong>Semplifica</strong> e poi <strong>Frazione equivalente</strong>. Quando le due frazioni hanno lo stesso denominatore, confronta i numeratori."
+        }
+      ],
+      "board": "qr-compare",
+      "notebookComparison": {
+        "id": "diciotto-trentesimi-sette-decimi",
+        "fractions": [
+          [
+            18,
+            30
+          ],
+          [
+            7,
+            10
+          ]
+        ]
+      }
+    }
+  ],
+  "quiz": {
+    "questions": [
+      {
+        "question": "Quale confronto è corretto?",
+        "options": [
+          "3/7 > 5/7",
+          "3/7 < 5/7",
+          "3/7 = 5/7"
+        ],
+        "answer": 1,
+        "feedback": "A denominatore uguale le parti hanno la stessa grandezza: tre settimi sono meno di cinque settimi.",
+        "feedbackByOption": [
+          "I denominatori sono uguali: confrontiamo i numeratori, e 3 è minore di 5.",
+          "Le parti sono tutte settimi: tre parti sono meno di cinque parti.",
+          "Le parti hanno la stessa grandezza, ma ne stiamo contando quantità diverse: 3 e 5."
+        ]
       },
+      {
+        "question": "Per confrontare 2/3 e 3/4 le riscriviamo come 8/12 e 9/12. Che cosa concludiamo?",
+        "options": [
+          "2/3 < 3/4",
+          "2/3 > 3/4",
+          "2/3 = 3/4"
+        ],
+        "answer": 0,
+        "feedback": "8/12 < 9/12; le frazioni equivalenti conservano il valore, quindi 2/3 < 3/4.",
+        "feedbackByOption": [
+          "Con lo stesso denominatore confrontiamo 8 e 9: 8/12 è minore di 9/12.",
+          "Dopo aver scelto lo stesso denominatore, 8 è minore di 9: il primo numero è il più piccolo.",
+          "8/12 e 9/12 hanno numeratori diversi e lo stesso denominatore, quindi non sono uguali."
+        ]
+      },
+      {
+        "question": "Quale numero razionale assoluto è compreso strettamente tra 2/5 e 3/5?",
+        "options": [
+          "1/5",
+          "4/5",
+          "1/2"
+        ],
+        "answer": 2,
+        "feedback": "2/5 = 4/10, 1/2 = 5/10 e 3/5 = 6/10: il numero 1/2 è compreso fra gli altri due.",
+        "feedbackByOption": [
+          "1/5 è minore di 2/5: è fuori dall’intervallo richiesto.",
+          "4/5 è maggiore di 3/5: è fuori dall’intervallo richiesto.",
+          "Scrivendo tutto in decimi otteniamo 4/10 < 5/10 < 6/10. Fra due razionali distinti si può sempre trovare un altro razionale."
+        ]
+      }
+    ]
+  }
+},
       {
         "id": "pillole",
         "title": "La lezione in pillole",
@@ -1448,5 +1508,6 @@ Object.assign(window.READER_GLOSSARY,{
   }
 });
 })();
+
 
 

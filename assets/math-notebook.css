@@ -1,4 +1,5 @@
 /* A quiet notebook, with controls revealed only during an action. */
+.nb-comparison-label{display:block;margin-bottom:5px;color:var(--rm-muted,#586d6d);font:600 12px/1.4 system-ui,sans-serif}.nb-comparison .nb-paper{min-height:330px}.nb-comparison .nb-row{padding:8px 0 14px}.nb-comparison-answer{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:14px;font-size:14px}.nb-relation-choices{display:flex;gap:6px}.nb-relation-choices button{min-width:42px;font-size:22px}.nb-relation-choices button[aria-pressed=true]{background:var(--nb-accent);border-color:var(--nb-accent);color:#fff}.nb-product-number{display:inline-flex;align-items:center;gap:.25em;white-space:nowrap}.nb-product-operation,.nb-product-placeholder{color:var(--rm-muted,#586d6d)}.nb-inline-product{width:3.5em;min-width:2em;max-width:8em;font:inherit;border:1px solid var(--nb-accent);border-radius:5px;padding:3px;background:var(--nb-paper);color:var(--nb-ink)}.nb-history{cursor:default;opacity:.8}.nb-history .nb-number{pointer-events:none}
 .qr-copilot-wide>.nb-notebook{grid-column:1;grid-row:3;min-width:0}
 .nb-notebook{--nb-ink:var(--rm-text,#193e46);--nb-accent:#167d7b;--nb-paper:var(--rm-panel,#fff);--nb-line:var(--rm-line,#c6d9df);color:var(--nb-ink);font:16px/1.5 system-ui,sans-serif;min-width:0}
 .nb-notebook *{box-sizing:border-box}.nb-notebook button,.nb-notebook input{font:inherit;color:inherit}
@@ -72,3 +73,4 @@
 .rm-quiz-workspace{grid-template-columns:max-content minmax(0,600px)}
 .rm-quiz-workspace .nb-paper{min-height:280px}
 @media(max-width:760px){.rm-quiz-workspace{grid-template-columns:minmax(0,1fr)}.rm-quiz-workspace .nb-paper{min-height:260px}}
+
