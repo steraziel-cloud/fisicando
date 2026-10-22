@@ -66,3 +66,9 @@
 @media(max-width:760px){.rm-quiz-workspace{grid-template-columns:minmax(0,1fr);gap:18px}.rm-quiz-answers{flex-direction:row;flex-wrap:wrap;align-items:center}.rm-reader-checkpoint .rm-quiz-answers>label{min-width:85px;max-width:100%;padding:10px 14px}.rm-reader-checkpoint .rm-quiz-answers>button{margin:0}.rm-quiz-workspace .nb-paper{min-height:340px}}
 
 .rm-reader-checkpoint .rm-quiz-answers>label{border:1px solid var(--rm-line);border-radius:12px;background:var(--rm-panel);align-items:center}.rm-quiz-answers input[type=radio]{margin-top:0}.rm-reader-checkpoint .rm-quiz-answers>.rm-btn{background:var(--rm-accent);border-color:var(--rm-accent);color:#fff}
+
+/* A quiz needs a small working page, rather than the full lesson desk. */
+.rm-reader-checkpoint.rm-checkpoint-with-notebook{max-width:900px;box-sizing:border-box}
+.rm-quiz-workspace{grid-template-columns:max-content minmax(0,600px)}
+.rm-quiz-workspace .nb-paper{min-height:280px}
+@media(max-width:760px){.rm-quiz-workspace{grid-template-columns:minmax(0,1fr)}.rm-quiz-workspace .nb-paper{min-height:260px}}
