@@ -20,3 +20,11 @@
 @media(max-width:600px){.nb-paper{padding:18px 12px;min-height:380px}.nb-composer{padding:13px}.nb-action-strip{padding:10px;gap:8px}.nb-keypad{max-width:none}.nb-row>.nb-sequence,.nb-draft>.nb-sequence{font-size:27px}.nb-action-strip label{flex-basis:100%}}
 
 .nb-inline-answer{font:inherit!important;width:2.7em;max-width:10em;border:1px dashed var(--nb-accent);border-radius:6px;text-align:center;background:var(--nb-paper);padding:.08em .2em;color:var(--nb-accent)!important;transform:translateY(-.2em)}
+
+
+/* Selection belongs to the pointer; contextual commands stay beside its target. */
+.nb-paper{position:relative}.nb-row{user-select:none;-webkit-user-select:none;touch-action:pan-y}.nb-row>.nb-sequence{max-width:none}.nb-notebook .nb-operator.nb-pick{font:inherit;background:transparent;border:1px solid transparent;min-height:0;padding:.12em .18em}
+.nb-context{position:absolute;z-index:15;max-width:calc(100% - 16px);width:max-content;margin:0!important;box-shadow:0 7px 24px #193c4420;background:var(--nb-paper)}.nb-context[hidden]{display:none}.nb-context.nb-action-strip{max-width:min(340px,calc(100% - 16px));padding:10px 12px;gap:8px}.nb-context.nb-action-strip label{flex-basis:100%}
+.nb-selection-tools{display:flex;gap:5px;padding:5px;border:1px solid var(--nb-line);border-radius:11px}.nb-notebook .nb-selection-tools button{border:0;padding:7px 11px;min-height:36px;font-size:14px}.nb-selection-tools button:first-child{color:var(--nb-accent);font-weight:650}.nb-notebook .nb-selection-tools button[data-nb-action=delete]{color:var(--nb-ink);font-size:19px}
+.nb-marquee{position:absolute;z-index:12;pointer-events:none;border:1px solid var(--nb-accent);background:color-mix(in srgb,var(--nb-accent) 10%,transparent);border-radius:3px}.nb-notebook .nb-operator.nb-selected{background:color-mix(in srgb,var(--nb-accent) 10%,var(--nb-paper));outline:2px solid var(--nb-accent)}
+.nb-notebook:focus{outline:none}.nb-notebook:focus-visible{outline:2px solid var(--nb-accent);outline-offset:5px;border-radius:12px}
