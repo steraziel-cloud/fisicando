@@ -340,7 +340,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  function checkpoint(){
   const section=lesson.sections[current],quiz=section.quiz,qs=quizState(current),box=$('reader-checkpoint');
-  disposeQuizNotebook();disposeQuizNotebook=()=>{};box.replaceChildren();box.hidden=false;
+  disposeQuizNotebook();disposeQuizNotebook=()=>{};box.replaceChildren();box.hidden=false;box.classList.remove('rm-checkpoint-with-notebook');
   box.append(el('h3','',pendingSection!==null?'Verifica i prerequisiti · '+section.title:'Controlla l’idea'));
   if(quiz.type&&!qs.special&&!qs.gateOnly){
    if(quiz.type==='period-lab'){periodLab(box);return;}
@@ -350,7 +350,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   const questions=quiz.questions||[quiz],position=Math.min(qs.index,questions.length-1),q=window.GatitoCoins?window.GatitoCoins.questionFor(questions[position],coinExperiment):questions[position];
   box.append(el('p','rm-checkpoint-progress','Domanda '+(position+1)+' di '+questions.length),el('p','',q.question));
   if(q.illustration){const figure=el('figure','rm-quiz-figure'),img=el('img');img.src=q.illustration.src;img.alt=q.illustration.alt;img.width=q.illustration.width||360;img.height=q.illustration.height||220;figure.append(img);box.append(figure);}
-  q.options.forEach((option,i)=>{const label=el('label'),input=el('input');input.type='radio';input.name='checkpoint';input.value=i;label.append(input,el('span','',option));box.append(label);});
+  const withNotebook=!!(q.notebook&&window.GatitoMathNotebook),answerArea=withNotebook?el('div','rm-quiz-answers'):box;
+  if(withNotebook){box.classList.add('rm-checkpoint-with-notebook');const workspace=el('div','rm-quiz-workspace');workspace.append(answerArea);box.append(workspace);}
+  q.options.forEach((option,i)=>{const label=el('label'),input=el('input');input.type='radio';input.name='checkpoint';input.value=i;label.append(input,el('span','',option));answerArea.append(label);});
   const verify=button('Verifica',()=>{const selected=box.querySelector('input[type=radio][name=checkpoint]:checked');if(!selected){$('reader-feedback').textContent='Scegli una risposta prima di verificare.';return;}
    const chosen=Number(selected.value),feedback=q.feedbackByOption?.[chosen]||q.feedback;
    if(chosen!==q.answer){retry($('reader-feedback'),feedback+' Puoi rileggere e riprovare.');return;}
@@ -358,9 +360,9 @@ document.addEventListener('DOMContentLoaded',()=>{
    if(position===questions.length-1){completeSection('Hai superato tutte le '+questions.length+' domande. '+feedback);return;}
    box.querySelectorAll('input[type=radio][name=checkpoint]').forEach(input=>input.disabled=true);verify.disabled=true;
    celebrate($('reader-feedback'),'Corretto. '+feedback);
-   box.append(button('Prossima domanda →',()=>{qs.index=position+1;$('reader-feedback').replaceChildren();checkpoint();actions();},'rm-btn'));
-  });box.append(verify);
-  quizNotebook(box,q,position,qs,section);
+   answerArea.append(button('Prossima domanda →',()=>{qs.index=position+1;$('reader-feedback').replaceChildren();checkpoint();actions();},'rm-btn'));
+  });answerArea.append(verify);
+  quizNotebook(withNotebook?box.querySelector('.rm-quiz-workspace'):box,q,position,qs,section);
   formatRationalFractions(box);
   if(state[current].complete)$('reader-feedback').textContent='Checkpoint già superato. Puoi ripassare o proseguire.';
  }
