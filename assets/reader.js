@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  // Learning progress belongs to this visit only. Reference cards do not award progress.
  const cafeState={},coinExperiment={},multiplesExplorer={},divisorPairs={};
  const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},units:{values:['',''],done:false},elevator:{},velocityGraph:{},instantSpeeds:{values:['','','',''],done:false},velocityQuiz:{answer:'',stage:0,choice:null,done:false},lab:{started:null,period:8,marks:[],verified:false,answer:''}}));
- let current=0,allMode=false,reviewAccess=false,referenceMode=false,referenceBounds=null,disposeWidget=()=>{},mountedCard=null,cancelSlide=()=>{};
+ let current=0,allMode=false,reviewAccess=false,referenceMode=false,referenceBounds=null,disposeWidget=()=>{},disposeQuizNotebook=()=>{},mountedCard=null,cancelSlide=()=>{};
  const flat=s=>s.cards.flatMap((card,ci)=>card.steps.map((step,si)=>({card,ci,step,si})));
  const format=n=>Number(n).toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2});
  const el=(tag,cls,text)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node;};
@@ -330,9 +330,17 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(interactive){const verify=button('Verifica le velocità',()=>{const correct=st.values.every((x,i)=>x.trim()!==''&&Number.isFinite(Number(x.trim().replace(',','.')))&&Math.abs(Number(x.trim().replace(',','.'))-expected[i])<.01);if(!correct){retry(feedback,'Rivedi le etichette: controlla i tratti prima e dopo il chiosco e la pausa. Puoi fermare l’animazione.');return;}st.done=true;inputs.forEach(input=>input.disabled=true);verify.disabled=true;celebrate(feedback,'Corretto: Morgana mantiene 2 m/s; Red passa da 6 m/s a una velocità nulla e poi a 2 m/s.');actions();});verify.disabled=st.done;host.append(verify);if(st.done)feedback.textContent='Velocità completate correttamente.';}
   host.append(feedback);box.append(host);
  }
+ function quizNotebook(box,q,position,qs,section){
+  if(!q.notebook||!window.GatitoMathNotebook)return;
+  const details=el('details','rm-quiz-notebook'),summary=el('summary','','Apri il quaderno · facoltativo'),holder=el('div','rm-quiz-notebook-page');
+  details.append(summary,holder);qs.notebookOpen||={};details.open=!!qs.notebookOpen[q.notebook];let mounted=null;
+  const sync=()=>{qs.notebookOpen[q.notebook]=details.open;summary.textContent=details.open?'Chiudi il quaderno · facoltativo':'Apri il quaderno · facoltativo';if(details.open){if(!mounted)mounted=window.GatitoMathNotebook.mount(holder,{sessionKey:params.get('lezione')+':'+section.id+':quiz:'+q.notebook});}else{mounted?.dispose();mounted=null;}};
+  details.addEventListener('toggle',sync);box.append(details);if(details.open)sync();
+  disposeQuizNotebook=()=>{details.removeEventListener('toggle',sync);mounted?.dispose();mounted=null;};
+ }
  function checkpoint(){
   const section=lesson.sections[current],quiz=section.quiz,qs=quizState(current),box=$('reader-checkpoint');
-  box.replaceChildren();box.hidden=false;
+  disposeQuizNotebook();disposeQuizNotebook=()=>{};box.replaceChildren();box.hidden=false;
   box.append(el('h3','',pendingSection!==null?'Verifica i prerequisiti · '+section.title:'Controlla l’idea'));
   if(quiz.type&&!qs.special&&!qs.gateOnly){
    if(quiz.type==='period-lab'){periodLab(box);return;}
@@ -343,15 +351,16 @@ document.addEventListener('DOMContentLoaded',()=>{
   box.append(el('p','rm-checkpoint-progress','Domanda '+(position+1)+' di '+questions.length),el('p','',q.question));
   if(q.illustration){const figure=el('figure','rm-quiz-figure'),img=el('img');img.src=q.illustration.src;img.alt=q.illustration.alt;img.width=q.illustration.width||360;img.height=q.illustration.height||220;figure.append(img);box.append(figure);}
   q.options.forEach((option,i)=>{const label=el('label'),input=el('input');input.type='radio';input.name='checkpoint';input.value=i;label.append(input,el('span','',option));box.append(label);});
-  box.append(button('Verifica',()=>{const selected=box.querySelector('input:checked');if(!selected){$('reader-feedback').textContent='Scegli una risposta prima di verificare.';return;}
+  const verify=button('Verifica',()=>{const selected=box.querySelector('input[type=radio][name=checkpoint]:checked');if(!selected){$('reader-feedback').textContent='Scegli una risposta prima di verificare.';return;}
    const chosen=Number(selected.value),feedback=q.feedbackByOption?.[chosen]||q.feedback;
    if(chosen!==q.answer){retry($('reader-feedback'),feedback+' Puoi rileggere e riprovare.');return;}
    qs.passed[position]=true;
    if(position===questions.length-1){completeSection('Hai superato tutte le '+questions.length+' domande. '+feedback);return;}
-   box.querySelectorAll('input').forEach(input=>input.disabled=true);box.querySelector('button').disabled=true;
+   box.querySelectorAll('input[type=radio][name=checkpoint]').forEach(input=>input.disabled=true);verify.disabled=true;
    celebrate($('reader-feedback'),'Corretto. '+feedback);
    box.append(button('Prossima domanda →',()=>{qs.index=position+1;$('reader-feedback').replaceChildren();checkpoint();actions();},'rm-btn'));
-  }));
+  });box.append(verify);
+  quizNotebook(box,q,position,qs,section);
   formatRationalFractions(box);
   if(state[current].complete)$('reader-feedback').textContent='Checkpoint già superato. Puoi ripassare o proseguire.';
  }
@@ -502,7 +511,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    updateCard(item,direction);$('reader-feedback').textContent='';index();actions();return;
   }
   $('reader-completion')?.remove();cancelSlide();const previousHeight=$('reader-steps').getBoundingClientRect().height;const previous=direction?[...$('reader-steps').childNodes]:[];mountedCard=null;
-  disposeWidget();disposeWidget=()=>{};$('reader-steps').replaceChildren();$('reader-checkpoint').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';
+  disposeQuizNotebook();disposeQuizNotebook=()=>{};disposeWidget();disposeWidget=()=>{};$('reader-steps').replaceChildren();$('reader-checkpoint').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';
   const s=lesson.sections[current],st=state[current],items=flat(s);$('reader-section-title').textContent=s.title+(referenceMode?' · Richiamo':'');
   if(st.cursor===items.length){if(s.quiz)checkpoint();else $('reader-feedback').textContent=current<state.length-1?'Parte completata. Continua con la parte successiva.':'Lezione completata. Puoi rivedere le parti dall’indice o scegliere «Sblocca tutto».';}else{
    const item=items[st.cursor];if((item.card.retainPrevious||item.card.collapsePrevious)&&item.ci>0)renderCard(s.cards[item.ci-1],s.cards[item.ci-1].steps,true,!!item.card.collapsePrevious);
@@ -530,13 +539,13 @@ document.addEventListener('DOMContentLoaded',()=>{
  document.addEventListener('keydown',e=>{
   if(e.defaultPrevented||e.repeat||e.altKey||e.ctrlKey||e.metaKey||e.shiftKey||allMode||!['ArrowLeft','ArrowRight'].includes(e.key))return;
   const target=e.target;
-  if(document.querySelector('dialog[open]')||target.isContentEditable||target.closest('input,textarea,select,[contenteditable="true"],[role="slider"],[role="spinbutton"],[role="tablist"],.rm-reader-board,.dp-board,.mp-board,.rm-reader-card svg,canvas'))return;
+  if(document.querySelector('dialog[open]')||target.isContentEditable||target.closest('input,textarea,select,[contenteditable="true"],[role="slider"],[role="spinbutton"],[role="tablist"],.nb-notebook,.rm-reader-board,.dp-board,.mp-board,.rm-reader-card svg,canvas'))return;
   const control=$(e.key==='ArrowLeft'?'reader-prev':'reader-next');
   if(!control.hidden&&!control.disabled){e.preventDefault();control.click();}
  });
  // Horizontal swipes navigate only the already unlocked learning path.
  let touch=null;const column=document.querySelector('.rm-reader-column');
- column.addEventListener('touchstart',e=>{if(e.target.closest('input,select,button,.rm-reader-board'))return;const p=e.changedTouches[0];touch={x:p.clientX,y:p.clientY};},{passive:true});
+ column.addEventListener('touchstart',e=>{if(e.target.closest('input,select,button,.nb-notebook,.rm-reader-board'))return;const p=e.changedTouches[0];touch={x:p.clientX,y:p.clientY};},{passive:true});
  column.addEventListener('touchend',e=>{if(!touch)return;const p=e.changedTouches[0],dx=p.clientX-touch.x,dy=p.clientY-touch.y;touch=null;if(Math.abs(dx)<75||Math.abs(dy)>50)return;const b=dx>0?$('reader-prev'):$('reader-next');if(!b.hidden&&!b.disabled)b.click();},{passive:true});
  $('reader-show-all').textContent='Sblocca tutto';
  $('reader-show-all').setAttribute('aria-pressed','false');
@@ -556,6 +565,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   referenceBounds={first,last:first+length-1};state[current].cursor=first;render();
  }else{history.replaceState(null,'','#inizio');open(0);}
 });
+
 
 
 

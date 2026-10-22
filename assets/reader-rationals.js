@@ -1,3 +1,6 @@
+Warning: truncated output (original token count: 24431)
+Total output lines: 1452
+
 /* Original GatitoMath rational lessons. See docs/razionali-assoluti-revisione.md. */
 (()=>{
 "use strict";
@@ -5,7 +8,7 @@ Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
     "title": "L’insieme dei numeri razionali assoluti",
     "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
-    "version": 15,
+    "version": 16,
     "status": "work-in-progress",
     "sections": [
       {
@@ -275,21 +278,6 @@ Object.assign(window.READER_LESSONS,{
               ]
             },
             {
-              "question": "Quale frazione rappresenta lo stesso numero di 6/9?",
-              "options": [
-                "2/9",
-                "2/3",
-                "6/3"
-              ],
-              "answer": 1,
-              "feedback": "Dividendo entrambi i termini di 6/9 per 3 si ottiene 2/3: le frazioni sono equivalenti.",
-              "feedbackByOption": [
-                "Per passare da 6/9 a 2/9 cambia soltanto il numeratore: il valore non si conserva.",
-                "6 : 3 = 2 e 9 : 3 = 3: dividiamo entrambi i termini per lo stesso numero.",
-                "Cambiare soltanto il denominatore da 9 a 3 cambia il valore della frazione."
-              ]
-            },
-            {
               "question": "Le frazioni 2/3, 4/6 e 6/9 appartengono alla stessa classe di equivalenza. Quanti numeri razionali rappresentano?",
               "options": [
                 "Un numero diverso per ogni frazione.",
@@ -305,6 +293,22 @@ Object.assign(window.READER_LESSONS,{
               ]
             },
             {
+              "question": "Quale frazione rappresenta lo stesso numero di 6/9?",
+              "options": [
+                "2/9",
+                "2/3",
+                "6/3"
+              ],
+              "answer": 1,
+              "feedback": "Dividendo entrambi i termini di 6/9 per 3 si ottiene 2/3: le frazioni sono equivalenti.",
+              "feedbackByOption": [
+                "Per passare da 6/9 a 2/9 cambia soltanto il numeratore: il valore non si conserva.",
+                "6 : 3 = 2 e 9 : 3 = 3: dividiamo entrambi i termini per lo stesso numero.",
+                "Cambiare soltanto il denominatore da 9 a 3 cambia il valore della frazione."
+              ],
+              "notebook": "equivalence-6-9"
+            },
+            {
               "question": "Quale frazione è equivalente a 12/18 ed è ridotta ai minimi termini?",
               "options": [
                 "6/9",
@@ -317,7 +321,8 @@ Object.assign(window.READER_LESSONS,{
                 "6/9 è equivalente a 12/18, ma si può ancora semplificare dividendo entrambi i termini per 3.",
                 "4/6 è equivalente a 12/18, ma si può ancora semplificare dividendo entrambi i termini per 2.",
                 "2 e 3 non hanno divisori comuni maggiori di 1: la frazione è ridotta ai minimi termini."
-              ]
+              ],
+              "notebook": "reduction-12-18"
             }
           ]
         }
@@ -575,128 +580,7 @@ Object.assign(window.READER_LESSONS,{
             "steps": [
               {
                 "title": "Quante porzioni ci stanno?",
-                "html": "Abbiamo <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span> di litro e prepariamo porzioni da <span class=\"qr-fraction\" role=\"math\" aria-label=\"1 fratto 8\"><span aria-hidden=\"true\">1</span><span aria-hidden=\"true\">8</span></span> di litro. Quante porzioni otteniamo?<br><br><span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span> di litro sono <span class=\"qr-fraction\" role=\"math\" aria-label=\"6 fratto 8\"><span aria-hidden=\"true\">6</span><span aria-hidden=\"true\">8</span></span> di litro: contengono <strong>sei porzioni</strong> da un ottavo. Quindi <span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span> : <span class=\"qr-fraction\" role=\"math\" aria-label=\"1 fratto 8\"><span aria-hidden=\"true\">1</span><span aria-hidden=\"true\">8</span></span> = 6</span>. Il quoziente misura quante volte il divisore è contenuto nel dividendo."
-              },
-              {
-                "title": "Dividere significa moltiplicare per l’inverso",
-                "html": "L’<button type=\"button\" class=\"rm-keyword\" data-term=\"qr-inverso\">inverso o reciproco</button> di <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span>, con a ≠ 0, è <span class=\"qr-fraction\" role=\"math\" aria-label=\"b fratto a\"><span aria-hidden=\"true\">b</span><span aria-hidden=\"true\">a</span></span>: il loro prodotto è 1.<br><br>Per dividere per una frazione non nulla, moltiplichiamo per il suo inverso: <span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> : <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 5\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">5</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> × <span class=\"qr-fraction\" role=\"math\" aria-label=\"5 fratto 4\"><span aria-hidden=\"true\">5</span><span aria-hidden=\"true\">4</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"5 fratto 6\"><span aria-hidden=\"true\">5</span><span aria-hidden=\"true\">6</span></span></span>. Lo zero <strong>non ha inverso</strong>."
-              }
-            ],
-            "board": "qr-division"
-          },
-          {
-            "title": "Proprietà del prodotto e del quoziente",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Moltiplicazione",
-                "html": "La moltiplicazione è <strong>interna, commutativa e associativa</strong>. L’elemento neutro è <strong>1</strong>; lo zero è <strong>assorbente</strong>: a × 0 = 0.<br><br>Vale la proprietà <strong>distributiva</strong>: a × (b + c) = a × b + a × c. Vale anche con la sottrazione quando i passaggi sono definiti in ℚₐ."
-              },
-              {
-                "title": "Divisione",
-                "html": "La divisione <strong>non è commutativa né associativa</strong>. Il quoziente resta in ℚₐ per ogni coppia con divisore non nullo.<br><br>Vale la proprietà <strong>invariantiva</strong>: moltiplicando o dividendo dividendo e divisore per lo stesso numero diverso da zero, il quoziente non cambia. Il numero 1 non è un elemento neutro bilatero della divisione: a : 1 = a, ma 1 : a in generale è diverso da a.<details class=\"qr-deeper\"><summary>La divisione è distributiva?</summary><p>Si può distribuire una somma al dividendo: (a + b) : c = a : c + b : c, con c ≠ 0. Non si può in generale distribuire al divisore: a : (b + c) non è a : b + a : c.</p></details>"
-              }
-            ],
-            "board": "qr-properties"
-          }
-        ]
-      },
-      {
-        "id": "potenze",
-        "title": "Potenze e proprietà delle operazioni",
-        "cards": [
-          {
-            "title": "Elevare una frazione a potenza",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Una moltiplicazione ripetuta",
-                "html": "Per un esponente naturale n &gt; 0, la potenza è il prodotto di n fattori uguali alla base.<br><br><span class=\"qr-formula\">(<span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span>)³ = <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> × <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> × <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"8 fratto 27\"><span aria-hidden=\"true\">8</span><span aria-hidden=\"true\">27</span></span></span><br><br>Eleviamo allo stesso esponente <strong>numeratore e denominatore</strong>."
-              },
-              {
-                "title": "Esponenti 1 e 0",
-                "html": "Per ogni a ∈ ℚₐ, <strong>a¹ = a</strong>. Per a ≠ 0 definiamo <strong>a⁰ = 1</strong>, in modo coerente con le proprietà delle potenze.<br><br><strong>0ⁿ = 0 se n &gt; 0</strong>. In questo percorso <strong>0⁰ non è definito</strong>: la regola dell’esponente zero richiede una base non nulla."
-              }
-            ],
-            "board": "qr-powers"
-          },
-          {
-            "title": "Le proprietà hanno condizioni",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Stessa base e potenza di potenza",
-                "html": "<strong>aᵐ × aⁿ = aᵐ⁺ⁿ</strong>: sommiamo gli esponenti perché stiamo riunendo fattori uguali.<br><br><strong>(aᵐ)ⁿ = aᵐⁿ</strong>: moltiplichiamo gli esponenti. <strong>aᵐ : aⁿ = aᵐ⁻ⁿ</strong> se a ≠ 0 e m ≥ n, restando con esponenti naturali. Le scritture devono essere definite: escludiamo sempre 0⁰."
-              },
-              {
-                "title": "Stesso esponente",
-                "html": "<strong>aⁿ × bⁿ = (a × b)ⁿ</strong> e <strong>aⁿ : bⁿ = (a : b)ⁿ</strong>, con b ≠ 0 e tutte le potenze definite.<br><br>Non esiste una regola analoga per la somma: <strong>(a + b)² non è in generale a² + b²</strong>. Con a = b = 1, il primo vale 4 e il secondo 2."
-              }
-            ],
-            "board": "qr-powers"
-          },
-          {
-            "title": "Quali operazioni restano in ℚₐ?",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Proprietà di chiusura",
-                "html": "Un’operazione è <strong>interna</strong> a un insieme se il risultato appartiene ancora a quell’insieme. In ℚₐ:<br><br>• addizione e moltiplicazione: sempre;<br>• sottrazione: solo se il primo termine è almeno il secondo;<br>• divisione: sempre con <strong>divisore diverso da zero</strong>;<br>• potenze con esponente naturale: purché non si presenti 0⁰."
-              },
-              {
-                "title": "Non confondere due invarianti",
-                "html": "La proprietà invariantiva delle <strong>frazioni</strong> conserva il numero rappresentato: <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 6\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">6</span></span>.<br><br>La proprietà invariantiva della <strong>divisione</strong> conserva il quoziente: 2 : 3 = 4 : 6. Sono due modi collegati di esprimere lo stesso fatto: una frazione rappresenta un quoziente."
-              }
-            ],
-            "board": "qr-closure"
-          }
-        ]
-      },
-      {
-        "id": "pillole",
-        "title": "La lezione in pillole",
-        "cards": [
-          {
-            "title": "Le idee da portare con te",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Ricostruiamo il percorso",
-                "html": "• Per sommare o sottrarre occorre un denominatore comune.<br><br>• Per moltiplicare, prodotto dei numeratori e prodotto dei denominatori.<br><br>• Per dividere, moltiplichiamo per l’inverso del divisore non nullo.<br><br>• Commutativa, associativa, distributiva, elementi neutri e assorbente descrivono comportamenti precisi.<br><br>• Le potenze rispettano regole e condizioni: zero al divisore e 0⁰ sono esclusi."
-              }
-            ],
-            "board": "qr-summary",
-            "qrSummary": [
-              [
-                "+ e ×",
-                "sempre interne"
-              ],
-              [
-                "Sottrazione",
-                "primo ≥ secondo"
-              ],
-              [
-                "Divisione",
-                "divisore ≠ 0"
-              ],
-              [
-                "Proprietà",
-                "nomi e condizioni"
-              ]
-            ]
-          }
-        ],
-        "quiz": {
-          "questions": [
-            {
-              "question": "Perché 1/2 + 1/3 = 5/6?",
-              "options": [
-                "Perché si sommano sempre numeratori e denominatori.",
-                "Perché 1/2 = 3/6 e 1/3 = 2/6.",
-                "Perché basta moltiplicare i denominatori."
-              ],
-              "answer": 1,
-              "feedback": "Dopo aver scelto la stessa grandezza dei pezzi, sommiamo 3 sesti e 2 sesti."
+                "html": "Abbiamo <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span> di litro e prepariamo porzioni da <span class=\"qr-fraction\" role=\"math\" aria-label=\"1 fratto 8\"><span aria-hidden=\"true\">1</span><span aria-hidden=\"true\">8</span></span> di litro. Quante porz…2431 tokens truncated…sti."
             },
             {
               "question": "Quale operazione non ha risultato in ℚₐ?",
@@ -1446,4 +1330,5 @@ Object.assign(window.READER_GLOSSARY,{
   }
 });
 })();
+
 
