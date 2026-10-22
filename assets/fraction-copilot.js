@@ -55,6 +55,7 @@ window.GatitoFractionCopilot=(()=>{
  const mathCopy=text=>esc(text).replace(/(\d+)\/(\d+)/g,(_,n,d)=>fraction(n,d));
  function validateQuery(params){try{return parseFraction(params.get('n')||'18',params.get('d')||'24');}catch{return pair(18,24);}}
  function mount(parent,{sessionKey,initial={n:'18',d:'24'},example=null,embedded=false,wide=false}={}){
+  if(window.GatitoMathNotebook)return window.GatitoMathNotebook.mount(parent,{sessionKey});
   let model;
   try{model=sessionKey&&sessions.get(sessionKey)||new Workbench(initial.n,initial.d);}catch{model=new Workbench();}
   if(sessionKey)sessions.set(sessionKey,model);

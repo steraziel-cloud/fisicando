@@ -5,7 +5,7 @@ Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
     "title": "L’insieme dei numeri razionali assoluti",
     "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
-    "version": 14,
+    "version": 15,
     "status": "work-in-progress",
     "sections": [
       {
@@ -244,19 +244,15 @@ Object.assign(window.READER_LESSONS,{
             ]
           },
           {
-            "title": "Riduci le frazioni con il copilota",
+            "title": "Mettiti alla prova",
             "stepMode": "replace",
             "board": "qr-copilot",
             "copilot": true,
             "copilotLayout": "wide",
-            "copilotExample": {
-              "n": "18",
-              "d": "24"
-            },
             "steps": [
               {
                 "title": "Ora prova tu",
-                "html": "Sul banco trovi <span class=\"qr-fraction\" role=\"math\" aria-label=\"18 fratto 24\"><span aria-hidden=\"true\">18</span><span aria-hidden=\"true\">24</span></span>. Inserisci un <strong>divisore comune maggiore di 1</strong> e applicalo a entrambi i termini. Puoi procedere per passaggi oppure usare subito il M.C.D.<br><br>Controlla il percorso di frazioni equivalenti e fermati quando il risultato è <strong>ai minimi termini</strong>. Poi modifica numeratore e denominatore e prova una frazione scelta da te."
+                "html": "Apri il quaderno, inserisci una frazione e prova a ridurla ai minimi termini."
               }
             ]
           }
