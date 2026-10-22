@@ -344,7 +344,7 @@ Object.assign(window.READER_LESSONS,{
           "steps": [
             {
               "title": "Confrontare solo i numeratori non basta",
-              "html": "Con lo <strong>stesso <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button></strong>, le parti della stessa unità hanno uguale grandezza: è maggiore la frazione con il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button> maggiore. Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 7\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">7</span></span> &lt; <span class=\"qr-fraction\" role=\"math\" aria-label=\"5 fratto 7\"><span aria-hidden=\"true\">5</span><span aria-hidden=\"true\">7</span></span>.<br><br>Con <strong>denominatori diversi</strong> questa regola non basta: i terzi e i quinti sono parti di grandezza diversa. Non possiamo decidere, per esempio, il confronto tra <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 5\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">5</span></span> guardando soltanto 2 e 3.<br><br>Le frazioni si possono comunque confrontare: dobbiamo prima riscriverle in una forma adatta.<details class=\"qr-deeper\"><summary>Un confronto immediato: rispetto a 1</summary><p>Una frazione con numeratore minore del denominatore è <strong>propria</strong> ed è minore di 1. Se il numeratore è maggiore o uguale al denominatore, la frazione è <strong>impropria</strong> ed è maggiore o uguale a 1. In casi come questi possiamo confrontare anche frazioni con denominatori diversi senza trasformarle.</p></details>"
+              "html": "Con lo <strong>stesso <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button></strong>, è maggiore la frazione con il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button> maggiore. Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 7\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">7</span></span> &lt; <span class=\"qr-fraction\" role=\"math\" aria-label=\"5 fratto 7\"><span aria-hidden=\"true\">5</span><span aria-hidden=\"true\">7</span></span>.<br><br>Con <strong>denominatori diversi</strong> non possiamo applicare direttamente questa regola. Non possiamo decidere, per esempio, il confronto tra <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 5\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">5</span></span> guardando soltanto 2 e 3.<br><br>Le frazioni si possono comunque confrontare: dobbiamo prima riscriverle in una forma adatta.<details class=\"qr-deeper\"><summary>Un confronto immediato: rispetto a 1</summary><p>Una frazione con numeratore minore del denominatore è <strong>propria</strong> ed è minore di 1. Se il numeratore è maggiore o uguale al denominatore, la frazione è <strong>impropria</strong> ed è maggiore o uguale a 1. In casi come questi possiamo confrontare anche frazioni con denominatori diversi senza trasformarle.</p></details>"
             }
           ]
         },
@@ -417,11 +417,11 @@ Object.assign(window.READER_LESSONS,{
               "3/7 = 5/7"
             ],
             "answer": 1,
-            "feedback": "A denominatore uguale le parti hanno la stessa grandezza: tre settimi sono meno di cinque settimi.",
+            "feedback": "I denominatori sono uguali: confrontiamo i numeratori. Poiché 3 < 5, risulta 3/7 < 5/7.",
             "feedbackByOption": [
               "I denominatori sono uguali: confrontiamo i numeratori, e 3 è minore di 5.",
-              "Le parti sono tutte settimi: tre parti sono meno di cinque parti.",
-              "Le parti hanno la stessa grandezza, ma ne stiamo contando quantità diverse: 3 e 5."
+              "A parità di denominatore, l’ordine delle frazioni coincide con quello dei numeratori: 3 < 5.",
+              "Con lo stesso denominatore, due frazioni sono uguali soltanto se hanno anche lo stesso numeratore. Qui 3 e 5 sono diversi."
             ]
           },
           {
