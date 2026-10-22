@@ -3,545 +3,510 @@
 "use strict";
 Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
-    "title": "L’insieme dei numeri razionali assoluti",
-    "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
-    "version": 17,
-    "status": "work-in-progress",
-    "sections": [
-      {
-        "id": "insieme",
-        "title": "L’insieme ℚₐ e la divisione",
-        "cards": [
-          {
-            "title": "Perché ampliare ℕ?",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Una divisione che conosci già",
-                "html": "Quante volte ti è capitato di svolgere una <strong>divisione in colonna</strong> e di trovare un <strong>resto diverso da zero</strong>?<br><br>Bjorne sta ripassando una divisione sul suo tablet. Entriamo a vedere i passaggi.",
-                "divisionView": "scene"
-              },
-              {
-                "title": "Che cosa ci dice quel resto?",
-                "html": "Abbiamo trovato <strong>49 come quoziente intero e 1 come resto</strong>. La divisione non è esatta: 5 × 49 = 245, mentre 5 × 50 = 250. <strong>Nessun numero naturale, moltiplicato per 5, dà 246.</strong><br><br>Il quoziente esatto di 246 : 5, quindi, <strong>non è un numero naturale</strong>.<br><br>Questa osservazione ci porta a dire che la divisione <strong>non è un’<button type=\"button\" class=\"rm-keyword\" data-term=\"qr-interna\">operazione interna</button> a ℕ</strong>.<br><br>Quando in un insieme un’operazione non si può sempre eseguire, in matematica si può ricorrere a un <strong>ampliamento</strong>: si costruisce un insieme più grande, che contiene quello di partenza e nel quale quell’operazione è consentita.",
-                "divisionView": "done"
-              }
-            ],
-            "board": "division-intro"
-          },
-          {
-            "title": "L’insieme ℚₐ",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Dai naturali ai razionali assoluti",
-                "html": "Per avere un insieme che contenga questi quozienti, ampliamo ℕ all’<strong>insieme dei numeri razionali assoluti</strong>, indicato con <strong>ℚₐ</strong>.<br><br>I suoi elementi sono tutti i numeri rappresentabili con una frazione <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span>, dove <strong>a e b sono numeri naturali e b ≠ 0</strong>.<br><br>Il quoziente esatto del nostro esempio si rappresenta con <span class=\"qr-fraction\" role=\"math\" aria-label=\"246 fratto 5\"><span aria-hidden=\"true\">246</span><span aria-hidden=\"true\">5</span></span>.<br><br>In ℚₐ la divisione dà ancora un elemento di ℚₐ, <strong>purché il divisore sia diverso da zero</strong>."
-              }
-            ],
-            "board": "qr-sets"
-          },
-          {
-            "title": "Rapporto e scrittura frazionaria",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Il rapporto tra due numeri",
-                "html": "Il risultato della divisione tra a e b, con b ≠ 0, si chiama <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-rapporto\">rapporto</button> tra a e b e si indica con una <strong>frazione</strong>:<br><br><span class=\"qr-formula\">a : b = <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span></span><br><br>Il simbolo che separa i due termini si chiama <strong>linea di frazione</strong>; a è il <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button></strong> e b il <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button></strong>. Nella divisione di Bjorne, il rapporto è <span class=\"qr-fraction\" role=\"math\" aria-label=\"246 fratto 5\"><span aria-hidden=\"true\">246</span><span aria-hidden=\"true\">5</span></span>."
-              },
-              {
-                "title": "Perché è un ampliamento di ℕ?",
-                "html": "Ponendo <strong>b = 1</strong> ritroviamo tutti i numeri naturali:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"n fratto 1\"><span aria-hidden=\"true\">n</span><span aria-hidden=\"true\">1</span></span> = n</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 1\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">1</span></span> = 4. Ogni numero naturale, compreso lo zero, appartiene quindi anche a ℚₐ:<br><br><span class=\"qr-formula\">ℕ ⊂ ℚₐ</span>"
-              }
-            ],
-            "board": "qr-sets"
-          }
-        ],
-        "quiz": {
-          "questions": [
+  "title": "L’insieme dei numeri razionali assoluti",
+  "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
+  "version": 18,
+  "status": "work-in-progress",
+  "sections": [
+    {
+      "id": "insieme",
+      "title": "L’insieme ℚₐ e la divisione",
+      "cards": [
+        {
+          "title": "Perché ampliare ℕ?",
+          "stepMode": "replace",
+          "steps": [
             {
-              "question": "Nella divisione 246 : 5 troviamo quoziente intero 49 e resto 1. Che cosa ci dice questo resto?",
-              "options": [
-                "Il risultato esatto della divisione è 49.",
-                "Il risultato esatto della divisione non è un numero naturale.",
-                "La divisione non ha risultato neppure in ℚₐ."
-              ],
-              "answer": 1,
-              "feedback": "Il resto non è zero: 5 × 49 = 245 e nessun naturale moltiplicato per 5 dà 246. Il quoziente esatto è rappresentato da 246/5.",
-              "feedbackByOption": [
-                "49 è il quoziente intero: 5 × 49 = 245, quindi manca ancora 1 per arrivare a 246.",
-                "Il resto non nullo mostra che il quoziente esatto non è naturale: lo rappresentiamo con 246/5.",
-                "246/5 rappresenta un numero di ℚₐ: il divisore 5 è diverso da zero."
-              ]
+              "title": "Una divisione che conosci già",
+              "html": "Quante volte ti è capitato di svolgere una <strong>divisione in colonna</strong> e di trovare un <strong>resto diverso da zero</strong>?<br><br>Bjorne sta ripassando una divisione sul suo tablet. Entriamo a vedere i passaggi.",
+              "divisionView": "scene"
             },
             {
-              "question": "Che cosa significa ampliare ℕ a ℚₐ?",
-              "options": [
-                "Costruire un insieme che conserva tutti i naturali e contiene anche altri numeri.",
-                "Sostituire i numeri naturali con numeri che non sono mai naturali.",
-                "Cambiare il valore dei numeri naturali per consentire nuove divisioni."
-              ],
-              "answer": 0,
-              "feedback": "Un ampliamento contiene l’insieme di partenza: ogni naturale n appartiene a ℚₐ perché n = n/1.",
-              "feedbackByOption": [
-                "Tutti i naturali rimangono nel nuovo insieme, insieme a numeri come 1/2 che non sono naturali.",
-                "I numeri naturali non vengono eliminati: sono contenuti nel nuovo insieme.",
-                "Il valore dei naturali non cambia: per esempio 4 e 4/1 rappresentano lo stesso numero."
-              ]
-            },
-            {
-              "question": "Qual è il rapporto tra 7 e 4, in quest’ordine?",
-              "options": [
-                "4/7",
-                "7 − 4",
-                "7/4"
-              ],
-              "answer": 2,
-              "feedback": "Il rapporto tra a e b è il quoziente a : b: qui è 7 : 4 = 7/4.",
-              "feedbackByOption": [
-                "4/7 è il rapporto tra 4 e 7: l’ordine dei due termini è stato invertito.",
-                "7 − 4 è una differenza. Un rapporto esprime invece una divisione.",
-                "7/4 rappresenta il quoziente 7 : 4, rispettando l’ordine richiesto."
-              ]
-            },
-            {
-              "question": "Nel diagramma ℕ ⊂ ℚₐ, dove si colloca il numero rappresentato da 5/1?",
-              "options": [
-                "In ℚₐ, ma fuori da ℕ.",
-                "Fuori da ℚₐ.",
-                "In ℕ, e quindi anche in ℚₐ."
-              ],
-              "answer": 2,
-              "feedback": "5/1 = 5: è un naturale. Una scrittura frazionaria può rappresentare anche un numero naturale.",
-              "feedbackByOption": [
-                "5/1 vale 5, che è un numero naturale: non va collocato fuori da ℕ.",
-                "5 appartiene a ℕ e tutti i naturali appartengono anche a ℚₐ.",
-                "5/1 = 5: si colloca nell’insieme interno ℕ, che è contenuto in ℚₐ."
-              ]
+              "title": "Che cosa ci dice quel resto?",
+              "html": "Abbiamo trovato <strong>49 come quoziente intero e 1 come resto</strong>. La divisione non è esatta: 5 × 49 = 245, mentre 5 × 50 = 250. <strong>Nessun numero naturale, moltiplicato per 5, dà 246.</strong><br><br>Il quoziente esatto di 246 : 5, quindi, <strong>non è un numero naturale</strong>.<br><br>Questa osservazione ci porta a dire che la divisione <strong>non è un’<button type=\"button\" class=\"rm-keyword\" data-term=\"qr-interna\">operazione interna</button> a ℕ</strong>.<br><br>Quando in un insieme un’operazione non si può sempre eseguire, in matematica si può ricorrere a un <strong>ampliamento</strong>: si costruisce un insieme più grande, che contiene quello di partenza e nel quale quell’operazione è consentita.",
+              "divisionView": "done"
             }
-          ]
-        }
-      },
-      {
-        "id": "zero",
-        "title": "I casi con lo zero",
-        "cards": [
-          {
-            "title": "I casi con lo zero",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Lo zero al numeratore e al denominatore",
-                "html": "Se il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> è diverso da zero, il rapporto con zero al <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button> vale <strong>zero</strong>:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto b\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">b</span></span> = 0 &nbsp; (b ≠ 0)</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 5\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">5</span></span> = 0, perché 0 × 5 = 0.<br><br>Se invece <strong>il denominatore è zero e a ≠ 0</strong>, la divisione <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto 0\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">0</span></span> è <strong>impossibile</strong>: nessun numero moltiplicato per zero dà a."
-              },
-              {
-                "title": "Il caso particolare: zero diviso zero",
-                "html": "Che cosa succede con <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 0\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">0</span></span>?<br><br>Ogni numero moltiplicato per zero dà zero: 0 × 0 = 0, 1 × 0 = 0, 2 × 0 = 0… La relazione non individua quindi <strong>un unico quoziente</strong>: il caso è <strong>indeterminato</strong> e la divisione non è definita.<br><br>Nelle frazioni che rappresentano gli elementi di ℚₐ il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> deve essere <strong>diverso da zero</strong>."
-              }
-            ],
-            "board": "qr-zero-illustration"
-          }
-        ],
-        "quiz": {
-          "questions": [
+          ],
+          "board": "division-intro"
+        },
+        {
+          "title": "L’insieme ℚₐ",
+          "stepMode": "replace",
+          "steps": [
             {
-              "question": "Quale affermazione è corretta per 0/8?",
-              "options": [
-                "È impossibile perché compare lo zero.",
-                "Vale 0 perché il denominatore è diverso da zero.",
-                "È indeterminato come 0/0."
-              ],
-              "answer": 1,
-              "feedback": "0/8 = 0 perché 0 × 8 = 0. Lo zero può comparire al numeratore.",
-              "feedbackByOption": [
-                "Lo zero è al numeratore; il denominatore 8 è diverso da zero e la divisione è definita.",
-                "0 è l’unico numero che moltiplicato per 8 dà 0, quindi 0/8 = 0.",
-                "Qui il denominatore è 8: il quoziente è unico e vale 0."
-              ]
-            },
-            {
-              "question": "Perché 8/0 è una divisione impossibile?",
-              "options": [
-                "Perché nessun numero moltiplicato per 0 dà 8.",
-                "Perché ogni numero moltiplicato per 0 dà 8.",
-                "Perché il risultato sarebbe 0, che non appartiene a ℚₐ."
-              ],
-              "answer": 0,
-              "feedback": "Qualunque numero moltiplicato per zero dà zero, mai 8: non esiste un quoziente.",
-              "feedbackByOption": [
-                "Il prodotto di un numero per zero è sempre zero, quindi nessun numero può essere il quoziente 8 : 0.",
-                "Ogni numero moltiplicato per zero dà 0, non 8.",
-                "Lo zero appartiene a ℚₐ, ma non è il quoziente cercato: 0 × 0 non dà 8."
-              ]
-            },
-            {
-              "question": "Perché 0/0 si dice indeterminato?",
-              "options": [
-                "Perché il quoziente è soltanto 0.",
-                "Perché nessun numero moltiplicato per 0 dà 0.",
-                "Perché ogni numero moltiplicato per 0 dà 0 e non si individua un unico quoziente."
-              ],
-              "answer": 2,
-              "feedback": "L’uguaglianza q × 0 = 0 è verificata da ogni q: non determina un unico quoziente. Perciò 0/0 non è definito.",
-              "feedbackByOption": [
-                "Anche 1 × 0, 2 × 0 e molti altri prodotti danno 0: non si può scegliere soltanto 0.",
-                "Tutti i numeri moltiplicati per zero danno zero: il problema è la mancanza di un unico quoziente.",
-                "Ogni numero verifica q × 0 = 0: la divisione non individua un risultato unico e non è definita."
-              ]
+              "title": "Dai naturali ai razionali assoluti",
+              "html": "Per avere un insieme che contenga questi quozienti, ampliamo ℕ all’<strong>insieme dei numeri razionali assoluti</strong>, indicato con <strong>ℚₐ</strong>.<br><br>I suoi elementi sono tutti i numeri rappresentabili con una frazione <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span>, dove <strong>a e b sono numeri naturali e b ≠ 0</strong>.<br><br>Il quoziente esatto del nostro esempio si rappresenta con <span class=\"qr-fraction\" role=\"math\" aria-label=\"246 fratto 5\"><span aria-hidden=\"true\">246</span><span aria-hidden=\"true\">5</span></span>.<br><br>In ℚₐ la divisione dà ancora un elemento di ℚₐ, <strong>purché il divisore sia diverso da zero</strong>."
             }
-          ]
-        }
-      },
-      {
-        "id": "frazioni",
-        "title": "Proprietà invariantiva e frazioni equivalenti",
-        "cards": [
-          {
-            "title": "La proprietà fondamentale: l’invariantiva",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Cambiano i termini, non il quoziente",
-                "html": "La <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-invariantiva\">proprietà invariantiva</button> ci permette di moltiplicare o dividere il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button> e il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> per <strong>uno stesso numero naturale diverso da zero</strong>, senza cambiare il valore della frazione.<br><br>Per esempio, moltiplichiamo entrambi i termini per 2:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 × 2 fratto 3 × 2\"><span aria-hidden=\"true\">2 × 2</span><span aria-hidden=\"true\">3 × 2</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 6\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">6</span></span></span>"
-              },
-              {
-                "title": "Anche dividendo il valore resta lo stesso",
-                "html": "Quando dividiamo, scegliamo un <strong>divisore comune</strong> dei due termini: le divisioni devono essere esatte, così numeratore e denominatore restano naturali.<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"6 fratto 9\"><span aria-hidden=\"true\">6</span><span aria-hidden=\"true\">9</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"6 : 3 fratto 9 : 3\"><span aria-hidden=\"true\">6 : 3</span><span aria-hidden=\"true\">9 : 3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span></span><br><br>In entrambe le trasformazioni agiamo <strong>su tutti e due i termini con lo stesso numero</strong>."
-              }
-            ]
-          },
-          {
-            "title": "Costruiamo le frazioni equivalenti",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Scritture diverse ottenute con l’invariantiva",
-                "html": "Applicando la proprietà invariantiva costruiamo frazioni che hanno <strong>lo stesso valore</strong>: le chiamiamo <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-equivalenti\">frazioni equivalenti</button>.<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 6\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">6</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"6 fratto 9\"><span aria-hidden=\"true\">6</span><span aria-hidden=\"true\">9</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"8 fratto 12\"><span aria-hidden=\"true\">8</span><span aria-hidden=\"true\">12</span></span> = …</span><br><br>Le abbiamo ottenute moltiplicando entrambi i termini della prima frazione per 2, per 3, per 4… Il quoziente non cambia."
-              }
-            ]
-          },
-          {
-            "title": "Una classe di equivalenza, un solo numero",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Molte frazioni rappresentano lo stesso razionale",
-                "html": "Tutte le frazioni equivalenti fra loro formano una <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-classe\">classe di equivalenza</button>.<br><br>Le frazioni <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span>, <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 6\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">6</span></span>, <span class=\"qr-fraction\" role=\"math\" aria-label=\"6 fratto 9\"><span aria-hidden=\"true\">6</span><span aria-hidden=\"true\">9</span></span> e tutte le altre equivalenti appartengono alla <strong>stessa classe</strong>.<br><br>A questa classe corrisponde <strong>un solo <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-razionale\">numero razionale assoluto</button></strong>: cambiano le frazioni con cui lo scriviamo, non il numero che rappresentano."
-              }
-            ]
-          },
-          {
-            "title": "Scegliamo la frazione ridotta ai minimi termini",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Dividiamo entrambi i termini per il M.C.D.",
-                "html": "Nella stessa classe di equivalenza possiamo scegliere la frazione <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-minimi\">ridotta ai minimi termini</button>.<br><br>Per ottenerla applichiamo l’invariantiva: dividiamo numeratore e denominatore per il loro <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-mcd\">massimo comune divisore</button> (M.C.D.).<br><br>Per esempio, <strong>M.C.D.(18, 24) = 6</strong>:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"18 fratto 24\"><span aria-hidden=\"true\">18</span><span aria-hidden=\"true\">24</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"18 : 6 fratto 24 : 6\"><span aria-hidden=\"true\">18 : 6</span><span aria-hidden=\"true\">24 : 6</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span></span>"
-              },
-              {
-                "title": "Come riconosciamo il risultato?",
-                "html": "Una frazione è ridotta ai minimi termini quando numeratore e denominatore sono <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-primi-tra-loro\">primi tra loro</button>: il loro <strong>M.C.D. è 1</strong>.<br><br>3 e 4 non hanno divisori comuni maggiori di 1, quindi <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span> non si può più semplificare.<br><br>In ogni classe di equivalenza c’è <strong>una sola frazione ridotta ai minimi termini</strong>. È una rappresentazione del numero razionale comune a tutta la classe."
-              }
-            ]
-          },
-          {
-            "title": "Mettiti alla prova",
-            "stepMode": "replace",
-            "board": "qr-copilot",
-            "copilot": true,
-            "copilotLayout": "wide",
-            "steps": [
-              {
-                "title": "Ora prova tu",
-                "html": "Apri il quaderno, inserisci una frazione e prova a ridurla ai minimi termini."
-              }
-            ]
-          }
-        ],
-        "quiz": {
-          "questions": [
+          ],
+          "board": "qr-sets"
+        },
+        {
+          "title": "Rapporto e scrittura frazionaria",
+          "stepMode": "replace",
+          "steps": [
             {
-              "question": "Moltiplichiamo entrambi i termini di 7/12 per 3. Che cosa otteniamo?",
-              "options": [
-                "21/36, equivalente a 7/12.",
-                "7/36, equivalente a 7/12.",
-                "21/12, equivalente a 7/12."
-              ],
-              "answer": 0,
-              "feedback": "7 × 3 = 21 e 12 × 3 = 36. La proprietà invariantiva conserva il valore della frazione.",
-              "feedbackByOption": [
-                "Numeratore e denominatore vengono entrambi moltiplicati per 3: il valore resta lo stesso.",
-                "In 7/36 è stato moltiplicato soltanto il denominatore; il valore cambia.",
-                "In 21/12 è stato moltiplicato soltanto il numeratore; il valore cambia."
-              ]
+              "title": "Il rapporto tra due numeri",
+              "html": "Il risultato della divisione tra a e b, con b ≠ 0, si chiama <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-rapporto\">rapporto</button> tra a e b e si indica con una <strong>frazione</strong>:<br><br><span class=\"qr-formula\">a : b = <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto b\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">b</span></span></span><br><br>Il simbolo che separa i due termini si chiama <strong>linea di frazione</strong>; a è il <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button></strong> e b il <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button></strong>. Nella divisione di Bjorne, il rapporto è <span class=\"qr-fraction\" role=\"math\" aria-label=\"246 fratto 5\"><span aria-hidden=\"true\">246</span><span aria-hidden=\"true\">5</span></span>."
             },
             {
-              "question": "Le frazioni 2/3, 4/6 e 6/9 appartengono alla stessa classe di equivalenza. Quanti numeri razionali rappresentano?",
-              "options": [
-                "Un numero diverso per ogni frazione.",
-                "Un solo numero razionale, scritto con frazioni diverse.",
-                "Soltanto 2/3 rappresenta un numero razionale."
-              ],
-              "answer": 1,
-              "feedback": "Le frazioni sono diverse, ma il numero razionale che rappresentano è uno solo. Tutte appartengono alla stessa classe di equivalenza.",
-              "feedbackByOption": [
-                "La proprietà invariantiva cambia i termini ma conserva il valore: le tre frazioni rappresentano lo stesso numero.",
-                "Esatto: una classe di equivalenza riunisce le diverse frazioni che rappresentano uno stesso numero razionale.",
-                "Anche 4/6 e 6/9 rappresentano quel numero razionale; 2/3 è la sua frazione ridotta ai minimi termini."
-              ]
-            },
-            {
-              "question": "Quale frazione rappresenta lo stesso numero di 6/9?",
-              "options": [
-                "2/9",
-                "2/3",
-                "6/3"
-              ],
-              "answer": 1,
-              "feedback": "Dividendo entrambi i termini di 6/9 per 3 si ottiene 2/3: le frazioni sono equivalenti.",
-              "feedbackByOption": [
-                "Per passare da 6/9 a 2/9 cambia soltanto il numeratore: il valore non si conserva.",
-                "6 : 3 = 2 e 9 : 3 = 3: dividiamo entrambi i termini per lo stesso numero.",
-                "Cambiare soltanto il denominatore da 9 a 3 cambia il valore della frazione."
-              ],
-              "notebook": "equivalence-6-9"
-            },
-            {
-              "question": "Quale frazione è equivalente a 12/18 ed è ridotta ai minimi termini?",
-              "options": [
-                "6/9",
-                "4/6",
-                "2/3"
-              ],
-              "answer": 2,
-              "feedback": "Il M.C.D. di 12 e 18 è 6. Dividendo entrambi i termini per 6 si ottiene 2/3, i cui termini sono primi fra loro.",
-              "feedbackByOption": [
-                "6/9 è equivalente a 12/18, ma si può ancora semplificare dividendo entrambi i termini per 3.",
-                "4/6 è equivalente a 12/18, ma si può ancora semplificare dividendo entrambi i termini per 2.",
-                "2 e 3 non hanno divisori comuni maggiori di 1: la frazione è ridotta ai minimi termini."
-              ],
-              "notebook": "reduction-12-18"
+              "title": "Perché è un ampliamento di ℕ?",
+              "html": "Ponendo <strong>b = 1</strong> ritroviamo tutti i numeri naturali:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"n fratto 1\"><span aria-hidden=\"true\">n</span><span aria-hidden=\"true\">1</span></span> = n</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 1\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">1</span></span> = 4. Ogni numero naturale, compreso lo zero, appartiene quindi anche a ℚₐ:<br><br><span class=\"qr-formula\">ℕ ⊂ ℚₐ</span>"
             }
-          ]
-        }
-      },
-      {
-  "id": "ordine",
-  "title": "Confronto e proprietà dell’insieme",
-  "cards": [
-    {
-      "title": "ℚₐ è un insieme ordinato e denso",
-      "stepMode": "replace",
-      "steps": [
-        {
-          "title": "Possiamo confrontare i suoi elementi",
-          "html": "Dati due numeri razionali assoluti, possiamo sempre stabilire se il primo è <strong>minore, uguale o maggiore</strong> del secondo. Per questo diciamo che ℚₐ è un insieme <strong>ordinato</strong>.<br><br>È anche <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denso\">denso</button>: fra due razionali distinti possiamo sempre trovarne un altro. Per esempio: <span class=\"qr-fraction\" role=\"math\" aria-label=\"1 fratto 3\"><span aria-hidden=\"true\">1</span><span aria-hidden=\"true\">3</span></span> &lt; <span class=\"qr-fraction\" role=\"math\" aria-label=\"1 fratto 2\"><span aria-hidden=\"true\">1</span><span aria-hidden=\"true\">2</span></span> &lt; <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span>."
-        }
-      ]
-    },
-    {
-      "title": "Nessun successivo immediato",
-      "stepMode": "replace",
-      "steps": [
-        {
-          "title": "Tra due razionali c’è sempre spazio per un altro",
-          "html": "In ℕ, dopo 3 viene subito 4: non c’è un numero naturale tra i due. In ℚₐ, invece, <strong>non esiste il successivo immediato</strong> di un numero.<br><br>Se a &lt; b, il numero <span class=\"qr-fraction\" role=\"math\" aria-label=\"a + b fratto 2\"><span aria-hidden=\"true\">a + b</span><span aria-hidden=\"true\">2</span></span> è razionale ed è strettamente compreso tra a e b. Possiamo ripetere il procedimento, trovando ogni volta un altro numero.<br><br>ℚₐ ha <strong>minimo 0</strong>, ma non ha un minimo positivo: per ogni a &gt; 0, <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto 2\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">2</span></span> è positivo e più piccolo di a. Non ha neppure un massimo: a + 1 è sempre maggiore di a.<details class=\"qr-deeper\"><summary>Denso non significa che ogni punto sia razionale</summary><p>Fra due razionali distinti esiste sempre un altro razionale. Questo non significa che tutti i punti della retta rappresentino numeri razionali: incontreremo altri numeri più avanti.</p></details>"
-        }
-      ]
-    },
-    {
-      "title": "Quando i denominatori sono diversi",
-      "stepMode": "replace",
-      "steps": [
-        {
-          "title": "Confrontare solo i numeratori non basta",
-          "html": "Con lo <strong>stesso <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button></strong>, le parti della stessa unità hanno uguale grandezza: è maggiore la frazione con il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button> maggiore. Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 7\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">7</span></span> &lt; <span class=\"qr-fraction\" role=\"math\" aria-label=\"5 fratto 7\"><span aria-hidden=\"true\">5</span><span aria-hidden=\"true\">7</span></span>.<br><br>Con <strong>denominatori diversi</strong> questa regola non basta: i terzi e i quinti sono parti di grandezza diversa. Non possiamo decidere, per esempio, il confronto tra <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 5\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">5</span></span> guardando soltanto 2 e 3.<br><br>Le frazioni si possono comunque confrontare: dobbiamo prima riscriverle in una forma adatta.<details class=\"qr-deeper\"><summary>Un confronto immediato: rispetto a 1</summary><p>Una frazione con numeratore minore del denominatore è <strong>propria</strong> ed è minore di 1. Se il numeratore è maggiore o uguale al denominatore, la frazione è <strong>impropria</strong> ed è maggiore o uguale a 1. In casi come questi possiamo confrontare anche frazioni con denominatori diversi senza trasformarle.</p></details>"
-        }
-      ]
-    },
-    {
-      "title": "Portiamo le frazioni allo stesso denominatore",
-      "stepMode": "replace",
-      "steps": [
-        {
-          "title": "Frazioni equivalenti, confronto più semplice",
-          "html": "<ol><li>Scegliamo un <strong>multiplo comune dei denominatori</strong>. Il <strong>m.c.m.</strong> è il più piccolo e spesso rende i calcoli più comodi.</li><li>Per ogni frazione dividiamo il denominatore comune per il suo denominatore: troviamo così il numero per cui moltiplicare <strong>entrambi i termini</strong>.</li><li>Usiamo la <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-invariantiva\">proprietà invariantiva</button> per costruire le due frazioni equivalenti. Infine confrontiamo i numeratori.</li></ol>Per <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span>, il m.c.m.(3, 4) è 12. Poiché 12 : 3 = 4 e 12 : 4 = 3, otteniamo:<br><br><span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 · 4 fratto 3 · 4\"><span aria-hidden=\"true\">2 · 4</span><span aria-hidden=\"true\">3 · 4</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"8 fratto 12\"><span aria-hidden=\"true\">8</span><span aria-hidden=\"true\">12</span></span> &emsp; e &emsp; <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 · 3 fratto 4 · 3\"><span aria-hidden=\"true\">3 · 3</span><span aria-hidden=\"true\">4 · 3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"9 fratto 12\"><span aria-hidden=\"true\">9</span><span aria-hidden=\"true\">12</span></span>.<br><br>Dato che 8 &lt; 9, concludiamo che <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> &lt; <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span>. Le frazioni equivalenti conservano il valore di quelle di partenza."
-        }
-      ]
-    },
-    {
-      "title": "Metti in pratica il confronto",
-      "stepMode": "replace",
-      "steps": [
-        {
-          "title": "Qual è la frazione maggiore?",
-          "html": "Confronta <span class=\"qr-fraction\" role=\"math\" aria-label=\"11 fratto 6\"><span aria-hidden=\"true\">11</span><span aria-hidden=\"true\">6</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"9 fratto 4\"><span aria-hidden=\"true\">9</span><span aria-hidden=\"true\">4</span></span>. Sono già ridotte ai minimi termini: scegli un denominatore comune e costruisci le due frazioni equivalenti.<br><br>Nel quaderno seleziona una frazione e scegli <strong>Frazione equivalente</strong>: decidi il moltiplicatore e scrivi tu i due prodotti. Ripeti per l’altra frazione, poi scegli il simbolo del confronto."
+          ],
+          "board": "qr-sets"
         }
       ],
-      "board": "qr-compare",
-      "notebookComparison": {
-        "id": "undici-sesti-nove-quarti",
-        "fractions": [
-          [
-            11,
-            6
-          ],
-          [
-            9,
-            4
-          ]
+      "quiz": {
+        "questions": [
+          {
+            "question": "Nella divisione 246 : 5 troviamo quoziente intero 49 e resto 1. Che cosa ci dice questo resto?",
+            "options": [
+              "Il risultato esatto della divisione è 49.",
+              "Il risultato esatto della divisione non è un numero naturale.",
+              "La divisione non ha risultato neppure in ℚₐ."
+            ],
+            "answer": 1,
+            "feedback": "Il resto non è zero: 5 × 49 = 245 e nessun naturale moltiplicato per 5 dà 246. Il quoziente esatto è rappresentato da 246/5.",
+            "feedbackByOption": [
+              "49 è il quoziente intero: 5 × 49 = 245, quindi manca ancora 1 per arrivare a 246.",
+              "Il resto non nullo mostra che il quoziente esatto non è naturale: lo rappresentiamo con 246/5.",
+              "246/5 rappresenta un numero di ℚₐ: il divisore 5 è diverso da zero."
+            ]
+          },
+          {
+            "question": "Che cosa significa ampliare ℕ a ℚₐ?",
+            "options": [
+              "Costruire un insieme che conserva tutti i naturali e contiene anche altri numeri.",
+              "Sostituire i numeri naturali con numeri che non sono mai naturali.",
+              "Cambiare il valore dei numeri naturali per consentire nuove divisioni."
+            ],
+            "answer": 0,
+            "feedback": "Un ampliamento contiene l’insieme di partenza: ogni naturale n appartiene a ℚₐ perché n = n/1.",
+            "feedbackByOption": [
+              "Tutti i naturali rimangono nel nuovo insieme, insieme a numeri come 1/2 che non sono naturali.",
+              "I numeri naturali non vengono eliminati: sono contenuti nel nuovo insieme.",
+              "Il valore dei naturali non cambia: per esempio 4 e 4/1 rappresentano lo stesso numero."
+            ]
+          },
+          {
+            "question": "Qual è il rapporto tra 7 e 4, in quest’ordine?",
+            "options": [
+              "4/7",
+              "7 − 4",
+              "7/4"
+            ],
+            "answer": 2,
+            "feedback": "Il rapporto tra a e b è il quoziente a : b: qui è 7 : 4 = 7/4.",
+            "feedbackByOption": [
+              "4/7 è il rapporto tra 4 e 7: l’ordine dei due termini è stato invertito.",
+              "7 − 4 è una differenza. Un rapporto esprime invece una divisione.",
+              "7/4 rappresenta il quoziente 7 : 4, rispettando l’ordine richiesto."
+            ]
+          },
+          {
+            "question": "Nel diagramma ℕ ⊂ ℚₐ, dove si colloca il numero rappresentato da 5/1?",
+            "options": [
+              "In ℚₐ, ma fuori da ℕ.",
+              "Fuori da ℚₐ.",
+              "In ℕ, e quindi anche in ℚₐ."
+            ],
+            "answer": 2,
+            "feedback": "5/1 = 5: è un naturale. Una scrittura frazionaria può rappresentare anche un numero naturale.",
+            "feedbackByOption": [
+              "5/1 vale 5, che è un numero naturale: non va collocato fuori da ℕ.",
+              "5 appartiene a ℕ e tutti i naturali appartengono anche a ℚₐ.",
+              "5/1 = 5: si colloca nell’insieme interno ℕ, che è contenuto in ℚₐ."
+            ]
+          }
         ]
       }
     },
     {
-      "title": "Prima semplifica, poi confronta",
-      "stepMode": "replace",
-      "steps": [
+      "id": "zero",
+      "title": "I casi con lo zero",
+      "cards": [
         {
-          "title": "Un passaggio iniziale può rendere i calcoli più semplici",
-          "html": "Confronta <span class=\"qr-fraction\" role=\"math\" aria-label=\"18 fratto 30\"><span aria-hidden=\"true\">18</span><span aria-hidden=\"true\">30</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"7 fratto 10\"><span aria-hidden=\"true\">7</span><span aria-hidden=\"true\">10</span></span>. La prima frazione può essere <strong>ridotta ai minimi termini</strong>: prova a farlo prima di scegliere il denominatore comune.<br><br>Nel quaderno puoi usare <strong>Semplifica</strong> e poi <strong>Frazione equivalente</strong>. Quando le due frazioni hanno lo stesso denominatore, confronta i numeratori."
+          "title": "I casi con lo zero",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Lo zero al numeratore e al denominatore",
+              "html": "Se il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> è diverso da zero, il rapporto con zero al <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button> vale <strong>zero</strong>:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto b\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">b</span></span> = 0 &nbsp; (b ≠ 0)</span><br><br>Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 5\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">5</span></span> = 0, perché 0 × 5 = 0.<br><br>Se invece <strong>il denominatore è zero e a ≠ 0</strong>, la divisione <span class=\"qr-fraction\" role=\"math\" aria-label=\"a fratto 0\"><span aria-hidden=\"true\">a</span><span aria-hidden=\"true\">0</span></span> è <strong>impossibile</strong>: nessun numero moltiplicato per zero dà a."
+            },
+            {
+              "title": "Il caso particolare: zero diviso zero",
+              "html": "Che cosa succede con <span class=\"qr-fraction\" role=\"math\" aria-label=\"0 fratto 0\"><span aria-hidden=\"true\">0</span><span aria-hidden=\"true\">0</span></span>?<br><br>Ogni numero moltiplicato per zero dà zero: 0 × 0 = 0, 1 × 0 = 0, 2 × 0 = 0… La relazione non individua quindi <strong>un unico quoziente</strong>: il caso è <strong>indeterminato</strong> e la divisione non è definita.<br><br>Nelle frazioni che rappresentano gli elementi di ℚₐ il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> deve essere <strong>diverso da zero</strong>."
+            }
+          ],
+          "board": "qr-zero-illustration"
         }
       ],
-      "board": "qr-compare",
-      "notebookComparison": {
-        "id": "diciotto-trentesimi-sette-decimi",
-        "fractions": [
-          [
-            18,
-            30
-          ],
-          [
-            7,
-            10
+      "quiz": {
+        "questions": [
+          {
+            "question": "Quale affermazione è corretta per 0/8?",
+            "options": [
+              "È impossibile perché compare lo zero.",
+              "Vale 0 perché il denominatore è diverso da zero.",
+              "È indeterminato come 0/0."
+            ],
+            "answer": 1,
+            "feedback": "0/8 = 0 perché 0 × 8 = 0. Lo zero può comparire al numeratore.",
+            "feedbackByOption": [
+              "Lo zero è al numeratore; il denominatore 8 è diverso da zero e la divisione è definita.",
+              "0 è l’unico numero che moltiplicato per 8 dà 0, quindi 0/8 = 0.",
+              "Qui il denominatore è 8: il quoziente è unico e vale 0."
+            ]
+          },
+          {
+            "question": "Perché 8/0 è una divisione impossibile?",
+            "options": [
+              "Perché nessun numero moltiplicato per 0 dà 8.",
+              "Perché ogni numero moltiplicato per 0 dà 8.",
+              "Perché il risultato sarebbe 0, che non appartiene a ℚₐ."
+            ],
+            "answer": 0,
+            "feedback": "Qualunque numero moltiplicato per zero dà zero, mai 8: non esiste un quoziente.",
+            "feedbackByOption": [
+              "Il prodotto di un numero per zero è sempre zero, quindi nessun numero può essere il quoziente 8 : 0.",
+              "Ogni numero moltiplicato per zero dà 0, non 8.",
+              "Lo zero appartiene a ℚₐ, ma non è il quoziente cercato: 0 × 0 non dà 8."
+            ]
+          },
+          {
+            "question": "Perché 0/0 si dice indeterminato?",
+            "options": [
+              "Perché il quoziente è soltanto 0.",
+              "Perché nessun numero moltiplicato per 0 dà 0.",
+              "Perché ogni numero moltiplicato per 0 dà 0 e non si individua un unico quoziente."
+            ],
+            "answer": 2,
+            "feedback": "L’uguaglianza q × 0 = 0 è verificata da ogni q: non determina un unico quoziente. Perciò 0/0 non è definito.",
+            "feedbackByOption": [
+              "Anche 1 × 0, 2 × 0 e molti altri prodotti danno 0: non si può scegliere soltanto 0.",
+              "Tutti i numeri moltiplicati per zero danno zero: il problema è la mancanza di un unico quoziente.",
+              "Ogni numero verifica q × 0 = 0: la divisione non individua un risultato unico e non è definita."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "frazioni",
+      "title": "Proprietà invariantiva e frazioni equivalenti",
+      "cards": [
+        {
+          "title": "La proprietà fondamentale: l’invariantiva",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Cambiano i termini, non il quoziente",
+              "html": "La <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-invariantiva\">proprietà invariantiva</button> ci permette di moltiplicare o dividere il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button> e il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button> per <strong>uno stesso numero naturale diverso da zero</strong>, senza cambiare il valore della frazione.<br><br>Per esempio, moltiplichiamo entrambi i termini per 2:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 × 2 fratto 3 × 2\"><span aria-hidden=\"true\">2 × 2</span><span aria-hidden=\"true\">3 × 2</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 6\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">6</span></span></span>"
+            },
+            {
+              "title": "Anche dividendo il valore resta lo stesso",
+              "html": "Quando dividiamo, scegliamo un <strong>divisore comune</strong> dei due termini: le divisioni devono essere esatte, così numeratore e denominatore restano naturali.<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"6 fratto 9\"><span aria-hidden=\"true\">6</span><span aria-hidden=\"true\">9</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"6 : 3 fratto 9 : 3\"><span aria-hidden=\"true\">6 : 3</span><span aria-hidden=\"true\">9 : 3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span></span><br><br>In entrambe le trasformazioni agiamo <strong>su tutti e due i termini con lo stesso numero</strong>."
+            }
           ]
+        },
+        {
+          "title": "Costruiamo le frazioni equivalenti",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Scritture diverse ottenute con l’invariantiva",
+              "html": "Applicando la proprietà invariantiva costruiamo frazioni che hanno <strong>lo stesso valore</strong>: le chiamiamo <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-equivalenti\">frazioni equivalenti</button>.<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 6\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">6</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"6 fratto 9\"><span aria-hidden=\"true\">6</span><span aria-hidden=\"true\">9</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"8 fratto 12\"><span aria-hidden=\"true\">8</span><span aria-hidden=\"true\">12</span></span> = …</span><br><br>Le abbiamo ottenute moltiplicando entrambi i termini della prima frazione per 2, per 3, per 4… Il quoziente non cambia."
+            }
+          ]
+        },
+        {
+          "title": "Una classe di equivalenza, un solo numero",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Molte frazioni rappresentano lo stesso razionale",
+              "html": "Tutte le frazioni equivalenti fra loro formano una <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-classe\">classe di equivalenza</button>.<br><br>Le frazioni <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span>, <span class=\"qr-fraction\" role=\"math\" aria-label=\"4 fratto 6\"><span aria-hidden=\"true\">4</span><span aria-hidden=\"true\">6</span></span>, <span class=\"qr-fraction\" role=\"math\" aria-label=\"6 fratto 9\"><span aria-hidden=\"true\">6</span><span aria-hidden=\"true\">9</span></span> e tutte le altre equivalenti appartengono alla <strong>stessa classe</strong>.<br><br>A questa classe corrisponde <strong>un solo <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-razionale\">numero razionale assoluto</button></strong>: cambiano le frazioni con cui lo scriviamo, non il numero che rappresentano."
+            }
+          ]
+        },
+        {
+          "title": "Scegliamo la frazione ridotta ai minimi termini",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Dividiamo entrambi i termini per il M.C.D.",
+              "html": "Nella stessa classe di equivalenza possiamo scegliere la frazione <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-minimi\">ridotta ai minimi termini</button>.<br><br>Per ottenerla applichiamo l’invariantiva: dividiamo numeratore e denominatore per il loro <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-mcd\">massimo comune divisore</button> (M.C.D.).<br><br>Per esempio, <strong>M.C.D.(18, 24) = 6</strong>:<br><br><span class=\"qr-formula\"><span class=\"qr-fraction\" role=\"math\" aria-label=\"18 fratto 24\"><span aria-hidden=\"true\">18</span><span aria-hidden=\"true\">24</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"18 : 6 fratto 24 : 6\"><span aria-hidden=\"true\">18 : 6</span><span aria-hidden=\"true\">24 : 6</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span></span>"
+            },
+            {
+              "title": "Come riconosciamo il risultato?",
+              "html": "Una frazione è ridotta ai minimi termini quando numeratore e denominatore sono <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-primi-tra-loro\">primi tra loro</button>: il loro <strong>M.C.D. è 1</strong>.<br><br>3 e 4 non hanno divisori comuni maggiori di 1, quindi <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span> non si può più semplificare.<br><br>In ogni classe di equivalenza c’è <strong>una sola frazione ridotta ai minimi termini</strong>. È una rappresentazione del numero razionale comune a tutta la classe."
+            }
+          ]
+        },
+        {
+          "title": "Mettiti alla prova",
+          "stepMode": "replace",
+          "board": "qr-copilot",
+          "copilot": true,
+          "copilotLayout": "wide",
+          "steps": [
+            {
+              "title": "Ora prova tu",
+              "html": "Apri il quaderno, inserisci una frazione e prova a ridurla ai minimi termini."
+            }
+          ]
+        }
+      ],
+      "quiz": {
+        "questions": [
+          {
+            "question": "Moltiplichiamo entrambi i termini di 7/12 per 3. Che cosa otteniamo?",
+            "options": [
+              "21/36, equivalente a 7/12.",
+              "7/36, equivalente a 7/12.",
+              "21/12, equivalente a 7/12."
+            ],
+            "answer": 0,
+            "feedback": "7 × 3 = 21 e 12 × 3 = 36. La proprietà invariantiva conserva il valore della frazione.",
+            "feedbackByOption": [
+              "Numeratore e denominatore vengono entrambi moltiplicati per 3: il valore resta lo stesso.",
+              "In 7/36 è stato moltiplicato soltanto il denominatore; il valore cambia.",
+              "In 21/12 è stato moltiplicato soltanto il numeratore; il valore cambia."
+            ]
+          },
+          {
+            "question": "Le frazioni 2/3, 4/6 e 6/9 appartengono alla stessa classe di equivalenza. Quanti numeri razionali rappresentano?",
+            "options": [
+              "Un numero diverso per ogni frazione.",
+              "Un solo numero razionale, scritto con frazioni diverse.",
+              "Soltanto 2/3 rappresenta un numero razionale."
+            ],
+            "answer": 1,
+            "feedback": "Le frazioni sono diverse, ma il numero razionale che rappresentano è uno solo. Tutte appartengono alla stessa classe di equivalenza.",
+            "feedbackByOption": [
+              "La proprietà invariantiva cambia i termini ma conserva il valore: le tre frazioni rappresentano lo stesso numero.",
+              "Esatto: una classe di equivalenza riunisce le diverse frazioni che rappresentano uno stesso numero razionale.",
+              "Anche 4/6 e 6/9 rappresentano quel numero razionale; 2/3 è la sua frazione ridotta ai minimi termini."
+            ]
+          },
+          {
+            "question": "Quale frazione rappresenta lo stesso numero di 6/9?",
+            "options": [
+              "2/9",
+              "2/3",
+              "6/3"
+            ],
+            "answer": 1,
+            "feedback": "Dividendo entrambi i termini di 6/9 per 3 si ottiene 2/3: le frazioni sono equivalenti.",
+            "feedbackByOption": [
+              "Per passare da 6/9 a 2/9 cambia soltanto il numeratore: il valore non si conserva.",
+              "6 : 3 = 2 e 9 : 3 = 3: dividiamo entrambi i termini per lo stesso numero.",
+              "Cambiare soltanto il denominatore da 9 a 3 cambia il valore della frazione."
+            ],
+            "notebook": "equivalence-6-9"
+          },
+          {
+            "question": "Quale frazione è equivalente a 12/18 ed è ridotta ai minimi termini?",
+            "options": [
+              "6/9",
+              "4/6",
+              "2/3"
+            ],
+            "answer": 2,
+            "feedback": "Il M.C.D. di 12 e 18 è 6. Dividendo entrambi i termini per 6 si ottiene 2/3, i cui termini sono primi fra loro.",
+            "feedbackByOption": [
+              "6/9 è equivalente a 12/18, ma si può ancora semplificare dividendo entrambi i termini per 3.",
+              "4/6 è equivalente a 12/18, ma si può ancora semplificare dividendo entrambi i termini per 2.",
+              "2 e 3 non hanno divisori comuni maggiori di 1: la frazione è ridotta ai minimi termini."
+            ],
+            "notebook": "reduction-12-18"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ordine",
+      "title": "Confronto e proprietà dell’insieme",
+      "cards": [
+        {
+          "title": "ℚₐ è un insieme ordinato",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Possiamo confrontare i suoi elementi",
+              "html": "Dati due numeri razionali assoluti, possiamo sempre stabilire se il primo è <strong>minore, uguale o maggiore</strong> del secondo. Per questo diciamo che ℚₐ è un insieme <strong>ordinato</strong>."
+            }
+          ]
+        },
+        {
+          "title": "Quando i denominatori sono diversi",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Confrontare solo i numeratori non basta",
+              "html": "Con lo <strong>stesso <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-denominatore\">denominatore</button></strong>, le parti della stessa unità hanno uguale grandezza: è maggiore la frazione con il <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-numeratore\">numeratore</button> maggiore. Per esempio, <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 7\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">7</span></span> &lt; <span class=\"qr-fraction\" role=\"math\" aria-label=\"5 fratto 7\"><span aria-hidden=\"true\">5</span><span aria-hidden=\"true\">7</span></span>.<br><br>Con <strong>denominatori diversi</strong> questa regola non basta: i terzi e i quinti sono parti di grandezza diversa. Non possiamo decidere, per esempio, il confronto tra <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 5\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">5</span></span> guardando soltanto 2 e 3.<br><br>Le frazioni si possono comunque confrontare: dobbiamo prima riscriverle in una forma adatta.<details class=\"qr-deeper\"><summary>Un confronto immediato: rispetto a 1</summary><p>Una frazione con numeratore minore del denominatore è <strong>propria</strong> ed è minore di 1. Se il numeratore è maggiore o uguale al denominatore, la frazione è <strong>impropria</strong> ed è maggiore o uguale a 1. In casi come questi possiamo confrontare anche frazioni con denominatori diversi senza trasformarle.</p></details>"
+            }
+          ]
+        },
+        {
+          "title": "Portiamo le frazioni allo stesso denominatore",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Frazioni equivalenti, confronto più semplice",
+              "html": "<ol><li>Scegliamo un <strong>multiplo comune dei denominatori</strong>. Il <strong>m.c.m.</strong> è il più piccolo e spesso rende i calcoli più comodi.</li><li>Per ogni frazione dividiamo il denominatore comune per il suo denominatore: troviamo così il numero per cui moltiplicare <strong>entrambi i termini</strong>.</li><li>Usiamo la <button type=\"button\" class=\"rm-keyword\" data-term=\"qr-invariantiva\">proprietà invariantiva</button> per costruire le due frazioni equivalenti. Infine confrontiamo i numeratori.</li></ol>Per <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span>, il m.c.m.(3, 4) è 12. Poiché 12 : 3 = 4 e 12 : 4 = 3, otteniamo:<br><br><span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 · 4 fratto 3 · 4\"><span aria-hidden=\"true\">2 · 4</span><span aria-hidden=\"true\">3 · 4</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"8 fratto 12\"><span aria-hidden=\"true\">8</span><span aria-hidden=\"true\">12</span></span> &emsp; e &emsp; <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 · 3 fratto 4 · 3\"><span aria-hidden=\"true\">3 · 3</span><span aria-hidden=\"true\">4 · 3</span></span> = <span class=\"qr-fraction\" role=\"math\" aria-label=\"9 fratto 12\"><span aria-hidden=\"true\">9</span><span aria-hidden=\"true\">12</span></span>.<br><br>Dato che 8 &lt; 9, concludiamo che <span class=\"qr-fraction\" role=\"math\" aria-label=\"2 fratto 3\"><span aria-hidden=\"true\">2</span><span aria-hidden=\"true\">3</span></span> &lt; <span class=\"qr-fraction\" role=\"math\" aria-label=\"3 fratto 4\"><span aria-hidden=\"true\">3</span><span aria-hidden=\"true\">4</span></span>. Le frazioni equivalenti conservano il valore di quelle di partenza."
+            }
+          ]
+        },
+        {
+          "title": "Metti in pratica il confronto",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Qual è la frazione maggiore?",
+              "html": "Confronta <span class=\"qr-fraction\" role=\"math\" aria-label=\"11 fratto 6\"><span aria-hidden=\"true\">11</span><span aria-hidden=\"true\">6</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"9 fratto 4\"><span aria-hidden=\"true\">9</span><span aria-hidden=\"true\">4</span></span>. Sono già ridotte ai minimi termini: scegli un denominatore comune e costruisci le due frazioni equivalenti.<br><br>Nel quaderno seleziona una frazione e scegli <strong>Frazione equivalente</strong>: decidi il moltiplicatore e scrivi tu i due prodotti. Ripeti per l’altra frazione, poi scegli il simbolo del confronto."
+            }
+          ],
+          "board": "qr-compare",
+          "notebookComparison": {
+            "id": "undici-sesti-nove-quarti",
+            "fractions": [
+              [
+                11,
+                6
+              ],
+              [
+                9,
+                4
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Prima semplifica, poi confronta",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Un passaggio iniziale può rendere i calcoli più semplici",
+              "html": "Confronta <span class=\"qr-fraction\" role=\"math\" aria-label=\"18 fratto 30\"><span aria-hidden=\"true\">18</span><span aria-hidden=\"true\">30</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"7 fratto 10\"><span aria-hidden=\"true\">7</span><span aria-hidden=\"true\">10</span></span>. La prima frazione può essere <strong>ridotta ai minimi termini</strong>: prova a farlo prima di scegliere il denominatore comune.<br><br>Nel quaderno puoi usare <strong>Semplifica</strong> e poi <strong>Frazione equivalente</strong>. Quando le due frazioni hanno lo stesso denominatore, confronta i numeratori."
+            }
+          ],
+          "board": "qr-compare",
+          "notebookComparison": {
+            "id": "diciotto-trentesimi-sette-decimi",
+            "fractions": [
+              [
+                18,
+                30
+              ],
+              [
+                7,
+                10
+              ]
+            ]
+          }
+        }
+      ],
+      "quiz": {
+        "questions": [
+          {
+            "question": "Quale confronto è corretto?",
+            "options": [
+              "3/7 > 5/7",
+              "3/7 < 5/7",
+              "3/7 = 5/7"
+            ],
+            "answer": 1,
+            "feedback": "A denominatore uguale le parti hanno la stessa grandezza: tre settimi sono meno di cinque settimi.",
+            "feedbackByOption": [
+              "I denominatori sono uguali: confrontiamo i numeratori, e 3 è minore di 5.",
+              "Le parti sono tutte settimi: tre parti sono meno di cinque parti.",
+              "Le parti hanno la stessa grandezza, ma ne stiamo contando quantità diverse: 3 e 5."
+            ]
+          },
+          {
+            "question": "Per confrontare 2/3 e 3/4 le riscriviamo come 8/12 e 9/12. Che cosa concludiamo?",
+            "options": [
+              "2/3 < 3/4",
+              "2/3 > 3/4",
+              "2/3 = 3/4"
+            ],
+            "answer": 0,
+            "feedback": "8/12 < 9/12; le frazioni equivalenti conservano il valore, quindi 2/3 < 3/4.",
+            "feedbackByOption": [
+              "Con lo stesso denominatore confrontiamo 8 e 9: 8/12 è minore di 9/12.",
+              "Dopo aver scelto lo stesso denominatore, 8 è minore di 9: il primo numero è il più piccolo.",
+              "8/12 e 9/12 hanno numeratori diversi e lo stesso denominatore, quindi non sono uguali."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "pillole",
+      "title": "La lezione in pillole",
+      "cards": [
+        {
+          "title": "Le idee da portare con te",
+          "stepMode": "replace",
+          "steps": [
+            {
+              "title": "Ricostruiamo il percorso",
+              "html": "• Una frazione a/b, con b ≠ 0, rappresenta il quoziente a : b.<br><br>• La proprietà invariantiva conserva il valore e permette di costruire frazioni equivalenti.<br><br>• Una classe di equivalenza rappresenta un solo numero razionale. Dividendo entrambi i termini per il loro M.C.D. otteniamo la frazione ridotta ai minimi termini.<br><br>• ℕ ⊂ ℚₐ; lo zero appartiene a entrambi gli insiemi.<br><br>• Il quoziente resta in ℚₐ se il divisore non è zero.<br><br>• ℚₐ è infinito e ordinato. Il rapporto è un quoziente in un ordine preciso."
+            }
+          ]
+        }
+      ],
+      "quiz": {
+        "questions": [
+          {
+            "question": "Che relazione c’è fra 2/3 e 4/6?",
+            "options": [
+              "Sono due numeri diversi.",
+              "Sono due frazioni che rappresentano lo stesso numero.",
+              "La seconda vale il doppio."
+            ],
+            "answer": 1,
+            "feedback": "Dividendo numeratore e denominatore di 4/6 per 2 otteniamo 2/3: la quantità è invariata."
+          },
+          {
+            "question": "Quale scrittura rappresenta un numero razionale assoluto?",
+            "options": [
+              "0/7",
+              "7/0",
+              "0/0"
+            ],
+            "answer": 0,
+            "feedback": "0/7 = 0. Il denominatore deve essere diverso da zero."
+          },
+          {
+            "question": "Quale affermazione esprime correttamente ℕ ⊂ ℚₐ?",
+            "options": [
+              "Ogni razionale assoluto è naturale.",
+              "Nessun naturale è razionale.",
+              "Ogni naturale è razionale assoluto; alcuni razionali assoluti non sono naturali."
+            ],
+            "answer": 2,
+            "feedback": "n = n/1, ma per esempio 1/2 non è naturale."
+          },
+          {
+            "question": "Qual è il rapporto tra 2 e 5, in quest’ordine?",
+            "options": [
+              "5/2",
+              "2/5",
+              "5 − 2"
+            ],
+            "answer": 1,
+            "feedback": "Il rapporto è il primo numero diviso per il secondo: 2 : 5 = 2/5."
+          }
         ]
       }
     }
   ],
-  "quiz": {
-    "questions": [
-      {
-        "question": "Quale confronto è corretto?",
-        "options": [
-          "3/7 > 5/7",
-          "3/7 < 5/7",
-          "3/7 = 5/7"
-        ],
-        "answer": 1,
-        "feedback": "A denominatore uguale le parti hanno la stessa grandezza: tre settimi sono meno di cinque settimi.",
-        "feedbackByOption": [
-          "I denominatori sono uguali: confrontiamo i numeratori, e 3 è minore di 5.",
-          "Le parti sono tutte settimi: tre parti sono meno di cinque parti.",
-          "Le parti hanno la stessa grandezza, ma ne stiamo contando quantità diverse: 3 e 5."
-        ]
-      },
-      {
-        "question": "Per confrontare 2/3 e 3/4 le riscriviamo come 8/12 e 9/12. Che cosa concludiamo?",
-        "options": [
-          "2/3 < 3/4",
-          "2/3 > 3/4",
-          "2/3 = 3/4"
-        ],
-        "answer": 0,
-        "feedback": "8/12 < 9/12; le frazioni equivalenti conservano il valore, quindi 2/3 < 3/4.",
-        "feedbackByOption": [
-          "Con lo stesso denominatore confrontiamo 8 e 9: 8/12 è minore di 9/12.",
-          "Dopo aver scelto lo stesso denominatore, 8 è minore di 9: il primo numero è il più piccolo.",
-          "8/12 e 9/12 hanno numeratori diversi e lo stesso denominatore, quindi non sono uguali."
-        ]
-      },
-      {
-        "question": "Quale numero razionale assoluto è compreso strettamente tra 2/5 e 3/5?",
-        "options": [
-          "1/5",
-          "4/5",
-          "1/2"
-        ],
-        "answer": 2,
-        "feedback": "2/5 = 4/10, 1/2 = 5/10 e 3/5 = 6/10: il numero 1/2 è compreso fra gli altri due.",
-        "feedbackByOption": [
-          "1/5 è minore di 2/5: è fuori dall’intervallo richiesto.",
-          "4/5 è maggiore di 3/5: è fuori dall’intervallo richiesto.",
-          "Scrivendo tutto in decimi otteniamo 4/10 < 5/10 < 6/10. Fra due razionali distinti si può sempre trovare un altro razionale."
-        ]
-      }
-    ]
+  "nextLesson": {
+    "id": "razionali-assoluti-operazioni"
   }
 },
-      {
-        "id": "pillole",
-        "title": "La lezione in pillole",
-        "cards": [
-          {
-            "title": "Le idee da portare con te",
-            "stepMode": "replace",
-            "steps": [
-              {
-                "title": "Ricostruiamo il percorso",
-                "html": "• Una frazione a/b, con b ≠ 0, rappresenta il quoziente a : b.<br><br>• La proprietà invariantiva conserva il valore e permette di costruire frazioni equivalenti.<br><br>• Una classe di equivalenza rappresenta un solo numero razionale. Dividendo entrambi i termini per il loro M.C.D. otteniamo la frazione ridotta ai minimi termini.<br><br>• ℕ ⊂ ℚₐ; lo zero appartiene a entrambi gli insiemi.<br><br>• Il quoziente resta in ℚₐ se il divisore non è zero.<br><br>• ℚₐ è infinito, ordinato e denso. Il rapporto è un quoziente in un ordine preciso."
-              }
-            ]
-          }
-        ],
-        "quiz": {
-          "questions": [
-            {
-              "question": "Che relazione c’è fra 2/3 e 4/6?",
-              "options": [
-                "Sono due numeri diversi.",
-                "Sono due frazioni che rappresentano lo stesso numero.",
-                "La seconda vale il doppio."
-              ],
-              "answer": 1,
-              "feedback": "Dividendo numeratore e denominatore di 4/6 per 2 otteniamo 2/3: la quantità è invariata."
-            },
-            {
-              "question": "Quale scrittura rappresenta un numero razionale assoluto?",
-              "options": [
-                "0/7",
-                "7/0",
-                "0/0"
-              ],
-              "answer": 0,
-              "feedback": "0/7 = 0. Il denominatore deve essere diverso da zero."
-            },
-            {
-              "question": "Quale affermazione esprime correttamente ℕ ⊂ ℚₐ?",
-              "options": [
-                "Ogni razionale assoluto è naturale.",
-                "Nessun naturale è razionale.",
-                "Ogni naturale è razionale assoluto; alcuni razionali assoluti non sono naturali."
-              ],
-              "answer": 2,
-              "feedback": "n = n/1, ma per esempio 1/2 non è naturale."
-            },
-            {
-              "question": "Qual è il rapporto tra 2 e 5, in quest’ordine?",
-              "options": [
-                "5/2",
-                "2/5",
-                "5 − 2"
-              ],
-              "answer": 1,
-              "feedback": "Il rapporto è il primo numero diviso per il secondo: 2 : 5 = 2/5."
-            },
-            {
-              "question": "Tra due razionali assoluti distinti…",
-              "options": [
-                "c’è sempre almeno un altro razionale assoluto.",
-                "non può esserci un altro razionale.",
-                "c’è sempre un numero naturale."
-              ],
-              "answer": 0,
-              "feedback": "Il punto medio (a + b) : 2 è razionale ed è compreso strettamente fra a e b."
-            }
-          ]
-        }
-      }
-    ],
-    "nextLesson": {
-      "id": "razionali-assoluti-operazioni"
-    }
-  },
   "razionali-assoluti-operazioni": {
     "title": "Le operazioni in ℚₐ",
     "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
@@ -1444,11 +1409,6 @@ Object.assign(window.READER_GLOSSARY,{
     "title": "Rapporto",
     "kind": "Matematica · Numeri razionali assoluti",
     "text": "Il rapporto fra a e b, in quest’ordine e con b ≠ 0, è il quoziente a : b. Invertendo l’ordine si ottiene in generale un numero diverso. Per confrontare grandezze omogenee, esprimile prima nella stessa unità."
-  },
-  "qr-denso": {
-    "title": "Insieme denso",
-    "kind": "Matematica · Numeri razionali assoluti",
-    "text": "Fra due razionali distinti c’è sempre un altro razionale. Un esempio è il loro punto medio (a + b) : 2. Ripetendo la costruzione si trovano infiniti razionali fra i due iniziali."
   },
   "qr-interna": {
     "title": "Operazione interna e legge di composizione binaria",
