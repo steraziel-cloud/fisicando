@@ -16,6 +16,20 @@ window.GatitoMathNotebook=(()=>{
   const v=sum();if(p!==a.length)throw Error('Inserisci un’operazione fra i termini e controlla le parentesi.');return v;
  }
  function find(root,key,parent=null){if(root.id===key)return{node:root,parent};if(root.type==='sequence'){for(const n of root.items){const r=find(n,key,root);if(r)return r;}}if(root.type==='fraction')return find(root.top,key,root)||find(root.bottom,key,root);return null;}
+ function insertFraction(root,key){
+  const r=find(root,key);if(!r||r.node.type!=='number'||r.parent?.type!=='sequence')return null;
+  const f=frac(),filled=r.node.value!=='';f.top.items=[r.node];r.parent.items.splice(r.parent.items.indexOf(r.node),1,f);
+  return filled?first(f.bottom).id:r.node.id;
+ }
+ function numberSlots(n){return n.type==='number'?[n.id]:n.type==='sequence'?n.items.flatMap(numberSlots):n.type==='fraction'?[...numberSlots(n.top),...numberSlots(n.bottom)]:[];}
+ function nextSlot(root,key){
+  const r=find(root,key),owner=r?.parent&&find(root,r.parent.id)?.parent;
+  if(owner?.type==='fraction'&&r.parent===owner.bottom&&numberSlots(owner.bottom).at(-1)===key){
+   const parent=find(root,owner.id).parent,index=parent.items.indexOf(owner);
+   if(index===parent.items.length-1){const cursor=num();parent.items.push(cursor);return cursor.id;}
+  }
+  const slots=numberSlots(root),i=slots.indexOf(key);return slots[(i+1)%slots.length];
+ }
  function first(root){if(root.type==='number')return root;if(root.type==='fraction')return first(root.top);if(root.type==='sequence'){for(const x of root.items){const n=first(x);if(n)return n;}}return null;}
  function simple(f){return f?.type==='fraction'&&f.top.items.length===1&&f.bottom.items.length===1&&f.top.items[0].type==='number'&&f.bottom.items[0].type==='number'&&/^\d{1,30}$/.test(f.top.items[0].value)&&/^\d{1,30}$/.test(f.bottom.items[0].value)&&BigInt(f.bottom.items[0].value)!==0n;}
  function leaves(n){return n.type==='sequence'?n.items.flatMap(leaves):n.type==='fraction'?[...leaves(n.top),...leaves(n.bottom)]:[n.id];}
@@ -101,9 +115,9 @@ window.GatitoMathNotebook=(()=>{
   function act(action,key){
    if(action==='insert'){clearSelection();v.draft=seq();v.active=first(v.draft).id;}
    if(action==='key'){insertKey(key);return;}
-   if(action==='fraction'){const r=active();if(r){const f=frac(),i=r.parent.items.indexOf(r.node);if(r.node.value!==''){message('Inserisci prima un’operazione oppure scegli una casella vuota.',true);return;}r.parent.items.splice(i,1,f,num());v.active=first(f).id;}}
+   if(action==='fraction'){v.active=insertFraction(v.draft,v.active)||v.active;v.message='';}
    if(action==='backspace'){const r=active();if(r){if(r.node.value)r.node.value=r.node.value.slice(0,-1);else{const i=r.parent.items.indexOf(r.node);if(i>0){const prev=r.parent.items[i-1];if(prev.type==='operator'){r.parent.items.splice(i-1,2);if(!r.parent.items.length)r.parent.items.push(num());v.active=first(r.parent)?.id;}else{r.parent.items.splice(i-1,1);}}else{const owner=find(v.draft,r.parent.id)?.parent;if(owner?.type==='fraction'){const parent=find(v.draft,owner.id).parent,n=num();const at=parent.items.indexOf(owner),next=parent.items[at+1];parent.items.splice(at,next?.type==='number'&&!next.value?2:1,n);v.active=n.id;}}}}}
-   if(action==='next-slot'){const inputs=[...host.querySelectorAll('[data-nb-slot]')],i=inputs.findIndex(x=>x.dataset.nbSlot===v.active);v.active=inputs[(i+1)%inputs.length]?.dataset.nbSlot;}
+   if(action==='next-slot')v.active=nextSlot(v.draft,v.active);
    if(action==='cancel-draft'){v.draft=null;v.message='';}
    if(action==='write'){try{const expression=clean(copy(v.draft));model.add(expression);v.draft=null;v.message='';}catch(e){message(e.message,true);return;}}
    if(action==='unselect')clearSelection();
@@ -128,7 +142,7 @@ window.GatitoMathNotebook=(()=>{
     if(e.key==='Escape'){e.preventDefault();if(model.pending)model.cancel();clearSelection();render();return;}
     if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();act(e.shiftKey?'redo':'undo');return;}
    }
-   if(e.target.dataset.nbSelect&&['Enter',' '].includes(e.key)){e.preventDefault();e.target.click();return;}if(!e.target.dataset.nbSlot)return;const k={'-':'−','*':'·','/':'÷',':':'÷'}[e.key]||e.key;if(['+','−','·','÷','(',')'].includes(k)){e.preventDefault();insertKey(k);}if(e.key==='Enter'){e.preventDefault();act('write');}
+   if(e.target.dataset.nbSelect&&['Enter',' '].includes(e.key)){e.preventDefault();e.target.click();return;}if(!e.target.dataset.nbSlot)return;if(e.key==='Tab'&&!e.shiftKey){const slots=numberSlots(v.draft),next=nextSlot(v.draft,v.active);if(!slots.includes(next)){e.preventDefault();v.active=next;render();return;}}const k={'-':'−','*':'·','/':'÷',':':'÷'}[e.key]||e.key;if(['+','−','·','÷','(',')'].includes(k)){e.preventDefault();insertKey(k);}if(e.key==='Enter'){e.preventDefault();act('write');}
   }
   function pointer(e){
    if(e.target.closest('.nb-keypad button')){e.preventDefault();return;}
@@ -149,6 +163,7 @@ window.GatitoMathNotebook=(()=>{
   host.addEventListener('click',click);host.addEventListener('submit',submit);host.addEventListener('input',input);host.addEventListener('focusin',focus);host.addEventListener('keydown',keydown);host.addEventListener('pointerdown',pointer);document.addEventListener('pointermove',move);document.addEventListener('pointerup',up);document.addEventListener('pointerdown',outside);window.addEventListener('resize',positionContext);host.addEventListener('scroll',positionContext,true);host.addEventListener('pointercancel',cancelPointer);render();
   return{model,dispose(){document.removeEventListener('pointermove',move);document.removeEventListener('pointerup',up);document.removeEventListener('pointerdown',outside);window.removeEventListener('resize',positionContext);host.remove();}};
  }
- return{mount,Notebook,math:{evaluate,gcd},nodes:{num,seq,frac,find,selectionRoots}};
+ return{mount,Notebook,math:{evaluate,gcd},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot}};
 })();
+
 
