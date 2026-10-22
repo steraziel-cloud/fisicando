@@ -34,16 +34,22 @@ window.GatitoMathNotebook=(()=>{
  function mount(parent,{sessionKey}={}){
   const model=sessionKey&&sessions.get(sessionKey)||new Notebook();if(sessionKey)sessions.set(sessionKey,model);
   const host=document.createElement('section');host.className='nb-notebook';host.setAttribute('aria-label','Quaderno di prova');parent.append(host);
-  const v={draft:null,active:null,selected:null,dividing:false,message:'',error:false};
+  const v={draft:null,active:null,selected:null,dividing:false,message:'',error:false},formId=id();
   const button=(a,label,extra='')=>`<button type="button" data-nb-action="${a}" ${extra}>${label}</button>`;
   function draftHTML(s,label='Espressione'){
    return `<span class="nb-sequence">${s.items.map(t=>t.type==='number'?`<input class="nb-slot ${v.active===t.id?'nb-active':''}" data-nb-slot="${t.id}" aria-label="${label}" inputmode="numeric" autocomplete="off" maxlength="30" value="${esc(t.value)}" style="--nb-digits:${Math.max(2,t.value.length+1)}" placeholder="□">`:t.type==='operator'?`<span class="nb-operator">${esc(t.value)}</span>`:`<span class="nb-fraction nb-draft-fraction"><span>${draftHTML(t.top,'Numeratore')}</span><span>${draftHTML(t.bottom,'Denominatore')}</span></span>`).join('')}</span>`;
   }
+  function numberHTML(t){
+   const p=model.pending,f=p&&model.locate(p.fraction).node,isPending=f&&f[p.side].items[0].id===t.id;
+   const marks=t.marks.map(m=>`<span class="nb-crossed" title="Diviso per ${esc(m.divisor)}">${esc(m.before)}</span>`).join('');
+   if(isPending)return `<span class="nb-number nb-pending-number">${marks}<span class="nb-crossed">${esc(t.value)}</span><input id="${formId}-q" form="${formId}" name="quotient" class="nb-inline-answer" aria-label="Quoziente del ${p.side==='top'?'numeratore':'denominatore'}" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required></span>`;
+   return `<button type="button" class="nb-number nb-pick ${v.selected===t.id?'nb-selected':''}" data-nb-select="${t.id}" aria-label="Seleziona il numero ${esc(t.value)}">${marks}<span class="nb-written">${esc(t.value)}</span></button>`;
+  }
   function paperHTML(s){
-   return `<span class="nb-sequence">${s.items.map(t=>t.type==='operator'?`<span class="nb-operator">${esc(t.value)}</span>`:t.type==='fraction'?`<span class="nb-fraction nb-pick ${v.selected===t.id?'nb-selected':''}" data-nb-select="${t.id}" role="button" tabindex="0" aria-label="Seleziona tutta la frazione"><span>${paperHTML(t.top)}</span><span>${paperHTML(t.bottom)}</span></span>`:`<button type="button" class="nb-number nb-pick ${v.selected===t.id?'nb-selected':''}" data-nb-select="${t.id}" aria-label="Seleziona il numero ${esc(t.value)}">${t.marks.map(m=>`<span class="nb-crossed" title="Diviso per ${esc(m.divisor)}">${esc(m.before)}</span>`).join('')}<span class="nb-written">${esc(t.value)}</span></button>`).join('')}</span>`;
+   return `<span class="nb-sequence">${s.items.map(t=>t.type==='operator'?`<span class="nb-operator">${esc(t.value)}</span>`:t.type==='fraction'?`<span class="nb-fraction nb-pick ${v.selected===t.id?'nb-selected':''}" data-nb-select="${t.id}" role="button" tabindex="0" aria-label="Seleziona tutta la frazione"><span>${paperHTML(t.top)}</span><span>${paperHTML(t.bottom)}</span></span>`:numberHTML(t)).join('')}</span>`;
   }
   function context(){
-   if(model.pending){const p=model.pending,f=model.locate(p.fraction).node,n=f[p.side].items[0];return `<form data-nb-form="answer" class="nb-action-strip"><label for="nb-quotient">${p.side==='top'?'Numeratore':'Denominatore'}: ${esc(n.value)} ÷ ${esc(p.k)} =</label><input id="nb-quotient" name="quotient" aria-label="Quoziente del ${p.side==='top'?'numeratore':'denominatore'}" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required><button type="submit">Scrivi il quoziente</button>${button('cancel-step','Annulla il passaggio')}</form>`;}
+   if(model.pending){const p=model.pending,f=model.locate(p.fraction).node,n=f[p.side].items[0];return `<form id="${formId}" data-nb-form="answer" class="nb-action-strip"><label for="${formId}-q">${p.side==='top'?'Numeratore':'Denominatore'}: ${esc(n.value)} ÷ ${esc(p.k)} = ?</label><button type="submit">Scrivi il quoziente</button>${button('cancel-step','Annulla il passaggio')}</form>`;}
    if(!v.selected)return '';
    if(v.dividing)return `<form data-nb-form="divisor" class="nb-action-strip"><label for="nb-divisor">Divisore comune</label><input id="nb-divisor" name="divisor" aria-label="Divisore comune" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required><button type="submit">Inizia</button>${button('unselect','Chiudi')}</form>`;
    const f=model.fractionFor(v.selected),can=simple(f);return `<div class="nb-action-strip"><span>${model.locate(v.selected)?.node.type==='fraction'?'Frazione selezionata':'Numero selezionato'}</span>${can?button('simplify','Semplifica'):''}${f&&v.selected!==f.id?button('select-fraction','Seleziona tutta la frazione'):''}${button('unselect','Chiudi')}</div>`;
