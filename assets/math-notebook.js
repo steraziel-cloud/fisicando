@@ -97,6 +97,7 @@ window.GatitoMathNotebook=(()=>{
    const anchor={left:Math.min(...rects.map(r=>r.left)),right:Math.max(...rects.map(r=>r.right)),top:Math.min(...rects.map(r=>r.top)),bottom:Math.max(...rects.map(r=>r.bottom))},p=paper.getBoundingClientRect(),t=toolbar.getBoundingClientRect();
    let x=anchor.right-p.left+12,y=anchor.top-p.top;if(x+t.width>p.width-10){x=anchor.left-p.left;y=anchor.bottom-p.top+12;}
    x=Math.max(8,Math.min(x,p.width-t.width-8));if(y+t.height>p.height-8&&anchor.top-p.top>t.height+12)y=anchor.top-p.top-t.height-12;
+   for(const result of host.querySelectorAll('.nb-final-result')){const r=result.getBoundingClientRect();if(p.left+x<r.right&&p.left+x+t.width>r.left&&p.top+y<r.bottom&&p.top+y+t.height>r.top){const right=r.right-p.left+12;if(right+t.width<=p.width-8)x=right;else y=Math.max(anchor.bottom,r.bottom)-p.top+12;}}
    toolbar.style.left=(x+paper.scrollLeft)+'px';toolbar.style.top=(Math.max(8,y)+paper.scrollTop)+'px';
   }
   function render(){
