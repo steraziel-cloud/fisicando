@@ -4,3 +4,6 @@
 @media(prefers-reduced-motion:reduce){.fc-workbench button{transition:none}}
 
 .fc-dialog .fc-header{position:sticky;top:0;z-index:2;background:var(--fc-panel);padding:8px 0}
+
+
+.qr-reader-card.qr-copilot-wide{grid-template-columns:minmax(0,1fr)}.qr-copilot-wide>.rm-card-text{grid-column:1;grid-row:2;width:100%;max-width:none;margin-inline:0}.qr-copilot-wide>.fc-workbench{grid-column:1;grid-row:3;width:100%;box-sizing:border-box}.qr-copilot-wide .fc-context .fc-example{display:inline-flex;align-items:center;gap:.35em}.qr-copilot-wide .fc-value{min-height:130px}.qr-copilot-wide .fc-header{margin-bottom:18px}

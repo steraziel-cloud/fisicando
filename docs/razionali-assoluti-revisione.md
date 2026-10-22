@@ -42,3 +42,14 @@ Prima stesura completa e utilizzabile, da rivedere con il docente per quantità 
 - 5.040 casi di calcolo intero controllati per intervalli, arrotondamenti e sviluppi decimali; verificati anche il riporto 9,995 → 10,00 e i casi già esatti.
 - Sintassi JavaScript verificata per contenuti, lavagne, catalogo e reader.
 - Verifica visiva desktop del reader eseguita online per tutte le cinque lezioni. Provati lo slider di equivalenza, il glossario con ritorno allo stato precedente, il completamento che sblocca la navigazione, i cinque passaggi della lavagna espressioni, la divisione periodica 1/6 e l’arrotondamento di 9,995 a 10,00. Nessun overflow della pagina nel viewport desktop osservato. La verifica su un dispositivo mobile reale resta da fare.
+
+
+## Revisione del 22 ottobre 2026 — invariantiva, equivalenza e copilota
+
+La sezione `frazioni` della prima lezione segue l’ordine indicato dal docente: proprietà invariantiva come proprietà fondamentale; costruzione delle frazioni equivalenti; classe di equivalenza e unicità del numero razionale rappresentato; riduzione ai minimi termini dividendo entrambi i termini per il loro M.C.D.; banco del copilota per allenarsi.
+
+Sette passaggi distribuiti in cinque card. Il copilota compare una sola volta, nella card conclusiva di questa sezione, con un banco a tutta larghezza e numeratore/denominatore modificabili. Esempio iniziale: 18/24; trasformazioni manuali mediante divisori comuni, riduzione tramite M.C.D., cronologia e annulla/ripristina. Il pannello di inserimento è aperto nel banco largo. La guida assistita resta lo sviluppo successivo del copilota, come concordato.
+
+Il checkpoint ha quattro domande: invariantiva, equivalenza, una sola classe/un solo numero, frazione equivalente ridotta ai minimi termini. Il recap include ora esplicitamente la classe di equivalenza e la riduzione tramite M.C.D. Aggiunte le keyword per M.C.D. e numeri primi tra loro; le formule nel banco e nei suoi messaggi sono frazioni verticali.
+
+Verifiche: sintassi dei moduli modificati; riduzione 18/24 → 9/12 → 3/4 e riduzione diretta mediante M.C.D.; annulla/ripristina; 0/12 → 0/1; rifiuto di divisore non comune e denominatore nullo; keyword risolte. Le altre quattro lezioni sui razionali conservano gli stessi contenuti.
