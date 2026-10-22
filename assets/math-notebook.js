@@ -30,6 +30,15 @@ window.GatitoMathNotebook=(()=>{
   }
   const slots=numberSlots(root),i=slots.indexOf(key);return slots[(i+1)%slots.length];
  }
+ function arrowSlot(root,key,direction){
+  const slots=numberSlots(root),i=slots.indexOf(key);if(i<0)return key;
+  if(direction==='ArrowLeft')return slots[Math.max(0,i-1)];
+  if(direction==='ArrowRight'){if(i+1<slots.length)return slots[i+1];const r=find(root,key),owner=r?.parent&&find(root,r.parent.id)?.parent;return owner?.type==='fraction'?nextSlot(root,key):key;}
+  let node=find(root,key).node;
+  while(node){const parent=find(root,node.id)?.parent;if(!parent)break;if(parent.type==='fraction'){const top=numberSlots(parent.top),bottom=numberSlots(parent.bottom),inTop=top.includes(key);if(direction==='ArrowDown'&&inTop)return bottom[Math.min(top.indexOf(key),bottom.length-1)];if(direction==='ArrowUp'&&!inTop)return top[Math.min(bottom.indexOf(key),top.length-1)];}node=parent;}
+  return key;
+ }
+ function canSimplify(f){return simple(f)&&gcd(BigInt(f.top.items[0].value),BigInt(f.bottom.items[0].value))>1n;}
  function first(root){if(root.type==='number')return root;if(root.type==='fraction')return first(root.top);if(root.type==='sequence'){for(const x of root.items){const n=first(x);if(n)return n;}}return null;}
  function simple(f){return f?.type==='fraction'&&f.top.items.length===1&&f.bottom.items.length===1&&f.top.items[0].type==='number'&&f.bottom.items[0].type==='number'&&/^\d{1,30}$/.test(f.top.items[0].value)&&/^\d{1,30}$/.test(f.bottom.items[0].value)&&BigInt(f.bottom.items[0].value)!==0n;}
  function leaves(n){return n.type==='sequence'?n.items.flatMap(leaves):n.type==='fraction'?[...leaves(n.top),...leaves(n.bottom)]:[n.id];}
@@ -88,7 +97,7 @@ window.GatitoMathNotebook=(()=>{
    if(v.filling)return `<form data-nb-form="fill" class="nb-context nb-action-strip"><label for="${formId}-fill">Completa la casella</label><input id="${formId}-fill" name="value" aria-label="Numero da inserire" inputmode="numeric" maxlength="30" required><button type="submit">Scrivi</button></form>`;
    if(!v.selection.length)return '';
    if(v.dividing)return `<form data-nb-form="divisor" class="nb-context nb-action-strip"><label for="${formId}-divisor">Divisore comune</label><input id="${formId}-divisor" name="divisor" aria-label="Divisore comune" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required><button type="submit">Inizia</button></form>`;
-   const f=selectedFraction();return `<div class="nb-context nb-selection-tools" role="toolbar" aria-label="Azioni sulla selezione">${simple(f)?button('simplify','Semplifica'):''}${button('delete','⌫','aria-label="Elimina selezione" title="Elimina selezione (Canc o Backspace)"')}</div>`;
+   const f=selectedFraction();return `<div class="nb-context nb-selection-tools" role="toolbar" aria-label="Azioni sulla selezione">${canSimplify(f)?button('simplify','Semplifica'):''}${button('delete','⌫','aria-label="Elimina selezione" title="Elimina selezione (Canc o Backspace)"')}</div>`;
   }
   function positionContext(){
    const toolbar=host.querySelector('.nb-context'),paper=host.querySelector('.nb-paper');if(!toolbar||!paper)return;
@@ -102,7 +111,7 @@ window.GatitoMathNotebook=(()=>{
   }
   function composerHTML(){
    const key=k=>button('key',k,`data-nb-key="${k}"`);
-   return `<div class="nb-composer nb-ink-entry" aria-label="Inserisci un’espressione"><div class="nb-entry-line"><div class="nb-draft">${draftHTML(v.draft)}</div><div class="nb-entry-actions">${button('write','✓','class="nb-primary" aria-label="Scrivi sul quaderno" title="Scrivi sul quaderno"')}${button('cancel-draft','×','aria-label="Annulla inserimento" title="Annulla inserimento"')}</div></div><div class="nb-keypad nb-writing-palette" role="group" aria-label="Strumenti di scrittura matematica"><div class="nb-key-group"><span class="nb-key-group-name">Numeri</span><div class="nb-digit-keys">${['7','8','9','4','5','6','1','2','3','0'].map(key).join('')}</div></div><div class="nb-key-group"><span class="nb-key-group-name">Operazioni</span><div class="nb-operation-keys">${['+','−','·','÷'].map(key).join('')}</div></div><div class="nb-key-group"><span class="nb-key-group-name">Strutture</span><div class="nb-structure-keys">${button('fraction','<span class="nb-key-frac"><span>□</span><span>□</span></span><span>Frazione</span>','class="nb-fraction-key" aria-label="Inserisci frazione"')}<div class="nb-bracket-keys">${key('(')}${key(')')}</div><div class="nb-edit-keys">${button('next-slot','⇥','aria-label="Casella successiva" title="Casella successiva · Tab"')}${button('backspace','⌫','aria-label="Cancella" title="Cancella"')}</div></div></div></div></div>`;
+   return `<div class="nb-composer nb-ink-entry" aria-label="Inserisci un’espressione"><div class="nb-entry-line"><div class="nb-draft">${draftHTML(v.draft)}</div></div><div class="nb-keypad nb-writing-palette" role="group" aria-label="Strumenti di scrittura matematica"><div class="nb-key-group"><span class="nb-key-group-name">Numeri</span><div class="nb-digit-keys">${['7','8','9','4','5','6','1','2','3','0'].map(key).join('')}</div></div><div class="nb-key-group"><span class="nb-key-group-name">Operazioni</span><div class="nb-operation-keys">${['+','−','·','÷'].map(key).join('')}</div></div><div class="nb-key-group"><span class="nb-key-group-name">Strutture</span><div class="nb-structure-keys">${button('fraction','<span class="nb-key-frac"><span>□</span><span>□</span></span><span>Frazione</span>','class="nb-fraction-key" aria-label="Inserisci frazione"')}<div class="nb-bracket-keys">${key('(')}${key(')')}</div><div class="nb-edit-keys">${button('next-slot','⇥','aria-label="Casella successiva" title="Casella successiva · Tab"')}${button('backspace','⌫','aria-label="Cancella" title="Cancella"')}</div></div></div><div class="nb-palette-actions">${button('write','✓ Conferma','class="nb-primary" aria-label="Scrivi sul quaderno"')}${button('cancel-draft','× Chiudi','aria-label="Annulla inserimento"')}</div></div></div>`;
   }
   function render(){
    host.innerHTML=`<div class="nb-topbar">${!v.draft&&!model.pending?button('insert','＋ Inserisci','class="nb-insert"'):''}${model.rows.length||model.past.length||model.future.length?`<div class="nb-tools">${button('undo','↶','aria-label="Annulla" '+(!model.past.length&&!model.pending?'disabled':''))}${button('redo','↷','aria-label="Ripristina" '+(!model.future.length||model.pending?'disabled':''))}</div>`:''}</div><div class="nb-paper" aria-label="Pagina del quaderno">${model.rows.map((row,i)=>`<div class="nb-row" aria-label="Espressione ${i+1}">${paperHTML(row)}${completedReduction(row,model.pending)?`<span class="nb-final-result" aria-label="Risultato della riduzione"><span class="nb-equals">=</span>${cleanHTML(row)}</span>`:''}</div>`).join('')}${v.draft?composerHTML():''}${context()}<div class="nb-message ${v.error?'nb-error':''}" role="status" aria-live="polite">${esc(v.message)}</div></div>`;
@@ -155,7 +164,13 @@ window.GatitoMathNotebook=(()=>{
     if(e.key==='Escape'){e.preventDefault();if(model.pending)model.cancel();clearSelection();render();return;}
     if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();act(e.shiftKey?'redo':'undo');return;}
    }
-   if(e.target.dataset.nbSelect&&['Enter',' '].includes(e.key)){e.preventDefault();e.target.click();return;}if(!e.target.dataset.nbSlot)return;if(e.key==='Tab'&&!e.shiftKey){const slots=numberSlots(v.draft),next=nextSlot(v.draft,v.active);if(!slots.includes(next)){e.preventDefault();v.active=next;render();return;}}const k={'-':'−','*':'·','/':'÷',':':'÷'}[e.key]||e.key;if(['+','−','·','÷','(',')'].includes(k)){e.preventDefault();insertKey(k);}if(e.key==='Enter'){e.preventDefault();act('write');}
+   if(e.target.dataset.nbSelect&&['Enter',' '].includes(e.key)){e.preventDefault();e.target.click();return;}if(!e.target.dataset.nbSlot)return;
+   if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){
+    const input=e.target,start=input.selectionStart??0,end=input.selectionEnd??start;
+    if((e.key==='ArrowLeft'&&(start>0||start!==end))||(e.key==='ArrowRight'&&(end<input.value.length||start!==end)))return;
+    const next=arrowSlot(v.draft,v.active,e.key);if(next!==v.active){e.preventDefault();v.active=next;render();const target=host.querySelector(`[data-nb-slot="${next}"]`);if(target){const caret=e.key==='ArrowLeft'?target.value.length:e.key==='ArrowRight'?0:Math.min(start,target.value.length);target.setSelectionRange(caret,caret);}}else if(['ArrowUp','ArrowDown'].includes(e.key))e.preventDefault();return;
+   }
+   if(e.key==='Tab'&&!e.shiftKey){const slots=numberSlots(v.draft),next=nextSlot(v.draft,v.active);if(!slots.includes(next)){e.preventDefault();v.active=next;render();return;}}const k={'-':'−','*':'·','/':'÷',':':'÷'}[e.key]||e.key;if(['+','−','·','÷','(',')'].includes(k)){e.preventDefault();insertKey(k);}if(e.key==='Enter'){e.preventDefault();act('write');}
   }
   function pointer(e){
    if(e.target.closest('.nb-keypad button')){e.preventDefault();return;}
@@ -176,8 +191,9 @@ window.GatitoMathNotebook=(()=>{
   host.addEventListener('click',click);host.addEventListener('submit',submit);host.addEventListener('input',input);host.addEventListener('focusin',focus);host.addEventListener('keydown',keydown);host.addEventListener('pointerdown',pointer);document.addEventListener('pointermove',move);document.addEventListener('pointerup',up);document.addEventListener('pointerdown',outside);window.addEventListener('resize',positionContext);host.addEventListener('scroll',positionContext,true);host.addEventListener('pointercancel',cancelPointer);render();
   return{model,dispose(){document.removeEventListener('pointermove',move);document.removeEventListener('pointerup',up);document.removeEventListener('pointerdown',outside);window.removeEventListener('resize',positionContext);host.remove();}};
  }
- return{mount,Notebook,math:{evaluate,gcd,completedReduction},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot}};
+ return{mount,Notebook,math:{evaluate,gcd,completedReduction},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot,arrowSlot,canSimplify}};
 })();
+
 
 
 
