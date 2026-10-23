@@ -67,6 +67,14 @@ window.GatitoMathNotebook=(()=>{
   function ready(n){if(n.type==='fraction'){if(simple(n)&&n.top.items[0].marks.length&&n.bottom.items[0].marks.length&&gcd(BigInt(n.top.items[0].value),BigInt(n.bottom.items[0].value))===1n)return true;return ready(n.top)||ready(n.bottom);}return n.type==='sequence'&&n.items.some(ready);}
   if(!ready(row))return false;try{evaluate(row);return true;}catch{return false;}
  }
+ function factorPlan(model,mode,selectedKey){
+  const fractions=[];function collect(n){if(simple(n)){fractions.push(n);return;}if(n.type==='sequence')n.items.forEach(collect);else if(n.type==='fraction'){collect(n.top);collect(n.bottom);}}model.rows.forEach(collect);
+  let target;if(mode==='mcd'){target=selectedKey?model.fractionFor(selectedKey):fractions.length===1?fractions[0]:null;if(!simple(target))throw Error('Seleziona la frazione di cui vuoi calcolare il MCD.');}
+  else if(fractions.length<2)throw Error('Inserisci almeno due frazioni per calcolare il mcm dei denominatori.');
+  const numbers=mode==='mcd'?[target.top.items[0].value,target.bottom.items[0].value]:fractions.map(f=>f.bottom.items[0].value);
+  if(numbers.some(n=>BigInt(n)<=0n||BigInt(n)>999999999999n))throw Error('Questo strumento lavora con numeri maggiori di zero, fino a 12 cifre.');
+  return{mode,numbers,fractionId:target?.id};
+ }
  const sessions=new Map();
  function comparisonResult(model,pairs,relation){
   if(model.pending)throw Error('Completa prima la trasformazione in corso.');
@@ -82,9 +90,9 @@ window.GatitoMathNotebook=(()=>{
   if(comparison&&!model.initializedComparison){for(const pair of comparison.fractions){const row=seq(),f=frac();f.top.items[0].value=String(pair[0]);f.bottom.items[0].value=String(pair[1]);row.items=[f];model.add(row);}model.past=[];model.initializedComparison=true;}
   const host=document.createElement('section');host.className='nb-notebook';host.setAttribute('aria-label','Quaderno di prova');parent.append(host);
   const v={draft:null,active:null,selected:null,dividing:false,multiplying:false,relation:null,message:'',error:false,selection:[],filling:null,drag:null,suppressClick:false},formId=id();
-  host.tabIndex=0;
+  host.tabIndex=0;let factorTool=null;const factorNotes=[];
   const selected=key=>v.selection.includes(key);
-  function clearSelection(){v.selection=[];v.selected=null;v.filling=null;v.dividing=false;v.multiplying=false;v.message='';}
+  function clearSelection(){v.selection=[];v.selected=null;v.filling=null;v.dividing=false;v.multiplying=false;v.helperDivisor='';v.message='';}
   function select(keys){v.selection=selectionRoots(model.rows,keys);v.selected=v.selection[0]||null;v.dividing=false;v.multiplying=false;v.filling=null;v.message='';render();host.focus({preventScroll:true});}
   function selectedFraction(){if(v.selection.length!==1)return null;return model.fractionFor(v.selection[0]);}
   const button=(a,label,extra='')=>`<button type="button" data-nb-action="${a}" ${extra}>${label}</button>`;
@@ -109,9 +117,9 @@ window.GatitoMathNotebook=(()=>{
    if(model.pending){const p=model.pending,f=model.locate(p.fraction).node,n=f[p.side].items[0],multiplying=p.kind==='multiply';return `<form id="${formId}" data-nb-form="answer" class="nb-context nb-action-strip"><label for="${formId}-q">${p.side==='top'?'Numeratore':'Denominatore'}: ${esc(n.value)} ${multiplying?'·':'÷'} ${esc(p.k)} = ?</label><button type="submit">Scrivi il ${multiplying?'prodotto':'quoziente'}</button>${button('cancel-step','Annulla il passaggio')}</form>`;}
    if(v.filling)return `<form data-nb-form="fill" class="nb-context nb-action-strip"><label for="${formId}-fill">Completa la casella</label><input id="${formId}-fill" name="value" aria-label="Numero da inserire" inputmode="numeric" maxlength="30" required><button type="submit">Scrivi</button></form>`;
    if(!v.selection.length)return '';
-   if(v.dividing)return `<form data-nb-form="divisor" class="nb-context nb-action-strip"><label for="${formId}-divisor">Divisore comune</label><input id="${formId}-divisor" name="divisor" aria-label="Divisore comune" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required><button type="submit">Inizia</button></form>`;
+   if(v.dividing)return `<form data-nb-form="divisor" class="nb-context nb-action-strip"><label for="${formId}-divisor">Divisore comune</label><input id="${formId}-divisor" name="divisor" value="${esc(v.helperDivisor||'')}" aria-label="Divisore comune" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required><button type="submit">Inizia</button></form>`;
    if(v.multiplying)return `<form data-nb-form="multiplier" class="nb-context nb-action-strip"><label for="${formId}-multiplier">Moltiplica entrambi i termini per</label><input id="${formId}-multiplier" name="multiplier" aria-label="Moltiplicatore comune" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required><button type="submit">Inizia</button></form>`;
-   const f=selectedFraction();return `<div class="nb-context nb-selection-tools" role="toolbar" aria-label="Azioni sulla selezione">${canSimplify(f)?button('simplify','Semplifica'):''}${simple(f)&&comparison?button('equivalent','Frazione equivalente'):''}${button('delete','⌫','aria-label="Elimina selezione" title="Elimina selezione (Canc o Backspace)"')}</div>`;
+   const f=selectedFraction();return `<div class="nb-context nb-selection-tools" role="toolbar" aria-label="Azioni sulla selezione">${canSimplify(f)?button('simplify','Semplifica'):''}${simple(f)&&window.GatitoNotebookFactorTools?button('factor-mcd','MCD','title="Calcola il MCD dei termini"'):''}${simple(f)&&comparison?button('equivalent','Frazione equivalente'):''}${button('delete','⌫','aria-label="Elimina selezione" title="Elimina selezione (Canc o Backspace)"')}</div>`;
   }
   function positionContext(){
    const toolbar=host.querySelector('.nb-context'),paper=host.querySelector('.nb-paper');if(!toolbar||!paper)return;
@@ -128,7 +136,7 @@ window.GatitoMathNotebook=(()=>{
    return `<div class="nb-composer nb-ink-entry" aria-label="Inserisci un’espressione"><div class="nb-entry-line"><div class="nb-draft">${draftHTML(v.draft)}</div></div><div class="nb-keypad nb-writing-palette" role="group" aria-label="Strumenti di scrittura matematica"><div class="nb-key-group"><span class="nb-key-group-name">Numeri</span><div class="nb-digit-keys">${['7','8','9','4','5','6','1','2','3','0'].map(key).join('')}</div></div><div class="nb-key-group"><span class="nb-key-group-name">Operazioni</span><div class="nb-operation-keys">${['+','−','·','÷'].map(key).join('')}</div></div><div class="nb-key-group"><span class="nb-key-group-name">Strutture</span><div class="nb-structure-keys">${button('fraction','<span class="nb-key-frac"><span>□</span><span>□</span></span><span>Frazione</span>','class="nb-fraction-key" aria-label="Inserisci frazione"')}<div class="nb-bracket-keys">${key('(')}${key(')')}</div><div class="nb-edit-keys">${button('next-slot','⇥','aria-label="Casella successiva" title="Casella successiva · Tab"')}${button('backspace','⌫','aria-label="Cancella" title="Cancella"')}</div></div></div><div class="nb-palette-actions">${button('write','✓ Conferma','class="nb-primary" aria-label="Scrivi sul quaderno"')}${button('cancel-draft','× Chiudi','aria-label="Annulla inserimento"')}</div></div></div>`;
   }
   function render(){
-   host.innerHTML=`<div class="nb-topbar">${!v.draft&&!model.pending?button('insert','＋ Inserisci','class="nb-insert"'):''}${model.rows.length||model.past.length||model.future.length?`<div class="nb-tools">${button('undo','↶','aria-label="Annulla" '+(!model.past.length&&!model.pending?'disabled':''))}${button('redo','↷','aria-label="Ripristina" '+(!model.future.length||model.pending?'disabled':''))}</div>`:''}</div><div class="nb-paper" aria-label="Pagina del quaderno">${model.rows.map((row,i)=>`<div class="nb-row" aria-label="Espressione ${i+1}">${paperHTML(row)}${completedReduction(row,model.pending)?`<span class="nb-final-result" aria-label="Risultato della riduzione"><span class="nb-equals">=</span>${cleanHTML(row)}</span>`:''}</div>`).join('')}${v.draft?composerHTML():''}${context()}<div class="nb-message ${v.error?'nb-error':''}" role="status" aria-live="polite">${esc(v.message)}</div></div>`;
+   host.innerHTML=`<div class="nb-topbar">${!v.draft&&!model.pending?button('insert','＋ Inserisci','class="nb-insert"')+(window.GatitoNotebookFactorTools?`<details class="nb-factor-tools"><summary>Strumenti</summary><div>${button('factor-mcd','Calcola MCD')}${comparison||model.rows.length>1?button('factor-mcm','Calcola mcm'):''}</div></details>`:''):''}${model.rows.length||model.past.length||model.future.length?`<div class="nb-tools">${button('undo','↶','aria-label="Annulla" '+(!model.past.length&&!model.pending?'disabled':''))}${button('redo','↷','aria-label="Ripristina" '+(!model.future.length||model.pending?'disabled':''))}</div>`:''}</div><div class="nb-paper" aria-label="Pagina del quaderno">${model.rows.map((row,i)=>`<div class="nb-row" aria-label="Espressione ${i+1}">${paperHTML(row)}${completedReduction(row,model.pending)?`<span class="nb-final-result" aria-label="Risultato della riduzione"><span class="nb-equals">=</span>${cleanHTML(row)}</span>`:''}</div>`).join('')}${v.draft?composerHTML():''}${context()}${factorNotes.length?`<aside class="nb-factor-notes" aria-label="Risultati dagli strumenti">${factorNotes.map(r=>`<div><strong>${esc(r.mode==='mcd'?'MCD':'mcm')}(${r.numbers.map(esc).join(', ')}) = ${esc(r.result)}</strong></div>`).join('')}</aside>`:''}<div class="nb-message ${v.error?'nb-error':''}" role="status" aria-live="polite">${esc(v.message)}</div></div>`;
    if(comparison){host.classList.add('nb-comparison');host.querySelectorAll('.nb-row').forEach((row,i)=>{const label=document.createElement('span');label.className='nb-comparison-label';label.textContent=i===0?'Prima frazione':i===1?'Seconda frazione':'Appunti';row.prepend(label);});host.insertAdjacentHTML('beforeend',`<div class="nb-comparison-answer" role="group" aria-label="Confronta le due frazioni"><span>La prima frazione è</span><div class="nb-relation-choices">${['<','=','>'].map(r=>button('relation',esc(r),`data-nb-key="${esc(r)}" aria-label="${r==='<'?'Minore di':r==='>'?'Maggiore di':'Uguale a'}" aria-pressed="${v.relation===r}"`)).join('')}</div><span>la seconda.</span>${button('check-comparison','Verifica confronto')}</div>`);}
    if(v.draft){const input=host.querySelector(`[data-nb-slot="${v.active}"]`);input?.focus({preventScroll:true});if(input)input.setSelectionRange(input.value.length,input.value.length);}
    else if(model.pending)host.querySelector('[name="quotient"]')?.focus({preventScroll:true});
@@ -150,7 +158,19 @@ window.GatitoMathNotebook=(()=>{
   }
   // A closing parenthesis leaves a cursor slot; remove only that empty cursor before validation.
   function clean(s){s.items=s.items.filter((n,i,a)=>!(n.type==='number'&&!n.value&&i===a.length-1&&(a[i-1]?.value===')'||a[i-1]?.type==='fraction')));for(const n of s.items)if(n.type==='fraction'){clean(n.top);clean(n.bottom);}return s;}
+  function openFactorTool(mode){try{
+   const plan=factorPlan(model,mode,v.selected);factorTool?.dispose();
+   factorTool=window.GatitoNotebookFactorTools.open({...plan,onReturn(result){
+    if(!factorNotes.some(r=>r.mode===result.mode&&r.result===result.result&&r.numbers.join(',')===result.numbers.join(',')))factorNotes.push(result);
+    clearSelection();v.error=false;
+    const f=plan.fractionId&&model.fractionFor(plan.fractionId);
+    if(result.mode==='mcd'&&f&&result.numbers.join(',')===plan.numbers.join(',')&&BigInt(result.result)>1n){v.selection=[f.id];v.selected=f.id;v.dividing=true;v.helperDivisor=result.result;v.message='MCD trovato. Inizia la semplificazione e scrivi i quozienti.';}
+    else v.message=result.mode==='mcm'?'mcm riportato negli appunti. Ora costruisci le frazioni equivalenti con quel denominatore.':'MCD riportato negli appunti.';
+    render();
+   },onClose(){host.focus({preventScroll:true});}});
+  }catch(e){message(e.message,true);}}
   function act(action,key){
+   if(action==='factor-mcd'||action==='factor-mcm'){openFactorTool(action==='factor-mcd'?'mcd':'mcm');return;}
    if(action==='insert'){clearSelection();v.draft=seq();v.active=first(v.draft).id;}
    if(action==='key'){insertKey(key);return;}
    if(action==='fraction'){v.active=insertFraction(v.draft,v.active)||v.active;v.message='';}
@@ -169,6 +189,7 @@ window.GatitoMathNotebook=(()=>{
    v.error=false;render();
   }
   function click(e){
+   if(e.target.closest('.nb-factor-tools')&&!e.target.closest('[data-nb-action]'))return;
    if(v.suppressClick){const p=v.suppressClick;v.suppressClick=false;if(Date.now()<p.until&&Math.hypot(e.clientX-p.x,e.clientY-p.y)<4)return;}const b=e.target.closest('[data-nb-action]');if(b){act(b.dataset.nbAction,b.dataset.nbKey);return;}
    if(e.target.closest('.nb-context,input'))return;
    const pick=e.target.closest('[data-nb-select]');if(pick&&!v.draft&&!model.pending){if(pick.dataset.nbEmpty){v.filling=pick.dataset.nbSelect;v.selection=[v.filling];v.selected=v.filling;render();return;}const key=pick.dataset.nbSelect;select(e.shiftKey||e.ctrlKey||e.metaKey?v.selection.includes(key)?v.selection.filter(k=>k!==key):[...v.selection,key]:[key]);return;}
@@ -205,13 +226,14 @@ window.GatitoMathNotebook=(()=>{
    const keys=selectionRoots(model.rows,[...d.base,...d.keys]);host.querySelectorAll('.nb-row [data-nb-select]').forEach(n=>n.classList.toggle('nb-selected',keys.includes(n.dataset.nbSelect)));host.querySelector('.nb-context')?.setAttribute('hidden','');
   }
   function up(e){const d=v.drag;if(!d||e.pointerId!==d.pointerId)return;v.drag=null;host.querySelector('.nb-marquee')?.remove();if(d.active){select([...d.base,...d.keys]);v.suppressClick={x:e.clientX,y:e.clientY,until:Date.now()+500};}}
-  function outside(e){if(!host.contains(e.target)&&!model.pending&&!v.draft&&(v.selection.length||v.filling)){clearSelection();render();}}
+  function outside(e){if(factorTool?.isOpen())return;if(!host.contains(e.target)&&!model.pending&&!v.draft&&(v.selection.length||v.filling)){clearSelection();render();}}
   function cancelPointer(){v.drag=null;host.querySelector('.nb-marquee')?.remove();render();}
   host.addEventListener('click',click);host.addEventListener('submit',submit);host.addEventListener('input',input);host.addEventListener('focusin',focus);host.addEventListener('keydown',keydown);host.addEventListener('pointerdown',pointer);document.addEventListener('pointermove',move);document.addEventListener('pointerup',up);document.addEventListener('pointerdown',outside);window.addEventListener('resize',positionContext);host.addEventListener('scroll',positionContext,true);host.addEventListener('pointercancel',cancelPointer);render();
-  return{model,dispose(){document.removeEventListener('pointermove',move);document.removeEventListener('pointerup',up);document.removeEventListener('pointerdown',outside);window.removeEventListener('resize',positionContext);host.remove();}};
+  return{model,dispose(){factorTool?.dispose();document.removeEventListener('pointermove',move);document.removeEventListener('pointerup',up);document.removeEventListener('pointerdown',outside);window.removeEventListener('resize',positionContext);host.remove();}};
  }
- return{mount,Notebook,math:{evaluate,gcd,completedReduction,comparisonResult},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot,arrowSlot,canSimplify}};
+ return{mount,Notebook,math:{evaluate,gcd,completedReduction,comparisonResult,factorPlan},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot,arrowSlot,canSimplify}};
 })();
+
 
 
 
