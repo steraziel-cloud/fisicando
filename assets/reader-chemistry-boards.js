@@ -19,6 +19,10 @@ window.GatitoChemistryBoards=(()=>{
  function svg(body,label,w=480,h=320){return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="${escape(label)}"><title>${escape(label)}</title>${body}</svg>`;}
  const bareBall=(...args)=>ball(...args).replace(/<text[^>]*>.*?<\/text>/g,'');
  function diagram(view){
+  if(view==='dalton-example'){
+   const group=line(240,118,192,172)+line(240,118,288,172)+bareBall(240,118,'O',38)+bareBall(192,172,'H',26)+bareBall(288,172,'H',26);
+   return svg(text(240,35,'Un esempio: l’acqua',23)+group+text(240,235,'2 atomi di idrogeno',19)+text(240,265,'1 atomo di ossigeno',19),'Un gruppetto d’acqua: due atomi di idrogeno uniti a un atomo di ossigeno.',480,300);
+  }
   if(view==='dalton-join'){
    const group=(x,y)=>`<g transform="translate(${x} ${y}) scale(.8)">${line(0,0,-32,36)+line(0,0,32,36)+bareBall(0,0,'O',29)+bareBall(-32,36,'H',20)+bareBall(32,36,'H',20)}</g>`;
    return svg(text(240,32,'Un esempio di oggi: l’acqua',21)+text(120,75,'1 gruppetto',18)+text(360,75,'2 gruppetti',18)+group(120,125)+group(305,125)+group(410,125)+'<line x1="240" y1="65" x2="240" y2="235" stroke="#b7cbc4" stroke-width="1"/>'+text(120,203,'2 atomi di idrogeno',15)+text(120,225,'1 atomo di ossigeno',15)+text(360,203,'4 atomi di idrogeno',15)+text(360,225,'2 atomi di ossigeno',15)+'<rect x="20" y="250" width="440" height="43" rx="12" fill="#d0e8da"/>'+text(240,278,'Sempre 2 di idrogeno per 1 di ossigeno',18),'Un gruppetto d’acqua contiene due atomi di idrogeno e uno di ossigeno. Due gruppetti contengono quattro atomi di idrogeno e due di ossigeno: la proporzione resta uguale.',480,310);
@@ -85,7 +89,7 @@ window.GatitoChemistryBoards=(()=>{
    host.innerHTML='<div class="ch-sample-picks" role="group" aria-label="Esplora come sono organizzati gli atomi">'+simpleSamples.map(([id,name])=>`<button type="button" data-ch-sample="${id}">${name.split(' · ')[0]}</button>`).join('')+'</div><div class="ch-sample-visual"></div><p class="ch-sample-name" aria-live="polite"></p>';
    showSimpleSample(host,state);return;
   }
-  if(view==='dalton-join'){host.innerHTML='<div class="ch-dalton ch-ratio-board">'+diagram(view)+'</div>';return;}
+  if(view==='dalton-example'||view==='dalton-join'){host.innerHTML='<div class="ch-dalton ch-ratio-board">'+diagram(view)+'</div>';return;}
   if(view.startsWith('dalton')){
    const joined=view==='dalton-join';
    host.innerHTML='<div class="ch-dalton"><span class="ch-eyebrow">Hall of Fame · Inizio Ottocento</span><button type="button" class="rm-keyword ch-historian" data-term="dalton">John Dalton ↗</button>'+diagram(joined?'dalton-join':'atoms')+'<p>'+(joined?'Gli stessi atomi, combinati in rapporti definiti.':'Dalle misure sulle sostanze a una teoria sugli atomi.')+'</p></div>';return;

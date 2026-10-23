@@ -145,9 +145,9 @@ window.READER_LESSONS["chimica-materia"] = {
             },
             {
               "title": "",
-              "html": "<span class=\"ch-dalton-hypothesis\"><span class=\"ch-hypothesis-number\">4</span><span>Gli atomi di tipi diversi si uniscono per formare <button type=\"button\" class=\"rm-keyword\" data-term=\"sostanza\">sostanze</button> chiamate <button type=\"button\" class=\"rm-keyword\" data-term=\"composto-chimico\">composti</button>. In uno stesso composto si combinano in <button type=\"button\" class=\"rm-keyword ch-insight-keyword\" data-ch-ratios aria-haspopup=\"dialog\">rapporti numerici semplici e costanti</button>.</span></span>",
+              "html": "<span class=\"ch-dalton-hypothesis\"><span class=\"ch-hypothesis-number\">4</span><span>Pensiamo all’<strong>acqua</strong>: ogni suo gruppetto è formato da <strong>2 atomi di idrogeno e 1 atomo di ossigeno</strong>. Atomi di tipi diversi possono unirsi e formare sostanze chiamate <button type=\"button\" class=\"rm-keyword\" data-term=\"composto-chimico\">composti</button>.<br><button type=\"button\" class=\"rm-keyword ch-insight-keyword\" data-ch-ratios aria-haspopup=\"dialog\">Approfondisci: rapporti semplici e costanti</button></span></span>",
               "cumulativeFrom": 1,
-              "chemView": "dalton-start"
+              "chemView": "dalton-example"
             },
             {
               "title": "",
@@ -209,11 +209,11 @@ window.READER_LESSONS["chimica-materia"] = {
             "options": [
               "Ogni materiale contiene un solo atomo.",
               "Gli atomi scompaiono quando si uniscono.",
-              "Gli atomi possono combinarsi in rapporti numerici definiti.",
+              "Atomi di tipi diversi possono unirsi e formare composti.",
               "Nelle trasformazioni chimiche un tipo di atomo diventa un altro."
             ],
             "answer": 2,
-            "feedback": "L’unione degli atomi in rapporti definiti è un punto centrale della teoria."
+            "feedback": "Secondo Dalton, atomi di tipi diversi possono unirsi formando composti. L’acqua è un esempio."
           }
         ]
       }
