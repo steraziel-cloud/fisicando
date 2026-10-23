@@ -98,7 +98,7 @@ window.READER_LESSONS["chimica-materia"] = {
           "steps": [
             {
               "title": "Fin dove possiamo dividere?",
-              "html": "Nel V secolo a.C. i filosofi greci <strong>Leucippo e <button type=\"button\" class=\"rm-keyword\" data-term=\"democrito\">Democrito</button></strong> proposero questa idea: dividendo la materia, prima o poi si sarebbe arrivati a particelle che non si potevano dividere ancora.<br><br>Le chiamarono <strong>atomi</strong>, dal greco <em>átomos</em>, «indivisibile». Democrito sviluppò questa visione, chiamata <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"atomismo\">atomismo</button></strong>.",
+              "html": "Nel V secolo a.C. i filosofi greci <strong>Leucippo e <button type=\"button\" class=\"rm-keyword\" data-term=\"democrito\">Democrito</button></strong> proposero questa idea: dividendo la materia, prima o poi si sarebbe arrivati a particelle che non si potevano dividere ancora.<br><br>Le chiamarono <strong>atomi</strong>, dal greco <em>átomos</em>, «indivisibile». Democrito sviluppò questa visione, chiamata <strong><button type=\"button\" class=\"rm-keyword\" data-term=\"atomismo\">atomismo</button></strong>.<br><br>L’idea di Democrito fu ripresa molti secoli dopo.",
               "cloze": [
                 {
                   "before": "Per gli atomisti, dividendo la materia si sarebbe arrivati ",
@@ -111,11 +111,6 @@ window.READER_LESSONS["chimica-materia"] = {
                   "feedback": "Il loro atomo era, per ipotesi, l’ultimo livello della divisione."
                 }
               ],
-              "chemView": "museum"
-            },
-            {
-              "title": "Un’intuizione, non ancora una prova",
-              "html": "Era una proposta filosofica: <strong>non nasceva da esperimenti capaci di verificare l’esistenza degli atomi</strong>.<br><br>La sua forza era la domanda: e se dietro materiali tanto diversi ci fossero piccolissimi costituenti? Per trasformare questa intuizione in una teoria scientifica sarebbe servito molto altro.",
               "chemView": "museum"
             }
           ]

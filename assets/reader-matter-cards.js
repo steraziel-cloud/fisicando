@@ -133,12 +133,12 @@ const cardChoices={
  "elio": [
   {
    "id": "1",
-   "text": "Palline tutte uguali, separate.",
+   "text": "Palline tutte uguali, da sole.",
    "correct": true
   },
   {
    "id": "2",
-   "text": "Coppie di palline tutte uguali.",
+   "text": "Gruppetti di due palline dello stesso tipo.",
    "correct": false
   },
   {
@@ -148,14 +148,14 @@ const cardChoices={
   },
   {
    "id": "4",
-   "text": "Palline tutte uguali, disposte in una struttura.",
+   "text": "Palline tutte uguali, disposte in una struttura estesa.",
    "correct": false
   }
  ],
  "acqua": [
   {
    "id": "1",
-   "text": "Palline tutte uguali, separate.",
+   "text": "Palline tutte uguali, da sole.",
    "correct": false
   },
   {
@@ -165,78 +165,78 @@ const cardChoices={
   },
   {
    "id": "3",
-   "text": "Coppie tutte uguali, formate da palline dello stesso tipo.",
+   "text": "Gruppetti tutti uguali, formati da due palline dello stesso tipo.",
    "correct": false
   },
   {
    "id": "4",
-   "text": "Palline di tipi diversi, disposte in un reticolo.",
+   "text": "Palline di tipi diversi, disposte in una struttura estesa.",
    "correct": false
   }
  ],
  "grafite": [
   {
    "id": "1",
-   "text": "Palline tutte uguali, collegate in strati sovrapposti.",
+   "text": "Palline tutte uguali, collegate in una struttura estesa a strati sovrapposti.",
    "correct": true
   },
   {
    "id": "2",
-   "text": "Palline di tipi diversi, collegate in strati.",
+   "text": "Palline di tipi diversi, collegate in una struttura estesa a strati.",
    "correct": false
   },
   {
    "id": "3",
-   "text": "Palline tutte uguali, separate.",
+   "text": "Palline tutte uguali, da sole.",
    "correct": false
   },
   {
    "id": "4",
-   "text": "Coppie di palline tutte uguali, separate tra loro.",
+   "text": "Gruppetti di due palline dello stesso tipo.",
    "correct": false
   }
  ],
  "aria": [
   {
    "id": "1",
-   "text": "Palline tutte uguali, separate.",
+   "text": "Palline tutte uguali, da sole.",
    "correct": false
   },
   {
    "id": "2",
-   "text": "Coppie tutte uguali, formate dallo stesso tipo di palline.",
+   "text": "Gruppetti tutti uguali, formati da due palline dello stesso tipo.",
    "correct": false
   },
   {
    "id": "3",
-   "text": "Palline singole e coppie di tipi diversi, mescolate uniformemente.",
+   "text": "Palline da sole e gruppetti di due palline, di tipi diversi, mescolati uniformemente.",
    "correct": true
   },
   {
    "id": "4",
-   "text": "Palline e coppie di tipi diversi, separate in zone diverse.",
+   "text": "Palline da sole e gruppetti di due palline, di tipi diversi, concentrati in zone diverse.",
    "correct": false
   }
  ],
  "sale": [
   {
    "id": "1",
-   "text": "Palline tutte uguali, disposte in una struttura.",
+   "text": "Palline tutte uguali, disposte in una struttura estesa.",
    "correct": false
   },
   {
    "id": "2",
-   "text": "Palline di due tipi diversi, alternate in una struttura.",
+   "text": "Palline di due tipi diversi, alternate in una struttura estesa.",
    "correct": true
   },
   {
    "id": "3",
-   "text": "Palline di tipi diversi, unite in gruppetti separati.",
+   "text": "Palline di tipi diversi, unite in gruppetti.",
    "correct": false
   },
   {
    "id": "4",
-   "text": "Palline tutte uguali, unite in coppie separate.",
+   "text": "Gruppetti di due palline dello stesso tipo.",
    "correct": false
   }
  ],
@@ -265,7 +265,7 @@ const cardChoices={
  "ghiaccio": [
   {
    "id": "1",
-   "text": "Palline tutte uguali, disposte in una struttura.",
+   "text": "Palline tutte uguali, disposte in una struttura estesa.",
    "correct": false
   },
   {
@@ -275,7 +275,7 @@ const cardChoices={
   },
   {
    "id": "3",
-   "text": "Palline tutte uguali, unite in coppie separate.",
+   "text": "Gruppetti di due palline dello stesso tipo.",
    "correct": false
   },
   {
@@ -309,7 +309,7 @@ const cardChoices={
  "co2": [
   {
    "id": "1",
-   "text": "Palline tutte uguali, separate.",
+   "text": "Palline tutte uguali, da sole.",
    "correct": false
   },
   {
@@ -319,7 +319,7 @@ const cardChoices={
   },
   {
    "id": "3",
-   "text": "Coppie tutte uguali, formate da palline dello stesso tipo.",
+   "text": "Gruppetti tutti uguali, formati da due palline dello stesso tipo.",
    "correct": false
   },
   {
@@ -336,17 +336,17 @@ const cardChoices={
   },
   {
    "id": "2",
-   "text": "Palline di tipi diversi, collegate in una struttura.",
+   "text": "Palline di tipi diversi, collegate in una struttura estesa.",
    "correct": false
   },
   {
    "id": "3",
-   "text": "Coppie di palline tutte uguali, separate tra loro.",
+   "text": "Gruppetti di due palline dello stesso tipo.",
    "correct": false
   },
   {
    "id": "4",
-   "text": "Palline tutte uguali, separate.",
+   "text": "Palline tutte uguali, da sole.",
    "correct": false
   }
  ],
@@ -363,19 +363,19 @@ const cardChoices={
   },
   {
    "id": "3",
-   "text": "Gruppetti tutti uguali e palline singole, distribuiti uniformemente.",
+   "text": "Gruppetti tutti uguali e palline da sole, distribuiti uniformemente.",
    "correct": true
   },
   {
    "id": "4",
-   "text": "Gruppetti e palline singole, concentrati in zone separate.",
+   "text": "Gruppetti e palline da sole, concentrati in zone diverse.",
    "correct": false
   }
  ],
  "nebbia": [
   {
    "id": "1",
-   "text": "Palline tutte uguali, separate.",
+   "text": "Palline tutte uguali, da sole.",
    "correct": false
   },
   {
@@ -397,17 +397,17 @@ const cardChoices={
  "alluminio": [
   {
    "id": "1",
-   "text": "Palline tutte uguali, disposte in una struttura compatta.",
+   "text": "Palline tutte uguali, disposte in una struttura estesa e compatta.",
    "correct": true
   },
   {
    "id": "2",
-   "text": "Palline di tipi diversi, disposte in una struttura.",
+   "text": "Palline di tipi diversi, disposte in una struttura estesa.",
    "correct": false
   },
   {
    "id": "3",
-   "text": "Palline tutte uguali, separate.",
+   "text": "Palline tutte uguali, da sole.",
    "correct": false
   },
   {
@@ -419,22 +419,22 @@ const cardChoices={
  "bicarbonato": [
   {
    "id": "1",
-   "text": "Solo palline tutte uguali, disposte in una struttura.",
+   "text": "Solo palline tutte uguali, disposte in una struttura estesa.",
    "correct": false
   },
   {
    "id": "2",
-   "text": "Palline singole e gruppetti di tipi diversi, ripetuti in un’unica struttura.",
+   "text": "Palline singole e gruppetti di tipi diversi, ripetuti in un’unica struttura estesa.",
    "correct": true
   },
   {
    "id": "3",
-   "text": "Solo palline singole di due tipi, alternate in una struttura.",
+   "text": "Solo palline singole di due tipi, alternate in una struttura estesa.",
    "correct": false
   },
   {
    "id": "4",
-   "text": "Gruppetti tutti uguali e separati, senza palline singole.",
+   "text": "Solo gruppetti tutti uguali, senza palline da sole.",
    "correct": false
   }
  ],
@@ -446,7 +446,7 @@ const cardChoices={
   },
   {
    "id": "2",
-   "text": "Solo gruppetti tutti uguali, separati tra loro.",
+   "text": "Solo gruppetti tutti uguali.",
    "correct": false
   },
   {
@@ -468,17 +468,17 @@ const cardChoices={
   },
   {
    "id": "2",
-   "text": "Palline di tipi diversi, collegate in una struttura.",
+   "text": "Palline di tipi diversi, collegate in una struttura estesa.",
    "correct": false
   },
   {
    "id": "3",
-   "text": "Coppie di palline tutte uguali, separate tra loro.",
+   "text": "Gruppetti di due palline dello stesso tipo.",
    "correct": false
   },
   {
    "id": "4",
-   "text": "Palline tutte uguali, separate.",
+   "text": "Palline tutte uguali, da sole.",
    "correct": false
   }
  ],
@@ -495,24 +495,24 @@ const cardChoices={
   },
   {
    "id": "3",
-   "text": "Gruppetti piccoli e tutti uguali, separati.",
+   "text": "Gruppetti piccoli e tutti uguali.",
    "correct": false
   },
   {
    "id": "4",
-   "text": "Palline di tipi diversi, tutte separate.",
+   "text": "Palline di tipi diversi, da sole.",
    "correct": false
   }
  ],
  "ossigeno": [
   {
    "id": "1",
-   "text": "Palline tutte uguali, separate.",
+   "text": "Palline tutte uguali, da sole.",
    "correct": false
   },
   {
    "id": "2",
-   "text": "Coppie tutte uguali, formate da palline dello stesso tipo.",
+   "text": "Gruppetti tutti uguali, formati da due palline dello stesso tipo.",
    "correct": true
   },
   {
