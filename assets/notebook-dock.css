@@ -22,3 +22,6 @@
 @media(prefers-reduced-motion:reduce){.notebook-dock{transition:none}}
 
 @media(max-width:650px){.notebook-docked .fn-number-work,.notebook-docked .fn-number-work:has(.fn-direct-editor){min-width:0;width:100%}.notebook-docked .fn-paper{padding:12px 6px}}
+
+.notebook-docked{transition:grid-template-columns .2s ease}
+@media(prefers-reduced-motion:reduce){.notebook-docked{transition:none}}
