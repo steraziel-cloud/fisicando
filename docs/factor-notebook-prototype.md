@@ -8,6 +8,6 @@ Il quaderno inizia vuoto. L'inserimento crea numeri positivi, fino a 12 cifre e 
 
 Con almeno due scomposizioni complete lo studente sceglie quali numeri utilizzare, quali fattori primi includere e con quali esponenti; solo dopo la verifica scrive il risultato numerico. Il calcolo di controllo usa interi esatti BigInt. Non sono presenti tavole pitagoriche, liste di primi o scomposizioni risolte automaticamente.
 
-La pagina salva i numeri e le divisioni già confermate nel browser, con la stessa chiave per i due laboratori, così il passaggio da M.C.D. a m.c.m. conserva il lavoro. I calcoli di sintesi si ricostruiscono; gli input non confermati non vengono salvati. L'annullamento è disponibile nella sessione corrente. Le lezioni possono incorporare il componente senza storageKey per mantenere una sessione isolata.
+Ogni apertura del laboratorio parte con un quaderno vuoto. Non viene usata alcuna persistenza: anche il passaggio tra M.C.D. e m.c.m., la ricarica e il ritorno tramite la cronologia ricreano il quaderno. La pagina rimuove il vecchio salvataggio del primo prototipo, se presente. L'annullamento è disponibile soltanto mentre si lavora nella pagina corrente. Anche i futuri incorporamenti nelle lezioni devono partire senza storageKey.
 
 Da valutare con l'autore: interazione dei token, scelta fattori/esponenti, supporti propedeutici, selezione dei numeri e richiamo dagli esercizi successivi. Questa è una prima versione da provare.
