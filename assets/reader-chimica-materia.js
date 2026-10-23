@@ -145,13 +145,7 @@ window.READER_LESSONS["chimica-materia"] = {
             },
             {
               "title": "",
-              "html": "<span class=\"ch-dalton-hypothesis\"><span class=\"ch-hypothesis-number\">4</span><span>Pensiamo all’<strong>acqua</strong>: ogni suo gruppetto è formato da <strong>2 atomi di idrogeno e 1 atomo di ossigeno</strong>. Atomi di tipi diversi possono unirsi e formare sostanze chiamate <button type=\"button\" class=\"rm-keyword\" data-term=\"composto-chimico\">composti</button>.<br><button type=\"button\" class=\"rm-keyword ch-insight-keyword\" data-ch-ratios aria-haspopup=\"dialog\">Approfondisci: rapporti semplici e costanti</button></span></span>",
-              "cumulativeFrom": 1,
-              "chemView": "dalton-example"
-            },
-            {
-              "title": "",
-              "html": "<span class=\"ch-dalton-hypothesis\"><span class=\"ch-hypothesis-number\">5</span><span>Nelle <button type=\"button\" class=\"rm-keyword\" data-term=\"reazione-chimica\">trasformazioni chimiche</button> gli atomi si separano, si uniscono e si riorganizzano: <strong>non vengono creati o distrutti e non cambiano tipo</strong>.</span></span>",
+              "html": "<span class=\"ch-dalton-hypothesis\"><span class=\"ch-hypothesis-number\">4</span><span>Nelle <button type=\"button\" class=\"rm-keyword\" data-term=\"reazione-chimica\">trasformazioni chimiche</button> gli atomi si separano, si uniscono e si riorganizzano: <strong>non vengono creati o distrutti e non cambiano tipo</strong>.</span></span>",
               "cumulativeFrom": 1,
               "chemView": "dalton-start"
             }
@@ -209,11 +203,11 @@ window.READER_LESSONS["chimica-materia"] = {
             "options": [
               "Ogni materiale contiene un solo atomo.",
               "Gli atomi scompaiono quando si uniscono.",
-              "Atomi di tipi diversi possono unirsi e formare composti.",
+              "Nelle trasformazioni chimiche gli atomi si riorganizzano senza essere creati o distrutti.",
               "Nelle trasformazioni chimiche un tipo di atomo diventa un altro."
             ],
             "answer": 2,
-            "feedback": "Secondo Dalton, atomi di tipi diversi possono unirsi formando composti. L’acqua è un esempio."
+            "feedback": "Secondo Dalton, nelle trasformazioni chimiche gli atomi si separano, si uniscono e si riorganizzano, senza essere creati o distrutti."
           }
         ]
       }
