@@ -95,7 +95,7 @@ window.GatitoRationalBoards=(()=>{
  function render(s){s.host.innerHTML=draw(s);}
  function mount(box,card,{view}={}){
   if(card.notebookComparison&&window.GatitoMathNotebook){box.classList.add('qr-reader-card','qr-copilot-card','qr-copilot-wide');const workbench=window.GatitoMathNotebook.mount(box,{sessionKey:'razionali-assoluti-insieme:confronto:'+card.notebookComparison.id,comparison:card.notebookComparison});return()=>workbench.dispose();}
-  if(card.board==='qr-zero-illustration'){const host=document.createElement('aside');host.className='qr-board qr-zero-illustration';const img=document.createElement('img');img.src='assets/images/reader/bjorne-zero-cactus-v4.webp';img.alt='Bjorne perplesso osserva un cactus a forma di zero, con alcuni punti interrogativi sopra la testa';img.width=1536;img.height=1024;img.decoding='async';host.append(img);box.classList.add('qr-reader-card','qr-zero-card');box.append(host);return()=>{};}
+  if(card.board==='qr-zero-illustration'){const host=document.createElement('aside');host.className='qr-board qr-zero-illustration';const img=document.createElement('img');img.src='assets/images/reader/bjorne-zero-cactus-v4.webp';img.alt='Bjorne perplesso osserva un cactus a forma di zero, con alcuni punti interrogativi sopra la testa';img.width=1536;img.height=1024;img.decoding='async';img.fetchPriority='high';host.append(img);box.classList.add('qr-reader-card','qr-zero-card');box.append(host);return()=>{};}
   if(card.copilot&&window.GatitoFractionCopilot){box.classList.add('qr-reader-card','qr-copilot-card');if(card.copilotLayout==='wide')box.classList.add('qr-copilot-wide');const workbench=window.GatitoFractionCopilot.mount(box,{sessionKey:'razionali-assoluti-insieme',initial:card.copilotExample,example:card.copilotExample,embedded:true,wide:card.copilotLayout==='wide'});return()=>workbench.dispose();}
 
   const host=document.createElement('aside');host.className='qr-board';host.setAttribute('aria-label','Lavagna digitale');
@@ -127,5 +127,6 @@ window.GatitoRationalBoards=(()=>{
  function setView(box,view){const s=mounted.get(box);if(!s||!view||view===s.kind)return;s.kind=view;s.stage=0;s.pick=null;render(s);}
  return {mount,setView,math:{gcd,reduce,longDivision,approximation,factorClass}};
 })();
+
 
 
