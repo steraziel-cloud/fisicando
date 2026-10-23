@@ -116,6 +116,8 @@ window.LESSON_CATALOG = [
                 "status": "work-in-progress",
                 "id": "aritmetica-mcd",
                 "url": "reader.html?lezione=aritmetica-mcd",
+                "labUrl": "laboratorio-fattori.html?operazione=mcd",
+                "labDescription": "Scomponi in fattori primi e costruisci il M.C.D. sul quaderno, scegliendo fattori ed esponenti.",
                 "kind": "Teoria"
               },
               {
@@ -127,6 +129,8 @@ window.LESSON_CATALOG = [
                 "status": "work-in-progress",
                 "id": "aritmetica-mcm",
                 "url": "reader.html?lezione=aritmetica-mcm",
+                "labUrl": "laboratorio-fattori.html?operazione=mcm",
+                "labDescription": "Scomponi in fattori primi e costruisci il m.c.m. sul quaderno, scegliendo fattori ed esponenti.",
                 "kind": "Teoria"
               }
             ]
