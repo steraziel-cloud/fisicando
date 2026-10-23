@@ -25,3 +25,5 @@
 
 .notebook-docked{transition:grid-template-columns .2s ease}
 @media(prefers-reduced-motion:reduce){.notebook-docked{transition:none}}
+
+.notebook-docked .notebook-dock-body button{min-height:46px!important;font-size:18px!important}.notebook-dock-body .nb-key-group{width:100%}.notebook-dock-body .nb-key-group+.nb-key-group{border-left:0;padding-left:0}

@@ -22,5 +22,5 @@ window.GatitoNotebookDock={mount(host){
  }
  const pointer=e=>{if(e.target.closest('.notebook-dock button'))e.preventDefault();};
  host.addEventListener('focusin',focus);host.addEventListener('click',click);host.addEventListener('pointerdown',pointer);
- return {sync,dispose(){host.removeEventListener('focusin',focus);host.removeEventListener('click',click);host.removeEventListener('pointerdown',pointer);}};
+ return {sync,open(){open=true;apply();},dispose(){host.removeEventListener('focusin',focus);host.removeEventListener('click',click);host.removeEventListener('pointerdown',pointer);}};
 }};
