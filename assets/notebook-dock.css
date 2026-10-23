@@ -27,3 +27,11 @@
 @media(prefers-reduced-motion:reduce){.notebook-docked{transition:none}}
 
 .notebook-docked .notebook-dock-body button{min-height:46px!important;font-size:18px!important}.notebook-dock-body .nb-key-group{width:100%}.notebook-dock-body .nb-key-group+.nb-key-group{border-left:0;padding-left:0}
+
+/* Keep the insertion palette and the general keypad legible in both themes. */
+.notebook-docked .notebook-dock{background:var(--rm-panel,#fff);border-color:var(--rm-line,#c6d9df);color:var(--rm-text,#193e46)}
+.notebook-docked .notebook-dock-toggle{background:var(--rm-panel,#fff)!important;color:var(--rm-text,#193e46)!important;border-color:var(--rm-line,#c6d9df)!important}
+.notebook-docked .notebook-dock-body button{background:var(--rm-panel,#fff)!important;color:var(--rm-text,#193e46)!important;border:1px solid var(--rm-line,#c6d9df)!important;border-radius:9px}
+.notebook-docked .notebook-dock-body button:hover{background:color-mix(in srgb,var(--rm-accent,#167d7b) 16%,var(--rm-panel,#fff))!important}
+.notebook-docked .notebook-dock-body button.nb-primary,.notebook-docked .notebook-dock-body button.fn-primary{background:#167d7b!important;border-color:#167d7b!important;color:#fff!important}
+.notebook-docked .notebook-dock-body button:focus-visible{outline:3px solid var(--rm-accent,#167d7b);outline-offset:2px}
