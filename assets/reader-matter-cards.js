@@ -129,20 +129,413 @@ const deck=[
   "model": "diatomic"
  }
 ];
-const descriptions={
- element:'Palline tutte uguali.',
- compound:'Palline di tipi diversi legate tra loro in gruppetti uguali o in una struttura.',
- homogeneous:'Ci sono palline o gruppetti diversi. Osservando zone diverse, troviamo gli stessi tipi, mescolati più o meno nelle stesse proporzioni.',
- heterogeneous:'Ci sono palline o gruppetti diversi. Osservando zone diverse, troviamo parti con una composizione diversa: cambiano i tipi di palline o le loro proporzioni.'
+const cardChoices={
+ "elio": [
+  {
+   "id": "1",
+   "text": "Palline tutte uguali, separate.",
+   "correct": true
+  },
+  {
+   "id": "2",
+   "text": "Coppie di palline tutte uguali.",
+   "correct": false
+  },
+  {
+   "id": "3",
+   "text": "Gruppetti di palline di tipi diversi.",
+   "correct": false
+  },
+  {
+   "id": "4",
+   "text": "Palline tutte uguali, disposte in una struttura.",
+   "correct": false
+  }
+ ],
+ "acqua": [
+  {
+   "id": "1",
+   "text": "Palline tutte uguali, separate.",
+   "correct": false
+  },
+  {
+   "id": "2",
+   "text": "Gruppetti tutti uguali, formati da palline di tipi diversi.",
+   "correct": true
+  },
+  {
+   "id": "3",
+   "text": "Coppie tutte uguali, formate da palline dello stesso tipo.",
+   "correct": false
+  },
+  {
+   "id": "4",
+   "text": "Palline di tipi diversi, disposte in un reticolo.",
+   "correct": false
+  }
+ ],
+ "grafite": [
+  {
+   "id": "1",
+   "text": "Palline tutte uguali, collegate in strati sovrapposti.",
+   "correct": true
+  },
+  {
+   "id": "2",
+   "text": "Palline di tipi diversi, collegate in strati.",
+   "correct": false
+  },
+  {
+   "id": "3",
+   "text": "Palline tutte uguali, separate.",
+   "correct": false
+  },
+  {
+   "id": "4",
+   "text": "Coppie di palline tutte uguali, separate tra loro.",
+   "correct": false
+  }
+ ],
+ "aria": [
+  {
+   "id": "1",
+   "text": "Palline tutte uguali, separate.",
+   "correct": false
+  },
+  {
+   "id": "2",
+   "text": "Coppie tutte uguali, formate dallo stesso tipo di palline.",
+   "correct": false
+  },
+  {
+   "id": "3",
+   "text": "Palline singole e coppie di tipi diversi, mescolate uniformemente.",
+   "correct": true
+  },
+  {
+   "id": "4",
+   "text": "Palline e coppie di tipi diversi, separate in zone diverse.",
+   "correct": false
+  }
+ ],
+ "sale": [
+  {
+   "id": "1",
+   "text": "Palline tutte uguali, disposte in una struttura.",
+   "correct": false
+  },
+  {
+   "id": "2",
+   "text": "Palline di due tipi diversi, alternate in una struttura.",
+   "correct": true
+  },
+  {
+   "id": "3",
+   "text": "Palline di tipi diversi, unite in gruppetti separati.",
+   "correct": false
+  },
+  {
+   "id": "4",
+   "text": "Palline tutte uguali, unite in coppie separate.",
+   "correct": false
+  }
+ ],
+ "spremuta": [
+  {
+   "id": "1",
+   "text": "Palline tutte uguali.",
+   "correct": false
+  },
+  {
+   "id": "2",
+   "text": "Solo gruppetti tutti uguali, senza altre strutture.",
+   "correct": false
+  },
+  {
+   "id": "3",
+   "text": "Le stesse strutture, distribuite uniformemente in tutte le zone.",
+   "correct": false
+  },
+  {
+   "id": "4",
+   "text": "Gruppetti nel liquido e strutture diverse nei frammenti di polpa.",
+   "correct": true
+  }
+ ],
+ "ghiaccio": [
+  {
+   "id": "1",
+   "text": "Palline tutte uguali, disposte in una struttura.",
+   "correct": false
+  },
+  {
+   "id": "2",
+   "text": "Gruppetti tutti uguali di palline di tipi diversi, disposti in una rete ordinata.",
+   "correct": true
+  },
+  {
+   "id": "3",
+   "text": "Palline tutte uguali, unite in coppie separate.",
+   "correct": false
+  },
+  {
+   "id": "4",
+   "text": "Gruppetti diversi, liberi e lontani gli uni dagli altri.",
+   "correct": false
+  }
+ ],
+ "acciaio": [
+  {
+   "id": "1",
+   "text": "Palline tutte uguali.",
+   "correct": false
+  },
+  {
+   "id": "2",
+   "text": "Palline di tipi diversi, legate in gruppetti uguali.",
+   "correct": false
+  },
+  {
+   "id": "3",
+   "text": "Palline di tipi diversi, mescolate nelle stesse proporzioni nelle varie zone.",
+   "correct": true
+  },
+  {
+   "id": "4",
+   "text": "Palline di tipi diversi, mescolate in proporzioni diverse da zona a zona.",
+   "correct": false
+  }
+ ],
+ "co2": [
+  {
+   "id": "1",
+   "text": "Palline tutte uguali, separate.",
+   "correct": false
+  },
+  {
+   "id": "2",
+   "text": "Gruppetti uguali di tre palline: una centrale di un tipo e due di un altro.",
+   "correct": true
+  },
+  {
+   "id": "3",
+   "text": "Coppie tutte uguali, formate da palline dello stesso tipo.",
+   "correct": false
+  },
+  {
+   "id": "4",
+   "text": "Palline di tipi diversi, disposte in una struttura estesa.",
+   "correct": false
+  }
+ ],
+ "silicio": [
+  {
+   "id": "1",
+   "text": "Palline tutte uguali, collegate in una struttura estesa.",
+   "correct": true
+  },
+  {
+   "id": "2",
+   "text": "Palline di tipi diversi, collegate in una struttura.",
+   "correct": false
+  },
+  {
+   "id": "3",
+   "text": "Coppie di palline tutte uguali, separate tra loro.",
+   "correct": false
+  },
+  {
+   "id": "4",
+   "text": "Palline tutte uguali, separate.",
+   "correct": false
+  }
+ ],
+ "rubinetto": [
+  {
+   "id": "1",
+   "text": "Solo palline tutte uguali.",
+   "correct": false
+  },
+  {
+   "id": "2",
+   "text": "Solo gruppetti tutti uguali.",
+   "correct": false
+  },
+  {
+   "id": "3",
+   "text": "Gruppetti tutti uguali e palline singole, distribuiti uniformemente.",
+   "correct": true
+  },
+  {
+   "id": "4",
+   "text": "Gruppetti e palline singole, concentrati in zone separate.",
+   "correct": false
+  }
+ ],
+ "nebbia": [
+  {
+   "id": "1",
+   "text": "Palline tutte uguali, separate.",
+   "correct": false
+  },
+  {
+   "id": "2",
+   "text": "Solo gruppetti tutti uguali, dispersi nel gas.",
+   "correct": false
+  },
+  {
+   "id": "3",
+   "text": "Gruppetti di tipi diversi, distribuiti uniformemente nel gas.",
+   "correct": false
+  },
+  {
+   "id": "4",
+   "text": "Gruppetti raccolti in goccioline, diversi da quelli nel gas intorno.",
+   "correct": true
+  }
+ ],
+ "alluminio": [
+  {
+   "id": "1",
+   "text": "Palline tutte uguali, disposte in una struttura compatta.",
+   "correct": true
+  },
+  {
+   "id": "2",
+   "text": "Palline di tipi diversi, disposte in una struttura.",
+   "correct": false
+  },
+  {
+   "id": "3",
+   "text": "Palline tutte uguali, separate.",
+   "correct": false
+  },
+  {
+   "id": "4",
+   "text": "Gruppetti uguali, formati da palline di tipi diversi.",
+   "correct": false
+  }
+ ],
+ "bicarbonato": [
+  {
+   "id": "1",
+   "text": "Solo palline tutte uguali, disposte in una struttura.",
+   "correct": false
+  },
+  {
+   "id": "2",
+   "text": "Palline singole e gruppetti di tipi diversi, ripetuti in un’unica struttura.",
+   "correct": true
+  },
+  {
+   "id": "3",
+   "text": "Solo palline singole di due tipi, alternate in una struttura.",
+   "correct": false
+  },
+  {
+   "id": "4",
+   "text": "Gruppetti tutti uguali e separati, senza palline singole.",
+   "correct": false
+  }
+ ],
+ "biscotto": [
+  {
+   "id": "1",
+   "text": "Palline tutte uguali.",
+   "correct": false
+  },
+  {
+   "id": "2",
+   "text": "Solo gruppetti tutti uguali, separati tra loro.",
+   "correct": false
+  },
+  {
+   "id": "3",
+   "text": "Strutture diverse, distribuite uniformemente in ogni zona.",
+   "correct": false
+  },
+  {
+   "id": "4",
+   "text": "Strutture diverse nelle zone dell’impasto e nelle gocce di cioccolato.",
+   "correct": true
+  }
+ ],
+ "diamante": [
+  {
+   "id": "1",
+   "text": "Palline tutte uguali, collegate in una struttura estesa.",
+   "correct": true
+  },
+  {
+   "id": "2",
+   "text": "Palline di tipi diversi, collegate in una struttura.",
+   "correct": false
+  },
+  {
+   "id": "3",
+   "text": "Coppie di palline tutte uguali, separate tra loro.",
+   "correct": false
+  },
+  {
+   "id": "4",
+   "text": "Palline tutte uguali, separate.",
+   "correct": false
+  }
+ ],
+ "pet": [
+  {
+   "id": "1",
+   "text": "Palline tutte uguali, unite in lunghe catene.",
+   "correct": false
+  },
+  {
+   "id": "2",
+   "text": "Palline di tipi diversi, legate in lunghe catene.",
+   "correct": true
+  },
+  {
+   "id": "3",
+   "text": "Gruppetti piccoli e tutti uguali, separati.",
+   "correct": false
+  },
+  {
+   "id": "4",
+   "text": "Palline di tipi diversi, tutte separate.",
+   "correct": false
+  }
+ ],
+ "ossigeno": [
+  {
+   "id": "1",
+   "text": "Palline tutte uguali, separate.",
+   "correct": false
+  },
+  {
+   "id": "2",
+   "text": "Coppie tutte uguali, formate da palline dello stesso tipo.",
+   "correct": true
+  },
+  {
+   "id": "3",
+   "text": "Gruppetti formati da palline di tipi diversi.",
+   "correct": false
+  },
+  {
+   "id": "4",
+   "text": "Palline tutte uguali, unite in una struttura estesa.",
+   "correct": false
+  }
+ ]
 };
-const subgroups={
- element:[['separate','Ogni pallina è separata dalle altre.'],['groups','Le palline formano gruppetti separati.'],['structures','Le palline sono organizzate in una struttura.']],
- compound:[['groups','Gruppetti tutti uguali, separati oppure tenuti vicini tra loro.'],['structures','Una struttura estesa: non ci sono molecole separate.']]
-};
+const stateLabels={Solido:"Solido",Liquido:"Liquido",Gassoso:"Gassoso",Altro:"Sono presenti più fasi distinte"};
+function choicesFor(d){return cardChoices[d.id]||[];}
+function correctChoice(d){return choicesFor(d).find(c=>c.correct);}
+function stateLabel(state){return stateLabels[state]||state;}
+function stateIsCorrect(d,state){return state===d.state||(d.id==='biscotto'&&state==='Altro');}
 function classification(d){return d.kind==='elemento'?'element':d.kind==='miscela omogenea'?'homogeneous':d.kind==='miscela eterogenea'?'heterogeneous':'compound';}
 function subgroup(d){return ['isolated','liquidAtoms'].includes(d.model)?'separate':['layers','ions','ions2','network','chains','metal'].includes(d.model)?'structures':'groups';}
 function scene(d){return window.GatitoMatterApproved.scene(d);}
-const VERSION=5;
+const VERSION=6;
 function createRound(size=5,random=Math.random){
  const ids=deck.map(d=>d.id);for(let i=ids.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[ids[i],ids[j]]=[ids[j],ids[i]];}
  return ids.slice(0,[5,10,deck.length].includes(Number(size))?Number(size):5);
@@ -152,15 +545,14 @@ function resetRound(st,size=5,random=Math.random){
 }
 function ensureRound(st){if(st.version!==VERSION||!Array.isArray(st.order)||!st.order.length||!st.order.every(id=>deck.some(d=>d.id===id)))resetRound(st,5);return st;}
 function recordAnswer(st,draft){
- const d=deck.find(d=>d.id===st.order[st.index]);
- if(!Object.hasOwn(descriptions,draft.type)||!['Solido','Liquido','Gassoso','Altro'].includes(draft.state)||subgroups[draft.type]&&!subgroups[draft.type].some(([k])=>k===draft.subtype))return null;
+ const d=deck.find(d=>d.id===st.order[st.index]),choice=choicesFor(d).find(c=>c.id===draft.choice);
+ if(!choice||!Object.hasOwn(stateLabels,draft.state))return null;
  if(st.answers[st.index])return st.answers[st.index];
- const structure=draft.type===classification(d)&&(!subgroups[draft.type]||draft.subtype===subgroup(d));
- const answer={id:d.id,type:draft.type,subtype:subgroups[draft.type]?draft.subtype:null,state:draft.state,structureCorrect:structure,stateCorrect:draft.state===d.state};st.answers[st.index]=answer;
+ const answer={id:d.id,choice:choice.id,state:draft.state,structureCorrect:choice.correct,stateCorrect:stateIsCorrect(d,draft.state)};st.answers[st.index]=answer;
  st.done=st.answers.filter(Boolean).length===st.order.length;return answer;
 }
 const score=st=>st.answers.filter(Boolean).reduce((n,a)=>n+Number(a.structureCorrect)+Number(a.stateCorrect),0);
-function modelLabel(type,subtype){return descriptions[type]+(subgroups[type]?' '+subgroups[type].find(([k])=>k===subtype)?.[1]:'');}
+function modelLabel(d,choice){return choicesFor(d).find(c=>c.id===choice)?.text||'Descrizione non selezionata.';}
 function mountIntro(box,st,onChange){
  ensureRound(st);box.classList.add('mc-intro-card');
  function sync(){box.querySelectorAll('[data-mc-round]').forEach(b=>{b.setAttribute('aria-pressed',String(Number(b.dataset.mcRound)===st.roundSize));});}
@@ -230,41 +622,39 @@ function mount(box,st,onChange){
    const n=Number(a.structureCorrect)+Number(a.stateCorrect),feedback=node('div','mc-feedback');sheet.append(node('p','mc-stamp'+(n===2?' mc-hit':' mc-miss'),`${n} / 2 indizi`));
    if(window.GatitoQuizReactions)window.GatitoQuizReactions.show(feedback,n===2?'Identikit a segno!':n===1?'Un indizio trovato. L’altro ci ha depistati!':'Questa carta ci ha depistati. Confrontiamo gli indizi.',{correct:n===2,title:n===2?'Ci siamo!':'Si continua!'});
    else feedback.textContent=n===2?'Identikit a segno!':'Confronta gli indizi, poi continua.';sheet.append(feedback);
-   sheet.append(summaryLine('Palline:',modelLabel(a.type,a.subtype),a.structureCorrect),summaryLine('Stato:',a.state,a.stateCorrect));
-   if(n<2){const details=node('details','mc-answer-review'),sum=node('summary','','Confronta con il modello');details.append(sum,summaryLine('Palline:',modelLabel(classification(d),subgroup(d))),summaryLine('Stato:',d.state));sheet.append(details);}
+   sheet.append(summaryLine('Palline:',modelLabel(d,a.choice),a.structureCorrect),summaryLine('Stato:',stateLabel(a.state),a.stateCorrect));
+   if(n<2){const details=node('details','mc-answer-review'),sum=node('summary','','Confronta con il modello');details.append(sum,summaryLine('Palline:',correctChoice(d).text),summaryLine('Stato:',stateLabel(d.state)));sheet.append(details);}
    if(st.done)sheet.append(btn('Risultati del round',()=>{st.finished=true;paintSheet();},'mc-primary'));
    else sheet.append(btn('Pesca la prossima →',draw,'mc-primary'));return;
   }
   if(st.panel==='closed'){
    const open=btn('',()=>openPanel(),'mc-open-file');open.innerHTML='<span class="mc-file-illustration">?</span><strong>Apri la scheda</strong><span>Che cosa vedi? Qual è lo stato?</span>';sheet.append(open);return;
   }
-  const trail=node('div','mc-answer-trail');trail.append(btn('1 · Palline',()=>openPanel('structure'),st.panel==='structure'||st.panel==='subtype'?'mc-active':''),btn('2 · Stato',()=>{if(draft.type&&(!subgroups[draft.type]||draft.subtype))openPanel('state');},st.panel==='state'?'mc-active':''));sheet.append(trail);
+  const trail=node('div','mc-answer-trail');trail.append(btn('1 · Palline',()=>openPanel('structure'),st.panel==='structure'?'mc-active':''),btn('2 · Stato',()=>{if(draft.choice)openPanel('state');},st.panel==='state'?'mc-active':''));sheet.append(trail);
   const opts=node('div','mc-options');sheet.append(opts);
   if(st.panel==='structure'){
    sheet.append(node('p','mc-sheet-prompt','Scegli la descrizione che ti convince.'));sheet.insertBefore(sheet.lastChild,opts);
-   Object.entries(descriptions).forEach(([key,text],i)=>{const b=btn('',()=>{draft.type=key;delete draft.subtype;openPanel(subgroups[key]?'subtype':'state');},'mc-answer-option');b.append(node('span','mc-option-number',String(i+1)),node('span','',text));if(draft.type===key)b.classList.add('mc-selected');opts.append(b);});
-  }else if(st.panel==='subtype'){
-   sheet.append(node('p','mc-selection',descriptions[draft.type]));sheet.insertBefore(sheet.lastChild,opts);
-   subgroups[draft.type].forEach(([key,text])=>opts.append(btn(text,()=>{draft.subtype=key;openPanel('state');},'mc-answer-option')));
+   choicesFor(d).forEach((choice,i)=>{const b=btn('',()=>{draft.choice=choice.id;openPanel('state');},'mc-answer-option');b.append(node('span','mc-option-number',String(i+1)),node('span','',choice.text));if(draft.choice===choice.id)b.classList.add('mc-selected');opts.append(b);});
   }else if(st.panel==='state'){
-   sheet.append(node('p','mc-sheet-prompt','In quale stato si trova il campione?'));sheet.insertBefore(sheet.lastChild,opts);opts.classList.add('mc-states');
-   ['Solido','Liquido','Gassoso','Altro'].forEach(value=>{const b=btn(value,()=>{draft.state=value;openPanel('confirm');},'mc-answer-option');opts.append(b);});
+   sheet.append(node('p','mc-sheet-prompt','Quale descrizione corrisponde allo stato del campione?'));sheet.insertBefore(sheet.lastChild,opts);opts.classList.add('mc-states');
+   Object.entries(stateLabels).forEach(([value,text])=>{const b=btn(text,()=>{draft.state=value;openPanel('confirm');},'mc-answer-option');opts.append(b);});
   }else if(st.panel==='confirm'){
-   opts.append(summaryLine('Palline:',modelLabel(draft.type,draft.subtype)),summaryLine('Stato:',draft.state));
+   opts.append(summaryLine('Palline:',modelLabel(d,draft.choice)),summaryLine('Stato:',stateLabel(draft.state)));
    opts.append(btn('Conferma identikit ✓',()=>{if(!recordAnswer(st,draft))return;status();paintSheet();onChange();},'mc-primary'),btn('Ripensaci',()=>openPanel('structure'),'mc-link'));
   }
  }
  function finishPanel(){
   const total=st.order.length*2;sheet.append(node('span','mc-sheet-eyebrow','ROUND CONCLUSO'),node('h4','','Round completato!'),node('p','mc-final-score',`${score(st)} / ${total}`),node('p','','indizi riconosciuti'));
   const list=node('details','mc-answer-review');list.append(node('summary','','Rivedi le '+st.order.length+' carte'));
-  st.answers.forEach(a=>{const d=deck.find(d=>d.id===a.id),line=node('details','mc-round-review');line.append(node('summary','',((a.structureCorrect&&a.stateCorrect)?'✓ ':'↻ ')+d.name),summaryLine('La tua scelta:',modelLabel(a.type,a.subtype)),summaryLine('Nel modello:',modelLabel(classification(d),subgroup(d))),summaryLine('Stato:',a.state+' → '+d.state));list.append(line);});sheet.append(list,node('p','mc-replay-label','Un altro round?'));
+  st.answers.forEach(a=>{const d=deck.find(d=>d.id===a.id),line=node('details','mc-round-review');line.append(node('summary','',((a.structureCorrect&&a.stateCorrect)?'✓ ':'↻ ')+d.name),summaryLine('La tua scelta:',modelLabel(d,a.choice)),summaryLine('Nel modello:',correctChoice(d).text),summaryLine('Stato:',stateLabel(a.state)+' → '+stateLabel(d.state)));list.append(line);});sheet.append(list,node('p','mc-replay-label','Un altro round?'));
   const replay=node('div','mc-round-options');[5,10,deck.length].forEach(n=>replay.append(btn(n===deck.length?'Tutte · 18':String(n),()=>{resetRound(st,n);status();paintCard();paintSheet();onChange();})));sheet.append(replay);
  }
  status();paintCard();paintSheet();
  return()=>{disposed=true;motion?.dispose();engines.clear();if(dialog.open)dialog.close();host.remove();};
 }
-return{mount,mountIntro,deck,descriptions,subgroups,classification,subgroup,scene,createRound,resetRound,ensureRound,recordAnswer,score};
+return{mount,mountIntro,deck,choicesFor,correctChoice,stateLabel,stateIsCorrect,classification,subgroup,scene,createRound,resetRound,ensureRound,recordAnswer,score};
 })();
+
 
 
 

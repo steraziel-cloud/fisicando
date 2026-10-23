@@ -99,3 +99,14 @@ Verifiche nuove: `tests/matter-cards.cjs` controlla round unici e casuali da 5/1
 Prompt finale dello sfondo:
 > Use case: illustration-story. Create a single wide landscape background asset for an interactive tabletop card game in GatitoMath. Reference image is style and location reference only: same warm honey-brown wooden school courtyard picnic table where Red and Morgana play. Camera directly above table, overhead flat-lay, 3:2 wide composition. The entire central 90% is empty wooden tabletop with subtle realistic painted wood grain, soft diffuse daylight and very faint dappled leaf shadows ONLY along outer edges. A tiny sliver of soft garden greenery can appear at far top corners. NO characters, NO paws, NO cards, NO game board, NO letters, NO text, NO objects: interactive game board and deck will be overlaid by code. Beautiful polished cartoon illustration, soft warm wood, not dark, not photorealistic. Uniform overhead projection so UI can be naturally placed on the surface. Avoid harsh distracting knots and stripes in center. Final asset is only empty table background.
 
+
+
+## 23 ottobre — Opzioni specifiche per carta
+
+Ogni carta dell'Identikit propone quattro descrizioni riferite al proprio modello. `choicesFor(card)` restituisce quattro opzioni con identificatore, testo e una sola risposta corretta. Non si usano più le quattro descrizioni generiche di elemento/composto/miscela; la scelta delle palline passa direttamente allo stato, senza sottogruppo aggiuntivo. Esempi: strati per la grafite, coppie per l'ossigeno, reticolo per il sale, palline singole e gruppi nel bicarbonato, catene per il PET, distribuzione uniforme per l'acciaio. Sono stati rimossi «più o meno» e gli elenchi di alternative raccolti in una singola risposta.
+
+Lo stato prima visibile come «Altro» è ora «Sono presenti più fasi distinte», anche nei riepiloghi. La chiave interna resta invariata per non modificare i dati dei modelli. Nel biscotto vengono accettate sia l'osservazione dello stato solido sia quella di più fasi: impasto e cioccolato sono regioni distinte del modello, pur essendo entrambe solide. Non si penalizza una delle due osservazioni vere.
+
+Il feedback e la scheda finale usano il testo specifico scelto e quello corretto della carta, non una definizione generale. I modelli, le immagini, le animazioni e la pesca restano invariati. Stato del gioco versione 6: un vecchio round viene reinizializzato perché le risposte precedenti usavano descrizioni e sottogruppi differenti.
+
+Il test `tests/matter-cards.cjs` controlla quattro opzioni distinte e una sola corretta per ciascuna delle 18 carte, tutte le combinazioni di scelta e stato, rifiuto di risposte incomplete, impossibilità di aggirare le opzioni con la vecchia classificazione, punteggio, replay, round da 5/10/18 carte e migrazione dalla versione 5.
