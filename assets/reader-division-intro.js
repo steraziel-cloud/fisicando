@@ -23,7 +23,7 @@
   const art=el('span','qd-art');const img=el('img','qd-scene-image');img.src='assets/images/reader/bjorne-tablet-model-v3.webp';img.alt='Bjorne alla scrivania scrive con il pennino sul tablet rivolto verso di lui';img.width=1536;img.height=1024;img.decoding='async';
   const trigger=button('',()=>open(),'qd-tablet-hotspot');trigger.classList.remove('qd-button');trigger.setAttribute('aria-label','Apri il tablet di Bjorne e guarda la divisione 246 diviso 5');
   art.append(img,trigger);scene.append(art);box.append(scene);
-  let mode=view,stage=0,playing=false,timer=null,disposed=false,skipNext=false,opener=null,hoverTimer=null,lastClosedAt=0;
+  let mode=view,stage=0,playing=false,timer=null,disposed=false,opener=null,hoverTimer=null,lastClosedAt=0;
   const dialog=el('dialog','qd-dialog');dialog.setAttribute('aria-label','Il tablet di Bjorne: divisione in colonna');
   const top=el('header','qd-dialog-top');top.append(el('span','qd-eyebrow','Il tablet di Bjorne'));
   const close=button('×',()=>closeDialog(),'qd-close');close.setAttribute('aria-label','Chiudi il tablet e torna alla lezione');
@@ -38,7 +38,7 @@
   const next=button('Un passo →',()=>{pause();setStage(stage+1);});
   const restart=button('↺ Ricomincia',()=>{pause();setStage(0);});
   controls.append(prev,play,next,restart);
-  const finish=button('Continua la lezione →',()=>{closeDialog(false);if(mode==='scene'&&!passive){skipNext=true;document.getElementById('reader-next')?.click();skipNext=false;}else trigger.focus({preventScroll:true});},'qd-finish qd-primary');
+  const finish=button('Continua la lezione →',()=>{closeDialog(false);if(mode==='scene'&&!passive){document.getElementById('reader-next')?.click();}else trigger.focus({preventScroll:true});},'qd-finish qd-primary');
   top.append(close);controls.append(finish);dialog.append(top,content,controls);document.body.append(dialog);
   function pause(){playing=false;clearTimeout(timer);timer=null;play.textContent=stage===stages.length-1?'↺ Rivedi l’animazione':'▶ Guarda l’animazione';}
   function setStage(n){stage=Math.max(0,Math.min(stages.length-1,n));const groups=blackboard.querySelectorAll('[data-reveal]');for(const group of groups){const at=Number(group.dataset.reveal);group.classList.toggle('qd-hidden',at>stage);group.classList.toggle('qd-new',at===stage&&stage>0);}
@@ -51,15 +51,15 @@
   function open(){clearTimeout(hoverTimer);hoverTimer=null;if(disposed||dialog.open)return;opener=document.activeElement;dialog.showModal();setStage(stage);close.focus({preventScroll:true});if(!matchMedia('(prefers-reduced-motion: reduce)').matches)start();}
   function closeDialog(restore=true){pause();lastClosedAt=Date.now();dialog.close();if(restore&&(opener?.isConnected))opener.focus({preventScroll:true});}
   const cancel=e=>{e.preventDefault();closeDialog();};dialog.addEventListener('cancel',cancel);
-  const intercept=e=>{if(skipNext||passive||mode!=='scene'||!box.isConnected)return;e.preventDefault();e.stopImmediatePropagation();open();};
-  const readerNext=document.getElementById('reader-next');readerNext?.addEventListener('click',intercept,true);
+  const openFromText=e=>{if(!e.target.closest('[data-qd-open]'))return;e.preventDefault();open();};
+  box.addEventListener('click',openFromText);
   const visibility=()=>{if(document.hidden)pause();};document.addEventListener('visibilitychange',visibility);
   const key=e=>{if(!['ArrowRight','ArrowLeft'].includes(e.key))return;e.preventDefault();e.stopPropagation();if(e.key==='ArrowRight'&&!next.disabled){pause();setStage(stage+1);}if(e.key==='ArrowLeft'&&!prev.disabled){pause();setStage(stage-1);}};dialog.addEventListener('keydown',key);
   setStage(0);
   const onHover=e=>{if(e.pointerType!=='mouse'||!matchMedia('(hover: hover)').matches||dialog.open||Date.now()-lastClosedAt<800)return;clearTimeout(hoverTimer);hoverTimer=setTimeout(()=>{hoverTimer=null;if(!disposed&&trigger.matches(':hover'))open();},350);};
   const leave=()=>{clearTimeout(hoverTimer);hoverTimer=null;};
   trigger.addEventListener('pointerenter',onHover);trigger.addEventListener('pointerleave',leave);
-  const api={setView(v){mode=v||'done';},dispose(){disposed=true;pause();leave();if(dialog.open)dialog.close();dialog.remove();readerNext?.removeEventListener('click',intercept,true);document.removeEventListener('visibilitychange',visibility);dialog.removeEventListener('cancel',cancel);dialog.removeEventListener('keydown',key);trigger.removeEventListener('pointerenter',onHover);trigger.removeEventListener('pointerleave',leave);mounted.delete(box);}};
+  const api={setView(v){mode=v||'done';},dispose(){disposed=true;pause();leave();if(dialog.open)dialog.close();dialog.remove();box.removeEventListener('click',openFromText);document.removeEventListener('visibilitychange',visibility);dialog.removeEventListener('cancel',cancel);dialog.removeEventListener('keydown',key);trigger.removeEventListener('pointerenter',onHover);trigger.removeEventListener('pointerleave',leave);mounted.delete(box);}};
   api.setView(view);mounted.set(box,api);return()=>api.dispose();
  }
  window.GatitoDivisionIntro={mount,setView(box,view){mounted.get(box)?.setView(view);}};

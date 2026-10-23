@@ -18,12 +18,12 @@ Object.assign(window.READER_LESSONS,{
           "steps": [
             {
               "title": "Una divisione che conosci già",
-              "html": "Quante volte ti è capitato di svolgere una <strong>divisione in colonna</strong> e di trovare un <strong>resto diverso da zero</strong>?<br><br>Bjorne sta ripassando una divisione sul suo tablet. Entriamo a vedere i passaggi.",
+              "html": "Quante volte ti è capitato di svolgere una <strong>divisione in colonna</strong> e di trovare un <strong>resto diverso da zero</strong>?<br><br>Bjorne sta ripassando una divisione sul suo tablet. <button type=\"button\" class=\"qd-open-link\" data-qd-open>Entriamo a vedere i passaggi.</button>",
               "divisionView": "scene"
             },
             {
               "title": "Che cosa ci dice quel resto?",
-              "html": "Abbiamo trovato <strong>49 come quoziente intero e 1 come resto</strong>. La divisione non è esatta: 5 × 49 = 245, mentre 5 × 50 = 250. <strong>Nessun numero naturale, moltiplicato per 5, dà 246.</strong><br><br>Il quoziente esatto di 246 : 5, quindi, <strong>non è un numero naturale</strong>.<br><br>Questa osservazione ci porta a dire che la divisione <strong>non è un’<button type=\"button\" class=\"rm-keyword\" data-term=\"qr-interna\">operazione interna</button> a ℕ</strong>.<br><br>Quando in un insieme un’operazione non si può sempre eseguire, in matematica si può ricorrere a un <strong>ampliamento</strong>: si costruisce un insieme più grande, che contiene quello di partenza e nel quale quell’operazione è consentita.",
+              "html": "La divisione 246 : 5 ha <strong>49 come quoziente intero e 1 come resto</strong>. La divisione non è esatta: 5 × 49 = 245, mentre 5 × 50 = 250. <strong>Nessun numero naturale, moltiplicato per 5, dà 246.</strong><br><br>Il quoziente esatto di 246 : 5, quindi, <strong>non è un numero naturale</strong>.<br><br>Questa osservazione ci porta a dire che la divisione <strong>non è un’<button type=\"button\" class=\"rm-keyword\" data-term=\"qr-interna\">operazione interna</button> a ℕ</strong>.<br><br>Quando in un insieme un’operazione non si può sempre eseguire, in matematica si può ricorrere a un <strong>ampliamento</strong>: si costruisce un insieme più grande, che contiene quello di partenza e nel quale quell’operazione è consentita.",
               "divisionView": "done"
             }
           ],
