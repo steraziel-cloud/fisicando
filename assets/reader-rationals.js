@@ -364,7 +364,7 @@ Object.assign(window.READER_LESSONS,{
           "steps": [
             {
               "title": "Qual è la frazione maggiore?",
-              "html": "Confronta <span class=\"qr-fraction\" role=\"math\" aria-label=\"11 fratto 6\"><span aria-hidden=\"true\">11</span><span aria-hidden=\"true\">6</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"9 fratto 4\"><span aria-hidden=\"true\">9</span><span aria-hidden=\"true\">4</span></span>. Sono già ridotte ai minimi termini: scegli un denominatore comune e costruisci le due frazioni equivalenti.<br><br>Per calcolare il mcm, seleziona i due denominatori e premi <strong>Calcola mcm</strong>. Poi seleziona una frazione e scegli <strong>Frazione equivalente</strong>: indica il denominatore comune, dividilo per il denominatore attuale e scrivi il prodotto del numeratore. Ripeti per l’altra frazione, poi scegli il simbolo del confronto."
+              "html": "Confronta <span class=\"qr-fraction\" role=\"math\" aria-label=\"11 fratto 6\"><span aria-hidden=\"true\">11</span><span aria-hidden=\"true\">6</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"9 fratto 4\"><span aria-hidden=\"true\">9</span><span aria-hidden=\"true\">4</span></span>. Sono già ridotte ai minimi termini: scegli un denominatore comune e costruisci le due frazioni equivalenti.<br><br>Per calcolare il mcm, clicca o tocca prima un denominatore e poi l’altro, quindi premi <strong>Calcola mcm</strong>. Poi seleziona una frazione e scegli <strong>Frazione equivalente</strong>: indica il denominatore comune, dividilo per il denominatore attuale e scrivi il prodotto del numeratore. Ripeti per l’altra frazione, poi scegli il simbolo del confronto."
             }
           ],
           "board": "qr-compare",
@@ -1482,6 +1482,7 @@ Object.assign(window.READER_GLOSSARY,{
   }
 });
 })();
+
 
 
 

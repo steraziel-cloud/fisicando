@@ -76,3 +76,7 @@
 
 /* Disjoint touch targets for the two terms, with the outer margin reserved for the fraction. */
 .nb-notebook .nb-number.nb-pick{min-width:44px;min-height:44px;justify-content:center;align-items:center;padding:4px 8px;touch-action:manipulation}.nb-notebook .nb-fraction.nb-pick>span{padding-block:4px}
+
+
+/* Notes must not vertically displace the neighboring exercise. */
+.nb-notebook .nb-workspace-flow{align-items:flex-start}.nb-notebook .nb-message{max-width:none;width:auto;overflow-wrap:normal;word-break:normal}.nb-notebook .nb-sheet-menu .nb-factor-tools{min-width:168px}.nb-notebook .nb-sheet-menu .nb-factor-tools>summary{min-height:40px;display:flex;align-items:center}
