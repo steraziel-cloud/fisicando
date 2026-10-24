@@ -64,3 +64,6 @@
 .nb-notebook .nb-workspace-flow>.nb-expression-work{flex:0 1 auto;width:max-content;max-width:100%;min-width:0}.nb-notebook .nb-fraction-notes{font:16px/1.5 'Cambria Math',Georgia,serif;color:var(--rm-accent-2,var(--nb-accent));margin:0 8px 10px;padding:3px 0;border:0}.nb-notebook .nb-integer-result{display:inline-flex;align-items:center;padding:16px 20px;cursor:pointer;border-radius:8px;touch-action:manipulation}
 
 .fn-notebook .fn-build-invitation{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:16px 0 8px}.fn-notebook .fn-build-visible{min-height:42px;font-weight:650;color:var(--fn-accent);border-color:var(--fn-accent)}.fn-notebook .fn-build-invitation>span{font:13px/1.4 system-ui,sans-serif;color:var(--rm-muted)}.fn-notebook .fn-build-visible:disabled{opacity:.5;cursor:default}
+
+
+.nb-notebook .nb-zero-warning{display:flex;align-items:center;gap:12px;max-width:540px;padding:8px 14px 8px 4px;border:1px solid #b78b40;border-radius:14px;background:color-mix(in srgb,#e7a83e 9%,var(--nb-paper));color:var(--nb-ink)}.nb-zero-warning picture{flex:0 0 96px}.nb-zero-warning img{display:block;width:96px;height:96px;object-fit:contain}.nb-zero-warning strong{font-size:17px}.nb-zero-warning p{margin:4px 0 0;font-size:14px;line-height:1.45}
