@@ -7,7 +7,7 @@ window.GatitoMathNotebook=(()=>{
  const seq=()=>({type:'sequence',id:id(),items:[num()]});
  const frac=()=>({type:'fraction',id:id(),top:seq(),bottom:seq()});
  const gcd=(a,b)=>{a=a<0n?-a:a;while(b){[a,b]=[b,a%b];}return a;};
- function rat(n,d=1n){if(!d)throw Error('Il denominatore o il divisore non può essere zero.');if(d<0n){n=-n;d=-d;}const g=gcd(n,d);n/=g;d/=g;if(String(n).length>600||String(d).length>600)throw Error('Questa espressione è troppo grande per il quaderno.');return{n,d};}
+ function rat(n,d=1n){if(!d)throw Error(n===0n?'Forma indeterminata: zero diviso zero.':'Il denominatore o il divisore non può essere zero.');if(d<0n){n=-n;d=-d;}const g=gcd(n,d);n/=g;d/=g;if(String(n).length>600||String(d).length>600)throw Error('Questa espressione è troppo grande per il quaderno.');return{n,d};}
  function evaluate(s){
   let p=0;const a=s.items;
   function atom(){const t=a[p++];if(!t)throw Error('Completa l’espressione.');if(t.type==='number'){if(!/^\d{1,30}$/.test(t.value))throw Error('Completa tutte le caselle con numeri naturali (fino a 30 cifre).');return rat(BigInt(t.value));}if(t.type==='fraction'){const x=evaluate(t.top),y=evaluate(t.bottom);return rat(x.n*y.d,x.d*y.n);}if(t.type==='operator'&&t.value==='('){const v=sum();if(a[p++]?.value!==')')throw Error('Chiudi la parentesi.');return v;}if(t.type==='operator'&&['+','−'].includes(t.value)){const v=atom();return rat(t.value==='−'?-v.n:v.n,v.d);}throw Error('Controlla l’ordine dei numeri e delle operazioni.');}
@@ -170,7 +170,7 @@ window.GatitoMathNotebook=(()=>{
    else if(v.filling)host.querySelector('[name="value"]')?.focus({preventScroll:true});
    positionContext();positionSheetMenu();
   }
-  function messageHTML(){if(v.error&&/denominatore.*zero|divisore.*zero/i.test(v.message))return `<div class="nb-zero-warning" role="alert"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/images/reactions/red-ti-tengo-occhio-still-v2.webp"><img src="assets/images/reactions/red-ti-tengo-occhio-v2.webp" width="96" height="96" alt="Red ti tiene d’occhio: indica il lettore e poi i propri occhi"></picture><div><strong>Ti tengo d’occhio!</strong><p>Il denominatore non può essere 0. Correggilo e riprova.</p></div></div>`;return esc(v.message);}
+  function messageHTML(){if(v.error&&/forma indeterminata/i.test(v.message))return `<div class="nb-zero-warning" role="alert"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/images/reactions/red_buffer_spinner_fronte_grigio_destra_basso-still-quiz.webp"><img src="assets/images/reactions/red_buffer_spinner_fronte_grigio_destra_basso-quiz.webp" width="96" height="96" alt="Red fermo, con la rotellina del buffer"></picture><div><strong>Forma indeterminata!</strong><p>Zero diviso zero manda Red in buffering… Scegli un denominatore diverso da 0.</p></div></div>`;if(v.error&&/denominatore.*zero|divisore.*zero/i.test(v.message))return `<div class="nb-zero-warning" role="alert"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/images/reactions/red-ti-tengo-occhio-still-v2.webp"><img src="assets/images/reactions/red-ti-tengo-occhio-v2.webp" width="96" height="96" alt="Red ti tiene d’occhio: indica il lettore e poi i propri occhi"></picture><div><strong>Ti tengo d’occhio!</strong><p>Il denominatore non può essere 0. Correggilo e riprova.</p></div></div>`;return esc(v.message);}
   function message(text,error=false){v.message=text;v.error=error;const m=host.querySelector('.nb-message');if(m){m.innerHTML=messageHTML();m.classList.toggle('nb-error',error);}}
   function active(){return find(v.draft,v.active);}
   function insertKey(k){
@@ -266,6 +266,7 @@ window.GatitoMathNotebook=(()=>{
  }
  return{mount,Notebook,math:{evaluate,gcd,completedReduction,zeroFraction,comparisonResult,factorPlan,selectedDenominators,factorToolChoices},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot,arrowSlot,canSimplify}};
 })();
+
 
 
 
