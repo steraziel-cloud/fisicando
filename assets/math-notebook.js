@@ -83,7 +83,7 @@ window.GatitoMathNotebook=(()=>{
    target=keys.length===1?model.fractionFor(keys[0]):!keys.length&&fractions.length===1?fractions[0]:null;if(!simple(target))throw Error('Seleziona la frazione di cui vuoi calcolare il MCD.');
    numbers=[target.top.items[0].value,target.bottom.items[0].value];
   }else{
-   const fractions=selectedDenominators(model,keys);if(fractions.length<2)throw Error('Seleziona almeno due token dei denominatori per calcolare il mcm.');
+   const fractions=selectedDenominators(model,keys);if(fractions.length<2)throw Error('Seleziona almeno due denominatori per calcolare il mcm.');
    numbers=fractions.map(f=>f.bottom.items[0].value);
   }
   if(numbers.some(n=>BigInt(n)<=0n||BigInt(n)>999999999999n))throw Error('Questo strumento lavora con numeri maggiori di zero, fino a 12 cifre.');
@@ -136,7 +136,7 @@ window.GatitoMathNotebook=(()=>{
    if(v.dividing)return `<form data-nb-form="divisor" class="nb-context nb-action-strip"><label for="${formId}-divisor">Divisore comune</label><input id="${formId}-divisor" name="divisor" value="${esc(v.helperDivisor||'')}" aria-label="Divisore comune" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required><button type="submit">Inizia</button></form>`;
    if(v.multiplying){const f=selectedFraction(),d=f?.bottom.items[0].value;if(!v.equivalentTarget)return `<form data-nb-form="common-denominator" class="nb-context nb-action-strip"><label for="${formId}-common">Denominatore comune</label><input id="${formId}-common" name="commonDenominator" aria-label="Denominatore comune" inputmode="numeric" autocomplete="off" maxlength="30" value="${esc(v.suggestedDenominator||'')}" placeholder="?" required><button type="submit">Continua</button></form>`;return `<form data-nb-form="multiplier" class="nb-context nb-action-strip"><label for="${formId}-multiplier">${esc(v.equivalentTarget)} ÷ ${esc(d)} =</label><input id="${formId}-multiplier" name="multiplier" aria-label="Quoziente per il denominatore" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required><button type="submit">Verifica quoziente</button></form>`;}
 
-   const f=selectedFraction();return `<div class="nb-context nb-selection-tools" role="toolbar" aria-label="Azioni sulla selezione">${canSimplify(f)?button('simplify','Semplifica'):''}${simple(f)&&!comparison&&window.GatitoNotebookFactorTools?button('factor-mcd','MCD','title="Calcola il MCD dei termini"'):''}${simple(f)&&comparison?button('equivalent','Frazione equivalente'):''}${button('delete','⌫','aria-label="Elimina selezione" title="Elimina selezione (Canc o Backspace)"')}</div>`;
+   const f=selectedFraction();return `<div class="nb-context nb-selection-tools" role="toolbar" aria-label="Azioni sulla selezione">${canSimplify(f)?button('simplify','Semplifica'):''}${simple(f)&&!comparison&&window.GatitoNotebookFactorTools?button('factor-mcd','MCD','title="Calcola il MCD dei termini"'):''}${simple(f)&&comparison?button('equivalent','Frazione equivalente'):''}${selectedDenominators(model,v.selection).length>=2&&window.GatitoNotebookFactorTools?button('factor-mcm','Calcola mcm','title="Calcola il minimo comune multiplo dei denominatori selezionati"'):''}${button('delete','⌫','aria-label="Elimina selezione" title="Elimina selezione (Canc o Backspace)"')}</div>`;
   }
   function positionContext(){
    const toolbar=host.querySelector('.nb-context'),paper=host.querySelector('.nb-paper');if(!toolbar||!paper)return;
@@ -156,9 +156,9 @@ window.GatitoMathNotebook=(()=>{
   function positionSheetMenu(){const menu=host.querySelector('.nb-sheet-menu'),paper=host.querySelector('.nb-paper');if(!menu||!paper)return;const r=menu.getBoundingClientRect(),p=paper.getBoundingClientRect();menu.style.left=Math.max(8,Math.min(v.sheetMenu.x,p.width-r.width-8))+'px';menu.style.top=Math.max(8,Math.min(v.sheetMenu.y,p.height-r.height-8))+'px';}
   function openSheetMenu(x,y,key){if(v.draft||model.pending||v.dividing||v.multiplying||v.filling)return;if(key&&!v.selection.includes(key)){v.selection=selectionRoots(model.rows,[key]);v.selected=v.selection[0]||null;}const p=host.querySelector('.nb-paper').getBoundingClientRect();v.sheetMenu={x:x-p.left,y:y-p.top};v.drag=null;v.message='';render();host.querySelector('.nb-sheet-menu button')?.focus({preventScroll:true});}
   function stopPress(){clearTimeout(pressTimer);pressTimer=null;v.press=null;}
-  function contextmenu(e){if(!e.target.closest('.nb-paper')||e.target.closest('input,textarea,.nb-topbar,.nb-composer,.nb-context,.notebook-dock'))return;if(v.draft||model.pending)return;e.preventDefault();stopPress();openSheetMenu(e.clientX,e.clientY,e.target.closest('[data-nb-select]')?.dataset.nbSelect);}
+  function contextmenu(e){if(!e.target.closest('.nb-paper')||e.target.closest('input,textarea,.nb-topbar,.nb-composer,.nb-context,.notebook-dock'))return;if(v.draft||model.pending)return;e.preventDefault();e.stopPropagation();stopPress();openSheetMenu(e.clientX,e.clientY,e.target.closest('[data-nb-select]')?.dataset.nbSelect);}
   function doubleclick(e){if(e.button!==0||v.draft||model.pending||!e.target.closest('.nb-paper')||e.target.closest('.nb-row,.nb-composer,.nb-context,.nb-topbar,.nb-sheet-menu,input,button,summary'))return;e.preventDefault();stopPress();act('insert');}
-  function factorToolsHTML(){const choices=factorToolChoices(model,v.selection,!!comparison);return `<details class="nb-factor-tools"><summary>Strumenti</summary><div>${choices.length?choices.map(mode=>button('factor-'+mode,mode==='mcm'?'Calcola mcm':'Calcola MCD')).join(''):'<span>Seleziona i token di almeno due denominatori.</span>'}</div></details>`;}
+  function factorToolsHTML(){const choices=factorToolChoices(model,v.selection,!!comparison);return `<details class="nb-factor-tools"><summary>Strumenti</summary><div>${choices.length?choices.map(mode=>button('factor-'+mode,mode==='mcm'?'Calcola mcm':'Calcola MCD')).join(''):'<span>Seleziona almeno due denominatori.</span>'}</div></details>`;}
   function rowNotesHTML(row){const notes=factorNotes.filter(r=>r.sourceIds?.length&&r.sourceIds.every(k=>model.locate(k)?.node)&&find(row,r.sourceIds[0]));return notes.length?`<aside class="nb-fraction-notes" aria-label="Appunti della frazione">${notes.map(r=>`<div>${esc(r.mode==='mcd'?'MCD':'mcm')}(${r.numbers.map(esc).join(', ')}) = ${esc(r.result)}</div>`).join('')}</aside>`:'';}
   function render(){
    host.innerHTML=`<div class="nb-paper" aria-label="Pagina del quaderno"><div class="nb-topbar">${!v.draft&&!model.pending?button('insert','＋ Inserisci','class="nb-insert"'):''}${model.rows.length||model.past.length||model.future.length?`<div class="nb-tools">${button('undo','↶','aria-label="Annulla" '+(!model.past.length&&!model.pending?'disabled':''))}${button('redo','↷','aria-label="Ripristina" '+(!model.future.length||model.pending?'disabled':''))}</div>`:''}</div><div class="nb-workspace-flow">${model.rows.map((row,i)=>`<div class="nb-expression-work ${(completedReduction(row,model.pending)||zeroFraction(row,model.pending))?'nb-work-completed':''}"><div class="nb-row" aria-label="Espressione ${i+1}">${paperHTML(row)}${(completedReduction(row,model.pending)||zeroFraction(row,model.pending))?`<span class="nb-final-result" aria-label="Risultato della riduzione"><span class="nb-equals">=</span>${cleanHTML(row)}</span>`:''}</div>${rowNotesHTML(row)}</div>`).join('')}${v.draft?composerHTML():''}</div>${context()}${sheetMenuHTML()}<div class="nb-message ${v.error?'nb-error':''}" role="status" aria-live="polite">${messageHTML()}</div></div>`;
@@ -217,8 +217,9 @@ window.GatitoMathNotebook=(()=>{
    v.error=false;render();
   }
   function click(e){
+   if(e.button>0)return;
    if(e.target.closest('.nb-factor-tools')&&!e.target.closest('[data-nb-action]'))return;
-   if(v.suppressClick){const p=v.suppressClick;v.suppressClick=false;if(Date.now()<p.until&&Math.hypot(e.clientX-p.x,e.clientY-p.y)<4)return;}const b=e.target.closest('[data-nb-action]');if(b){act(b.dataset.nbAction,b.dataset.nbKey);return;}
+   if(v.suppressClick){const p=v.suppressClick;v.suppressClick=false;if(Date.now()<p.until)return;}const b=e.target.closest('[data-nb-action]');if(b){act(b.dataset.nbAction,b.dataset.nbKey);return;}
    if(e.target.closest('.nb-context,input,.notebook-dock'))return;
    const pick=e.target.closest('[data-nb-select]');if(pick&&!v.draft&&!model.pending){if(pick.dataset.nbEmpty){v.filling=pick.dataset.nbSelect;v.selection=[v.filling];v.selected=v.filling;render();return;}v.resultAnchor=!!pick.closest('.nb-final-result');const key=pick.dataset.nbSelect;select(e.shiftKey||e.ctrlKey||e.metaKey||(e.pointerType||v.pointerType)==='touch'?v.selection.includes(key)?v.selection.filter(k=>k!==key):[...v.selection,key]:[key]);return;}
    if(!v.draft&&!model.pending&&(v.selection.length||v.sheetMenu)){clearSelection();render();}
@@ -244,7 +245,7 @@ window.GatitoMathNotebook=(()=>{
    if(e.key==='Tab'&&!e.shiftKey){const slots=numberSlots(v.draft),next=nextSlot(v.draft,v.active);if(!slots.includes(next)){e.preventDefault();v.active=next;render();return;}}const k={'-':'−','*':'·','/':'÷',':':'÷'}[e.key]||e.key;if(['+','−','·','÷','(',')'].includes(k)){e.preventDefault();insertKey(k);}if(e.key==='Enter'){e.preventDefault();act('write');}
   }
   function pointer(e){
-   v.pointerType=e.pointerType;
+   v.pointerType=e.pointerType;v.suppressClick=false;
    if(e.target.closest('.nb-keypad button')){e.preventDefault();return;}
    if(e.button!==0||v.draft||model.pending||e.target.closest('input,.nb-context,.nb-sheet-menu,button:not([data-nb-select]),.nb-topbar')||!e.target.closest('.nb-paper'))return;
    stopPress();v.press={x:e.clientX,y:e.clientY,pointerId:e.pointerId,key:e.target.closest('[data-nb-select]')?.dataset.nbSelect};const press=v.press;pressTimer=setTimeout(()=>{if(v.press!==press)return;stopPress();openSheetMenu(press.x,press.y,press.key);v.suppressClick={x:press.x,y:press.y,until:Date.now()+800};},600);
@@ -268,6 +269,7 @@ window.GatitoMathNotebook=(()=>{
  }
  return{mount,Notebook,math:{evaluate,gcd,completedReduction,zeroFraction,comparisonResult,factorPlan,selectedDenominators,factorToolChoices},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot,arrowSlot,canSimplify}};
 })();
+
 
 
 
