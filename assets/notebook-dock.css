@@ -67,3 +67,5 @@
 
 
 .nb-notebook .nb-zero-warning{display:flex;align-items:center;gap:12px;max-width:540px;padding:8px 14px 8px 4px;border:1px solid #b78b40;border-radius:14px;background:color-mix(in srgb,#e7a83e 9%,var(--nb-paper));color:var(--nb-ink)}.nb-zero-warning picture{flex:0 0 96px}.nb-zero-warning img{display:block;width:96px;height:96px;object-fit:contain}.nb-zero-warning strong{font-size:17px}.nb-zero-warning p{margin:4px 0 0;font-size:14px;line-height:1.45}
+
+.notebook-docked .notebook-dock-body button[data-dock-key="⌫"],.notebook-docked .notebook-dock-body button[data-nb-action="backspace"],.notebook-docked .notebook-dock-body button[data-fn-action="backspace"]{font:600 13px/1.2 system-ui,sans-serif!important;white-space:nowrap!important;overflow-wrap:normal!important;word-break:normal!important;padding-inline:4px!important;min-width:0!important}.nb-notebook .nb-workspace-flow>.nb-work-completed{border:1px dashed var(--nb-line);border-radius:10px;padding:4px 12px 8px;margin:4px 0}.nb-notebook .nb-work-completed .nb-fraction-notes{margin-bottom:4px}
