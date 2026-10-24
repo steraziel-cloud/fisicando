@@ -72,3 +72,7 @@
 
 /* Center the toggle glyph independently of inherited notebook button padding. */
 .notebook-docked .notebook-dock>.notebook-dock-toggle{display:grid;place-items:center;padding:0!important;box-sizing:border-box;width:100%;min-width:0;min-height:44px;line-height:1;text-align:center}
+
+
+/* Disjoint touch targets for the two terms, with the outer margin reserved for the fraction. */
+.nb-notebook .nb-number.nb-pick{min-width:44px;min-height:44px;justify-content:center;align-items:center;padding:4px 8px;touch-action:manipulation}.nb-notebook .nb-fraction.nb-pick>span{padding-block:4px}
