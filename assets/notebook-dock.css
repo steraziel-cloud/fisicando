@@ -80,3 +80,6 @@
 
 /* Notes must not vertically displace the neighboring exercise. */
 .nb-notebook .nb-workspace-flow{align-items:flex-start}.nb-notebook .nb-message{max-width:none;width:auto;overflow-wrap:normal;word-break:normal}.nb-notebook .nb-sheet-menu .nb-factor-tools{min-width:168px}.nb-notebook .nb-sheet-menu .nb-factor-tools>summary{min-height:40px;display:flex;align-items:center}
+
+
+.nb-notebook .nb-invariant-note{flex-basis:100%;font:14px/1.5 system-ui,sans-serif;margin:0 0 4px;color:var(--nb-ink)}.nb-notebook .nb-invariant-note .rm-keyword{font:inherit;min-height:0;padding:0;border:0;border-radius:0;background:none;color:var(--nb-accent);text-decoration:underline dotted;text-underline-offset:3px}.nb-notebook .nb-invariant-factor{color:var(--nb-accent);font-weight:700}.nb-notebook .nb-invariant-step{opacity:1}.nb-notebook .nb-invariant-step>span{gap:.3em}
