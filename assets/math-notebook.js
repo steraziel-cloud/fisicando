@@ -140,10 +140,10 @@ window.GatitoMathNotebook=(()=>{
    const toolbar=host.querySelector('.nb-context'),paper=host.querySelector('.nb-paper');if(!toolbar||!paper)return;
    const keys=model.pending?[model.pending.fraction]:v.filling?[v.filling]:v.selection;
    const rects=keys.map(key=>(v.resultAnchor?host.querySelector(`.nb-final-result [data-nb-select="${key}"]`):null)?.getBoundingClientRect()||host.querySelector(`[data-nb-select="${key}"]`)?.getBoundingClientRect()).filter(Boolean);if(!rects.length)return;
-   const anchor={left:Math.min(...rects.map(r=>r.left)),right:Math.max(...rects.map(r=>r.right)),top:Math.min(...rects.map(r=>r.top)),bottom:Math.max(...rects.map(r=>r.bottom))},p=paper.getBoundingClientRect(),t=toolbar.getBoundingClientRect();
-   let x=anchor.right-p.left+12,y=anchor.top-p.top;if(x+t.width>p.width-10){x=anchor.left-p.left;y=anchor.bottom-p.top+12;}
-   x=Math.max(8,Math.min(x,p.width-t.width-8));if(y+t.height>p.height-8&&anchor.top-p.top>t.height+12)y=anchor.top-p.top-t.height-12;
-   for(const result of v.resultAnchor?[]:host.querySelectorAll('.nb-final-result')){const r=result.getBoundingClientRect();if(p.left+x<r.right&&p.left+x+t.width>r.left&&p.top+y<r.bottom&&p.top+y+t.height>r.top){const right=r.right-p.left+12;if(right+t.width<=p.width-8)x=right;else y=Math.max(anchor.bottom,r.bottom)-p.top+12;}}
+   const anchor={left:Math.min(...rects.map(r=>r.left)),right:Math.max(...rects.map(r=>r.right)),top:Math.min(...rects.map(r=>r.top)),bottom:Math.max(...rects.map(r=>r.bottom))},p=paper.getBoundingClientRect(),t=toolbar.getBoundingClientRect(),available=(host.querySelector('.notebook-sheet-content')?.getBoundingClientRect().right||p.right)-p.left;
+   let x=anchor.right-p.left+12,y=anchor.top-p.top;if(x+t.width>available-10){x=anchor.left-p.left;y=anchor.bottom-p.top+12;}
+   x=Math.max(8,Math.min(x,available-t.width-8));if(y+t.height>p.height-8&&anchor.top-p.top>t.height+12)y=anchor.top-p.top-t.height-12;
+   for(const result of v.resultAnchor?[]:host.querySelectorAll('.nb-final-result')){const r=result.getBoundingClientRect();if(p.left+x<r.right&&p.left+x+t.width>r.left&&p.top+y<r.bottom&&p.top+y+t.height>r.top){const right=r.right-p.left+12;if(right+t.width<=available-8)x=right;else y=Math.max(anchor.bottom,r.bottom)-p.top+12;}}
    toolbar.style.left=(x+paper.scrollLeft)+'px';toolbar.style.top=(Math.max(8,y)+paper.scrollTop)+'px';
   }
   function composerHTML(){

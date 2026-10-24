@@ -62,3 +62,5 @@
 .notebook-sheet-docked>.notebook-sheet-content{grid-column:1;grid-row:1;min-width:0}.notebook-sheet-docked>.notebook-dock{grid-row:1}.notebook-sheet-content>.fn-toolbar{margin-bottom:16px}
 
 .nb-notebook .nb-workspace-flow>.nb-expression-work{flex:0 1 auto;width:max-content;max-width:100%;min-width:0}.nb-notebook .nb-fraction-notes{font:16px/1.5 'Cambria Math',Georgia,serif;color:var(--rm-accent-2,var(--nb-accent));margin:0 8px 10px;padding:3px 0;border:0}.nb-notebook .nb-integer-result{display:inline-flex;align-items:center;padding:16px 20px;cursor:pointer;border-radius:8px;touch-action:manipulation}
+
+.fn-notebook .fn-build-invitation{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:16px 0 8px}.fn-notebook .fn-build-visible{min-height:42px;font-weight:650;color:var(--fn-accent);border-color:var(--fn-accent)}.fn-notebook .fn-build-invitation>span{font:13px/1.4 system-ui,sans-serif;color:var(--rm-muted)}.fn-notebook .fn-build-visible:disabled{opacity:.5;cursor:default}
