@@ -43,10 +43,11 @@ window.GatitoMathNotebook=(()=>{
  function simple(f){return f?.type==='fraction'&&f.top.items.length===1&&f.bottom.items.length===1&&f.top.items[0].type==='number'&&f.bottom.items[0].type==='number'&&/^\d{1,30}$/.test(f.top.items[0].value)&&/^\d{1,30}$/.test(f.bottom.items[0].value)&&BigInt(f.bottom.items[0].value)!==0n;}
  function leaves(n){return n.type==='sequence'?n.items.flatMap(leaves):n.type==='fraction'?[...leaves(n.top),...leaves(n.bottom)]:[n.id];}
  function selectionRoots(rows,keys){const selected=new Set(keys),out=[];function visit(n){if(selected.has(n.id)||(n.type==='fraction'&&leaves(n).every(k=>selected.has(k)))){out.push(n.id);return;}if(n.type==='sequence')n.items.forEach(visit);if(n.type==='fraction'){visit(n.top);visit(n.bottom);}}rows.forEach(visit);return out;}
+ function normalizeNumbers(node){if(node.type==='number'&&/^\d+$/.test(node.value))node.value=String(BigInt(node.value));else if(node.type==='sequence')node.items.forEach(normalizeNumbers);else if(node.type==='fraction'){normalizeNumbers(node.top);normalizeNumbers(node.bottom);}return node;}
  class Notebook{
   constructor(){this.rows=[];this.past=[];this.future=[];this.pending=null;}
   save(before){this.past.push(copy(before));if(this.past.length>100)this.past.shift();this.future=[];}
-  add(expression){evaluate(expression);const before=copy(this.rows);this.rows.push(copy(expression));this.save(before);}
+  add(expression){evaluate(expression);const before=copy(this.rows);this.rows.push(normalizeNumbers(copy(expression)));this.save(before);}
   locate(key){for(const row of this.rows){const r=find(row,key);if(r)return r;}return null;}
   fractionFor(key){const r=this.locate(key);if(!r)return null;if(r.node.type==='fraction')return r.node;if(r.node.type==='number'&&r.parent?.type==='sequence'){const p=this.locate(r.parent.id)?.parent;return p?.type==='fraction'?p:null;}return null;}
   erase(keys){
@@ -266,6 +267,7 @@ window.GatitoMathNotebook=(()=>{
  }
  return{mount,Notebook,math:{evaluate,gcd,completedReduction,zeroFraction,comparisonResult,factorPlan,selectedDenominators,factorToolChoices},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot,arrowSlot,canSimplify}};
 })();
+
 
 
 

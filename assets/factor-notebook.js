@@ -18,7 +18,7 @@ window.GatitoFactorNotebook=(()=>{
   row(id){const r=this.rows.find(r=>r.id===id);if(!r)throw Error('Seleziona un numero del quaderno.');return r;}
   divisor(id,raw){const r=this.row(id),p=natural(raw);if(r.done)throw Error('La scomposizione è già terminata.');if(!isPrime(p))throw Error('Il divisore deve essere primo. Controlla il numero scelto.');if(BigInt(r.current)%p)throw Error('La divisione non è esatta. Cerca un altro divisore primo usando i criteri di divisibilità.');return String(p);}
   divide(id,p,raw){const r=this.row(id);this.divisor(id,p);const q=natural(raw);if(q!==BigInt(r.current)/BigInt(p))throw Error('Il quoziente non torna: ricontrolla la divisione.');this.save();r.steps.push({from:r.current,prime:String(BigInt(p)),quotient:String(q)});r.factors.push(String(BigInt(p)));r.current=String(q);r.done=q===1n;r.written=false;}
-  setDirect(id,terms){const r=this.row(id),factors=directFactors(terms,r.original),keepSteps=r.done&&r.current==='1';this.save();if(!keepSteps)r.steps=[];r.factors=factors;r.current='1';r.done=true;r.written=true;r.expression=clone(terms);r.direct=!r.steps.length;}
+  setDirect(id,terms){terms=terms.map(t=>({base:/^\d+$/.test(t.base)?String(BigInt(t.base)):t.base,exponent:t.exponent&&/^\d+$/.test(t.exponent)?String(BigInt(t.exponent)):t.exponent}));const r=this.row(id),factors=directFactors(terms,r.original),keepSteps=r.done&&r.current==='1';this.save();if(!keepSteps)r.steps=[];r.factors=factors;r.current='1';r.done=true;r.written=true;r.expression=clone(terms);r.direct=!r.steps.length;}
   reset(id){const r=this.row(id);this.save();Object.assign(r,{current:r.original,steps:[],factors:[],done:r.original==='1',written:r.original==='1',expression:[],direct:false});}
   remove(id){this.row(id);this.save();this.rows=this.rows.filter(r=>r.id!==id);}
   undo(){if(this.history.length)this.rows=this.history.pop();}
@@ -77,7 +77,7 @@ window.GatitoFactorNotebook=(()=>{
    if(action==='undo'){if(v.entry){v.entry=false;v.message='';}else if(v.work&&v.phase==='quotient'){v.phase='divisor';v.prime='';v.message='';focus='prime';}else if(v.work&&v.phase==='direct'){v.work=null;v.message='';}else{model.undo();v.work=null;invalidate();v.selected=new Set(model.rows.filter(r=>r.done&&r.written!==false).map(r=>r.id));v.message='Ultima modifica annullata.';}}
    if(action==='build'){if(v.work||v.entry&&v.number)throw Error('Completa o chiudi prima il passaggio in corso.');v.entry=false;v.number='';if(selectedRows().length<2)throw Error('Seleziona almeno due scomposizioni complete.');v.calc={chosen:{},one:false,verified:false,result:'',success:false};v.message='';}
    if(action==='close-calculation'){invalidate();v.message='';}
-   if(action==='verify-factors'){const map=checkChoice(selectedRows(),mode,v.calc.chosen,v.calc.one);v.calc.verified=true;const direct=immediateResult(map);if(direct!==null){v.calc.result=direct;v.calc.success=true;v.message='Calcolo completato correttamente.';}else{v.message='Fattori ed esponenti corretti. Ora calcola il prodotto.';focus='result';}}
+   if(action==='verify-factors'){const map=checkChoice(selectedRows(),mode,v.calc.chosen,v.calc.one);v.calc.chosen=Object.fromEntries(Object.entries(map).map(([p,e])=>[p,String(e)]));v.calc.verified=true;const direct=immediateResult(map);if(direct!==null){v.calc.result=direct;v.calc.success=true;v.message='Calcolo completato correttamente.';}else{v.message='Fattori ed esponenti corretti. Ora calcola il prodotto.';focus='result';}}
    if(action==='edit-factors'){v.calc.verified=false;v.calc.success=false;v.message='';}
    if(action==='verify-result'){const map=checkChoice(selectedRows(),mode,v.calc.chosen,v.calc.one),raw=v.calc.result;if(!/^\d{1,144}$/.test(raw))throw Error('Scrivi il risultato come numero naturale.');if(BigInt(raw)!==product(map))throw Error('I fattori sono corretti: ricontrolla il prodotto.');v.calc.result=String(BigInt(raw));v.calc.success=true;v.message='Calcolo completato correttamente.';}
    render(focus);
@@ -105,6 +105,7 @@ window.GatitoFactorNotebook=(()=>{
  }
  return{mount,Model,math:{isPrime,natural,directFactors,counts,expectedFactors,checkChoice,product,immediateResult,factorHTML}};
 })();
+
 
 
 
