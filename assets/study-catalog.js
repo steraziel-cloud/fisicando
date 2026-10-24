@@ -158,8 +158,8 @@ window.LESSON_CATALOG = [
                 "kind": "Teoria",
                 "status": "work-in-progress",
                 "labUrl": "copilota-frazioni.html",
-                "labTitle": "Il banco delle frazioni",
-                "labDescription": "Inserisci una frazione, scegli le semplificazioni e conserva i tuoi passaggi."
+                "labTitle": "Il quaderno delle frazioni",
+                "labDescription": "Semplifica e confronta le frazioni nel quaderno, con gli strumenti per MCD e mcm."
               },
               {
                 "title": "Le operazioni in ℚₐ",
@@ -2373,3 +2373,4 @@ window.LESSON_CATALOG = [
     ]
   }
 ];
+

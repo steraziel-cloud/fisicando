@@ -93,8 +93,8 @@ window.GatitoMathNotebook=(()=>{
  function comparisonResult(model,pairs,relation){
   if(model.pending)throw Error('Completa prima la trasformazione in corso.');
   const fractions=model.rows.map(r=>r.items.length===1?r.items[0]:null);
-  if(fractions.length!==2||!fractions.every(simple))throw Error('Mantieni le due frazioni della prova, una per riga.');
-  fractions.forEach((f,i)=>{if(BigInt(f.top.items[0].value)*BigInt(pairs[i][1])!==BigInt(pairs[i][0])*BigInt(f.bottom.items[0].value))throw Error('Una frazione non è equivalente a quella di partenza. Controlla i termini.');});
+  if(fractions.length!==2||!fractions.every(simple))throw Error('Inserisci due frazioni da confrontare, ciascuna con il proprio pulsante Inserisci.');
+  if(pairs)fractions.forEach((f,i)=>{if(BigInt(f.top.items[0].value)*BigInt(pairs[i][1])!==BigInt(pairs[i][0])*BigInt(f.bottom.items[0].value))throw Error('Una frazione non è equivalente a quella di partenza. Controlla i termini.');});
   if(fractions[0].bottom.items[0].value!==fractions[1].bottom.items[0].value)throw Error('Prima riscrivi le due frazioni con lo stesso denominatore.');
   const a=BigInt(fractions[0].top.items[0].value),b=BigInt(fractions[1].top.items[0].value),expected=a<b?'<':a>b?'>':'=';
   if(!relation)throw Error('Scegli il simbolo del confronto.');if(relation!==expected)throw Error('Il denominatore è uguale: ricontrolla quale numeratore è maggiore.');return true;
@@ -228,7 +228,7 @@ window.GatitoMathNotebook=(()=>{
    if(action==='simplify'){v.dividing=true;v.message='Scegli tu un numero che divida entrambi i termini.';}
    if(action==='equivalent'){v.multiplying=true;v.equivalentTarget='';const note=factorNotes.filter(r=>r.mode==='mcm').at(-1);v.suggestedDenominator=note?.result||'';v.message='Scegli il denominatore comune. Poi calcola il quoziente per il denominatore attuale.';}
    if(action==='relation'){clearSelection();v.relation=key;}
-   if(action==='check-comparison'){try{if(v.draft)throw Error('Conferma prima quello che stai scrivendo.');comparisonResult(model,comparison.fractions,v.relation);clearSelection();v.error=false;v.message='Corretto! Con il denominatore comune basta confrontare i numeratori.';render();}catch(e){message(e.message,true);}return;}
+   if(action==='check-comparison'){try{if(v.draft)throw Error('Conferma prima quello che stai scrivendo.');comparisonResult(model,comparison.free?null:comparison.fractions,v.relation);clearSelection();v.error=false;v.message='Corretto! Con il denominatore comune basta confrontare i numeratori.';render();}catch(e){message(e.message,true);}return;}
    if(action==='cancel-step'){model.cancel();clearSelection();}
    if(action==='undo'||action==='redo'){model[action]();clearSelection();}
    v.error=false;render();
@@ -286,6 +286,7 @@ window.GatitoMathNotebook=(()=>{
  }
  return{mount,Notebook,math:{evaluate,gcd,completedReduction,zeroFraction,comparisonResult,factorPlan,selectedDenominators,factorToolChoices},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot,arrowSlot,canSimplify}};
 })();
+
 
 
 
