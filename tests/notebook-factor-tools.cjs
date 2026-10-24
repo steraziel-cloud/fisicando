@@ -7,7 +7,8 @@ const denominators=[a.bottom.items[0].id,b.bottom.items[0].id];
 assert.equal(math.factorPlan(model,'mcd',a.id).numbers.join(','),'18,30');
 assert.equal(math.factorPlan(model,'mcm',denominators).numbers.join(','),'30,10');
 assert.equal(math.factorToolChoices(model,denominators,true).join(','),'mcm');
-assert.equal(math.factorToolChoices(model,[a.id],true).length,0);
+assert.equal(math.factorToolChoices(model,[a.id],true).join(','),'mcd');
+assert.equal(math.factorToolChoices(model,[c.id],true).length,0);
 assert.equal(math.factorToolChoices(model,[],true).length,0);
 assert.equal(math.factorToolChoices(model,[a.id],false).join(','),'mcd');
 for(const selection of [[],[a.id,b.id],[a.bottom.items[0].id],[a.top.items[0].id,b.bottom.items[0].id],[a.bottom.items[0].id,a.bottom.items[0].id]])assert.throws(()=>math.factorPlan(model,'mcm',selection));
@@ -18,7 +19,7 @@ const single=new Notebook();add(single,80,44);assert.equal(math.factorPlan(singl
 const zero=new Notebook();add(zero,0,5);assert.throws(()=>math.factorPlan(zero,'mcd'));
 const huge=new Notebook();add(huge,'1000000000000',2);assert.throws(()=>math.factorPlan(huge,'mcd'));
 assert.equal(model.rows[0].items[0].bottom.items[0].value,'5');
-console.log('PASS: mcm only from selected denominator tokens, subsets and current values respected, no implicit all-denominator preset, only mcm in comparison tools, MCD reduction retained.');
+console.log('PASS: mcm only from selected denominator tokens, subsets and current values respected, no implicit all-denominator preset, MCD for reducible comparison fractions, mcm for denominator groups, MCD reduction retained.');
 const comparison=new Notebook(),left=add(comparison,11,6),right=add(comparison,9,4);
 assert.throws(()=>comparison.beginCommonDenominator(left.id,'12','3'));
 assert.throws(()=>comparison.beginCommonDenominator(left.id,'10','2'));

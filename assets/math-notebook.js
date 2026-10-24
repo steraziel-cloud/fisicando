@@ -75,7 +75,7 @@ window.GatitoMathNotebook=(()=>{
   const fractions=keys.map(key=>{const f=model.fractionFor(key);return simple(f)&&key===f.bottom.items[0].id?f:null;});
   return fractions.every(Boolean)&&new Set(fractions.map(f=>f.id)).size===keys.length?fractions:[];
  }
- function factorToolChoices(model,selection=[],comparison=false){if(selectedDenominators(model,selection).length>=2)return['mcm'];return comparison?[]:['mcd'];}
+ function factorToolChoices(model,selection=[],comparison=false){if(selectedDenominators(model,selection).length>=2)return['mcm'];if(comparison){const keys=Array.isArray(selection)?selection:[selection];return keys.length===1&&canSimplify(model.fractionFor(keys[0]))?['mcd']:[];}return ['mcd'];}
  function factorPlan(model,mode,selection=[]){
   const keys=Array.isArray(selection)?selection:selection?[selection]:[];
   let target,numbers;if(mode==='mcd'){
@@ -133,10 +133,10 @@ window.GatitoMathNotebook=(()=>{
    if(model.pending){const p=model.pending,f=model.locate(p.fraction).node,n=f[p.side].items[0],multiplying=p.kind==='multiply';return `<form id="${formId}" data-nb-form="answer" class="nb-context nb-action-strip"><label for="${formId}-q">${p.side==='top'?'Numeratore':'Denominatore'}: <strong>${esc(n.value)} ${multiplying?'·':'÷'} ${esc(p.k)} = ?</strong></label><button type="submit">Scrivi il ${multiplying?'prodotto':'quoziente'}</button>${button('cancel-step','Annulla il passaggio')}</form>`;}
    if(v.filling)return `<form data-nb-form="fill" class="nb-context nb-action-strip"><label for="${formId}-fill">Completa la casella</label><input id="${formId}-fill" name="value" aria-label="Numero da inserire" inputmode="numeric" maxlength="30" required><button type="submit">Scrivi</button></form>`;
    if(!v.selection.length)return '';
-   if(v.dividing)return `<form data-nb-form="divisor" class="nb-context nb-action-strip"><label for="${formId}-divisor">Divisore comune</label><input id="${formId}-divisor" name="divisor" value="${esc(v.helperDivisor||'')}" aria-label="Divisore comune" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required><button type="submit">Inizia</button></form>`;
+   if(v.dividing)return `<form data-nb-form="divisor" class="nb-context nb-action-strip"><label for="${formId}-divisor">Divisore comune</label><input id="${formId}-divisor" name="divisor" value="${esc(v.helperDivisor||'')}" aria-label="Divisore comune" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required><button type="submit">Inizia</button>${window.GatitoNotebookFactorTools?button('factor-mcd','Calcola MCD'):""}</form>`;
    if(v.multiplying){const f=selectedFraction(),d=f?.bottom.items[0].value;if(!v.equivalentTarget)return `<form data-nb-form="common-denominator" class="nb-context nb-action-strip"><label for="${formId}-common">Denominatore comune</label><input id="${formId}-common" name="commonDenominator" aria-label="Denominatore comune" inputmode="numeric" autocomplete="off" maxlength="30" value="${esc(v.suggestedDenominator||'')}" placeholder="?" required><button type="submit">Continua</button></form>`;return `<form data-nb-form="multiplier" class="nb-context nb-action-strip"><label for="${formId}-multiplier">${esc(v.equivalentTarget)} ÷ ${esc(d)} =</label><input id="${formId}-multiplier" name="multiplier" aria-label="Quoziente per il denominatore" inputmode="numeric" autocomplete="off" maxlength="30" placeholder="?" required><button type="submit">Verifica quoziente</button></form>`;}
 
-   const f=selectedFraction();return `<div class="nb-context nb-selection-tools" role="toolbar" aria-label="Azioni sulla selezione">${canSimplify(f)?button('simplify','Semplifica'):''}${simple(f)&&!comparison&&window.GatitoNotebookFactorTools?button('factor-mcd','MCD','title="Calcola il MCD dei termini"'):''}${simple(f)&&comparison?button('equivalent','Frazione equivalente'):''}${selectedDenominators(model,v.selection).length>=2&&window.GatitoNotebookFactorTools?button('factor-mcm','Calcola mcm','title="Calcola il minimo comune multiplo dei denominatori selezionati"'):''}${button('delete','⌫','aria-label="Elimina selezione" title="Elimina selezione (Canc o Backspace)"')}</div>`;
+   const f=selectedFraction();return `<div class="nb-context nb-selection-tools" role="toolbar" aria-label="Azioni sulla selezione">${canSimplify(f)?button('simplify','Semplifica'):''}${simple(f)&&(!comparison||canSimplify(f))&&window.GatitoNotebookFactorTools?button('factor-mcd','Calcola MCD','title="Calcola il MCD dei termini"'):''}${simple(f)&&comparison?button('equivalent','Frazione equivalente'):''}${selectedDenominators(model,v.selection).length>=2&&window.GatitoNotebookFactorTools?button('factor-mcm','Calcola mcm','title="Calcola il minimo comune multiplo dei denominatori selezionati"'):''}${button('delete','⌫','aria-label="Elimina selezione" title="Elimina selezione (Canc o Backspace)"')}</div>`;
   }
   function positionContext(){
    const toolbar=host.querySelector('.nb-context'),paper=host.querySelector('.nb-paper');if(!toolbar||!paper)return;
@@ -269,6 +269,7 @@ window.GatitoMathNotebook=(()=>{
  }
  return{mount,Notebook,math:{evaluate,gcd,completedReduction,zeroFraction,comparisonResult,factorPlan,selectedDenominators,factorToolChoices},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot,arrowSlot,canSimplify}};
 })();
+
 
 
 
