@@ -147,6 +147,14 @@ window.GatitoMathNotebook=(()=>{
    let x=anchor.right-p.left+12,y=anchor.top-p.top;if(x+t.width>available-10){x=anchor.left-p.left;y=anchor.bottom-p.top+12;}
    x=Math.max(8,Math.min(x,available-t.width-8));if(y+t.height>p.height-8&&anchor.top-p.top>t.height+12)y=anchor.top-p.top-t.height-12;
    for(const result of v.resultAnchor?[]:host.querySelectorAll('.nb-final-result')){const r=result.getBoundingClientRect();if(p.left+x<r.right&&p.left+x+t.width>r.left&&p.top+y<r.bottom&&p.top+y+t.height>r.top){const right=r.right-p.left+12;if(right+t.width<=available-8)x=right;else y=Math.max(anchor.bottom,r.bottom)-p.top+12;}}
+   // Selection tools must never cover another term that the learner may select next.
+   // Place them below the expression band, including unselected neighbouring fractions.
+   if(toolbar.classList.contains('nb-selection-tools')){
+    const neighbours=[...host.querySelectorAll('.nb-row')].map(n=>n.getBoundingClientRect()).filter(r=>r.bottom>=anchor.top&&r.top<=anchor.bottom);
+    const bottom=Math.max(anchor.bottom,...neighbours.map(r=>r.bottom));
+    x=Math.max(8,Math.min(anchor.left-p.left,available-t.width-8));
+    y=bottom-p.top+12;
+   }
    toolbar.style.left=(x+paper.scrollLeft)+'px';toolbar.style.top=(Math.max(8,y)+paper.scrollTop)+'px';
   }
   function composerHTML(){
@@ -270,6 +278,7 @@ window.GatitoMathNotebook=(()=>{
  }
  return{mount,Notebook,math:{evaluate,gcd,completedReduction,zeroFraction,comparisonResult,factorPlan,selectedDenominators,factorToolChoices},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot,arrowSlot,canSimplify}};
 })();
+
 
 
 
