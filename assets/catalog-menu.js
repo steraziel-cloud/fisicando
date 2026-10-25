@@ -241,12 +241,24 @@ document.addEventListener('DOMContentLoaded', () => {
   render();
   const requestedLesson = params.get('lezione');
   const selected = [...nav.querySelectorAll('[data-lesson-key]')].find(button => button.dataset.catalogLessonId === requestedLesson || button.dataset.lessonKey === requestedLesson);
-  if (selected) {
+  // A filter may hide the selected menu item while its material cards stay open.
+  let hiddenSelection = null;
+  if (!selected && requestedLesson) catalog.forEach(s => s.areas.forEach((a, ai) => {
+    function visit(t, key, ancestors) {
+      (t.lessons || []).forEach((l, i) => {
+        const lessonKey = key + '/' + i;
+        if ((l.id || lessonKey) === requestedLesson) hiddenSelection = [l, t, s.title, [a.title, ...ancestors].join(' · '), lessonKey];
+      });
+      (t.children || []).forEach((child, i) => visit(child, key + '/child/' + i, [...ancestors, t.title]));
+    }
+    a.topics.forEach((t, i) => visit(t, s.id + '/' + ai + '/' + i, []));
+  }));
+  if (selected || hiddenSelection) {
     let saved = null;
     try { saved = JSON.parse(sessionStorage.getItem('gatito-catalog-return:' + location.href)); } catch {}
     if (Array.isArray(saved?.opened)) nav.querySelectorAll('details').forEach(branch => { branch.open = saved.opened.includes(branch.dataset.key); });
-    for (let parent = selected.parentElement; parent && parent !== nav; parent = parent.parentElement) if (parent.tagName === 'DETAILS') parent.open = true;
-    selected.click();
+    for (let parent = selected?.parentElement; parent && parent !== nav; parent = parent.parentElement) if (parent.tagName === 'DETAILS') parent.open = true;
+    if (selected) selected.click(); else selectLesson(...hiddenSelection);
     window.addEventListener('load', () => requestAnimationFrame(() => {
       if (Number.isFinite(saved?.scrollY)) window.scrollTo(0, Math.max(0, saved.scrollY));
       else (document.getElementById('lesson-lab') || document.getElementById('lesson-options')).scrollIntoView({block:'center'});
