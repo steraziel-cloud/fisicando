@@ -28,7 +28,7 @@ window.GatitoNotebookDock={mount(host,{state}={}){
   set('insert',!host.hasAttribute('data-fn-fixed-numbers')&&!host.gmNotebook?.model.pending);
   set('confirm',draft||!!host.querySelector('input[inputmode="numeric"]:not(:disabled)'));
   set('fraction',!!source.querySelector('[data-nb-action="fraction"]'));set('power',!!source.querySelector('[data-fn-action="power"]'));
-  dock.querySelectorAll('[data-gm-command="operator"]').forEach(button=>{button.disabled=button.dataset.value==='.'||!(draft||factor&&button.dataset.value==='·');});
+  dock.querySelectorAll('[data-gm-command="operator"]').forEach(button=>{button.disabled=button.dataset.value==='.'||!(draft||button.dataset.value==='·'&&source.querySelector('[data-fn-action="factor"]'));});
   set('compare',host.querySelectorAll('.nb-row').length===2);
   if(host.classList.contains('nb-notebook')&&!host.querySelector('.nb-row,.nb-composer')){const slot=document.createElement('button');slot.type='button';slot.className='gm-empty-slot';slot.dataset.gmCommand='insert';slot.setAttribute('aria-label','Scrivi nel quaderno');slot.textContent='□';content.querySelector('.nb-workspace-flow').append(slot);}
   const answer=host.querySelector('.nb-comparison-answer');if(answer){

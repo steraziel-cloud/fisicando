@@ -24,6 +24,7 @@ The legacy fraction-copilot adapter forwards to the current math notebook when a
 - Only the arithmetic model survived card changes: drafts, selections, typed fields, factor notes, the common-denominator pair/index and the dock state could be lost. A session now preserves those working states in memory.
 - A document-level outside-pointer handler could dismiss a prepared operation when clicking reader navigation. It now preserves active forms and excludes reader navigation and the optional-notebook summary.
 - Insert/edit and other competing transformations could start during an unfinished division/multiplication. They are guarded, and Insert is disabled while the arithmetic model has a pending transformation.
+- The factor keyboard's multiplication key is enabled only when the direct-factor editor offers that operation, not during ordinary number entry.
 - Full-expression clipboard mutations are not applied to a partially transformed fraction.
 - A parent floating keyboard could compete with the modal factor keyboard. The math dock is hidden while a contextual factor dialog is open.
 - The centered dock could cover reader navigation. Reader defaults to a right-aligned dock, remains draggable, and reserves scrolling room; standalone factor pages also reserve room.
