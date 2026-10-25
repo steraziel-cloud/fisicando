@@ -156,7 +156,6 @@ window.LESSON_CATALOG = [
                   "biennio"
                 ],
                 "kind": "Teoria",
-                "status": "work-in-progress",
                 "labUrl": "copilota-frazioni.html",
                 "labTitle": "Il quaderno delle frazioni",
                 "labDescription": "Semplifica e confronta le frazioni nel quaderno, con gli strumenti per MCD e mcm."

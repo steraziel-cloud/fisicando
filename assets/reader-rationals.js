@@ -4,9 +4,8 @@
 Object.assign(window.READER_LESSONS,{
   "razionali-assoluti-insieme": {
   "title": "L’insieme dei numeri razionali assoluti",
-  "subtitle": "Matematica · Medie · Numeri razionali assoluti · Prima versione da rivedere",
+  "subtitle": "Matematica · Medie · Numeri razionali assoluti",
   "version": 18,
-  "status": "work-in-progress",
   "sections": [
     {
       "id": "insieme",
@@ -1425,10 +1424,10 @@ Object.assign(window.READER_GLOSSARY,{
     "text": "Il rapporto fra a e b, in quest’ordine e con b ≠ 0, è il quoziente a : b. Invertendo l’ordine si ottiene in generale un numero diverso. Per confrontare grandezze omogenee, esprimile prima nella stessa unità."
   },
   "qr-interna": {
-    "title": "Operazione interna e legge di composizione binaria",
+    "title": "Operazione interna",
     "kind": "Matematica · Insiemi e operazioni",
-    "text": "Una legge di composizione binaria è una regola che associa a ogni coppia ordinata di elementi di un insieme A uno e un solo risultato. Si dice interna ad A se il risultato appartiene sempre ad A.",
-    "html": "<p><strong>Perché «binaria»?</strong> La regola combina due elementi. L’ordine può contare: 6 : 3 e 3 : 6 danno risultati diversi.</p><p><strong>Un esempio interno.</strong> L’addizione è interna a ℕ: sommando due numeri naturali si ottiene sempre un numero naturale.</p><p><strong>Un esempio non interno.</strong> La divisione non è interna a ℕ: 3 : 2 non dà un numero naturale. Basta una coppia il cui risultato esca dall’insieme perché venga meno la proprietà.</p><p><strong>E se il risultato non è definito?</strong> Una legge interna deve essere definita per tutte le coppie di A. Nella divisione bisogna escludere il divisore zero: in ℚₐ, per ogni divisore diverso da zero, il quoziente appartiene ancora a ℚₐ.</p>"
+    "text": "Un’operazione è interna a un insieme numerico se, eseguendola con due numeri di quell’insieme, si ottiene sempre un numero che appartiene ancora allo stesso insieme.",
+    "html": "<p><strong>Esempio.</strong> L’addizione è interna all’insieme dei numeri naturali: sommando due numeri naturali si ottiene sempre un numero naturale.</p><p>La divisione, invece, non è interna ai numeri naturali: per esempio, 3 : 2 = 1,5, che non è un numero naturale.</p>"
   },
   "qr-inverso": {
     "title": "Inverso o reciproco",
