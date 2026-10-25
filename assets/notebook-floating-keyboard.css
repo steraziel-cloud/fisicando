@@ -11,3 +11,6 @@
 
 .notebook-docked .gm-keyboard .gm-structures button[data-gm-command=insert]{font-size:11px!important;font-weight:600!important;white-space:nowrap;padding-inline:2px!important}
 @media(max-width:650px){.notebook-docked .gm-keyboard .gm-structures button[data-gm-command=insert]{font-size:9px!important}}@media(max-width:380px){.notebook-docked .gm-keyboard .gm-structures button[data-gm-command=insert]{font-size:8px!important}}
+
+
+.notebook-docked .gm-keyboard .gm-structures button[data-gm-command=insert]{background:#167d7b!important;color:#fff!important;border-color:#167d7b!important}
