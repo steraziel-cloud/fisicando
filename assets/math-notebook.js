@@ -243,6 +243,7 @@ window.GatitoMathNotebook=(()=>{
    },onClose(){host.focus({preventScroll:true});}});
   }catch(e){message(e.message,true);}}
   function act(action,key){
+   if(model.pending&&['insert','edit','delete','factor-mcd','factor-mcm','equivalent','simplify'].includes(action)){message('Completa o annulla il passaggio in corso prima di iniziarne un altro.',true);return;}
    v.sheetMenu=null;stopPress();
    if(action==='factor-mcd'||action==='factor-mcm'){render();openFactorTool(action==='factor-mcd'?'mcd':'mcm');return;}
    if(action==='insert'){if(liveEntry&&!finishLive())return;liveSaved=false;clearSelection();v.draft=seq();v.active=first(v.draft).id;}
@@ -316,7 +317,7 @@ window.GatitoMathNotebook=(()=>{
    const keys=selectionRoots(model.rows,[...d.base,...d.keys]);host.querySelectorAll('.nb-row [data-nb-select]').forEach(n=>n.classList.toggle('nb-selected',keys.includes(n.dataset.nbSelect)));host.querySelector('.nb-context')?.setAttribute('hidden','');
   }
   function up(e){stopPress();const d=v.drag;if(!d||e.pointerId!==d.pointerId)return;v.drag=null;host.querySelector('.nb-marquee')?.remove();if(d.active){select([...d.base,...d.keys]);v.suppressClick={x:e.clientX,y:e.clientY,until:Date.now()+500};}}
-  function outside(e){if(factorTool?.isOpen())return;if(!host.contains(e.target)&&!model.pending&&!v.draft&&(v.selection.length||v.filling||v.sheetMenu)){clearSelection();render();}}
+  function outside(e){if(factorTool?.isOpen()||v.dividing||v.multiplying||v.filling||e.target.closest('#reader-next,#reader-prev,#reader-parts,#reader-show-all,.rm-quiz-notebook>summary'))return;if(!host.contains(e.target)&&!model.pending&&!v.draft&&(v.selection.length||v.filling||v.sheetMenu)){clearSelection();render();}}
   function cancelPointer(){stopPress();v.drag=null;host.querySelector('.nb-marquee')?.remove();render();}
   host.addEventListener('dblclick',doubleclick);host.addEventListener('contextmenu',contextmenu);host.addEventListener('click',click);host.addEventListener('submit',submit);host.addEventListener('input',input);host.addEventListener('focusin',focus);host.addEventListener('keydown',keydown);host.addEventListener('pointerdown',pointer);document.addEventListener('pointermove',move);document.addEventListener('pointerup',up);document.addEventListener('pointerdown',outside);window.addEventListener('resize',positionContext);host.addEventListener('scroll',positionContext,true);host.addEventListener('pointercancel',cancelPointer);
   const api={model,dispose(){

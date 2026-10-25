@@ -25,7 +25,7 @@ window.GatitoNotebookDock={mount(host,{state}={}){
   const draft=!!source.querySelector('[data-nb-action="write"]'),factor=!!source.querySelector('.fn-keypad');
   const set=(cmd,enabled)=>{const button=dock.querySelector('[data-gm-command="'+cmd+'"]');if(button)button.disabled=!enabled;};
   host.querySelector('.nb-topbar [data-nb-action="insert"]')?.setAttribute('hidden','');
-  set('insert',!host.hasAttribute('data-fn-fixed-numbers'));
+  set('insert',!host.hasAttribute('data-fn-fixed-numbers')&&!host.gmNotebook?.model.pending);
   set('confirm',draft||!!host.querySelector('input[inputmode="numeric"]:not(:disabled)'));
   set('fraction',!!source.querySelector('[data-nb-action="fraction"]'));set('power',!!source.querySelector('[data-fn-action="power"]'));
   dock.querySelectorAll('[data-gm-command="operator"]').forEach(button=>{button.disabled=button.dataset.value==='.'||!(draft||factor&&button.dataset.value==='·');});
@@ -126,7 +126,7 @@ window.GatitoNotebookDock={mount(host,{state}={}){
   const edit=e.target.closest('[data-gm-edit]')?.dataset.gmEdit;
   if(edit){if(edit==='hide'){open=false;apply();return;}const status=dock.querySelector('.gm-keyboard-status');
    const model=host.gmNotebook?.model,keys=[...new Set([...host.querySelectorAll('.nb-selected[data-nb-select]')].map(el=>el.dataset.nbSelect))];
-   if(model&&((keys.length&&(edit==='copy'||edit==='cut'))||edit==='paste'&&!target?.isConnected&&window.GatitoMathClipboard)){
+   if(model&&!model.pending&&((keys.length&&(edit==='copy'||edit==='cut'))||edit==='paste'&&!target?.isConnected&&window.GatitoMathClipboard)){
     const refresh=()=>{const button=document.createElement('button');button.dataset.nbAction='unselect';host.append(button);button.click();button.remove();};
     if(edit==='paste'){try{const nodes=window.GatitoMathNotebook.nodes,clone=n=>{if(n.type==='number')return nodes.num(n.value);if(n.type==='sequence'){const q=nodes.seq();q.items=n.items.map(clone);return q;}if(n.type==='fraction'){const f=nodes.frac();f.top=clone(n.top);f.bottom=clone(n.bottom);return f;}throw Error('Seleziona un numero o una frazione completa.');},row=nodes.seq();row.items=window.GatitoMathClipboard.map(clone);model.add(row);refresh();}catch(error){status.textContent=error.message;}return;}
     const roots=window.GatitoMathNotebook.nodes.selectionRoots(model.rows,keys),items=roots.map(key=>model.locate(key)?.node).filter(Boolean);window.GatitoMathClipboard=JSON.parse(JSON.stringify(items));
