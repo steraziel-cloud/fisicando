@@ -45,3 +45,11 @@
 @media(max-height:700px){.gm-keyboard .gm-frac-icon{font-size:15px}}
 @media(max-height:540px) and (pointer:fine){.gm-keyboard .gm-frac-icon{font-size:13px}}
 .nb-notebook .nb-final-result button.nb-integer-result{padding:16px 20px;min-width:2em}
+
+/* A dedicated grab handle leaves all numeric and editing buttons independent. */
+.gm-keyboard .gm-keyboard-header{justify-content:space-between;align-items:center;gap:10px}
+.gm-keyboard-handle{display:flex;align-items:center;align-self:stretch;flex:1;gap:5px;min-width:0;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;color:var(--rm-muted);font:600 11px/1.2 system-ui;border-radius:5px}
+.gm-keyboard-handle>span:first-child{font-size:19px;line-height:1}
+.gm-keyboard-handle:focus-visible{outline:2px solid var(--nb-accent,#167d7b);outline-offset:2px}
+.gm-keyboard-dragging .gm-keyboard-handle{cursor:grabbing}
+.notebook-docked .gm-keyboard[data-gm-positioned] .notebook-dock-toggle{left:12px!important;bottom:10px!important}

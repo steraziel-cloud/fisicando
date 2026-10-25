@@ -1,6 +1,6 @@
 /* Experimental floating keyboard, loaded only by the fractions laboratory. */
 window.GatitoNotebookDock={mount(host){
- let open=false,target=null,lastKey='',dock=null,initialized=false,comparisonPosition=null,comparisonDrag=null;
+ let open=false,target=null,lastKey='',dock=null,initialized=false,comparisonPosition=null,comparisonDrag=null,keyboardPosition=null,keyboardDrag=null;
  const numeric=t=>t?.matches('input[inputmode="numeric"]')&&!t.disabled;
  function sync(){
   const palette=host.querySelector('.nb-keypad,.fn-keypad'),paper=host.querySelector('.nb-paper,.fn-paper');
@@ -18,7 +18,7 @@ window.GatitoNotebookDock={mount(host){
   center.innerHTML=['7','8','9','÷','4','5','6','·','1','2','3','−','0','.','=','+'].map(k=>btn(k,/^\d$/.test(k)?'digit':k==='='?'compare':'operator',k,/^\d$/.test(k)?true:k==='='?host.querySelectorAll('.nb-row').length===2:k==='.'?false:draft||factor&&k==='·',k==='.'?'Separatore decimale (non disponibile nei numeri naturali)':k)).join('');
   const right=document.createElement('div');right.className='gm-controls';right.innerHTML=btn('←','arrow','ArrowLeft',true,'Sposta a sinistra')+btn('→','arrow','ArrowRight',true,'Sposta a destra')+btn('⌫','backspace','',true,'Backspace')+btn('Conferma','confirm','',true,'Conferma');
   const edits=dock.querySelector('.gm-edit-tools');edits.innerHTML=btn('↶','undo','',true,'Annulla')+btn('↷','redo','',true,'Ripristina')+'<button type="button" data-gm-edit="cut" title="Taglia" aria-label="Taglia">✂</button><button type="button" data-gm-edit="copy" title="Copia" aria-label="Copia">⧉</button><button type="button" data-gm-edit="paste" title="Incolla" aria-label="Incolla">▣</button><button type="button" data-gm-edit="hide" title="Nascondi tastiera" aria-label="Nascondi tastiera">⌄</button>';
-  const header=dock.querySelector('.gm-keyboard-header');header.replaceChildren(edits);body.append(left,center,right);initialized=true;
+  const header=dock.querySelector('.gm-keyboard-header');const handle=document.createElement('div');handle.className='gm-keyboard-handle';handle.tabIndex=0;handle.setAttribute('role','button');handle.setAttribute('aria-label','Sposta il tastierino');handle.title='Trascina per spostare. Usa le frecce quando selezionato; Home ripristina la posizione.';handle.innerHTML='<span aria-hidden="true">⠿</span><span>Sposta</span>';header.replaceChildren(handle,edits);body.append(left,center,right);keyboardResize?.observe(dock.querySelector('.notebook-dock-body'));initialized=true;
   }
   if(dock.parentNode!==paper)(paper||host).append(dock);
   const source=dock.querySelector('.gm-source-keys');if(palette&&!source.contains(palette))source.replaceChildren(palette);else if(!palette)source.replaceChildren();
@@ -46,7 +46,49 @@ window.GatitoNotebookDock={mount(host){
  function moveComparison(event){if(!comparisonDrag||event.pointerId!==comparisonDrag.id)return;event.preventDefault();comparisonPosition={x:comparisonDrag.left+event.clientX-comparisonDrag.x,y:comparisonDrag.top+event.clientY-comparisonDrag.y};placeComparison();}
  function endComparison(){comparisonDrag=null;}
  function keyComparison(event){if(!event.target.closest('.gm-comparison-handle')||!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key))return;event.preventDefault();event.stopPropagation();const r=event.target.parentElement.getBoundingClientRect();comparisonPosition={x:r.left+(event.key==='ArrowLeft'?-10:event.key==='ArrowRight'?10:0),y:r.top+(event.key==='ArrowUp'?-10:event.key==='ArrowDown'?10:0)};placeComparison();}
- const protectComparisonClick=event=>{if(event.target.closest('.gm-comparison-floating')&&!event.target.closest('[data-nb-action]'))event.stopPropagation();};host.addEventListener('click',protectComparisonClick,true);
+
+ // The handle moves the panel; keys keep their editing behavior and input target.
+ function placeKeyboard(){
+  if(!dock||!keyboardPosition||!open)return;
+  const rect=dock.querySelector('.notebook-dock-body').getBoundingClientRect();
+  keyboardPosition={x:Math.max(8,Math.min(keyboardPosition.x,window.innerWidth-rect.width-8)),y:Math.max(8,Math.min(keyboardPosition.y,window.innerHeight-rect.height-8))};
+  dock.dataset.gmPositioned='';
+  dock.style.setProperty('inset',keyboardPosition.y+'px auto auto '+keyboardPosition.x+'px','important');
+  dock.style.setProperty('transform','none','important');
+ }
+ function dragKeyboard(event){
+  const handle=event.target.closest('.gm-keyboard-handle');
+  if(!handle||event.button>0||event.isPrimary===false)return;
+  event.preventDefault();event.stopPropagation();
+  const rect=dock.querySelector('.notebook-dock-body').getBoundingClientRect();
+  keyboardPosition={x:rect.left,y:rect.top};keyboardDrag={id:event.pointerId,x:event.clientX,y:event.clientY,left:rect.left,top:rect.top};
+  dock.classList.add('gm-keyboard-dragging');placeKeyboard();
+  handle.focus({preventScroll:true});handle.setPointerCapture?.(event.pointerId);
+ }
+ function moveKeyboard(event){
+  if(!keyboardDrag||event.pointerId!==keyboardDrag.id)return;
+  event.preventDefault();
+  keyboardPosition={x:keyboardDrag.left+event.clientX-keyboardDrag.x,y:keyboardDrag.top+event.clientY-keyboardDrag.y};placeKeyboard();
+ }
+ function endKeyboard(event){
+  if(!keyboardDrag||event.pointerId!==keyboardDrag.id)return;
+  keyboardDrag=null;dock?.classList.remove('gm-keyboard-dragging');keepInputVisible();
+ }
+ function keyKeyboard(event){
+  if(!event.target.closest('.gm-keyboard-handle'))return;
+  if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home'].includes(event.key))return;
+  event.preventDefault();event.stopPropagation();
+  if(event.key==='Home'){keyboardPosition=null;dock.removeAttribute('data-gm-positioned');dock.style.removeProperty('inset');dock.style.removeProperty('transform');keepInputVisible();return;}
+  const rect=dock.querySelector('.notebook-dock-body').getBoundingClientRect(),step=event.shiftKey?30:10;
+  keyboardPosition={x:rect.left+(event.key==='ArrowLeft'?-step:event.key==='ArrowRight'?step:0),y:rect.top+(event.key==='ArrowUp'?-step:event.key==='ArrowDown'?step:0)};
+  placeKeyboard();
+ }
+ host.addEventListener('pointerdown',dragKeyboard,true);host.addEventListener('keydown',keyKeyboard,true);
+ document.addEventListener('pointermove',moveKeyboard,{passive:false});document.addEventListener('pointerup',endKeyboard);document.addEventListener('pointercancel',endKeyboard);
+ window.addEventListener('resize',placeKeyboard);
+ const keyboardResize=typeof ResizeObserver==='function'?new ResizeObserver(placeKeyboard):null;
+
+ const protectComparisonClick=event=>{if(event.target.closest('.gm-keyboard-handle')||event.target.closest('.gm-comparison-floating')&&!event.target.closest('[data-nb-action]'))event.stopPropagation();};host.addEventListener('click',protectComparisonClick,true);
  host.addEventListener('pointerdown',dragComparison,true);host.addEventListener('keydown',keyComparison,true);document.addEventListener('pointermove',moveComparison);document.addEventListener('pointerup',endComparison);document.addEventListener('pointercancel',endComparison);window.addEventListener('resize',placeComparison);
  let visibilityFrame=null;
  function keepInputVisible(){
@@ -60,7 +102,7 @@ window.GatitoNotebookDock={mount(host){
    if(dialog)dialog.scrollBy?.({top:dy,behavior:'auto'});else window.scrollBy?.({top:dy,behavior:'auto'});
   });
  }
- function apply(){if(open)keepInputVisible();updateEditTools();host.classList.toggle('notebook-dock-open',open);if(dock){dock.querySelector('.notebook-dock-toggle').setAttribute('aria-expanded',String(open));dock.querySelector('.notebook-dock-body').hidden=!open;}}
+ function apply(){if(open)keepInputVisible();updateEditTools();host.classList.toggle('notebook-dock-open',open);if(dock){dock.querySelector('.notebook-dock-toggle').setAttribute('aria-expanded',String(open));dock.querySelector('.notebook-dock-body').hidden=!open;if(open)placeKeyboard();}}
  function updateEditTools(){if(!dock)return;const selected=!!host.querySelector('.nb-selected')||!!(target?.isConnected&&target.selectionStart!==target.selectionEnd);dock.querySelectorAll('[data-gm-edit="cut"],[data-gm-edit="copy"]').forEach(button=>button.hidden=!selected);dock.querySelectorAll('[data-gm-command="undo"],[data-gm-command="redo"]').forEach(button=>{button.hidden=selected;button.disabled=!host.querySelector('[data-nb-action="'+button.dataset.gmCommand+'"]:not(:disabled),[data-fn-action="'+button.dataset.gmCommand+'"]:not(:disabled)');});}
  function focus(e){if(!numeric(e.target))return;target=e.target;const key=target.dataset.fnField||target.dataset.nbSlot||target.getAttribute('aria-label')||target.name||target.id;if(key!==lastKey){open=true;lastKey=key;}apply();if(target.dataset.factorExponent&&target.value==='1')target.select();}
  async function click(e){
@@ -102,7 +144,7 @@ window.GatitoNotebookDock={mount(host){
  const selectionChange=()=>updateEditTools();document.addEventListener('selectionchange',selectionChange);
  const pointer=e=>{if(e.target.closest('.notebook-dock button'))e.preventDefault();};
  host.addEventListener('focusin',focus);host.addEventListener('click',click);host.addEventListener('pointerdown',pointer);
- return {sync,open(){open=true;apply();},dispose(){host.removeEventListener('click',protectComparisonClick,true);host.removeEventListener('pointerdown',dragComparison,true);host.removeEventListener('keydown',keyComparison,true);document.removeEventListener('pointermove',moveComparison);document.removeEventListener('pointerup',endComparison);document.removeEventListener('pointercancel',endComparison);window.removeEventListener('resize',placeComparison);document.removeEventListener('selectionchange',selectionChange);dock?.remove();host.removeEventListener('focusin',focus);host.removeEventListener('click',click);host.removeEventListener('pointerdown',pointer);}};
+ return {sync,open(){open=true;apply();},dispose(){keyboardResize?.disconnect();host.removeEventListener('pointerdown',dragKeyboard,true);host.removeEventListener('keydown',keyKeyboard,true);document.removeEventListener('pointermove',moveKeyboard);document.removeEventListener('pointerup',endKeyboard);document.removeEventListener('pointercancel',endKeyboard);window.removeEventListener('resize',placeKeyboard);host.removeEventListener('click',protectComparisonClick,true);host.removeEventListener('pointerdown',dragComparison,true);host.removeEventListener('keydown',keyComparison,true);document.removeEventListener('pointermove',moveComparison);document.removeEventListener('pointerup',endComparison);document.removeEventListener('pointercancel',endComparison);window.removeEventListener('resize',placeComparison);document.removeEventListener('selectionchange',selectionChange);dock?.remove();host.removeEventListener('focusin',focus);host.removeEventListener('click',click);host.removeEventListener('pointerdown',pointer);}};
 }};
 
 
