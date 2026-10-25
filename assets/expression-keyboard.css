@@ -56,3 +56,4 @@
 .expression-lab #keyboard #bracket-options button{min-width:32px;min-height:34px!important}
 .expression-lab #keyboard .gm-structures button[data-ek=period]{font-size:calc(14px * var(--gm-user-scale))!important}
 .expression-lab #keyboard .gm-structures button[data-ek=insert]{white-space:nowrap;font-size:calc(9px * var(--gm-user-scale))!important;padding-inline:2px!important}
+#draft-math .period .ek-slot{text-decoration:overline}
