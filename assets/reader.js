@@ -510,7 +510,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  function render(direction=0){
   const section=lesson.sections[current],item=flat(section)[state[current].cursor];
   if(!allMode&&item&&mountedCard?.section===current&&mountedCard.card===item.card){
-   updateCard(item,direction);$('reader-feedback').textContent='';index();actions();return;
+   $('reader-section-title').textContent=lesson.sections[current].title+(referenceMode?' · Richiamo':'');updateCard(item,direction);$('reader-feedback').textContent='';index();actions();return;
   }
   $('reader-completion')?.remove();cancelSlide();const previousHeight=$('reader-steps').getBoundingClientRect().height;const previous=direction?[...$('reader-steps').childNodes]:[];mountedCard=null;
   disposeQuizNotebook();disposeQuizNotebook=()=>{};disposeWidget();disposeWidget=()=>{};$('reader-steps').replaceChildren();$('reader-checkpoint').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';

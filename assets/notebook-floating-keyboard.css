@@ -60,3 +60,8 @@
 .rm-reader-main .nb-paper,.rm-reader-main .nb-comparison .nb-paper {min-height:320px}
 .rm-reader-main .qr-copilot-wide>.nb-notebook {width:100%}
 @media(max-width:650px){.rm-reader-main .nb-paper,.rm-reader-main .nb-comparison .nb-paper{min-height:280px}}
+
+/* Leave room to scroll lesson navigation and the final factor controls above the dock. */
+.rm-reader-main:has(.notebook-dock-open),.fn-lab-main:has(.notebook-dock-open){padding-bottom:300px}
+.rm-reader-main .notebook-docked .gm-keyboard:not([data-gm-positioned]){inset:auto 12px 10px auto!important;transform:none!important}
+@media(min-width:701px) and (pointer:fine){.rm-reader-main:has(.notebook-dock-open),.fn-lab-main:has(.notebook-dock-open){padding-bottom:210px}}
