@@ -172,9 +172,9 @@ window.LESSON_CATALOG = [
                 "status": "work-in-progress"
               },
               {
-                "title": "Le espressioni con le frazioni",
-                "id": "razionali-assoluti-espressioni",
-                "url": "reader.html?lezione=razionali-assoluti-espressioni",
+                "title": "Frazioni e numeri decimali",
+                "id": "razionali-assoluti-decimali",
+                "url": "reader.html?lezione=razionali-assoluti-decimali",
                 "levels": [
                   "medie",
                   "biennio"
@@ -183,9 +183,9 @@ window.LESSON_CATALOG = [
                 "status": "work-in-progress"
               },
               {
-                "title": "Frazioni e numeri decimali",
-                "id": "razionali-assoluti-decimali",
-                "url": "reader.html?lezione=razionali-assoluti-decimali",
+                "title": "Le espressioni con le frazioni",
+                "id": "razionali-assoluti-espressioni",
+                "url": "reader.html?lezione=razionali-assoluti-espressioni",
                 "levels": [
                   "medie",
                   "biennio"
