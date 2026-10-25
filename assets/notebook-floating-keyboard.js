@@ -1,26 +1,38 @@
 /* Experimental floating keyboard, loaded only by the fractions laboratory. */
 window.GatitoNotebookDock={mount(host){
- let open=false,target=null,lastKey='',dock=null;
+ let open=false,target=null,lastKey='',dock=null,initialized=false;
  const numeric=t=>t?.matches('input[inputmode="numeric"]')&&!t.disabled;
  function sync(){
   const palette=host.querySelector('.nb-keypad,.fn-keypad'),paper=host.querySelector('.nb-paper,.fn-paper');
   let content=paper?.querySelector(':scope > .notebook-sheet-content');if(paper&&!content){content=document.createElement('div');content.className='notebook-sheet-content';for(const child of [...paper.childNodes])if(!child.classList?.contains('notebook-dock'))content.append(child);paper.prepend(content);}
-  dock=host.querySelector('.notebook-dock');
+  dock=host.querySelector('.notebook-dock')||dock;
   if(!dock){dock=document.createElement('aside');dock.className='notebook-dock gm-keyboard';dock.setAttribute('aria-label','Tastierino del quaderno');(host.querySelector('.nb-paper,.fn-paper')||host).append(dock);}
+  if(!initialized){
   dock.innerHTML='<button type="button" class="notebook-dock-toggle" aria-label="Apri o chiudi tastierino" title="Apri o chiudi tastierino"><span aria-hidden="true">⌨</span><span>Tastiera</span></button><div class="notebook-dock-body"><header class="gm-keyboard-header"><div><span class="gm-keyboard-eyebrow">GATITOMATH</span><strong>Scrivi sul quaderno</strong></div><div class="gm-edit-tools"><button type="button" data-gm-edit="cut" title="Taglia" aria-label="Taglia">✂</button><button type="button" data-gm-edit="copy" title="Copia" aria-label="Copia">⧉</button><button type="button" data-gm-edit="paste" title="Incolla" aria-label="Incolla">▣</button><button type="button" data-gm-edit="hide" title="Nascondi tastiera" aria-label="Nascondi tastiera">⌄</button></div></header><div class="gm-keyboard-keys"></div><span class="gm-keyboard-status" role="status"></span></div>';
   const body=dock.querySelector('.gm-keyboard-keys');
-  const source=document.createElement('div');source.className='gm-source-keys';source.hidden=true;if(palette)source.append(palette);body.append(source);
+  const source=document.createElement('div');source.className='gm-source-keys';source.hidden=true;body.append(source);
   const btn=(label,command,value='',enabled=true,title=label)=>`<button type="button" data-gm-command="${command}" data-value="${value}" title="${title}" aria-label="${title}" ${enabled?'':'disabled'}>${label}</button>`;
-  const has=selector=>!!source.querySelector(selector),draft=has('[data-nb-action="write"]'),factor=!!palette?.classList.contains('fn-keypad');
-  const left=document.createElement('div');left.className='gm-structures';left.innerHTML=btn('↳','insert','',!!host.querySelector('[data-nb-action="insert"],[data-fn-action="insert"]'),'Inserisci')+btn('<span class="gm-frac-icon"><span>□</span><span>□</span></span>','fraction','',has('[data-nb-action="fraction"]'),'Frazione')+btn('□<sup>□</sup>','power','',has('[data-fn-action="power"]'),'Potenza');
+  const has=()=>false,draft=false,factor=false;
+  const left=document.createElement('div');left.className='gm-structures';left.innerHTML=btn('<span class="gm-frac-icon"><span>□</span><span>□</span></span>','fraction','',has('[data-nb-action="fraction"]'),'Frazione')+btn('□<sup>□</sup>','power','',has('[data-fn-action="power"]'),'Potenza');
   const center=document.createElement('div');center.className='gm-number-matrix';
   center.innerHTML=['7','8','9','÷','4','5','6','·','1','2','3','−','0','.','=','+'].map(k=>btn(k,/^\d$/.test(k)?'digit':k==='='?'compare':'operator',k,/^\d$/.test(k)?true:k==='='?host.querySelectorAll('.nb-row').length===2:k==='.'?false:draft||factor&&k==='·',k==='.'?'Separatore decimale (non disponibile nei numeri naturali)':k)).join('');
-  const right=document.createElement('div');right.className='gm-controls';right.innerHTML=btn('←','arrow','ArrowLeft',true,'Sposta a sinistra')+btn('→','arrow','ArrowRight',true,'Sposta a destra')+btn('⌫','backspace','',true,'Backspace')+btn('↑','arrow','ArrowUp',true,'Sposta su')+btn('↓','arrow','ArrowDown',true,'Sposta giù')+btn('Canc','delete','',true,'Cancella selezione')+btn('↶','undo','',!!host.querySelector('[data-nb-action="undo"]:not(:disabled),[data-fn-action="undo"]:not(:disabled)'),'Annulla')+btn('×','close','',true,'Chiudi inserimento')+btn('↵','confirm','',true,'Conferma');
-  const edits=dock.querySelector('.gm-edit-tools');right.append(edits);dock.querySelector('.gm-keyboard-header').remove();body.append(left,center,right);
+  const right=document.createElement('div');right.className='gm-controls';right.innerHTML=btn('←','arrow','ArrowLeft',true,'Sposta a sinistra')+btn('→','arrow','ArrowRight',true,'Sposta a destra')+btn('⌫','backspace','',true,'Backspace')+btn('Conferma','confirm','',true,'Conferma');
+  const edits=dock.querySelector('.gm-edit-tools');edits.innerHTML=btn('↶','undo','',true,'Annulla')+btn('↷','redo','',true,'Ripristina')+'<button type="button" data-gm-edit="cut" title="Taglia" aria-label="Taglia">✂</button><button type="button" data-gm-edit="copy" title="Copia" aria-label="Copia">⧉</button><button type="button" data-gm-edit="paste" title="Incolla" aria-label="Incolla">▣</button><button type="button" data-gm-edit="hide" title="Nascondi tastiera" aria-label="Nascondi tastiera">⌄</button>';
+  const header=dock.querySelector('.gm-keyboard-header');header.replaceChildren(edits);body.append(left,center,right);initialized=true;
+  }
+  if(dock.parentNode!==paper)(paper||host).append(dock);
+  const source=dock.querySelector('.gm-source-keys');if(palette&&!source.contains(palette))source.replaceChildren(palette);else if(!palette)source.replaceChildren();
+  const draft=!!source.querySelector('[data-nb-action="write"]'),factor=!!source.querySelector('.fn-keypad');
+  const set=(cmd,enabled)=>{const button=dock.querySelector('[data-gm-command="'+cmd+'"]');if(button)button.disabled=!enabled;};
+  set('fraction',!!source.querySelector('[data-nb-action="fraction"]'));set('power',!!source.querySelector('[data-fn-action="power"]'));
+  dock.querySelectorAll('[data-gm-command="operator"]').forEach(button=>{button.disabled=button.dataset.value==='.'||!(draft||factor&&button.dataset.value==='·');});
+  set('compare',host.querySelectorAll('.nb-row').length===2);
+  if(host.classList.contains('nb-notebook')&&!host.querySelector('.nb-row,.nb-composer')){const slot=document.createElement('button');slot.type='button';slot.className='gm-empty-slot';slot.dataset.gmCommand='insert';slot.setAttribute('aria-label','Scrivi nel quaderno');slot.textContent='□';content.querySelector('.nb-workspace-flow').append(slot);}
   const answer=host.querySelector('.nb-comparison-answer');if(answer){answer.classList.add('gm-comparison');answer.hidden=host.querySelectorAll('.nb-row').length!==2;content.append(answer);}
   if(paper){paper.classList.add('notebook-sheet-docked');const toolbar=host.querySelector(':scope > .fn-toolbar');if(toolbar)content.prepend(toolbar);}host.classList.add('notebook-docked');apply();
  }
- function apply(){host.classList.toggle('notebook-dock-open',open);if(dock){dock.querySelector('.notebook-dock-toggle').setAttribute('aria-expanded',String(open));dock.querySelector('.notebook-dock-body').hidden=!open;}}
+ function apply(){updateEditTools();host.classList.toggle('notebook-dock-open',open);if(dock){dock.querySelector('.notebook-dock-toggle').setAttribute('aria-expanded',String(open));dock.querySelector('.notebook-dock-body').hidden=!open;}}
+ function updateEditTools(){if(!dock)return;const selected=!!host.querySelector('.nb-selected')||!!(target?.isConnected&&target.selectionStart!==target.selectionEnd);dock.querySelectorAll('[data-gm-edit="cut"],[data-gm-edit="copy"]').forEach(button=>button.hidden=!selected);dock.querySelectorAll('[data-gm-command="undo"],[data-gm-command="redo"]').forEach(button=>{button.hidden=selected;button.disabled=!host.querySelector('[data-nb-action="'+button.dataset.gmCommand+'"]:not(:disabled),[data-fn-action="'+button.dataset.gmCommand+'"]:not(:disabled)');});}
  function focus(e){if(!numeric(e.target))return;target=e.target;const key=target.dataset.fnField||target.dataset.nbSlot||target.getAttribute('aria-label')||target.name||target.id;if(key!==lastKey){open=true;lastKey=key;}apply();if(target.dataset.factorExponent&&target.value==='1')target.select();}
  async function click(e){
   const command=e.target.closest('[data-gm-command]');
@@ -32,15 +44,25 @@ window.GatitoNotebookDock={mount(host){
    if(cmd==='power'){forward('[data-fn-action="power"]');return;}
    if(cmd==='operator'){if(val==='·'&&forward('[data-fn-action="factor"]'))return;const original=host.querySelector('.gm-source-keys [data-nb-action="key"]');if(original){const proxy=document.createElement('button');proxy.dataset.nbAction='key';proxy.dataset.nbKey=val;host.append(proxy);proxy.click();proxy.remove();}return;}
    if(cmd==='arrow'){if(target?.isConnected){target.focus({preventScroll:true});target.dispatchEvent(new KeyboardEvent('keydown',{key:val,bubbles:true,cancelable:true}));}return;}
-   if(cmd==='backspace'){if(!forward('[data-nb-action="backspace"],[data-fn-action="backspace"]')&&target?.isConnected){const a=target.selectionStart??target.value.length,b=target.selectionEnd??a;target.value=target.value.slice(0,a===b?Math.max(0,a-1):a)+target.value.slice(b);target.dispatchEvent(new Event('input',{bubbles:true}));target.focus({preventScroll:true});}return;}
+   if(cmd==='backspace'){if(!forward('[data-nb-action="backspace"],[data-fn-action="backspace"]')&&target?.isConnected){const a=target.selectionStart??target.value.length,b=target.selectionEnd??a;target.value=target.value.slice(0,a===b?Math.max(0,a-1):a)+target.value.slice(b);target.dispatchEvent(new Event('input',{bubbles:true}));target.focus({preventScroll:true});}else if(!target?.isConnected)host.querySelector('[data-nb-action="delete"]')?.click();return;}
    if(cmd==='delete'){if(target?.isConnected){target.value='';target.dispatchEvent(new Event('input',{bubbles:true}));target.focus({preventScroll:true});}else host.querySelector('[data-nb-action="delete"]')?.click();return;}
-   if(cmd==='undo'){host.querySelector('[data-nb-action="undo"],[data-fn-action="undo"]')?.click();return;}
+   if(cmd==='undo'||cmd==='redo'){host.querySelector('[data-nb-action="'+cmd+'"],[data-fn-action="'+cmd+'"]')?.click();return;}
    if(cmd==='close'){if(!forward('[data-nb-action="cancel-draft"],[data-fn-action="close-entry"]')){open=false;apply();}return;}
    if(cmd==='compare'){host.querySelector('.gm-comparison')?.scrollIntoView?.({block:'nearest',behavior:'smooth'});host.querySelector('.gm-comparison button')?.focus();return;}
    if(cmd==='confirm'){if(forward('[data-nb-action="write"],[data-fn-action="confirm-direct"],[data-fn-action="confirm-number"]'))return;if(target?.isConnected){if(target.form)target.form.requestSubmit();else target.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true,cancelable:true}));}return;}
   }
   const edit=e.target.closest('[data-gm-edit]')?.dataset.gmEdit;
-  if(edit){if(edit==='hide'){open=false;apply();return;}const status=dock.querySelector('.gm-keyboard-status');if(!target?.isConnected){status.textContent='Seleziona prima una casella da modificare.';return;}try{const a=target.selectionStart??0,b=target.selectionEnd??target.value.length,selected=target.value.slice(a,b)||target.value;if(edit==='copy'||edit==='cut'){await navigator.clipboard.writeText(selected);if(edit==='copy'){status.textContent='Copiato';return;}target.value=a===b?'':target.value.slice(0,a)+target.value.slice(b);}else{const text=(await navigator.clipboard.readText()).trim();if(!/^\d*$/.test(text)){status.textContent='In questa casella puoi incollare solo numeri.';return;}target.value=(target.value.slice(0,a)+text+target.value.slice(b)).slice(0,target.maxLength>0?target.maxLength:144);}target.dispatchEvent(new Event('input',{bubbles:true}));target.focus({preventScroll:true});}catch{status.textContent='Usa Ctrl+C, Ctrl+X o Ctrl+V nella casella.';}return;}
+  if(edit){if(edit==='hide'){open=false;apply();return;}const status=dock.querySelector('.gm-keyboard-status');
+   const model=host.gmNotebook?.model,keys=[...new Set([...host.querySelectorAll('.nb-selected[data-nb-select]')].map(el=>el.dataset.nbSelect))];
+   if(model&&((keys.length&&(edit==='copy'||edit==='cut'))||edit==='paste'&&!target?.isConnected&&window.GatitoMathClipboard)){
+    const refresh=()=>{const button=document.createElement('button');button.dataset.nbAction='unselect';host.append(button);button.click();button.remove();};
+    if(edit==='paste'){try{const nodes=window.GatitoMathNotebook.nodes,clone=n=>{if(n.type==='number')return nodes.num(n.value);if(n.type==='sequence'){const q=nodes.seq();q.items=n.items.map(clone);return q;}if(n.type==='fraction'){const f=nodes.frac();f.top=clone(n.top);f.bottom=clone(n.bottom);return f;}throw Error('Seleziona un numero o una frazione completa.');},row=nodes.seq();row.items=window.GatitoMathClipboard.map(clone);model.add(row);refresh();}catch(error){status.textContent=error.message;}return;}
+    const roots=window.GatitoMathNotebook.nodes.selectionRoots(model.rows,keys),items=roots.map(key=>model.locate(key)?.node).filter(Boolean);window.GatitoMathClipboard=JSON.parse(JSON.stringify(items));
+    const text=n=>n.type==='number'?n.value:n.type==='fraction'?'\\frac{'+text(n.top)+'}{'+text(n.bottom)+'}':n.type==='sequence'?n.items.map(text).join(''):n.value;
+    try{await navigator.clipboard.writeText(items.map(text).join(''));}catch{}
+    if(edit==='cut'){model.erase(roots);refresh();}else status.textContent='Copiato';return;
+   }
+   if(!target?.isConnected){status.textContent='Seleziona prima una casella da modificare.';return;}try{const a=target.selectionStart??0,b=target.selectionEnd??target.value.length,selected=target.value.slice(a,b)||target.value;if(edit==='copy'||edit==='cut'){await navigator.clipboard.writeText(selected);if(edit==='copy'){status.textContent='Copiato';return;}target.value=a===b?'':target.value.slice(0,a)+target.value.slice(b);}else{const text=(await navigator.clipboard.readText()).trim();if(!/^\d*$/.test(text)){status.textContent='In questa casella puoi incollare solo numeri.';return;}target.value=(target.value.slice(0,a)+text+target.value.slice(b)).slice(0,target.maxLength>0?target.maxLength:144);}target.dispatchEvent(new Event('input',{bubbles:true}));target.focus({preventScroll:true});}catch{status.textContent='Usa Ctrl+C, Ctrl+X o Ctrl+V nella casella.';}return;}
   const arrow=e.target.closest('[data-gm-arrow]')?.dataset.gmArrow;if(arrow){if(target?.isConnected){target.focus({preventScroll:true});target.dispatchEvent(new KeyboardEvent('keydown',{key:arrow,bubbles:true,cancelable:true}));}return;}
   if(e.target.closest('.notebook-dock-toggle')){open=!open;if(open&&!target?.isConnected){const insert=host.querySelector('[data-nb-action=insert],[data-fn-action=insert]');if(insert){insert.click();return;}}apply();return;}const key=e.target.closest('[data-dock-key]')?.dataset.dockKey;if(!key||!target?.isConnected)return;
   if(key==='enter'){if(target.form)target.form.requestSubmit();else target.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true,cancelable:true}));return;}
@@ -48,10 +70,12 @@ window.GatitoNotebookDock={mount(host){
   target.value=key==='⌫'?target.value.slice(0,a===b?Math.max(0,a-1):a)+target.value.slice(b):target.value.slice(0,a)+key+target.value.slice(b);
   target.value=target.value.slice(0,target.maxLength>0?target.maxLength:144);target.dispatchEvent(new Event('input',{bubbles:true}));target.focus({preventScroll:true});const pos=key==='⌫'?Math.max(0,a-1):a+1;target.setSelectionRange(pos,pos);
  }
+ const selectionChange=()=>updateEditTools();document.addEventListener('selectionchange',selectionChange);
  const pointer=e=>{if(e.target.closest('.notebook-dock button'))e.preventDefault();};
  host.addEventListener('focusin',focus);host.addEventListener('click',click);host.addEventListener('pointerdown',pointer);
- return {sync,open(){open=true;apply();},dispose(){host.removeEventListener('focusin',focus);host.removeEventListener('click',click);host.removeEventListener('pointerdown',pointer);}};
+ return {sync,open(){open=true;apply();},dispose(){document.removeEventListener('selectionchange',selectionChange);dock?.remove();host.removeEventListener('focusin',focus);host.removeEventListener('click',click);host.removeEventListener('pointerdown',pointer);}};
 }};
+
 
 
 
