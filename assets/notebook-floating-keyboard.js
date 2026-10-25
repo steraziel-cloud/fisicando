@@ -1,6 +1,6 @@
 /* Experimental floating keyboard, loaded only by the fractions laboratory. */
 window.GatitoNotebookDock={mount(host){
- let open=false,target=null,lastKey='',dock=null,initialized=false;
+ let open=false,target=null,lastKey='',dock=null,initialized=false,comparisonPosition=null,comparisonDrag=null;
  const numeric=t=>t?.matches('input[inputmode="numeric"]')&&!t.disabled;
  function sync(){
   const palette=host.querySelector('.nb-keypad,.fn-keypad'),paper=host.querySelector('.nb-paper,.fn-paper');
@@ -28,9 +28,23 @@ window.GatitoNotebookDock={mount(host){
   dock.querySelectorAll('[data-gm-command="operator"]').forEach(button=>{button.disabled=button.dataset.value==='.'||!(draft||factor&&button.dataset.value==='·');});
   set('compare',host.querySelectorAll('.nb-row').length===2);
   if(host.classList.contains('nb-notebook')&&!host.querySelector('.nb-row,.nb-composer')){const slot=document.createElement('button');slot.type='button';slot.className='gm-empty-slot';slot.dataset.gmCommand='insert';slot.setAttribute('aria-label','Scrivi nel quaderno');slot.textContent='□';content.querySelector('.nb-workspace-flow').append(slot);}
-  const answer=host.querySelector('.nb-comparison-answer');if(answer){answer.classList.add('gm-comparison');answer.hidden=host.querySelectorAll('.nb-row').length!==2;content.append(answer);}
+  const answer=host.querySelector('.nb-comparison-answer');if(answer){
+   answer.classList.add('gm-comparison','gm-comparison-floating');
+   const model=host.gmNotebook?.model,keys=[...new Set([...host.querySelectorAll('.nb-selected[data-nb-select]')].map(el=>el.dataset.nbSelect))];
+   answer.hidden=keys.length!==2||!keys.every(key=>model?.locate(key)?.node.type==='fraction');
+   answer.setAttribute('role','dialog');answer.setAttribute('aria-label','Confronta le frazioni selezionate');
+   const header=document.createElement('div');header.className='gm-comparison-handle';header.textContent='Confronta le frazioni · trascina per spostare';header.tabIndex=0;header.setAttribute('aria-label','Sposta il confronto con le frecce della tastiera');answer.prepend(header);content.append(answer);
+   set('compare',!answer.hidden);placeComparison();
+  }
   if(paper){paper.classList.add('notebook-sheet-docked');const toolbar=host.querySelector(':scope > .fn-toolbar');if(toolbar)content.prepend(toolbar);}host.classList.add('notebook-docked');apply();
  }
+ function placeComparison(){const panel=host.querySelector('.gm-comparison-floating');if(!panel||panel.hidden)return;const rect=panel.getBoundingClientRect(),paper=host.querySelector('.nb-paper').getBoundingClientRect();const x=comparisonPosition?.x??paper.left+20,y=comparisonPosition?.y??Math.min(paper.top+220,window.innerHeight-rect.height-20);comparisonPosition={x:Math.max(8,Math.min(x,window.innerWidth-rect.width-8)),y:Math.max(8,Math.min(y,window.innerHeight-rect.height-8))};panel.style.left=comparisonPosition.x+'px';panel.style.top=comparisonPosition.y+'px';}
+ function dragComparison(event){if(event.target.closest('.gm-comparison-floating'))event.stopPropagation();const handle=event.target.closest('.gm-comparison-handle');if(!handle||event.button>0)return;event.preventDefault();event.stopPropagation();const r=handle.parentElement.getBoundingClientRect();comparisonDrag={id:event.pointerId,x:event.clientX,y:event.clientY,left:r.left,top:r.top};handle.setPointerCapture?.(event.pointerId);}
+ function moveComparison(event){if(!comparisonDrag||event.pointerId!==comparisonDrag.id)return;event.preventDefault();comparisonPosition={x:comparisonDrag.left+event.clientX-comparisonDrag.x,y:comparisonDrag.top+event.clientY-comparisonDrag.y};placeComparison();}
+ function endComparison(){comparisonDrag=null;}
+ function keyComparison(event){if(!event.target.closest('.gm-comparison-handle')||!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key))return;event.preventDefault();event.stopPropagation();const r=event.target.parentElement.getBoundingClientRect();comparisonPosition={x:r.left+(event.key==='ArrowLeft'?-10:event.key==='ArrowRight'?10:0),y:r.top+(event.key==='ArrowUp'?-10:event.key==='ArrowDown'?10:0)};placeComparison();}
+ const protectComparisonClick=event=>{if(event.target.closest('.gm-comparison-floating')&&!event.target.closest('[data-nb-action]'))event.stopPropagation();};host.addEventListener('click',protectComparisonClick,true);
+ host.addEventListener('pointerdown',dragComparison,true);host.addEventListener('keydown',keyComparison,true);document.addEventListener('pointermove',moveComparison);document.addEventListener('pointerup',endComparison);document.addEventListener('pointercancel',endComparison);window.addEventListener('resize',placeComparison);
  function apply(){updateEditTools();host.classList.toggle('notebook-dock-open',open);if(dock){dock.querySelector('.notebook-dock-toggle').setAttribute('aria-expanded',String(open));dock.querySelector('.notebook-dock-body').hidden=!open;}}
  function updateEditTools(){if(!dock)return;const selected=!!host.querySelector('.nb-selected')||!!(target?.isConnected&&target.selectionStart!==target.selectionEnd);dock.querySelectorAll('[data-gm-edit="cut"],[data-gm-edit="copy"]').forEach(button=>button.hidden=!selected);dock.querySelectorAll('[data-gm-command="undo"],[data-gm-command="redo"]').forEach(button=>{button.hidden=selected;button.disabled=!host.querySelector('[data-nb-action="'+button.dataset.gmCommand+'"]:not(:disabled),[data-fn-action="'+button.dataset.gmCommand+'"]:not(:disabled)');});}
  function focus(e){if(!numeric(e.target))return;target=e.target;const key=target.dataset.fnField||target.dataset.nbSlot||target.getAttribute('aria-label')||target.name||target.id;if(key!==lastKey){open=true;lastKey=key;}apply();if(target.dataset.factorExponent&&target.value==='1')target.select();}
@@ -73,8 +87,9 @@ window.GatitoNotebookDock={mount(host){
  const selectionChange=()=>updateEditTools();document.addEventListener('selectionchange',selectionChange);
  const pointer=e=>{if(e.target.closest('.notebook-dock button'))e.preventDefault();};
  host.addEventListener('focusin',focus);host.addEventListener('click',click);host.addEventListener('pointerdown',pointer);
- return {sync,open(){open=true;apply();},dispose(){document.removeEventListener('selectionchange',selectionChange);dock?.remove();host.removeEventListener('focusin',focus);host.removeEventListener('click',click);host.removeEventListener('pointerdown',pointer);}};
+ return {sync,open(){open=true;apply();},dispose(){host.removeEventListener('click',protectComparisonClick,true);host.removeEventListener('pointerdown',dragComparison,true);host.removeEventListener('keydown',keyComparison,true);document.removeEventListener('pointermove',moveComparison);document.removeEventListener('pointerup',endComparison);document.removeEventListener('pointercancel',endComparison);window.removeEventListener('resize',placeComparison);document.removeEventListener('selectionchange',selectionChange);dock?.remove();host.removeEventListener('focusin',focus);host.removeEventListener('click',click);host.removeEventListener('pointerdown',pointer);}};
 }};
+
 
 
 
