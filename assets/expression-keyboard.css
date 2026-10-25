@@ -40,3 +40,9 @@
 .expression-lab #keyboard #entry-message:empty{display:none}
 
 .expression-lab dialog:has(#keyboard){overflow:visible}
+
+.expression-lab #keyboard #text-entry{margin:6px 0 10px;font-size:13px}
+.expression-lab #keyboard #text-entry .entry{display:flex;flex-direction:row;margin:0;gap:6px}
+.expression-lab #keyboard #text-entry #entry{min-width:0;flex:1;width:0;font-size:16px}
+.expression-lab #keyboard #text-entry #start{font-size:12px;padding:5px 8px}
+.expression-lab #keyboard #text-entry details{font-size:12px;max-height:160px;overflow:auto;margin:6px 0 0}
