@@ -12,7 +12,7 @@
 .expression-lab #keyboard button[data-ek]{display:flex;align-items:center;justify-content:center;min-height:0!important;width:100%;box-sizing:border-box;height:auto;padding:calc(4px * var(--gm-user-scale))!important;font:500 calc(16px * var(--gm-user-scale))/1.2 system-ui!important;border:1px solid transparent!important;border-radius:5px!important;color:var(--rm-text)!important;background:color-mix(in srgb,var(--rm-text) 6%,var(--rm-panel))!important;touch-action:manipulation}
 .expression-lab #keyboard button[data-ek]:disabled{opacity:.25}
 .expression-lab #keyboard .gm-structures button{height:auto}
-.expression-lab #keyboard .gm-structures [data-ek=insert],.expression-lab #keyboard [data-ek=confirm]{font-size:calc(10px * var(--gm-user-scale))!important;background:#167d7b!important;color:white!important}
+.expression-lab #keyboard .gm-structures button[data-ek=insert],.expression-lab #keyboard button[data-ek=confirm]{font-size:calc(10px * var(--gm-user-scale))!important;background:#167d7b!important;color:white!important}
 .expression-lab #keyboard .gm-edit-tools button[data-ek]{width:calc(24px * var(--gm-user-scale));font-size:calc(14px * var(--gm-user-scale))!important;background:transparent!important;color:var(--rm-muted)!important}
 .expression-lab #keyboard [data-ek=backspace]{grid-column:1/-1;grid-row:2}
 .expression-lab #keyboard [data-ek=confirm]{grid-column:1/-1;grid-row:4}
@@ -38,3 +38,5 @@
 #text-entry details{font-size:13px;color:var(--rm-muted)}
 .expression-lab #keyboard #entry-message{font-size:12px;margin:6px 0 0}
 .expression-lab #keyboard #entry-message:empty{display:none}
+
+.expression-lab dialog:has(#keyboard){overflow:visible}
