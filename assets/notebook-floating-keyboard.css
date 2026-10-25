@@ -68,10 +68,6 @@
 
 /* Manual size applies to real dimensions, including keys and labels. */
 .gm-keyboard{--gm-user-scale:1}
-.gm-keyboard-sizing{display:flex;align-items:center;gap:5px;padding-top:5px;margin-top:5px;border-top:1px solid var(--rm-line);color:var(--rm-muted);font:11px/1.2 system-ui}
-.gm-keyboard-size-value{min-width:3.4em;text-align:center;font-variant-numeric:tabular-nums}
-.notebook-docked .gm-keyboard .gm-keyboard-sizing button{display:inline-flex;align-items:center;justify-content:center;width:26px;min-height:24px!important;padding:2px!important;border:0!important;background:transparent!important;color:var(--rm-text)!important;font:17px/1 system-ui!important}
-.notebook-docked .gm-keyboard .gm-keyboard-sizing .gm-keyboard-resize{margin-left:auto;cursor:nwse-resize;touch-action:none}
 .notebook-docked .gm-keyboard[data-gm-sized]{--gm-key-size:calc(30px * var(--gm-user-scale));--gm-key-gap:calc(4px * var(--gm-user-scale))}
 .notebook-docked .gm-keyboard[data-gm-sized] .notebook-dock-body{padding:calc(9px * var(--gm-user-scale))!important}
 .notebook-docked .gm-keyboard[data-gm-sized] .gm-keyboard-keys{grid-template-columns:calc(52px * var(--gm-user-scale)) minmax(0,1fr) calc(82px * var(--gm-user-scale));gap:calc(8px * var(--gm-user-scale))}
@@ -86,5 +82,19 @@
 .notebook-docked .gm-keyboard[data-gm-sized] .gm-frac-icon{font-size:calc(13px * var(--gm-user-scale))}
 .notebook-docked .gm-keyboard[data-gm-sized] .gm-keyboard-handle{font-size:calc(11px * var(--gm-user-scale))}
 .notebook-docked .gm-keyboard[data-gm-sized] .gm-keyboard-handle>span:first-child{font-size:calc(19px * var(--gm-user-scale))}
-.notebook-docked .gm-keyboard[data-gm-sized] .gm-keyboard-sizing{font-size:calc(11px * var(--gm-user-scale));gap:calc(5px * var(--gm-user-scale));margin-top:calc(5px * var(--gm-user-scale));padding-top:calc(5px * var(--gm-user-scale))}
-.notebook-docked .gm-keyboard[data-gm-sized] .gm-keyboard-sizing button{width:calc(26px * var(--gm-user-scale));min-height:calc(24px * var(--gm-user-scale))!important;font-size:calc(17px * var(--gm-user-scale))!important}
+
+/* Invisible edge grips reuse the existing border without adding panel space. */
+.gm-keyboard .notebook-dock-body{position:relative}
+.gm-keyboard-resize{position:absolute;z-index:2;touch-action:none;user-select:none}
+.gm-keyboard-resize[data-edge=n],.gm-keyboard-resize[data-edge=s]{left:12px;right:12px;height:10px;cursor:ns-resize}
+.gm-keyboard-resize[data-edge=n]{top:-4px}.gm-keyboard-resize[data-edge=s]{bottom:-4px}
+.gm-keyboard-resize[data-edge=e],.gm-keyboard-resize[data-edge=w]{top:12px;bottom:12px;width:10px;cursor:ew-resize}
+.gm-keyboard-resize[data-edge=e]{right:-4px}.gm-keyboard-resize[data-edge=w]{left:-4px}
+.gm-keyboard-resize[data-edge=ne],.gm-keyboard-resize[data-edge=se],.gm-keyboard-resize[data-edge=sw],.gm-keyboard-resize[data-edge=nw]{width:16px;height:16px}
+.gm-keyboard-resize[data-edge=ne],.gm-keyboard-resize[data-edge=nw]{top:-4px}
+.gm-keyboard-resize[data-edge=se],.gm-keyboard-resize[data-edge=sw]{bottom:-4px}
+.gm-keyboard-resize[data-edge=ne],.gm-keyboard-resize[data-edge=se]{right:-4px}
+.gm-keyboard-resize[data-edge=nw],.gm-keyboard-resize[data-edge=sw]{left:-4px}
+.gm-keyboard-resize[data-edge=nw],.gm-keyboard-resize[data-edge=se]{cursor:nwse-resize}
+.gm-keyboard-resize[data-edge=ne],.gm-keyboard-resize[data-edge=sw]{cursor:nesw-resize}
+.gm-keyboard-resize:focus-visible{outline:2px solid var(--nb-accent,#167d7b);border-radius:4px}

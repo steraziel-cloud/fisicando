@@ -10,7 +10,14 @@ window.GatitoNotebookDock={mount(host,{state}={}){
   dock=host.querySelector('.notebook-dock')||dock;
   if(!dock){dock=document.createElement('aside');dock.className='notebook-dock gm-keyboard';dock.setAttribute('aria-label','Tastierino del quaderno');(host.querySelector('.nb-paper,.fn-paper')||host).append(dock);}
   if(!initialized){
-  dock.innerHTML='<button type="button" class="notebook-dock-toggle" aria-label="Apri o chiudi tastierino" title="Apri o chiudi tastierino"><span aria-hidden="true">⌨</span><span>Tastiera</span></button><div class="notebook-dock-body"><header class="gm-keyboard-header"><div><span class="gm-keyboard-eyebrow">GATITOMATH</span><strong>Scrivi sul quaderno</strong></div><div class="gm-edit-tools"><button type="button" data-gm-edit="cut" title="Taglia" aria-label="Taglia">✂</button><button type="button" data-gm-edit="copy" title="Copia" aria-label="Copia">⧉</button><button type="button" data-gm-edit="paste" title="Incolla" aria-label="Incolla">▣</button><button type="button" data-gm-edit="hide" title="Nascondi tastiera" aria-label="Nascondi tastiera">⌄</button></div></header><div class="gm-keyboard-keys"></div><span class="gm-keyboard-status" role="status"></span><div class="gm-keyboard-sizing" aria-label="Dimensione del tastierino"><span>Dimensione</span><button type="button" data-gm-size="smaller" aria-label="Riduci tastierino" title="Riduci tastierino">−</button><output class="gm-keyboard-size-value">100%</output><button type="button" data-gm-size="larger" aria-label="Ingrandisci tastierino" title="Ingrandisci tastierino">+</button><button type="button" data-gm-size="reset" aria-label="Ripristina dimensione tastierino" title="Dimensione iniziale">↺</button><button type="button" class="gm-keyboard-resize" aria-label="Ridimensiona tastierino" title="Trascina per ridimensionare; puoi usare anche le frecce">↘</button></div></div>';
+  dock.innerHTML='<button type="button" class="notebook-dock-toggle" aria-label="Apri o chiudi tastierino" title="Apri o chiudi tastierino"><span aria-hidden="true">⌨</span><span>Tastiera</span></button><div class="notebook-dock-body"><header class="gm-keyboard-header"><div><span class="gm-keyboard-eyebrow">GATITOMATH</span><strong>Scrivi sul quaderno</strong></div><div class="gm-edit-tools"><button type="button" data-gm-edit="cut" title="Taglia" aria-label="Taglia">✂</button><button type="button" data-gm-edit="copy" title="Copia" aria-label="Copia">⧉</button><button type="button" data-gm-edit="paste" title="Incolla" aria-label="Incolla">▣</button><button type="button" data-gm-edit="hide" title="Nascondi tastiera" aria-label="Nascondi tastiera">⌄</button></div></header><div class="gm-keyboard-keys"></div><span class="gm-keyboard-status" role="status"></span></div>';
+  const panel=dock.querySelector('.notebook-dock-body');
+  for(const edge of ['n','ne','e','se','s','sw','w','nw']){
+   const grip=document.createElement('span');grip.className='gm-keyboard-resize';grip.dataset.edge=edge;
+   if(edge==='se'){grip.tabIndex=0;grip.setAttribute('role','button');grip.setAttribute('aria-label','Ridimensiona tastierino');}
+   else grip.setAttribute('aria-hidden','true');
+   panel.append(grip);
+  }
   const body=dock.querySelector('.gm-keyboard-keys');
   const source=document.createElement('div');source.className='gm-source-keys';source.hidden=true;body.append(source);
   const btn=(label,command,value='',enabled=true,title=label)=>`<button type="button" data-gm-command="${command}" data-value="${value}" title="${title}" aria-label="${title}" ${enabled?'':'disabled'}>${label}</button>`;
@@ -61,8 +68,6 @@ window.GatitoNotebookDock={mount(host,{state}={}){
    const width=keyboardSizeForViewport(keyboardWidth,document.documentElement.clientWidth||window.innerWidth,document.documentElement.clientHeight||window.innerHeight);
    dock.dataset.gmSized='';dock.style.setProperty('width',width+'px','important');dock.style.setProperty('--gm-user-scale',String(width/448));
   }else{dock.removeAttribute('data-gm-sized');dock.style.removeProperty('width');dock.style.removeProperty('--gm-user-scale');}
-  const output=dock.querySelector('.gm-keyboard-size-value');
-  if(output)output.textContent=Math.round(dock.getBoundingClientRect().width/448*100)+'%';
  }
  function saveKeyboardSize(){try{if(keyboardWidth)localStorage.setItem(sizeStorageKey,String(keyboardWidth));else localStorage.removeItem(sizeStorageKey);}catch{}}
  function setKeyboardSize(width,persist=true){
@@ -87,14 +92,23 @@ window.GatitoNotebookDock={mount(host,{state}={}){
   if(!handle||event.button>0||event.isPrimary===false)return;
   event.preventDefault();event.stopPropagation();
   const rect=dock.querySelector('.notebook-dock-body').getBoundingClientRect();
-  keyboardPosition={x:rect.left,y:rect.top};keyboardDrag={id:event.pointerId,x:event.clientX,y:event.clientY,left:rect.left,top:rect.top,width:rect.width,height:rect.height,resize:handle.classList.contains('gm-keyboard-resize')};
+  keyboardPosition={x:rect.left,y:rect.top};keyboardDrag={id:event.pointerId,x:event.clientX,y:event.clientY,left:rect.left,top:rect.top,width:rect.width,height:rect.height,edge:handle.dataset.edge||'',resize:handle.classList.contains('gm-keyboard-resize')};
   dock.classList.add('gm-keyboard-dragging');placeKeyboard();
-  handle.focus({preventScroll:true});handle.setPointerCapture?.(event.pointerId);
+  if(handle.tabIndex>=0)handle.focus({preventScroll:true});handle.setPointerCapture?.(event.pointerId);
  }
  function moveKeyboard(event){
   if(!keyboardDrag||event.pointerId!==keyboardDrag.id)return;
   event.preventDefault();
-  if(keyboardDrag.resize){const dx=event.clientX-keyboardDrag.x,dy=event.clientY-keyboardDrag.y,delta=Math.abs(dx)>=Math.abs(dy)?dx:dy*keyboardDrag.width/keyboardDrag.height;setKeyboardSize(keyboardDrag.width+delta,false);return;}
+  if(keyboardDrag.resize){
+   const drag=keyboardDrag,edge=drag.edge,dx=event.clientX-drag.x,dy=event.clientY-drag.y;
+   const horizontal=edge.includes('w')?-dx:edge.includes('e')?dx:null;
+   const vertical=(edge.includes('n')?-dy:dy)*drag.width/drag.height;
+   const delta=horizontal===null?vertical:edge.length===1?horizontal:Math.abs(horizontal)>=Math.abs(vertical)?horizontal:vertical;
+   setKeyboardSize(drag.width+delta,false);
+   const rect=dock.querySelector('.notebook-dock-body').getBoundingClientRect();
+   keyboardPosition={x:edge.includes('w')?drag.left+drag.width-rect.width:drag.left,y:edge.includes('n')?drag.top+drag.height-rect.height:drag.top};
+   placeKeyboard();return;
+  }
   keyboardPosition={x:keyboardDrag.left+event.clientX-keyboardDrag.x,y:keyboardDrag.top+event.clientY-keyboardDrag.y};placeKeyboard();
  }
  function endKeyboard(event){
@@ -138,8 +152,6 @@ window.GatitoNotebookDock={mount(host,{state}={}){
  function updateEditTools(){if(!dock)return;const selected=!!host.querySelector('.nb-selected')||!!(target?.isConnected&&target.selectionStart!==target.selectionEnd);dock.querySelectorAll('[data-gm-edit="cut"],[data-gm-edit="copy"]').forEach(button=>button.hidden=!selected);dock.querySelectorAll('[data-gm-command="undo"],[data-gm-command="redo"]').forEach(button=>{button.hidden=selected;button.disabled=!host.querySelector('[data-nb-action="'+button.dataset.gmCommand+'"]:not(:disabled),[data-fn-action="'+button.dataset.gmCommand+'"]:not(:disabled)');});}
  function focus(e){if(!numeric(e.target))return;target=e.target;const key=target.dataset.fnField||target.dataset.nbSlot||target.getAttribute('aria-label')||target.name||target.id;if(key!==lastKey){open=true;lastKey=key;}apply();if(target.dataset.factorExponent&&target.value==='1')target.select();}
  async function click(e){
-  const sizing=e.target.closest('[data-gm-size]');
-  if(sizing){const direction=sizing.dataset.gmSize,width=dock.getBoundingClientRect().width;setKeyboardSize(direction==='reset'?0:width+(direction==='larger'?64:-64));return;}
   const command=e.target.closest('[data-gm-command]');
   if(command){if(command.disabled)return;const cmd=command.dataset.gmCommand,val=command.dataset.value;
    const forward=selector=>{const button=host.querySelector('.gm-source-keys '+selector);if(button&&!button.disabled){button.click();return true;}return false;};
