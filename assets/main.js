@@ -1,3 +1,32 @@
+
+/* One catalog return route for theory, exercises and labs, including legacy pages. */
+window.GatitoMaterialNavigation=(()=>{
+ const catalog=new URL('../lezioni.html',document.currentScript.src);
+ function catalogURL(){
+  const params=new URLSearchParams(location.search),fallback=new URL(catalog);
+  ['livello','ruolo','lezione'].forEach(key=>{if(params.has(key))fallback.searchParams.set(key,params.get(key));});
+  fallback.hash=/copilota|laboratorio/.test(location.pathname)?'lesson-lab':/esercizi|allenamento/.test(location.pathname)?'lesson-exercises':'lesson-theory';
+  try{const raw=params.get('ritorno');if(raw){const url=new URL(raw,location.href);if(url.origin===catalog.origin&&url.pathname===catalog.pathname&&!url.username&&!url.password)return url;}}catch{}
+  return fallback;
+ }
+ function prepare(link){
+  if(!link?.href||location.pathname===catalog.pathname)return;
+  let url;try{url=new URL(link.href);}catch{return;}
+  if(url.origin!==catalog.origin)return;
+  if(url.pathname===catalog.pathname){link.href=catalogURL().href;return;}
+  const learning=/\/(reader|copilota-frazioni|laboratorio-fattori|integrali-allenamento)\.html$/.test(url.pathname)||/\/(pillole|meccanica_punto_materiale)\/.*\.html$/.test(url.pathname);
+  if(!learning)return;
+  const params=new URLSearchParams(location.search);
+  if(!params.has('ritorno')&&!params.has('lezione')&&!document.body.classList.contains('rm-learning-page'))return;
+  url.searchParams.set('ritorno',catalogURL().href);
+  ['livello','ruolo'].forEach(key=>{if(params.has(key)&&!url.searchParams.has(key))url.searchParams.set(key,params.get(key));});
+  link.href=url.href;
+ }
+ document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('main a[href],.container a[href]').forEach(prepare));
+ ['click','auxclick','contextmenu'].forEach(type=>document.addEventListener(type,event=>prepare(event.target.closest('a[href]')),true));
+ return{catalogURL,prepare};
+})();
+
 window.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("theme-toggle");
 

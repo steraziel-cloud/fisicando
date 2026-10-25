@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if ([...area.options].some(o=>o.value===previous))area.value=previous;
   }
   let selectedKey = null, selectedLessonId = null;
-  function catalogReturnURL() {
+  function catalogReturnURL(anchor='lesson-options') {
     const url = new URL(location.href);
     ['q','materia','area','disponibili','tutti','lezione'].forEach(key => url.searchParams.delete(key));
     if (search.value) url.searchParams.set('q', search.value);
@@ -125,11 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (available.checked) url.searchParams.set('disponibili', '1');
     if (all.checked) url.searchParams.set('tutti', '1');
     if (selectedLessonId) url.searchParams.set('lezione', selectedLessonId);
-    url.hash = 'lesson-lab';
+    url.hash = anchor;
     return url;
   }
-  function rememberLabOrigin(card, lesson) {
-    const origin = catalogReturnURL();
+  function rememberMaterialOrigin(card, lesson) {
+    const origin = catalogReturnURL(card.id);
     const lab = new URL(card.href);
     lab.searchParams.set('ritorno', origin.href);
     if (lesson.id) lab.searchParams.set('lezione', lesson.id);
@@ -162,13 +162,13 @@ document.addEventListener('DOMContentLoaded', () => {
         url.searchParams.set('livello',level && l.levels.includes(level) ? level : l.levels[0]);
         if (['studente','altro'].includes(params.get('ruolo'))) url.searchParams.set('ruolo',params.get('ruolo'));
         card.href = url.href;
-        if (kind === 'Laboratorio') {
-          card.id = 'lesson-lab';
-          const origin = catalogReturnURL();
+        {
+          card.id = kind === 'Laboratorio' ? 'lesson-lab' : kind === 'Esercizi' ? 'lesson-exercises' : kind === 'Progetto' ? 'lesson-project' : 'lesson-theory';
+          const origin = catalogReturnURL(card.id);
           url.searchParams.set('ritorno', origin.href);
           if (l.id) url.searchParams.set('lezione', l.id);
           card.href = url.href;
-          ['click','auxclick','contextmenu'].forEach(type => card.addEventListener(type, () => rememberLabOrigin(card, l)));
+          ['click','auxclick','contextmenu'].forEach(type => card.addEventListener(type, () => rememberMaterialOrigin(card, l)));
         }
       } else card.setAttribute('aria-disabled','true');
       const label = document.createElement('span'); label.className = 'rm-material-label';label.textContent = `0${i+1} · ${kind}`;
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (selected) selected.click(); else selectLesson(...hiddenSelection);
     window.addEventListener('load', () => requestAnimationFrame(() => {
       if (Number.isFinite(saved?.scrollY)) window.scrollTo(0, Math.max(0, saved.scrollY));
-      else (document.getElementById('lesson-lab') || document.getElementById('lesson-options')).scrollIntoView({block:'center'});
+      else (document.getElementById(location.hash.slice(1)) || document.getElementById('lesson-options')).scrollIntoView({block:'center'});
     }), {once:true});
   }
 });

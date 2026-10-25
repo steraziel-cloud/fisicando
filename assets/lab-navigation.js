@@ -21,6 +21,7 @@ window.GatitoLabNavigation = {
     theoryURL.searchParams.set('lezione', lesson);
     theoryURL.searchParams.set('livello', level);
     if (['studente','altro'].includes(params.get('ruolo'))) theoryURL.searchParams.set('ruolo', params.get('ruolo'));
+    theoryURL.searchParams.set('ritorno',destination.href);
     theory.href = theoryURL.href;
   }
 };
