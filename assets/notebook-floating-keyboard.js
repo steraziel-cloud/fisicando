@@ -13,7 +13,7 @@ window.GatitoNotebookDock={mount(host){
   const source=document.createElement('div');source.className='gm-source-keys';source.hidden=true;body.append(source);
   const btn=(label,command,value='',enabled=true,title=label)=>`<button type="button" data-gm-command="${command}" data-value="${value}" title="${title}" aria-label="${title}" ${enabled?'':'disabled'}>${label}</button>`;
   const has=()=>false,draft=false,factor=false;
-  const left=document.createElement('div');left.className='gm-structures';left.innerHTML=btn('<span class="gm-frac-icon"><span>□</span><span>□</span></span>','fraction','',has('[data-nb-action="fraction"]'),'Frazione')+btn('□<sup>□</sup>','power','',has('[data-fn-action="power"]'),'Potenza');
+  const left=document.createElement('div');left.className='gm-structures';left.innerHTML=btn('+','insert','',true,'Inserisci')+btn('<span class="gm-frac-icon"><span>□</span><span>□</span></span>','fraction','',has('[data-nb-action="fraction"]'),'Frazione')+btn('□<sup>□</sup>','power','',has('[data-fn-action="power"]'),'Potenza');
   const center=document.createElement('div');center.className='gm-number-matrix';
   center.innerHTML=['7','8','9','÷','4','5','6','·','1','2','3','−','0','.','=','+'].map(k=>btn(k,/^\d$/.test(k)?'digit':k==='='?'compare':'operator',k,/^\d$/.test(k)?true:k==='='?host.querySelectorAll('.nb-row').length===2:k==='.'?false:draft||factor&&k==='·',k==='.'?'Separatore decimale (non disponibile nei numeri naturali)':k)).join('');
   const right=document.createElement('div');right.className='gm-controls';right.innerHTML=btn('←','arrow','ArrowLeft',true,'Sposta a sinistra')+btn('→','arrow','ArrowRight',true,'Sposta a destra')+btn('⌫','backspace','',true,'Backspace')+btn('Conferma','confirm','',true,'Conferma');
@@ -24,16 +24,18 @@ window.GatitoNotebookDock={mount(host){
   const source=dock.querySelector('.gm-source-keys');if(palette&&!source.contains(palette))source.replaceChildren(palette);else if(!palette)source.replaceChildren();
   const draft=!!source.querySelector('[data-nb-action="write"]'),factor=!!source.querySelector('.fn-keypad');
   const set=(cmd,enabled)=>{const button=dock.querySelector('[data-gm-command="'+cmd+'"]');if(button)button.disabled=!enabled;};
+  host.querySelector('.nb-topbar [data-nb-action="insert"]')?.setAttribute('hidden','');
+  set('confirm',!draft);
   set('fraction',!!source.querySelector('[data-nb-action="fraction"]'));set('power',!!source.querySelector('[data-fn-action="power"]'));
   dock.querySelectorAll('[data-gm-command="operator"]').forEach(button=>{button.disabled=button.dataset.value==='.'||!(draft||factor&&button.dataset.value==='·');});
   set('compare',host.querySelectorAll('.nb-row').length===2);
   if(host.classList.contains('nb-notebook')&&!host.querySelector('.nb-row,.nb-composer')){const slot=document.createElement('button');slot.type='button';slot.className='gm-empty-slot';slot.dataset.gmCommand='insert';slot.setAttribute('aria-label','Scrivi nel quaderno');slot.textContent='□';content.querySelector('.nb-workspace-flow').append(slot);}
   const answer=host.querySelector('.nb-comparison-answer');if(answer){
-   answer.classList.add('gm-comparison','gm-comparison-floating');
+   answer.classList.add('gm-comparison','gm-comparison-floating');const words=[...answer.children].filter(el=>el.tagName==='SPAN');if(words[0])words[0].textContent='Il primo numero è';if(words[1])words[1].textContent='il secondo.';
    const model=host.gmNotebook?.model,keys=[...new Set([...host.querySelectorAll('.nb-selected[data-nb-select]')].map(el=>el.dataset.nbSelect))];
-   answer.hidden=keys.length!==2||!keys.every(key=>model?.locate(key)?.node.type==='fraction');
+   answer.hidden=keys.length!==2||!keys.every(key=>model?.rows.some(row=>row.items.length===1&&row.items[0].id===key&&['fraction','number'].includes(row.items[0].type)));
    answer.setAttribute('role','dialog');answer.setAttribute('aria-label','Confronta le frazioni selezionate');
-   const header=document.createElement('div');header.className='gm-comparison-handle';header.textContent='Confronta le frazioni · trascina per spostare';header.tabIndex=0;header.setAttribute('aria-label','Sposta il confronto con le frecce della tastiera');answer.prepend(header);content.append(answer);
+   const header=document.createElement('div');header.className='gm-comparison-handle';header.textContent='Confronta i numeri · trascina per spostare';header.tabIndex=0;header.setAttribute('aria-label','Sposta il confronto con le frecce della tastiera');answer.prepend(header);content.append(answer);
    set('compare',!answer.hidden);placeComparison();
   }
   if(paper){paper.classList.add('notebook-sheet-docked');const toolbar=host.querySelector(':scope > .fn-toolbar');if(toolbar)content.prepend(toolbar);}host.classList.add('notebook-docked');apply();
@@ -53,7 +55,7 @@ window.GatitoNotebookDock={mount(host){
   if(command){if(command.disabled)return;const cmd=command.dataset.gmCommand,val=command.dataset.value;
    const forward=selector=>{const button=host.querySelector('.gm-source-keys '+selector);if(button&&!button.disabled){button.click();return true;}return false;};
    if(cmd==='digit'){if(forward('[data-nb-key="'+val+'"],[data-fn-action="digit"][data-key="'+val+'"]'))return;const input=target;if(input?.isConnected){const a=input.selectionStart??input.value.length,b=input.selectionEnd??a;input.value=(input.value.slice(0,a)+val+input.value.slice(b)).slice(0,input.maxLength>0?input.maxLength:144);input.dispatchEvent(new Event('input',{bubbles:true}));input.focus({preventScroll:true});input.setSelectionRange(a+1,a+1);}return;}
-   if(cmd==='insert'){host.querySelector('[data-nb-action="insert"],[data-fn-action="insert"]')?.click();return;}
+   if(cmd==='insert'){if(host.classList.contains('nb-notebook')){const proxy=document.createElement('button');proxy.dataset.nbAction='insert';host.append(proxy);proxy.click();proxy.remove();}else host.querySelector('[data-fn-action="insert"]')?.click();return;}
    if(cmd==='fraction'){forward('[data-nb-action="fraction"]');return;}
    if(cmd==='power'){forward('[data-fn-action="power"]');return;}
    if(cmd==='operator'){if(val==='·'&&forward('[data-fn-action="factor"]'))return;const original=host.querySelector('.gm-source-keys [data-nb-action="key"]');if(original){const proxy=document.createElement('button');proxy.dataset.nbAction='key';proxy.dataset.nbKey=val;host.append(proxy);proxy.click();proxy.remove();}return;}
@@ -89,6 +91,7 @@ window.GatitoNotebookDock={mount(host){
  host.addEventListener('focusin',focus);host.addEventListener('click',click);host.addEventListener('pointerdown',pointer);
  return {sync,open(){open=true;apply();},dispose(){host.removeEventListener('click',protectComparisonClick,true);host.removeEventListener('pointerdown',dragComparison,true);host.removeEventListener('keydown',keyComparison,true);document.removeEventListener('pointermove',moveComparison);document.removeEventListener('pointerup',endComparison);document.removeEventListener('pointercancel',endComparison);window.removeEventListener('resize',placeComparison);document.removeEventListener('selectionchange',selectionChange);dock?.remove();host.removeEventListener('focusin',focus);host.removeEventListener('click',click);host.removeEventListener('pointerdown',pointer);}};
 }};
+
 
 
 

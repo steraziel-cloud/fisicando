@@ -5,3 +5,5 @@
 .notebook-docked .gm-keyboard .gm-controls button[data-gm-command=confirm]{font-size:13px!important}
 
 .gm-comparison-floating{position:fixed!important;z-index:70;display:flex;flex-wrap:wrap;width:max-content;max-width:min(560px,calc(100vw - 24px));margin:0!important;padding:0 14px 14px!important;background:var(--nb-paper)!important;border:1px solid var(--nb-line)!important;box-shadow:0 12px 40px #0003}.gm-comparison-handle{flex:0 0 calc(100% + 28px);box-sizing:border-box;margin:0 -14px 4px;padding:10px 14px;border-bottom:1px solid var(--nb-line);border-radius:12px 12px 0 0;background:color-mix(in srgb,var(--nb-accent) 8%,var(--nb-paper));font:600 12px/1.4 system-ui;cursor:grab;touch-action:none;user-select:none}.gm-comparison-handle:active{cursor:grabbing}.gm-comparison-handle:focus-visible{outline:2px solid var(--nb-accent);outline-offset:-3px}
+
+#fraction-workspace .nb-comparison-label,#fraction-workspace .nb-topbar [data-nb-action=insert][hidden]{display:none!important}
