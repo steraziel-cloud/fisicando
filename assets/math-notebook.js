@@ -134,7 +134,14 @@ window.GatitoMathNotebook=(()=>{
   function invariantStepHTML(h){return `<span class="nb-fraction nb-history nb-invariant-step" role="math" aria-label="Proprietà invariantiva: numeratore e denominatore moltiplicati entrambi per ${esc(h.factor)}"><span>${esc(h.top.items[0].value)} <span class="nb-product-operation">· <strong class="nb-invariant-factor">${esc(h.factor)}</strong></span></span><span>${esc(h.bottom.items[0].value)} <span class="nb-product-operation">· <strong class="nb-invariant-factor">${esc(h.factor)}</strong></span></span></span>`;}
   function historyNumber(t,side){return `<span class="nb-number nb-number-${side}" style="--nb-depth:${t.marks.length}">${t.marks.map((m,i)=>`<span class="nb-level ${i?'nb-secondary ':''}nb-crossed" style="--nb-level:${i}">${esc(m.before)}</span>`).join('')}<span class="nb-level ${t.marks.length?'nb-secondary ':''}nb-written" style="--nb-level:${t.marks.length}">${esc(t.value)}</span></span>`;}
   // The clean result is another view of the same model tokens, never a second expression.
-  function cleanHTML(s){return `<span class="nb-sequence">${s.items.map(t=>t.type==='number'?`<button type="button" class="nb-pick ${selected(t.id)?'nb-selected':''}" data-nb-select="${t.id}" aria-label="Seleziona il numero ${esc(t.value)}">${esc(t.value)||'□'}</button>`:t.type==='operator'?`<span class="nb-operator">${esc(t.value)}</span>`:`<span class="${simple(t)&&(BigInt(t.bottom.items[0].value)===1n||BigInt(t.top.items[0].value)===0n)?'nb-integer-result':'nb-fraction'} nb-pick ${selected(t.id)?'nb-selected':''}" data-nb-select="${t.id}" role="button" tabindex="0" aria-label="Seleziona tutta la frazione ridotta"><span>${cleanHTML(t.top)}</span>${simple(t)&&(BigInt(t.bottom.items[0].value)===1n||BigInt(t.top.items[0].value)===0n)?'':`<span>${cleanHTML(t.bottom)}</span>`}</span>`).join('')}</span>`;}
+  function cleanHTML(s){return `<span class="nb-sequence">${s.items.map(t=>{
+   if(t.type==='number')return `<button type="button" class="nb-pick ${selected(t.id)?'nb-selected':''}" data-nb-select="${t.id}" aria-label="Seleziona il numero ${esc(t.value)}">${esc(t.value)||'□'}</button>`;
+   if(t.type==='operator')return `<span class="nb-operator">${esc(t.value)}</span>`;
+   const integer=simple(t)&&(BigInt(t.bottom.items[0].value)===1n||BigInt(t.top.items[0].value)===0n);
+   // An integer result represents the whole rational number, not its hidden numerator.
+   if(integer)return `<button type="button" class="nb-integer-result nb-pick ${selected(t.id)?'nb-selected':''}" data-nb-select="${t.id}" aria-label="Seleziona il numero ${esc(t.top.items[0].value)}">${esc(t.top.items[0].value)}</button>`;
+   return `<span class="nb-fraction nb-pick ${selected(t.id)?'nb-selected':''}" data-nb-select="${t.id}" role="button" tabindex="0" aria-label="Seleziona tutta la frazione ridotta"><span>${cleanHTML(t.top)}</span><span>${cleanHTML(t.bottom)}</span></span>`;
+  }).join('')}</span>`;}
   function hint(text){return `<span class="nb-context-help"><button type="button" aria-label="Aiuto" title="${esc(text)}">?</button><span role="tooltip">${esc(text)}</span></span>`;}
   function context(){
    if(v.sheetMenu)return ''; 
@@ -305,7 +312,7 @@ window.GatitoMathNotebook=(()=>{
    const rect={left:Math.min(d.x,e.clientX),right:Math.max(d.x,e.clientX),top:Math.min(d.y,e.clientY),bottom:Math.max(d.y,e.clientY)},paper=host.querySelector('.nb-paper'),p=paper.getBoundingClientRect();
    let marquee=paper.querySelector('.nb-marquee');if(!marquee){marquee=document.createElement('div');marquee.className='nb-marquee';paper.append(marquee);}
    Object.assign(marquee.style,{left:(rect.left-p.left+paper.scrollLeft)+'px',top:(rect.top-p.top+paper.scrollTop)+'px',width:(rect.right-rect.left)+'px',height:(rect.bottom-rect.top)+'px'});
-   d.keys=[...host.querySelectorAll('.nb-row button.nb-number[data-nb-select],.nb-final-result button[data-nb-select]')].filter(n=>{const r=n.getBoundingClientRect();return r.right>=rect.left-2&&r.left<=rect.right+2&&r.bottom>=rect.top-2&&r.top<=rect.bottom+2;}).map(n=>n.dataset.nbSelect);
+   d.keys=[...host.querySelectorAll('.nb-row button.nb-number[data-nb-select],.nb-final-result button[data-nb-select],.nb-final-result .nb-integer-result[data-nb-select]')].filter(n=>{const r=n.getBoundingClientRect();return r.right>=rect.left-2&&r.left<=rect.right+2&&r.bottom>=rect.top-2&&r.top<=rect.bottom+2;}).map(n=>n.dataset.nbSelect);
    const keys=selectionRoots(model.rows,[...d.base,...d.keys]);host.querySelectorAll('.nb-row [data-nb-select]').forEach(n=>n.classList.toggle('nb-selected',keys.includes(n.dataset.nbSelect)));host.querySelector('.nb-context')?.setAttribute('hidden','');
   }
   function up(e){stopPress();const d=v.drag;if(!d||e.pointerId!==d.pointerId)return;v.drag=null;host.querySelector('.nb-marquee')?.remove();if(d.active){select([...d.base,...d.keys]);v.suppressClick={x:e.clientX,y:e.clientY,until:Date.now()+500};}}
@@ -316,6 +323,7 @@ window.GatitoMathNotebook=(()=>{
  }
  return{mount,Notebook,math:{evaluate,gcd,completedReduction,zeroFraction,comparisonResult,factorPlan,selectedDenominators,factorToolChoices},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot,arrowSlot,canSimplify}};
 })();
+
 
 
 
