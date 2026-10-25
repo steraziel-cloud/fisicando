@@ -252,7 +252,7 @@ Object.assign(window.READER_LESSONS,{
           "steps": [
             {
               "title": "Ora prova tu",
-              "html": "Apri il quaderno, inserisci una frazione e prova a ridurla ai minimi termini."
+              "html": "Nel quaderno inserisci una frazione e selezionala: scegli <strong>Semplifica</strong> e scrivi i quozienti dei due termini. Puoi usare <strong>Calcola MCD</strong> per trovare un divisore comune. Il quaderno offre anche gli altri strumenti: qui esercitati nella riduzione ai minimi termini."
             }
           ]
         }
@@ -364,7 +364,7 @@ Object.assign(window.READER_LESSONS,{
           "steps": [
             {
               "title": "Qual è la frazione maggiore?",
-              "html": "Confronta <span class=\"qr-fraction\" role=\"math\" aria-label=\"11 fratto 6\"><span aria-hidden=\"true\">11</span><span aria-hidden=\"true\">6</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"9 fratto 4\"><span aria-hidden=\"true\">9</span><span aria-hidden=\"true\">4</span></span>. Sono già ridotte ai minimi termini: scegli un denominatore comune e costruisci le due frazioni equivalenti.<br><br>Per calcolare il mcm, clicca o tocca prima un denominatore e poi l’altro, quindi premi <strong>Calcola mcm</strong>. Poi seleziona una frazione e scegli <strong>Denominatore comune</strong>: indica il denominatore comune, dividilo per il denominatore attuale e scrivi il prodotto del numeratore. Ripeti per l’altra frazione, poi scegli il simbolo del confronto."
+              "html": "Confronta <span class=\"qr-fraction\" role=\"math\" aria-label=\"11 fratto 6\"><span aria-hidden=\"true\">11</span><span aria-hidden=\"true\">6</span></span> e <span class=\"qr-fraction\" role=\"math\" aria-label=\"9 fratto 4\"><span aria-hidden=\"true\">9</span><span aria-hidden=\"true\">4</span></span>. Sono già ridotte ai minimi termini: scegli un denominatore comune e costruisci le due frazioni equivalenti.<br><br>Seleziona entrambe le frazioni, poi scegli <strong>Denominatore comune</strong>. Puoi scriverlo tu oppure usare <strong>Calcola mcm</strong>. Per ogni frazione scrivi il quoziente e il prodotto richiesti: il quaderno passa poi all’altra. Infine seleziona le due frazioni trasformate, scegli il simbolo e premi <strong>Verifica confronto</strong>."
             }
           ],
           "board": "qr-compare",

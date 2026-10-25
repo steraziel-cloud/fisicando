@@ -1,6 +1,6 @@
-/* Experimental floating keyboard, loaded only by the fractions laboratory. */
-window.GatitoNotebookDock={mount(host){
- let open=false,target=null,lastKey='',dock=null,initialized=false,comparisonPosition=null,comparisonDrag=null,keyboardPosition=null,keyboardDrag=null;
+/* Shared floating keyboard for standalone, lesson and contextual notebooks. */
+window.GatitoNotebookDock={mount(host,{state}={}){
+ let open=!!state?.open,target=null,lastKey='',dock=null,initialized=false,comparisonPosition=null,comparisonDrag=null,keyboardPosition=state?.position?{...state.position}:null,keyboardDrag=null;
  const numeric=t=>t?.matches('input[inputmode="numeric"]')&&!t.disabled;
  function sync(){
   const palette=host.querySelector('.nb-keypad,.fn-keypad'),paper=host.querySelector('.nb-paper,.fn-paper');
@@ -145,7 +145,7 @@ window.GatitoNotebookDock={mount(host){
  const selectionChange=()=>updateEditTools();document.addEventListener('selectionchange',selectionChange);
  const pointer=e=>{if(e.target.closest('.notebook-dock button'))e.preventDefault();};
  host.addEventListener('focusin',focus);host.addEventListener('click',click);host.addEventListener('pointerdown',pointer);
- return {sync,open(){open=true;apply();},dispose(){keyboardResize?.disconnect();host.removeEventListener('pointerdown',dragKeyboard,true);host.removeEventListener('keydown',keyKeyboard,true);document.removeEventListener('pointermove',moveKeyboard);document.removeEventListener('pointerup',endKeyboard);document.removeEventListener('pointercancel',endKeyboard);window.removeEventListener('resize',placeKeyboard);host.removeEventListener('click',protectComparisonClick,true);host.removeEventListener('pointerdown',dragComparison,true);host.removeEventListener('keydown',keyComparison,true);document.removeEventListener('pointermove',moveComparison);document.removeEventListener('pointerup',endComparison);document.removeEventListener('pointercancel',endComparison);window.removeEventListener('resize',placeComparison);document.removeEventListener('selectionchange',selectionChange);dock?.remove();host.removeEventListener('focusin',focus);host.removeEventListener('click',click);host.removeEventListener('pointerdown',pointer);}};
+ return {sync,getState(){return{open,position:keyboardPosition?{...keyboardPosition}:null};},open(){open=true;apply();},dispose(){if(visibilityFrame!==null)window.cancelAnimationFrame?.(visibilityFrame);keyboardResize?.disconnect();host.removeEventListener('pointerdown',dragKeyboard,true);host.removeEventListener('keydown',keyKeyboard,true);document.removeEventListener('pointermove',moveKeyboard);document.removeEventListener('pointerup',endKeyboard);document.removeEventListener('pointercancel',endKeyboard);window.removeEventListener('resize',placeKeyboard);host.removeEventListener('click',protectComparisonClick,true);host.removeEventListener('pointerdown',dragComparison,true);host.removeEventListener('keydown',keyComparison,true);document.removeEventListener('pointermove',moveComparison);document.removeEventListener('pointerup',endComparison);document.removeEventListener('pointercancel',endComparison);window.removeEventListener('resize',placeComparison);document.removeEventListener('selectionchange',selectionChange);dock?.remove();host.removeEventListener('focusin',focus);host.removeEventListener('click',click);host.removeEventListener('pointerdown',pointer);}};
 }};
 
 

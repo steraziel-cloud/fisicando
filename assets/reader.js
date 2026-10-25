@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(!q.notebook||!window.GatitoMathNotebook)return;
   const details=el('details','rm-quiz-notebook'),summary=el('summary','','Apri il quaderno · facoltativo'),holder=el('div','rm-quiz-notebook-page');
   details.append(summary,holder);qs.notebookOpen||={};details.open=!!qs.notebookOpen[q.notebook];let mounted=null;
-  const sync=()=>{qs.notebookOpen[q.notebook]=details.open;summary.textContent=details.open?'Chiudi il quaderno · facoltativo':'Apri il quaderno · facoltativo';if(details.open){if(!mounted)mounted=window.GatitoMathNotebook.mount(holder,{sessionKey:params.get('lezione')+':'+section.id+':quiz:'+q.notebook});}else{mounted?.dispose();mounted=null;}};
+  const sync=()=>{qs.notebookOpen[q.notebook]=details.open;summary.textContent=details.open?'Chiudi il quaderno · facoltativo':'Apri il quaderno · facoltativo';if(details.open){if(!mounted)mounted=window.GatitoMathNotebook.mount(holder,{sessionKey:params.get('lezione')+':'+section.id+':quiz:'+q.notebook,liveEntry:true,comparison:{fractions:[],free:true,selectionOnly:true}});}else{mounted?.dispose();mounted=null;}};
   details.addEventListener('toggle',sync);box.append(details);if(details.open)sync();
   disposeQuizNotebook=()=>{details.removeEventListener('toggle',sync);mounted?.dispose();mounted=null;};
  }

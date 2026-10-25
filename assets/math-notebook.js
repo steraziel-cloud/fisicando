@@ -101,15 +101,15 @@ window.GatitoMathNotebook=(()=>{
   if(!relation)throw Error('Scegli il simbolo del confronto.');if(relation!==expected)throw Error('Il denominatore è uguale: ricontrolla quale numeratore è maggiore.');return true;
  }
  function mount(parent,{sessionKey,comparison,liveEntry=false}={}){
-  const model=sessionKey&&sessions.get(sessionKey)||new Notebook();if(sessionKey)sessions.set(sessionKey,model);
+  const session=sessionKey&&sessions.get(sessionKey)||{model:new Notebook()},model=session.model;if(sessionKey)sessions.set(sessionKey,session);
   if(comparison&&!model.initializedComparison){for(const pair of comparison.fractions){const row=seq(),f=frac();f.top.items[0].value=String(pair[0]);f.bottom.items[0].value=String(pair[1]);row.items=[f];model.add(row);}model.past=[];model.initializedComparison=true;}
   const host=document.createElement('section');host.className='nb-notebook';host.setAttribute('aria-label','Quaderno di prova');parent.append(host);
-  const v={draft:null,active:null,selected:null,dividing:false,multiplying:false,relation:null,message:'',error:false,selection:[],filling:null,drag:null,suppressClick:false},formId=id();
-  host.tabIndex=0;let factorTool=null,pressTimer=null;const factorNotes=[];const dock=window.GatitoNotebookDock.mount(host);
+  const v={draft:null,active:null,selected:null,dividing:false,multiplying:false,relation:null,message:'',error:false,selection:[],filling:null,...copy(session.view||{}),drag:null,press:null,sheetMenu:null,suppressClick:false},formId=id();
+  host.tabIndex=0;let factorTool=null,pressTimer=null;const factorNotes=copy(session.notes||[]);const dock=window.GatitoNotebookDock.mount(host,{state:session.keyboard});
   const selected=key=>v.selection.includes(key);
   function clearSelection(){v.sheetMenu=null;v.selection=[];v.selected=null;v.filling=null;v.dividing=false;v.multiplying=false;v.helperDivisor='';v.equivalentTarget='';v.suggestedDenominator='';v.commonPair=null;v.commonIndex=0;v.commonTarget='';v.editing=false;v.message='';}
   function select(keys){v.commonPair=null;v.commonIndex=0;v.commonTarget='';v.editing=false;v.sheetMenu=null;v.selection=selectionRoots(model.rows,keys);v.selected=v.selection[0]||null;v.dividing=false;v.multiplying=false;v.filling=null;v.equivalentTarget='';v.suggestedDenominator='';v.message='';render();host.focus({preventScroll:true});}
-  let liveSaved=false;
+  let liveSaved=!!session.liveSaved;
   function syncLive(){if(!liveEntry||!v.draft)return false;const expression=clean(copy(v.draft));try{evaluate(expression);normalizeNumbers(expression);}catch(error){model.rows=model.rows.filter(row=>row.id!==v.draft.id);if(/zero|indeterminata/i.test(error.message))message(error.message,true);return false;}if(v.error&&/zero|indeterminata/i.test(v.message))message('',false);if(!liveSaved){model.save(model.rows.filter(row=>row.id!==v.draft.id));liveSaved=true;}const i=model.rows.findIndex(row=>row.id===expression.id);if(i<0)model.rows.push(expression);else model.rows[i]=expression;return true;}
   function finishLive(){if(!liveEntry||!v.draft)return true;if(!syncLive()){if(numberSlots(v.draft).every(key=>!find(v.draft,key).node.value)){v.draft=null;liveSaved=false;return true;}try{evaluate(clean(copy(v.draft)));}catch(error){message(error.message,true);}return false;}v.draft=null;liveSaved=false;return true;}
   const standalone=key=>model.rows.some(row=>row.items.length===1&&row.items[0].id===key&&(simple(row.items[0])||row.items[0].type==='number'));
@@ -318,8 +318,15 @@ window.GatitoMathNotebook=(()=>{
   function up(e){stopPress();const d=v.drag;if(!d||e.pointerId!==d.pointerId)return;v.drag=null;host.querySelector('.nb-marquee')?.remove();if(d.active){select([...d.base,...d.keys]);v.suppressClick={x:e.clientX,y:e.clientY,until:Date.now()+500};}}
   function outside(e){if(factorTool?.isOpen())return;if(!host.contains(e.target)&&!model.pending&&!v.draft&&(v.selection.length||v.filling||v.sheetMenu)){clearSelection();render();}}
   function cancelPointer(){stopPress();v.drag=null;host.querySelector('.nb-marquee')?.remove();render();}
-  host.addEventListener('dblclick',doubleclick);host.addEventListener('contextmenu',contextmenu);host.addEventListener('click',click);host.addEventListener('submit',submit);host.addEventListener('input',input);host.addEventListener('focusin',focus);host.addEventListener('keydown',keydown);host.addEventListener('pointerdown',pointer);document.addEventListener('pointermove',move);document.addEventListener('pointerup',up);document.addEventListener('pointerdown',outside);window.addEventListener('resize',positionContext);host.addEventListener('scroll',positionContext,true);host.addEventListener('pointercancel',cancelPointer);render();
-  return{model,dispose(){dock.dispose();stopPress();factorTool?.dispose();document.removeEventListener('pointermove',move);document.removeEventListener('pointerup',up);document.removeEventListener('pointerdown',outside);window.removeEventListener('resize',positionContext);host.remove();}};
+  host.addEventListener('dblclick',doubleclick);host.addEventListener('contextmenu',contextmenu);host.addEventListener('click',click);host.addEventListener('submit',submit);host.addEventListener('input',input);host.addEventListener('focusin',focus);host.addEventListener('keydown',keydown);host.addEventListener('pointerdown',pointer);document.addEventListener('pointermove',move);document.addEventListener('pointerup',up);document.addEventListener('pointerdown',outside);window.addEventListener('resize',positionContext);host.addEventListener('scroll',positionContext,true);host.addEventListener('pointercancel',cancelPointer);
+  const api={model,dispose(){
+   session.view=copy(v);session.notes=copy(factorNotes);session.liveSaved=liveSaved;session.keyboard=dock.getState?.();
+   session.inputs=[...host.querySelectorAll('input[name]')].map(input=>({name:input.name,value:input.value}));
+   dock.dispose();stopPress();factorTool?.dispose();document.removeEventListener('pointermove',move);document.removeEventListener('pointerup',up);document.removeEventListener('pointerdown',outside);window.removeEventListener('resize',positionContext);host.remove();
+  }};
+  host.gmNotebook=api;render();
+  for(const saved of session.inputs||[]){const input=[...host.querySelectorAll('input[name]')].find(input=>input.name===saved.name);if(input)input.value=saved.value;}
+  return api;
  }
  return{mount,Notebook,math:{evaluate,gcd,completedReduction,zeroFraction,comparisonResult,factorPlan,selectedDenominators,factorToolChoices},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot,arrowSlot,canSimplify}};
 })();
