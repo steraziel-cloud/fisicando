@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
             label.dataset.lessonKey = key; label.dataset.catalogLessonId = l.id || key; label.setAttribute('aria-pressed',String(selectedKey === key));
             label.addEventListener('click',()=>selectLesson(l,t,s.title,[a.title,...ancestors].join(' · '),key));
             const title=document.createElement('span');title.textContent=l.title;label.append(title);
-            const status=document.createElement('small');status.textContent=l.status==='work-in-progress'?'In lavorazione':l.url?l.kind || 'Disponibile':'Da preparare';status.className=l.url&&!l.unpublished?'rm-lesson-ready':'rm-lesson-planned';label.append(status);
+            if(l.status==='work-in-progress'||l.unpublished||!l.url){const status=document.createElement('small');status.textContent='In lavorazione';status.className='rm-lesson-planned';label.append(status);}
             if(all.checked || !level){const tags=document.createElement('small');tags.className='rm-lesson-levels';tags.textContent=l.levels.map(k=>levels[k]).join(' · ');label.append(tags);}
             li.append(label);list.append(li);
           });if(lessons.length)td.append(list);
