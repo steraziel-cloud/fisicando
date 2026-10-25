@@ -1,4 +1,4 @@
-.fraction-lab-main{padding:22px clamp(14px,2.2vw,36px) 280px}.fraction-lab-links{display:flex;gap:24px;flex-wrap:wrap;font-size:14px}.fraction-lab-links a{color:var(--rm-accent-2);text-underline-offset:4px}.fraction-lab-main h1{font-size:clamp(25px,2.6vw,34px);margin:16px 0}.fraction-lab-main .nb-paper{min-height:calc(100dvh - 230px)}.fraction-lab-main .nb-comparison .nb-paper{min-height:calc(100dvh - 290px)}
+.fraction-lab-main{padding:22px clamp(14px,2.2vw,36px) 280px}.fraction-lab-links{display:flex;gap:24px;flex-wrap:wrap;font-size:14px}.fraction-lab-links a{color:var(--rm-accent-2);text-underline-offset:4px}.fraction-lab-main h1{font-size:clamp(25px,2.6vw,34px);margin:16px 0}.fraction-lab-main .nb-paper{min-height:calc(100dvh - 130px)}.fraction-lab-main .nb-comparison .nb-paper{min-height:calc(100dvh - 190px)}
 
 
 /* Standalone notebook: the former 67% desktop view is the normal working size.
@@ -8,7 +8,7 @@
   .fraction-lab-page .fraction-lab-links {gap:18px;font-size:12px}
   .fraction-lab-page .fraction-lab-main h1 {font-size:24px;line-height:1.3;margin:12px 0 16px}
   .fraction-lab-page #fraction-workspace .nb-notebook {font-size:12px}
-  .fraction-lab-page #fraction-workspace .nb-paper {min-height:calc(100dvh - 200px);padding:18px 12px 24px!important;background-size:22px 22px;background-image:linear-gradient(to right,transparent 21px,color-mix(in srgb,var(--nb-accent) 7%,transparent) 22px),linear-gradient(to bottom,transparent 21px,color-mix(in srgb,var(--nb-accent) 7%,transparent) 22px)}
+  .fraction-lab-page #fraction-workspace .nb-paper {min-height:calc(100dvh - 146px);padding:18px 12px 24px!important;background-size:22px 22px;background-image:linear-gradient(to right,transparent 21px,color-mix(in srgb,var(--nb-accent) 7%,transparent) 22px),linear-gradient(to bottom,transparent 21px,color-mix(in srgb,var(--nb-accent) 7%,transparent) 22px)}
   .fraction-lab-page #fraction-workspace .nb-topbar {min-height:30px;margin-bottom:8px;padding-bottom:7px}
   .fraction-lab-page #fraction-workspace .nb-topbar button {min-height:30px;padding:5px 9px}
   .fraction-lab-page #fraction-workspace .nb-row {padding:12px 0 16px}
@@ -36,14 +36,4 @@
   .fraction-lab-page #fraction-workspace .gm-keyboard .gm-frac-icon {font-size:13px}
   .fraction-lab-page #fraction-workspace .gm-keyboard .notebook-dock-toggle {min-height:34px;padding:7px 10px!important;font-size:11px!important}
   .fraction-lab-page #fraction-workspace .gm-keyboard .notebook-dock-toggle span:first-child {font-size:18px}
-}
-@media (min-width:761px) {
-  /* Keep the navigation in normal flow, with a flexible gap after the logo. */
-  .fraction-lab-page .rm-topbar {height:54px;min-height:54px}
-  .fraction-lab-page .rm-topbar-inner {width:calc(100% - 2 * clamp(18px,2.2vw,36px));max-width:none;display:flex;flex-wrap:nowrap;height:100%;min-height:0;padding:0;gap:16px}
-  .fraction-lab-page .rm-logo-art {font-size:25px;gap:5px}
-  .fraction-lab-page .rm-logo-art .rm-logo-red {width:36px;height:39px}
-  .fraction-lab-page .rm-nav {order:initial;width:auto;overflow:visible;gap:4px;padding:0}
-  .fraction-lab-page .rm-nav a {font-size:12px;padding:7px 9px}
-  .fraction-lab-page .rm-theme {flex:none;width:34px;height:34px;font-size:16px}
 }

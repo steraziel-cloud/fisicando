@@ -115,9 +115,34 @@ document.addEventListener('DOMContentLoaded', () => {
     catalog.filter(s=>subjectAllowed(s)&&(!subject.value || s.id===subject.value)).forEach(s=>s.areas.forEach(a=>area.add(new Option(a.title,s.id+'/'+a.title))));
     if ([...area.options].some(o=>o.value===previous))area.value=previous;
   }
-  let selectedKey = null;
+  let selectedKey = null, selectedLessonId = null;
+  function catalogReturnURL() {
+    const url = new URL(location.href);
+    ['q','materia','area','disponibili','tutti','lezione'].forEach(key => url.searchParams.delete(key));
+    if (search.value) url.searchParams.set('q', search.value);
+    if (subject.value) url.searchParams.set('materia', subject.value);
+    if (area.value) url.searchParams.set('area', area.value);
+    if (available.checked) url.searchParams.set('disponibili', '1');
+    if (all.checked) url.searchParams.set('tutti', '1');
+    if (selectedLessonId) url.searchParams.set('lezione', selectedLessonId);
+    url.hash = 'lesson-lab';
+    return url;
+  }
+  function rememberLabOrigin(card, lesson) {
+    const origin = catalogReturnURL();
+    const lab = new URL(card.href);
+    lab.searchParams.set('ritorno', origin.href);
+    if (lesson.id) lab.searchParams.set('lezione', lesson.id);
+    card.href = lab.href;
+    try {
+      sessionStorage.setItem('gatito-catalog-return:' + origin.href, JSON.stringify({
+        scrollY: window.scrollY,
+        opened: [...nav.querySelectorAll('details[open]')].map(branch => branch.dataset.key)
+      }));
+    } catch {}
+  }
   function selectLesson(l, topic, subjectTitle, areaTitle, key) {
-    selectedKey = key;
+    selectedKey = key; selectedLessonId = l.id || key;
     nav.querySelectorAll('button.rm-catalog-lesson').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lessonKey === key)));
     document.getElementById('selection-prompt').hidden = true;
     const pane = document.getElementById('lesson-options');
@@ -137,6 +162,14 @@ document.addEventListener('DOMContentLoaded', () => {
         url.searchParams.set('livello',level && l.levels.includes(level) ? level : l.levels[0]);
         if (['studente','altro'].includes(params.get('ruolo'))) url.searchParams.set('ruolo',params.get('ruolo'));
         card.href = url.href;
+        if (kind === 'Laboratorio') {
+          card.id = 'lesson-lab';
+          const origin = catalogReturnURL();
+          url.searchParams.set('ritorno', origin.href);
+          if (l.id) url.searchParams.set('lezione', l.id);
+          card.href = url.href;
+          ['click','auxclick','contextmenu'].forEach(type => card.addEventListener(type, () => rememberLabOrigin(card, l)));
+        }
       } else card.setAttribute('aria-disabled','true');
       const label = document.createElement('span'); label.className = 'rm-material-label';label.textContent = `0${i+1} · ${kind}`;
       const heading = document.createElement('h3');heading.textContent = kind === 'Laboratorio' && l.labTitle ? l.labTitle : title;
@@ -169,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
             count++;if(l.url&&!l.unpublished)ready++;
             const li=document.createElement('li');const label=document.createElement('button');label.type='button';label.className='rm-catalog-lesson';
             const key = `${topicKey}/${(t.lessons || []).indexOf(l)}`;
-            label.dataset.lessonKey = key; label.setAttribute('aria-pressed',String(selectedKey === key));
+            label.dataset.lessonKey = key; label.dataset.catalogLessonId = l.id || key; label.setAttribute('aria-pressed',String(selectedKey === key));
             label.addEventListener('click',()=>selectLesson(l,t,s.title,[a.title,...ancestors].join(' · '),key));
             const title=document.createElement('span');title.textContent=l.title;label.append(title);
             const status=document.createElement('small');status.textContent=l.status==='work-in-progress'?'In lavorazione':l.url?l.kind || 'Disponibile':'Da preparare';status.className=l.url&&!l.unpublished?'rm-lesson-ready':'rm-lesson-planned';label.append(status);
@@ -197,9 +230,28 @@ document.addEventListener('DOMContentLoaded', () => {
   [area,available].forEach(el=>el.addEventListener('change',render));
   all.addEventListener('change',()=>{updateSubjects();updateAreas();render();});
   document.getElementById('reset-filters').addEventListener('click',()=>{search.value='';subject.value='';available.checked=false;all.checked=false;area.value='';updateSubjects();updateAreas();render();search.focus();});
+  search.value = params.get('q') || '';
+  available.checked = params.get('disponibili') === '1';
+  all.checked = params.get('tutti') === '1';
+  updateSubjects();
   const requestedSubject=params.get('materia');
   if([...subject.options].some(o=>o.value===requestedSubject))subject.value=requestedSubject;
-  updateAreas();render();
+  updateAreas();
+  if ([...area.options].some(option => option.value === params.get('area'))) area.value = params.get('area');
+  render();
+  const requestedLesson = params.get('lezione');
+  const selected = [...nav.querySelectorAll('[data-lesson-key]')].find(button => button.dataset.catalogLessonId === requestedLesson || button.dataset.lessonKey === requestedLesson);
+  if (selected) {
+    let saved = null;
+    try { saved = JSON.parse(sessionStorage.getItem('gatito-catalog-return:' + location.href)); } catch {}
+    if (Array.isArray(saved?.opened)) nav.querySelectorAll('details').forEach(branch => { branch.open = saved.opened.includes(branch.dataset.key); });
+    for (let parent = selected.parentElement; parent && parent !== nav; parent = parent.parentElement) if (parent.tagName === 'DETAILS') parent.open = true;
+    selected.click();
+    window.addEventListener('load', () => requestAnimationFrame(() => {
+      if (Number.isFinite(saved?.scrollY)) window.scrollTo(0, Math.max(0, saved.scrollY));
+      else (document.getElementById('lesson-lab') || document.getElementById('lesson-options')).scrollIntoView({block:'center'});
+    }), {once:true});
+  }
 });
 
 

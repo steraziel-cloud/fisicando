@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded',()=>{
  const params=new URLSearchParams(location.search),level=['medie','biennio'].includes(params.get('livello'))?params.get('livello'):'medie';
- document.getElementById('fraction-back').href='lezioni.html?livello='+level;
- document.getElementById('fraction-theory').href='reader.html?lezione=razionali-assoluti-insieme&livello='+level;
+ window.GatitoLabNavigation.bind(document.getElementById('fraction-back'),document.getElementById('fraction-theory'),{lesson:"razionali-assoluti-insieme",level});
  let notebook;
  function fresh(){notebook?.dispose();notebook=window.GatitoMathNotebook.mount(document.getElementById('fraction-workspace'),{liveEntry:true,comparison:{fractions:[],free:true,selectionOnly:true}});document.querySelector('#fraction-workspace > .nb-notebook').gmNotebook=notebook;}
  fresh();
