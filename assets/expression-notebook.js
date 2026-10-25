@@ -33,3 +33,5 @@ const dock=$('#keyboard');let drag=null;$('#handle').onpointerdown=e=>{if(e.butt
 try{const w=Number(localStorage.getItem('gatito-expression-keyboard-width'));if(w>=280&&w<innerWidth)dock.style.width=w+'px';}catch{}
 new ResizeObserver(()=>{dock.style.fontSize=Math.max(12,dock.clientWidth/25)+'px';try{localStorage.setItem('gatito-expression-keyboard-width',dock.clientWidth);}catch{}}).observe(dock);
 render();
+
+$('#generate-expression').onclick=()=>safe(()=>{const level=$('#expression-level').value;const exercise=window.GatitoExpressionGenerator.generate(level,$('#include-decimals').checked);add(exercise.tree,'Espressione generata · '+({base:'Base',medio:'Intermedia',avanzato:'Avanzata'}[level]));$('#rows .step:last-child')?.scrollIntoView({block:'nearest',behavior:'smooth'});});
