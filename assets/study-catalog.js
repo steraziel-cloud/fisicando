@@ -185,6 +185,9 @@ window.LESSON_CATALOG = [
               {
                 "title": "Le espressioni con le frazioni",
                 "id": "razionali-assoluti-espressioni",
+                "labUrl": "laboratorio-espressioni.html",
+                "labTitle": "Il quaderno delle espressioni",
+                "labDescription": "Svolgi le espressioni passo per passo con frazioni, potenze, decimali e periodici.",
                 "url": "reader.html?lezione=razionali-assoluti-espressioni",
                 "levels": [
                   "medie",
