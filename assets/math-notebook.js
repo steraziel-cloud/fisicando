@@ -146,8 +146,8 @@ window.GatitoMathNotebook=(()=>{
   }
   function alignComparisonRows(){
    if(!comparison)return;
-   const entries=[...host.querySelectorAll('.nb-comparison-math')].map(math=>{math.style.paddingTop='0px';const line=math.querySelector('.nb-fraction>span');return{math,line};}).filter(e=>e.line);
-   const offsets=entries.map(e=>e.line.getBoundingClientRect().bottom-e.math.getBoundingClientRect().top);
+   const entries=[...host.querySelectorAll('.nb-comparison-math,.nb-composer .nb-draft')].map(math=>{math.style.paddingTop='0px';const line=math.querySelector('.nb-fraction>span'),number=math.querySelector('input,.nb-number,.nb-integer-result');return{math,line,number};}).filter(e=>e.line||e.number);
+   const offsets=entries.map(e=>{const root=e.math.closest('.nb-expression-work,.nb-composer')||e.math,r=(e.line||e.number).getBoundingClientRect();return(e.line?r.bottom:(r.top+r.bottom)/2)-root.getBoundingClientRect().top;});
    const target=Math.max(0,...offsets);
    entries.forEach((e,i)=>{e.math.style.paddingTop=Math.max(0,target-offsets[i])+'px';});
   }
@@ -309,6 +309,7 @@ window.GatitoMathNotebook=(()=>{
  }
  return{mount,Notebook,math:{evaluate,gcd,completedReduction,zeroFraction,comparisonResult,factorPlan,selectedDenominators,factorToolChoices},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot,arrowSlot,canSimplify}};
 })();
+
 
 
 

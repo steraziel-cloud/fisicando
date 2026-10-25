@@ -13,7 +13,7 @@ window.GatitoNotebookDock={mount(host){
   const source=document.createElement('div');source.className='gm-source-keys';source.hidden=true;body.append(source);
   const btn=(label,command,value='',enabled=true,title=label)=>`<button type="button" data-gm-command="${command}" data-value="${value}" title="${title}" aria-label="${title}" ${enabled?'':'disabled'}>${label}</button>`;
   const has=()=>false,draft=false,factor=false;
-  const left=document.createElement('div');left.className='gm-structures';left.innerHTML=btn('+','insert','',true,'Inserisci')+btn('<span class="gm-frac-icon"><span>□</span><span>□</span></span>','fraction','',has('[data-nb-action="fraction"]'),'Frazione')+btn('□<sup>□</sup>','power','',has('[data-fn-action="power"]'),'Potenza');
+  const left=document.createElement('div');left.className='gm-structures';left.innerHTML=btn('Inserisci','insert','',true,'Inserisci')+btn('<span class="gm-frac-icon"><span>□</span><span>□</span></span>','fraction','',has('[data-nb-action="fraction"]'),'Frazione')+btn('□<sup>□</sup>','power','',has('[data-fn-action="power"]'),'Potenza');
   const center=document.createElement('div');center.className='gm-number-matrix';
   center.innerHTML=['7','8','9','÷','4','5','6','·','1','2','3','−','0','.','=','+'].map(k=>btn(k,/^\d$/.test(k)?'digit':k==='='?'compare':'operator',k,/^\d$/.test(k)?true:k==='='?host.querySelectorAll('.nb-row').length===2:k==='.'?false:draft||factor&&k==='·',k==='.'?'Separatore decimale (non disponibile nei numeri naturali)':k)).join('');
   const right=document.createElement('div');right.className='gm-controls';right.innerHTML=btn('←','arrow','ArrowLeft',true,'Sposta a sinistra')+btn('→','arrow','ArrowRight',true,'Sposta a destra')+btn('⌫','backspace','',true,'Backspace')+btn('Conferma','confirm','',true,'Conferma');
@@ -91,6 +91,7 @@ window.GatitoNotebookDock={mount(host){
  host.addEventListener('focusin',focus);host.addEventListener('click',click);host.addEventListener('pointerdown',pointer);
  return {sync,open(){open=true;apply();},dispose(){host.removeEventListener('click',protectComparisonClick,true);host.removeEventListener('pointerdown',dragComparison,true);host.removeEventListener('keydown',keyComparison,true);document.removeEventListener('pointermove',moveComparison);document.removeEventListener('pointerup',endComparison);document.removeEventListener('pointercancel',endComparison);window.removeEventListener('resize',placeComparison);document.removeEventListener('selectionchange',selectionChange);dock?.remove();host.removeEventListener('focusin',focus);host.removeEventListener('click',click);host.removeEventListener('pointerdown',pointer);}};
 }};
+
 
 
 
