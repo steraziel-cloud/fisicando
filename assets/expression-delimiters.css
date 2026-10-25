@@ -1,0 +1,6 @@
+/* Local flex sizing keeps every delimiter as tall as its own math group. */
+.formula .em-group{display:inline-flex;align-items:stretch;vertical-align:middle;gap:.08em;padding:2px 3px;white-space:nowrap}
+.formula .em-group-body{display:inline-flex;align-items:center;min-width:0}
+.formula .em-delimiter{position:relative;display:inline-block;align-self:stretch;flex:0 0 .36em;width:.36em;min-height:1.25em;margin:.03em 0}
+.formula .em-delimiter svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.formula .em-delimiter path{fill:none;stroke:currentColor;stroke-width:1.5;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
