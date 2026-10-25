@@ -35,7 +35,7 @@
 .nb-number-top{--nb-direction:-1}.nb-number-bottom{--nb-direction:1}.nb-number-plain{--nb-direction:0}
 .nb-notebook .nb-number-top{padding-top:calc(.12em + var(--nb-depth,0)*.36em)}.nb-notebook .nb-number-bottom{padding-bottom:calc(.12em + var(--nb-depth,0)*.36em)}
 .nb-number .nb-level{display:inline-block;font-size:1em;transform:translateY(calc(var(--nb-direction,0)*var(--nb-level,0)*.42em))}.nb-number .nb-secondary{font-size:.82em}.nb-number .nb-written{color:inherit}.nb-number .nb-written.nb-secondary{color:var(--nb-accent)}.nb-number .nb-inline-answer{font-size:.82em!important}
-.nb-row{white-space:nowrap}.nb-final-result{display:inline-flex;align-items:center;gap:.35em;vertical-align:middle;margin-left:.45em;font:clamp(24px,2.5vw,34px)/1.25 'Cambria Math',Georgia,serif;color:var(--nb-accent)}.nb-final-result .nb-fraction:hover{background:transparent}.nb-final-result .nb-fraction{cursor:default}
+.nb-row{white-space:nowrap}.nb-final-result{display:inline-flex;align-items:center;gap:.35em;vertical-align:middle;margin-left:.45em;font:clamp(24px,2.5vw,34px)/1.25 'Cambria Math',Georgia,serif;color:var(--nb-ink)}.nb-final-result .nb-fraction:hover{background:transparent}.nb-final-result .nb-fraction{cursor:default}
 @media(max-width:600px){.nb-final-result{font-size:27px}}
 
 
@@ -83,4 +83,5 @@
 
 
 .nb-comparison-math{display:flex;align-items:center;gap:.45em;min-width:max-content}.nb-comparison-math>.nb-sequence{font:clamp(24px,2.5vw,34px)/1.25 'Cambria Math',Georgia,serif}.nb-comparison-math .nb-final-result{margin-left:0}@media(max-width:600px){.nb-comparison-math>.nb-sequence{font-size:27px}}
+
 
