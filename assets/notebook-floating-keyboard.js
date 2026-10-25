@@ -35,7 +35,7 @@ window.GatitoNotebookDock={mount(host){
    const model=host.gmNotebook?.model,keys=[...new Set([...host.querySelectorAll('.nb-selected[data-nb-select]')].map(el=>el.dataset.nbSelect))];
    answer.hidden=keys.length!==2||!keys.every(key=>model?.rows.some(row=>row.items.length===1&&row.items[0].id===key&&['fraction','number'].includes(row.items[0].type)));
    answer.setAttribute('role','dialog');answer.setAttribute('aria-label','Confronta le frazioni selezionate');
-   const header=document.createElement('div');header.className='gm-comparison-handle';header.textContent='Confronta i numeri · trascina per spostare';header.tabIndex=0;header.setAttribute('aria-label','Sposta il confronto con le frecce della tastiera');answer.prepend(header);content.append(answer);
+   const header=document.createElement('div');header.className='gm-comparison-handle';header.textContent='Confronta i numeri';header.tabIndex=0;header.setAttribute('aria-label','Sposta il confronto con le frecce della tastiera');answer.prepend(header);content.append(answer);
    set('compare',!answer.hidden);placeComparison();
   }
   if(paper){paper.classList.add('notebook-sheet-docked');const toolbar=host.querySelector(':scope > .fn-toolbar');if(toolbar)content.prepend(toolbar);}host.classList.add('notebook-docked');apply();
@@ -91,6 +91,7 @@ window.GatitoNotebookDock={mount(host){
  host.addEventListener('focusin',focus);host.addEventListener('click',click);host.addEventListener('pointerdown',pointer);
  return {sync,open(){open=true;apply();},dispose(){host.removeEventListener('click',protectComparisonClick,true);host.removeEventListener('pointerdown',dragComparison,true);host.removeEventListener('keydown',keyComparison,true);document.removeEventListener('pointermove',moveComparison);document.removeEventListener('pointerup',endComparison);document.removeEventListener('pointercancel',endComparison);window.removeEventListener('resize',placeComparison);document.removeEventListener('selectionchange',selectionChange);dock?.remove();host.removeEventListener('focusin',focus);host.removeEventListener('click',click);host.removeEventListener('pointerdown',pointer);}};
 }};
+
 
 
 

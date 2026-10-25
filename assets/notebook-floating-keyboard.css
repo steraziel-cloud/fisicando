@@ -14,3 +14,6 @@
 
 
 .notebook-docked .gm-keyboard .gm-structures button[data-gm-command=insert]{background:#167d7b!important;color:#fff!important;border-color:#167d7b!important}
+
+
+#fraction-workspace .nb-context[data-nb-form] button[type=submit]{display:none!important}
