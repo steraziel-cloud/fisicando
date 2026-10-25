@@ -1,6 +1,6 @@
 'use strict';
 const E=ExpressionMath,$=s=>document.querySelector(s),esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;');
-let rows=[],selected=[],redo=[],keyboardTarget=$('#entry');const storage='gatito-expressions-v1';
+let rows=[],selected=[],redo=[];const storage='gatito-expressions-v1';
 function restore(t){const props={...t};delete props.id;if(t.left){props.left=restore(t.left);props.right=restore(t.right);}if(t.child)props.child=restore(t.child);return E.node(t.type,props);}
 
 function save(){}
@@ -13,7 +13,7 @@ function chosen(){if(selected.length!==1)throw Error('Seleziona una sola parte d
 function change(id,next,note){const tree=E.replace(structuredClone(current()),id,next);const a=E.evaluate(current()),b=E.evaluate(tree);if(a.n*b.d!==b.n*a.d)throw Error('Il passaggio cambia il valore dell’espressione.');add(tree,note);}
 $('#rows').addEventListener('click',e=>{const el=e.target.closest('[data-token]');if(!el)return;const id=el.dataset.token;selected=selected.includes(id)?selected.filter(x=>x!==id):[...selected,id];render();});$('#rows').addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)&&e.target.matches('[data-token]')){e.preventDefault();e.target.click();}});
 function safe(fn){try{fn();}catch(e){message(e.message);}}
-$('#start').onclick=()=>safe(()=>{add(E.parse($('#entry').value),'Espressione iniziale');$('#entry').value='';dock.hidden=true;});
+
 $('#undo').onclick=()=>{if(rows.length)redo.push(rows.pop());selected=[];render();};$('#redo').onclick=()=>{if(redo.length)rows.push(redo.pop());selected=[];render();};$('#clear-selection').onclick=()=>{selected=[];render();};
 $('#calculate').onclick=()=>safe(()=>{const t=chosen();change(t.id,E.from(E.evaluate(t)),'Calcolo della parte selezionata');});
 $('#generate').onclick=()=>safe(()=>{const t=chosen(),r=E.generating(t);change(t.id,r.tree,'Frazione generatrice: '+r.explanation);});
@@ -27,15 +27,9 @@ $('#common').onclick=()=>safe(()=>{if(selected.length!==2)throw Error('Seleziona
 $('#work-form').onsubmit=e=>{e.preventDefault();try{const data=new FormData(e.target);const value=k=>{const s=data.get(k);if(!/^\d{1,80}$/.test(s))throw Error('Completa tutte le risposte con numeri naturali.');return BigInt(s);};if(task.kind==='simplify'){const k=value('k'),n=value('n'),d=value('d');if(k<=1n||task.n%k||task.d%k)throw Error('Scegli un divisore comune maggiore di 1.');if(n!==task.n/k||d!==task.d/k)throw Error('Controlla i due quozienti.');change(task.id,E.fraction(E.num(n),E.num(d)),`Semplificazione: entrambi i termini divisi per ${k}`);}else{const d=value('d'),a=value('a'),b=value('b');if(!d||d%task.ad||d%task.bd)throw Error('Il denominatore deve essere un multiplo di entrambi.');if(a!==task.an*(d/task.ad)||b!==task.bn*(d/task.bd))throw Error('Controlla i prodotti dei numeratori.');let tree=structuredClone(current());tree=E.replace(tree,task.a,E.fraction(E.num(a),E.num(d)));tree=E.replace(tree,task.b,E.fraction(E.num(b),E.num(d)));add(tree,'Frazioni equivalenti con denominatore '+d);}$('#work').close();}catch(error){$('#dialog-error').textContent=error.message;}};
 $('#close-work').onclick=()=>$('#work').close();
 $('#rewrite').onclick=()=>safe(()=>{const t=chosen();task={id:t.id};$('#rewrite-entry').value=E.stringify(t);$('#rewrite-dialog').showModal();});$('#rewrite-form').onsubmit=e=>{e.preventDefault();safe(()=>{change(task.id,E.parse($('#rewrite-entry').value),'Passaggio scritto dallo studente');$('#rewrite-dialog').close();});};$('#close-rewrite').onclick=()=>$('#rewrite-dialog').close();
-const keys=['7','8','9','÷','4','5','6','·','1','2','3','−','0',',','+','^','(',')','[',']','{','}','/','⌫'];
-$('#keys').innerHTML=keys.map(k=>`<button type="button" data-key="${k}">${k}</button>`).join('');document.addEventListener('focusin',e=>{if(e.target.matches('input'))keyboardTarget=e.target;});$('#keys').onpointerdown=e=>e.preventDefault();$('#keys').onclick=e=>{const k=e.target.dataset.key;if(!k)return;const input=keyboardTarget?.isConnected?keyboardTarget:$('#entry');const a=input.selectionStart||0,b=input.selectionEnd||0;input.setRangeText(k==='⌫'?'':k,k==='⌫'&&a===b?Math.max(0,a-1):a,b,'end');input.focus();};
-const dock=$('#keyboard');let drag=null;$('#handle').onpointerdown=e=>{if(e.button)return;const r=dock.getBoundingClientRect();drag={x:e.clientX,y:e.clientY,left:r.left,top:r.top};e.target.setPointerCapture(e.pointerId);};$('#handle').onpointermove=e=>{if(!drag)return;dock.style.left=Math.max(0,Math.min(innerWidth-dock.offsetWidth,drag.left+e.clientX-drag.x))+'px';dock.style.top=Math.max(0,Math.min(innerHeight-dock.offsetHeight,drag.top+e.clientY-drag.y))+'px';dock.style.bottom='auto';};$('#handle').onpointerup=()=>drag=null;$('#handle').onpointercancel=()=>drag=null;$('#toggle').onclick=()=>dock.hidden=!dock.hidden;$('#hide').onclick=()=>dock.hidden=true;
-try{const w=Number(localStorage.getItem('gatito-expression-keyboard-width'));if(w>=280&&w<innerWidth)dock.style.width=w+'px';}catch{}
-new ResizeObserver(()=>{dock.style.fontSize=Math.max(12,dock.clientWidth/25)+'px';try{localStorage.setItem('gatito-expression-keyboard-width',dock.clientWidth);}catch{}}).observe(dock);
+const keypad=GatitoExpressionKeyboard.mount({commit:source=>add(E.parse(source),'Espressione iniziale'),undo:()=>$('#undo').click(),redo:()=>$('#redo').click()});
 render();
 
 $('#generate-expression').onclick=()=>safe(()=>{const level=$('#expression-level').value;const exercise=window.GatitoExpressionGenerator.generate(level,$('#include-decimals').checked);add(exercise.tree,'Espressione generata · '+({base:'Base',medio:'Intermedia',avanzato:'Avanzata'}[level]));$('#rows .step:last-child')?.scrollIntoView({block:'nearest',behavior:'smooth'});});
 
-$('#empty-slot').onclick=()=>{dock.hidden=false;keyboardTarget=$('#entry');$('#entry').focus();};$('#clear-paper').onclick=()=>{rows=[];redo=[];selected=[];message('');render();dock.hidden=true;};
-
-$('#text-mode').onclick=()=>{const input=$('#entry');input.readOnly=!input.readOnly;$('#text-mode').setAttribute('aria-pressed',String(!input.readOnly));$('#text-help').hidden=input.readOnly;input.placeholder=input.readOnly?'Componi con i tasti qui sotto':'[1/2 + 0,1(6)] · 3^2';keyboardTarget=input;input.focus();};
+$('#empty-slot').onclick=()=>keypad.open();$('#clear-paper').onclick=()=>{rows=[];redo=[];selected=[];message('');render();keypad.clear();$('#keyboard').hidden=true;};

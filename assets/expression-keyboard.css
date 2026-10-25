@@ -1,0 +1,40 @@
+/* Same compact three-column keypad as the approved fraction notebook. */
+.expression-lab #keyboard{position:fixed!important;inset:auto auto 10px 50%!important;transform:translateX(-50%);min-width:0;max-width:calc(100vw - 16px);height:auto;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;resize:none;z-index:80}
+.expression-lab #keyboard[hidden],#composer[hidden],#draft-math[hidden],#text-entry[hidden],#entry-options[hidden],#bracket-options[hidden]{display:none!important}
+.expression-lab #keyboard .notebook-dock-body{padding:calc(9px * var(--gm-user-scale))!important;border-radius:14px!important}
+.expression-lab #keyboard .gm-keyboard-header{margin-bottom:calc(5px * var(--gm-user-scale));min-height:calc(20px * var(--gm-user-scale))}
+.expression-lab #keyboard .gm-keyboard-keys{grid-template-columns:calc(62px * var(--gm-user-scale)) minmax(0,1fr) calc(82px * var(--gm-user-scale));gap:calc(8px * var(--gm-user-scale))}
+.expression-lab #keyboard .gm-number-matrix,.expression-lab #keyboard .gm-controls,.expression-lab #keyboard .gm-structures{grid-template-rows:repeat(4,calc(30px * var(--gm-user-scale)));gap:calc(4px * var(--gm-user-scale))}
+.expression-lab #keyboard .gm-structures{grid-template-columns:repeat(2,minmax(0,1fr));padding-right:calc(7px * var(--gm-user-scale))}
+.expression-lab #keyboard .gm-structures [data-ek=insert],.expression-lab #keyboard .gm-structures [data-ek=period]{grid-column:1/-1}
+.expression-lab #keyboard .gm-number-matrix{grid-template-columns:repeat(4,minmax(0,1fr))}
+.expression-lab #keyboard .gm-controls{grid-template-columns:repeat(2,minmax(0,1fr));padding-left:calc(7px * var(--gm-user-scale))}
+.expression-lab #keyboard button[data-ek]{display:flex;align-items:center;justify-content:center;min-height:0!important;width:100%;box-sizing:border-box;height:auto;padding:calc(4px * var(--gm-user-scale))!important;font:500 calc(16px * var(--gm-user-scale))/1.2 system-ui!important;border:1px solid transparent!important;border-radius:5px!important;color:var(--rm-text)!important;background:color-mix(in srgb,var(--rm-text) 6%,var(--rm-panel))!important;touch-action:manipulation}
+.expression-lab #keyboard button[data-ek]:disabled{opacity:.25}
+.expression-lab #keyboard .gm-structures button{height:auto}
+.expression-lab #keyboard .gm-structures [data-ek=insert],.expression-lab #keyboard [data-ek=confirm]{font-size:calc(10px * var(--gm-user-scale))!important;background:#167d7b!important;color:white!important}
+.expression-lab #keyboard .gm-edit-tools button[data-ek]{width:calc(24px * var(--gm-user-scale));font-size:calc(14px * var(--gm-user-scale))!important;background:transparent!important;color:var(--rm-muted)!important}
+.expression-lab #keyboard [data-ek=backspace]{grid-column:1/-1;grid-row:2}
+.expression-lab #keyboard [data-ek=confirm]{grid-column:1/-1;grid-row:4}
+.expression-lab #keyboard .ek-extra{grid-column:1/-1;grid-row:3;position:relative;display:flex;justify-content:flex-end}
+.expression-lab #keyboard [data-ek=more]{width:50%;background:transparent!important;color:var(--rm-muted)!important}
+#entry-options{position:absolute;bottom:100%;right:0;z-index:4;width:max-content;padding:5px;background:var(--rm-panel);border:1px solid var(--rm-line);border-radius:8px;box-shadow:0 4px 20px #0004}
+.expression-lab #keyboard #entry-options button{font-size:13px!important;padding:8px!important}
+#bracket-options{position:absolute;bottom:calc(100% + 6px);left:12px;display:flex;gap:6px;padding:6px;border:1px solid var(--rm-line);border-radius:9px;background:var(--rm-panel);box-shadow:0 4px 20px #0004}
+.expression-lab #keyboard #bracket-options button{min-width:40px;min-height:40px!important}
+.expression-lab #keyboard [data-ek=bracket]{touch-action:none;-webkit-touch-callout:none;user-select:none}
+#composer{padding:10px 0 20px}
+#draft-math{overflow-x:auto;white-space:nowrap;min-height:60px}
+.ek-slot{display:inline-block;min-width:1.2em;font:inherit;padding:2px 4px;border:1px solid transparent;border-radius:3px;color:inherit;background:transparent;vertical-align:middle;line-height:1.5}
+.ek-active{border:1px solid #d99932;box-shadow:0 0 0 1px #d99932;background:#167d7b18}
+.ek-symbol{display:inline-block;padding:0 6px;vertical-align:middle}
+.ek-caret{display:inline-block;height:1em;border-left:1px solid currentColor;vertical-align:middle}
+.ek-fraction{margin:0 4px}
+#draft-math sup .ek-slot{min-width:1em}
+#composer-error{color:#cf4747;font-size:13px;margin:0}
+#composer-error:empty{display:none}
+#text-entry{max-width:850px}
+#text-entry .entry{display:flex;gap:8px}
+#text-entry details{font-size:13px;color:var(--rm-muted)}
+.expression-lab #keyboard #entry-message{font-size:12px;margin:6px 0 0}
+.expression-lab #keyboard #entry-message:empty{display:none}
