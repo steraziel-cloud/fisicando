@@ -40,7 +40,7 @@
 @media (min-width:761px) {
   /* Keep the navigation in normal flow, with a flexible gap after the logo. */
   .fraction-lab-page .rm-topbar {height:54px;min-height:54px}
-  .fraction-lab-page .rm-topbar-inner {display:flex;flex-wrap:nowrap;height:100%;min-height:0;padding:0;gap:16px}
+  .fraction-lab-page .rm-topbar-inner {width:calc(100% - 2 * clamp(18px,2.2vw,36px));max-width:none;display:flex;flex-wrap:nowrap;height:100%;min-height:0;padding:0;gap:16px}
   .fraction-lab-page .rm-logo-art {font-size:25px;gap:5px}
   .fraction-lab-page .rm-logo-art .rm-logo-red {width:36px;height:39px}
   .fraction-lab-page .rm-nav {order:initial;width:auto;overflow:visible;gap:4px;padding:0}
