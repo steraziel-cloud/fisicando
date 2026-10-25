@@ -51,7 +51,8 @@ window.GatitoNotebookDock={mount(host){
  function placeKeyboard(){
   if(!dock||!keyboardPosition||!open)return;
   const rect=dock.querySelector('.notebook-dock-body').getBoundingClientRect();
-  keyboardPosition={x:Math.max(8,Math.min(keyboardPosition.x,window.innerWidth-rect.width-8)),y:Math.max(8,Math.min(keyboardPosition.y,window.innerHeight-rect.height-8))};
+  const width=document.documentElement.clientWidth||window.innerWidth,height=document.documentElement.clientHeight||window.innerHeight;
+  keyboardPosition={x:Math.max(8,Math.min(keyboardPosition.x,width-rect.width-8)),y:Math.max(8,Math.min(keyboardPosition.y,height-rect.height-8))};
   dock.dataset.gmPositioned='';
   dock.style.setProperty('inset',keyboardPosition.y+'px auto auto '+keyboardPosition.x+'px','important');
   dock.style.setProperty('transform','none','important');
