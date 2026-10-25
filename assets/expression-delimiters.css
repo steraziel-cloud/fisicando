@@ -4,3 +4,7 @@
 .formula .em-delimiter{position:relative;display:inline-block;align-self:stretch;flex:0 0 .36em;width:.36em;min-height:1.25em;margin:.03em 0}
 .formula .em-delimiter svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .formula .em-delimiter path{fill:none;stroke:currentColor;stroke-width:1.5;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+
+.formula .fraction{line-height:1.2}
+.formula .em-power{display:inline-flex;align-items:flex-start;vertical-align:middle}
+.formula .em-power>sup{align-self:flex-start;line-height:1.2;margin-left:.05em;transform:translateY(-.12em)}
