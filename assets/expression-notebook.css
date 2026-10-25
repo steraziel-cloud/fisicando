@@ -14,3 +14,17 @@ main>h1{font-size:24px;line-height:1.3;margin:12px 0 16px}
 #empty-slot[hidden],#keyboard[hidden]{display:none!important}
 #toggle{left:6px;right:auto;font-size:12px;padding:8px 12px}
 select{background:var(--rm-panel);color:var(--rm-text);border:1px solid var(--rm-line)}
+
+/* Independent generator and keyboard entry. */
+main>.toolbar{font-size:13px;margin:0 0 14px;align-items:center}
+#expression-tools[hidden],#text-help[hidden]{display:none}
+#expression-tools{flex-basis:100%}
+#keyboard .entry{display:flex;flex-direction:column;margin:10px 0}
+#keyboard #entry{width:100%;box-sizing:border-box;font-size:18px}
+#keyboard #start,#text-mode{font-size:13px}
+#text-mode{padding:5px 8px}
+#text-mode[aria-pressed=true]{border-color:var(--rm-accent);background:var(--rm-bg)}
+#text-help{font-size:12px}
+#entry-message{font-size:13px;color:#c74749;margin:6px 0 0}
+#entry-message:empty{display:none}
+#paper{min-height:calc(100dvh - 200px)}

@@ -4,16 +4,16 @@ let rows=[],selected=[],redo=[],keyboardTarget=$('#entry');const storage='gatito
 function restore(t){const props={...t};delete props.id;if(t.left){props.left=restore(t.left);props.right=restore(t.right);}if(t.child)props.child=restore(t.child);return E.node(t.type,props);}
 
 function save(){}
-function message(text){$('#message').textContent=text;}
+function message(text){$('#message').textContent=text;$('#entry-message').textContent=text;}
 function math(t,active){const attr=active?` data-token="${t.id}" tabindex="0" role="button" aria-label="Seleziona ${esc(E.stringify(t))}" aria-pressed="${selected.includes(t.id)}"`:'';const cl=selected.includes(t.id)&&active?' chosen':'';if(t.type==='number'){let m=t.value.match(/^(.*?)\((\d+)\)$/);return `<span class="token${cl}"${attr}>${m?esc(m[1])+`<span class="period">${m[2]}</span>`:esc(t.value)}</span>`;}if(t.type==='group')return `<span class="token group${cl}"${attr}>${t.style}${math(t.child,active)}${{'(':')','[':']','{':'}'}[t.style]}</span>`;if(t.type==='fraction')return `<span class="token fraction${cl}"${attr}><span>${math(t.left,active)}</span><span>${math(t.right,active)}</span></span>`;if(t.type==='power')return `<span class="token${cl}"${attr}>${math(t.left,active)}<sup>${math(t.right,active)}</sup></span>`;return `<span class="token expression${cl}"${attr}>${math(t.left,active)} <span class="operator${selected.includes(t.id+'op')?' chosen':''}" ${active?`data-token="${t.id}op" tabindex="0" role="button" aria-label="Seleziona operatore ${t.op}"`:''}>${t.op}</span> ${math(t.right,active)}</span>`;}
-function render(){ $('#empty-slot').hidden=!!rows.length;$('#clear-paper').disabled=!rows.length; $('#rows').innerHTML=rows.map((r,i)=>`<div class="step"><small>${i+1} · ${esc(r.note)}</small><div class="formula">${math(r.tree,i===rows.length-1)}</div></div>`).join('');$('#actions').hidden=!rows.length;$('#undo').disabled=!rows.length;$('#redo').disabled=!redo.length;save();}
+function render(){ $('#expression-tools').hidden=!rows.length;$('#empty-slot').hidden=!!rows.length;$('#clear-paper').disabled=!rows.length; $('#rows').innerHTML=rows.map((r,i)=>`<div class="step"><small>${i+1} · ${esc(r.note)}</small><div class="formula">${math(r.tree,i===rows.length-1)}</div></div>`).join('');$('#actions').hidden=!rows.length;$('#undo').disabled=!rows.length;$('#redo').disabled=!redo.length;save();}
 function add(tree,note){E.evaluate(tree);rows.push({tree,note});selected=[];redo=[];message('');render();}
 function current(){if(!rows.length)throw Error('Inserisci prima un’espressione.');return rows.at(-1).tree;}
 function chosen(){if(selected.length!==1)throw Error('Seleziona una sola parte dell’espressione.');const t=E.find(current(),selected[0]);if(!t)throw Error('Seleziona il numero, la frazione o il gruppo.');return t;}
 function change(id,next,note){const tree=E.replace(structuredClone(current()),id,next);const a=E.evaluate(current()),b=E.evaluate(tree);if(a.n*b.d!==b.n*a.d)throw Error('Il passaggio cambia il valore dell’espressione.');add(tree,note);}
 $('#rows').addEventListener('click',e=>{const el=e.target.closest('[data-token]');if(!el)return;const id=el.dataset.token;selected=selected.includes(id)?selected.filter(x=>x!==id):[...selected,id];render();});$('#rows').addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)&&e.target.matches('[data-token]')){e.preventDefault();e.target.click();}});
 function safe(fn){try{fn();}catch(e){message(e.message);}}
-$('#start').onclick=()=>safe(()=>{add(E.parse($('#entry').value),'Espressione iniziale');$('#entry').value='';});
+$('#start').onclick=()=>safe(()=>{add(E.parse($('#entry').value),'Espressione iniziale');$('#entry').value='';dock.hidden=true;});
 $('#undo').onclick=()=>{if(rows.length)redo.push(rows.pop());selected=[];render();};$('#redo').onclick=()=>{if(redo.length)rows.push(redo.pop());selected=[];render();};$('#clear-selection').onclick=()=>{selected=[];render();};
 $('#calculate').onclick=()=>safe(()=>{const t=chosen();change(t.id,E.from(E.evaluate(t)),'Calcolo della parte selezionata');});
 $('#generate').onclick=()=>safe(()=>{const t=chosen(),r=E.generating(t);change(t.id,r.tree,'Frazione generatrice: '+r.explanation);});
@@ -36,4 +36,6 @@ render();
 
 $('#generate-expression').onclick=()=>safe(()=>{const level=$('#expression-level').value;const exercise=window.GatitoExpressionGenerator.generate(level,$('#include-decimals').checked);add(exercise.tree,'Espressione generata · '+({base:'Base',medio:'Intermedia',avanzato:'Avanzata'}[level]));$('#rows .step:last-child')?.scrollIntoView({block:'nearest',behavior:'smooth'});});
 
-$('#empty-slot').onclick=()=>{$('#expression-tools').open=true;dock.hidden=false;$('#entry').focus();};$('#clear-paper').onclick=()=>{rows=[];redo=[];selected=[];message('');render();$('#expression-tools').open=false;dock.hidden=true;};
+$('#empty-slot').onclick=()=>{dock.hidden=false;keyboardTarget=$('#entry');$('#entry').focus();};$('#clear-paper').onclick=()=>{rows=[];redo=[];selected=[];message('');render();dock.hidden=true;};
+
+$('#text-mode').onclick=()=>{const input=$('#entry');input.readOnly=!input.readOnly;$('#text-mode').setAttribute('aria-pressed',String(!input.readOnly));$('#text-help').hidden=input.readOnly;input.placeholder=input.readOnly?'Componi con i tasti qui sotto':'[1/2 + 0,1(6)] · 3^2';keyboardTarget=input;input.focus();};
