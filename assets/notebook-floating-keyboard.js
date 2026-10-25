@@ -25,6 +25,7 @@ window.GatitoNotebookDock={mount(host){
   const draft=!!source.querySelector('[data-nb-action="write"]'),factor=!!source.querySelector('.fn-keypad');
   const set=(cmd,enabled)=>{const button=dock.querySelector('[data-gm-command="'+cmd+'"]');if(button)button.disabled=!enabled;};
   host.querySelector('.nb-topbar [data-nb-action="insert"]')?.setAttribute('hidden','');
+  set('insert',!host.hasAttribute('data-fn-fixed-numbers'));
   set('confirm',draft||!!host.querySelector('input[inputmode="numeric"]:not(:disabled)'));
   set('fraction',!!source.querySelector('[data-nb-action="fraction"]'));set('power',!!source.querySelector('[data-fn-action="power"]'));
   dock.querySelectorAll('[data-gm-command="operator"]').forEach(button=>{button.disabled=button.dataset.value==='.'||!(draft||factor&&button.dataset.value==='·');});
@@ -91,6 +92,7 @@ window.GatitoNotebookDock={mount(host){
  host.addEventListener('focusin',focus);host.addEventListener('click',click);host.addEventListener('pointerdown',pointer);
  return {sync,open(){open=true;apply();},dispose(){host.removeEventListener('click',protectComparisonClick,true);host.removeEventListener('pointerdown',dragComparison,true);host.removeEventListener('keydown',keyComparison,true);document.removeEventListener('pointermove',moveComparison);document.removeEventListener('pointerup',endComparison);document.removeEventListener('pointercancel',endComparison);window.removeEventListener('resize',placeComparison);document.removeEventListener('selectionchange',selectionChange);dock?.remove();host.removeEventListener('focusin',focus);host.removeEventListener('click',click);host.removeEventListener('pointerdown',pointer);}};
 }};
+
 
 
 

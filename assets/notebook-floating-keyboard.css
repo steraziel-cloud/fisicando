@@ -16,7 +16,8 @@
 .notebook-docked .gm-keyboard .gm-structures button[data-gm-command=insert]{background:#167d7b!important;color:#fff!important;border-color:#167d7b!important}
 
 
-#fraction-workspace .nb-context[data-nb-form] button[type=submit]{display:none!important}
+
 
 
 .nb-context-help{display:inline-flex;position:relative;vertical-align:middle;margin-left:8px}.nb-notebook .nb-context-help>button{display:inline-flex;align-items:center;justify-content:center;width:23px;min-height:23px;padding:0;border-radius:50%;font:600 12px/1 system-ui;color:var(--nb-accent);background:transparent}.nb-context-help>[role=tooltip]{display:none;position:absolute;z-index:25;left:0;top:calc(100% + 7px);width:240px;max-width:65vw;padding:10px 12px;border:1px solid var(--nb-line);border-radius:10px;background:var(--nb-paper);color:var(--nb-ink);box-shadow:0 6px 20px #0002;font:13px/1.5 system-ui}.nb-context-help:hover>[role=tooltip],.nb-context-help:focus-within>[role=tooltip]{display:block}
+

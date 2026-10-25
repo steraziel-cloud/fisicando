@@ -85,3 +85,14 @@
 .nb-comparison-math{display:flex;align-items:center;gap:.45em;min-width:max-content}.nb-comparison-math>.nb-sequence{font:clamp(24px,2.5vw,34px)/1.25 'Cambria Math',Georgia,serif}.nb-comparison-math .nb-final-result{margin-left:0}@media(max-width:600px){.nb-comparison-math>.nb-sequence{font-size:27px}}
 
 
+
+
+/* The two return actions scroll with the page and never cover the calculations. */
+.nb-factor-dialog>header{position:static;flex-wrap:wrap;gap:10px;padding:12px 18px;margin-bottom:14px}
+.nb-factor-dialog h2{font-size:20px}
+.nb-factor-navigation{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.nb-factor-dialog .nb-factor-navigation button{font:600 12px/1.3 system-ui;min-height:36px;padding:8px 10px;border:1px solid var(--rm-line);border-radius:8px;background:var(--rm-panel);color:var(--rm-text);cursor:pointer}
+.nb-factor-dialog .nb-factor-navigation .nb-factor-use{background:var(--rm-accent,#167d7b);color:#fff;border-color:var(--rm-accent,#167d7b)}
+.nb-factor-navigation button:disabled{opacity:.4;cursor:default}
+.nb-notebook .nb-context button[type=submit].nb-primary{background:var(--nb-accent,#167d7b);color:#fff;border-color:var(--nb-accent,#167d7b);font:600 12px/1.2 system-ui;min-height:36px;padding:8px 10px}
+@media(max-width:650px){.nb-factor-dialog>header{padding:10px 12px}.nb-factor-navigation{margin-left:0}.nb-factor-dialog .fn-number-grid{gap:18px}.nb-factor-dialog .fn-number-work{min-width:min(260px,100%)}}
