@@ -46,3 +46,13 @@
 .expression-lab #keyboard #text-entry #entry{min-width:0;flex:1;width:0;font-size:16px}
 .expression-lab #keyboard #text-entry #start{font-size:12px;padding:5px 8px}
 .expression-lab #keyboard #text-entry details{font-size:12px;max-height:160px;overflow:auto;margin:6px 0 0}
+
+
+/* Alternatives sit above their own key, with a discreet discovery marker. */
+.expression-lab #keyboard button.ek-has-variants{position:relative}
+.expression-lab #keyboard button.ek-has-variants::after{content:"";position:absolute;right:4px;top:4px;width:4px;height:4px;border-radius:50%;background:#f4b95d;pointer-events:none}
+#bracket-options{z-index:6;bottom:auto;gap:4px;padding:5px}
+#bracket-options::after{content:"";position:absolute;left:var(--ek-popup-tip,50%);bottom:-5px;width:8px;height:8px;transform:translateX(-50%) rotate(45deg);border-right:1px solid var(--rm-line);border-bottom:1px solid var(--rm-line);background:var(--rm-panel);pointer-events:none}
+.expression-lab #keyboard #bracket-options button{min-width:32px;min-height:34px!important}
+.expression-lab #keyboard .gm-structures button[data-ek=period]{font-size:calc(14px * var(--gm-user-scale))!important}
+.expression-lab #keyboard .gm-structures button[data-ek=insert]{white-space:nowrap;font-size:calc(9px * var(--gm-user-scale))!important;padding-inline:2px!important}

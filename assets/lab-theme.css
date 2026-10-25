@@ -1,0 +1,2 @@
+/* Match the site toggle, independently of each notebook button style. */
+.rm-theme[data-lab-theme]{display:inline-flex;align-items:center;justify-content:center;padding:0;line-height:1;flex-shrink:0;box-sizing:border-box}
