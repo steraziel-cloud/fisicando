@@ -156,13 +156,25 @@ window.GatitoMathNotebook=(()=>{
    let x=anchor.right-p.left+12,y=anchor.top-p.top;if(x+t.width>available-10){x=anchor.left-p.left;y=anchor.bottom-p.top+12;}
    x=Math.max(8,Math.min(x,available-t.width-8));if(y+t.height>p.height-8&&anchor.top-p.top>t.height+12)y=anchor.top-p.top-t.height-12;
    for(const result of v.resultAnchor?[]:host.querySelectorAll('.nb-final-result')){const r=result.getBoundingClientRect();if(p.left+x<r.right&&p.left+x+t.width>r.left&&p.top+y<r.bottom&&p.top+y+t.height>r.top){const right=r.right-p.left+12;if(right+t.width<=available-8)x=right;else y=Math.max(anchor.bottom,r.bottom)-p.top+12;}}
-   // Selection tools must never cover another term that the learner may select next.
-   // Place them below the expression band, including unselected neighbouring fractions.
    if(toolbar.classList.contains('nb-selection-tools')){
-    const neighbours=[...host.querySelectorAll('.nb-row')].map(n=>n.getBoundingClientRect()).filter(r=>r.bottom>=anchor.top&&r.top<=anchor.bottom);
-    const bottom=Math.max(anchor.bottom,...neighbours.map(r=>r.bottom));
-    x=Math.max(8,Math.min(anchor.left-p.left,available-t.width-8));
-    y=bottom-p.top+12;
+    const gap=8,selectedElements=keys.map(key=>host.querySelector(`[data-nb-select="${key}"]`)).filter(Boolean);
+    const obstacles=[...host.querySelectorAll('.nb-row [data-nb-select],.nb-history,.nb-final-result,.nb-topbar,.notebook-dock-body:not([hidden]),.gm-comparison-floating:not([hidden])')].filter(el=>!selectedElements.some(selected=>el===selected||el.contains(selected)||selected.contains(el))).map(el=>el.getBoundingClientRect()).filter(r=>r.width>0&&r.height>0);
+    const left=p.left+8,right=p.left+available-8,top=Math.max(p.top+8,8),bottom=Math.min(p.bottom-8,window.innerHeight?window.innerHeight-8:p.bottom-8);
+    const positions=[
+     {x:anchor.left,y:anchor.bottom+gap,side:'bottom'},
+     {x:anchor.left,y:anchor.top-t.height-gap,side:'top'},
+     {x:anchor.right+gap,y:(anchor.top+anchor.bottom-t.height)/2,side:'right'},
+     {x:anchor.left-t.width-gap,y:(anchor.top+anchor.bottom-t.height)/2,side:'left'},
+     {x:anchor.right-t.width,y:anchor.bottom+gap,side:'bottom'},
+     {x:anchor.right-t.width,y:anchor.top-t.height-gap,side:'top'}
+    ];
+    const overlap=(a,b)=>Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
+    const ranked=positions.map((candidate,index)=>{
+     const cx=Math.max(left,Math.min(candidate.x,right-t.width)),cy=Math.max(top,Math.min(candidate.y,bottom-t.height)),box={left:cx,right:cx+t.width,top:cy,bottom:cy+t.height};
+     const collision=overlap(box,anchor)+obstacles.reduce((sum,r)=>sum+overlap(box,{left:r.left-3,right:r.right+3,top:r.top-3,bottom:r.bottom+3}),0);
+     return{...candidate,x:cx,y:cy,score:collision*1000+Math.abs(cx-candidate.x)+Math.abs(cy-candidate.y)+index};
+    }).sort((a,b)=>a.score-b.score);
+    const best=ranked[0];x=best.x-p.left;y=best.y-p.top;toolbar.dataset.placement=best.side;
    }
    toolbar.style.left=(x+paper.scrollLeft)+'px';toolbar.style.top=(Math.max(8,y)+paper.scrollTop)+'px';
   }
@@ -288,6 +300,7 @@ window.GatitoMathNotebook=(()=>{
  }
  return{mount,Notebook,math:{evaluate,gcd,completedReduction,zeroFraction,comparisonResult,factorPlan,selectedDenominators,factorToolChoices},nodes:{num,seq,frac,find,selectionRoots,insertFraction,nextSlot,arrowSlot,canSimplify}};
 })();
+
 
 
 
