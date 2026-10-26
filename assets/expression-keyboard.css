@@ -57,3 +57,14 @@
 .expression-lab #keyboard .gm-structures button[data-ek=period]{font-size:calc(14px * var(--gm-user-scale))!important}
 .expression-lab #keyboard .gm-structures button[data-ek=insert]{white-space:nowrap;font-size:calc(9px * var(--gm-user-scale))!important;padding-inline:2px!important}
 #draft-math .period .ek-slot{text-decoration:overline}
+/* Input tools belong on the left; right-hand keys only control the cursor. */
+.expression-lab #keyboard .ek-tools-slot{grid-column:1/-1;position:relative;display:flex;min-width:0}
+.expression-lab #keyboard .ek-tools-slot>[data-ek=more]{width:100%;background:color-mix(in srgb,var(--rm-accent) 15%,var(--rm-panel))!important;color:var(--rm-text)!important;font-size:calc(20px * var(--gm-user-scale))!important}
+.expression-lab #keyboard .ek-tools-slot #entry-options{left:0;right:auto;bottom:calc(100% + 6px)}
+#draft-math .ek-slot .period{display:inline;text-decoration:overline}
+#period-dialog{width:min(320px,calc(100vw - 60px))}
+#period-dialog h2{font-size:19px;margin:0 0 14px}
+#period-dialog .period-hint{font-size:13px;color:var(--rm-muted)}
+#period-dialog #period-error{font-size:13px;color:#cc4040}
+.period-dialog-actions{display:flex;gap:8px;justify-content:flex-end}
+
