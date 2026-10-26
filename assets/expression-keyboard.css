@@ -83,3 +83,6 @@
 /* Draw the bar inside the repeating digits' own box; it cannot propagate. */
 .formula .period,#draft-math .ek-slot .period{display:inline-block;position:relative;text-decoration:none!important;vertical-align:baseline}
 .formula .period::before{content:"";position:absolute;top:.1em;left:0;right:0;border-top:1px solid currentColor;pointer-events:none}
+
+
+#draft-math .ek-placeholder{opacity:.55}
