@@ -32,3 +32,12 @@ main>.toolbar{font-size:13px;margin:0 0 14px;align-items:center}
 /* Point at one math part without highlighting all of its ancestors. */
 .token[role]:hover{border-color:transparent}
 .token[role]:hover:not(:has([role="button"]:hover)){border-color:#a1bdc5}
+
+
+/* Tools belong to the selected math, never to a fixed toolbar. */
+.step{border-bottom:0}
+#actions{position:fixed;z-index:25;display:flex;max-width:min(420px,calc(100vw - 16px));box-sizing:border-box;padding:6px;margin:0;background:var(--rm-panel,#fff);border:1px solid var(--rm-line,#bbcdd8);border-radius:10px;box-shadow:0 5px 18px #0002;font-size:13px}
+#actions[hidden]{display:none}
+#message:empty{display:none}
+#help summary{cursor:pointer;width:24px;text-align:center;border:1px solid var(--rm-line,#bbcdd8);border-radius:50%}
+#rewrite-error{color:#b22e30}
