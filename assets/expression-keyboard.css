@@ -62,9 +62,24 @@
 .expression-lab #keyboard .ek-tools-slot>[data-ek=more]{width:100%;background:color-mix(in srgb,var(--rm-accent) 15%,var(--rm-panel))!important;color:var(--rm-text)!important;font-size:calc(20px * var(--gm-user-scale))!important}
 .expression-lab #keyboard .ek-tools-slot #entry-options{left:0;right:auto;bottom:calc(100% + 6px)}
 #draft-math .ek-slot .period{display:inline;text-decoration:overline}
-#period-dialog{width:min(320px,calc(100vw - 60px))}
-#period-dialog h2{font-size:19px;margin:0 0 14px}
-#period-dialog .period-hint{font-size:13px;color:var(--rm-muted)}
-#period-dialog #period-error{font-size:13px;color:#cc4040}
-.period-dialog-actions{display:flex;gap:8px;justify-content:flex-end}
 
+
+
+
+/* Compact anchored period editor; explanations only appear on request. */
+.expression-lab #keyboard button.ek-has-variants::after{top:auto;bottom:4px;right:4px}
+#period-popover[hidden],#period-help[hidden]{display:none!important}
+#period-popover{position:absolute;z-index:10;width:250px;max-width:calc(100vw - 32px);box-sizing:border-box;padding:6px;border:1px solid var(--rm-line);border-radius:8px;background:var(--rm-panel);color:var(--rm-text);box-shadow:0 4px 20px #0004}
+#period-popover::after{content:"";position:absolute;left:var(--period-tip,50%);bottom:-5px;width:8px;height:8px;transform:translateX(-50%) rotate(45deg);border-right:1px solid var(--rm-line);border-bottom:1px solid var(--rm-line);background:var(--rm-panel);pointer-events:none}
+#period-popover .period-input-row{display:flex;align-items:center;gap:6px}
+#period-popover label{display:block;font:13px/1.2 system-ui;margin:0}
+#period-popover input{flex:1;min-width:0;width:70px;padding:4px 6px;box-sizing:border-box;font-size:16px;height:32px}
+#period-popover button{display:inline-flex;align-items:center;justify-content:center;flex:0 0 30px;width:30px;min-height:30px;padding:0;font:16px/1 system-ui}
+#period-popover .period-apply{background:#167d7b;color:#fff;border-color:#167d7b}
+#period-popover #period-help-toggle{flex-basis:22px;width:22px;min-height:22px;border-radius:50%;font-size:12px;background:transparent;color:var(--rm-muted)}
+#period-popover #period-error{font-size:12px;color:#d34545;line-height:1.4;margin:6px 0 0}
+#period-popover #period-error:empty{display:none}
+#period-popover #period-help{font-size:12px;line-height:1.4;color:var(--rm-muted);margin:6px 0 0}
+/* Draw the bar inside the repeating digits' own box; it cannot propagate. */
+.formula .period,#draft-math .ek-slot .period{display:inline-block;position:relative;text-decoration:none!important;vertical-align:baseline}
+.formula .period::before{content:"";position:absolute;top:.1em;left:0;right:0;border-top:1px solid currentColor;pointer-events:none}
