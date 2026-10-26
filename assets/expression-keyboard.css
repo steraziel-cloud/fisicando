@@ -86,3 +86,8 @@
 
 
 #draft-math .ek-placeholder{opacity:.55}
+
+
+.expression-lab #keyboard .gm-edit-tools button[hidden]{display:none!important}
+#draft-math .ek-selected{outline:1px solid #167d7b;background:#16a4a033;border-radius:4px}
+#draft-math .ek-sequence{display:inline-block;vertical-align:middle}
