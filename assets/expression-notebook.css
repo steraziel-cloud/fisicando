@@ -28,3 +28,7 @@ main>.toolbar{font-size:13px;margin:0 0 14px;align-items:center}
 #entry-message{font-size:13px;color:#c74749;margin:6px 0 0}
 #entry-message:empty{display:none}
 #paper{min-height:calc(100dvh - 200px)}
+
+/* Point at one math part without highlighting all of its ancestors. */
+.token[role]:hover{border-color:transparent}
+.token[role]:hover:not(:has([role="button"]:hover)){border-color:#a1bdc5}
