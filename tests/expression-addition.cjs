@@ -44,3 +44,16 @@ console.log('Four addends with nested selection: selection exclusivity, common d
 const many=A.sum(Array.from({length:1000},()=>E.fraction(E.num(1),E.num(3))),E),manyChain=A.flatten(many);
 assert.equal(A.plan(many,[...manyChain.terms.map(t=>t.id),...manyChain.operators]).terms.length,1000);
 console.log('Selection accepts 1,000 addends without a fixed count limit');
+// Subtraction uses exactly two operands, preserving the guided fraction work.
+function chooseDifference(){run("selected=[current().left.id,current().id+'op',current().right.id]");assert(run('contextActions().some(x=>x[1]==="Esegui la sottrazione")'));assert(!run('contextActions().some(x=>x[0]==="commutative")'));run('actions.arithmetic()');}
+run("add(E.parse('5/6-1/4'),'different denominators')");chooseDifference();
+for(const answer of [12,2,10,3,3])run(`fractionWork.submit('${answer}')`);
+assert.equal(run('arithmeticTask!==null'),true);submit('8');assert(run('arithmeticTask.error'));submit('7');assert.equal(run('current().left.value'),'7');assert.equal(run('current().right.value'),'12');
+run("add(E.parse('2-1/3'),'integer subtraction')");chooseDifference();for(const answer of [3,3,6,1,1])run(`fractionWork.submit('${answer}')`);submit('5');assert.equal(run('current().left.value'),'5');assert.equal(run('current().right.value'),'3');
+run("add(E.parse('1/2-1/2'),'zero difference')");chooseDifference();submit('0');assert.equal(run('current().left.value'),'0');
+run("add(E.parse('1/2-5/6'),'outside QA')");const negativeBase=run('rows.length');chooseDifference();for(const answer of [6,3,3,1,5])run(`fractionWork.submit('${answer}')`);
+assert.equal(run('fractionWork.active()'),null);assert.equal(run('arithmeticTask'),null);assert(el('#message').textContent.includes('non può essere risolta in ℚₐ'));assert.equal(run('rows.length'),negativeBase);assert.equal(run('current().left.left.value'),'3');assert.equal(run('current().left.right.value'),'5');
+run("add(E.parse('3-5'),'negative integers')");chooseDifference();assert.equal(run('arithmeticTask'),null);assert(el('#message').textContent.includes('ℚₐ'));
+run("add(E.parse('5/6-1/6-1/6'),'no associative subtraction');{const outer=current(),inner=outer.left;selected=[inner.left.id,inner.id+'op',inner.right.id,outer.id+'op',outer.right.id];}");assert(!run('contextActions().some(x=>x[0]==="arithmetic"||x[0]==="commutative")'));
+run("add(E.parse('1+(1/3-2/3)'),'negative inner difference');{const n=current().right.child;selected=[n.left.id,n.id+'op',n.right.id];}actions.arithmetic();");assert.equal(run('arithmeticTask'),null);assert(el('#message').textContent.includes('ℚₐ'));
+console.log('Subtraction: two operands only, guided denominators/products, mixed integer/fraction, wrong answers, zero and QA blocking before negative results pass');
