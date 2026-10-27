@@ -27,3 +27,20 @@ run("add(E.parse('(3)+(7)+(11)'),'finished parentheses')");select([0,1,2]);run('
 console.log('Addition of already-computed parenthesized values remains available');
 run("add(E.parse('53/30+(1+2)'),'brackets regression');{const n=current().right.child;selected=[n.left.id,n.id+'op',n.right.id];}actions.arithmetic();");submit('3');assert.equal(run('current().right.type'),'number');assert.equal(run('current().right.value'),'3');run("selected=[current().left.id,current().id+'op',current().right.id]");assert(run('contextActions().some(x=>x[0]==="arithmetic")'));run('actions.arithmetic()');for(const answer of [30,1,53,30,90])run(`fractionWork.submit('${answer}')`);submit('143');assert.equal(run('current().left.value'),'143');assert.equal(run('current().right.value'),'30');
 console.log('Screenshot regression: 53/30 + (3) becomes selectable 53/30 + 3 and can be added');
+
+// Four selected addends, including an integer, with a redundant denominator selection.
+run("add(E.parse('2+1/5+1/3+2/3+(2+1+1/4)'),'four addends')");select([0,1,2,3]);
+run("selected.push(GatitoExpressionAddition.flatten(current()).terms[1].right.id)");
+assert(run('contextActions().some(x=>x[0]==="arithmetic")'));
+run("{const f=GatitoExpressionAddition.flatten(current()).terms[1];selected=[f.right.id];toggleToken(f.id);}");
+assert.equal(run('selected.length'),1);assert.equal(run('E.find(current(),selected[0]).type'),'fraction');
+run("toggleToken(E.find(current(),selected[0]).right.id)");assert.equal(run('selected.length'),1);assert.equal(run('E.find(current(),selected[0]).value'),'5');
+select([0,1,2,3]);run('actions.arithmetic()');assert.equal(run('fractionWork.active().trees.length'),4);
+for(const answer of [15,15,30,3,3,5,5,5,10])run(`fractionWork.submit('${answer}')`);
+assert.equal(run('fractionWork.active()'),null);assert(run('arithmeticForm().includes("30 + 3 + 5 + 10")'));
+submit('48');assert.equal(run('current().left.left.value'),'48');assert.equal(run('current().left.right.value'),'15');assert.equal(run('E.stringify(current().right)'),E.stringify(E.parse('(2+1+1/4)')));
+console.log('Four addends with nested selection: selection exclusivity, common denominator, student products and sum preserve the remaining parentheses');
+
+const many=A.sum(Array.from({length:1000},()=>E.fraction(E.num(1),E.num(3))),E),manyChain=A.flatten(many);
+assert.equal(A.plan(many,[...manyChain.terms.map(t=>t.id),...manyChain.operators]).terms.length,1000);
+console.log('Selection accepts 1,000 addends without a fixed count limit');
