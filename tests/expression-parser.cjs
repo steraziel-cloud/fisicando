@@ -22,3 +22,11 @@ assert.throws(()=>E.parse('2 2/5'),/operazione/);
 assert.throws(()=>E.parse('2*/5'));
 assert.throws(()=>E.evaluate(E.parse('2*2/0')),/zero/);
 console.log('Text entry: fractions remain distinct factors; explicit numerators, powers, divisions, decimals and structural round trips pass');
+
+assert.deepEqual(E.evaluate(E.parse('-2^2')),{n:-4n,d:1n});
+assert.deepEqual(E.evaluate(E.parse('(-2)^2')),{n:4n,d:1n});
+assert.deepEqual(E.evaluate(E.parse('-0,1(6)')),{n:-1n,d:6n});
+assert.deepEqual(E.evaluate(E.parse('2-5')),{n:-3n,d:1n});
+assert.throws(()=>E.evaluate(E.parse('2-5'),true),/negativo/);
+const signedDecimal=E.parse('-0,25');assert.deepEqual(E.evaluate(E.generating(signedDecimal).tree),E.evaluate(signedDecimal));
+console.log('Q parser: unary signs, powers, signed periodic decimals, negative results and generating fractions pass');
