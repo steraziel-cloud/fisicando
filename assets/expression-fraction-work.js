@@ -22,7 +22,8 @@ window.GatitoExpressionFractionWork=(()=>{
    const hint='';
    return `<span class="token fraction fw-fraction ${className}" ${attr}><span>${number(f.top.items[0],'top',p,model,t.left.id)}</span><span>${number(f.bottom.items[0],'bottom',p,model,t.right.id)}</span>${hint}</span>`;}
   function focus(){if(!state)return;const selector=state.stage==='answer'?'[form="fraction-work-form"]':'#fraction-work-form input';document.querySelector(selector)?.focus({preventScroll:true});}
-  return{start,cancel,active,anchor,form,submit,factor,render,focus,simple};
+  function commonNumerator(i){if(!state)return '';const f=state.model.locate(state.ids[i]).node;if(i<state.index)return esc(f.top.items[0].value);if(state.model.pending?.fraction===f.id)return number(f.top.items[0],'top',state.model.pending,state.model,null);return '□';}
+  return{start,cancel,active,anchor,form,submit,factor,render,focus,simple,commonNumerator};
  }
  return{create,simple};
 })();
