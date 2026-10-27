@@ -55,3 +55,5 @@ main>.toolbar{font-size:13px;margin:0 0 14px;align-items:center}
 #actions form button{padding:6px 9px;white-space:nowrap;flex-shrink:0}
 #actions form button[aria-label="Annulla passaggio"]{padding:6px 8px;min-width:32px}
 #actions .fw-error:not(:empty),#actions #arithmetic-form [role="alert"]:not(:empty){position:fixed;margin-top:80px;max-width:calc(100vw - 32px);padding:4px 8px;border-radius:6px;background:var(--rm-panel,#fff);color:#b22e30}
+
+#rows input[data-expression-field]{width:calc(var(--answer-digits,2)*1ch + 16px)!important;min-width:0!important;max-width:calc(12ch + 16px)!important;box-sizing:border-box;flex:0 0 auto;padding:3px 6px;text-align:center}
