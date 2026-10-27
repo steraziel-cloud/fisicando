@@ -47,3 +47,11 @@ main>.toolbar{font-size:13px;margin:0 0 14px;align-items:center}
 .nb-factor-floating{position:fixed;z-index:45;top:12vh;left:8vw;width:min(850px,84vw);max-height:78vh;resize:both;overflow:auto}.nb-factor-floating>header{cursor:move;touch-action:none}.nb-factor-floating .notebook-dock{z-index:46}
 
 .expression-continue{font:inherit;color:var(--rm-accent,#167d7b);background:transparent;border:1px solid transparent;margin-left:.5em;padding:2px 8px}.expression-continue:hover{border-color:var(--rm-line)}
+/* Context controls stay together on one compact line. */
+#actions{width:max-content;max-width:calc(100vw - 16px);flex-wrap:nowrap}
+#actions .fraction-work-form,#actions #arithmetic-form{display:flex;align-items:center;flex-wrap:nowrap;gap:6px;min-width:0;overflow-x:auto}
+#actions form>label{display:flex;align-items:center;gap:6px;margin:0;white-space:nowrap;flex-shrink:0}
+#actions form input{width:4.5em;box-sizing:border-box;padding:6px 7px}
+#actions form button{padding:6px 9px;white-space:nowrap;flex-shrink:0}
+#actions form button[aria-label="Annulla passaggio"]{padding:6px 8px;min-width:32px}
+#actions .fw-error:not(:empty),#actions #arithmetic-form [role="alert"]:not(:empty){position:fixed;margin-top:80px;max-width:calc(100vw - 32px);padding:4px 8px;border-radius:6px;background:var(--rm-panel,#fff);color:#b22e30}
