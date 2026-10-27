@@ -61,3 +61,5 @@ main>.toolbar{font-size:13px;margin:0 0 14px;align-items:center}
 .expression-equals{display:inline-block;margin-left:.5em;padding:2px 8px;color:var(--rm-text);font:inherit;cursor:default}
 
 #actions .power-help{margin:0;position:relative}#actions .power-help summary{cursor:pointer;list-style:none;width:22px;height:22px;display:grid;place-items:center;border:1px solid var(--rm-line);border-radius:50%}#actions .power-help p{position:absolute;right:0;top:100%;z-index:2;width:220px;white-space:normal;background:var(--rm-panel);padding:8px;border:1px solid var(--rm-line);border-radius:8px}
+/* Keep the exponent next to its base while preserving separate selection. */
+.formula .em-power{padding-inline:2px}.formula .em-power>sup{margin-left:-4px}.formula .em-power>sup>.token{padding:0 1px;border-radius:3px}
