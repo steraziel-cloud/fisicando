@@ -42,7 +42,7 @@ main>.toolbar{font-size:13px;margin:0 0 14px;align-items:center}
 #help summary{cursor:pointer;width:24px;text-align:center;border:1px solid var(--rm-line,#bbcdd8);border-radius:50%}
 #rewrite-error{color:#b22e30}
 
-.fw-fraction{--nb-accent:var(--rm-accent,#167d7b);--nb-paper:var(--rm-panel);position:relative}.fw-fraction .nb-number{display:inline-flex;gap:.25em;position:relative;padding:.12em .2em}.fw-fraction .nb-crossed{text-decoration:line-through}.fw-fraction .nb-inline-answer{min-width:2em}.fw-fraction .fw-equivalent{font:12px system-ui;border:0!important;color:var(--rm-muted);padding:3px}
+.fw-fraction{--nb-accent:var(--rm-accent,#167d7b);--nb-paper:var(--rm-panel);position:relative}.fw-fraction .nb-number{display:inline-flex;gap:.25em;position:relative;padding:.12em .2em}.fw-fraction .nb-crossed{text-decoration:none}.fw-fraction .nb-inline-answer{min-width:2em}.fw-fraction .fw-equivalent{font:12px system-ui;border:0!important;color:var(--rm-muted);padding:3px}
 .fraction-work-form{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.fraction-work-form label{margin:0;display:flex;align-items:center;gap:6px}.fraction-work-form input{width:5em}.fw-error{color:#c74749;flex-basis:100%}.fw-error:empty{display:none}
 .nb-factor-floating{position:fixed;z-index:45;top:12vh;left:8vw;width:min(850px,84vw);max-height:78vh;resize:both;overflow:auto}.nb-factor-floating>header{cursor:move;touch-action:none}.nb-factor-floating .notebook-dock{z-index:46}
 
