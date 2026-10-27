@@ -1,0 +1,8 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert'),E=require('../assets/expression-engine.js');
+let seed=20261027;const math=Object.create(Math);math.random=()=>{seed=(1664525*seed+1013904223)>>>0;return seed/2**32};
+const c={window:{ExpressionMath:E},Math:math};vm.createContext(c);vm.runInContext(fs.readFileSync(require('path').join(__dirname,'../assets/expression-generator.js'),'utf8'),c);const generate=c.window.GatitoExpressionGenerator.generate;
+function inspect(t,out={ops:0,powers:0,groups:0}){if(t.type==='binary'||t.type==='fraction'||t.type==='power')out.ops++;if(t.type==='power'){out.powers++;const e=E.evaluate(t.right);assert(e.d===1n&&e.n>0n,'generator must not introduce negative exponents');}if(t.type==='group')out.groups++;if(t.child)inspect(t.child,out);if(t.left){inspect(t.left,out);inspect(t.right,out);}return out;}
+let previous='',minOps=Infinity,maxLength=0;
+for(const mixed of [false,true])for(let i=0;i<400;i++){const x=generate('nightmare',mixed),v=E.evaluate(x.tree),stats=inspect(x.tree);assert.notEqual(x.source,previous);previous=x.source;assert(stats.ops>=15);assert(stats.powers>=2);assert(stats.groups>=8);assert(x.source.length<2000);assert(v.n.toString().length<=9&&v.d.toString().length<=9);if(!mixed)assert(!/[.,]/.test(x.source));minOps=Math.min(minOps,stats.ops);maxLength=Math.max(maxLength,x.source.length);}
+for(const level of ['base','medio','avanzato'])for(const mixed of [false,true])for(let i=0;i<25;i++)E.evaluate(generate(level,mixed).tree);
+console.log(`Nightmare: 800 seeded exercises, with/without decimals, all valid; min ${minOps} operation nodes, max ${maxLength} characters; bounded results, positive exponents and existing levels pass`);
