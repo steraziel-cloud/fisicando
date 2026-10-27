@@ -1,0 +1,10 @@
+/* Addition plans preserve explicit parentheses and never cross subtraction. */
+(function(global){
+ function flatten(tree){const terms=[],operators=[];function walk(t){if(t.type==='binary'&&t.op==='+'){walk(t.left);operators.push(t.id+'op');walk(t.right);}else terms.push(t);}walk(tree);return{terms,operators};}
+ function scopes(tree){const out=[];function visit(t,inAddition=false){const add=t.type==='binary'&&t.op==='+';if(add&&!inAddition)out.push(t);if(t.child)visit(t.child);if(t.left){visit(t.left,add);visit(t.right,add);}}visit(tree);return out;}
+ function plan(tree,selection){const keys=new Set(selection);for(const scope of scopes(tree)){const chain=flatten(scope),picked=chain.terms.filter(t=>keys.has(t.id)),ops=chain.operators.filter(id=>keys.has(id));if(picked.length<2||ops.length<picked.length-1||picked.length+ops.length!==keys.size)continue;const first=chain.terms.findIndex(t=>t.id===picked[0].id),last=chain.terms.findIndex(t=>t.id===picked.at(-1).id);if(ops.some(id=>{const i=chain.operators.indexOf(id);return i<first||i>=last;}))continue;return{scopeId:scope.id,termIds:picked.map(t=>t.id),terms:picked,chain};}return null;}
+ function sum(terms,E){return terms.reduce((a,b)=>a?E.node('binary',{op:'+',left:a,right:b}):b,null);}
+ function collect(scope,ids,replacement,E){const chosen=new Set(ids),parts=[];let inserted=false;for(const t of flatten(scope).terms){if(chosen.has(t.id)){if(!inserted){parts.push(replacement);inserted=true;}}else parts.push(structuredClone(t));}return sum(parts,E);}
+ function swap(scope,ids,E){if(ids.length!==2)throw Error('Seleziona due addendi.');const terms=flatten(scope).terms.map(t=>structuredClone(t)),a=terms.findIndex(t=>t.id===ids[0]),b=terms.findIndex(t=>t.id===ids[1]);if(a<0||b<0)throw Error('Seleziona due addendi della stessa somma.');[terms[a],terms[b]]=[terms[b],terms[a]];return sum(terms,E);}
+ const api={flatten,scopes,plan,sum,collect,swap};global.GatitoExpressionAddition=api;if(typeof module!=='undefined')module.exports=api;
+})(typeof window==='undefined'?globalThis:window);
