@@ -59,3 +59,5 @@ main>.toolbar{font-size:13px;margin:0 0 14px;align-items:center}
 #rows input[data-expression-field]{width:calc(var(--answer-digits,2)*1ch + 16px)!important;min-width:0!important;max-width:calc(12ch + 16px)!important;box-sizing:border-box;flex:0 0 auto;padding:3px 6px;text-align:center}
 
 .expression-equals{display:inline-block;margin-left:.5em;padding:2px 8px;color:var(--rm-text);font:inherit;cursor:default}
+
+#actions .power-help{margin:0;position:relative}#actions .power-help summary{cursor:pointer;list-style:none;width:22px;height:22px;display:grid;place-items:center;border:1px solid var(--rm-line);border-radius:50%}#actions .power-help p{position:absolute;right:0;top:100%;z-index:2;width:220px;white-space:normal;background:var(--rm-panel);padding:8px;border:1px solid var(--rm-line);border-radius:8px}
