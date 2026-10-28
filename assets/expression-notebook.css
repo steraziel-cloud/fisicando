@@ -63,3 +63,7 @@ main>.toolbar{font-size:13px;margin:0 0 14px;align-items:center}
 #actions .power-help{margin:0;position:relative}#actions .power-help summary{cursor:pointer;list-style:none;width:22px;height:22px;display:grid;place-items:center;border:1px solid var(--rm-line);border-radius:50%}#actions .power-help p{position:absolute;right:0;top:100%;z-index:2;width:220px;white-space:normal;background:var(--rm-panel);padding:8px;border:1px solid var(--rm-line);border-radius:8px}
 /* Keep the exponent next to its base while preserving separate selection. */
 .formula .em-power{padding-inline:2px}.formula .em-power>sup{margin-left:-4px}.formula .em-power>sup>.token{padding:0 1px;border-radius:3px}
+
+/* The main fraction bar remains distinct when either term contains a fraction. */
+.formula .complex-fraction{padding:5px 9px}.formula .complex-fraction>span{padding:5px 8px}.formula .complex-fraction>span:first-child{border-bottom-width:3px}
+#actions .generating-answer>span{padding:3px 4px;white-space:nowrap}#actions .generating-answer input{width:5em}

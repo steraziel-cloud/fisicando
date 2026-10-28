@@ -114,3 +114,25 @@ run("add(E.parse('(-2)^(-3)'),'signed reciprocal exponent')");selectWholePower()
 run("add(E.parse('4^2*(1/2)^3'),'negative exponent base rewrite');selected=[current().left.left.id];actions['power-rewrite']()");powerAnswer('1/2',{exponent:'-2'});run("selected=[current().left.id];actions['power-nested']()");powerAnswer('-4');productSelect([0,1]);run("actions['power-product']()");powerAnswer('-1');assert.equal(run('current().right.value'),'-1');equal(run('current()'),E.parse('4^2*(1/2)^3'));
 assert.throws(()=>E.evaluate(E.parse('0^(-1)')),/non ha reciproco/);assert.throws(()=>E.evaluate(E.parse('2^(1/2)')),/intero/);
 console.log('Integer exponents: student-written reciprocal, negative bases, negative exponent rewriting / combining, zero-base guards and rejection of fractional exponents pass');
+// Complex fraction bars are quotients, preserving both complete operands.
+for(const source of ['(1/2)/(3/4)','(1/2)/3','2/(3/4)','(1/2+1/3)/(3/4-1/4)','((1/2)/(3/4))/(5/6)']){
+ run(`add(E.parse('${source}'),'complex fraction');selected=[current().id]`);const row=run('activeRow');assert(run('contextActions().some(x=>x[0]==="fraction-division")'));const value=run('E.evaluate(current())');run("actions['fraction-division']()");assert.equal(run('activeRow'),row+1);assert.equal(run('current().op'),'÷');equal(run('current()'),E.parse(source));assert.equal(run(`rows[${row}].tree.type`),'fraction');
+}
+run("add(E.parse('(1/2)/(3/4)'),'guided nested quotient');selected=[current().id];actions['fraction-division']();selected=[current().left.id,current().id+'op',current().right.id];actions.reciprocal()");productAnswer('4','3');productSelect([0,1]);run('actions.product()');productAnswer('4','6');assert.equal(run('current().left.value'),'4');assert.equal(run('current().right.value'),'6');
+run("add(E.parse('2/3'),'simple fraction');selected=[current().id]");assert(!run('contextActions().some(x=>x[0]==="fraction-division")'));
+// Construct the exact generating fraction, then perform the student's subtraction.
+function generatingAnswer(fields){el('#actions').submit({target:{id:'arithmetic-form',...fields},preventDefault(){}})}
+for(const [source,fields,answer,result] of [
+ ['0,25',{digits:'25',denominator:'100'},null,'25/100'],
+ ['-1,20',{digits:'120',denominator:'100'},null,'-120/100'],
+ ['0,(3)',{digits:'3',prefix:'0',denominator:'9'},'3','3/9'],
+ ['2,1(6)',{digits:'216',prefix:'21',denominator:'90'},'195','195/90'],
+ ['0,0(3)',{digits:'3',prefix:'0',denominator:'90'},'3','3/90'],
+ ['-2,1(6)',{digits:'216',prefix:'21',denominator:'90'},'-195','-195/90'],
+ ['0,(9)',{digits:'9',prefix:'0',denominator:'9'},'9','9/9'],
+ ['0,00',{digits:'0',denominator:'100'},null,'0/100']]){
+ run(`add(E.parse('${source}'),'generating');selected=[current().id];actions.generate()`);assert.equal(run('arithmeticTask.kind'),'generating');const initial=run('E.stringify(current())');generatingAnswer({...fields,denominator:'7'});assert(run('arithmeticTask.error'));assert.equal(run('E.stringify(current())'),initial);generatingAnswer(fields);if(answer!==null){assert.equal(run('arithmeticTask.stage'),'difference');generatingAnswer({answer:'999'});assert(run('arithmeticTask.error'));generatingAnswer({answer});}assert.equal(run('arithmeticTask'),null);equal(run('current()'),E.parse(result));assert.equal(run('current().left.value'),result.split('/')[0]);assert.equal(run('current().right.value'),result.split('/')[1]);
+}
+// A decimal inside a numerator and an independent operation share the linked rows.
+run("add(E.parse('0,(3)/(1+2)+(4+5)'),'linked generating');selected=[current().left.left.id];actions.generate()");generatingAnswer({digits:'3',prefix:'0',denominator:'9'});generatingAnswer({answer:'3'});assert.equal(run('current().left.left.left.value'),'3');assert.equal(run('current().left.left.right.value'),'9');assert.equal(run('current().right.type'),'group');
+console.log('Complex fractions: full operands, multiple nesting, quotient/reciprocal/product workflow; generating fractions: finite/pure/mixed periods, signs, leading zeroes, incorrect answers and linked rows pass');
