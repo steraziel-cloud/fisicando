@@ -10,3 +10,7 @@ assert.throws(()=>S.apply(rows,rows.length-1,{id:unrelated.id,next:E.num(900),ne
 console.log('Linked rows: forward propagation, earlier locks, independent results, identical-value isolation, independent worksheets and equivalence checks passed');
 const singleton=E.parse('(((3)))'),numberId=singleton.child.child.child.id;assert.equal(S.normalize(singleton).id,numberId);const fractional=S.normalize(E.parse('(2/3)'));assert.equal(fractional.type,'fraction');assert.equal(S.normalize(E.parse('(1+2)')).type,'group');
 console.log('Redundant brackets disappear while node identity and unfinished parentheses are preserved');
+for(const [source,wanted] of [['3/1','3'],['-3/1','-3'],['0/1','0'],['(3/1)*2/5','(3)·((2)/(5))']]){const t=E.parse(source),before=E.evaluate(t),clean=S.clean(t);assert.strictEqual(clean,t);const after=E.evaluate(clean);assert.equal(before.n*after.d,after.n*before.d);assert(!E.stringify(clean).includes('/(1)'));if(clean.type==='number')assert.equal(clean.value,wanted);}
+const preparing=E.fraction(E.num(3),E.num(1));assert.equal(S.normalize(preparing).type,'fraction','keep denominator 1 during common-denominator preparation');
+const marked=E.fraction(E.num(3),E.num(1));marked.fractionInk={top:[{value:'9'}],bottom:[{value:'3'}]};assert.equal(S.normalize(marked).type,'fraction');assert.equal(S.clean(marked).value,'3');assert(!marked.fractionInk);
+console.log('Apparent fractions: clean next steps become integers (positive, negative, zero); preparation and visible cancellation retain their denominator until completion');
