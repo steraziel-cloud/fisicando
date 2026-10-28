@@ -41,7 +41,7 @@ Durante la composizione, la freccia sinistra oltre l’inizio della prima letter
 - Alla conferma i fattori letterali consecutivi vengono ordinati alfabeticamente; lettere e potenze restano separate e non vengono calcolate o accorpate. Maiuscole e minuscole restano distinte.
 
 ## Somme algebriche di monomi simili
-- Selezionare i monomi completi: i segni di collegamento sono facoltativi perché ogni termine conserva già il proprio segno. La voce Somma monomi simili appare soltanto se lettere ed esponenti coincidono. Funziona anche con monomi non adiacenti nella stessa somma. Non si attraversano le parentesi.
+- Selezionare i monomi completi: i segni di collegamento sono facoltativi perché ogni termine conserva già il proprio segno. La voce Somma algebrica appare soltanto se lettere ed esponenti coincidono. Funziona anche con monomi non adiacenti nella stessa somma. Non si attraversano le parentesi.
 - Il meno di un termine sottratto è ora selezionabile anche come operatore, pur rimanendo compreso nel monomio.
 - I coefficienti sono raccolti sulla riga corrente, con la parte letterale invariata. La somma viene inserita dallo studente e il monomio risultante viene scritto nella riga successiva.
 - Per coefficienti con denominatori differenti: denominatore comune scelto dallo studente, divisione per ogni denominatore, prodotto per ogni numeratore, somma algebrica finale. La costruzione del numeratore è visibile progressivamente sul quaderno, mentre la finestra flottante resta sotto la formula.
@@ -49,3 +49,5 @@ Durante la composizione, la freccia sinistra oltre l’inizio della prima letter
 - Le operazioni indipendenti restano collegate tra le righe: si propagano soltanto i termini non ancora svolti. La verifica simbolica è esatta, senza sostituzioni numeriche casuali, con un limite interno di 256 termini durante i prodotti di verifica. Frazioni con denominatori letterali e potenze generali sono confrontate strutturalmente dopo la normalizzazione delle parti.
 
 - Il segno + dei termini successivi al primo è disegnato dentro il token del monomio, come il segno −: la selezione dell’intero termine lo evidenzia insieme a coefficiente e parte letterale. Il segno resta anche selezionabile singolarmente.
+
+- Nei monomi x e −x, con coefficiente unitario sottinteso, la lettera non ha un secondo bersaglio di selezione: il clic sulla lettera seleziona il monomio completo. La voce del menu si chiama Somma algebrica.
