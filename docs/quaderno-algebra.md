@@ -61,3 +61,5 @@ Durante la composizione, la freccia sinistra oltre l’inizio della prima letter
 - Non viene eseguita alcuna riduzione automatica del coefficiente frazionario. La frazione resta semplificabile con lo strumento esistente. Annullando il prodotto guidato si ripristinano i fattori iniziali.
 - Due monomi opposti offrono Semplifica gli opposti: le sbarrette restano sui termini della riga di partenza e la riga successiva assorbe lo zero. La somma algebrica guidata resta disponibile come alternativa. Undo/redo conservano anche le annotazioni.
 - I segni esterni a un prodotto vengono conservati quando il risultato diventa un monomio selezionabile: ad esempio `x² − (2x · 3x)` diventa `x² − 6x²`.
+
+- Dopo la conferma, i fattori negativi di prodotti e divisioni vengono mostrati tra parentesi, senza introdurre ulteriori token di selezione. Le parentesi già presenti non vengono duplicate; anche i coefficienti negativi nel prodotto guidato conservano questa formattazione.
