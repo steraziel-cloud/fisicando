@@ -37,3 +37,5 @@ Durante la composizione, la freccia sinistra oltre l’inizio della prima letter
 - Il meno di una sottrazione è incluso nel termine selezionabile e viene conservato copiando o modificando il termine.
 - Le aree esterne del monomio e della parte letterale hanno spazi distinti; il bordo al passaggio del puntatore indica quale livello si sta selezionando.
 - Le frazioni con lettere al denominatore e le somme non vengono trattate come monomi. Il quaderno numerico resta indipendente.
+
+- Alla conferma i fattori letterali consecutivi vengono ordinati alfabeticamente; lettere e potenze restano separate e non vengono calcolate o accorpate. Maiuscole e minuscole restano distinte.

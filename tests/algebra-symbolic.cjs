@@ -31,3 +31,10 @@ for(const [source,count] of [['3x^2yz',1],['-(3/2)xy',1],['2xy-3ab+z',3],['x/y',
 }
 const signed=E.parse('2xy-3ab');assert(signed.right.subtracted);assert(E.stringify(signed.right).startsWith('−'));assert(E.stringify(signed.right).includes('3'));
 console.log('Whole monomial tokens: signed/fractional coefficients, maximal term boundaries, individual symbols and edit/clipboard sign preservation pass');
+
+for(const [source,expected] of [['-2zx','xz'],['3z^2xy^3','xyz'],['-zx','xz'],['-zyx','xyz'],['(3/2)zyx','xyz'],['zxx','xxz'],['zAax','Aaxz']]){
+ const tree=E.parse(source);E.validate(tree);const letters=[];walk(tree,n=>{if(n.type==='variable')letters.push(n.value)});assert.equal(letters.join(''),expected,source);
+ const powers=[];walk(tree,n=>{if(n.type==='power')powers.push([E.stringify(n.left),E.stringify(n.right)])});if(source==='3z^2xy^3')assert.deepEqual(powers,[['y','3'],['z','2']]);
+ if(source.startsWith('-'))assert(E.stringify(tree).includes('−')||E.stringify(tree).includes('-2'));
+}
+console.log('Alphabetical literal ordering: signs, fractional coefficients, powers, repeated letters and case distinctions preserved');
