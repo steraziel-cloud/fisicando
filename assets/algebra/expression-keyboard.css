@@ -95,3 +95,11 @@
 #letter-popover input{width:100px}.formula .algebra-letter{font-style:italic;padding-inline:2px}.formula .algebra-product>.token{padding-inline:2px}
 
 .formula .literal-part{padding:2px 4px;vertical-align:middle}.formula .literal-part>.algebra-product{vertical-align:middle}
+
+/* Separate hit areas for monomial, literal part and individual symbols. */
+.formula .monomial-part{padding:9px 10px;margin:3px 2px;vertical-align:middle}
+.formula .literal-part{padding:5px 6px;margin:1px 2px}
+.formula .algebra-product>.algebra-letter{padding-inline:4px}
+.formula .monomial-part[role]:hover:not(:has([role="button"]:hover)),
+.formula .literal-part[role]:hover:not(:has([role="button"]:hover)){border-style:dashed;border-color:#20a7aa}
+.formula .monomial-part.chosen,.formula .literal-part.chosen{border-style:solid}

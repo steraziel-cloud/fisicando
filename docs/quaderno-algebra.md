@@ -31,3 +31,9 @@ Conservare il motore condiviso finché ha senso. Se emergeranno esigenze incompa
 Dopo la conferma, i prodotti letterali dei monomi hanno un token unico per tutta la parte letterale, con i token delle singole variabili e potenze al suo interno. Il coefficiente rimane fuori. Non si raggruppano somme e quozienti come se fossero parti letterali di un monomio.
 
 Durante la composizione, la freccia sinistra oltre l’inizio della prima lettera crea una casella facoltativa per il coefficiente. Funziona anche prima di una potenza, dentro numeratori/denominatori e dopo l’inizio di un nuovo addendo; non duplica caselle già presenti.
+
+### Selezione del monomio completo
+- Oltre alla parte letterale e ai singoli simboli, il bordo esterno seleziona il monomio completo con coefficiente e segno.
+- Il meno di una sottrazione è incluso nel termine selezionabile e viene conservato copiando o modificando il termine.
+- Le aree esterne del monomio e della parte letterale hanno spazi distinti; il bordo al passaggio del puntatore indica quale livello si sta selezionando.
+- Le frazioni con lettere al denominatore e le somme non vengono trattate come monomi. Il quaderno numerico resta indipendente.

@@ -18,3 +18,16 @@ const px=slot('x'),exponent=slot('2'),power={type:'power',id:++next,base:seq([px
 const nx=slot('x'),den=slot('y'),top=seq([nx]),bottom=seq([den]),fractionRoot=seq([{type:'fraction',id:++next,top,bottom}]);assert.equal(T.coefficientPosition(fractionRoot,nx.id,0).parent,top);assert.equal(T.coefficientPosition(fractionRoot,den.id,0).parent,bottom);
 const sx=slot('x'),sumRoot=seq([slot('2'),{type:'symbol',value:'+'},sx]);assert.equal(T.coefficientPosition(sumRoot,sx.id,0).index,2);sumRoot.items.splice(2,0,slot(''));assert.equal(T.coefficientPosition(sumRoot,sx.id,0),null);
 console.log('Coefficient gaps: leading letter, powers, numerators, denominators, new addends, existing coefficients and duplicate-gap prevention pass');
+
+// Entire terms include fractional coefficients and subtraction signs; no nested
+// monomial wrappers are created for the constituent letters of a single term.
+for(const [source,count] of [['3x^2yz',1],['-(3/2)xy',1],['2xy-3ab+z',3],['x/y',2],['2(x+y)',2]]){
+ const tree=E.parse(source),terms=[];E.validate(tree);walk(tree,n=>{if(n.type==='monomial')terms.push(n)});assert.equal(terms.length,count,source);
+ for(const term of terms){let nested=0;walk(term.child,n=>{if(n.type==='monomial')nested++});assert.equal(nested,0);}
+ const substitute=t=>{const n=structuredClone(t);function visit(x){if(x.type==='variable'){x.type='number';x.value='2';}if(x.child)visit(x.child);if(x.left){visit(x.left);visit(x.right);}}visit(n);return E.evaluate(n);};
+ let id=0;const draft=T.fromMath(tree,()=>++id).root;
+ const sourceOf=n=>n.type==='slot'?n.value:n.type==='symbol'?n.value:n.type==='seq'?n.items.map(sourceOf).join(''):n.type==='fraction'?'(('+sourceOf(n.top)+')/('+sourceOf(n.bottom)+'))':n.type==='power'?'('+sourceOf(n.base)+')^('+sourceOf(n.exponent)+')':'';
+ assert.deepEqual(substitute(E.parse(sourceOf(draft))),substitute(tree),'editing preserves signs and coefficient: '+source);
+}
+const signed=E.parse('2xy-3ab');assert(signed.right.subtracted);assert(E.stringify(signed.right).startsWith('−'));assert(E.stringify(signed.right).includes('3'));
+console.log('Whole monomial tokens: signed/fractional coefficients, maximal term boundaries, individual symbols and edit/clipboard sign preservation pass');
