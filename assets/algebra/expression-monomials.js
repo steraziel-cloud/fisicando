@@ -24,11 +24,16 @@ function plan(tree,selection,E){const keys=new Set(selection);for(const scope of
  if(indices.some(i=>!ready(c.terms[i])))continue;const values=indices.map(i=>describe(c.terms[i],E));if(values.some(v=>!v)||values.some(v=>v.key!==values[0].key))continue;
  return{scopeId:scope.id,termIds:ids,powers:values[0].powers,values:values.map((v,i)=>({n:v.coefficient.n*BigInt(c.signs[indices[i]]),d:v.coefficient.d}))};
  }return null;}
+function opposites(plan){return !!plan&&plan.values.length===2&&plan.values[0].n!==0n&&plan.values[0].n*plan.values[1].d+plan.values[1].n*plan.values[0].d===0n;}
+function productPlan(tree,selection,E,P){const keys=new Set(selection);for(const scope of P.scopes(tree)){if(scope.implicit)continue;const c=P.flatten(scope),indices=c.terms.map((t,i)=>keys.has(t.id)?i:-1).filter(i=>i>=0);if(indices.length<2)continue;const ids=indices.map(i=>c.terms[i].id),ops=indices.slice(1).map(i=>c.operators[i-1]),allowed=[...ids,...ops];if([...keys].some(id=>!allowed.includes(id))||!indices.every(i=>c.terms[i].type==='monomial')&&ops.some(id=>!keys.has(id)))continue;
+ const terms=indices.map(i=>c.terms[i]);if(terms.some(t=>!ready(t)))continue;const values=terms.map(t=>describe(t,E));if(values.some(v=>!v))continue;const powers={},exponents={};for(const v of values)for(const letter in v.powers){powers[letter]=(powers[letter]||0n)+v.powers[letter];(exponents[letter]||=[]).push(v.powers[letter]);}
+ return{scopeId:scope.id,termIds:ids,values:values.map(v=>v.coefficient),powers,exponents};
+ }return null;}
 function literal(powers,E){const factors=Object.keys(powers).sort((a,b)=>a.toLowerCase().localeCompare(b.toLowerCase())||(a<b?-1:a>b?1:0)).filter(v=>powers[v]!==0n).map(v=>powers[v]===1n?E.node('variable',{value:v}):E.node('power',{left:E.node('variable',{value:v}),right:E.num(powers[v])}));if(!factors.length)return null;const product=factors.slice(1).reduce((left,right)=>E.node('binary',{op:'·',implicit:true,left,right}),factors[0]);return factors.length>1?E.node('literal',{child:product}):product;}
 function build(coefficient,powers,E){const letters=literal(powers,E);if(!letters)return coefficient;let negative=false,c=coefficient;if(!E.hasVariables(c)){const r=E.evaluate(c);if(!r.n&&c.type==='number')return E.num(0);if(c.type==='number'||c.type==='fraction'&&c.left.type==='number'&&c.right.type==='number'){negative=r.n<0n;if(c.type==='fraction'){const n=BigInt(c.left.value),d=BigInt(c.right.value);c=E.fraction(E.num(n<0n?-n:n),E.num(d<0n?-d:d));if(!n)return E.num(0);if(c.right.value==='1')c=c.left;}else c=E.num(r.n<0n?-r.n:r.n);if(c.type==='number'&&c.value==='1')c=null;}}
  if(c?.type==='binary')c=E.node('group',{style:'(',child:c});let child=c?E.node('binary',{op:'·',implicit:true,left:c,right:letters}):letters;if(negative)child=E.node('binary',{op:'−',unary:true,left:E.num(0),right:child});return E.node('monomial',{child,...(negative?{subtracted:true}:{})});}
 function collect(scope,ids,replacement,E){const c=chain(scope),chosen=new Set(ids);let result=null,done=false;c.terms.forEach((term,i)=>{let sign=c.signs[i];if(chosen.has(term.id)){if(done)return;done=true;term=structuredClone(replacement);sign=1;}else term=structuredClone(term);if(!result)result=sign<0?E.node('binary',{op:'−',unary:true,left:E.num(0),right:term}):term;else result=E.node('binary',{op:sign<0?'−':'+',left:result,right:term});});return result;}
-function removeZeros(t){if(t.child)t.child=removeZeros(t.child);if(t.left){t.left=removeZeros(t.left);t.right=removeZeros(t.right);}const zero=n=>n.type==='number'&&n.value==='0';if(isSum(t)){if(zero(t.right))return t.left;if(t.op==='+'&&zero(t.left))return t.right;}if(t.type==='group'&&t.child.type==='number')return t.child;return t;}
+function removeZeros(t){if(t.child)t.child=removeZeros(t.child);if(t.left){t.left=removeZeros(t.left);t.right=removeZeros(t.right);}const zero=n=>n.type==='number'&&n.value==='0';if(t.type==='binary'&&t.op==='·'&&(zero(t.left)||zero(t.right)))return zero(t.left)?t.left:t.right;if(isSum(t)){if(zero(t.right))return t.left;if(t.op==='+'&&zero(t.left))return t.right;}if(t.type==='group'&&t.child.type==='number')return t.child;return t;}
 // Conservative exact symbolic equivalence for linked rows. Sparse polynomials
 // normalize sums/products; other denominators and powers remain structural atoms.
 // This validates the same local change inside fractions/powers without sampling
@@ -47,5 +52,5 @@ function signature(tree,E){
  return serial(read(tree));
 }
 function equivalent(a,b,E){return signature(a,E)===signature(b,E);}
-const api={describe,chain,scopes,plan,literal,build,collect,removeZeros,equivalent};global.GatitoExpressionMonomials=api;if(typeof module!=='undefined')module.exports=api;
+const api={describe,chain,scopes,plan,ready,opposites,productPlan,literal,build,collect,removeZeros,equivalent};global.GatitoExpressionMonomials=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window==='undefined'?globalThis:window);

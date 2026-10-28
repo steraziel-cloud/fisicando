@@ -327,7 +327,7 @@ window.LESSON_CATALOG = [
                 ],
                 "labUrl": "laboratorio-algebra.html",
                 "labTitle": "Il quaderno delle frazioni algebriche",
-                "labDescription": "Inserisci espressioni letterali, anche al numeratore e al denominatore, e svolgi somme di monomi simili. Le altre operazioni algebriche sono in lavorazione.",
+                "labDescription": "Inserisci espressioni letterali, anche al numeratore e al denominatore, e svolgi somme e prodotti di monomi. Le altre operazioni algebriche sono in lavorazione.",
                 "note": "Percorso in lavorazione per il biennio. Il laboratorio è disponibile nella sua versione iniziale; teoria ed esercizi saranno aggiunti progressivamente.",
                 "aliases": [
                   "Espressioni letterali"
@@ -336,7 +336,7 @@ window.LESSON_CATALOG = [
                   "medie": {
                     "title": "Espressioni letterali",
                     "labTitle": "Il quaderno delle espressioni letterali",
-                    "labDescription": "Inserisci espressioni letterali e svolgi somme algebriche di monomi simili. Le altre operazioni con monomi e polinomi sono in lavorazione.",
+                    "labDescription": "Inserisci espressioni letterali e svolgi somme algebriche e prodotti di monomi. Le altre operazioni con monomi e polinomi sono in lavorazione.",
                     "note": "Percorso di espressioni letterali in lavorazione per la terza media. Il laboratorio è disponibile nella sua versione iniziale; teoria ed esercizi saranno aggiunti progressivamente."
                   }
                 }

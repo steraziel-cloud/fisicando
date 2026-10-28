@@ -106,3 +106,7 @@
 
 .formula .monomial-part>.operator{padding-inline:3px}
 .formula .monomial-part>.algebra-letter:not(.token){padding-inline:0}
+
+.formula .monomial-cancelled{position:relative}
+.formula .monomial-cancelled::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:#df5555;transform:rotate(-13deg);pointer-events:none}
+#actions .monomial-coefficient-prompt{white-space:nowrap}

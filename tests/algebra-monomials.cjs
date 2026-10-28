@@ -19,3 +19,6 @@ for(const source of ['(2+3)x+(4+5)x','0,5x+0,25x']){const tree=E.parse(source),c
 
 for(const [source,expected] of [['2x-3y+12x',14n],['2x-3y-12x',-10n],['-2x+3y+12x',10n]]){const tree=E.parse(source),c=M.chain(tree),p=M.plan(tree,[c.terms[0].id,c.terms[2].id],E);assert(p,source);assert.equal(p.values.reduce((sum,v)=>sum+v.n,0n),expected);}
 const bareFractions=E.parse('1/2+1/3'),fractionChain=M.chain(bareFractions);assert.equal(M.plan(bareFractions,fractionChain.terms.map(t=>t.id),E),null);
+
+const P=require('../assets/algebra/expression-product.js');for(const source of ['x*y','2x*3y','(2x*3x)']){const tree=E.parse(source);let product;function visit(t){if(t.type==='binary'&&t.op==='·'&&!t.implicit)product=t;if(t.child)visit(t.child);if(t.left){visit(t.left);visit(t.right);}}visit(tree);assert(product,source+' keeps an explicit product');const c=P.flatten(product);assert(c.terms.every(t=>t.type==='monomial'));assert(M.productPlan(tree,[...c.terms.map(t=>t.id),...c.operators],E,P));}
+for(const source of ['x-x','(2/4)x-(1/2)x']){const tree=E.parse(source),c=M.chain(tree);assert(M.opposites(M.plan(tree,c.terms.map(t=>t.id),E)));}

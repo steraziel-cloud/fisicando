@@ -28,8 +28,8 @@ function orderLetters(t){
  const result=factors.slice(1).reduce((left,right)=>node('binary',{op:'·',implicit:true,left,right}),factors[0]);
  return negative?node('binary',{op:'−',unary:true,left:num(0),right:result}):result;
 }
-function structureLetters(t){if(!hasVariables(t)||t.type==='literal')return t;if(t.child)t.child=structureLetters(t.child);if(t.left){t.left=structureLetters(t.left);t.right=structureLetters(t.right);}if(t.type!=='binary'||t.op!=='·')return t;
- const flatten=n=>n.type==='literal'?flatten(n.child):n.type==='binary'&&n.op==='·'?[...flatten(n.left),...flatten(n.right)]:[n],letters=n=>n.type==='variable'||n.type==='literal'||n.type==='group'&&letters(n.child)||n.type==='power'&&letters(n.left)&&!hasVariables(n.right),factors=flatten(t);let start=factors.findIndex(letters);if(start<0||factors.length-start<2||!factors.slice(start).every(letters)||!factors.slice(0,start).every(n=>!hasVariables(n)))return t;
+function structureLetters(t){if(!hasVariables(t)||t.type==='literal')return t;if(t.child)t.child=structureLetters(t.child);if(t.left){t.left=structureLetters(t.left);t.right=structureLetters(t.right);}if(t.type!=='binary'||!t.implicit)return t;
+ const flatten=n=>n.type==='literal'?flatten(n.child):n.type==='binary'&&n.implicit?[...flatten(n.left),...flatten(n.right)]:[n],letters=n=>n.type==='variable'||n.type==='literal'||n.type==='group'&&letters(n.child)||n.type==='power'&&letters(n.left)&&!hasVariables(n.right),factors=flatten(t);let start=factors.findIndex(letters);if(start<0||factors.length-start<2||!factors.slice(start).every(letters)||!factors.slice(0,start).every(n=>!hasVariables(n)))return t;
  const product=items=>items.slice(1).reduce((left,right)=>node('binary',{op:'·',implicit:true,left,right}),items[0]),part=node('literal',{child:product(factors.slice(start))});if(!start)return{...part,id:t.id};return{...t,left:product(factors.slice(0,start)),right:part};
 }
 // Add only the outer monomial boundary: factors remain individually editable.
@@ -40,10 +40,11 @@ function isMonomial(t){
  if(t.unary)return isMonomial(t.right);
  if(t.type==='power'){if(hasVariables(t.right))return false;const e=evaluate(t.right);return e.d===1n&&e.n>=0n&&isMonomial(t.left);}
  if(t.type==='fraction')return !hasVariables(t.right)&&isMonomial(t.left);
- return t.type==='binary'&&t.op==='·'&&isMonomial(t.left)&&isMonomial(t.right);
+ return t.type==='binary'&&t.implicit&&isMonomial(t.left)&&isMonomial(t.right);
 }
 function structureMonomials(t){
  if(!hasVariables(t))return t;
+ if(t.type==='binary'&&t.op==='·'&&!t.implicit){t.left=structureMonomials(t.left);t.right=structureMonomials(t.right);return t;}
  if(isMonomial(t))return node('monomial',{child:t});
  if(t.child)t.child=structureMonomials(t.child);
  if(t.left){t.left=structureMonomials(t.left);t.right=structureMonomials(t.right);

@@ -18,7 +18,7 @@ Il tasto del periodo è stato sostituito da un pulsante abc che apre un piccolo 
 
 Il parser accetta lettere latine distinte per maiuscole/minuscole e prodotti impliciti, anche dentro numeratori e denominatori. Riconosce e somma i monomi simili mediante calcoli svolti dallo studente; il contesto conserva modifica/cancellazione e la semplificazione dei coefficienti frazionari. Il generatore resta numerico ed è etichettato come tale. Le operazioni numeriche precedenti continuano a funzionare sulle espressioni interamente numeriche.
 
-Prossimi pezzi: prodotti e rapporti di monomi, con passaggi svolti dallo studente.
+Prossimi pezzi: rapporti di monomi e successive operazioni con polinomi, con passaggi svolti dallo studente.
 
 ## Priorità e futuri profili
 
@@ -53,3 +53,11 @@ Durante la composizione, la freccia sinistra oltre l’inizio della prima letter
 - Nei monomi x e −x, con coefficiente unitario sottinteso, la lettera non ha un secondo bersaglio di selezione: il clic sulla lettera seleziona il monomio completo. La voce del menu si chiama Somma algebrica.
 
 - Anche per xy e x² con coefficiente sottinteso si evita il bersaglio identico all’intero monomio; le singole lettere, basi ed esponenti restano selezionabili.
+
+## Prodotti e cancellazione degli opposti
+- I prodotti espliciti (`2x * 3y`, anche tra parentesi) mantengono fattori e punto selezionabili; non vengono confusi con la giustapposizione interna a un monomio.
+- Selezionando due o più monomi dello stesso prodotto compare Moltiplica monomi. Per fattori tutti monomiali è facoltativa la selezione dei punti; per fattori numerici isolati si selezionano anche i punti.
+- Sulla riga corrente vengono scritti il prodotto dei coefficienti e, per le lettere comuni, le somme degli esponenti. Lo studente scrive il prodotto dei coefficienti (numeratore e denominatore se frazionari), poi la somma degli esponenti di ogni lettera comune. Le lettere presenti in un solo fattore si conservano. Il risultato viene scritto nel passaggio successivo e si propaga nei passaggi collegati.
+- Non viene eseguita alcuna riduzione automatica del coefficiente frazionario. La frazione resta semplificabile con lo strumento esistente. Annullando il prodotto guidato si ripristinano i fattori iniziali.
+- Due monomi opposti offrono Semplifica gli opposti: le sbarrette restano sui termini della riga di partenza e la riga successiva assorbe lo zero. La somma algebrica guidata resta disponibile come alternativa. Undo/redo conservano anche le annotazioni.
+- I segni esterni a un prodotto vengono conservati quando il risultato diventa un monomio selezionabile: ad esempio `x² − (2x · 3x)` diventa `x² − 6x²`.
