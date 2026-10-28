@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     pane.hidden = false; pane.classList.remove('rm-options-enter'); void pane.offsetWidth; pane.classList.add('rm-options-enter');
     document.getElementById('materials-title').textContent = l.title;
     document.getElementById('selected-lesson-path').textContent = `${subjectTitle} · ${areaTitle} · ${topic.title}`;
-    document.getElementById('selected-lesson-note').textContent = l.unpublished ? 'Progetto in lavorazione. Questo segnaposto ricorda un’attività futura: i materiali non sono ancora pubblicati.' : l.status==='work-in-progress' ? (l.url ? 'Prima bozza in lavorazione: puoi esplorare il percorso; contenuti e visuali devono ancora essere revisionati.' : 'Lezione in lavorazione. I materiali non sono ancora disponibili.') : l.url ? 'Scegli il materiale disponibile per questa lezione.' : 'Questa lezione è da preparare. I materiali verranno aggiunti qui.';
+    document.getElementById('selected-lesson-note').textContent = l.note || (l.unpublished ? 'Progetto in lavorazione. Questo segnaposto ricorda un’attività futura: i materiali non sono ancora pubblicati.' : l.status==='work-in-progress' ? (l.url ? 'Prima bozza in lavorazione: puoi esplorare il percorso; contenuti e visuali devono ancora essere revisionati.' : 'Lezione in lavorazione. I materiali non sono ancora disponibili.') : l.url ? 'Scegli il materiale disponibile per questa lezione.' : 'Questa lezione è da preparare. I materiali verranno aggiunti qui.');
     const cards = document.getElementById('lesson-cards'); cards.replaceChildren();
     const types = l.kind==='Progetto' ? [['Progetto','Un tachimetro con Arduino','Costruire uno strumento per misurare la velocità.']] : [['Teoria','Capire i concetti','Leggi la spiegazione nel reader.'],['Esercizi','Metterti alla prova','Applica i concetti e allena il ragionamento.'],['Laboratorio','Esplorare e sperimentare','Osserva e manipola i fenomeni.']];
     types.forEach(([kind,title,description],i) => {
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function visitTopic(t, topicKey, parent, ancestors) {
           const lessons=(t.lessons || []).filter(l=> {
             if(level && !all.checked && !l.levels.includes(level))return false;
-            if(available.checked && (!l.url||l.unpublished))return false;
+            if(available.checked && ((!l.url&&!l.labUrl&&!l.exercisesUrl)||l.unpublished))return false;
             const haystack=normalize([s.title,a.title,...ancestors,t.title,...(t.aliases||[]),l.title,l.kind||''].join(' '));
             return tokens.every(token=>haystack.includes(token));
           });

@@ -1,0 +1,75 @@
+body{margin:0;background:var(--rm-bg,#eef4fa);color:var(--rm-text,#193e46);font:16px/1.5 system-ui}main{max-width:1300px;margin:auto;padding:24px 24px 340px}nav{display:flex;gap:20px}a{color:#167d7b}h1{font-size:28px}button,input{font:inherit;border:1px solid #bbcdd8;border-radius:8px;padding:8px 12px}button{cursor:pointer;background:var(--rm-panel,#fff);color:inherit}button:disabled{opacity:.4}button:focus-visible,[tabindex]:focus-visible{outline:3px solid #20a7aa}input{background:var(--rm-panel,#fff);color:inherit;min-width:0}#entry{flex:1;font-size:20px}.entry{display:flex;gap:8px}details{margin:12px 0}#paper{min-height:450px;padding:22px;background-color:var(--rm-panel,#fff);background-image:linear-gradient(#85a7bd12 1px,transparent 1px),linear-gradient(90deg,#85a7bd12 1px,transparent 1px);background-size:24px 24px;border:1px solid #ccdce6;border-radius:14px}.step{padding:12px 0;border-bottom:1px solid #bbcdd850}.step small{font:12px system-ui;color:var(--rm-muted,#586b79)}.formula{font:26px/1.6 Cambria,Georgia,serif;padding:16px 0;overflow-x:auto;white-space:nowrap}.token{display:inline-block;padding:2px 5px;border:1px solid transparent;border-radius:5px;vertical-align:middle}.token[role]{cursor:pointer}.token[role]:hover{border-color:#a1bdc5}.chosen{background:#16a4a033!important;border:1px solid #167d7b!important}.fraction{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle}.fraction>span:first-child{border-bottom:2px solid currentColor}.fraction>span{padding:0 4px}.period{text-decoration:overline}.operator{padding:4px;cursor:pointer}sup{vertical-align:super;font-size:.65em}.toolbar,#actions{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}#actions[hidden]{display:none}#message,#dialog-error{color:#b22e30;min-height:24px}#keyboard{position:fixed;bottom:14px;left:24px;width:400px;min-width:280px;max-width:calc(100vw - 30px);resize:horizontal;overflow:auto;box-sizing:border-box;padding:12px;background:var(--rm-panel,#fff);border:1px solid #b8cdd8;border-radius:14px;box-shadow:0 8px 28px #0003;z-index:20}#keyboard header{display:flex;justify-content:space-between}#handle{cursor:grab;touch-action:none;flex:1;font-size:13px}#keys{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:6px}#keys button{padding:4px;font-size:1em}#toggle{position:fixed;bottom:12px;right:14px;z-index:21}dialog{background:var(--rm-panel,#fff);color:inherit;max-width:min(540px,90vw);border:1px solid #16a4a0;border-radius:15px;padding:24px}dialog::backdrop{background:#0008}label{display:grid;gap:5px;margin:10px 0}#rewrite-entry{width:90%}@media(max-width:600px){main{padding:12px 10px 340px}.entry{flex-wrap:wrap}#entry{width:100%}.formula{font-size:22px}}
+
+/* Match the approved notebook's full-width, quiet opening. */
+main{max-width:none;margin:0;padding:16px clamp(18px,2.2vw,36px) 54px}
+main>nav{align-items:center;gap:18px;font-size:12px}
+main>h1{font-size:24px;line-height:1.3;margin:12px 0 16px}
+#paper{min-height:calc(100dvh - 146px);padding:18px 12px;background-color:var(--rm-panel);border-color:var(--rm-line)}
+.paper-tools{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
+#clear-paper{font-size:12px;padding:6px 9px}
+#expression-tools{margin:0;font-size:13px;flex:1}
+#expression-tools>summary{cursor:pointer;padding:6px 0;color:var(--rm-muted)}
+#expression-tools[open]{flex-basis:100%}
+#empty-slot{display:block;margin-top:18px;min-width:42px;min-height:46px;border:1px dashed var(--rm-line);color:var(--rm-accent);background:transparent;font-size:24px}
+#empty-slot[hidden],#keyboard[hidden]{display:none!important}
+#toggle{left:6px;right:auto;font-size:12px;padding:8px 12px}
+select{background:var(--rm-panel);color:var(--rm-text);border:1px solid var(--rm-line)}
+
+/* Independent generator and keyboard entry. */
+main>.toolbar{font-size:13px;margin:0 0 14px;align-items:center}
+#expression-tools[hidden],#text-help[hidden]{display:none}
+#expression-tools{flex-basis:100%}
+#keyboard .entry{display:flex;flex-direction:column;margin:10px 0}
+#keyboard #entry{width:100%;box-sizing:border-box;font-size:18px}
+#keyboard #start,#text-mode{font-size:13px}
+#text-mode{padding:5px 8px}
+#text-mode[aria-pressed=true]{border-color:var(--rm-accent);background:var(--rm-bg)}
+#text-help{font-size:12px}
+#entry-message{font-size:13px;color:#c74749;margin:6px 0 0}
+#entry-message:empty{display:none}
+#paper{min-height:calc(100dvh - 200px)}
+
+/* Point at one math part without highlighting all of its ancestors. */
+.token[role]:hover{border-color:transparent}
+.token[role]:hover:not(:has([role="button"]:hover)){border-color:#a1bdc5}
+
+
+/* Tools belong to the selected math, never to a fixed toolbar. */
+.step{border-bottom:0}
+#actions{position:fixed;z-index:25;display:flex;max-width:min(420px,calc(100vw - 16px));box-sizing:border-box;padding:6px;margin:0;background:var(--rm-panel,#fff);border:1px solid var(--rm-line,#bbcdd8);border-radius:10px;box-shadow:0 5px 18px #0002;font-size:13px}
+#actions[hidden]{display:none}
+#message:empty{display:none}
+#help summary{cursor:pointer;width:24px;text-align:center;border:1px solid var(--rm-line,#bbcdd8);border-radius:50%}
+#rewrite-error{color:#b22e30}
+
+.fw-fraction{--nb-accent:var(--rm-accent,#167d7b);--nb-paper:var(--rm-panel);position:relative}.fw-fraction .nb-number{display:inline-flex;gap:.25em;position:relative;padding:.12em .2em}.fw-fraction .nb-crossed{text-decoration:none}.fw-fraction .nb-inline-answer{min-width:2em}.fw-fraction .fw-equivalent{font:12px system-ui;border:0!important;color:var(--rm-muted);padding:3px}
+.fraction-work-form{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.fraction-work-form label{margin:0;display:flex;align-items:center;gap:6px}.fraction-work-form input{width:5em}.fw-error{color:#c74749;flex-basis:100%}.fw-error:empty{display:none}
+.nb-factor-floating{position:fixed;z-index:45;top:12vh;left:8vw;width:min(850px,84vw);max-height:78vh;resize:both;overflow:auto}.nb-factor-floating>header{cursor:move;touch-action:none}.nb-factor-floating .notebook-dock{z-index:46}
+
+.expression-continue{font:inherit;color:var(--rm-accent,#167d7b);background:transparent;border:1px solid transparent;margin-left:.5em;padding:2px 8px}.expression-continue:hover{border-color:var(--rm-line)}
+/* Context controls stay together on one compact line. */
+#actions{width:max-content;max-width:calc(100vw - 16px);flex-wrap:nowrap}
+#actions .fraction-work-form,#actions #arithmetic-form{display:flex;align-items:center;flex-wrap:nowrap;gap:6px;min-width:0;overflow-x:auto}
+#actions form>label{display:flex;align-items:center;gap:6px;margin:0;white-space:nowrap;flex-shrink:0}
+#actions form input{width:4.5em;box-sizing:border-box;padding:6px 7px}
+#actions form button{padding:6px 9px;white-space:nowrap;flex-shrink:0}
+#actions form button[aria-label="Annulla passaggio"]{padding:6px 8px;min-width:32px}
+#actions .fw-error:not(:empty),#actions #arithmetic-form [role="alert"]:not(:empty){position:fixed;margin-top:80px;max-width:calc(100vw - 32px);padding:4px 8px;border-radius:6px;background:var(--rm-panel,#fff);color:#b22e30}
+
+#rows input[data-expression-field]{width:calc(var(--answer-digits,2)*1ch + 16px)!important;min-width:0!important;max-width:calc(12ch + 16px)!important;box-sizing:border-box;flex:0 0 auto;padding:3px 6px;text-align:center}
+
+.expression-equals{display:inline-block;margin-left:.5em;padding:2px 8px;color:var(--rm-text);font:inherit;cursor:default}
+
+#actions .power-help{margin:0;position:relative}#actions .power-help summary{cursor:pointer;list-style:none;width:22px;height:22px;display:grid;place-items:center;border:1px solid var(--rm-line);border-radius:50%}#actions .power-help p{position:absolute;right:0;top:100%;z-index:2;width:220px;white-space:normal;background:var(--rm-panel);padding:8px;border:1px solid var(--rm-line);border-radius:8px}
+/* Keep the exponent next to its base while preserving separate selection. */
+.formula .em-power{padding-inline:2px}.formula .em-power>sup{margin-left:-4px}.formula .em-power>sup>.token{padding:0 1px;border-radius:3px}
+
+/* The main fraction bar remains distinct when either term contains a fraction. */
+.formula .complex-fraction{padding:5px 9px}.formula .complex-fraction>span{padding:5px 8px}.formula .complex-fraction>span:first-child{border-bottom-width:3px}
+#actions .generating-answer>span{padding:3px 4px;white-space:nowrap}#actions .generating-answer input{width:5em}
+
+/* Each independent exercise keeps its own vertical sequence of steps. */
+#rows{display:flex;flex-wrap:wrap;align-items:flex-start;gap:24px;margin-top:18px;min-width:0}
+.expression-sheet{flex:0 1 auto;width:max-content;min-width:min(260px,100%);max-width:100%;box-sizing:border-box;border:1px dashed var(--rm-line,#bbcdd8);border-radius:8px;padding:8px 14px;margin:0}
+.expression-sheet .formula{max-width:100%;box-sizing:border-box}
+@media(max-width:600px){#rows{gap:18px}.expression-sheet{padding:6px 8px;min-width:min(240px,100%)}}

@@ -269,6 +269,20 @@ window.LESSON_CATALOG = [
             "aliases": [],
             "lessons": [
               {
+                "title": "Espressioni letterali e frazioni algebriche",
+                "id": "espressioni-letterali-frazioni-algebriche",
+                "kind": "Teoria",
+                "status": "work-in-progress",
+                "levels": [
+                  "medie",
+                  "biennio"
+                ],
+                "labUrl": "laboratorio-algebra.html",
+                "labTitle": "Il quaderno di algebra",
+                "labDescription": "Apri la versione iniziale del quaderno. Per ora sono disponibili gli strumenti numerici; seguiranno lettere, monomi, polinomi e frazioni algebriche.",
+                "note": "Percorso in lavorazione, dalla terza media al biennio. Il laboratorio è disponibile nella sua versione iniziale; teoria ed esercizi saranno aggiunti progressivamente."
+              },
+              {
                 "title": "Espressioni letterali e valore di un’espressione",
                 "levels": [
                   "biennio",
@@ -2375,4 +2389,3 @@ window.LESSON_CATALOG = [
     ]
   }
 ];
-
