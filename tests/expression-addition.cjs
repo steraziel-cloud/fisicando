@@ -114,12 +114,16 @@ run("add(E.parse('(-2)^(-3)'),'signed reciprocal exponent')");selectWholePower()
 run("add(E.parse('4^2*(1/2)^3'),'negative exponent base rewrite');selected=[current().left.left.id];actions['power-rewrite']()");powerAnswer('1/2',{exponent:'-2'});run("selected=[current().left.id];actions['power-nested']()");powerAnswer('-4');productSelect([0,1]);run("actions['power-product']()");powerAnswer('-1');assert.equal(run('current().right.value'),'-1');equal(run('current()'),E.parse('4^2*(1/2)^3'));
 assert.throws(()=>E.evaluate(E.parse('0^(-1)')),/non ha reciproco/);assert.throws(()=>E.evaluate(E.parse('2^(1/2)')),/intero/);
 console.log('Integer exponents: student-written reciprocal, negative bases, negative exponent rewriting / combining, zero-base guards and rejection of fractional exponents pass');
-// Complex fraction bars are quotients, preserving both complete operands.
-for(const source of ['(1/2)/(3/4)','(1/2)/3','2/(3/4)','(1/2+1/3)/(3/4-1/4)','((1/2)/(3/4))/(5/6)']){
- run(`add(E.parse('${source}'),'complex fraction');selected=[current().id]`);const row=run('activeRow');assert(run('contextActions().some(x=>x[0]==="fraction-division")'));const value=run('E.evaluate(current())');run("actions['fraction-division']()");assert.equal(run('activeRow'),row+1);assert.equal(run('current().op'),'÷');equal(run('current()'),E.parse(source));assert.equal(run(`rows[${row}].tree.type`),'fraction');
+// Nested fractions go straight to the student-written reciprocal, only with ready operands.
+for(const [source,n,d] of [['(1/2)/(3/4)','4','3'],['(1/2)/3','1','3'],['2/(3/4)','4','3'],['(-1/2)/(-3/4)','-4','3']]){
+ run(`add(E.parse('${source}'),'nested fraction');selected=[current().id]`);const row=run('activeRow');assert(run('contextActions().some(x=>x[0]==="reciprocal")'));run('actions.reciprocal()');assert.equal(run('activeRow'),row);assert.equal(run('current().type'),'fraction');productAnswer('0','1');assert(run('arithmeticTask.error'));assert.equal(run('activeRow'),row);productAnswer(n,d);assert.equal(run('activeRow'),row+1);assert.equal(run('current().op'),'·');equal(run('current()'),E.parse(source));assert.equal(run(`rows[${row}].tree.type`),'fraction');
 }
-run("add(E.parse('(1/2)/(3/4)'),'guided nested quotient');selected=[current().id];actions['fraction-division']();selected=[current().left.id,current().id+'op',current().right.id];actions.reciprocal()");productAnswer('4','3');productSelect([0,1]);run('actions.product()');productAnswer('4','6');assert.equal(run('current().left.value'),'4');assert.equal(run('current().right.value'),'6');
-run("add(E.parse('2/3'),'simple fraction');selected=[current().id]");assert(!run('contextActions().some(x=>x[0]==="fraction-division")'));
+run("add(E.parse('(1/2)/(3/4)'),'guided nested quotient');selected=[current().id];actions.reciprocal()");productAnswer('4','3');productSelect([0,1]);run('actions.product()');productAnswer('4','6');assert.equal(run('current().left.value'),'4');assert.equal(run('current().right.value'),'6');
+for(const source of ['2/3','(1/2+1/3)/(3/4)','(1/2)/(3/4-1/4)','((1/2)/(3/4))/(5/6)','0,5/(3/4)','(1/2)/(2^3)']){
+ run(`add(E.parse('${source}'),'not ready');selected=[current().id]`);assert(!run('contextActions().some(x=>x[0]==="reciprocal")'));assert(!run('contextActions().some(x=>x[0]==="fraction-division")'));
+}
+// Solve the denominator first: only then can the outer fraction become a product.
+run("add(E.parse('(1/2)/(1/4+2/4)'),'finish denominator');{const t=current().right.child;selected=[t.left.id,t.id+'op',t.right.id];}actions.arithmetic()");assert.equal(run('arithmeticTask.kind'),'addition');submit('3');run('selected=[current().id]');assert(run('contextActions().some(x=>x[0]==="reciprocal")'));run('actions.reciprocal()');productAnswer('4','3');assert.equal(run('current().op'),'·');equal(run('current()'),E.parse('(1/2)/(1/4+2/4)'));
 // Construct the exact generating fraction, then perform the student's subtraction.
 function generatingAnswer(fields){el('#actions').submit({target:{id:'arithmetic-form',...fields},preventDefault(){}})}
 for(const [source,fields,answer,result] of [
