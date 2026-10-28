@@ -67,3 +67,9 @@ main>.toolbar{font-size:13px;margin:0 0 14px;align-items:center}
 /* The main fraction bar remains distinct when either term contains a fraction. */
 .formula .complex-fraction{padding:5px 9px}.formula .complex-fraction>span{padding:5px 8px}.formula .complex-fraction>span:first-child{border-bottom-width:3px}
 #actions .generating-answer>span{padding:3px 4px;white-space:nowrap}#actions .generating-answer input{width:5em}
+
+/* Each independent exercise keeps its own vertical sequence of steps. */
+#rows{display:flex;flex-wrap:wrap;align-items:flex-start;gap:24px;margin-top:18px;min-width:0}
+.expression-sheet{flex:0 1 auto;width:max-content;min-width:min(260px,100%);max-width:100%;box-sizing:border-box;border:1px dashed var(--rm-line,#bbcdd8);border-radius:8px;padding:8px 14px;margin:0}
+.expression-sheet .formula{max-width:100%;box-sizing:border-box}
+@media(max-width:600px){#rows{gap:18px}.expression-sheet{padding:6px 8px;min-width:min(240px,100%)}}
