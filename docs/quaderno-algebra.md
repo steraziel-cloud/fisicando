@@ -51,3 +51,5 @@ Durante la composizione, la freccia sinistra oltre l’inizio della prima letter
 - Il segno + dei termini successivi al primo è disegnato dentro il token del monomio, come il segno −: la selezione dell’intero termine lo evidenzia insieme a coefficiente e parte letterale. Il segno resta anche selezionabile singolarmente.
 
 - Nei monomi x e −x, con coefficiente unitario sottinteso, la lettera non ha un secondo bersaglio di selezione: il clic sulla lettera seleziona il monomio completo. La voce del menu si chiama Somma algebrica.
+
+- Anche per xy e x² con coefficiente sottinteso si evita il bersaglio identico all’intero monomio; le singole lettere, basi ed esponenti restano selezionabili.
