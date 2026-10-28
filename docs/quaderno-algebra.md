@@ -65,3 +65,5 @@ Durante la composizione, la freccia sinistra oltre l’inizio della prima letter
 - Dopo la conferma, i fattori negativi di prodotti e divisioni vengono mostrati tra parentesi, senza introdurre ulteriori token di selezione. Le parentesi già presenti non vengono duplicate; anche i coefficienti negativi nel prodotto guidato conservano questa formattazione.
 
 - Il primo fattore negativo non riceve parentesi automatiche; i fattori negativi successivi al punto sì. Il più unario viene assorbito, ad esempio `−2x · +3y` appare come `−2x · 3y`.
+
+- Alla conferma, due segni consecutivi (ad esempio ·− o ·+) mostrano un avviso compatto sul quaderno che spiega la correzione applicata. Non viene duplicato nel tastierino. Gli esponenti negativi non attivano l’avviso.

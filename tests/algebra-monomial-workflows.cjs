@@ -49,3 +49,8 @@ run("{const original=GatitoExpressionDelimiters.wrap;GatitoExpressionDelimiters.
 run("add(E.parse('-2x+3y*-3xy+2x'),'negative product factor');render();");assert(run('math(current(),true).includes("negative-factor")'));run("{const scope=GatitoExpressionProduct.scopes(current()).find(t=>!t.implicit),c=GatitoExpressionProduct.flatten(scope);selected=c.terms.map(t=>t.id);}actions['monomial-product']();");assert(run('math(current(),true).includes("negative-factor")'),'negative scalar coefficient is also parenthesized');monomialProductAnswer(-9);monomialProductAnswer(2);assert.equal(run('arithmeticTask'),null);assert(run('GatitoExpressionMonomials.equivalent(current(),E.parse("-2x-9xy^2+2x"),E)'));
 
 for(const [source,count] of [['-2x*-6xy',1],['-2x*+3y',0],['-2x*-3y*-4z',2]]){run(`add(E.parse('${source}'),'first negative factor needs no automatic parentheses');render();`);assert.equal(run('(math(current(),true).match(/class="negative-factor/g)||[]).length'),count,source);}
+
+for(const [source,part] of [['-2x*-6xy','parentesi'],['-2x*+3y','assorbito'],['2x+-3x','parentesi'],['x^-2','']]){run(`GatitoExpressionKeyboard.options.commit('${source}')`);assert.equal(el('#message').textContent.includes('due simboli'),!!part,source);if(part)assert(el('#message').textContent.includes(part));}
+run("add(E.parse('2x+-3x'),'negative addend parentheses');render();");assert(run('math(current(),true).includes("negative-factor")'));
+
+for(const source of ['2x--3x','-2x*--3y']){run(`GatitoExpressionKeyboard.options.commit('${source}')`);assert(el('#message').textContent.includes('parentesi'));if(source==='2x--3x')assert(run('math(current(),true).includes("compact-negative-factor")'));}

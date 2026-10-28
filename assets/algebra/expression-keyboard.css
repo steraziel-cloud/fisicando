@@ -113,3 +113,5 @@
 
 .formula .compact-negative-factor{display:inline-flex;align-items:center;vertical-align:middle;gap:.03em}
 .formula .compact-negative-factor>.factor-bracket{font-size:1.15em;line-height:1}
+
+#message[data-kind="warning"]{color:inherit;border-left:3px solid #d49a2a;padding-left:8px}
