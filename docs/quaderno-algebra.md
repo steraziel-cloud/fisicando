@@ -16,9 +16,9 @@ Manipolare e semplificare espressioni con frazioni algebriche e coefficienti raz
 
 Il tasto del periodo è stato sostituito da un pulsante abc che apre un piccolo editor ancorato al tasto. Si può inserire una lettera o una sequenza come xyz: ogni lettera diventa una casella distinta, quindi si possono aggiungere potenze individuali. Il popup permette esplicitamente la tastiera del dispositivo; i campi matematici mantengono il tastierino del quaderno. Non c’è una vista QWERTY aggiuntiva e non c’è l’alfabeto greco. I periodici restano scrivibili mediante inserimento testuale.
 
-Il parser accetta lettere latine distinte per maiuscole/minuscole e prodotti impliciti, anche dentro numeratori e denominatori. Non esegue ancora trasformazioni simboliche: nelle espressioni letterali il contesto offre modifica/cancellazione. Il generatore resta numerico ed è etichettato come tale. Le operazioni numeriche precedenti continuano a funzionare sulle espressioni interamente numeriche.
+Il parser accetta lettere latine distinte per maiuscole/minuscole e prodotti impliciti, anche dentro numeratori e denominatori. Riconosce e somma i monomi simili mediante calcoli svolti dallo studente; il contesto conserva modifica/cancellazione e la semplificazione dei coefficienti frazionari. Il generatore resta numerico ed è etichettato come tale. Le operazioni numeriche precedenti continuano a funzionare sulle espressioni interamente numeriche.
 
-Prossimo pezzo: riconoscimento e somma di monomi simili; poi prodotti e rapporti di monomi, con passaggi svolti dallo studente.
+Prossimi pezzi: prodotti e rapporti di monomi, con passaggi svolti dallo studente.
 
 ## Priorità e futuri profili
 
@@ -39,3 +39,11 @@ Durante la composizione, la freccia sinistra oltre l’inizio della prima letter
 - Le frazioni con lettere al denominatore e le somme non vengono trattate come monomi. Il quaderno numerico resta indipendente.
 
 - Alla conferma i fattori letterali consecutivi vengono ordinati alfabeticamente; lettere e potenze restano separate e non vengono calcolate o accorpate. Maiuscole e minuscole restano distinte.
+
+## Somme algebriche di monomi simili
+- Selezionare i monomi completi e i segni di collegamento. La voce Somma monomi simili appare soltanto se lettere ed esponenti coincidono. Per monomi non adiacenti nella stessa somma, selezionare il segno che precede ciascun termine successivo al primo scelto. Non si attraversano le parentesi.
+- Il meno di un termine sottratto è ora selezionabile anche come operatore, pur rimanendo compreso nel monomio.
+- I coefficienti sono raccolti sulla riga corrente, con la parte letterale invariata. La somma viene inserita dallo studente e il monomio risultante viene scritto nella riga successiva.
+- Per coefficienti con denominatori differenti: denominatore comune scelto dallo studente, divisione per ogni denominatore, prodotto per ogni numeratore, somma algebrica finale. La costruzione del numeratore è visibile progressivamente sul quaderno, mentre la finestra flottante resta sotto la formula.
+- I coefficienti frazionari non vengono ridotti automaticamente: lo studente può selezionare la frazione e usare Semplifica. Si gestiscono i coefficienti 1, −1 e 0; il risultato nullo non conserva una parte letterale superflua.
+- Le operazioni indipendenti restano collegate tra le righe: si propagano soltanto i termini non ancora svolti. La verifica simbolica è esatta, senza sostituzioni numeriche casuali, con un limite interno di 256 termini durante i prodotti di verifica. Frazioni con denominatori letterali e potenze generali sono confrontate strutturalmente dopo la normalizzazione delle parti.
