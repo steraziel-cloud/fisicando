@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const levels = window.STUDY_LEVELS;
   const params = new URLSearchParams(location.search);
   const level = Object.hasOwn(levels, params.get('livello')) ? params.get('livello') : null;
+  // One shared laboratory can have different names and teaching goals by level.
+  function projectTopic(topic) {
+    return {...topic, ...(topic.lessons ? {lessons:topic.lessons.map(lesson=>({...lesson,...lesson.levelVariants?.[level]}))} : {}), ...(topic.children ? {children:topic.children.map(projectTopic)} : {})};
+  }
+  catalog = catalog.map(subject=>({...subject,areas:subject.areas.map(area=>({...area,topics:area.topics.map(projectTopic)}))}));
   // Alle medie le discipline scientifiche appartengono alla materia Scienze.
   // La proiezione conserva gli oggetti lezione e i loro URL; gli altri livelli
   // continuano a usare il catalogo originale.
@@ -193,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const lessons=(t.lessons || []).filter(l=> {
             if(level && !all.checked && !l.levels.includes(level))return false;
             if(available.checked && ((!l.url&&!l.labUrl&&!l.exercisesUrl)||l.unpublished))return false;
-            const haystack=normalize([s.title,a.title,...ancestors,t.title,...(t.aliases||[]),l.title,l.kind||''].join(' '));
+            const haystack=normalize([s.title,a.title,...ancestors,t.title,...(t.aliases||[]),l.title,...(l.aliases||[]),l.kind||''].join(' '));
             return tokens.every(token=>haystack.includes(token));
           });
           const td=branch(t.title,topicKey,t.icon,filtering);td.classList.add('rm-catalog-topic');
