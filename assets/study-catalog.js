@@ -327,7 +327,7 @@ window.LESSON_CATALOG = [
                 ],
                 "labUrl": "laboratorio-algebra.html",
                 "labTitle": "Il quaderno delle frazioni algebriche",
-                "labDescription": "Apri la versione iniziale del quaderno. Per ora sono disponibili gli strumenti numerici; seguiranno lettere, monomi, polinomi e frazioni algebriche.",
+                "labDescription": "Inserisci e modifica espressioni letterali, anche con lettere al numeratore e al denominatore. Le operazioni algebriche guidate sono in lavorazione.",
                 "note": "Percorso in lavorazione per il biennio. Il laboratorio è disponibile nella sua versione iniziale; teoria ed esercizi saranno aggiunti progressivamente.",
                 "aliases": [
                   "Espressioni letterali"
@@ -336,7 +336,7 @@ window.LESSON_CATALOG = [
                   "medie": {
                     "title": "Espressioni letterali",
                     "labTitle": "Il quaderno delle espressioni letterali",
-                    "labDescription": "Apri la versione iniziale del quaderno. Per ora sono disponibili gli strumenti numerici; seguiranno lettere, monomi e polinomi.",
+                    "labDescription": "Inserisci e modifica espressioni letterali con lettere, coefficienti e potenze. Le operazioni guidate con monomi e polinomi sono in lavorazione.",
                     "note": "Percorso di espressioni letterali in lavorazione per la terza media. Il laboratorio è disponibile nella sua versione iniziale; teoria ed esercizi saranno aggiunti progressivamente."
                   }
                 }

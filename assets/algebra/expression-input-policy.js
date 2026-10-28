@@ -5,7 +5,7 @@
  'use strict';
  const selector='input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="hidden"])';
  const touch=()=>Number(global.navigator?.maxTouchPoints||0)>0||!!global.matchMedia?.('(any-pointer: coarse)').matches;
- const managed=field=>!!field?.matches?.(selector)&&field.id!=='entry';
+ const managed=field=>!!field?.matches?.(selector)&&field.id!=='entry'&&!field.hasAttribute?.('data-native-keyboard');
  function prepare(root=document){const fields=[...(root.matches?.(selector)?[root]:[]),...root.querySelectorAll(selector)];for(const field of fields){if(!managed(field))continue;field.setAttribute('inputmode','none');field.setAttribute('autocomplete','off');field.setAttribute('autocorrect','off');field.setAttribute('spellcheck','false');field.setAttribute('virtualkeyboardpolicy','manual');if(touch()&&!field.disabled){field.readOnly=true;field.dataset.expressionKeypadOnly='true';}}}
  function replace(field,text,start=field.selectionStart??field.value.length,end=field.selectionEnd??start){const max=field.maxLength>0?field.maxLength:2000,room=Math.max(0,max-(field.value.length-(end-start)));field.setRangeText(text.slice(0,room),start,end,'end');field.dispatchEvent(new Event('input',{bubbles:true}));}
  function keydown(event){const field=event.target;if(event.defaultPrevented||!managed(field)||!field.dataset.expressionKeypadOnly||field.disabled||event.isComposing||event.ctrlKey||event.metaKey||event.altKey)return;

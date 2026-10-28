@@ -6,7 +6,7 @@
 .expression-lab #keyboard .gm-keyboard-keys{grid-template-columns:calc(62px * var(--gm-user-scale)) minmax(0,1fr) calc(82px * var(--gm-user-scale));gap:calc(8px * var(--gm-user-scale))}
 .expression-lab #keyboard .gm-number-matrix,.expression-lab #keyboard .gm-controls,.expression-lab #keyboard .gm-structures{grid-template-rows:repeat(4,calc(30px * var(--gm-user-scale)));gap:calc(4px * var(--gm-user-scale))}
 .expression-lab #keyboard .gm-structures{grid-template-columns:repeat(2,minmax(0,1fr));padding-right:calc(7px * var(--gm-user-scale))}
-.expression-lab #keyboard .gm-structures [data-ek=insert],.expression-lab #keyboard .gm-structures [data-ek=period]{grid-column:1/-1}
+.expression-lab #keyboard .gm-structures [data-ek=insert],.expression-lab #keyboard .gm-structures [data-ek=letters]{grid-column:1/-1}
 .expression-lab #keyboard .gm-number-matrix{grid-template-columns:repeat(4,minmax(0,1fr))}
 .expression-lab #keyboard .gm-controls{grid-template-columns:repeat(2,minmax(0,1fr));padding-left:calc(7px * var(--gm-user-scale))}
 .expression-lab #keyboard button[data-ek]{display:flex;align-items:center;justify-content:center;min-height:0!important;width:100%;box-sizing:border-box;height:auto;padding:calc(4px * var(--gm-user-scale))!important;font:500 calc(16px * var(--gm-user-scale))/1.2 system-ui!important;border:1px solid transparent!important;border-radius:5px!important;color:var(--rm-text)!important;background:color-mix(in srgb,var(--rm-text) 6%,var(--rm-panel))!important;touch-action:manipulation}
@@ -54,7 +54,7 @@
 #bracket-options{z-index:6;bottom:auto;gap:4px;padding:5px}
 #bracket-options::after{content:"";position:absolute;left:var(--ek-popup-tip,50%);bottom:-5px;width:8px;height:8px;transform:translateX(-50%) rotate(45deg);border-right:1px solid var(--rm-line);border-bottom:1px solid var(--rm-line);background:var(--rm-panel);pointer-events:none}
 .expression-lab #keyboard #bracket-options button{min-width:32px;min-height:34px!important}
-.expression-lab #keyboard .gm-structures button[data-ek=period]{font-size:calc(14px * var(--gm-user-scale))!important}
+.expression-lab #keyboard .gm-structures button[data-ek=letters]{font-size:calc(14px * var(--gm-user-scale))!important}
 .expression-lab #keyboard .gm-structures button[data-ek=insert]{white-space:nowrap;font-size:calc(9px * var(--gm-user-scale))!important;padding-inline:2px!important}
 #draft-math .period .ek-slot{text-decoration:overline}
 /* Input tools belong on the left; right-hand keys only control the cursor. */
@@ -68,18 +68,18 @@
 
 /* Compact anchored period editor; explanations only appear on request. */
 .expression-lab #keyboard button.ek-has-variants::after{top:auto;bottom:4px;right:4px}
-#period-popover[hidden],#period-help[hidden]{display:none!important}
-#period-popover{position:absolute;z-index:10;width:250px;max-width:calc(100vw - 32px);box-sizing:border-box;padding:6px;border:1px solid var(--rm-line);border-radius:8px;background:var(--rm-panel);color:var(--rm-text);box-shadow:0 4px 20px #0004}
-#period-popover::after{content:"";position:absolute;left:var(--period-tip,50%);bottom:-5px;width:8px;height:8px;transform:translateX(-50%) rotate(45deg);border-right:1px solid var(--rm-line);border-bottom:1px solid var(--rm-line);background:var(--rm-panel);pointer-events:none}
-#period-popover .period-input-row{display:flex;align-items:center;gap:6px}
-#period-popover label{display:block;font:13px/1.2 system-ui;margin:0}
-#period-popover input{flex:1;min-width:0;width:70px;padding:4px 6px;box-sizing:border-box;font-size:16px;height:32px}
-#period-popover button{display:inline-flex;align-items:center;justify-content:center;flex:0 0 30px;width:30px;min-height:30px;padding:0;font:16px/1 system-ui}
-#period-popover .period-apply{background:#167d7b;color:#fff;border-color:#167d7b}
-#period-popover #period-help-toggle{flex-basis:22px;width:22px;min-height:22px;border-radius:50%;font-size:12px;background:transparent;color:var(--rm-muted)}
-#period-popover #period-error{font-size:12px;color:#d34545;line-height:1.4;margin:6px 0 0}
-#period-popover #period-error:empty{display:none}
-#period-popover #period-help{font-size:12px;line-height:1.4;color:var(--rm-muted);margin:6px 0 0}
+#letter-popover[hidden],#letter-help[hidden]{display:none!important}
+#letter-popover{position:absolute;z-index:10;width:250px;max-width:calc(100vw - 32px);box-sizing:border-box;padding:6px;border:1px solid var(--rm-line);border-radius:8px;background:var(--rm-panel);color:var(--rm-text);box-shadow:0 4px 20px #0004}
+#letter-popover::after{content:"";position:absolute;left:var(--letter-tip,50%);bottom:-5px;width:8px;height:8px;transform:translateX(-50%) rotate(45deg);border-right:1px solid var(--rm-line);border-bottom:1px solid var(--rm-line);background:var(--rm-panel);pointer-events:none}
+#letter-popover .letter-input-row{display:flex;align-items:center;gap:6px}
+#letter-popover label{display:block;font:13px/1.2 system-ui;margin:0}
+#letter-popover input{flex:1;min-width:0;width:70px;padding:4px 6px;box-sizing:border-box;font-size:16px;height:32px}
+#letter-popover button{display:inline-flex;align-items:center;justify-content:center;flex:0 0 30px;width:30px;min-height:30px;padding:0;font:16px/1 system-ui}
+#letter-popover .letter-apply{background:#167d7b;color:#fff;border-color:#167d7b}
+#letter-popover #letter-help-toggle{flex-basis:22px;width:22px;min-height:22px;border-radius:50%;font-size:12px;background:transparent;color:var(--rm-muted)}
+#letter-popover #letter-error{font-size:12px;color:#d34545;line-height:1.4;margin:6px 0 0}
+#letter-popover #letter-error:empty{display:none}
+#letter-popover #letter-help{font-size:12px;line-height:1.4;color:var(--rm-muted);margin:6px 0 0}
 /* Draw the bar inside the repeating digits' own box; it cannot propagate. */
 .formula .period,#draft-math .ek-slot .period{display:inline-block;position:relative;text-decoration:none!important;vertical-align:baseline}
 .formula .period::before{content:"";position:absolute;top:.1em;left:0;right:0;border-top:1px solid currentColor;pointer-events:none}
@@ -91,3 +91,5 @@
 .expression-lab #keyboard .gm-edit-tools button[hidden]{display:none!important}
 #draft-math .ek-selected{outline:1px solid #167d7b;background:#16a4a033;border-radius:4px}
 #draft-math .ek-sequence{display:inline-block;vertical-align:middle}
+
+#letter-popover input{width:100px}.formula .algebra-letter{font-style:italic;padding-inline:2px}.formula .algebra-product>.token{padding-inline:2px}

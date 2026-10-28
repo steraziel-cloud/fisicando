@@ -2,7 +2,7 @@
 (function(global){
  const unwrap=t=>t?.type==='group'?unwrap(t.child):t;
  function integer(t){t=unwrap(t);return t?.type==='number'&&/^-?\d+$/.test(t.value)&&BigInt(t.value)>= -10000n&&BigInt(t.value)<=10000n?BigInt(t.value):null;}
- function key(t){t=unwrap(t);if(t.type==='number')return 'number:'+t.value;if(t.left)return [t.type,t.op||'',key(t.left),key(t.right)].join('|');return t.type;}
+ function key(t){t=unwrap(t);if(t.type==='number'||t.type==='variable')return t.type+':'+t.value;if(t.left)return [t.type,t.op||'',key(t.left),key(t.right)].join('|');return t.type;}
  function power(t){t=unwrap(t);return t?.type==='power'&&integer(t.right)!==null?{node:t,base:unwrap(t.left),exponent:integer(t.right)}:null;}
  function chosen(tree,selection,E){return selection.length===1?E.find(tree,selection[0]):null;}
  function single(tree,selection,E){return power(chosen(tree,selection,E));}
