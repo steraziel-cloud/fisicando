@@ -6,3 +6,15 @@ for(const source of ['1/0','1/(x-x)','1/(0x)','x^y','x^0,5','x^10001','α','x+',
 assert.notEqual(P.key(E.parse('x')),P.key(E.parse('y')));assert.notEqual(P.key(E.parse('x')),P.key(E.parse('X')));
 const old=require('../assets/expression-engine.js');for(const source of ['2*2/5','1/2+2/3','(2/3)^-2','0,1(6)+1/2','-2^2','(1/2)/(3/4)']){const a=E.evaluate(E.parse(source)),b=old.evaluate(old.parse(source));assert.equal(a.n*b.d,b.n*a.d);}
 console.log('Symbolic entry: Latin variables, case distinctions, implicit products, signs, coefficients, nested fractions, integer exponents, clipboard/edit round trips, invalid input and numerical compatibility pass');
+const S=require('../assets/algebra/expression-steps.js');
+for(const source of ['xyz','3xyz','(2/3)x^2y','-2xYz','a^2b^3c']){const t=S.normalize(E.parse(source));E.validate(t);const parts=[];walk(t,n=>{if(n.type==='literal')parts.push(n)});assert.equal(parts.length,1,'one literal-part token per monomial: '+source);assert(!E.stringify(parts[0]).includes('3/2'));const variables=[];walk(parts[0],n=>{if(n.type==='variable')variables.push(n.value)});assert(variables.length>=2);const ids=[];walk(t,n=>ids.push(n.id));assert.equal(new Set(ids).size,ids.length,'unique selectable identities');}
+const sum=E.parse('2xy+3xy');let literalParts=0;walk(sum,n=>{if(n.type==='literal')literalParts++});assert.equal(literalParts,2);
+for(const source of ['2(x+y)','x+y','x/y']){let count=0;walk(E.parse(source),n=>{if(n.type==='literal')count++});assert.equal(count,0,'do not group sums or algebraic quotients as monomial literal parts');}
+console.log('Literal-part tokens: complete monomial letters/powers grouped once, coefficients kept outside, sums/quotients excluded and unique node identities preserved');
+let next=0;const slot=value=>({type:'slot',id:++next,value}),seq=items=>({type:'seq',id:++next,items});
+const x=slot('x'),y=slot('y'),root=seq([x,y]);assert.equal(T.coefficientPosition(root,x.id,1),null);assert.equal(T.coefficientPosition(root,x.id,0).index,0);assert.equal(T.coefficientPosition(root,y.id,0),null);
+const n=slot('3'),xx=slot('x'),withCoefficient=seq([n,xx]);assert.equal(T.coefficientPosition(withCoefficient,xx.id,0),null);
+const px=slot('x'),exponent=slot('2'),power={type:'power',id:++next,base:seq([px]),exponent:seq([exponent])},powerRoot=seq([power,slot('y')]);assert.equal(T.coefficientPosition(powerRoot,px.id,0).parent,powerRoot);assert.equal(T.coefficientPosition(powerRoot,exponent.id,0),null);
+const nx=slot('x'),den=slot('y'),top=seq([nx]),bottom=seq([den]),fractionRoot=seq([{type:'fraction',id:++next,top,bottom}]);assert.equal(T.coefficientPosition(fractionRoot,nx.id,0).parent,top);assert.equal(T.coefficientPosition(fractionRoot,den.id,0).parent,bottom);
+const sx=slot('x'),sumRoot=seq([slot('2'),{type:'symbol',value:'+'},sx]);assert.equal(T.coefficientPosition(sumRoot,sx.id,0).index,2);sumRoot.items.splice(2,0,slot(''));assert.equal(T.coefficientPosition(sumRoot,sx.id,0),null);
+console.log('Coefficient gaps: leading letter, powers, numerators, denominators, new addends, existing coefficients and duplicate-gap prevention pass');

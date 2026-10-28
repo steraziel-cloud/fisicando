@@ -25,3 +25,9 @@ Prossimo pezzo: riconoscimento e somma di monomi simili; poi prodotti e rapporti
 La priorità attuale è sviluppare il quaderno delle frazioni algebriche per il biennio: serve già a una studentessa. Il profilo Medie dovrà generare soltanto espressioni letterali (coefficienti razionali ammessi, senza lettere al denominatore); quello Biennio potrà generare frazioni algebriche. Il quaderno potrà comunque permettere l’inserimento di entrambe le tipologie. Questa distinzione del generatore è futura: la base attuale genera ancora soltanto espressioni numeriche.
 
 Conservare il motore condiviso finché ha senso. Se emergeranno esigenze incompatibili, sospendere lo sviluppo specifico per le Medie e proseguire prima con le frazioni algebriche per il Biennio, senza imporre una biforcazione anticipata.
+
+## Selezione della parte letterale e coefficiente inserito dopo
+
+Dopo la conferma, i prodotti letterali dei monomi hanno un token unico per tutta la parte letterale, con i token delle singole variabili e potenze al suo interno. Il coefficiente rimane fuori. Non si raggruppano somme e quozienti come se fossero parti letterali di un monomio.
+
+Durante la composizione, la freccia sinistra oltre l’inizio della prima lettera crea una casella facoltativa per il coefficiente. Funziona anche prima di una potenza, dentro numeratori/denominatori e dopo l’inizio di un nuovo addendo; non duplica caselle già presenti.

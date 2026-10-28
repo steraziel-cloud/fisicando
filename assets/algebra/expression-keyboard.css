@@ -93,3 +93,5 @@
 #draft-math .ek-sequence{display:inline-block;vertical-align:middle}
 
 #letter-popover input{width:100px}.formula .algebra-letter{font-style:italic;padding-inline:2px}.formula .algebra-product>.token{padding-inline:2px}
+
+.formula .literal-part{padding:2px 4px;vertical-align:middle}.formula .literal-part>.algebra-product{vertical-align:middle}
