@@ -63,3 +63,5 @@ Durante la composizione, la freccia sinistra oltre l’inizio della prima letter
 - I segni esterni a un prodotto vengono conservati quando il risultato diventa un monomio selezionabile: ad esempio `x² − (2x · 3x)` diventa `x² − 6x²`.
 
 - Dopo la conferma, i fattori negativi di prodotti e divisioni vengono mostrati tra parentesi, senza introdurre ulteriori token di selezione. Le parentesi già presenti non vengono duplicate; anche i coefficienti negativi nel prodotto guidato conservano questa formattazione.
+
+- Il primo fattore negativo non riceve parentesi automatiche; i fattori negativi successivi al punto sì. Il più unario viene assorbito, ad esempio `−2x · +3y` appare come `−2x · 3y`.
