@@ -10,3 +10,9 @@ for(const [s,indices,expected] of [['2x+3x',[0,1],true],['2x-3x',[0,1],true],['2
 const grouped=E.parse('x+(2x+3x)');assert.equal(M.plan(grouped,[grouped.left.id,grouped.id+'op',grouped.right.child.left.id],E),null);
 const powers={x:1n,y:2n};assert.equal(d('3xy^2').key,M.describe(M.build(E.num(-1),powers,E),E).key);assert(M.build(E.num(-1),powers,E).subtracted);assert.equal(M.build(E.num(0),powers,E).value,'0');const unreduced=M.build(E.fraction(E.num(2),E.num(6)),powers,E);assert(E.stringify(unreduced).includes('(2)/(6)'));
 console.log('Monomials: exact similarity, rational coefficients, natural powers, signs, selection boundaries, unequal terms, conservative symbolic equivalence and nonautomatic reduction pass');
+
+assert.throws(()=>same('x/(y-y)','x/0'));
+assert.throws(()=>same('(x-x)^0','1'));
+assert(same('((x^10000)^10000)^10000+((x^10000)^10000)^10000','2((x^10000)^10000)^10000'));
+
+for(const source of ['(2+3)x+(4+5)x','0,5x+0,25x']){const tree=E.parse(source),c=M.chain(tree);assert.equal(M.plan(tree,[...c.terms.map(t=>t.id),...c.operators],E),null,'coefficient calculations/conversions remain student work');}
