@@ -18,5 +18,8 @@
   for(let i=route.length-2;i>=0;i--){const {node,key,index}=route[i];if(node.type==='seq'){if(index>0){const previous=node.items[index-1];return previous.type==='symbol'&&['+','−','-','·','÷','(','[','{'].includes(previous.value)?{parent:node,index}:null;}candidate={parent:node,index:0};}else if(node.type==='power'&&key==='exponent')return null;else if(node.type==='fraction')return candidate;}
   return candidate;
  }
- const api={children,path,slots,vertical,clone,fromMath,coefficientPosition};global.GatitoExpressionEditorTools=api;if(typeof module!=='undefined')module.exports=api;
+ // An empty slot immediately after a balanced group is an insertion point,
+ // not the base of a new power.
+ function precedingGroup(parent,index){if(parent?.type!=='seq')return null;let end=index;while(end>0&&parent.items[end-1].type==='slot'&&!parent.items[end-1].value)end--;const close=parent.items[end-1];if(close?.type!=='symbol'||!')]}'.includes(close.value))return null;const opens={')':'(',']':'[','}':'{'},stack=[];for(let i=end-1;i>=0;i--){const n=parent.items[i];if(n.type!=='symbol')continue;if(opens[n.value])stack.push(opens[n.value]);else if('([{'.includes(n.value)){if(stack.pop()!==n.value)return null;if(!stack.length)return{start:i,end};}}return null;}
+ const api={children,path,slots,vertical,clone,fromMath,coefficientPosition,precedingGroup};global.GatitoExpressionEditorTools=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window==='undefined'?globalThis:window);

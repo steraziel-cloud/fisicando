@@ -12,5 +12,8 @@
   function convertNode(t){if(t.id===holeId){hole=slot('');hole.required=true;return hole;}if(t.type==='number'){const m=t.value.match(/^(\d+[.,]\d*)\((\d+)\)$/),n=slot((m?m[1]+m[2]:t.value).replace('.',','));if(m)n.repeatLength=m[2].length;return n;}if(t.type==='fraction')return{type:'fraction',id:nextId(),fractionInk:structuredClone(t.fractionInk),top:field(convert(t.left),'Numeratore'),bottom:field(convert(t.right),'Denominatore')};if(t.type==='power')return{type:'power',id:nextId(),base:field(convert(t.left),'Base'),exponent:field(convert(t.right),'Esponente')};if(t.type==='group')return seq([{type:'symbol',id:nextId(),value:t.style},convert(t.child),{type:'symbol',id:nextId(),value:{'(':')','[':']','{':'}'}[t.style]}]);return seq([convert(t.left),{type:'symbol',id:nextId(),value:t.op},convert(t.right)]);}
   const n=convert(tree);return {root:n.type==='seq'?n:seq([n]),hole};
  }
- const api={children,path,slots,vertical,clone,fromMath};global.GatitoExpressionEditorTools=api;if(typeof module!=='undefined')module.exports=api;
+ // An empty slot immediately after a balanced group is an insertion point,
+ // not the base of a new power.
+ function precedingGroup(parent,index){if(parent?.type!=='seq')return null;let end=index;while(end>0&&parent.items[end-1].type==='slot'&&!parent.items[end-1].value)end--;const close=parent.items[end-1];if(close?.type!=='symbol'||!')]}'.includes(close.value))return null;const opens={')':'(',']':'[','}':'{'},stack=[];for(let i=end-1;i>=0;i--){const n=parent.items[i];if(n.type!=='symbol')continue;if(opens[n.value])stack.push(opens[n.value]);else if('([{'.includes(n.value)){if(stack.pop()!==n.value)return null;if(!stack.length)return{start:i,end};}}return null;}
+ const api={children,path,slots,vertical,clone,fromMath,precedingGroup};global.GatitoExpressionEditorTools=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window==='undefined'?globalThis:window);

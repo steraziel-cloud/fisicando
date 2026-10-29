@@ -38,3 +38,9 @@ for(const [source,expected] of [['-2zx','xz'],['3z^2xy^3','xyz'],['-zx','xz'],['
  if(source.startsWith('-'))assert(E.stringify(tree).includes('−')||E.stringify(tree).includes('-2'));
 }
 console.log('Alphabetical literal ordering: signs, fractional coefficients, powers, repeated letters and case distinctions preserved');
+
+// Applying a power after a closed group must consume that group as its base.
+for(const [symbols,start] of [[['(', 'x', ')'],0],[['2','·','(','x',')'],2],[['(','x','+','[','y',']',')'],0],[['{','x','}'],0]]){const items=symbols.map(value=>'()[]{}+·'.includes(value)?{type:'symbol',id:++next,value}:slot(value));items.push(slot(''));const parent=seq(items),group=T.precedingGroup(parent,items.length-1);assert.deepEqual(group,{start,end:items.length-1});const base=items.slice(group.start,group.end);assert.equal(base[0].value,symbols[start]);}
+for(const symbols of [['(','x'],['x','+'],['(','x',']']]){const items=symbols.map(value=>'()[]{}+'.includes(value)?{type:'symbol',id:++next,value}:slot(value));items.push(slot(''));assert.equal(T.precedingGroup(seq(items),items.length-1),null);}
+console.log('Powers after closing brackets: complete balanced group selected as base, including nested and fractional contents; incomplete/mismatched groups are excluded');
+for(const tools of [T,require('../assets/expression-editor-tools.js')]){const fraction={type:'fraction',id:++next,top:seq([slot('1')]),bottom:seq([slot('2')])},items=[{type:'symbol',id:++next,value:'('},fraction,slot('x'),slot('y'),{type:'symbol',id:++next,value:')'},slot('')],parent=seq(items);assert.deepEqual(tools.precedingGroup(parent,5),{start:0,end:5});assert.equal(parent.items[1],fraction,'fraction structure stays intact inside the power base');}
