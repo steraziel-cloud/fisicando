@@ -67,3 +67,7 @@ Durante la composizione, la freccia sinistra oltre l’inizio della prima letter
 - Il primo fattore negativo non riceve parentesi automatiche; i fattori negativi successivi al punto sì. Il più unario viene assorbito, ad esempio `−2x · +3y` appare come `−2x · 3y`.
 
 - Alla conferma, due segni consecutivi (ad esempio ·− o ·+) mostrano un avviso compatto sul quaderno che spiega la correzione applicata. Non viene duplicato nel tastierino. Gli esponenti negativi non attivano l’avviso.
+
+### Prodotto di monomi: esponenti scritti dallo studente
+
+Il prodotto guidato apre subito il passaggio successivo e conserva i fattori originali nella riga precedente. Le potenze comuni mostrano un segnaposto, senza anticipare la somma degli esponenti. Dopo i coefficienti, lo studente copia gli esponenti di ciascuna lettera (compresi gli 1 sottintesi), li verifica e ne calcola la somma. Sono accettati riordinamenti degli esponenti corretti, ma non decomposizioni diverse con lo stesso totale. Il risultato completa la riga in lavorazione; Annulla ripristina righe e selezionabilità precedenti. I test coprono anche prodotti con più fattori, coefficienti razionali e aggiornamenti tra righe collegate.
