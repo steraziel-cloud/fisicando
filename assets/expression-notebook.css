@@ -46,7 +46,6 @@ main>.toolbar{font-size:13px;margin:0 0 14px;align-items:center}
 .fraction-work-form{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.fraction-work-form label{margin:0;display:flex;align-items:center;gap:6px}.fraction-work-form input{width:5em}.fw-error{color:#c74749;flex-basis:100%}.fw-error:empty{display:none}
 .nb-factor-floating{position:fixed;z-index:45;top:12vh;left:8vw;width:min(850px,84vw);max-height:78vh;resize:both;overflow:auto}.nb-factor-floating>header{cursor:move;touch-action:none}.nb-factor-floating .notebook-dock{z-index:46}
 
-.expression-continue{font:inherit;color:var(--rm-accent,#167d7b);background:transparent;border:1px solid transparent;margin-left:.5em;padding:2px 8px}.expression-continue:hover{border-color:var(--rm-line)}
 /* Context controls stay together on one compact line. */
 #actions{width:max-content;max-width:calc(100vw - 16px);flex-wrap:nowrap}
 #actions .fraction-work-form,#actions #arithmetic-form{display:flex;align-items:center;flex-wrap:nowrap;gap:6px;min-width:0;overflow-x:auto}
