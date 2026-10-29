@@ -41,7 +41,7 @@ Durante la composizione, la freccia sinistra oltre l’inizio della prima letter
 - Alla conferma i fattori letterali consecutivi vengono ordinati alfabeticamente; lettere e potenze restano separate e non vengono calcolate o accorpate. Maiuscole e minuscole restano distinte.
 
 ## Somme algebriche di monomi simili
-- Selezionare i monomi completi: i segni di collegamento sono facoltativi perché ogni termine conserva già il proprio segno. La voce Somma algebrica appare soltanto se lettere ed esponenti coincidono. Funziona anche con monomi non adiacenti nella stessa somma. Non si attraversano le parentesi.
+- Selezionare i monomi completi: si selezionano anche i simboli di operazione che collegano i termini scelti. La voce Somma algebrica appare soltanto se lettere ed esponenti coincidono. Funziona anche con monomi non adiacenti nella stessa somma. Non si attraversano le parentesi.
 - Il meno di un termine sottratto è ora selezionabile anche come operatore, pur rimanendo compreso nel monomio.
 - I coefficienti sono raccolti sulla riga corrente, con la parte letterale invariata. La somma viene inserita dallo studente e il monomio risultante viene scritto nella riga successiva.
 - Per coefficienti con denominatori differenti: denominatore comune scelto dallo studente, divisione per ogni denominatore, prodotto per ogni numeratore, somma algebrica finale. La costruzione del numeratore è visibile progressivamente sul quaderno, mentre la finestra flottante resta sotto la formula.
@@ -56,8 +56,8 @@ Durante la composizione, la freccia sinistra oltre l’inizio della prima letter
 
 ## Prodotti e cancellazione degli opposti
 - I prodotti espliciti (`2x * 3y`, anche tra parentesi) mantengono fattori e punto selezionabili; non vengono confusi con la giustapposizione interna a un monomio.
-- Selezionando due o più monomi dello stesso prodotto compare Moltiplica monomi. Per fattori tutti monomiali è facoltativa la selezione dei punti; per fattori numerici isolati si selezionano anche i punti.
-- Sulla riga corrente vengono scritti il prodotto dei coefficienti e, per le lettere comuni, le somme degli esponenti. Lo studente scrive il prodotto dei coefficienti (numeratore e denominatore se frazionari), poi la somma degli esponenti di ogni lettera comune. Le lettere presenti in un solo fattore si conservano. Il risultato viene scritto nel passaggio successivo e si propaga nei passaggi collegati.
+- Selezionando due o più monomi dello stesso prodotto insieme ai punti di moltiplicazione compare Moltiplica monomi. I soli fattori non attivano il calcolo.
+- Il prodotto guidato si svolge nel passaggio successivo, conservando i fattori originali. Lo studente scrive il prodotto dei coefficienti (numeratore e denominatore se frazionari), costruisce e calcola le somme degli esponenti comuni e scrive anche gli esponenti delle lettere presenti in un solo fattore.
 - Non viene eseguita alcuna riduzione automatica del coefficiente frazionario. La frazione resta semplificabile con lo strumento esistente. Annullando il prodotto guidato si ripristinano i fattori iniziali.
 - Due monomi opposti offrono Semplifica gli opposti: le sbarrette restano sui termini della riga di partenza e la riga successiva assorbe lo zero. La somma algebrica guidata resta disponibile come alternativa. Undo/redo conservano anche le annotazioni.
 - I segni esterni a un prodotto vengono conservati quando il risultato diventa un monomio selezionabile: ad esempio `x² − (2x · 3x)` diventa `x² − 6x²`.
@@ -70,6 +70,8 @@ Durante la composizione, la freccia sinistra oltre l’inizio della prima letter
 
 ### Prodotto di monomi: esponenti scritti dallo studente
 
-Il prodotto guidato apre subito il passaggio successivo e conserva i fattori originali nella riga precedente. Le potenze comuni mostrano un segnaposto, senza anticipare la somma degli esponenti. Dopo i coefficienti, lo studente copia gli esponenti di ciascuna lettera (compresi gli 1 sottintesi), li verifica e ne calcola la somma. Sono accettati riordinamenti degli esponenti corretti, ma non decomposizioni diverse con lo stesso totale. Il risultato completa la riga in lavorazione; Annulla ripristina righe e selezionabilità precedenti. I test coprono anche prodotti con più fattori, coefficienti razionali e aggiornamenti tra righe collegate.
+Il prodotto guidato apre subito il passaggio successivo e conserva i fattori originali nella riga precedente. Le potenze di tutte le lettere mostrano un segnaposto, senza anticipare la somma degli esponenti. Dopo i coefficienti, lo studente copia gli esponenti di ciascuna lettera (compresi gli 1 sottintesi), li verifica e ne calcola la somma. Sono accettati riordinamenti degli esponenti corretti, ma non decomposizioni diverse con lo stesso totale. Il risultato completa la riga in lavorazione; Annulla ripristina righe e selezionabilità precedenti. I test coprono anche prodotti con più fattori, coefficienti razionali e aggiornamenti tra righe collegate.
 
 Le caselle affiancate degli esponenti supportano le frecce sinistra/destra fisiche e del tastierino: al bordo del testo si passa alla casella precedente/successiva, senza perdere la normale modifica delle cifre. I campi protetti sui dispositivi touch mostrano un cursore di inserimento esplicito, mantenendo disattivata la tastiera di sistema.
+
+Anche una lettera presente in un solo fattore richiede il proprio esponente, compreso 1; il valore non viene copiato automaticamente. I simboli di operazione sono richiesti anche per la somma algebrica e la cancellazione di opposti. L’uguale finale resta il comando manuale per conservare il passaggio e ricopiarlo sotto; non esegue calcoli.
