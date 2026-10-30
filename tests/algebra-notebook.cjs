@@ -7,5 +7,6 @@ suite+=`\nrun("add(E.parse('2x+3y'),'symbolic entry');selected=[current().left.i
 suite+=`\nrun("add(E.parse('3x^2yz'),'literal part selection');{const parts=[];GatitoExpressionSteps.visit(current(),n=>{if(n.type==='literal')parts.push(n)});selected=[parts[0].id];render();}");assert(el('#rows').innerHTML.includes('Seleziona parte letterale'));assert(el('#rows').innerHTML.includes('literal-part chosen'));assert.deepEqual(Array.from(run('contextActions().map(x=>x[0])')),['edit','delete']);console.log('Whole literal part is selectable independently of its coefficient and constituent letters');`;
 suite+=`\nrun("add(E.parse('2xy-3ab'),'signed monomial');selected=[current().right.id];render();");assert(el('#rows').innerHTML.includes('monomial-part chosen'));assert(el('#rows').innerHTML.includes('Seleziona monomio −'));assert(!el('#rows').innerHTML.split('data-row=\"').at(-1).includes('Seleziona operatore +'));`;
 suite+=fs.readFileSync(path.join(__dirname,'algebra-monomial-workflows.cjs'),'utf8');
+suite+=fs.readFileSync(path.join(__dirname,'algebra-generator-workflows.cjs'),'utf8');
 vm.runInNewContext(suite,{require,__dirname,console,structuredClone,process},{filename:__filename});
 

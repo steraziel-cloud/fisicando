@@ -4,7 +4,7 @@ Punto di ingresso: `laboratorio-algebra.html`, da Matematica → Algebra → Cal
 
 ## Stato iniziale
 
-La versione iniziale riprende il quaderno numerico di `laboratorio-espressioni.html`, con una copia dei suoi moduli `expression-*` in `assets/algebra/`. Ora supporta l’inserimento e la modifica di lettere latine, coefficienti e potenze intere, parentesi e frazioni algebriche; le operazioni algebriche guidate non sono ancora implementate. La pagina e il catalogo lo indicano come in lavorazione. Teoria ed esercizi non sono ancora disponibili.
+La versione iniziale riprende il quaderno numerico di `laboratorio-espressioni.html`, con una copia dei suoi moduli `expression-*` in `assets/algebra/`. Ora supporta l’inserimento e la modifica di lettere latine, coefficienti e potenze intere, parentesi e frazioni algebriche; sono disponibili somme algebriche, prodotti e potenze naturali di monomi con calcoli svolti dallo studente. La pagina e il catalogo lo indicano come in lavorazione. Teoria ed esercizi non sono ancora disponibili.
 
 Gli strumenti condivisi di basso livello (quaderno delle frazioni, scomposizione numerica, tema e navigazione) rimangono condivisi. Lo sviluppo del compositore algebrico va fatto nei moduli dentro `assets/algebra/`, preservando il quaderno numerico attualmente in prova esterna.
 
@@ -16,13 +16,13 @@ Manipolare e semplificare espressioni con frazioni algebriche e coefficienti raz
 
 Il tasto del periodo è stato sostituito da un pulsante abc che apre un piccolo editor ancorato al tasto. Si può inserire una lettera o una sequenza come xyz: ogni lettera diventa una casella distinta, quindi si possono aggiungere potenze individuali. Il popup permette esplicitamente la tastiera del dispositivo; i campi matematici mantengono il tastierino del quaderno. Non c’è una vista QWERTY aggiuntiva e non c’è l’alfabeto greco. I periodici restano scrivibili mediante inserimento testuale.
 
-Il parser accetta lettere latine distinte per maiuscole/minuscole e prodotti impliciti, anche dentro numeratori e denominatori. Riconosce e somma i monomi simili mediante calcoli svolti dallo studente; il contesto conserva modifica/cancellazione e la semplificazione dei coefficienti frazionari. Il generatore resta numerico ed è etichettato come tale. Le operazioni numeriche precedenti continuano a funzionare sulle espressioni interamente numeriche.
+Il parser accetta lettere latine distinte per maiuscole/minuscole e prodotti impliciti, anche dentro numeratori e denominatori. Riconosce e somma i monomi simili mediante calcoli svolti dallo studente; il contesto conserva modifica/cancellazione e la semplificazione dei coefficienti frazionari. Il generatore propone espressioni letterali con somme, prodotti e potenze di monomi. Le operazioni numeriche precedenti continuano a funzionare sulle espressioni interamente numeriche.
 
 Prossimi pezzi: rapporti di monomi e successive operazioni con polinomi, con passaggi svolti dallo studente.
 
 ## Priorità e futuri profili
 
-La priorità attuale è sviluppare il quaderno delle frazioni algebriche per il biennio: serve già a una studentessa. Il profilo Medie dovrà generare soltanto espressioni letterali (coefficienti razionali ammessi, senza lettere al denominatore); quello Biennio potrà generare frazioni algebriche. Il quaderno potrà comunque permettere l’inserimento di entrambe le tipologie. Questa distinzione del generatore è futura: la base attuale genera ancora soltanto espressioni numeriche.
+La priorità attuale è sviluppare il quaderno delle frazioni algebriche per il biennio: serve già a una studentessa. Il profilo Medie dovrà generare soltanto espressioni letterali (coefficienti razionali ammessi, senza lettere al denominatore); quello Biennio potrà generare frazioni algebriche. Il quaderno potrà comunque permettere l’inserimento di entrambe le tipologie. La distinzione del generatore è futura: attualmente entrambi i profili generano espressioni letterali, senza denominatori letterali.
 
 Conservare il motore condiviso finché ha senso. Se emergeranno esigenze incompatibili, sospendere lo sviluppo specifico per le Medie e proseguire prima con le frazioni algebriche per il Biennio, senza imporre una biforcazione anticipata.
 
@@ -89,3 +89,9 @@ L’esponente del coefficiente non viene più anticipato: si scrive prima l’es
 La giustapposizione di fattori composti, come `(4/3)(2xy^2)^2`, diventa un prodotto con punto selezionabile, preservando il legame tra le righe anche dopo aver svolto la potenza. La giustapposizione interna ai monomi (`2xy`, `(2/3)xy`, `x^2y`) mantiene la notazione compatta. Le frazioni del tastierino restano strutture delimitate, evitando che il fattore successivo finisca nel denominatore. La sintassi testuale `2x/3y` conserva il denominatore `3y`; per moltiplicare una frazione scritta con slash per una parentesi usare `(4/3)(...)` oppure `4/3 * (...)`.
 
 Riferimento per la convenzione del segno di moltiplicazione omesso prima delle parentesi e dell’inserimento a modelli: manuale ufficiale Casio ClassWiz fx-82CW/85CW/350CW, sezione Inputting Expressions and Values: https://www.casio.com/content/dam/casio/global/support/manuals/calculators/pdf/004-en/f/fx-82CW_85CW_350CW_EN.pdf . Il quaderno mantiene risultati e passaggi a carico dello studente.
+
+### Generatore casuale di espressioni letterali
+
+Il pulsante «Genera espressione letterale» costruisce esercizi nuovi, senza archivio, alternando a caso quattro famiglie: somme algebriche di monomi (anche non adiacenti), prodotti, potenze naturali ed espressioni miste. Ogni livello passa per tutte le famiglie prima di ripeterne una. Base usa coefficienti interi e una lettera; Intermedia aggiunge frazioni e una seconda lettera; Avanzata e Nightmare aumentano termini, fattori, lettere ed esponenti. I termini sono costruiti per avere occasioni di raccogliere monomi simili. Le espressioni si concludono con un monomio o un polinomio con termini non simili. Non sono ancora generati prodotti di polinomi da sviluppare, divisioni letterali o frazioni algebriche. Il generatore del quaderno numerico rimane separato.
+
+Verifica: 48 esercizi riproducibili, 12 per livello e tutte le famiglie, svolti tramite gli stessi comandi e moduli del controller (potenze, prodotti e somme guidate). Verifica esatta dell’equivalenza tra espressione iniziale e finale, nessun prodotto esplicito irrisolto e nessuna coppia residua di monomi simili.
