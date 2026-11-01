@@ -22,3 +22,9 @@ const bareFractions=E.parse('1/2+1/3'),fractionChain=M.chain(bareFractions);asse
 
 const P=require('../assets/algebra/expression-product.js');for(const source of ['x*y','2x*3y','(2x*3x)']){const tree=E.parse(source);let product;function visit(t){if(t.type==='binary'&&t.op==='·'&&!t.implicit)product=t;if(t.child)visit(t.child);if(t.left){visit(t.left);visit(t.right);}}visit(tree);assert(product,source+' keeps an explicit product');const c=P.flatten(product);assert(c.terms.every(t=>t.type==='monomial'));assert(M.productPlan(tree,[...c.terms.map(t=>t.id),...c.operators],E,P));}
 for(const source of ['x-x','(2/4)x-(1/2)x']){const tree=E.parse(source),c=M.chain(tree);assert(M.opposites(M.plan(tree,[...c.terms.map(t=>t.id),...c.operators],E)));}
+
+for(const source of ['6x^3÷3x','6x^3/(3x)','2x÷3y','6÷3x']){const tree=E.parse(source),fraction=tree.type==='fraction',selection=fraction?[tree.id]:[tree.left.id,tree.id+'op',tree.right.id];assert(M.quotientPlan(tree,selection,E),source);if(!fraction){assert(!M.quotientPlan(tree,[tree.left.id,tree.right.id],E));assert(!M.quotientPlan(tree,[...selection,tree.left.child?.id||'extra'],E));}}
+for(const source of ['(x+y)÷x','x÷(x+y)','(2x*3x)÷x','x/(y-y)']){const tree=E.parse(source),selection=tree.type==='fraction'?[tree.id]:[tree.left.id,tree.id+'op',tree.right.id];assert(!M.quotientPlan(tree,selection,E),source);}
+for(const [a,b] of [['x/x','1'],['x^2/x','x'],['0/x','0'],['x^0','1']]){assert(!same(a,b),'cancellation must retain the original nonzero domain: '+a);const original=E.parse(a),next=M.preserveDomain(original,E.parse(b),E);assert(M.equivalent(original,next,E));assert.deepEqual(M.domainLetters(next,E),['x']);}
+assert(same('x/y+2x/y','3x/y'));assert(!same('x/y','x/z'));assert(!same('x/x','y/y'));assert(same('x^2/x','x^3/x^2'));
+console.log('Quotient planning and exact Laurent-monomial verification preserve original nonzero conditions and reject incomplete/nonmonomial/zero-divisor selections');

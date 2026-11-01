@@ -72,3 +72,11 @@ main>.toolbar{font-size:13px;margin:0 0 14px;align-items:center}
 .expression-sheet{flex:0 1 auto;width:max-content;min-width:min(260px,100%);max-width:100%;box-sizing:border-box;border:1px dashed var(--rm-line,#bbcdd8);border-radius:8px;padding:8px 14px;margin:0}
 .expression-sheet .formula{max-width:100%;box-sizing:border-box}
 @media(max-width:600px){#rows{gap:18px}.expression-sheet{padding:6px 8px;min-width:min(240px,100%)}}
+
+/* Common-factor cancellation keeps the old factors legible beside the result. */
+.monomial-factor-struck{position:relative;display:inline-block;margin-inline:2px}
+.monomial-factor-struck::after{content:"";position:absolute;left:-2px;right:-2px;top:52%;height:2px;background:#e74949;transform:rotate(-38deg);pointer-events:none}
+.monomial-factor-result{display:inline-block;color:var(--rm-accent,#00bcd4);font-size:.7em;vertical-align:super;margin-inline:1px 4px}
+.monomial-cancellation>span{white-space:nowrap}.monomial-quotient-preview>.fraction{margin-right:4px}
+.expression-domain{font:12px/1.5 system-ui,sans-serif;color:var(--rm-muted,#8da5bc);margin:4px 0 2px;max-width:100%;white-space:normal}
+#actions .reciprocal-answer sup input{font-size:inherit;min-width:2.5em}

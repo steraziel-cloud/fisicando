@@ -32,6 +32,30 @@ function productPlan(tree,selection,E,P){const keys=new Set(selection);for(const
  const terms=indices.map(i=>c.terms[i]);if(terms.some(t=>!ready(t)))continue;const values=terms.map(t=>describe(t,E));if(values.some(v=>!v))continue;const powers={},exponents={};for(const v of values)for(const letter in v.powers){powers[letter]=(powers[letter]||0n)+v.powers[letter];(exponents[letter]||=[]).push(v.powers[letter]);}
  return{scopeId:scope.id,termIds:ids,values:values.map(v=>v.coefficient),powers,exponents};
  }return null;}
+// A division is binary: never collect factors across another quotient.
+function quotientPlan(tree,selection,E){
+ const keys=new Set(selection);let found=null;
+ function visit(t){
+  const fraction=t.type==='fraction',division=t.type==='binary'&&t.op==='÷';
+  if(fraction||division){const whole=fraction&&keys.size===1&&keys.has(t.id),operands=division&&keys.size===3&&[t.left.id,t.id+'op',t.right.id].every(id=>keys.has(id));
+   if((whole||operands)&&ready(t.left)&&ready(t.right)){
+    const a=describe(t.left,E),b=describe(t.right,E);
+    if(a&&b&&b.coefficient.n&&(Object.keys(a.powers).length||Object.keys(b.powers).length)){
+     const letters=[...new Set([...Object.keys(a.powers),...Object.keys(b.powers)])].sort(),powers=Object.fromEntries(letters.map(v=>[v,(a.powers[v]||0n)-(b.powers[v]||0n)]));
+     found={node:t,a,b,letters,powers,common:letters.filter(v=>a.powers[v]&&b.powers[v]),canCancel:letters.some(v=>a.powers[v]&&b.powers[v])||a.coefficient.d===1n&&b.coefficient.d===1n&&E.gcd(a.coefficient.n,b.coefficient.n)>1n};
+    }
+   }
+  }
+  if(t.child)visit(t.child);if(t.left){visit(t.left);visit(t.right);}
+ }visit(tree);return found;
+}
+function quotientBuild(coefficient,powers,E){
+ if(!coefficient.n)return E.num(0);
+ const positive={},negative={};for(const v in powers)if(powers[v]>0n)positive[v]=powers[v];else if(powers[v]<0n)negative[v]=-powers[v];
+ if(!Object.keys(negative).length)return build(E.from(coefficient),positive,E);
+ const numerator=build(E.num(coefficient.n),positive,E),denominator=build(E.num(coefficient.d),negative,E);
+ return E.fraction(numerator,denominator);
+}
 function literal(powers,E){const factors=Object.keys(powers).sort((a,b)=>a.toLowerCase().localeCompare(b.toLowerCase())||(a<b?-1:a>b?1:0)).filter(v=>powers[v]!==0n).map(v=>powers[v]===1n?E.node('variable',{value:v}):E.node('power',{left:E.node('variable',{value:v}),right:E.num(powers[v])}));if(!factors.length)return null;const product=factors.slice(1).reduce((left,right)=>E.node('binary',{op:'·',implicit:true,left,right}),factors[0]);return factors.length>1?E.node('literal',{child:product}):product;}
 function build(coefficient,powers,E){const letters=literal(powers,E);if(!letters)return coefficient;let negative=false,c=coefficient;if(!E.hasVariables(c)){const r=E.evaluate(c);if(!r.n&&c.type==='number')return E.num(0);if(c.type==='number'||c.type==='fraction'&&c.left.type==='number'&&c.right.type==='number'){negative=r.n<0n;if(c.type==='fraction'){const n=BigInt(c.left.value),d=BigInt(c.right.value);c=E.fraction(E.num(n<0n?-n:n),E.num(d<0n?-d:d));if(!n)return E.num(0);if(c.right.value==='1')c=c.left;}else c=E.num(r.n<0n?-r.n:r.n);if(c.type==='number'&&c.value==='1')c=null;}}
  if(c?.type==='binary')c=E.node('group',{style:'(',child:c});let child=c?E.node('binary',{op:'·',implicit:true,left:c,right:letters}):letters;if(negative)child=E.node('binary',{op:'−',unary:true,left:E.num(0),right:child});return E.node('monomial',{child,...(negative?{subtracted:true}:{})});}
@@ -42,18 +66,22 @@ function removeZeros(t){if(t.child)t.child=removeZeros(t.child);if(t.left){t.lef
 // This validates the same local change inside fractions/powers without sampling
 // variable values or assuming new conditions of existence.
 function signature(tree,E){
+ const restrictions=new Set();(function visit(n){for(const v of n.domainLetters||[])restrictions.add(v);if(n.child)visit(n.child);if(n.left){visit(n.left);visit(n.right);}})(tree);
+ const restrict=p=>{for(const [k] of p)for(const [v,e] of JSON.parse(k))if(v.startsWith('v:')&&e!=='0')restrictions.add(v.slice(2));};
  const limit=256,constant=r=>new Map([['[]',r]]),add=(a,b,sign=1n)=>{const out=new Map(a);for(const [k,v] of b){const x=out.get(k)||E.rat(0n),r=E.rat(x.n*v.d+sign*v.n*x.d,x.d*v.d);if(r.n)out.set(k,r);else out.delete(k);}if(out.size>limit)throw Error('Troppi termini per verificare questo passaggio.');return out;},serial=p=>JSON.stringify([...p].filter(([,r])=>r.n).sort(([a],[b])=>a<b?-1:a>b?1:0).map(([k,r])=>[k,String(r.n),String(r.d)]));
- function mul(a,b){if(a.size*b.size>limit)throw Error('Troppi termini per verificare questo passaggio.');let out=new Map();for(const [ka,a0] of a)for(const [kb,b0] of b){const powers=new Map(JSON.parse(ka));for(const [v,e] of JSON.parse(kb))powers.set(v,String(BigInt(powers.get(v)||'0')+BigInt(e)));const key=JSON.stringify([...powers].sort(([a],[b])=>a<b?-1:a>b?1:0));out=add(out,new Map([[key,E.rat(a0.n*b0.n,a0.d*b0.d)]]));}return out;}
+ function mul(a,b){if(a.size*b.size>limit)throw Error('Troppi termini per verificare questo passaggio.');let out=new Map();for(const [ka,a0] of a)for(const [kb,b0] of b){const powers=new Map(JSON.parse(ka));for(const [v,e] of JSON.parse(kb))powers.set(v,String(BigInt(powers.get(v)||'0')+BigInt(e)));const key=JSON.stringify([...powers].filter(([,e])=>e!=='0').sort(([a],[b])=>a<b?-1:a>b?1:0));out=add(out,new Map([[key,E.rat(a0.n*b0.n,a0.d*b0.d)]]));}return out;}
  const atom=key=>new Map([[JSON.stringify([[key,'1']]),E.rat(1n)]]);
  function read(n){n=unwrap(n);if(!E.hasVariables(n))return constant(E.evaluate(n));if(n.type==='variable')return atom('v:'+n.value);if(n.unary)return mul(constant(E.rat(-1n)),read(n.right));const a=read(n.left),b=read(n.right);
   if(n.type==='binary'&&['+','−'].includes(n.op))return add(a,b,n.op==='−'?-1n:1n);
   if(n.type==='binary'&&n.op==='·')return mul(a,b);
-  if(n.type==='fraction'||n.op==='÷'){if([...b.values()].every(r=>!r.n))throw Error('Il denominatore non può essere zero.');const d=b.size===1&&b.get('[]');if(d&&d.n)return mul(a,constant(E.rat(d.d,d.n)));return atom(JSON.stringify(['fraction',serial(a),serial(b)]));}
-  if(n.type==='power'){const e=E.evaluate(n.right);if([...a.values()].every(r=>!r.n)&&e.n<=0n)throw Error('Zero non può avere esponente nullo o negativo.');if(!a.size&&e.n>0n)return constant(E.rat(0n));if(e.d===1n&&e.n>=0n&&a.size===1){const [k,r]=[...a][0],coefficient=E.evaluate(E.node('power',{left:E.from(r),right:E.num(e.n)})),powers=JSON.parse(k).map(([v,x])=>[v,String(BigInt(x)*e.n)]).filter(([,x])=>x!=='0');return new Map([[JSON.stringify(powers),coefficient]]);}return atom(JSON.stringify(['power',serial(a),serial(b)]));}
+  if(n.type==='fraction'||n.op==='÷'){if([...b.values()].every(r=>!r.n))throw Error('Il denominatore non può essere zero.');if(b.size===1){const [k,r]=[...b][0],ps=JSON.parse(k);if(r.n&&ps.every(([v])=>v.startsWith('v:'))){restrict(b);return mul(a,new Map([[JSON.stringify(ps.map(([v,e])=>[v,String(-BigInt(e))])),E.rat(r.d,r.n)]]));}}return atom(JSON.stringify(['fraction',serial(a),serial(b)]));}
+  if(n.type==='power'){const e=E.evaluate(n.right);if([...a.values()].every(r=>!r.n)&&e.n<=0n)throw Error('Zero non può avere esponente nullo o negativo.');if(!a.size&&e.n>0n)return constant(E.rat(0n));if(e.d===1n&&a.size===1&&(e.n>=0n||JSON.parse([...a.keys()][0]).every(([v])=>v.startsWith('v:')))){if(e.n<=0n)restrict(a);const [k,r]=[...a][0],coefficient=E.evaluate(E.node('power',{left:E.from(r),right:E.num(e.n)})),powers=JSON.parse(k).map(([v,x])=>[v,String(BigInt(x)*e.n)]).filter(([,x])=>x!=='0');return new Map([[JSON.stringify(powers),coefficient]]);}return atom(JSON.stringify(['power',serial(a),serial(b)]));}
   throw Error('Passaggio letterale non riconosciuto.');
  }
- return serial(read(tree));
+ const value=serial(read(tree));return JSON.stringify([value,[...restrictions].sort()]);
 }
+function domainLetters(tree,E){return JSON.parse(signature(tree,E))[1];}
+function preserveDomain(before,after,E){const letters=[...new Set([...domainLetters(before,E),...domainLetters(after,E)])].sort();if(letters.length)after.domainLetters=letters;return after;}
 function equivalent(a,b,E){return signature(a,E)===signature(b,E);}
-const api={describe,chain,scopes,plan,ready,opposites,productPlan,literal,build,collect,removeZeros,equivalent};global.GatitoExpressionMonomials=api;if(typeof module!=='undefined')module.exports=api;
+const api={describe,chain,scopes,plan,ready,opposites,productPlan,quotientPlan,quotientBuild,literal,build,collect,removeZeros,equivalent,domainLetters,preserveDomain};global.GatitoExpressionMonomials=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window==='undefined'?globalThis:window);
