@@ -37,7 +37,7 @@ function quotientPlan(tree,selection,E){
  const keys=new Set(selection);let found=null;
  function visit(t){
   const fraction=t.type==='fraction',division=t.type==='binary'&&t.op==='÷';
-  if(fraction||division){const whole=fraction&&keys.size===1&&keys.has(t.id),operands=division&&keys.size===3&&[t.left.id,t.id+'op',t.right.id].every(id=>keys.has(id));
+  if(fraction||division){const whole=fraction&&(keys.size===1&&keys.has(t.id)||keys.size===2&&[t.left.id,t.right.id].every(id=>keys.has(id))),operands=division&&keys.size===3&&[t.left.id,t.id+'op',t.right.id].every(id=>keys.has(id));
    if((whole||operands)&&ready(t.left)&&ready(t.right)){
     const a=describe(t.left,E),b=describe(t.right,E);
     if(a&&b&&b.coefficient.n&&(Object.keys(a.powers).length||Object.keys(b.powers).length)){
@@ -48,6 +48,21 @@ function quotientPlan(tree,selection,E){
   }
   if(t.child)visit(t.child);if(t.left){visit(t.left);visit(t.right);}
  }visit(tree);return found;
+}
+// Selecting a letter (or its power) above and below the same fraction
+// cancels that letter only; selecting the two whole terms cancels all factors.
+function cancellationPlan(tree,selection,E){
+ const whole=quotientPlan(tree,selection,E);if(whole?.node.type==='fraction'&&whole.canCancel)return whole;
+ if(selection.length!==2)return null;let found=null;
+ function visit(t){if(t.type==='fraction'){
+  const top=selection.map(id=>E.find(t.left,id)).filter(Boolean),bottom=selection.map(id=>E.find(t.right,id)).filter(Boolean);
+  if(top.length===1&&bottom.length===1){const a=describe(top[0],E),b=describe(bottom[0],E),keys=a&&Object.keys(a.powers),other=b&&Object.keys(b.powers);
+   if(keys?.length===1&&other?.length===1&&keys[0]===other[0]&&a.coefficient.d===1n&&b.coefficient.d===1n&&(a.coefficient.n===1n||a.coefficient.n===-1n)&&(b.coefficient.n===1n||b.coefficient.n===-1n)){
+    const plan=quotientPlan(tree,[t.id],E),v=keys[0];if(plan?.common.includes(v))found={...plan,common:[v],focusLetter:v};
+   }
+  }
+ }if(t.child)visit(t.child);if(t.left){visit(t.left);visit(t.right);}}
+ visit(tree);return found;
 }
 function quotientBuild(coefficient,powers,E){
  if(!coefficient.n)return E.num(0);
@@ -83,5 +98,5 @@ function signature(tree,E){
 function domainLetters(tree,E){return JSON.parse(signature(tree,E))[1];}
 function preserveDomain(before,after,E){const letters=[...new Set([...domainLetters(before,E),...domainLetters(after,E)])].sort();if(letters.length)after.domainLetters=letters;return after;}
 function equivalent(a,b,E){return signature(a,E)===signature(b,E);}
-const api={describe,chain,scopes,plan,ready,opposites,productPlan,quotientPlan,quotientBuild,literal,build,collect,removeZeros,equivalent,domainLetters,preserveDomain};global.GatitoExpressionMonomials=api;if(typeof module!=='undefined')module.exports=api;
+const api={describe,chain,scopes,plan,ready,opposites,productPlan,quotientPlan,cancellationPlan,quotientBuild,literal,build,collect,removeZeros,equivalent,domainLetters,preserveDomain};global.GatitoExpressionMonomials=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window==='undefined'?globalThis:window);
