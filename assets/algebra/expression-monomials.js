@@ -52,11 +52,12 @@ function quotientPlan(tree,selection,E){
 // Selecting a letter (or its power) above and below the same fraction
 // cancels that letter only; selecting the two whole terms cancels all factors.
 function cancellationPlan(tree,selection,E){
- const whole=quotientPlan(tree,selection,E);if(whole?.node.type==='fraction'&&whole.canCancel)return whole;
+ const whole=quotientPlan(tree,selection,E);if(whole?.node.type==='fraction'&&whole.canCancel){const ka=Object.keys(whole.a.powers),kb=Object.keys(whole.b.powers);if(selection.length===2&&ka.length===1&&kb.length===1&&ka[0]===kb[0]&&whole.a.coefficient.d===1n&&whole.b.coefficient.d===1n&&(whole.a.coefficient.n===1n||whole.a.coefficient.n===-1n)&&(whole.b.coefficient.n===1n||whole.b.coefficient.n===-1n))return{...whole,common:[ka[0]],focusLetter:ka[0]};return whole;}
  if(selection.length!==2)return null;let found=null;
  function visit(t){if(t.type==='fraction'){
   const top=selection.map(id=>E.find(t.left,id)).filter(Boolean),bottom=selection.map(id=>E.find(t.right,id)).filter(Boolean);
   if(top.length===1&&bottom.length===1){const a=describe(top[0],E),b=describe(bottom[0],E),keys=a&&Object.keys(a.powers),other=b&&Object.keys(b.powers);
+   const candidate=quotientPlan(tree,[t.id],E);const isCoefficient=(side,node,value)=>{if(node.type!=='number'||!/^[-]?\d+$/.test(node.value)||value.d!==1n||(BigInt(node.value)<0n?-BigInt(node.value):BigInt(node.value))!==(value.n<0n?-value.n:value.n))return false;let valid=false;function walk(n,inExponent=false){if(n.id===node.id&&!inExponent)valid=true;if(n.child)walk(n.child,inExponent);if(n.left){walk(n.left,inExponent);walk(n.right,inExponent||n.type==='power');}}walk(side);return valid;};if(candidate&&E.gcd(candidate.a.coefficient.n,candidate.b.coefficient.n)>1n&&isCoefficient(t.left,top[0],candidate.a.coefficient)&&isCoefficient(t.right,bottom[0],candidate.b.coefficient))found={...candidate,common:[],focusCoefficient:true};
    if(keys?.length===1&&other?.length===1&&keys[0]===other[0]&&a.coefficient.d===1n&&b.coefficient.d===1n&&(a.coefficient.n===1n||a.coefficient.n===-1n)&&(b.coefficient.n===1n||b.coefficient.n===-1n)){
     const plan=quotientPlan(tree,[t.id],E),v=keys[0];if(plan?.common.includes(v))found={...plan,common:[v],focusLetter:v};
    }
