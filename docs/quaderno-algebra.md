@@ -117,3 +117,9 @@ La semplificazione si attiva anche selezionando una lettera (o la sua potenza) a
 Le parentesi tecniche prodotte dalla serializzazione del tastierino intorno a monomi semplici e frazioni vengono rimosse nella normalizzazione del quaderno. Si conservano i raggruppamenti delle somme; le parentesi necessarie per basi di potenze o fattori negativi vengono rese secondo il contesto. Regressione sul caso `(((2x^2)/(3mx)))`: resa come frazione senza parentesi accessorie, selezione delle due x e semplificazione fino a 2x/(3m). Le condizioni di non annullamento restano interne senza scritte nel quaderno.
 
 Il menu contestuale di un fattore interno alla frazione si posiziona sotto l’intera frazione esterna, anziché sotto la sola potenza al numeratore: non copre più il fattore da selezionare al denominatore.
+
+### Correzione di una potenza durante la composizione
+
+Il tasto Cancella, quando il cursore è all'inizio di un esponente vuoto, rimuove la sola struttura della potenza e recupera la base nella sequenza originaria. Vale anche per potenze vuote annidate aggiunte per errore e per una base vuota con esponente vuoto. I caratteri di un esponente già scritto si cancellano normalmente prima di eliminare la struttura. La base, gli altri fattori e il denominatore non vengono persi; il ruolo di campo obbligatorio del numeratore viene conservato. Annulla e Ripristina recuperano i passaggi di correzione.
+
+La freccia destra alla fine di un esponente esce dalla potenza e crea (o riusa) una casella sulla riga della base, prima di passare ad altri campi della frazione. Si può così continuare una parte letterale al numeratore, anche quando il denominatore è già compilato. Il movimento tra cifre interne all'esponente rimane invariato. Test dedicato `tests/algebra-keyboard-power-edit.cjs`, eseguito sulle funzioni effettive del compositore: errore con potenze annidate, rimozione dell'esponente e ripresa delle lettere, denominatore intatto e undo/redo.
