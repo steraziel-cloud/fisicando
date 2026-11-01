@@ -80,3 +80,5 @@ main>.toolbar{font-size:13px;margin:0 0 14px;align-items:center}
 .monomial-cancellation>span{white-space:nowrap}.monomial-quotient-preview>.fraction{margin-right:4px}
 .expression-domain{font:12px/1.5 system-ui,sans-serif;color:var(--rm-muted,#8da5bc);margin:4px 0 2px;max-width:100%;white-space:normal}
 #actions .reciprocal-answer sup input{font-size:inherit;min-width:2.5em}
+
+#actions .monomial-coefficient-reduction input{width:3em;min-width:2em}#actions .monomial-coefficient-reduction .reciprocal-answer label{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}#actions .monomial-divisor-choice{display:inline-flex;align-items:center;gap:5px}
