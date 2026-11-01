@@ -55,7 +55,7 @@ function startMonomialQuotient(mode='divide'){
  const plan=mode==='cancel'?monomialCancelSelection():monomialQuotientSelection();if(!plan||mode==='cancel'&&(plan.node.type!=='fraction'||!plan.canCancel))throw Error('Seleziona dividendo, ÷ e divisore, oppure la frazione tra due monomi già calcolati.');
  const a={kind:'monomial-quotient',id:plan.node.id,mode,plan,index:0,answers:{},written:{},solved:{},cancelled:{},topCoefficient:{...plan.a.coefficient},bottomCoefficient:{...plan.b.coefficient},error:'',before:structuredClone(rows),sourceIndex:activeRow,pastLength:past.length};
  a.stage=mode==='divide'?'coefficient':plan.focusLetter?'cancel-build':plan.a.coefficient.d===1n&&plan.b.coefficient.d===1n&&E.gcd(plan.a.coefficient.n,plan.b.coefficient.n)>1n?'divisor':'cancel-build';
- change(a.id,structuredClone(plan.node),mode==='divide'?'Divisione tra monomi: svolgimento guidato':'Semplificazione dei fattori comuni',true,undefined,selected);
+ change(a.id,structuredClone(plan.node),mode==='divide'?'Divisione tra monomi: svolgimento guidato':'Semplificazione dei fattori comuni',true,undefined,plan.node.type==='fraction'?[a.id]:selected);
  arithmeticTask=a;if(mode==='cancel'&&a.stage==='cancel-build'&&!plan.common.length){completeMonomialQuotient(a);return;}render();
 }
 function quotientCoefficientHtml(c){return c.d===1n?esc(c.n):`<span class="fraction"><span>${c.n}</span><span>${c.d}</span></span>`;}
