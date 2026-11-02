@@ -100,7 +100,7 @@ Correzione della selezione dei monomi firmati: due o più monomi simili interi a
 
 ## Divisione tra monomi e semplificazione della frazione
 
-Selezionando dividendo, simbolo ÷ e divisore compare **Dividi monomi**. La stessa voce compare selezionando una frazione il cui numeratore e denominatore sono monomi pronti (nessuna somma, prodotto esplicito o potenza di monomio ancora da svolgere).
+Selezionando simbolo ÷ e monomio divisore (oppure tutti e tre gli elementi) compare **Trasforma in moltiplicazione**: il passaggio successivo conserva il dividendo e scrive il prodotto per il reciproco del divisore. La voce **Dividi monomi** rimane disponibile selezionando una frazione il cui numeratore e denominatore sono monomi pronti (nessuna somma, prodotto esplicito o potenza di monomio ancora da svolgere).
 
 Il procedimento conserva l'originale e apre il passaggio successivo. Lo studente scrive il rapporto dei coefficienti come frazione, poi per ciascuna lettera scrive i due esponenti nell'ordine dividendo meno divisore e ne calcola la differenza. Si richiedono anche gli 1 sottintesi e gli 0 delle lettere assenti. Le risposte equivalenti non ridotte sono ammesse per il coefficiente: la riduzione resta un'operazione distinta. Le differenze negative producono lettere al denominatore con esponente positivo; le differenze nulle eliminano il fattore. Non si raccolgono operandi attraverso altre divisioni.
 
@@ -125,3 +125,11 @@ Il tasto Cancella, quando il cursore è all'inizio di un esponente vuoto, rimuov
 La freccia destra alla fine di un esponente esce dalla potenza e crea (o riusa) una casella sulla riga della base, prima di passare ad altri campi della frazione. Si può così continuare una parte letterale al numeratore, anche quando il denominatore è già compilato. Il movimento tra cifre interne all'esponente rimane invariato. Test dedicato `tests/algebra-keyboard-power-edit.cjs`, eseguito sulle funzioni effettive del compositore: errore con potenze annidate, rimozione dell'esponente e ripresa delle lettere, denominatore intatto e undo/redo.
 
 Semplificazione numerica diretta: selezionando i due coefficienti si apre un solo campo «Divisore comune di a e b». Lo studente scrive soltanto il divisore e conferma: quozienti e sbarrette vengono applicati automaticamente. Selezionando la stessa lettera sopra e sotto, la semplificazione letterale è immediata. Non sono più presenti i moduli di inserimento del fattore comune o degli esponenti rimanenti nel percorso di semplificazione.
+
+### Divisione esplicita come prodotto per il reciproco
+
+Il simbolo ÷ e il divisore completo sono una selezione sufficiente; dividendo e divisore devono essere monomi già pronti. Il comando **Trasforma in moltiplicazione** crea la riga successiva, sostituisce ÷ con · e inverte il divisore. Per esempio `6x²y ÷ 3xy²` diventa `6x²y · 1/(3xy²)`; con coefficiente frazionario `(4/5)x`, il reciproco è `5/(4x)`. Il segno viene conservato e i reciproci negativi sono racchiusi tra parentesi nel prodotto. Si tratta di una riscrittura diretta; il reciproco numerico guidato del quaderno in Q mantiene il proprio comportamento.
+
+Selezionando i fattori e il punto del prodotto compare **Scrivi come unica frazione**. Il comando raccoglie i numeratori e denominatori, elimina soltanto i fattori 1 superflui e lascia espliciti i prodotti ancora da calcolare. Da lì funzionano i prodotti di monomi, le semplificazioni rapide dei singoli fattori e la divisione guidata sulla frazione completa. Non si riscrivono monomi con somme o prodotti ancora da svolgere, né si raccoglie attraverso un'altra divisione. Il comando di divisione diretta non viene proposto per una divisione con ÷; rimane sulle frazioni, in attesa di una scelta definitiva sulla coesistenza delle modalità.
+
+Regressioni in `tests/algebra-reciprocal-workflows.cjs`: selezioni a due o tre elementi, segni, coefficienti razionali, riga originale conservata, passaggio a un'unica frazione e completamento dei calcoli, confini di selezione, annullamento e operazioni indipendenti collegate. Anche i test del generatore passano ora dalla trasformazione in reciproco quando incontrano ÷.

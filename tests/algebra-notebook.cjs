@@ -8,6 +8,7 @@ suite+=`\nrun("add(E.parse('3x^2yz'),'literal part selection');{const parts=[];G
 suite+=`\nrun("add(E.parse('2xy-3ab'),'signed monomial');selected=[current().right.id];render();");assert(el('#rows').innerHTML.includes('monomial-part chosen'));assert(el('#rows').innerHTML.includes('Seleziona monomio −'));assert(!el('#rows').innerHTML.split('data-row=\"').at(-1).includes('Seleziona operatore +'));`;
 suite+=fs.readFileSync(path.join(__dirname,'algebra-monomial-workflows.cjs'),'utf8');
 suite+=fs.readFileSync(path.join(__dirname,'algebra-quotient-workflows.cjs'),'utf8');
+suite+=fs.readFileSync(path.join(__dirname,'algebra-reciprocal-workflows.cjs'),'utf8');
 suite+=fs.readFileSync(path.join(__dirname,'algebra-generator-workflows.cjs'),'utf8');
 vm.runInNewContext(suite,{require,__dirname,console,structuredClone,process},{filename:__filename});
 
