@@ -281,7 +281,71 @@ window.LESSON_CATALOG = [
                 ]
               },
               {
-                "title": "Monomi e polinomi",
+                "title": "Monomi: definizioni e caratteristiche",
+                "id": "monomi-definizioni",
+                "levels": [
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Operazioni con i monomi",
+                "id": "operazioni-monomi",
+                "levels": [
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress",
+                "labUrl": "laboratorio-monomi.html",
+                "labTitle": "Il quaderno delle operazioni con i monomi",
+                "labDescription": "Allenati su una singola somma, differenza, prodotto, potenza o quoziente. Riconosci i monomi simili e trasforma la divisione in frazione.",
+                "note": "Il laboratorio è disponibile. La teoria e gli esercizi della lezione saranno sviluppati successivamente."
+              },
+              {
+                "title": "MCD e mcm di monomi",
+                "id": "monomi-mcd-mcm",
+                "levels": [
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Espressioni con i monomi",
+                "id": "espressioni-monomi",
+                "levels": [
+                  "medie",
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ],
+                "status": "work-in-progress"
+              },
+              {
+                "title": "Polinomi",
                 "levels": [
                   "biennio",
                   "terzo-quarto",
@@ -294,6 +358,32 @@ window.LESSON_CATALOG = [
               },
               {
                 "title": "Prodotti notevoli",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ]
+              },
+              {
+                "title": "Divisione tra polinomi",
+                "id": "divisione-polinomi",
+                "levels": [
+                  "biennio",
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio",
+                  "universita-avanzata",
+                  "universita"
+                ]
+              },
+              {
+                "title": "Regola di Ruffini e teorema del resto",
+                "id": "ruffini-teorema-resto",
                 "levels": [
                   "biennio",
                   "terzo-quarto",

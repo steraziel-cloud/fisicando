@@ -133,3 +133,15 @@ Il simbolo ÷ e il divisore completo sono una selezione sufficiente; dividendo e
 Selezionando i fattori e il punto del prodotto compare **Scrivi come unica frazione**. Il comando raccoglie i numeratori e denominatori, elimina soltanto i fattori 1 superflui e lascia espliciti i prodotti ancora da calcolare. Da lì funzionano i prodotti di monomi, le semplificazioni rapide dei singoli fattori e la divisione guidata sulla frazione completa. Non si riscrivono monomi con somme o prodotti ancora da svolgere, né si raccoglie attraverso un'altra divisione. Il comando di divisione diretta non viene proposto per una divisione con ÷; rimane sulle frazioni, in attesa di una scelta definitiva sulla coesistenza delle modalità.
 
 Regressioni in `tests/algebra-reciprocal-workflows.cjs`: selezioni a due o tre elementi, segni, coefficienti razionali, riga originale conservata, passaggio a un'unica frazione e completamento dei calcoli, confini di selezione, annullamento e operazioni indipendenti collegate. Anche i test del generatore passano ora dalla trasformazione in reciproco quando incontrano ÷.
+
+## Quaderno dedicato alle operazioni con i monomi (7 novembre 2026)
+
+`laboratorio-monomi.html` riusa il motore, il tastierino e i percorsi guidati del quaderno generale. La configurazione dedicata non modifica il generatore di espressioni del laboratorio delle frazioni algebriche.
+
+Il selettore propone Casuale, Somma, Differenza, Prodotto, Potenza, Quoziente; ogni esercizio contiene una sola operazione, anche ai livelli Intermedia e Avanzata. La modalità Casuale mescola tutte e cinque le famiglie. Nelle somme/differenze circa il 30% delle coppie non è simile: lo studente deve riconoscerle prima di procedere; l'errore lascia la domanda aperta e la risposta corretta distingue esplicitamente i casi non riducibili. La classificazione è conservata nella cronologia di annullamento.
+
+Nel laboratorio dedicato, selezionare ÷ e il divisore (oppure entrambi gli operandi e ÷) propone **Scrivi come frazione**. La frazione conserva dividendo e divisore e apre poi il percorso **Dividi monomi**, con rapporto dei coefficienti ed esponenti da copiare e sottrarre. Nel quaderno generale resta la trasformazione in prodotto per il reciproco.
+
+Menu del Calcolo letterale: quattro lezioni per i monomi (definizioni; operazioni; MCD/mcm; espressioni), poi Polinomi, Prodotti notevoli, Divisione tra polinomi, Ruffini/teorema del resto, Scomposizione e Frazioni algebriche. Per ora soltanto la lezione Operazioni con i monomi ha il nuovo laboratorio; teoria e altri quaderni attendono lo sviluppo specifico.
+
+Validazione: `node tests/monomial-practice.cjs` esegue le regressioni del controller generale e 90 operazioni dedicate, classificazioni sbagliate/corrette, casi non simili, copertura casuale, equivalenza esatta, annullamento e isolamento del quaderno generale.

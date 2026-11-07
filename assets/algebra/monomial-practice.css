@@ -1,0 +1,3 @@
+.toolbar{flex-wrap:wrap;gap:10px;align-items:center}.toolbar label{display:flex;gap:8px;align-items:center;font-size:13px}.toolbar select{font:inherit;padding:8px;border-radius:8px;background:var(--rm-panel);color:var(--rm-text);border:1px solid var(--rm-line)}
+#similarity-check{margin:8px 0 14px;padding:10px 12px;border:1px solid var(--rm-line);border-radius:10px;width:fit-content;max-width:100%;font-size:14px;background:var(--rm-panel)}
+#similarity-check[hidden]{display:none}#similarity-check p{margin:0 0 8px}#similarity-check button{margin-right:8px}#similarity-feedback{display:block;margin-top:8px;color:var(--rm-muted)}
