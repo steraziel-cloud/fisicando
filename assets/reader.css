@@ -520,5 +520,4 @@ body[data-reader-lesson="cinematica-velocita"] .rm-reader-card:not(:has(img,svg,
 
 /* Use the card width for velocity and absolute-value explanations. */
 body[data-reader-lesson="cinematica-velocita"] .rm-reader-card>.rm-card-text,
-body[data-reader-lesson="valore-assoluto-biennio"] .rm-reader-card>.rm-card-text,
-body[data-reader-lesson="valore-assoluto-triennio"] .rm-reader-card>.rm-card-text{width:100%;max-width:none;min-width:0;margin-inline:0}
+body[data-reader-lesson^="valore-assoluto-"] .rm-reader-card>.rm-card-text{width:100%;max-width:none;min-width:0;margin-inline:0}

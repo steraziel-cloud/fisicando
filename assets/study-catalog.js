@@ -485,36 +485,107 @@ window.LESSON_CATALOG = [
                   "universita-avanzata",
                   "universita"
                 ]
-              },
+              }
+            ],
+            "children": [
               {
-                "title": "Equazioni e disequazioni con il valore assoluto",
-                "id": "valore-assoluto-biennio",
-                "kind": "Teoria",
-                "status": "work-in-progress",
-                "levels": [
-                  "biennio"
-                ],
-                "url": "reader.html?lezione=valore-assoluto-biennio",
-                "note": "Definizione e proprietà algebriche, equazioni e disequazioni con secondo membro costante.",
-                "aliases": [
-                  "valore assoluto"
-                ]
-              },
-              {
-                "title": "Equazioni e disequazioni con il valore assoluto",
-                "id": "valore-assoluto-triennio",
-                "kind": "Teoria",
-                "status": "work-in-progress",
-                "levels": [
-                  "terzo-quarto",
-                  "ultimo-altro",
-                  "analisi1",
-                  "triennio"
-                ],
-                "url": "reader.html?lezione=valore-assoluto-triennio",
-                "note": "Proprietà algebriche, secondo membro variabile, studio dei segni e valori assoluti annidati.",
-                "aliases": [
-                  "valore assoluto"
+                "title": "Valore assoluto",
+                "icon": "equation",
+                "aliases": [],
+                "lessons": [
+                  {
+                    "title": "Il valore assoluto nell’algebra",
+                    "id": "valore-assoluto-biennio",
+                    "kind": "Teoria",
+                    "status": "work-in-progress",
+                    "levels": [
+                      "biennio"
+                    ],
+                    "url": "reader.html?lezione=valore-assoluto-biennio",
+                    "note": "Definizione, proprietà e ordine delle operazioni nelle espressioni.",
+                    "aliases": [
+                      "valore assoluto"
+                    ]
+                  },
+                  {
+                    "title": "Equazioni con il valore assoluto",
+                    "id": "valore-assoluto-equazioni-biennio",
+                    "kind": "Teoria",
+                    "status": "work-in-progress",
+                    "levels": [
+                      "biennio"
+                    ],
+                    "url": "reader.html?lezione=valore-assoluto-equazioni-biennio",
+                    "note": "Secondo membro costante o variabile, equazioni con più valori assoluti e valori assoluti annidati.",
+                    "aliases": [
+                      "valore assoluto"
+                    ]
+                  },
+                  {
+                    "title": "Disequazioni con il valore assoluto",
+                    "id": "valore-assoluto-disequazioni-biennio",
+                    "kind": "Teoria",
+                    "status": "work-in-progress",
+                    "levels": [
+                      "biennio"
+                    ],
+                    "url": "reader.html?lezione=valore-assoluto-disequazioni-biennio",
+                    "note": "Confronti, secondo membro variabile e studio dei segni.",
+                    "aliases": [
+                      "valore assoluto"
+                    ]
+                  },
+                  {
+                    "title": "Il valore assoluto nell’algebra",
+                    "id": "valore-assoluto-triennio",
+                    "kind": "Teoria",
+                    "status": "work-in-progress",
+                    "levels": [
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ],
+                    "url": "reader.html?lezione=valore-assoluto-triennio",
+                    "note": "Definizione, proprietà e ordine delle operazioni nelle espressioni.",
+                    "aliases": [
+                      "valore assoluto"
+                    ]
+                  },
+                  {
+                    "title": "Equazioni con il valore assoluto",
+                    "id": "valore-assoluto-equazioni-triennio",
+                    "kind": "Teoria",
+                    "status": "work-in-progress",
+                    "levels": [
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ],
+                    "url": "reader.html?lezione=valore-assoluto-equazioni-triennio",
+                    "note": "Secondo membro costante o variabile, equazioni con più valori assoluti e valori assoluti annidati.",
+                    "aliases": [
+                      "valore assoluto"
+                    ]
+                  },
+                  {
+                    "title": "Disequazioni con il valore assoluto",
+                    "id": "valore-assoluto-disequazioni-triennio",
+                    "kind": "Teoria",
+                    "status": "work-in-progress",
+                    "levels": [
+                      "terzo-quarto",
+                      "ultimo-altro",
+                      "analisi1",
+                      "triennio"
+                    ],
+                    "url": "reader.html?lezione=valore-assoluto-disequazioni-triennio",
+                    "note": "Confronti, secondo membro variabile e studio dei segni.",
+                    "aliases": [
+                      "valore assoluto"
+                    ]
+                  }
                 ]
               }
             ]
