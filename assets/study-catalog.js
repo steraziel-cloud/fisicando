@@ -495,9 +495,8 @@ window.LESSON_CATALOG = [
                   "biennio"
                 ],
                 "url": "reader.html?lezione=valore-assoluto-biennio",
-                "note": "Dalla distanza sulla retta alle equazioni e disequazioni con secondo membro costante.",
+                "note": "Definizione e proprietà algebriche, equazioni e disequazioni con secondo membro costante.",
                 "aliases": [
-                  "modulo",
                   "valore assoluto"
                 ]
               },
@@ -513,9 +512,8 @@ window.LESSON_CATALOG = [
                   "triennio"
                 ],
                 "url": "reader.html?lezione=valore-assoluto-triennio",
-                "note": "Secondo membro variabile, studio dei segni, più moduli e moduli annidati.",
+                "note": "Proprietà algebriche, secondo membro variabile, studio dei segni e valori assoluti annidati.",
                 "aliases": [
-                  "modulo",
                   "valore assoluto"
                 ]
               }
