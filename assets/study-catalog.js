@@ -485,6 +485,39 @@ window.LESSON_CATALOG = [
                   "universita-avanzata",
                   "universita"
                 ]
+              },
+              {
+                "title": "Equazioni e disequazioni con il valore assoluto",
+                "id": "valore-assoluto-biennio",
+                "kind": "Teoria",
+                "status": "work-in-progress",
+                "levels": [
+                  "biennio"
+                ],
+                "url": "reader.html?lezione=valore-assoluto-biennio",
+                "note": "Dalla distanza sulla retta alle equazioni e disequazioni con secondo membro costante.",
+                "aliases": [
+                  "modulo",
+                  "valore assoluto"
+                ]
+              },
+              {
+                "title": "Equazioni e disequazioni con il valore assoluto",
+                "id": "valore-assoluto-triennio",
+                "kind": "Teoria",
+                "status": "work-in-progress",
+                "levels": [
+                  "terzo-quarto",
+                  "ultimo-altro",
+                  "analisi1",
+                  "triennio"
+                ],
+                "url": "reader.html?lezione=valore-assoluto-triennio",
+                "note": "Secondo membro variabile, studio dei segni, più moduli e moduli annidati.",
+                "aliases": [
+                  "modulo",
+                  "valore assoluto"
+                ]
               }
             ]
           },
