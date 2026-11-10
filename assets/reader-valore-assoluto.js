@@ -10,6 +10,11 @@
   const question = (question, options, answer, feedback) => ({ question, options, answer, feedback });
   const section = (id, title, cards, ...questions) => ({ id, title, cards, quiz: { questions } });
   const firstLesson = advanced => section('distanza', 'Il valore assoluto nell’algebra', [
+    card('Iniziamo con il valore assoluto',
+      advanced
+        ? '<p>Riprendiamo il <strong>valore assoluto</strong>, un’operazione che hai già incontrato. Partiremo dalla sua definizione e dalle sue proprietà per capire come usarlo anche quando l’espressione tra le barre è più articolata.</p>'
+        : '<p>Finora hai usato operazioni come la somma, la sottrazione e il prodotto. Ora ne incontriamo una che si applica a <strong>un solo numero alla volta</strong>: il <strong>valore assoluto</strong>. La ritroverai spesso man mano che studierai nuovi argomenti di matematica.</p>',
+      '<p>Vedremo che cosa significa il valore assoluto e quali proprietà possiamo usare per lavorare con le espressioni che lo contengono. Poi useremo quelle stesse idee per risolvere <strong>equazioni e disequazioni</strong>.</p>'),
     card('Definizione',
       '<p>Il <strong>valore assoluto</strong> di un numero reale a si indica con |a|.</p><p>Se a ≥ 0, poniamo |a| = a. Se a &lt; 0, poniamo |a| = −a. Nel secondo caso −a è l’opposto di a, quindi è positivo.</p>',
       '<p>Per esempio, |7| = 7, |−7| = −(−7) = 7 e |0| = 0. Il numero o l’espressione racchiusi tra le barre si chiamano <strong>argomento</strong> del valore assoluto.</p>'),
@@ -40,7 +45,7 @@
   window.READER_LESSONS['valore-assoluto-biennio'] = {
     title: 'Equazioni e disequazioni con il valore assoluto',
     subtitle: 'Matematica · Biennio · Algebra',
-    version: 3,
+    version: 4,
     status: 'work-in-progress',
     sections: [
       firstLesson(false),
@@ -67,7 +72,7 @@
   window.READER_LESSONS['valore-assoluto-triennio'] = {
     title: 'Equazioni e disequazioni con il valore assoluto',
     subtitle: 'Matematica · Triennio · Metodo generale e approfondimenti',
-    version: 3,
+    version: 4,
     status: 'work-in-progress',
     sections: [
       firstLesson(true),
