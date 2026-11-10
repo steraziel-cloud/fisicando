@@ -9,27 +9,49 @@
   });
   const question = (question, options, answer, feedback) => ({ question, options, answer, feedback });
   const section = (id, title, cards, ...questions) => ({ id, title, cards, quiz: { questions } });
-  const line = `<svg viewBox="0 0 450 95" width="100%" style="max-width:450px" role="img" aria-label="Retta numerica. Meno tre e più tre distano entrambi tre unità da zero.">
-    <path d="M24 52H426m-8-5 8 5-8 5M75 47v10m150-10v10m150-10v10" fill="none" stroke="currentColor" stroke-width="2"/>
-    <path d="M75 34H225M225 34H375" fill="none" stroke="var(--rm-accent, #168681)" stroke-width="3"/>
-    <g text-anchor="middle" fill="currentColor" font-size="17"><text x="75" y="78">−3</text><text x="225" y="78">0</text><text x="375" y="78">3</text><text x="150" y="26">3 unità</text><text x="300" y="26">3 unità</text></g>
-  </svg>`;
+  const firstLesson = advanced => section('distanza', 'Il valore assoluto nell’algebra', [
+    card('Definizione',
+      '<p>In ℝ, il <strong>modulo</strong> di un numero coincide con il suo <strong>valore assoluto</strong>. Lo indichiamo con |a|.</p><p>Se a ≥ 0, poniamo |a| = a. Se a &lt; 0, poniamo |a| = −a. Nel secondo caso −a è l’opposto di a, quindi è positivo.</p>',
+      '<p>Per esempio, |7| = 7, |−7| = −(−7) = 7 e |0| = 0. Il numero o l’espressione racchiusi tra le barre si chiamano <strong>argomento</strong> del valore assoluto.</p>'),
+    card('Il segno dell’argomento',
+      '<p>In |x − 3| guardiamo il segno dell’intera espressione x − 3. Se x ≥ 3, il modulo vale x − 3. Se x &lt; 3, vale −(x − 3) = 3 − x.</p>',
+      '<p>Per x = 1, l’argomento vale −2. Applichiamo il secondo caso e otteniamo |1 − 3| = 3 − 1 = 2.</p>'),
+    card('Non negatività, zero e simmetria',
+      '<p><strong>Non negatività.</strong> Per ogni a ∈ ℝ si ha |a| ≥ 0. Inoltre |a| = 0 se e solo se a = 0.</p>',
+      '<p><strong>Simmetria.</strong> Due numeri opposti hanno lo stesso modulo: |−a| = |a|. Più in generale, |a| = |b| se e solo se a = b oppure a = −b.</p>'),
+    card('Il maggiore tra un numero e il suo opposto',
+      '<p>|a| = max{a, −a}. Se a ≥ 0 il maggiore è a, mentre se a &lt; 0 è −a. Di conseguenza, a e −a sono entrambi minori o uguali a |a|. Possiamo scrivere <strong>−|a| ≤ a ≤ |a|</strong>.</p>',
+      '<p><strong>Ripetizione del modulo.</strong> Poiché |a| è già non negativo, ||a|| = |a|. In un’espressione come ||a| − 3|, invece, l’argomento esterno è |a| − 3 e il suo segno dipende da a.</p>'),
+    card('Prodotto, quoziente e potenza',
+      '<p><strong>Prodotto.</strong> |ab| = |a| · |b|. Per esempio, |(−2) · 5| = 10 e |−2| · |5| = 10.</p>',
+      '<p><strong>Quoziente.</strong> |a/b| = |a|/|b|, purché b ≠ 0.</p>',
+      '<p><strong>Potenza.</strong> Per ogni intero n ≥ 1, applicando la proprietà del prodotto si ottiene |a<sup>n</sup>| = |a|<sup>n</sup>. In particolare, a<sup>2</sup> = |a|<sup>2</sup>.</p>' +
+        (advanced ? '<p>La radice quadrata restituisce il valore non negativo, quindi √(a<sup>2</sup>) = |a|.</p>' : '')),
+    card('Disuguaglianza triangolare',
+      '<p>Il modulo di una somma è al più la somma dei moduli: <strong>|a + b| ≤ |a| + |b|</strong>.</p><p>Per esempio, |5 + (−3)| = 2, mentre |5| + |−3| = 8. Gli addendi si compensano in parte. Si ha uguaglianza quando hanno lo stesso segno oppure almeno uno è zero.</p>',
+      ...(advanced ? ['<p>Per dimostrarla, sommiamo membro a membro −|a| ≤ a ≤ |a| e −|b| ≤ b ≤ |b|. Otteniamo −(|a| + |b|) ≤ a + b ≤ |a| + |b|. Sia a + b sia il suo opposto sono quindi minori o uguali a |a| + |b|. Per definizione, |a + b| coincide con uno dei due.</p>'] : [])),
+    ...(advanced ? [
+      card('Disuguaglianza triangolare inversa',
+        '<p>La differenza tra i moduli, presa in valore assoluto, è limitata dal modulo della differenza: <strong>||a| − |b|| ≤ |a − b|</strong>.</p>',
+        '<p>Scriviamo a = (a − b) + b. La disuguaglianza triangolare dà |a| ≤ |a − b| + |b|, quindi |a| − |b| ≤ |a − b|. Scambiando a e b troviamo anche |b| − |a| ≤ |a − b|. Le due disuguaglianze danno la proprietà.</p>'),
+      card('Distanza sulla retta reale',
+        '<p>Il valore assoluto |a| misura la distanza del punto a dall’origine. La distanza tra a e b è <strong>d(a,b) = |a − b|</strong>. Per esempio, −2 e 5 distano |−2 − 5| = 7 unità.</p>',
+        '<p>La distanza è simmetrica, è sempre non negativa e vale zero solo quando i punti coincidono. Inoltre, poiché a − c = (a − b) + (b − c), la disuguaglianza triangolare dà d(a,c) ≤ d(a,b) + d(b,c). Queste proprietà fanno di d una <strong>metrica</strong> sulla retta reale.</p>'),
+      card('Il modulo nel piano complesso',
+        '<p>Il termine modulo si usa anche per i numeri complessi. Per z = a + bi, il modulo è la distanza del punto (a,b) dall’origine del piano: |z| = √(a<sup>2</sup> + b<sup>2</sup>).</p><p>Se b = 0, il punto sta sull’asse reale e la formula restituisce √(a<sup>2</sup>) = |a|, cioè il valore assoluto del numero reale a.</p>'),
+      card('Un cenno alla topologia della retta',
+        '<p>Fissiamo un centro a e un raggio r &gt; 0. I punti che distano da a meno di r sono quelli dell’intervallo aperto (a − r, a + r). Questo intervallo è la <strong>palla aperta</strong> di centro a e raggio r.</p>',
+        '<p>Un insieme è <strong>aperto</strong> se attorno a ogni suo punto si può trovare un intervallo aperto centrato in quel punto e interamente contenuto nell’insieme.</p>')
+    ] : [])
+  ], question('Quanto vale |x − 3| per x = 1?', ['−2', '2', '4'], 1, 'L’argomento vale −2. Il valore assoluto restituisce il suo opposto, cioè 2.'));
 
   window.READER_LESSONS['valore-assoluto-biennio'] = {
     title: 'Equazioni e disequazioni con il valore assoluto',
     subtitle: 'Matematica · Biennio · Algebra',
-    version: 1,
+    version: 2,
     status: 'work-in-progress',
     sections: [
-      section('distanza', 'Il valore assoluto come distanza', [
-        card('Due punti, la stessa distanza',
-          '<p>Parti da zero sulla retta numerica. Per raggiungere −3 percorri tre unità verso sinistra. Per raggiungere 3 percorri tre unità verso destra. In entrambi i casi la distanza è 3, quindi |−3| = |3| = 3.</p>' + line),
-        card('Dal numero all’espressione',
-          '<p>Per ogni numero reale u, <strong>|u| = u se u ≥ 0</strong> e <strong>|u| = −u se u &lt; 0</strong>. Per esempio, se u = −5, allora −u = 5. Il risultato è sempre non negativo.</p>',
-          '<p>La regola vale anche quando u è un’espressione. In |x − 2| guardiamo il segno di <strong>x − 2</strong>. Quando x &lt; 2, il modulo vale −(x − 2) = 2 − x.</p>'),
-        card('Una distanza da un punto qualsiasi',
-          '<p>|x − a| misura la distanza di x da a. Per esempio, |5 − 2| = 3 e |−1 − 2| = 3. I punti −1 e 5 sono entrambi a tre unità da 2.</p>')
-      ], question('Quanto vale |x − 2| quando x = −1?', ['−3', '1', '3'], 2, 'Sostituendo x = −1 ottieni |−3| = 3.')),
+      firstLesson(false),
       section('equazioni', 'Equazioni con un modulo', [
         card('A una distanza esatta',
           '<p>Se k &gt; 0, <strong>|A(x)| = k</strong> equivale a <strong>A(x) = k oppure A(x) = −k</strong>. Sulla retta cerchiamo due valori a distanza k dallo zero.</p>',
@@ -53,9 +75,10 @@
   window.READER_LESSONS['valore-assoluto-triennio'] = {
     title: 'Equazioni e disequazioni con il valore assoluto',
     subtitle: 'Matematica · Triennio · Metodo generale e approfondimenti',
-    version: 1,
+    version: 2,
     status: 'work-in-progress',
     sections: [
+      firstLesson(true),
       section('secondo-membro', 'Quando anche il secondo membro dipende da x', [
         card('Prima fissa il dominio',
           '<p>Individua dove sono definite A(x) e B(x), per esempio escludendo gli zeri dei denominatori. Tutte le equivalenze successive si leggono in quel dominio. Nel dominio vale sempre |A(x)| ≥ 0.</p>'),
