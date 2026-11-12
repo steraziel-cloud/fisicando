@@ -14,7 +14,7 @@
  ${display('<msqrt>'+row('a²')+'</msqrt><mo>=</mo>'+row('|a|'))}
  Se il numero di partenza è negativo, non ritroviamo quel numero, ma il suo opposto. Per esempio:
  ${display('<msqrt><msup>'+row('(−3)')+'<mn>2</mn></msup></msqrt><mo>=</mo><msqrt><mn>9</mn></msqrt><mo>=</mo><mn>3</mn>')}
- Il valore assoluto è quindi indispensabile: scrivere ${math('<msqrt>'+row('a²')+'</msqrt><mo>=</mo>'+row('a'))} sarebbe corretto soltanto per ${m('a ≥ 0')}.`;
+ Il valore assoluto è quindi indispensabile: possiamo sostituire il risultato con ${m('a')} soltanto se sappiamo che ${m('a ≥ 0')}.`;
  return [
  reveal('Le prime proprietà',
    `Dalla definizione del valore assoluto discendono alcune proprietà che ci aiutano a comprenderne il comportamento e a usarlo nei calcoli. Le presentiamo prima in parole, poi con una formula. Nelle formule, ${m('a')} e ${m('b')} indicano numeri reali qualsiasi.<br><br>
