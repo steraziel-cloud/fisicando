@@ -17,20 +17,20 @@
  Il valore assoluto è quindi indispensabile: possiamo sostituire il risultato con ${m('a')} soltanto se sappiamo che ${m('a ≥ 0')}.`;
  return [
  reveal('Le prime proprietà',
-   `Dalla definizione del valore assoluto discendono alcune proprietà che ci aiutano a comprenderne il comportamento e a usarlo nei calcoli. Le presentiamo prima in parole, poi con una formula. Nelle formule, ${m('a')} e ${m('b')} indicano numeri reali qualsiasi.<br><br>
-   <strong>• Non negatività.</strong> Il valore assoluto di ogni numero reale è maggiore o uguale a zero.
+   `Dalla definizione del valore assoluto discendono alcune proprietà che ci aiutano a comprenderne il comportamento e a usarlo nei calcoli. Consideriamo due numeri reali qualsiasi ${m('a')} e ${m('b')}. Valgono le seguenti proprietà.<br><br>
+   <span class="rm-property-point"><strong>Non negatività.</strong> Il valore assoluto di ogni numero reale è maggiore o uguale a zero.
    ${display(row('∀a ∈ ℝ, |a| ≥ 0'))}
-   È uguale a zero se e solo se il numero di partenza è zero: ${m('|a| = 0 ⇔ a = 0')}. Per esempio, ${m('|−4| = 4')}.`,
-   `<strong>• Invarianza per cambio di segno.</strong> Due numeri opposti hanno lo stesso valore assoluto: cambiare il segno dell’argomento non cambia il risultato.
+   È uguale a zero se e solo se il numero di partenza è zero: ${m('|a| = 0 ⇔ a = 0')}. Per esempio, ${m('|−4| = 4')}.</span>`,
+   `<span class="rm-property-point"><strong>Invarianza per cambio di segno.</strong> Due numeri opposti hanno lo stesso valore assoluto: cambiare il segno dell’argomento non cambia il risultato.
    ${display(row('∀a ∈ ℝ, |−a| = |a|'))}
    Per esempio, ${m('|−5| = |5| = 5')}. In generale, due numeri hanno lo stesso valore assoluto esattamente quando sono uguali oppure opposti:
-   ${display(row('|a| = |b| ⇔ (a = b ∨ a = −b)'))}`,
-   `<strong>• Confronto con l’argomento.</strong> Il valore assoluto di un numero è il maggiore tra quel numero e il suo opposto. Entrambi sono quindi minori o uguali al valore assoluto:
+   ${display(row('|a| = |b| ⇔ (a = b ∨ a = −b)'))}</span>`,
+   `<span class="rm-property-point"><strong>Confronto con l’argomento.</strong> Il valore assoluto di un numero è il maggiore tra quel numero e il suo opposto. Entrambi sono quindi minori o uguali al valore assoluto:
    ${display(row('∀a ∈ ℝ, −|a| ≤ a ≤ |a|'))}
-   Per esempio, con ${m('a = −3')} otteniamo ${m('−3 ≤ −3 ≤ 3')}.`,
-   `<strong>• Idempotenza.</strong> Applicare il valore assoluto una seconda volta non cambia il risultato, perché la prima applicazione ha già restituito un numero non negativo.
+   Per esempio, con ${m('a = −3')} otteniamo ${m('−3 ≤ −3 ≤ 3')}.</span>`,
+   `<span class="rm-property-point"><strong>Idempotenza.</strong> Applicare il valore assoluto una seconda volta non cambia il risultato, perché la prima applicazione ha già restituito un numero non negativo.
    ${display(row('∀a ∈ ℝ, ||a|| = |a|'))}
-   Per esempio, ${m('||−6|| = |6| = 6')}. Il nome <em>idempotenza</em> esprime proprio questa proprietà dell’applicazione ripetuta.`
+   Per esempio, ${m('||−6|| = |6| = 6')}. Il nome <em>idempotenza</em> esprime proprio questa proprietà dell’applicazione ripetuta.</span>`
  ),
  reveal('Proprietà rispetto alle altre operazioni',
    `<strong>Prodotto.</strong> Il valore assoluto di un prodotto è uguale al prodotto dei valori assoluti dei fattori:
@@ -100,12 +100,9 @@
           { before: '|7| =', beforeHtml: m('|7| ='), after: '', options: ['7', '−7', '0'], answer: 0,
             feedback: '7 è positivo: il suo valore assoluto è 7.',
             retry: 'L’argomento è positivo: rileggi il primo caso della definizione.' },
-          { before: '|−7| =', beforeHtml: m('|−7| ='), after: '', options: ['7', '−7', '0'], answer: 0,
-            feedback: '−7 è negativo: prendiamo il suo opposto, −(−7) = 7.',
-            retry: 'Per un argomento negativo, la definizione richiede il suo opposto.' },
-          { before: '|0| =', beforeHtml: m('|0| ='), after: '', options: ['7', '−7', '0'], answer: 2,
-            feedback: 'Zero rientra nel caso a ≥ 0: il suo valore assoluto è 0.',
-            retry: 'Zero rientra nel caso a ≥ 0: il valore assoluto lascia invariato l’argomento.' }
+          { before: '|−5| =', beforeHtml: m('|−5| ='), after: '', options: ['5', '−5', '0'], answer: 0,
+            feedback: '−5 è negativo: prendiamo il suo opposto, −(−5) = 5.',
+            retry: 'Per un argomento negativo, la definizione richiede il suo opposto.' }
         ],
         afterHtml: 'Il numero o l’espressione racchiusi tra le barre si chiamano <strong>argomento</strong> del valore assoluto.'
       }
@@ -206,7 +203,7 @@
     const lesson = (title, sections, nextId) => ({
       title,
       subtitle,
-      version: 10,
+      version: 11,
       status: 'work-in-progress',
       sections,
       nextLesson: nextId ? { id: nextId } : false
