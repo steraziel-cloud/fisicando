@@ -490,7 +490,6 @@ window.LESSON_CATALOG = [
             "children": [
               {
                 "title": "Valore assoluto",
-                "icon": "equation",
                 "aliases": [],
                 "lessons": [
                   {
