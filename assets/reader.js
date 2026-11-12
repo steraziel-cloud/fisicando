@@ -394,6 +394,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(step.interaction==='instant-speeds')instantSpeedsExercise(article,!archived);
   if(step.cloze?.length)sentenceExercise(article,step,archived);
   if(step.afterHtml){const after=el('p','rm-step-after');after.innerHTML=step.afterHtml;article.append(after);}
+  if(step.disclosure){const details=el('details','rm-reader-disclosure'),summary=el('summary','',step.disclosure.title),body=el('div','rm-disclosure-body');body.innerHTML=step.disclosure.html;details.append(summary,body);article.append(details);}
   return article;
  }
  function slideSwap(host,previous,next,direction,beforeHeight){

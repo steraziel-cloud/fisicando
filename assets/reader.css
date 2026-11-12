@@ -534,3 +534,10 @@ body[data-reader-lesson^="valore-assoluto-"] .rm-absolute-definition{font-size:1
 .rm-example-list .rm-sentence-feedback{margin:4px 0 0;font-size:14px;line-height:1.5}
 .rm-example-list .rm-sentence-feedback:empty{display:none}
 .rm-example-list .rm-sentence-correct .rm-sentence-feedback{color:var(--rm-accent-2)}
+
+/* Keep algebraic fractions readable inline; reserve display lines for longer formulas. */
+body[data-reader-lesson^="valore-assoluto-"] .rm-absolute-fraction{font-size:1.12em;vertical-align:middle;margin-inline:.15em}
+body[data-reader-lesson^="valore-assoluto-"] .rm-absolute-equation{font-size:1.2em;max-width:100%;overflow-x:auto;margin:14px 0;padding:4px 0}
+.rm-reader-disclosure{margin-top:14px;border:1px solid var(--rm-line);border-radius:12px;padding:12px 16px}
+.rm-reader-disclosure summary{color:var(--rm-accent-2);cursor:pointer;font-weight:650}
+.rm-disclosure-body{font-size:17px;line-height:1.85;padding-top:14px}

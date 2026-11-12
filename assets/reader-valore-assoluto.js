@@ -9,6 +9,60 @@
   });
   const question = (question, options, answer, feedback) => ({ question, options, answer, feedback });
   const section = (id, title, cards, ...questions) => ({ id, title, cards, quiz: { questions } });
+  function propertyCards(advanced, {m,math,row,frac,abs,display,reveal}) {
+ const rootText = `La radice quadrata di un numero non negativo è, per definizione, non negativa. Perciò la radice del quadrato di un numero reale restituisce il suo valore assoluto:
+ ${display('<msqrt>'+row('a²')+'</msqrt><mo>=</mo>'+row('|a|'))}
+ Se il numero di partenza è negativo, non ritroviamo quel numero, ma il suo opposto. Per esempio:
+ ${display('<msqrt><msup>'+row('(−3)')+'<mn>2</mn></msup></msqrt><mo>=</mo><msqrt><mn>9</mn></msqrt><mo>=</mo><mn>3</mn>')}
+ Il valore assoluto è quindi indispensabile: scrivere ${math('<msqrt>'+row('a²')+'</msqrt><mo>=</mo>'+row('a'))} sarebbe corretto soltanto per ${m('a ≥ 0')}.`;
+ return [
+ reveal('Le prime proprietà',
+   `Dalla definizione del valore assoluto discendono alcune proprietà che ci aiutano a comprenderne il comportamento e a usarlo nei calcoli. Le presentiamo prima in parole, poi con una formula. Nelle formule, ${m('a')} e ${m('b')} indicano numeri reali qualsiasi.<br><br>
+   <strong>• Non negatività.</strong> Il valore assoluto di ogni numero reale è maggiore o uguale a zero.
+   ${display(row('∀a ∈ ℝ, |a| ≥ 0'))}
+   È uguale a zero se e solo se il numero di partenza è zero: ${m('|a| = 0 ⇔ a = 0')}. Per esempio, ${m('|−4| = 4')}.`,
+   `<strong>• Invarianza per cambio di segno.</strong> Due numeri opposti hanno lo stesso valore assoluto: cambiare il segno dell’argomento non cambia il risultato.
+   ${display(row('∀a ∈ ℝ, |−a| = |a|'))}
+   Per esempio, ${m('|−5| = |5| = 5')}. In generale, due numeri hanno lo stesso valore assoluto esattamente quando sono uguali oppure opposti:
+   ${display(row('|a| = |b| ⇔ (a = b ∨ a = −b)'))}`,
+   `<strong>• Confronto con l’argomento.</strong> Il valore assoluto di un numero è il maggiore tra quel numero e il suo opposto. Entrambi sono quindi minori o uguali al valore assoluto:
+   ${display(row('∀a ∈ ℝ, −|a| ≤ a ≤ |a|'))}
+   Per esempio, con ${m('a = −3')} otteniamo ${m('−3 ≤ −3 ≤ 3')}.`,
+   `<strong>• Idempotenza.</strong> Applicare il valore assoluto una seconda volta non cambia il risultato, perché la prima applicazione ha già restituito un numero non negativo.
+   ${display(row('∀a ∈ ℝ, ||a|| = |a|'))}
+   Per esempio, ${m('||−6|| = |6| = 6')}. Il nome <em>idempotenza</em> esprime proprio questa proprietà dell’applicazione ripetuta.`
+ ),
+ reveal('Proprietà rispetto alle altre operazioni',
+   `<strong>Prodotto.</strong> Il valore assoluto di un prodotto è uguale al prodotto dei valori assoluti dei fattori:
+   ${display(row('|ab| = |a| · |b|'))}
+   Vale per ogni coppia di numeri reali ${m('a')} e ${m('b')}. Per esempio, ${m('|(−2) · 5| = |−10| = 10')}; separando i fattori, otteniamo ${m('|−2| · |5| = 2 · 5 = 10')}.`,
+   `<strong>Quoziente.</strong> Il valore assoluto di un quoziente è uguale al quoziente dei valori assoluti, purché il divisore sia diverso da zero. Per ${m('a,b ∈ ℝ')} e ${m('b ≠ 0')}, vale ${math(abs(frac('a','b'))+'<mo>=</mo>'+frac('|a|','|b|'))}.<br><br>
+   Per esempio, ${math(abs(frac('−6','−3'))+'<mo>=</mo>'+abs(row('2'))+'<mo>=</mo>'+row('2'))}; usando la proprietà, ${math(frac('|−6|','|−3|')+'<mo>=</mo>'+frac('6','3')+'<mo>=</mo>'+row('2'))}.`,
+   `<strong>Potenza.</strong> Il valore assoluto di una potenza è uguale alla potenza del valore assoluto della base. Per ogni numero reale ${m('a')} e ogni intero ${m('n ≥ 1')}, vale
+   ${display(row('|aⁿ| = |a|ⁿ'))}
+   Basta applicare la proprietà del prodotto ai fattori uguali. Per esempio, ${m('|(−3)²| = |9| = 9')} e ${m('|−3|² = 3² = 9')}. In particolare, ${m('a² = |a|²')}.`
+ ),
+ reveal('Radice quadrata e valore assoluto',
+   advanced ? rootText : {
+    html: '<strong>Approfondimento facoltativo.</strong> Questo collegamento può essere ripreso quando avrai studiato le radici quadrate.',
+    disclosure: {title:'Scopri il collegamento con la radice quadrata',html:rootText}
+   }
+ ),
+ reveal('Somme e differenze con lo stesso valore assoluto',
+   `Quando più termini contengono lo stesso valore assoluto, possiamo sommarli algebricamente raccogliendo quel fattore comune. È un’applicazione della <strong>proprietà distributiva</strong>: sommiamo i coefficienti e lasciamo invariato il valore assoluto.<br><br>
+   Per numeri reali ${m('p')}, ${m('q')} e ${m('a')}, possiamo scrivere:
+   ${display(row('p|a| + q|a| = (p + q)|a|'))}
+   Per esempio:
+   ${display(row('3|−4| + 2|−4| = (3 + 2)|−4| = 5 · 4 = 20'))}`,
+   `<strong>La stessa regola vale per la differenza.</strong> Sottrarre un termine equivale a sommare il suo opposto, quindi sottraiamo i coefficienti:
+   ${display(row('p|a| − q|a| = (p − q)|a|'))}
+   Per esempio:
+   ${display(row('5|−2| − 3|−2| = (5 − 3)|−2| = 2 · 2 = 4'))}
+   I termini possono anche annullarsi: ${m('2|−3| − 2|−3| = 0')}.`
+ )
+ ];
+}
+
   function firstLesson(advanced) {
   // Native mathematical typesetting, shared by the two school tracks.
   const esc = s => s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
@@ -25,7 +79,8 @@
     }
     return `<mrow>${out.join('')}</mrow>`;
   };
-  const math = xml => `<math xmlns="http://www.w3.org/1998/Math/MathML">${xml}</math>`;
+  const math = xml => `<math xmlns="http://www.w3.org/1998/Math/MathML"${xml.includes('<mfrac>') ? ' class="rm-absolute-fraction"' : ''}>${xml.includes('<mfrac>') ? '<mstyle displaystyle="true">' + xml + '</mstyle>' : xml}</math>`;
+  const display = xml => `<math xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="rm-absolute-equation">${xml}</math>`;
   const m = s => math(row(s));
   const frac = (a, b) => `<mfrac>${row(a)}${row(b)}</mfrac>`;
   const abs = xml => `<mrow><mo fence="true" stretchy="true">|</mo>${xml}<mo fence="true" stretchy="true">|</mo></mrow>`;
@@ -55,22 +110,7 @@
         afterHtml: 'Il numero o l’espressione racchiusi tra le barre si chiamano <strong>argomento</strong> del valore assoluto.'
       }
     ),
-    reveal('Le prime proprietà',
-      `Nelle proprietà che seguono, ${m('a')} e ${m('b')} indicano numeri reali qualsiasi.<br><br>
-      <strong>• Non negatività e zero.</strong> ${m('|a| ≥ 0')}; inoltre ${m('|a| = 0')} se e solo se ${m('a = 0')}. Per esempio, ${m('|−4| = 4')} e solo zero ha valore assoluto zero.<br><br>
-      <strong>• Numeri opposti.</strong> ${m('|−a| = |a|')}: ${m('|−5| = |5| = 5')}. Più in generale, ${m('|a| = |b|')} se e solo se ${m('a = b')} oppure ${m('a = −b')}.`,
-      `<strong>• Confronto con il numero e il suo opposto.</strong> ${m('|a|')} è il maggiore tra ${m('a')} e ${m('−a')}. Perciò ${m('−|a| ≤ a ≤ |a|')}. Con ${m('a = −3')} otteniamo ${m('−3 ≤ −3 ≤ 3')}.<br><br>
-      <strong>• Applicazione ripetuta.</strong> ${m('||a|| = |a|')}, perché il primo risultato è già non negativo. Per esempio, ${m('||−6|| = |6| = 6')}.`
-    ),
-    reveal('Prodotto, quoziente e potenza',
-      `<strong>Prodotto.</strong> ${m('|ab| = |a| · |b|')}. Possiamo calcolare prima il prodotto oppure i valori assoluti dei fattori: otteniamo lo stesso risultato.<br><br>
-      Per esempio, ${m('|(−2) · 5| = |−10| = 10')} e ${m('|−2| · |5| = 2 · 5 = 10')}.`,
-      `<strong>Quoziente.</strong> Se ${m('b ≠ 0')}, allora ${math(abs(frac('a','b')) + '<mo>=</mo>' + frac('|a|','|b|'))}.<br><br>
-      Per esempio, ${math(abs(frac('−6','−3')) + '<mo>=</mo>' + abs(row('2')) + '<mo>=</mo>' + row('2'))}; usando la proprietà, ${math(frac('|−6|','|−3|') + '<mo>=</mo>' + frac('6','3') + '<mo>=</mo>' + row('2'))}. Il divisore deve sempre essere diverso da zero.`,
-      `<strong>Potenza.</strong> Per ogni intero ${m('n ≥ 1')}, ${m('|aⁿ| = |a|ⁿ')}: basta applicare la proprietà del prodotto ai fattori uguali.<br><br>
-      Per esempio, ${m('|(−3)²| = |9| = 9')} e ${m('|−3|² = 3² = 9')}. In particolare ${m('a² = |a|²')}.
-      ${advanced ? `<br><br>Nel triennio possiamo collegarla alla radice quadrata: ${math('<msqrt>'+row('a²')+'</msqrt><mo>=</mo>'+row('|a|'))}, perché la radice quadrata restituisce il valore non negativo. Per esempio, ${math('<msqrt>'+row('(−3)²')+'</msqrt><mo>=</mo>'+row('3'))}.` : ''}`
-    ),
+    ...propertyCards(advanced, {m,math,row,frac,abs,display,reveal}),
     reveal('Somme e differenze: le disuguaglianze',
       `<strong>Il valore assoluto non si distribuisce, in generale, sulla somma.</strong> Infatti ${m('|5 + (−3)| = 2')}, mentre ${m('|5| + |−3| = 8')}.<br><br>
       Vale invece la <strong>disuguaglianza triangolare</strong>: ${m('|a + b| ≤ |a| + |b|')}. Si ha uguaglianza quando gli addendi hanno lo stesso segno oppure almeno uno è zero: per esempio, ${m('|−2 + (−3)| = 5 = |−2| + |−3|')}.`,
@@ -166,7 +206,7 @@
     const lesson = (title, sections, nextId) => ({
       title,
       subtitle,
-      version: 9,
+      version: 10,
       status: 'work-in-progress',
       sections,
       nextLesson: nextId ? { id: nextId } : false
