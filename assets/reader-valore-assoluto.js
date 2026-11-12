@@ -9,125 +9,86 @@
   });
   const question = (question, options, answer, feedback) => ({ question, options, answer, feedback });
   const section = (id, title, cards, ...questions) => ({ id, title, cards, quiz: { questions } });
-  const firstLesson = advanced => section('distanza', 'Il valore assoluto nell’algebra', advanced ? [
-  {
-    "title": "Definizione di valore assoluto",
-    "steps": [
-      {
-        "html": "Il <strong>valore assoluto</strong> di un numero reale <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>a</mi></mrow></math> si indica con <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math> ed è definito da:<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" class=\"rm-absolute-definition\" aria-label=\"Il valore assoluto di a è a se a è maggiore o uguale a zero, meno a se a è minore di zero\"><mrow><mrow><mo fence=\"true\" lspace=\"0\" rspace=\"0.08em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.08em\" rspace=\"0\">|</mo></mrow><mo>=</mo><mrow><mo fence=\"true\" stretchy=\"true\">{</mo><mtable columnalign=\"left left\" columnspacing=\"1.4em\" rowspacing=\"0.6em\"><mtr><mtd><mi>a</mi></mtd><mtd><mtext>se</mtext><mspace width=\"0.35em\"/><mi>a</mi><mo>≥</mo><mn>0</mn></mtd></mtr><mtr><mtd><mo>−</mo><mi>a</mi></mtd><mtd><mtext>se</mtext><mspace width=\"0.35em\"/><mi>a</mi><mo>&lt;</mo><mn>0</mn></mtd></mtr></mtable></mrow></mrow></math><br>Nel secondo caso <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>−</mo><mi>a</mi></mrow></math> è l’opposto di <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>a</mi></mrow></math>: poiché <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>a</mi><mo>&lt;</mo><mn>0</mn></mrow></math>, il risultato è positivo."
-      },
-      {
-        "html": "<strong>Esempi.</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mn>7</mn><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mn>7</mn></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>−</mo><mn>7</mn><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mo>−</mo><mo>(</mo><mo>−</mo><mn>7</mn><mo>)</mo><mo>=</mo><mn>7</mn></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mn>0</mn><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mn>0</mn></mrow></math>.<br>Il numero o l’espressione racchiusi tra le barre si chiamano <strong>argomento</strong> del valore assoluto."
-      }
-    ]
-  },
-  {
-    "title": "Il segno dell’argomento e l’ordine dei calcoli",
-    "steps": [
-      {
-        "html": "In <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>x</mi><mo>−</mo><mn>3</mn><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math> guardiamo il segno dell’intera espressione <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>x</mi><mo>−</mo><mn>3</mn></mrow></math>. Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>x</mi><mo>≥</mo><mn>3</mn></mrow></math>, il valore assoluto vale <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>x</mi><mo>−</mo><mn>3</mn></mrow></math>. Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>x</mi><mo>&lt;</mo><mn>3</mn></mrow></math>, vale <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>−</mo><mo>(</mo><mi>x</mi><mo>−</mo><mn>3</mn><mo>)</mo><mo>=</mo><mn>3</mn><mo>−</mo><mi>x</mi></mrow></math>.<br><br>Per <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow></math>, l’argomento vale −2. Applichiamo il secondo caso e otteniamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mn>1</mn><mo>−</mo><mn>3</mn><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mn>3</mn><mo>−</mo><mn>1</mn><mo>=</mo><mn>2</mn></mrow></math>."
-      },
-      {
-        "html": "<strong>Le barre raggruppano l’argomento.</strong> Prima si calcola l’argomento tra le barre, poi si applica il valore assoluto. In <strong>2 − |3 − 7|</strong>, calcoliamo 3 − 7 = −4, poi |−4| = 4. Infine eseguiamo la sottrazione esterna e otteniamo −2.<br><br>In <strong>−|−3|<sup>2</sup></strong> calcoliamo |−3| = 3, poi eleviamo 3 al quadrato e infine applichiamo il segno meno esterno. Il risultato è −9. Se scriviamo <strong>(−|−3|)<sup>2</sup></strong>, le parentesi includono il segno meno nella base e il risultato è 9."
-      }
-    ]
-  },
-  {
-    "title": "Le prime proprietà",
-    "steps": [
-      {
-        "html": "<strong>Non negatività.</strong> Per ogni a ∈ ℝ si ha <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>≥</mo><mn>0</mn></mrow></math>. Inoltre <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mn>0</mn></mrow></math> se e solo se <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>a</mi><mo>=</mo><mn>0</mn></mrow></math>.<br><br><strong>Simmetria.</strong> Due numeri opposti hanno lo stesso valore assoluto: <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>−</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>. Più in generale, <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math> se e solo se <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>a</mi><mo>=</mo><mi>b</mi></mrow></math> oppure <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>a</mi><mo>=</mo><mo>−</mo><mi>b</mi></mrow></math>."
-      },
-      {
-        "html": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math> = max{a, −a}. Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>a</mi><mo>≥</mo><mn>0</mn></mrow></math> il maggiore è a, mentre se <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>a</mi><mo>&lt;</mo><mn>0</mn></mrow></math> è −a. Di conseguenza, a e −a sono entrambi minori o uguali a <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>. Possiamo scrivere <strong><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>−</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>≤</mo><mi>a</mi><mo>≤</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math></strong>.<br><br><strong>Applicazione ripetuta.</strong> Poiché <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math> è già non negativo, <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>. In un’espressione come <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>−</mo><mn>3</mn><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>, invece, l’argomento esterno è <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>−</mo><mn>3</mn></mrow></math> e il suo segno dipende da a."
-      }
-    ]
-  },
-  {
-    "title": "Prodotto, quoziente e potenza",
-    "steps": [
-      {
-        "html": "<strong>Prodotto.</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>·</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>. Per esempio, |(−2) · 5| = 10 e |−2| · |5| = 10.<br><br><strong>Quoziente.</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo>/</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>/</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>, purché <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>b</mi><mo>≠</mo><mn>0</mn></mrow></math>."
-      },
-      {
-        "html": "<strong>Potenza.</strong> Per ogni intero n ≥ 1, applicando la proprietà del prodotto si ottiene |a<sup>n</sup>| = <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math><sup>n</sup>. In particolare, a<sup>2</sup> = <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math><sup>2</sup>.<br><br>La radice quadrata restituisce il valore non negativo, quindi √(a<sup>2</sup>) = <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>."
-      }
-    ]
-  },
-  {
-    "title": "Le disuguaglianze del valore assoluto",
-    "steps": [
-      {
-        "html": "<strong>Disuguaglianza triangolare.</strong> Il valore assoluto di una somma è al più la somma dei valori assoluti: <strong><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>≤</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>+</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math></strong>.<br><br>Per esempio, |5 + (−3)| = 2, mentre |5| + |−3| = 8. Gli addendi si compensano in parte. Si ha uguaglianza quando hanno lo stesso segno oppure almeno uno è zero."
-      },
-      {
-        "html": "<strong>Dimostrazione.</strong> Per dimostrarla, sommiamo membro a membro <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>−</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>≤</mo><mi>a</mi><mo>≤</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math> e −|b| ≤ b ≤ |b|. Otteniamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>−</mo><mo>(</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>+</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>)</mo><mo>≤</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>≤</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>+</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>. Sia a + b sia il suo opposto sono quindi minori o uguali a <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math> + |b|. Per definizione, |a + b| coincide con uno dei due."
-      },
-      {
-        "html": "<strong>Disuguaglianza triangolare inversa.</strong> Il valore assoluto della differenza tra <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math> e |b| è al più |a − b|: <strong><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>−</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>≤</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo>−</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math></strong>.<br><br>Scriviamo a = (a − b) + b. La disuguaglianza triangolare dà <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>≤</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo>−</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>+</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>, quindi <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>−</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>≤</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo>−</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>. Scambiando a e b troviamo anche <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>−</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>≤</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo>−</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>. Le due disuguaglianze danno la proprietà."
-      }
-    ]
-  }
-] : [
-  {
-    "title": "Definizione di valore assoluto",
-    "steps": [
-      {
-        "html": "Il <strong>valore assoluto</strong> di un numero reale <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>a</mi></mrow></math> si indica con <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math> ed è definito da:<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" class=\"rm-absolute-definition\" aria-label=\"Il valore assoluto di a è a se a è maggiore o uguale a zero, meno a se a è minore di zero\"><mrow><mrow><mo fence=\"true\" lspace=\"0\" rspace=\"0.08em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.08em\" rspace=\"0\">|</mo></mrow><mo>=</mo><mrow><mo fence=\"true\" stretchy=\"true\">{</mo><mtable columnalign=\"left left\" columnspacing=\"1.4em\" rowspacing=\"0.6em\"><mtr><mtd><mi>a</mi></mtd><mtd><mtext>se</mtext><mspace width=\"0.35em\"/><mi>a</mi><mo>≥</mo><mn>0</mn></mtd></mtr><mtr><mtd><mo>−</mo><mi>a</mi></mtd><mtd><mtext>se</mtext><mspace width=\"0.35em\"/><mi>a</mi><mo>&lt;</mo><mn>0</mn></mtd></mtr></mtable></mrow></mrow></math><br>Nel secondo caso <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>−</mo><mi>a</mi></mrow></math> è l’opposto di <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>a</mi></mrow></math>: poiché <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>a</mi><mo>&lt;</mo><mn>0</mn></mrow></math>, il risultato è positivo."
-      },
-      {
-        "html": "<strong>Esempi.</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mn>7</mn><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mn>7</mn></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>−</mo><mn>7</mn><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mo>−</mo><mo>(</mo><mo>−</mo><mn>7</mn><mo>)</mo><mo>=</mo><mn>7</mn></mrow></math>, <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mn>0</mn><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mn>0</mn></mrow></math>.<br>Il numero o l’espressione racchiusi tra le barre si chiamano <strong>argomento</strong> del valore assoluto."
-      }
-    ]
-  },
-  {
-    "title": "Il segno dell’argomento e l’ordine dei calcoli",
-    "steps": [
-      {
-        "html": "In <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>x</mi><mo>−</mo><mn>3</mn><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math> guardiamo il segno dell’intera espressione <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>x</mi><mo>−</mo><mn>3</mn></mrow></math>. Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>x</mi><mo>≥</mo><mn>3</mn></mrow></math>, il valore assoluto vale <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>x</mi><mo>−</mo><mn>3</mn></mrow></math>. Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>x</mi><mo>&lt;</mo><mn>3</mn></mrow></math>, vale <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>−</mo><mo>(</mo><mi>x</mi><mo>−</mo><mn>3</mn><mo>)</mo><mo>=</mo><mn>3</mn><mo>−</mo><mi>x</mi></mrow></math>.<br><br>Per <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow></math>, l’argomento vale −2. Applichiamo il secondo caso e otteniamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mn>1</mn><mo>−</mo><mn>3</mn><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mn>3</mn><mo>−</mo><mn>1</mn><mo>=</mo><mn>2</mn></mrow></math>."
-      },
-      {
-        "html": "<strong>Le barre raggruppano l’argomento.</strong> Prima si calcola l’argomento tra le barre, poi si applica il valore assoluto. In <strong>2 − |3 − 7|</strong>, calcoliamo 3 − 7 = −4, poi |−4| = 4. Infine eseguiamo la sottrazione esterna e otteniamo −2.<br><br>In <strong>−|−3|<sup>2</sup></strong> calcoliamo |−3| = 3, poi eleviamo 3 al quadrato e infine applichiamo il segno meno esterno. Il risultato è −9. Se scriviamo <strong>(−|−3|)<sup>2</sup></strong>, le parentesi includono il segno meno nella base e il risultato è 9."
-      }
-    ]
-  },
-  {
-    "title": "Le prime proprietà",
-    "steps": [
-      {
-        "html": "<strong>Non negatività.</strong> Per ogni a ∈ ℝ si ha <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>≥</mo><mn>0</mn></mrow></math>. Inoltre <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mn>0</mn></mrow></math> se e solo se <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>a</mi><mo>=</mo><mn>0</mn></mrow></math>.<br><br><strong>Simmetria.</strong> Due numeri opposti hanno lo stesso valore assoluto: <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>−</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>. Più in generale, <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math> se e solo se <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>a</mi><mo>=</mo><mi>b</mi></mrow></math> oppure <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>a</mi><mo>=</mo><mo>−</mo><mi>b</mi></mrow></math>."
-      },
-      {
-        "html": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math> = max{a, −a}. Se <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>a</mi><mo>≥</mo><mn>0</mn></mrow></math> il maggiore è a, mentre se <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>a</mi><mo>&lt;</mo><mn>0</mn></mrow></math> è −a. Di conseguenza, a e −a sono entrambi minori o uguali a <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>. Possiamo scrivere <strong><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>−</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>≤</mo><mi>a</mi><mo>≤</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math></strong>.<br><br><strong>Applicazione ripetuta.</strong> Poiché <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math> è già non negativo, <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>. In un’espressione come <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>−</mo><mn>3</mn><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>, invece, l’argomento esterno è <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>−</mo><mn>3</mn></mrow></math> e il suo segno dipende da a."
-      }
-    ]
-  },
-  {
-    "title": "Prodotto, quoziente e potenza",
-    "steps": [
-      {
-        "html": "<strong>Prodotto.</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>·</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>. Per esempio, |(−2) · 5| = 10 e |−2| · |5| = 10.<br><br><strong>Quoziente.</strong> <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo>/</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>=</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>/</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>, purché <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mi>b</mi><mo>≠</mo><mn>0</mn></mrow></math>."
-      },
-      {
-        "html": "<strong>Potenza.</strong> Per ogni intero n ≥ 1, applicando la proprietà del prodotto si ottiene |a<sup>n</sup>| = <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math><sup>n</sup>. In particolare, a<sup>2</sup> = <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math><sup>2</sup>."
-      }
-    ]
-  },
-  {
-    "title": "Le disuguaglianze del valore assoluto",
-    "steps": [
-      {
-        "html": "<strong>Disuguaglianza triangolare.</strong> Il valore assoluto di una somma è al più la somma dei valori assoluti: <strong><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>≤</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>+</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math></strong>.<br><br>Per esempio, |5 + (−3)| = 2, mentre |5| + |−3| = 8. Gli addendi si compensano in parte. Si ha uguaglianza quando hanno lo stesso segno oppure almeno uno è zero."
-      },
-      {
-        "html": "<strong>Dimostrazione.</strong> Per dimostrarla, sommiamo membro a membro <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>−</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>≤</mo><mi>a</mi><mo>≤</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math> e −|b| ≤ b ≤ |b|. Otteniamo <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>−</mo><mo>(</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>+</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>)</mo><mo>≤</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>≤</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>+</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>. Sia a + b sia il suo opposto sono quindi minori o uguali a <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math> + |b|. Per definizione, |a + b| coincide con uno dei due."
-      },
-      {
-        "html": "<strong>Disuguaglianza triangolare inversa.</strong> Il valore assoluto della differenza tra <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math> e |b| è al più |a − b|: <strong><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>−</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>≤</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo>−</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math></strong>.<br><br>Scriviamo a = (a − b) + b. La disuguaglianza triangolare dà <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>≤</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo>−</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>+</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>, quindi <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>−</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>≤</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo>−</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>. Scambiando a e b troviamo anche <math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>−</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mo>≤</mo><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo><mi>a</mi><mo>−</mo><mi>b</mi><mo fence=\"true\" lspace=\"0.06em\" rspace=\"0.06em\">|</mo></mrow></math>. Le due disuguaglianze danno la proprietà."
-      }
-    ]
-  }
-], question('Quanto vale |x − 3| per x = 1?', ['−2', '2', '4'], 1, 'L’argomento vale −2. Il valore assoluto restituisce il suo opposto, cioè 2.'));
+  function firstLesson(advanced) {
+  // Native mathematical typesetting, shared by the two school tracks.
+  const esc = s => s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+  const row = s => {
+    const tokens = s.match(/\d+(?:,\d+)?|[²ⁿ]|[^\s]/g) || [];
+    const out = [];
+    for (const t of tokens) {
+      if (t === '²' || t === 'ⁿ') {
+        const base = out.pop();
+        out.push(`<msup>${base}${t === '²' ? '<mn>2</mn>' : '<mi>n</mi>'}</msup>`);
+      } else if (/^\d/.test(t)) out.push(`<mn>${t}</mn>`);
+      else if (/^[a-zA-Zℝ]$/.test(t)) out.push(`<mi>${t}</mi>`);
+      else out.push(`<mo${t === '|' ? ' fence="true" stretchy="false" lspace="0.06em" rspace="0.06em"' : ''}>${esc(t)}</mo>`);
+    }
+    return `<mrow>${out.join('')}</mrow>`;
+  };
+  const math = xml => `<math xmlns="http://www.w3.org/1998/Math/MathML">${xml}</math>`;
+  const m = s => math(row(s));
+  const frac = (a, b) => `<mfrac>${row(a)}${row(b)}</mfrac>`;
+  const abs = xml => `<mrow><mo fence="true" stretchy="true">|</mo>${xml}<mo fence="true" stretchy="true">|</mo></mrow>`;
+  const cases = (left, first, firstCondition, second, secondCondition) =>
+    `<math xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="rm-absolute-definition"><mrow>${row(left)}<mo>=</mo><mrow><mo fence="true" stretchy="true">{</mo><mtable columnalign="left left" columnspacing="1.4em" rowspacing="0.6em"><mtr><mtd>${row(first)}</mtd><mtd><mtext>se</mtext><mspace width="0.35em"/>${row(firstCondition)}</mtd></mtr><mtr><mtd>${row(second)}</mtd><mtd><mtext>se</mtext><mspace width="0.35em"/>${row(secondCondition)}</mtd></mtr></mtable></mrow></mrow></math>`;
+  const reveal = (title, ...html) => ({ title, steps: html.map(html => ({ html })) });
+
+  return section('distanza', 'Il valore assoluto nell’algebra', [
+    reveal('Definizione di valore assoluto',
+      `Sia ${m('a')} un numero reale qualsiasi. Il suo <strong>valore assoluto</strong> si indica con ${m('|a|')} ed è definito da:
+      ${cases('|a|', 'a', 'a ≥ 0', '−a', 'a < 0')}
+      È un’<strong>operazione unaria</strong>: si applica a un solo numero e restituisce un numero reale non negativo. Nel secondo caso ${m('−a')} è l’opposto di ${m('a')}: poiché ${m('a < 0')}, il risultato è positivo.`,
+      `<strong>Esempi numerici.</strong> ${m('|7| = 7')}, ${m('|−7| = −(−7) = 7')} e ${m('|0| = 0')}. Anche con frazioni e decimali usiamo la stessa definizione: ${math(abs(frac('−3','4')) + '<mo>=</mo>' + frac('3','4'))} e ${m('|−2,5| = 2,5')}.<br><br>
+      Il numero o l’espressione racchiusi tra le barre si chiamano <strong>argomento</strong> del valore assoluto.`
+    ),
+    reveal('Le prime proprietà',
+      `Nelle proprietà che seguono, ${m('a')} e ${m('b')} indicano numeri reali qualsiasi.<br><br>
+      <strong>• Non negatività e zero.</strong> ${m('|a| ≥ 0')}; inoltre ${m('|a| = 0')} se e solo se ${m('a = 0')}. Per esempio, ${m('|−4| = 4')} e solo zero ha valore assoluto zero.<br><br>
+      <strong>• Numeri opposti.</strong> ${m('|−a| = |a|')}: ${m('|−5| = |5| = 5')}. Più in generale, ${m('|a| = |b|')} se e solo se ${m('a = b')} oppure ${m('a = −b')}.`,
+      `<strong>• Confronto con il numero e il suo opposto.</strong> ${m('|a|')} è il maggiore tra ${m('a')} e ${m('−a')}. Perciò ${m('−|a| ≤ a ≤ |a|')}. Con ${m('a = −3')} otteniamo ${m('−3 ≤ −3 ≤ 3')}.<br><br>
+      <strong>• Applicazione ripetuta.</strong> ${m('||a|| = |a|')}, perché il primo risultato è già non negativo. Per esempio, ${m('||−6|| = |6| = 6')}.`
+    ),
+    reveal('Prodotto, quoziente e potenza',
+      `<strong>Prodotto.</strong> ${m('|ab| = |a| · |b|')}. Possiamo calcolare prima il prodotto oppure i valori assoluti dei fattori: otteniamo lo stesso risultato.<br><br>
+      Per esempio, ${m('|(−2) · 5| = |−10| = 10')} e ${m('|−2| · |5| = 2 · 5 = 10')}.`,
+      `<strong>Quoziente.</strong> Se ${m('b ≠ 0')}, allora ${math(abs(frac('a','b')) + '<mo>=</mo>' + frac('|a|','|b|'))}.<br><br>
+      Per esempio, ${math(abs(frac('−6','−3')) + '<mo>=</mo>' + abs(row('2')) + '<mo>=</mo>' + row('2'))}; usando la proprietà, ${math(frac('|−6|','|−3|') + '<mo>=</mo>' + frac('6','3') + '<mo>=</mo>' + row('2'))}. Il divisore deve sempre essere diverso da zero.`,
+      `<strong>Potenza.</strong> Per ogni intero ${m('n ≥ 1')}, ${m('|aⁿ| = |a|ⁿ')}: basta applicare la proprietà del prodotto ai fattori uguali.<br><br>
+      Per esempio, ${m('|(−3)²| = |9| = 9')} e ${m('|−3|² = 3² = 9')}. In particolare ${m('a² = |a|²')}.
+      ${advanced ? `<br><br>Nel triennio possiamo collegarla alla radice quadrata: ${math('<msqrt>'+row('a²')+'</msqrt><mo>=</mo>'+row('|a|'))}, perché la radice quadrata restituisce il valore non negativo. Per esempio, ${math('<msqrt>'+row('(−3)²')+'</msqrt><mo>=</mo>'+row('3'))}.` : ''}`
+    ),
+    reveal('Somme e differenze: le disuguaglianze',
+      `<strong>Il valore assoluto non si distribuisce, in generale, sulla somma.</strong> Infatti ${m('|5 + (−3)| = 2')}, mentre ${m('|5| + |−3| = 8')}.<br><br>
+      Vale invece la <strong>disuguaglianza triangolare</strong>: ${m('|a + b| ≤ |a| + |b|')}. Si ha uguaglianza quando gli addendi hanno lo stesso segno oppure almeno uno è zero: per esempio, ${m('|−2 + (−3)| = 5 = |−2| + |−3|')}.`,
+      `<strong>Perché vale?</strong> Dalla proprietà ${m('−|a| ≤ a ≤ |a|')} e dalla stessa proprietà per ${m('b')}, sommando membro a membro otteniamo ${m('−(|a| + |b|) ≤ a + b ≤ |a| + |b|')}. Sia la somma sia il suo opposto sono quindi al più ${m('|a| + |b|')}; anche il loro maggiore, cioè ${m('|a + b|')}, rispetta questo limite.`,
+      `<strong>Disuguaglianza triangolare inversa.</strong> ${m('||a| − |b|| ≤ |a − b|')}. Per esempio, con ${m('a = 5')} e ${m('b = −3')}, il primo membro vale ${m('|5 − 3| = 2')} e il secondo ${m('|5 − (−3)| = 8')}.<br><br>
+      Per dimostrarla scriviamo ${m('a = (a − b) + b')}. La triangolare dà ${m('|a| − |b| ≤ |a − b|')}. Scambiando ${m('a')} e ${m('b')} otteniamo ${m('|b| − |a| ≤ |a − b|')}: entrambi i numeri opposti sono al più ${m('|a − b|')}, quindi lo è anche il loro valore assoluto.`
+    ),
+    reveal('Usiamo le proprietà nei calcoli numerici',
+      `<strong>Prima l’argomento, poi il valore assoluto.</strong> Le barre raggruppano ciò che contengono. In ${m('2 − |3 − 7|')} calcoliamo prima ${m('3 − 7 = −4')}, poi ${m('|−4| = 4')}, infine ${m('2 − 4 = −2')}.<br><br>
+      In ${m('||−5| − 8|')} procediamo dall’interno: ${m('||−5| − 8| = |5 − 8| = |−3| = 3')}. La proprietà ${m('||a|| = |a|')} non permette di ignorare la sottrazione presente nell’argomento esterno.`,
+      `<strong>Attenzione a dove agiscono i segni e le potenze.</strong> ${m('−|−3|² = −3² = −9')}, mentre ${m('(−|−3|)² = (−3)² = 9')}: le parentesi cambiano la base della potenza.<br><br>
+      Anche nella differenza non possiamo separare i valori assoluti: ${m('|2 − 5| = 3')}, mentre ${m('|2| − |5| = −3')}. Prima di applicare una proprietà, controlliamo che l’espressione abbia proprio la struttura richiesta.`
+    ),
+    reveal('Quando nell’argomento compare una lettera',
+      `L’argomento può contenere anche un’<strong>indeterminata</strong>. La definizione resta la stessa: per ciascun valore reale ammesso della lettera, calcoliamo l’argomento e ne prendiamo il valore assoluto.<br><br>
+      Se il segno dell’argomento dipende dalla lettera, per eliminare le barre dobbiamo distinguere i casi. Per esempio:
+      ${cases('|x − 3|','x − 3','x ≥ 3','−(x − 3) = 3 − x','x < 3')}`,
+      `<strong>Controlliamo con i numeri.</strong> Per ${m('x = 5')} vale il primo caso: ${m('|5 − 3| = 2')}. Per ${m('x = 1')} vale il secondo: ${m('|1 − 3| = 3 − 1 = 2')}.<br><br>
+      Non otteniamo due risultati contemporaneamente: le due espressioni sono <strong>due scritture valide sotto condizioni diverse</strong>. Per ogni valore ammesso di ${m('x')}, il valore assoluto ha un solo risultato.`,
+      `<strong>Non sempre serve distinguere due casi.</strong> Se conosciamo già il segno dell’argomento, possiamo usare direttamente il ramo adatto. Per ogni ${m('x')} reale, ${m('x² + 1 > 0')}, quindi ${m('|x² + 1| = x² + 1')}.<br><br>
+      Al contrario, scrivere ${m('|x| = x')} senza condizioni sarebbe scorretto: vale soltanto per ${m('x ≥ 0')}. Per ${m('x < 0')} vale ${m('|x| = −x')}.`
+    ),
+    reveal('Le proprietà nelle espressioni letterali',
+      `<strong>Una proprietà può evitare lo studio dei casi.</strong> Dal prodotto otteniamo ${m('|−3x| = |−3| · |x| = 3|x|')}, per ogni ${m('x')} reale. Anche ${m('|−x| = |x|')} è sempre valida. Il risultato può restare scritto con un valore assoluto.<br><br>
+      Per esempio, ${m('|−3x| + 2|x| = 3|x| + 2|x| = 5|x|')}. Abbiamo usato prima una proprietà, poi sommato due termini con lo stesso fattore ${m('|x|')}.`,
+      `<strong>Se vogliamo eliminare le barre, manteniamo le condizioni.</strong> Consideriamo ${m('|x − 3| + x')}. Per ${m('x ≥ 3')} diventa ${m('(x − 3) + x = 2x − 3')}; per ${m('x < 3')} diventa ${m('(3 − x) + x = 3')}.<br><br>
+      La cautela sta qui: possiamo usare le proprietà per ogni valore ammesso della lettera, ma possiamo sostituire il valore assoluto con l’argomento o il suo opposto solo dove ne conosciamo il segno. Questo sarà il punto di partenza per equazioni e disequazioni.`
+    )
+  ],
+    question('Quale uguaglianza è valida per ogni numero reale x?', ['|x| = x', '|−3x| = 3|x|', '|x − 3| = |x| − 3'], 1, 'La proprietà del prodotto dà |−3x| = |−3| · |x| = 3|x|. Le altre due uguaglianze non valgono per ogni x.')
+  );
+}
 
   const constantEquations = advanced => section('equazioni', 'Equazioni con un valore assoluto', [
         card('Secondo membro positivo',
@@ -191,7 +152,7 @@
     const lesson = (title, sections, nextId) => ({
       title,
       subtitle,
-      version: 6,
+      version: 7,
       status: 'work-in-progress',
       sections,
       nextLesson: nextId ? { id: nextId } : false
