@@ -31,15 +31,29 @@
   const abs = xml => `<mrow><mo fence="true" stretchy="true">|</mo>${xml}<mo fence="true" stretchy="true">|</mo></mrow>`;
   const cases = (left, first, firstCondition, second, secondCondition) =>
     `<math xmlns="http://www.w3.org/1998/Math/MathML" display="block" class="rm-absolute-definition"><mrow>${row(left)}<mo>=</mo><mrow><mo fence="true" stretchy="true">{</mo><mtable columnalign="left left" columnspacing="1.4em" rowspacing="0.6em"><mtr><mtd>${row(first)}</mtd><mtd><mtext>se</mtext><mspace width="0.35em"/>${row(firstCondition)}</mtd></mtr><mtr><mtd>${row(second)}</mtd><mtd><mtext>se</mtext><mspace width="0.35em"/>${row(secondCondition)}</mtd></mtr></mtable></mrow></mrow></math>`;
-  const reveal = (title, ...html) => ({ title, steps: html.map(html => ({ html })) });
+  const reveal = (title, ...html) => ({ title, steps: html.map(html => typeof html === 'string' ? { html } : html) });
 
   return section('distanza', 'Il valore assoluto nell’algebra', [
     reveal('Definizione di valore assoluto',
       `Sia ${m('a')} un <button class="rm-keyword" data-term="numero-reale" type="button">numero reale</button> qualsiasi (${math('<mrow><mi>a</mi><mo>∈</mo><mi mathvariant="double-struck" class="rm-math-keyword" data-term="numero-reale" role="button" tabindex="0" aria-label="Numeri reali: significato del simbolo ℝ">R</mi></mrow>')}). Il suo <strong>valore assoluto</strong> si indica con ${m('|a|')} ed è definito da:
       ${cases('|a|', 'a', 'a ≥ 0', '−a', 'a < 0')}
       È un’<strong>operazione unaria</strong>: si applica a un solo numero e restituisce un numero reale non negativo. Nel secondo caso ${m('−a')} è l’opposto di ${m('a')}: poiché ${m('a < 0')}, il risultato è positivo.`,
-      `<strong>Esempi numerici.</strong> ${m('|7| = 7')}, ${m('|−7| = −(−7) = 7')} e ${m('|0| = 0')}.<br><br>
-      Il numero o l’espressione racchiusi tra le barre si chiamano <strong>argomento</strong> del valore assoluto.`
+      {
+        html: '<strong>Esempi numerici.</strong> Scegli il risultato di ciascun valore assoluto.',
+        clozeList: true,
+        cloze: [
+          { before: '|7| =', beforeHtml: m('|7| ='), after: '', options: ['7', '−7', '0'], answer: 0,
+            feedback: '7 è positivo: il suo valore assoluto è 7.',
+            retry: 'L’argomento è positivo: rileggi il primo caso della definizione.' },
+          { before: '|−7| =', beforeHtml: m('|−7| ='), after: '', options: ['7', '−7', '0'], answer: 0,
+            feedback: '−7 è negativo: prendiamo il suo opposto, −(−7) = 7.',
+            retry: 'Per un argomento negativo, la definizione richiede il suo opposto.' },
+          { before: '|0| =', beforeHtml: m('|0| ='), after: '', options: ['7', '−7', '0'], answer: 2,
+            feedback: 'Zero rientra nel caso a ≥ 0: il suo valore assoluto è 0.',
+            retry: 'Zero rientra nel caso a ≥ 0: il valore assoluto lascia invariato l’argomento.' }
+        ],
+        afterHtml: 'Il numero o l’espressione racchiusi tra le barre si chiamano <strong>argomento</strong> del valore assoluto.'
+      }
     ),
     reveal('Le prime proprietà',
       `Nelle proprietà che seguono, ${m('a')} e ${m('b')} indicano numeri reali qualsiasi.<br><br>
@@ -152,7 +166,7 @@
     const lesson = (title, sections, nextId) => ({
       title,
       subtitle,
-      version: 8,
+      version: 9,
       status: 'work-in-progress',
       sections,
       nextLesson: nextId ? { id: nextId } : false

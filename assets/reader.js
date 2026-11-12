@@ -379,11 +379,11 @@ document.addEventListener('DOMContentLoaded',()=>{
  const sentenceAnswers=new WeakMap();
  function sentenceExercise(article,step,archived){
   const values=sentenceAnswers.get(step)||step.cloze.map(()=>null);sentenceAnswers.set(step,values);
-  const host=el('div','rm-sentence-practice');
-  step.cloze.forEach((q,i)=>{const row=el('div','rm-sentence-row'),line=el('label','rm-sentence-line'),select=el('select');select.setAttribute('aria-label',q.before.trim());select.append(el('option','','Scegli…'));select.options[0].value='';q.options.forEach((v,j)=>{const option=el('option','',v);option.value=String(j);select.append(option);});const feedback=el('p','rm-sentence-feedback');feedback.setAttribute('role','status');
+  const host=el(step.clozeList?'ul':'div','rm-sentence-practice'+(step.clozeList?' rm-example-list':''));
+  step.cloze.forEach((q,i)=>{const row=el(step.clozeList?'li':'div','rm-sentence-row'),line=el('label','rm-sentence-line'),select=el('select');select.setAttribute('aria-label',q.before.trim());select.append(el('option','','Scegli…'));select.options[0].value='';q.options.forEach((v,j)=>{const option=el('option','',v);option.value=String(j);select.append(option);});const feedback=el('p','rm-sentence-feedback');feedback.setAttribute('role','status');
    select.value=values[i]===null?'':String(values[i]);select.disabled=archived||values[i]===q.answer;if(values[i]===q.answer){row.classList.add('rm-sentence-correct');feedback.textContent='✓ '+q.feedback;}
-   select.addEventListener('change',()=>{if(select.value==='')return;values[i]=Number(select.value);const correct=values[i]===q.answer;row.classList.toggle('rm-sentence-correct',correct);row.classList.toggle('rm-sentence-retry',!correct);feedback.textContent=correct?'✓ '+q.feedback:'Riprova: osserva la figura e rileggi la frase.';select.disabled=correct;actions();});
-   line.append(document.createTextNode(q.before),select,document.createTextNode(q.after));row.append(line,feedback);host.append(row);
+   select.addEventListener('change',()=>{if(select.value==='')return;values[i]=Number(select.value);const correct=values[i]===q.answer;row.classList.toggle('rm-sentence-correct',correct);row.classList.toggle('rm-sentence-retry',!correct);feedback.textContent=correct?'✓ '+q.feedback:(q.retry||'Riprova: osserva la figura e rileggi la frase.');select.disabled=correct;actions();});
+   if(q.beforeHtml){const before=el('span');before.innerHTML=q.beforeHtml;line.append(before);}else line.append(document.createTextNode(q.before));line.append(select,document.createTextNode(q.after));row.append(line,feedback);host.append(row);
   });article.append(host);
  }
  function stepNode(step,archived=false){
@@ -393,6 +393,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(step.interaction==='units-conversion')unitsExercise(article,!archived);
   if(step.interaction==='instant-speeds')instantSpeedsExercise(article,!archived);
   if(step.cloze?.length)sentenceExercise(article,step,archived);
+  if(step.afterHtml){const after=el('p','rm-step-after');after.innerHTML=step.afterHtml;article.append(after);}
   return article;
  }
  function slideSwap(host,previous,next,direction,beforeHeight){

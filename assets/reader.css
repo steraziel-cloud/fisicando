@@ -524,3 +524,13 @@ body[data-reader-lesson^="valore-assoluto-"] .rm-reader-card>.rm-card-text{width
 
 /* A readable, native mathematical definition on both school tracks. */
 body[data-reader-lesson^="valore-assoluto-"] .rm-absolute-definition{font-size:1.45em;margin:1.1em 0;overflow-x:auto;padding:.25em 0;}
+
+/* Numerical examples: one selectable result per bullet. */
+.rm-example-list{list-style:disc;margin:14px 0 18px;padding-left:1.5em}
+.rm-example-list>.rm-sentence-row{padding:5px 0}
+.rm-example-list .rm-sentence-line{display:inline-flex;align-items:center;flex-wrap:wrap;gap:10px;font-size:17px}
+.rm-example-list select{min-width:92px;min-height:40px;padding:6px 10px;border:1px solid var(--rm-accent);border-radius:9px;background:var(--rm-panel);color:var(--rm-text);font:inherit}
+.rm-example-list select:disabled{opacity:1}
+.rm-example-list .rm-sentence-feedback{margin:4px 0 0;font-size:14px;line-height:1.5}
+.rm-example-list .rm-sentence-feedback:empty{display:none}
+.rm-example-list .rm-sentence-correct .rm-sentence-feedback{color:var(--rm-accent-2)}
