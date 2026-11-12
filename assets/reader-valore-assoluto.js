@@ -35,10 +35,10 @@
 
   return section('distanza', 'Il valore assoluto nell’algebra', [
     reveal('Definizione di valore assoluto',
-      `Sia ${m('a')} un numero reale qualsiasi. Il suo <strong>valore assoluto</strong> si indica con ${m('|a|')} ed è definito da:
+      `Sia ${m('a')} un <button class="rm-keyword" data-term="numero-reale" type="button">numero reale</button> qualsiasi (${math('<mrow><mi>a</mi><mo>∈</mo><mi mathvariant="double-struck" class="rm-math-keyword" data-term="numero-reale" role="button" tabindex="0" aria-label="Numeri reali: significato del simbolo ℝ">R</mi></mrow>')}). Il suo <strong>valore assoluto</strong> si indica con ${m('|a|')} ed è definito da:
       ${cases('|a|', 'a', 'a ≥ 0', '−a', 'a < 0')}
       È un’<strong>operazione unaria</strong>: si applica a un solo numero e restituisce un numero reale non negativo. Nel secondo caso ${m('−a')} è l’opposto di ${m('a')}: poiché ${m('a < 0')}, il risultato è positivo.`,
-      `<strong>Esempi numerici.</strong> ${m('|7| = 7')}, ${m('|−7| = −(−7) = 7')} e ${m('|0| = 0')}. Anche con frazioni e decimali usiamo la stessa definizione: ${math(abs(frac('−3','4')) + '<mo>=</mo>' + frac('3','4'))} e ${m('|−2,5| = 2,5')}.<br><br>
+      `<strong>Esempi numerici.</strong> ${m('|7| = 7')}, ${m('|−7| = −(−7) = 7')} e ${m('|0| = 0')}.<br><br>
       Il numero o l’espressione racchiusi tra le barre si chiamano <strong>argomento</strong> del valore assoluto.`
     ),
     reveal('Le prime proprietà',
@@ -152,7 +152,7 @@
     const lesson = (title, sections, nextId) => ({
       title,
       subtitle,
-      version: 7,
+      version: 8,
       status: 'work-in-progress',
       sections,
       nextLesson: nextId ? { id: nextId } : false

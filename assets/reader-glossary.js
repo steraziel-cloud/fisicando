@@ -1,4 +1,9 @@
 window.READER_GLOSSARY = {
+  "numero-reale": {
+  "title": "Numero reale · ℝ",
+  "kind": "Definizione di matematica",
+  "text": "I numeri reali sono i numeri rappresentabili sulla retta numerica: comprendono i razionali e gli irrazionali. Il loro insieme si indica con ℝ. La scrittura a ∈ ℝ significa «a è un numero reale»."
+},
   "atomo": {
     "title": "Atomo",
     "kind": "Definizione di chimica",
