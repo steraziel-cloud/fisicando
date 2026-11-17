@@ -504,6 +504,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.board==='train-reference'){box.classList.add('rm-train-reference-card');trainPicture(box);}
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
   const text=el('div','rm-card-text');steps.forEach(step=>text.append(stepNode(step,archived)));box.append(text);
+  if(card.board?.startsWith('cl-')&&window.GatitoLetterale)disposeWidget=window.GatitoLetterale.mount(box,card.board);
   if(card.board==='pairs-example'&&window.GatitoDivisorPairs){window.GatitoDivisorPairs.setVisible(box,steps.some(step=>step.pairsBoard));box.addEventListener('gatito-pairs-stage',event=>syncPairConclusion(box,card,event.detail.summary,event.detail.summary?1:-1));syncPairConclusion(box,card,divisorPairs['pairs-example']?.stage===18);}
   const units=text.querySelector('.rm-unit-exercise');if(units){box.classList.add('rm-units-card');box.append(units);}
   const updateBoard=card.board==='position'||card.board==='displacement'?positionBoard(box,card.board,steps.length>=3):null;

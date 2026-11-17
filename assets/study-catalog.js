@@ -270,7 +270,11 @@ window.LESSON_CATALOG = [
             "lessons": [
               {
                 "title": "Espressioni letterali e valore di un’espressione",
+                "id": "calcolo-letterale-introduzione",
+                "url": "reader.html?lezione=calcolo-letterale-introduzione",
+                "kind": "Teoria",
                 "levels": [
+                  "medie",
                   "biennio",
                   "terzo-quarto",
                   "ultimo-altro",
