@@ -6,16 +6,31 @@
  const formula=s=>`<div class="cl-formula">${m(s)}</div>`;
  const card=(title,...html)=>({title,stepMode:'replace',steps:html.map(html=>({html}))});
  const quiz=(question,options,answer,feedback)=>({questions:[{question,options,answer,feedback}]});
- const gameState={prediction:{stage:0},digits:{answer:''}};
- const scene=`<div class="cl-scene"><div class="cl-stars" aria-hidden="true">✦ · ✧ · ✦</div><div class="cl-oracle"><span aria-hidden="true">🔮</span><strong>La bottega dei numeri</strong></div><img src="assets/images/reader/red-bjorne-benvenuto-v1.png" alt="Red e Bjorne, curiosi, accettano la sfida dell’indovina" width="360" height="225"><blockquote>«Niente lettura del pensiero. O forse sì? Scegli tu i numeri…»</blockquote></div>`;
+ const gameState={prediction:{stage:0,approached:false,open:false},digits:{answer:'',choices:''}};
+ const art='assets/images/reader/sibilla-festival/';
+ const cast='assets/images/morgana-classroom/';
+ const festivalView=`<div class="cl-scene cl-festival" role="img" aria-label="Red e Bjorne vedono la bancarella viola di Sibilla in fondo al vialetto della festa.">
+  <img class="cl-backdrop" src="${art}festival.webp" alt="">
+  <img class="cl-sibilla" src="${art}sibilla.webp" alt="">
+  <img class="cl-orb" src="${art}sfera.webp" alt="">
+  <img class="cl-red" src="${cast}red-02.png" alt="">
+  <img class="cl-bjorne" src="${cast}bjorne-02.png" alt="">
+ </div>`;
+ const boothView=`<div class="cl-scene cl-booth">
+  <div role="img" aria-label="Dal banco, Sibilla ti guarda accanto alla sfera di cristallo.">
+   <img class="cl-backdrop" src="${art}bancarella.webp" alt="">
+   <img class="cl-sibilla" src="${art}sibilla.webp" alt="">
+   <img class="cl-orb" src="${art}sfera.webp" alt="">
+  </div>
+  <output class="cl-orb-result" aria-live="polite" aria-atomic="true"></output>
+ </div>`;
  window.READER_LESSONS['calcolo-letterale-introduzione']={
  title:'Introduzione al calcolo letterale',subtitle:'Matematica · Algebra · Calcolo letterale',version:1,nextLesson:false,
  sections:[
- {id:'sfide',title:'Due sfide dall’indovina',cards:[
- card('Una busta, due numeri e un piccolo mistero',scene+'Red e Bjorne si fermano alla bottega di un’indovina. Sul tavolo ci sono una sfera luminosa e una busta già chiusa. «Dentro c’è una previsione», dice lei. «Per mettermi alla prova, scegliete voi i numeri».<br><br><strong>Prova anche tu.</strong> Ti bastano carta e penna. Tieni segrete le tue scelte e segui le istruzioni.'),
- {...card('Prima sfida · La previsione nella busta','L’indovina consegna la busta a Bjorne prima che tu scelga un numero. Esegui le istruzioni una alla volta: <strong>non devi comunicare il numero pensato</strong>.'),board:'cl-prediction'},
- {...card('Seconda sfida · Due numeri, proprio in quell’ordine','Scegli in segreto <strong>due numeri interi da 1 a 9</strong>, anche uguali, e stabilisci quale viene prima. Raddoppia il primo, aggiungi 5, moltiplica il risultato per 5 e infine aggiungi il secondo. Comunica qui sotto <strong>soltanto il risultato finale</strong>.'),board:'cl-digits'},
- card('Come ha fatto?','Red guarda la sfera: «Lì dentro c’è qualcuno che suggerisce?» Bjorne controlla la busta: «E se cambiassimo numeri?»<br><br>Nel primo gioco, scelte diverse portano alla stessa previsione. Nel secondo, invece, il risultato permette di ritrovare entrambe le scelte e il loro ordine.<br><br><strong>Per capire perché, dobbiamo descrivere le operazioni senza scegliere subito i numeri.</strong>')
+ {id:'sfide',title:'Le sfide di Sibilla',cards:[
+ {...card('Sibilla sa leggere nel pensiero?','Tra le bancarelle della festa dell’Accademia, una voce attira l’attenzione di Red e Bjorne. È Sibilla, sotto un tendone viola.<br><br>«Venite, venite! Mettete alla prova la mia capacità di leggere nel pensiero!»<br><br>Red si volta verso Bjorne. «Andiamo a vedere di che si tratta?»'),board:'cl-prediction'},
+ {...card('Seconda sfida · Due numeri, proprio in quell’ordine','Scegli in segreto <strong>due numeri interi da 1 a 9</strong>, anche uguali, e stabilisci quale viene prima. Raddoppia il primo, aggiungi 5, moltiplica il risultato per 5 e infine aggiungi il secondo. Comunica a Sibilla <strong>soltanto il risultato finale</strong>.'),board:'cl-digits'},
+ card('Come ha fatto?','Red guarda la sfera. «Lì dentro c’è qualcuno che suggerisce?» Bjorne si avvicina ancora un po’. «E se cambiassimo numeri?»<br><br>Nel primo gioco, scelte diverse portano alla stessa previsione. Nel secondo, invece, il risultato permette di ritrovare entrambe le scelte e il loro ordine.<br><br><strong>Per capire perché, dobbiamo descrivere le operazioni senza scegliere subito i numeri.</strong>')
  ]},
  {id:'lettere',title:'Descrivere il calcolo con le lettere',cards:[
  card('Lo stesso procedimento, scelte diverse','Indichiamo con '+m('x')+' il numero pensato nel primo gioco. Possiamo ora descrivere i passaggi senza conoscerlo:<ol><li>numero scelto: '+m('x')+';</li><li>raddoppio: '+m('2 · x')+';</li><li>aggiunta di 10: '+m('2 · x + 10')+';</li><li>divisione per 2: '+frac('2 · x + 10','2')+'</li><li>sottrazione del numero iniziale: '+frac('2 · x + 10','2')+' − '+m('x')+'.</li></ol>La stessa lettera indica lo stesso numero in ogni passaggio.'),
@@ -34,24 +49,119 @@
  ],quiz:quiz('Quale valore non può essere assegnato a x in (x + 1)/(x − 3)?',['−1','0','3'],2,'Per x = 3 il denominatore è zero: quella valutazione non è ammessa.')},
  {id:'segreti',title:'Sveliamo i due trucchi',cards:[
  card('Perché la previsione è sempre 5','Nel primo gioco l’espressione finale è:'+frac('2x + 10','2')+' − '+m('x')+'.<br><br>Dividere la somma per 2 equivale a dividere entrambi gli addendi per 2. Otteniamo '+m('x + 5 − x = 5')+'.<br><br>Il contributo del numero iniziale si annulla: resta sempre 5. <strong>Le proprietà delle operazioni spiegano tutte le scelte in una volta sola.</strong> Provare molti numeri può farci intuire il trucco; questa trasformazione spiega perché funziona.'),
- card('Perché riappaiono le due cifre','Nel secondo gioco chiamiamo '+m('a')+' la prima scelta e '+m('b')+' la seconda. Il risultato comunicato è:'+formula('5(2a + 5) + b = 10a + 25 + b')+'L’indovina sottrae 25 e ottiene '+m('10a + b')+'. Poiché '+m('a')+' e '+m('b')+' sono cifre da 1 a 9, '+m('a')+' occupa il posto delle decine e '+m('b')+' quello delle unità.<br><br>Per esempio, 72 nasconde '+m('72 − 25 = 47')+': prima 4, poi 7. Invertendo le scelte cambia il risultato: l’ordine è conservato.')
+ card('Perché riappaiono le due cifre','Nel secondo gioco chiamiamo '+m('a')+' la prima scelta e '+m('b')+' la seconda. Il risultato comunicato è:'+formula('5(2a + 5) + b = 10a + 25 + b')+'Sibilla sottrae 25 e ottiene '+m('10a + b')+'. Poiché '+m('a')+' e '+m('b')+' sono cifre da 1 a 9, '+m('a')+' occupa il posto delle decine e '+m('b')+' quello delle unità.<br><br>Per esempio, 72 nasconde '+m('72 − 25 = 47')+': prima 4, poi 7. Invertendo le scelte cambia il risultato: l’ordine è conservato.')
  ]},
  {id:'usi',title:'Semplificare e cercare valori',cards:[
  card('Uno schema più semplice, gli stessi risultati','Il calcolo letterale permette di cercare <strong>espressioni equivalenti</strong>: scritture che restituiscono gli stessi valori per tutte le assegnazioni ammesse, conservando le condizioni iniziali.<br><br>Nel primo gioco un lungo procedimento si riduce al numero 5. Una trasformazione può richiedere meno operazioni o rendere più evidente il significato del calcolo. Non tutte le riscritture accorciano il procedimento: scegliamo quella utile alla domanda.'),
  card('Una domanda concreta: quanto costa il noleggio?','Immagina un noleggio biciclette con una quota iniziale di 4 euro e un costo di 3 euro per ogni ora intera. Per '+m('n')+' ore, la spesa in euro è:'+formula('4 + 3n')+'<strong>Quanto spenderò per due ore?</strong> Assegniamo '+m('n = 2')+' e valutiamo: '+m('4 + 3 · 2 = 10')+' euro.',
  '<strong>Per quante ore la spesa sarà di 13 euro?</strong> Questa volta il risultato è assegnato e il numero di ore è da cercare:'+formula('4 + 3n = 13')+'È un’<strong>equazione</strong>: la lettera assume il ruolo di incognita. Il valore '+m('n = 3')+' soddisfa l’uguaglianza, perché '+m('4 + 3 · 3 = 13')+'.<br><br>Valutare significa calcolare per valori assegnati; risolvere significa cercare i valori che rendono vera una condizione. Il calcolo letterale ci aiuterà a trasformare le espressioni e le equazioni rispettandone il significato.'),
- card('Dalla sorpresa agli strumenti','La busta non legge il pensiero: il primo procedimento cancella la scelta iniziale. Il secondo la conserva in una scrittura che sappiamo interpretare.<br><br>Le lettere permettono di vedere queste strutture e di riutilizzarle. Nella prossima unità inizieremo dai <strong>monomi</strong>, per costruire e trasformare espressioni sempre più articolate.')
+ card('Dalla sorpresa agli strumenti','Nel primo gioco le operazioni cancellano la scelta iniziale. Il secondo la conserva in una scrittura che sappiamo interpretare.<br><br>Le lettere permettono di vedere queste strutture e di riutilizzarle. Nella prossima unità inizieremo dai <strong>monomi</strong>, per costruire e trasformare espressioni sempre più articolate.')
  ],quiz:quiz('Nel noleggio, la domanda «Per quante ore spenderò 13 euro?» richiede di…',['assegnare subito n = 13','cercare n che rende vera 4 + 3n = 13','calcolare 4 + 3 · 13'],1,'Conosciamo la spesa e cerchiamo il numero di ore che soddisfa la condizione.')}
  ]};
- window.GatitoLetterale={mount(box,kind){
- const root=document.createElement('div');root.className='cl-game';box.append(root);
- if(kind==='cl-prediction'){
- const st=gameState.prediction;
- const instructions=['Pensa un numero intero. Tienilo segreto: non scriverlo qui.','Raddoppia il numero pensato.','Aggiungi 10 al risultato.','Dividi il risultato per 2.','Sottrai il numero che avevi pensato all’inizio.','Il calcolo è finito. Apri la previsione!'];
- const draw=()=>{root.replaceChildren();const p=document.createElement('p');p.textContent=instructions[st.stage];root.append(p);const b=document.createElement('button');b.type='button';b.className='rm-btn';b.textContent=st.stage<5?'Fatto · continua':st.open?'Ricomincia con un altro numero':'Apri la busta ✉';b.onclick=()=>{if(st.stage<5)st.stage++;else if(st.open){st.stage=0;st.open=false;}else st.open=true;draw();};root.append(b);const result=document.createElement('div');result.className='cl-envelope'+(st.open?' cl-open':'');result.setAttribute('aria-live','polite');result.textContent=st.open?'La previsione era… 5!':'✉';root.append(result);if(st.open){const note=document.createElement('p');note.textContent='Hai ottenuto 5? Prova anche con un numero negativo. Se il risultato è diverso, ricontrolla i passaggi: la busta è già pronta per un’altra sfida.';root.append(note);}};draw();
- }else{
- const form=document.createElement('form'),label=document.createElement('label'),input=document.createElement('input'),btn=document.createElement('button'),result=document.createElement('p');label.textContent='Il tuo risultato finale ';input.type='number';input.inputMode='numeric';input.step='1';input.required=true;input.value=gameState.digits.answer;label.append(input);btn.type='submit';btn.className='rm-btn';btn.textContent='Rivela le mie due scelte';result.setAttribute('aria-live','polite');form.append(label,btn,result);root.append(form);form.onsubmit=e=>{e.preventDefault();const raw=input.value,n=Number(raw),code=n-25,a=Math.floor(code/10),b=code%10;gameState.digits.answer=raw;if(!raw||!Number.isInteger(n)||a<1||a>9||b<1||b>9){result.textContent='Questo risultato non corrisponde a due scelte da 1 a 9. Ricontrolla le operazioni e inserisci soltanto il totale finale.';return;}result.className='cl-reveal';result.textContent=`Hai pensato prima ${a} e poi ${b}!`;};
+ function mountPrediction(root){
+  const state=gameState.prediction;
+  const instructions=[
+   '«Pensa a un numero intero e tienilo segreto. La mia sfera indovinerà il risultato dei tuoi calcoli.»',
+   'Raddoppia il numero pensato.',
+   'Aggiungi 10 al risultato.',
+   'Dividi il risultato per 2.',
+   'Sottrai il numero che avevi pensato all’inizio.',
+   'Il calcolo è finito. Guarda nella sfera!'
+  ];
+  let approachAnimation;
+  root.innerHTML=(state.approached?'':festivalView)+boothView;
+  const booth=root.querySelector('.cl-booth');
+  const result=booth.querySelector('output');
+  booth.hidden=!state.approached;
+  const controls=document.createElement('div');
+  controls.className='cl-controls';
+  controls.innerHTML='<p aria-live="polite" aria-atomic="true"></p><button type="button" class="rm-btn"></button>';
+  root.append(controls);
+  const note=controls.querySelector('p'),button=controls.querySelector('button');
+  function draw(){
+   note.textContent=state.open?'Hai ottenuto lo stesso numero? Prova anche con un numero negativo.':instructions[state.stage];
+   button.textContent=state.open?'Ricomincia':state.stage===instructions.length-1?'Guarda nella sfera':state.stage===0?'Ho scelto il numero':'Fatto, continua';
+   result.textContent=state.open?'5':'';
+   result.setAttribute('aria-label',state.open?'La sfera mostra 5':'');
+  }
+  function advance(){
+   if(state.open){
+    state.stage=0;
+    state.open=false;
+   }else if(state.stage<instructions.length-1){
+    state.stage++;
+   }else{
+    state.open=true;
+   }
+   draw();
+  }
+  if(state.approached){
+   draw();
+   button.onclick=advance;
+  }else{
+   button.textContent='Avvicinati alla bancarella';
+   button.onclick=async()=>{
+    if(approachAnimation)return;
+    const scene=root.querySelector('.cl-festival');
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&scene.animate){
+     approachAnimation=scene.animate([
+      {transform:'scale(1)',opacity:1},
+      {transform:'scale(1.5)',opacity:1,offset:.77},
+      {transform:'scale(1.65)',opacity:0}
+     ],{duration:600,easing:'ease-in-out'});
+     try{await approachAnimation.finished;}catch{return;}
+    }
+    state.approached=true;
+    scene.remove();
+    booth.hidden=false;
+    if(approachAnimation)booth.animate([{opacity:0},{opacity:1}],{duration:240});
+    draw();
+    button.onclick=advance;
+   };
+  }
+  return ()=>approachAnimation?.cancel();
  }
- return ()=>{};
+ function mountDigits(root){
+  const state=gameState.digits;
+  root.innerHTML=boothView+`<form class="cl-controls">
+   <label>Il tuo risultato finale <input type="number" inputmode="numeric" step="1" required></label>
+   <button type="submit" class="rm-btn">Rivela le due scelte</button>
+   <p class="cl-response" aria-live="polite"></p>
+  </form>`;
+  const form=root.querySelector('form'),input=form.querySelector('input');
+  const result=root.querySelector('output'),response=form.querySelector('.cl-response');
+  function showChoices(choices){
+   state.choices=choices;
+   result.textContent=choices;
+   result.setAttribute('aria-label',choices?`La sfera mostra ${choices[0]} e ${choices[1]}`:'');
+  }
+  input.value=state.answer;
+  showChoices(state.choices);
+  input.oninput=()=>{
+   state.answer=input.value;
+   if(state.choices)showChoices('');
+   response.textContent='';
+  };
+  form.onsubmit=event=>{
+   event.preventDefault();
+   const total=input.valueAsNumber,code=total-25;
+   const first=Math.floor(code/10),second=code%10;
+   if(!Number.isInteger(total)||first<1||first>9||second<1||second>9){
+    showChoices('');
+    response.textContent='Ricontrolla i passaggi. Il totale deve corrispondere a due scelte da 1 a 9.';
+    return;
+   }
+   showChoices(`${first}${second}`);
+   response.textContent='';
+  };
+ }
+ window.GatitoLetterale={mount(box,kind){
+  const root=document.createElement('div');
+  root.className='cl-game';
+  box.classList.add('cl-festival-card');
+  box.append(root);
+  if(kind==='cl-prediction')return mountPrediction(root);
+  mountDigits(root);
+  return ()=>{};
  }};
 })();
