@@ -179,7 +179,7 @@
  --balloon-art:url('images/reader/sibilla-festival/balloon-sibilla-viale.png?v=2');
  --balloon-height:190%;
  --tail-x:87%;
- --speaker-x:35.7%;
+ --speaker-x:32.5%;
  --speaker-y:50%;
  max-width:36%;
 }
@@ -198,10 +198,11 @@
 .cl-booth .cl-balloon {
  --balloon-art:url('images/reader/sibilla-festival/balloon-sibilla-banco.png?v=2');
  --tail-x:1.95%;
- --speaker-x:53%;
+ --speaker-x:64.5%;
  --speaker-y:41%;
- max-width:44%;
- padding-left:calc(9.6cqw + .76em);
+ max-width:34.5%;
+ padding-left:calc(7.3cqw + .62em);
+ padding-right:.7em;
 }
 .cl-controls {
  display:grid;
@@ -289,14 +290,14 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] math[display="block"] 
   --balloon-art:url('images/reader/sibilla-festival/balloon-bjorne.png');
   --balloon-height:136%;
   --tail-x:60%;
-  --speaker-y:45%;
+  --speaker-y:49%;
   max-width:52%;
   font-size:clamp(.72rem,2.75cqw,1rem);
  }
  .cl-booth .cl-balloon {
-  --speaker-x:50%;
-  --speaker-y:45%;
-  max-width:49%;
+  --speaker-x:65%;
+  --speaker-y:51%;
+  font-size:clamp(.72rem,2.55cqw,1.05rem);
  }
 }
 @media (prefers-reduced-motion: reduce) {
