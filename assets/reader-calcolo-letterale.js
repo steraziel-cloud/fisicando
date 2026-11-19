@@ -12,8 +12,14 @@
   <div role="img" aria-label="Red e Bjorne camminano lungo il viale verso il portone in fondo. Più avanti, sulla destra, Sibilla li chiama accanto all’Antro di Sibilla.">
    <img class="cl-backdrop" src="${art}viale-antro-sibilla.webp" alt="">
    <img class="cl-sibilla" src="${art}sibilla.webp" alt="">
-   <img class="cl-red" src="${art}red-verso-portone.webp" alt="">
-   <img class="cl-bjorne" src="${art}bjorne-verso-portone.webp" alt="">
+   <div class="cl-walker cl-red">
+    <img class="cl-step-side" src="${art}red-verso-portone.webp" alt="">
+    <img class="cl-step-rear" src="${art}red-passo-viale.webp" alt="">
+   </div>
+   <div class="cl-walker cl-bjorne">
+    <img class="cl-step-side" src="${art}bjorne-verso-portone.webp" alt="">
+    <img class="cl-step-rear" src="${art}bjorne-passo-viale.webp" alt="">
+   </div>
   </div>
  </div>`;
  const boothView=`<div class="cl-scene cl-booth">
@@ -101,7 +107,7 @@
    const image=document.createElement('img');
    image.hidden=true;
    image.alt='';
-   image.src=`${art}balloon-${name}.png${name==='sibilla-banco'?'?v=2':''}`;
+   image.src=`${art}balloon-${name}.png${name==='sibilla-banco'?'?v=2':name==='sibilla-viale'?'?v=2':''}`;
    root.append(image);
   }
   const state=gameState.intro;
@@ -110,7 +116,6 @@
    const line=introLines[state.beat];
    balloon.hidden=!line;
    if(line)say(...line);
-   scene.classList.toggle('cl-heard',state.beat>=0);
    scene.classList.toggle('cl-approached',state.beat>=introLines.length);
    button.textContent=state.beat===-1?'Avvia il fumetto':state.beat===introLines.length-1?'Avviciniamoci':state.beat>=introLines.length?'Vai alla prima sfida':'Continua';
    button.hidden=state.beat>=introLines.length&&!onNext;
@@ -123,7 +128,7 @@
    if(state.beat>=introLines.length&&onNext){
     button.disabled=true;
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    timer=setTimeout(onNext,reduced?0:1650);
+    timer=setTimeout(onNext,reduced?0:2450);
    }
   };
   return ()=>clearTimeout(timer);
