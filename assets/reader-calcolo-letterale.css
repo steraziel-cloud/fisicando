@@ -182,10 +182,11 @@
 }
 .cl-booth .cl-balloon {
  --balloon-art:url('images/reader/sibilla-festival/balloon-sibilla-banco.png');
- --tail-x:15.3%;
- --speaker-x:53%;
+ --tail-x:1.95%;
+ --speaker-x:54%;
  --speaker-y:42%;
- max-width:46%;
+ max-width:44%;
+ padding-left:calc(9.6cqw + .76em);
 }
 .cl-controls {
  display:grid;
@@ -264,6 +265,11 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] math[display="block"] 
  }
  .cl-festival .cl-balloon {
   max-width:58%;
+ }
+ .cl-booth .cl-balloon {
+  --speaker-x:50%;
+  --speaker-y:45%;
+  max-width:49%;
  }
 }
 @media (prefers-reduced-motion: reduce) {

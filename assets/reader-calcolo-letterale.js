@@ -97,6 +97,13 @@
  }
  function mountIntro(root,onNext){
   const {scene,balloon,button,say}=comicPanel(root,festivalView);
+  for(const name of ['sibilla-viale','red','bjorne','sibilla-banco']){
+   const image=document.createElement('img');
+   image.hidden=true;
+   image.alt='';
+   image.src=`${art}balloon-${name}.png`;
+   root.append(image);
+  }
   const state=gameState.intro;
   let timer;
   function draw(){
