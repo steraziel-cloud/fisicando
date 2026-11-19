@@ -101,7 +101,7 @@
    const image=document.createElement('img');
    image.hidden=true;
    image.alt='';
-   image.src=`${art}balloon-${name}.png`;
+   image.src=`${art}balloon-${name}.png${name==='sibilla-banco'?'?v=2':''}`;
    root.append(image);
   }
   const state=gameState.intro;
