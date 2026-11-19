@@ -58,7 +58,8 @@ document.addEventListener('DOMContentLoaded',()=>{
  function actions(){
   const activeItem=flat(lesson.sections[current])[state[current].cursor];
   const skippingGame=activeItem?.card.board==='matter-cards'&&!state[current].matterCards?.done;
-  if(reviewAccess&&!allMode){const count=flat(lesson.sections[current]).length,st=state[current];$('reader-prev').hidden=current===0&&st.cursor===0;$('reader-next').hidden=current===state.length-1&&st.cursor===count;$('reader-next').disabled=false;$('reader-next').textContent=st.cursor<count?'Continua →':'Passa alla parte successiva →';$('reader-step-count').textContent=(st.cursor<count?'Passaggio '+(st.cursor+1)+' di '+count:'Checkpoint facoltativo')+' · Navigazione libera';return;}
+  const comicControls=['cl-intro','cl-prediction'].includes(activeItem?.card.board)&&!!window.GatitoLetterale;
+  if(reviewAccess&&!allMode){const count=flat(lesson.sections[current]).length,st=state[current];$('reader-prev').hidden=current===0&&st.cursor===0;$('reader-next').hidden=comicControls||(current===state.length-1&&st.cursor===count);$('reader-next').disabled=false;$('reader-next').textContent=st.cursor<count?'Continua →':'Passa alla parte successiva →';$('reader-step-count').textContent=(st.cursor<count?'Passaggio '+(st.cursor+1)+' di '+count:'Checkpoint facoltativo')+' · Navigazione libera';return;}
   if(referenceMode){
    const st=state[current],item=flat(lesson.sections[current])[st.cursor];
    $('reader-prev').hidden=st.cursor<=referenceBounds.first;$('reader-next').hidden=st.cursor>=referenceBounds.last;
@@ -69,7 +70,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    return;
   }
   const count=flat(lesson.sections[current]).length,st=state[current];
-  $('reader-prev').hidden=allMode||(current===0&&st.cursor===0);$('reader-next').hidden=allMode||(current===state.length-1&&st.complete&&st.cursor===count);
+  $('reader-prev').hidden=allMode||(current===0&&st.cursor===0);$('reader-next').hidden=allMode||comicControls||(current===state.length-1&&st.complete&&st.cursor===count);
   let blocked=false;if(st.cursor<count){const item=flat(lesson.sections[current])[st.cursor];blocked=stepBlocked(item);}
   $('reader-next').disabled=blocked||(st.cursor===count&&!!lesson.sections[current].quiz&&!st.complete);
   $('reader-next').textContent=st.cursor<count-1?'Continua →':st.cursor<count?(lesson.sections[current].quiz?'Controlla l’idea →':current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione'):current<state.length-1?'Passa alla parte successiva →':'Concludi la lezione';
@@ -504,7 +505,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(card.board==='train-reference'){box.classList.add('rm-train-reference-card');trainPicture(box);}
   if(card.board==='stopwatch'&&!archived)stopwatch(box);
   const text=el('div','rm-card-text');steps.forEach(step=>text.append(stepNode(step,archived)));box.append(text);
-  if(card.board?.startsWith('cl-')&&window.GatitoLetterale)disposeWidget=window.GatitoLetterale.mount(box,card.board);
+  if(card.board?.startsWith('cl-')&&window.GatitoLetterale){
+   const next=archived||allMode||referenceMode?undefined:()=>{$('reader-next').click();};
+   disposeWidget=window.GatitoLetterale.mount(box,card.board,next);
+  }
   if(card.board==='pairs-example'&&window.GatitoDivisorPairs){window.GatitoDivisorPairs.setVisible(box,steps.some(step=>step.pairsBoard));box.addEventListener('gatito-pairs-stage',event=>syncPairConclusion(box,card,event.detail.summary,event.detail.summary?1:-1));syncPairConclusion(box,card,divisorPairs['pairs-example']?.stage===18);}
   const units=text.querySelector('.rm-unit-exercise');if(units){box.classList.add('rm-units-card');box.append(units);}
   const updateBoard=card.board==='position'||card.board==='displacement'?positionBoard(box,card.board,steps.length>=3):null;

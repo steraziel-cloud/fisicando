@@ -6,29 +6,47 @@
  const formula=s=>`<div class="cl-formula">${m(s)}</div>`;
  const card=(title,...html)=>({title,stepMode:'replace',steps:html.map(html=>({html}))});
  const quiz=(question,options,answer,feedback)=>({questions:[{question,options,answer,feedback}]});
- const gameState={prediction:{stage:0,approached:false,open:false},digits:{answer:'',choices:''}};
+ const gameState={intro:{beat:-1},prediction:{stage:0},digits:{answer:'',choices:''}};
  const art='assets/images/reader/sibilla-festival/';
- const cast='assets/images/morgana-classroom/';
- const festivalView=`<div class="cl-scene cl-festival" role="img" aria-label="Red e Bjorne vedono la bancarella viola di Sibilla in fondo al vialetto della festa.">
-  <img class="cl-backdrop" src="${art}festival.webp" alt="">
-  <img class="cl-sibilla" src="${art}sibilla.webp" alt="">
-  <img class="cl-orb" src="${art}sfera.webp" alt="">
-  <img class="cl-red" src="${cast}red-02.png" alt="">
-  <img class="cl-bjorne" src="${cast}bjorne-02.png" alt="">
+ const festivalView=`<div class="cl-scene cl-festival">
+  <div role="img" aria-label="Red e Bjorne passeggiano lungo il viale della festa. Sibilla è sul ciglio, accanto alla sua bancarella.">
+   <img class="cl-backdrop" src="${art}viale-fumetto.webp" alt="">
+   <img class="cl-sibilla" src="${art}sibilla.webp" alt="">
+   <img class="cl-red" src="${art}red-cammino.webp" alt="">
+   <img class="cl-bjorne" src="${art}bjorne-cammino.webp" alt="">
+  </div>
+  <span class="cl-sign">☾ L’antro di Sibilla</span>
  </div>`;
  const boothView=`<div class="cl-scene cl-booth">
-  <div role="img" aria-label="Dal banco, Sibilla ti guarda accanto alla sfera di cristallo.">
-   <img class="cl-backdrop" src="${art}bancarella.webp" alt="">
-   <img class="cl-sibilla" src="${art}sibilla.webp" alt="">
+  <div role="img" aria-label="Sibilla siede dietro il bancone e tende le zampe intorno alla sfera di cristallo.">
+   <img class="cl-backdrop" src="${art}banco-fumetto.webp" alt="">
+   <img class="cl-sibilla" src="${art}sibilla-seduta.webp" alt="">
    <img class="cl-orb" src="${art}sfera.webp" alt="">
   </div>
   <output class="cl-orb-result" aria-live="polite" aria-atomic="true"></output>
  </div>`;
+ const introLines=[
+  ['sibilla','Sibilla','Fatevi avanti! Io sono Sibilla, la gattina indovina!'],
+  ['sibilla','Sibilla','Avvicinatevi, avvicinatevi!'],
+  ['sibilla','Sibilla','Vi mostrerò i miei incredibili poteri… Ora vi leggerò nella mente!'],
+  ['red','Red','Che dici, Bjorne, vogliamo provare?'],
+  ['bjorne','Bjorne','Meow! Va bene.']
+ ];
+ const predictionLines=[
+  'Pensa a un numero intero da 1 a 10 e tienilo segreto.',
+  'Raddoppia il numero che hai pensato.',
+  'Aggiungi 10 al risultato.',
+  'Dividi il risultato per 2.',
+  'Sottrai il numero che avevi pensato all’inizio.',
+  'Bene!',
+  'Il risultato che stai pensando è…'
+ ];
  window.READER_LESSONS['calcolo-letterale-introduzione']={
  title:'Introduzione al calcolo letterale',subtitle:'Matematica · Algebra · Calcolo letterale',version:1,nextLesson:false,
  sections:[
  {id:'sfide',title:'Le sfide di Sibilla',cards:[
- {...card('Sibilla sa leggere nel pensiero?','Tra le bancarelle della festa dell’Accademia, una voce attira l’attenzione di Red e Bjorne. È Sibilla, sotto un tendone viola.<br><br>«Venite, venite! Mettete alla prova la mia capacità di leggere nel pensiero!»<br><br>Red si volta verso Bjorne. «Andiamo a vedere di che si tratta?»'),board:'cl-prediction'},
+ {...card('Ora vi leggerò nella mente…',''),board:'cl-intro'},
+ {...card('Prima sfida · La sfera di Sibilla',''),board:'cl-prediction'},
  {...card('Seconda sfida · Due numeri, proprio in quell’ordine','Scegli in segreto <strong>due numeri interi da 1 a 9</strong>, anche uguali, e stabilisci quale viene prima. Raddoppia il primo, aggiungi 5, moltiplica il risultato per 5 e infine aggiungi il secondo. Comunica a Sibilla <strong>soltanto il risultato finale</strong>.'),board:'cl-digits'},
  card('Come ha fatto?','Red guarda la sfera. «Lì dentro c’è qualcuno che suggerisce?» Bjorne si avvicina ancora un po’. «E se cambiassimo numeri?»<br><br>Nel primo gioco, scelte diverse portano alla stessa previsione. Nel secondo, invece, il risultato permette di ritrovare entrambe le scelte e il loro ordine.<br><br><strong>Per capire perché, dobbiamo descrivere le operazioni senza scegliere subito i numeri.</strong>')
  ]},
@@ -48,7 +66,7 @@
  card('Assegnazioni ammesse e condizioni di esistenza','Ogni occorrenza della stessa lettera riceve lo stesso valore. Se quel valore è negativo, le parentesi aiutano a conservarne il significato: con '+m('x = −3')+', '+m('x²')+' diventa '+m('(−3)² = 9')+'.<br><br>Inoltre tutte le operazioni devono essere possibili. In '+frac('x + 1','x − 3')+'non è ammesso '+m('x = 3')+': il denominatore sarebbe zero. La condizione '+m('x ≠ 3')+' è una <strong>condizione di esistenza</strong>. I vincoli del contesto vanno rispettati insieme a quelli delle operazioni.')
  ],quiz:quiz('Quale valore non può essere assegnato a x in (x + 1)/(x − 3)?',['−1','0','3'],2,'Per x = 3 il denominatore è zero: quella valutazione non è ammessa.')},
  {id:'segreti',title:'Sveliamo i due trucchi',cards:[
- card('Perché la previsione è sempre 5','Nel primo gioco l’espressione finale è:'+frac('2x + 10','2')+' − '+m('x')+'.<br><br>Dividere la somma per 2 equivale a dividere entrambi gli addendi per 2. Otteniamo '+m('x + 5 − x = 5')+'.<br><br>Il contributo del numero iniziale si annulla: resta sempre 5. <strong>Le proprietà delle operazioni spiegano tutte le scelte in una volta sola.</strong> Provare molti numeri può farci intuire il trucco; questa trasformazione spiega perché funziona.'),
+ card('Perché la previsione è sempre 5','Nel primo gioco l’espressione finale è:'+frac('2x + 10','2')+' − '+m('x')+'.<br><br>Dividere la somma per 2 equivale a dividere entrambi gli addendi per 2. Otteniamo '+m('x + 5 − x = 5')+'.<br><br>Il contributo del numero iniziale si annulla: resta sempre 5. <strong>Il trucco funziona con qualunque numero reale.</strong> Sibilla ti ha chiesto di sceglierne uno da 1 a 10 per rendere i conti più semplici.'),
  card('Perché riappaiono le due cifre','Nel secondo gioco chiamiamo '+m('a')+' la prima scelta e '+m('b')+' la seconda. Il risultato comunicato è:'+formula('5(2a + 5) + b = 10a + 25 + b')+'Sibilla sottrae 25 e ottiene '+m('10a + b')+'. Poiché '+m('a')+' e '+m('b')+' sono cifre da 1 a 9, '+m('a')+' occupa il posto delle decine e '+m('b')+' quello delle unità.<br><br>Per esempio, 72 nasconde '+m('72 − 25 = 47')+': prima 4, poi 7. Invertendo le scelte cambia il risultato: l’ordine è conservato.')
  ]},
  {id:'usi',title:'Semplificare e cercare valori',cards:[
@@ -58,68 +76,83 @@
  card('Dalla sorpresa agli strumenti','Nel primo gioco le operazioni cancellano la scelta iniziale. Il secondo la conserva in una scrittura che sappiamo interpretare.<br><br>Le lettere permettono di vedere queste strutture e di riutilizzarle. Nella prossima unità inizieremo dai <strong>monomi</strong>, per costruire e trasformare espressioni sempre più articolate.')
  ],quiz:quiz('Nel noleggio, la domanda «Per quante ore spenderò 13 euro?» richiede di…',['assegnare subito n = 13','cercare n che rende vera 4 + 3n = 13','calcolare 4 + 3 · 13'],1,'Conosciamo la spesa e cerchiamo il numero di ore che soddisfa la condizione.')}
  ]};
- function mountPrediction(root){
-  const state=gameState.prediction;
-  const instructions=[
-   '«Pensa a un numero intero e tienilo segreto. La mia sfera indovinerà il risultato dei tuoi calcoli.»',
-   'Raddoppia il numero pensato.',
-   'Aggiungi 10 al risultato.',
-   'Dividi il risultato per 2.',
-   'Sottrai il numero che avevi pensato all’inizio.',
-   'Il calcolo è finito. Guarda nella sfera!'
-  ];
-  let approachAnimation;
-  root.innerHTML=(state.approached?'':festivalView)+boothView;
-  const booth=root.querySelector('.cl-booth');
-  const result=booth.querySelector('output');
-  booth.hidden=!state.approached;
-  const controls=document.createElement('div');
-  controls.className='cl-controls';
-  controls.innerHTML='<p aria-live="polite" aria-atomic="true"></p><button type="button" class="rm-btn"></button>';
-  root.append(controls);
-  const note=controls.querySelector('p'),button=controls.querySelector('button');
+ function comicPanel(root,view){
+  root.innerHTML=view+`<div class="cl-controls cl-comic-controls">
+   <button type="button" class="rm-btn"></button>
+  </div>`;
+  const scene=root.querySelector('.cl-scene');
+  const balloon=document.createElement('p');
+  balloon.className='cl-balloon';
+  balloon.setAttribute('aria-live','polite');
+  balloon.setAttribute('aria-atomic','true');
+  scene.append(balloon);
+  const button=root.querySelector('.cl-comic-controls button');
+  function say(speaker,name,line){
+   balloon.dataset.speaker=speaker;
+   const label=document.createElement('strong');
+   label.textContent=name;
+   balloon.replaceChildren(label,document.createTextNode(line));
+  }
+  return {scene,balloon,button,say};
+ }
+ function mountIntro(root,onNext){
+  const {scene,balloon,button,say}=comicPanel(root,festivalView);
+  const state=gameState.intro;
+  let timer;
   function draw(){
-   note.textContent=state.open?'Hai ottenuto lo stesso numero? Prova anche con un numero negativo.':instructions[state.stage];
-   button.textContent=state.open?'Ricomincia':state.stage===instructions.length-1?'Guarda nella sfera':state.stage===0?'Ho scelto il numero':'Fatto, continua';
-   result.textContent=state.open?'5':'';
-   result.setAttribute('aria-label',state.open?'La sfera mostra 5':'');
+   const line=introLines[state.beat];
+   balloon.hidden=!line;
+   if(line)say(...line);
+   scene.classList.toggle('cl-heard',state.beat>=0);
+   scene.classList.toggle('cl-approached',state.beat>=introLines.length);
+   button.textContent=state.beat===-1?'Avvia il fumetto':state.beat===introLines.length-1?'Avviciniamoci':state.beat>=introLines.length?'Vai alla prima sfida':'Continua';
+   button.hidden=state.beat>=introLines.length&&!onNext;
   }
-  function advance(){
-   if(state.open){
-    state.stage=0;
-    state.open=false;
-   }else if(state.stage<instructions.length-1){
-    state.stage++;
-   }else{
-    state.open=true;
+  draw();
+  button.onclick=()=>{
+   if(state.beat>=introLines.length){onNext?.();return;}
+   state.beat++;
+   draw();
+   if(state.beat>=introLines.length&&onNext){
+    button.disabled=true;
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    timer=setTimeout(onNext,reduced?0:1050);
    }
-   draw();
+  };
+  return ()=>clearTimeout(timer);
+ }
+ function mountPrediction(root,onNext){
+  const {scene,button,say}=comicPanel(root,boothView);
+  const state=gameState.prediction;
+  const result=scene.querySelector('output');
+  const tranceStage=predictionLines.length-1;
+  const revealStage=predictionLines.length;
+  let timer;
+  function draw(){
+   const revealed=state.stage===revealStage;
+   const trance=state.stage>=tranceStage;
+   say('sibilla','Sibilla',predictionLines[Math.min(state.stage,tranceStage)]);
+   scene.classList.toggle('cl-trance',trance);
+   scene.classList.toggle('cl-revealed',revealed);
+   if(revealed){result.textContent='5';result.setAttribute('aria-label','La sfera mostra 5');}
+   button.hidden=revealed&&!onNext;
+   button.disabled=state.stage===tranceStage;
+   button.textContent=revealed?'Vai alla seconda sfida':state.stage>=tranceStage-1?'Continua':'Fatto';
+   if(state.stage===tranceStage){
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    timer=setTimeout(()=>{
+     state.stage=revealStage;
+     draw();
+    },reduced?100:1250);
+   }
   }
-  if(state.approached){
+  draw();
+  button.onclick=()=>{
+   if(state.stage===revealStage){onNext?.();return;}
+   state.stage++;
    draw();
-   button.onclick=advance;
-  }else{
-   button.textContent='Avvicinati alla bancarella';
-   button.onclick=async()=>{
-    if(approachAnimation)return;
-    const scene=root.querySelector('.cl-festival');
-    if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&scene.animate){
-     approachAnimation=scene.animate([
-      {transform:'scale(1)',opacity:1},
-      {transform:'scale(1.5)',opacity:1,offset:.77},
-      {transform:'scale(1.65)',opacity:0}
-     ],{duration:600,easing:'ease-in-out'});
-     try{await approachAnimation.finished;}catch{return;}
-    }
-    state.approached=true;
-    scene.remove();
-    booth.hidden=false;
-    if(approachAnimation)booth.animate([{opacity:0},{opacity:1}],{duration:240});
-    draw();
-    button.onclick=advance;
-   };
-  }
-  return ()=>approachAnimation?.cancel();
+  };
+  return ()=>clearTimeout(timer);
  }
  function mountDigits(root){
   const state=gameState.digits;
@@ -155,12 +188,13 @@
    response.textContent='';
   };
  }
- window.GatitoLetterale={mount(box,kind){
+ window.GatitoLetterale={mount(box,kind,onNext){
   const root=document.createElement('div');
   root.className='cl-game';
-  box.classList.add('cl-festival-card');
+  box.classList.add(kind==='cl-digits'?'cl-festival-card':'cl-comic-card');
   box.append(root);
-  if(kind==='cl-prediction')return mountPrediction(root);
+  if(kind==='cl-intro')return mountIntro(root,onNext);
+  if(kind==='cl-prediction')return mountPrediction(root,onNext);
   mountDigits(root);
   return ()=>{};
  }};
