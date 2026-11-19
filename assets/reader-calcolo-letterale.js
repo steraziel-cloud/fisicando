@@ -9,13 +9,12 @@
  const gameState={intro:{beat:-1},prediction:{stage:0},digits:{answer:'',choices:''}};
  const art='assets/images/reader/sibilla-festival/';
  const festivalView=`<div class="cl-scene cl-festival">
-  <div role="img" aria-label="Red e Bjorne passeggiano lungo il viale della festa. Sibilla è sul ciglio, accanto alla sua bancarella.">
-   <img class="cl-backdrop" src="${art}viale-fumetto.webp" alt="">
+  <div role="img" aria-label="Red e Bjorne camminano lungo il viale verso il portone in fondo. Più avanti, sulla destra, Sibilla li chiama accanto all’Antro di Sibilla.">
+   <img class="cl-backdrop" src="${art}viale-antro-sibilla.webp" alt="">
    <img class="cl-sibilla" src="${art}sibilla.webp" alt="">
-   <img class="cl-red" src="${art}red-cammino.webp" alt="">
-   <img class="cl-bjorne" src="${art}bjorne-cammino.webp" alt="">
+   <img class="cl-red" src="${art}red-verso-portone.webp" alt="">
+   <img class="cl-bjorne" src="${art}bjorne-verso-portone.webp" alt="">
   </div>
-  <span class="cl-sign">☾ L’antro di Sibilla</span>
  </div>`;
  const boothView=`<div class="cl-scene cl-booth">
   <div role="img" aria-label="Sibilla siede dietro il bancone e tende le zampe intorno alla sfera di cristallo.">
@@ -29,7 +28,7 @@
   ['sibilla','Sibilla','Fatevi avanti! Io sono Sibilla, la gattina indovina!'],
   ['sibilla','Sibilla','Avvicinatevi, avvicinatevi!'],
   ['sibilla','Sibilla','Vi mostrerò i miei incredibili poteri… Ora vi leggerò nella mente!'],
-  ['red','Red','Che dici, Bjorne, vogliamo provare?'],
+  ['red','Red','Ehi, che dici? Lo vogliamo fare?'],
   ['bjorne','Bjorne','Meow! Va bene.']
  ];
  const predictionLines=[
@@ -89,8 +88,9 @@
   const button=root.querySelector('.cl-comic-controls button');
   function say(speaker,name,line){
    balloon.dataset.speaker=speaker;
-   const label=document.createElement('strong');
-   label.textContent=name;
+   const label=document.createElement('span');
+   label.className='cl-speaker-name';
+   label.textContent=name+' dice: ';
    balloon.replaceChildren(label,document.createTextNode(line));
   }
   return {scene,balloon,button,say};
@@ -116,7 +116,7 @@
    if(state.beat>=introLines.length&&onNext){
     button.disabled=true;
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    timer=setTimeout(onNext,reduced?0:1050);
+    timer=setTimeout(onNext,reduced?0:1650);
    }
   };
   return ()=>clearTimeout(timer);

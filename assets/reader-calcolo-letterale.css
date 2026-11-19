@@ -64,20 +64,24 @@
  object-fit:cover;
 }
 .cl-festival .cl-sibilla {
- left:44%;
- bottom:33%;
- width:23%;
+ left:31.5%;
+ bottom:44.5%;
+ width:12%;
  transform:scaleX(-1);
 }
 .cl-red {
- left:7%;
+ --walk-x:10cqw;
+ --walk-y:-20cqw;
+ left:11%;
  bottom:8%;
- width:26%;
+ width:22%;
 }
 .cl-bjorne {
- left:30%;
- bottom:7%;
- width:23%;
+ --walk-x:-1cqw;
+ --walk-y:-19cqw;
+ left:34%;
+ bottom:6%;
+ width:22%;
 }
 .cl-festival.cl-heard .cl-red,
 .cl-festival.cl-heard .cl-bjorne {
@@ -85,25 +89,11 @@
 }
 .cl-festival.cl-approached .cl-red,
 .cl-festival.cl-approached .cl-bjorne {
- animation:cl-approach 1s ease-in-out both;
+ animation:cl-approach 1.55s ease-in-out both;
 }
 .cl-red,
 .cl-bjorne {
  transform-origin:center bottom;
-}
-.cl-sign {
- position:absolute;
- top:53%;
- left:66%;
- padding:.18em .55em;
- color:#ffe7ab;
- background:#542a3d;
- border:1px solid #dfad60;
- border-radius:.2em;
- box-shadow:0 2px 4px #321d23aa;
- font:700 clamp(.56rem,2cqw,1rem)/1.1 Georgia,serif;
- white-space:nowrap;
- transform:rotate(6deg);
 }
 .cl-booth .cl-sibilla {
  left:24%;
@@ -139,76 +129,63 @@
  animation:cl-reveal .65s ease-out both;
 }
 .cl-balloon {
- --tail:65%;
  position:absolute;
  z-index:1;
- top:13%;
- right:5%;
+ top:var(--speaker-y);
+ left:var(--speaker-x);
+ isolation:isolate;
+ transform:translate(calc(0% - var(--tail-x)),-134%);
  width:max-content;
- max-width:56%;
+ min-width:min(9.5em,42%);
+ max-width:49%;
  box-sizing:border-box;
  margin:0;
- padding:.55em .8em;
- border:2px solid #513244;
- border-radius:1em;
- background:#fff9ec;
+ padding:.6em .95em;
  color:#2d2031;
- box-shadow:0 3px 0 #50304755;
- font-size:clamp(.875rem,2.9cqw,1.15rem);
- line-height:1.3;
+ font-size:clamp(.8rem,2.75cqw,1.12rem);
+ line-height:1.28;
+ text-align:center;
 }
-.cl-balloon::after {
+.cl-balloon::before {
  content:"";
  position:absolute;
- top:calc(100% - .38em);
- left:var(--tail);
- width:.65em;
- height:.65em;
- border-right:2px solid #513244;
- border-bottom:2px solid #513244;
- background:#fff9ec;
- transform:rotate(45deg);
+ inset:0 0 auto;
+ z-index:-1;
+ height:136%;
+ background:var(--balloon-art) center / 100% 100% no-repeat;
 }
-.cl-balloon strong {
- display:block;
- margin-bottom:.15em;
- color:#6e326a;
- font-size:.78em;
- letter-spacing:.035em;
+.cl-speaker-name {
+ position:absolute;
+ width:1px;
+ height:1px;
+ overflow:hidden;
+ clip-path:inset(50%);
+ white-space:nowrap;
 }
 .cl-festival .cl-balloon[data-speaker="sibilla"] {
- --tail:38%;
- top:12%;
- right:8%;
+ --balloon-art:url('images/reader/sibilla-festival/balloon-sibilla-viale.png');
+ --tail-x:55.6%;
+ --speaker-x:35.8%;
+ --speaker-y:50%;
 }
-.cl-festival .cl-balloon[data-speaker="red"],
+.cl-festival .cl-balloon[data-speaker="red"] {
+ --balloon-art:url('images/reader/sibilla-festival/balloon-red.png');
+ --tail-x:36.1%;
+ --speaker-x:31%;
+ --speaker-y:71%;
+}
 .cl-festival .cl-balloon[data-speaker="bjorne"] {
- --tail:26%;
- top:37%;
- right:auto;
- left:5%;
-}
-.cl-festival .cl-balloon[data-speaker="bjorne"] {
- --tail:34%;
- left:22%;
-}
-.cl-festival .cl-balloon[data-speaker="red"] strong {
- color:#9b382e;
-}
-.cl-festival .cl-balloon[data-speaker="bjorne"] strong {
- color:#196470;
+ --balloon-art:url('images/reader/sibilla-festival/balloon-bjorne.png');
+ --tail-x:60%;
+ --speaker-x:54%;
+ --speaker-y:73%;
 }
 .cl-booth .cl-balloon {
- --tail:26%;
- top:5%;
- right:4%;
- max-width:47%;
-}
-.cl-trance .cl-balloon {
- background:#f6e7ff;
-}
-.cl-trance .cl-balloon::after {
- background:#f6e7ff;
+ --balloon-art:url('images/reader/sibilla-festival/balloon-sibilla-banco.png');
+ --tail-x:15.3%;
+ --speaker-x:53%;
+ --speaker-y:42%;
+ max-width:46%;
 }
 .cl-controls {
  display:grid;
@@ -262,9 +239,9 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] math[display="block"] 
  to {transform:translate(0,0);}
 }
 @keyframes cl-approach {
- 25% {transform:translate(21%,-12%) scale(.91) rotate(-3deg);}
- 60% {transform:translate(47%,-34%) scale(.77) rotate(3deg);}
- to {transform:translate(83%,-60%) scale(.62);}
+ 35% {transform:translate(calc(var(--walk-x)*.42),calc(var(--walk-y)*.32)) scale(.94) rotate(-2deg);}
+ 68% {transform:translate(calc(var(--walk-x)*.78),calc(var(--walk-y)*.68)) scale(.86) rotate(2deg);}
+ to {transform:translate(var(--walk-x),var(--walk-y)) scale(.76);}
 }
 @keyframes cl-conjure {
  25% {transform:rotate(-4deg) translateY(-1%);}
@@ -285,12 +262,8 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] math[display="block"] 
   grid-row:auto;
   margin-top:6px;
  }
- .cl-balloon {
-  max-width:70%;
- }
- .cl-booth .cl-balloon {
-  max-width:63%;
-  top:3%;
+ .cl-festival .cl-balloon {
+  max-width:58%;
  }
 }
 @media (prefers-reduced-motion: reduce) {
