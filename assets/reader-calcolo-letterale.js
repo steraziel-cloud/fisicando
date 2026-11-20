@@ -50,7 +50,8 @@
  title:'Introduzione al calcolo letterale',subtitle:'Matematica · Algebra · Calcolo letterale',version:1,nextLesson:false,
  sections:[
  {id:'sfide',title:'Le sfide di Sibilla',cards:[
- {...card('Ora vi leggerò nella mente…',''),board:'cl-intro'},
+ {...card('Ora vi leggerò nella mente…',
+  '<p>Alla festa dell’Accademia c’è una bancarella insolita. Sibilla sostiene di saper leggere nel pensiero, e Red e Bjorne vogliono metterla alla prova.</p><p>La sfida è anche per te. Tieni pronto un foglio per i conti.</p>'),board:'cl-intro'},
  {...card('Prima sfida · La sfera di Sibilla',''),board:'cl-prediction'},
  {...card('Seconda sfida · Due numeri, proprio in quell’ordine','Scegli in segreto <strong>due numeri interi da 1 a 9</strong>, anche uguali, e stabilisci quale viene prima. Raddoppia il primo, aggiungi 5, moltiplica il risultato per 5 e infine aggiungi il secondo. Comunica a Sibilla <strong>soltanto il risultato finale</strong>.'),board:'cl-digits'},
  card('Come ha fatto?','Red guarda la sfera. «Lì dentro c’è qualcuno che suggerisce?» Bjorne si avvicina ancora un po’. «E se cambiassimo numeri?»<br><br>Nel primo gioco, scelte diverse portano alla stessa previsione. Nel secondo, invece, il risultato permette di ritrovare entrambe le scelte e il loro ordine.<br><br><strong>Per capire perché, dobbiamo descrivere le operazioni senza scegliere subito i numeri.</strong>')
@@ -101,13 +102,14 @@
   }
   return {scene,balloon,button,say};
  }
- function mountIntro(root,onNext){
+ function mountIntro(root,copy,onNext){
   const {scene,balloon,button,say}=comicPanel(root,festivalView);
+  copy.append(button.parentElement);
   for(const name of ['sibilla-viale','red','bjorne','sibilla-banco']){
    const image=document.createElement('img');
    image.hidden=true;
    image.alt='';
-   image.src=`${art}balloon-${name}.png${name==='sibilla-banco'?'?v=2':name==='sibilla-viale'?'?v=2':''}`;
+   image.src=`${art}balloon-${name}.png?v=3`;
    root.append(image);
   }
   const state=gameState.intro;
@@ -205,7 +207,14 @@
   root.className='cl-game';
   box.classList.add(kind==='cl-digits'?'cl-festival-card':'cl-comic-card');
   box.append(root);
-  if(kind==='cl-intro')return mountIntro(root,onNext);
+  if(kind==='cl-intro'){
+   box.classList.add('cl-intro-card');
+   const copy=document.createElement('div');
+   copy.className='cl-intro-copy';
+   copy.append(box.querySelector('.rm-card-title'),box.querySelector('.rm-card-text'));
+   box.prepend(copy);
+   return mountIntro(root,copy,onNext);
+  }
   if(kind==='cl-prediction')return mountPrediction(root,onNext);
   mountDigits(root);
   return ()=>{};

@@ -13,6 +13,65 @@
  margin-inline:auto;
  max-width:780px;
 }
+.cl-intro-card {
+ display:grid;
+ grid-template-columns:minmax(0,.52fr) minmax(0,1fr);
+ gap:clamp(20px,3cqw,44px);
+ align-items:center;
+}
+.cl-intro-copy {
+ min-width:0;
+}
+.cl-intro-copy > .rm-card-title {
+ max-width:12em;
+ margin:0 0 .55em;
+ font-size:clamp(1.7rem,3.35cqw,3.2rem);
+ line-height:1.08;
+}
+.cl-intro-copy > .rm-card-text,
+.cl-intro-copy .rm-reader-step {
+ max-width:none;
+ margin:0;
+ padding:0;
+}
+.cl-intro-copy p {
+ margin:0 0 .85em;
+ font-size:clamp(1rem,1.65cqw,1.28rem);
+ line-height:1.48;
+}
+.cl-intro-copy > .cl-comic-controls {
+ justify-items:start;
+ padding:0;
+ margin-top:.65rem;
+}
+.cl-intro-card .cl-game {
+ width:100%;
+ max-width:none;
+ margin:0;
+}
+@media (max-width:960px) {
+ .cl-intro-card {
+  grid-template-columns:minmax(0,1fr);
+  gap:16px;
+ }
+ .cl-intro-copy {
+  display:contents;
+ }
+ .cl-intro-copy > .rm-card-title {
+  grid-row:1;
+  margin:0;
+ }
+ .cl-intro-copy > .rm-card-text {
+  grid-row:2;
+ }
+ .cl-intro-card .cl-game {
+  grid-row:3;
+ }
+ .cl-intro-copy > .cl-comic-controls {
+  grid-row:4;
+  margin:0;
+ }
+}
 .cl-festival-card {
  display:grid;
  grid-template-columns:minmax(0, .8fr) minmax(0, 1.2fr);
@@ -176,27 +235,27 @@
  white-space:nowrap;
 }
 .cl-festival .cl-balloon[data-speaker="sibilla"] {
- --balloon-art:url('images/reader/sibilla-festival/balloon-sibilla-viale.png?v=2');
- --balloon-height:190%;
+ --balloon-art:url('images/reader/sibilla-festival/balloon-sibilla-viale.png?v=3');
+ --balloon-height:163%;
  --tail-x:87%;
  --speaker-x:32.5%;
- --speaker-y:50%;
+ --speaker-y:49%;
  max-width:36%;
 }
 .cl-festival .cl-balloon[data-speaker="red"] {
- --balloon-art:url('images/reader/sibilla-festival/balloon-red.png');
+ --balloon-art:url('images/reader/sibilla-festival/balloon-red.png?v=3');
  --tail-x:36.1%;
  --speaker-x:27%;
  --speaker-y:64%;
 }
 .cl-festival .cl-balloon[data-speaker="bjorne"] {
- --balloon-art:url('images/reader/sibilla-festival/balloon-bjorne.png');
+ --balloon-art:url('images/reader/sibilla-festival/balloon-bjorne.png?v=3');
  --tail-x:60%;
  --speaker-x:44.5%;
  --speaker-y:66%;
 }
 .cl-booth .cl-balloon {
- --balloon-art:url('images/reader/sibilla-festival/balloon-sibilla-banco.png?v=2');
+ --balloon-art:url('images/reader/sibilla-festival/balloon-sibilla-banco.png?v=3');
  --tail-x:1.95%;
  --speaker-x:64.5%;
  --speaker-y:41%;
@@ -287,7 +346,7 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] math[display="block"] 
   max-width:58%;
  }
  .cl-festival .cl-balloon[data-speaker="sibilla"] {
-  --balloon-art:url('images/reader/sibilla-festival/balloon-bjorne.png');
+  --balloon-art:url('images/reader/sibilla-festival/balloon-bjorne.png?v=3');
   --balloon-height:136%;
   --tail-x:60%;
   --speaker-y:49%;
