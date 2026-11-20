@@ -57,13 +57,13 @@
 <script src="assets/fraction-copilot.js?v=6" defer></script>
 <script src="assets/reader-rational-boards.js?v=12" defer></script>
 <script src="assets/reader-division-intro.js?v=8" defer></script>
-<link rel="stylesheet" href="assets/reader-calcolo-letterale.css?v=12">
-<script src="assets/reader-calcolo-letterale.js?v=9" defer></script>
-<script src="assets/reader.js?v=109" defer></script>
+<link rel="stylesheet" href="assets/reader-calcolo-letterale.css?v=13">
+<script src="assets/reader-calcolo-letterale.js?v=10" defer></script>
+<script src="assets/reader.js?v=110" defer></script>
 <script src="assets/reader-typography.js?v=1" defer></script>
 
 
-  <link rel="stylesheet" href="assets/reader.css?v=65">
+  <link rel="stylesheet" href="assets/reader.css?v=66">
   <link rel="stylesheet" href="assets/reader-reactions.css?v=1">
   <link rel="stylesheet" href="assets/reader-cellula.css?v=1">
   <link rel="stylesheet" href="assets/reader-divisibility.css?v=3">
@@ -109,8 +109,14 @@
   <main class="rm-lessons-main rm-reader-main"><div class="rm-shell">
     <a class="rm-reader-back" id="reader-back" href="lezioni.html">← Torna alle lezioni</a>
     <p class="rm-eyebrow" id="reader-subtitle">Reader</p><h1 class="rm-reader-title" id="reader-title">La tua lezione</h1>
+    <button id="reader-index-toggle" class="rm-reader-index-toggle" type="button" aria-haspopup="dialog" aria-controls="reader-index-drawer" aria-expanded="false" hidden>
+      <span aria-hidden="true">☰</span> Indice
+    </button>
+    <dialog id="reader-index-drawer" class="rm-reader-index-drawer" aria-labelledby="parts-title">
+      <button id="reader-index-close" type="button" aria-label="Chiudi l’indice" autofocus>×</button>
+    </dialog>
     <div class="rm-reader-layout">
-      <aside class="rm-reader-index" aria-labelledby="parts-title"><h2 id="parts-title">Parti della lezione</h2><p id="reader-progress" role="status"></p><nav id="reader-parts" aria-label="Parti della lezione"></nav><button id="reader-show-all" class="rm-reader-small" type="button">Sblocca tutto</button></aside>
+      <aside id="reader-index" class="rm-reader-index" aria-labelledby="parts-title"><h2 id="parts-title">Parti della lezione</h2><p id="reader-progress" role="status"></p><nav id="reader-parts" aria-label="Parti della lezione"></nav><button id="reader-show-all" class="rm-reader-small" type="button">Sblocca tutto</button></aside>
       <section class="rm-reader-column" aria-labelledby="reader-section-title">
         <h2 id="reader-section-title" tabindex="-1"></h2>
         <div id="reader-steps"></div>

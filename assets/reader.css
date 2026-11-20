@@ -545,3 +545,73 @@ body[data-reader-lesson^="valore-assoluto-"] .rm-absolute-equation{font-size:1.2
 /* Keep every line of a property aligned with its text, beyond the bullet. */
 body[data-reader-lesson^="valore-assoluto-"] .rm-property-point{display:block;position:relative;padding-left:1.25em}
 body[data-reader-lesson^="valore-assoluto-"] .rm-property-point::before{content:"•";position:absolute;left:0;top:0}
+
+/* The reader keeps one index, moved into the modal only on compact screens. */
+.rm-reader-index-toggle { display:none; }
+.rm-reader-index-drawer {
+ box-sizing:border-box;
+ position:fixed;
+ inset:auto 0 0 auto;
+ width:min(100%,24rem);
+ max-width:none;
+ max-height:min(86vh,86dvh);
+ margin:0;
+ padding:0;
+ border:1px solid var(--rm-line);
+ border-radius:18px 0 0 0;
+ background:var(--rm-panel);
+ color:var(--rm-text);
+ overflow:auto;
+ overscroll-behavior:contain;
+}
+.rm-reader-index-drawer::backdrop { background:rgb(6 12 27 / 64%); }
+.rm-reader-index-drawer .rm-reader-index {
+ position:static;
+ border:0;
+ border-radius:0;
+ padding:20px max(16px,env(safe-area-inset-right)) max(14px,env(safe-area-inset-bottom)) 16px;
+ box-shadow:none;
+}
+.rm-reader-index-drawer h2 { padding-right:48px; }
+.rm-reader-index-drawer #reader-parts { grid-template-columns:minmax(0,1fr); }
+.rm-reader-index-drawer #reader-parts button { font-size:.9rem; }
+#reader-index-close {
+ position:absolute;
+ inset-block-start:6px;
+ inset-inline-end:max(6px,env(safe-area-inset-right));
+ width:44px;
+ height:44px;
+ display:grid;
+ place-items:center;
+ border:0;
+ border-radius:10px;
+ background:transparent;
+ color:inherit;
+ font:1.5rem/1 system-ui,sans-serif;
+ cursor:pointer;
+}
+html:has(.rm-reader-index-drawer[open]) { overflow:hidden; }
+@media (max-width:800px) {
+ .rm-reader-layout-drawer > .rm-reader-index { display:none; }
+ .rm-reader-index-toggle:not([hidden]) {
+  position:fixed;
+  inset-inline-end:max(12px,env(safe-area-inset-right));
+  inset-block-end:max(12px,env(safe-area-inset-bottom));
+  z-index:12;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  min-height:44px;
+  padding:0 12px;
+  border:1px solid var(--rm-line);
+  border-radius:12px;
+  background:var(--rm-panel);
+  color:var(--rm-text);
+  box-shadow:0 4px 16px rgb(6 12 27 / 24%);
+  font:inherit;
+  font-size:.875rem;
+  font-weight:700;
+  cursor:pointer;
+ }
+ .rm-reader-main:has(.rm-reader-layout-drawer) { padding-bottom:calc(72px + env(safe-area-inset-bottom,0px)); }
+}

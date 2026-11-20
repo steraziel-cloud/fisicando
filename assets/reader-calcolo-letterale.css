@@ -1,3 +1,10 @@
+@font-face {
+ font-family:"Comic Neue";
+ src:url('fonts/ComicNeue-Bold.ttf') format('truetype');
+ font-style:normal;
+ font-weight:700;
+ font-display:swap;
+}
 html:has(body[data-reader-lesson="calcolo-letterale-introduzione"]) {
  scrollbar-gutter:stable;
 }
@@ -235,6 +242,8 @@ html:has(body[data-reader-lesson="calcolo-letterale-introduzione"]) {
  margin:0;
  padding:.6em .95em;
  color:#2d2031;
+ font-family:"Comic Neue","Comic Sans MS",cursive;
+ font-weight:700;
  font-size:clamp(.8rem,2.75cqw,1.12rem);
  line-height:1.28;
  text-align:center;
@@ -279,14 +288,17 @@ html:has(body[data-reader-lesson="calcolo-letterale-introduzione"]) {
  transform:scaleX(-1);
 }
 .cl-booth .cl-balloon {
- --balloon-art:url('images/reader/sibilla-festival/balloon-sibilla-banco.png?v=4');
- --balloon-height:130%;
- --tail-x:6.25%;
- --speaker-x:64.5%;
- --speaker-y:41%;
- max-width:37%;
- padding-left:calc(5.9cqw + .62em);
- padding-right:.7em;
+ --balloon-art:url('images/reader/sibilla-festival/balloon-sibilla-banco-curvo.png');
+ --balloon-height:100%;
+ inset:auto 2.5% 55% auto;
+ transform:none;
+ width:36%;
+ min-width:0;
+ max-width:none;
+ min-height:2.35em;
+ display:grid;
+ align-items:center;
+ padding:.62em .68em .62em calc(7cqw + .38em);
 }
 .cl-controls {
  display:grid;
@@ -385,9 +397,10 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] math[display="block"] 
   font-size:clamp(.72rem,2.75cqw,1rem);
  }
  .cl-booth .cl-balloon {
-  --speaker-x:65%;
-  --speaker-y:51%;
-  font-size:clamp(.72rem,2.55cqw,1.05rem);
+  bottom:49%;
+  width:39%;
+  padding-left:calc(7.7cqw + .3em);
+  font-size:clamp(.8rem,2.85cqw,1.05rem);
  }
 }
 @media (prefers-reduced-motion: reduce) {

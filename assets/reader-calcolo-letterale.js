@@ -282,7 +282,7 @@
    const panel={root,button};
    panels.set(box,panel);
    for(const filename of [
-    'balloon-sibilla-viale.png?v=3','balloon-red.png?v=3','balloon-bjorne.png?v=3','balloon-sibilla-banco.png?v=4',
+    'balloon-sibilla-viale.png?v=3','balloon-red.png?v=3','balloon-bjorne.png?v=3','balloon-sibilla-banco-curvo.png',
     'sibilla-concentrazione.webp','sibilla-gesto.webp'
    ]){
     const image=document.createElement('img');

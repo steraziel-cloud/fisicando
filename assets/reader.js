@@ -1,5 +1,28 @@
 document.addEventListener('DOMContentLoaded',()=>{
  const $=id=>document.getElementById(id),params=new URLSearchParams(location.search);
+ const drawer=$('reader-index-drawer'),indexToggle=$('reader-index-toggle'),indexPanel=$('reader-index');
+ const compactIndex=matchMedia('(max-width:800px)');
+ function closeIndex(){if(drawer.open)drawer.close();}
+ function enableIndexDrawer(){
+  if(typeof drawer.showModal!=='function')return;
+  const layout=indexPanel.parentNode;
+  indexToggle.hidden=false;
+  layout.classList.add('rm-reader-layout-drawer');
+  indexToggle.addEventListener('click',()=>{
+   if(!compactIndex.matches||drawer.open)return;
+   drawer.append(indexPanel);
+   drawer.showModal();
+   indexToggle.setAttribute('aria-expanded','true');
+  });
+  $('reader-index-close').addEventListener('click',closeIndex);
+  drawer.addEventListener('click',event=>{if(event.target===drawer)closeIndex();});
+  drawer.addEventListener('close',()=>{
+   if(drawer.open)return;
+   layout.prepend(indexPanel);
+   indexToggle.setAttribute('aria-expanded','false');
+  });
+  compactIndex.addEventListener('change',event=>{if(!event.matches)closeIndex();});
+ }
  const back=new URL('lezioni.html',location.href);['ruolo','livello'].forEach(k=>{if(params.has(k))back.searchParams.set(k,params.get(k));});$('reader-back').href=back.href;
  const sourceLesson=window.READER_LESSONS[params.get('lezione')],selectedLevel=params.get('livello');
  // Filter optional grade-specific sections before progress and prerequisite gates are created.
@@ -9,10 +32,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   const sources={'pillole/vettori/teoria.html':'Algebra dei vettori','meccanica_punto_materiale/cinematica/teoria.html':'Cinematica · Dispensa completa','meccanica_punto_materiale/dinamica/teoria.html':'Dinamica · Dispensa completa'};
   const source=params.get('materiale');$('reader-next').hidden=true;
   if(!Object.hasOwn(sources,source)){$('reader-title').textContent='Lezione non disponibile';$('reader-section-title').textContent='Torna al catalogo e scegli una lezione.';return;}
+  enableIndexDrawer();
   $('reader-title').textContent=sources[source];$('reader-subtitle').textContent='Materiale esistente';$('reader-section-title').textContent='Dispensa completa';$('reader-progress').textContent='Questo materiale non è ancora suddiviso in sviluppi del reader.';
   const frame=document.createElement('iframe');frame.className='rm-reader-legacy';frame.title=sources[source];frame.src=source;frame.setAttribute('sandbox','allow-scripts allow-same-origin');$('reader-steps').append(frame);
-  frame.addEventListener('load',()=>{try{const doc=frame.contentDocument;doc.querySelectorAll('header,.sidebar,.rm-learning-back').forEach(e=>e.style.display='none');const headings=[...doc.querySelectorAll('.main h2,.main h3')];headings.forEach((h,i)=>{const b=document.createElement('button');b.textContent=h.textContent;b.addEventListener('click',()=>h.scrollIntoView({behavior:'auto',block:'start'}));$('reader-parts').append(b);});}catch{}});return;
+  frame.addEventListener('load',()=>{try{const doc=frame.contentDocument;doc.querySelectorAll('header,.sidebar,.rm-learning-back').forEach(e=>e.style.display='none');const headings=[...doc.querySelectorAll('.main h2,.main h3')];headings.forEach((h,i)=>{const b=document.createElement('button');b.textContent=h.textContent;b.addEventListener('click',()=>{closeIndex();h.scrollIntoView({behavior:'auto',block:'start'});});$('reader-parts').append(b);});}catch{}});return;
  }
+ enableIndexDrawer();
  // Learning progress belongs to this visit only. Reference cards do not award progress.
  const cafeState={},coinExperiment={},multiplesExplorer={},divisorPairs={};
  const state=lesson.sections.map(s=>({cursor:0,reached:0,complete:false,position:2,startPosition:1,reference:{values:['',''],attempts:0,done:false,assisted:false},clock:{started:null,marks:[]},units:{values:['',''],done:false},elevator:{},velocityGraph:{},instantSpeeds:{values:['','','',''],done:false},velocityQuiz:{answer:'',stage:0,choice:null,done:false},lab:{started:null,period:8,marks:[],verified:false,answer:''}}));
@@ -31,7 +56,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  window.addEventListener('pageshow',e=>{if(e.persisted)location.reload();});
  function index(){
   $('reader-parts').replaceChildren();lesson.sections.forEach((s,i)=>{
-   const b=button('',()=>open(i,true),'');b.disabled=false;b.setAttribute('aria-current',current===i&&!allMode?'step':'false');
+   const b=button('',()=>{closeIndex();open(i,true);},'');b.disabled=false;b.setAttribute('aria-current',current===i&&!allMode?'step':'false');
    const dot=el('span','rm-part-progress'+(state[i].complete?' done':''),state[i].complete?'✓':String(i+1));
    dot.style.setProperty('--part-progress',Math.round(state[i].reached/flat(s).length*100)+'%');dot.setAttribute('aria-hidden','true');
    b.append(dot,el('span','',s.title));b.setAttribute('aria-label',s.title+' · '+(state[i].complete?'completata':unlocked(i)?'disponibile':'da sbloccare'));$('reader-parts').append(b);
@@ -570,6 +595,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  $('reader-show-all').textContent='Sblocca tutto';
  $('reader-show-all').setAttribute('aria-pressed','false');
  $('reader-show-all').addEventListener('click',()=>{
+  closeIndex();
   reviewAccess=!reviewAccess;referenceMode=false;referenceBounds=null;pendingSection=null;allMode=false;
   $('reader-show-all').textContent=reviewAccess?'Ripristina i checkpoint':'Sblocca tutto';
   $('reader-show-all').setAttribute('aria-pressed',String(reviewAccess));
