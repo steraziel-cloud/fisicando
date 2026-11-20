@@ -266,14 +266,17 @@ html:has(body[data-reader-lesson="calcolo-letterale-introduzione"]) {
 .cl-festival .cl-balloon[data-speaker="red"] {
  --balloon-art:url('images/reader/sibilla-festival/balloon-red.png?v=3');
  --tail-x:36.1%;
- --speaker-x:27%;
+ --speaker-x:19.5%;
  --speaker-y:64%;
 }
 .cl-festival .cl-balloon[data-speaker="bjorne"] {
  --balloon-art:url('images/reader/sibilla-festival/balloon-bjorne.png?v=3');
- --tail-x:60%;
+ --tail-x:40%;
  --speaker-x:44.5%;
  --speaker-y:66%;
+}
+.cl-festival .cl-balloon[data-speaker="bjorne"]::before {
+ transform:scaleX(-1);
 }
 .cl-booth .cl-balloon {
  --balloon-art:url('images/reader/sibilla-festival/balloon-sibilla-banco.png?v=4');
@@ -369,6 +372,9 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] math[display="block"] 
  }
  .cl-festival .cl-balloon:not([data-speaker="sibilla"]) {
   max-width:58%;
+ }
+ .cl-festival .cl-balloon[data-speaker="red"] {
+  max-width:51%;
  }
  .cl-festival .cl-balloon[data-speaker="sibilla"] {
   --balloon-art:url('images/reader/sibilla-festival/balloon-bjorne.png?v=3');
