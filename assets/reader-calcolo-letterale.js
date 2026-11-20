@@ -8,6 +8,10 @@
  const quiz=(question,options,answer,feedback)=>({questions:[{question,options,answer,feedback}]});
  const gameState={intro:{beat:-1},prediction:{stage:0},digits:{answer:'',choices:''}};
  const art='assets/images/reader/sibilla-festival/';
+ const panels=new WeakMap();
+ const comicTitle='Ora vi leggerò nella mente…';
+ const comicText='<p>Alla festa dell’Accademia c’è una bancarella insolita. Sibilla sostiene di saper leggere nel pensiero, e Red e Bjorne vogliono metterla alla prova.</p><p>La sfida è anche per te. Tieni pronto un foglio per i conti.</p>';
+ const isComic=kind=>kind==='cl-intro'||kind==='cl-prediction';
  const festivalView=`<div class="cl-scene cl-festival">
   <div role="img" aria-label="Red e Bjorne camminano lungo il viale verso il portone in fondo. Più avanti, sulla destra, Sibilla li chiama accanto all’Antro di Sibilla.">
    <img class="cl-backdrop" src="${art}viale-antro-sibilla.webp" alt="">
@@ -25,7 +29,9 @@
  const boothView=`<div class="cl-scene cl-booth">
   <div role="img" aria-label="Sibilla siede dietro il bancone e tende le zampe intorno alla sfera di cristallo.">
    <img class="cl-backdrop" src="${art}banco-fumetto.webp" alt="">
-   <img class="cl-sibilla" src="${art}sibilla-seduta.webp" alt="">
+   <img class="cl-sibilla cl-sibilla-calm" src="${art}sibilla-seduta.webp" alt="">
+   <img class="cl-sibilla cl-sibilla-gesture cl-sibilla-first" src="${art}sibilla-concentrazione.webp" alt="">
+   <img class="cl-sibilla cl-sibilla-gesture cl-sibilla-second" src="${art}sibilla-gesto.webp" alt="">
    <img class="cl-orb" src="${art}sfera.webp" alt="">
   </div>
   <output class="cl-orb-result" aria-live="polite" aria-atomic="true"></output>
@@ -50,9 +56,8 @@
  title:'Introduzione al calcolo letterale',subtitle:'Matematica · Algebra · Calcolo letterale',version:1,nextLesson:false,
  sections:[
  {id:'sfide',title:'Le sfide di Sibilla',cards:[
- {...card('Ora vi leggerò nella mente…',
-  '<p>Alla festa dell’Accademia c’è una bancarella insolita. Sibilla sostiene di saper leggere nel pensiero, e Red e Bjorne vogliono metterla alla prova.</p><p>La sfida è anche per te. Tieni pronto un foglio per i conti.</p>'),board:'cl-intro'},
- {...card('Prima sfida · La sfera di Sibilla',''),board:'cl-prediction'},
+ {...card(comicTitle,comicText),board:'cl-intro'},
+ {...card('Prima sfida · La sfera di Sibilla',comicText),board:'cl-prediction'},
  {...card('Seconda sfida · Due numeri, proprio in quell’ordine','Scegli in segreto <strong>due numeri interi da 1 a 9</strong>, anche uguali, e stabilisci quale viene prima. Raddoppia il primo, aggiungi 5, moltiplica il risultato per 5 e infine aggiungi il secondo. Comunica a Sibilla <strong>soltanto il risultato finale</strong>.'),board:'cl-digits'},
  card('Come ha fatto?','Red guarda la sfera. «Lì dentro c’è qualcuno che suggerisce?» Bjorne si avvicina ancora un po’. «E se cambiassimo numeri?»<br><br>Nel primo gioco, scelte diverse portano alla stessa previsione. Nel secondo, invece, il risultato permette di ritrovare entrambe le scelte e il loro ordine.<br><br><strong>Per capire perché, dobbiamo descrivere le operazioni senza scegliere subito i numeri.</strong>')
  ]},
@@ -82,17 +87,36 @@
  card('Dalla sorpresa agli strumenti','Nel primo gioco le operazioni cancellano la scelta iniziale. Il secondo la conserva in una scrittura che sappiamo interpretare.<br><br>Le lettere permettono di vedere queste strutture e di riutilizzarle. Nella prossima unità inizieremo dai <strong>monomi</strong>, per costruire e trasformare espressioni sempre più articolate.')
  ],quiz:quiz('Nel noleggio, la domanda «Per quante ore spenderò 13 euro?» richiede di…',['assegnare subito n = 13','cercare n che rende vera 4 + 3n = 13','calcolare 4 + 3 · 13'],1,'Conosciamo la spesa e cerchiamo il numero di ore che soddisfa la condizione.')}
  ]};
- function comicPanel(root,view){
-  root.innerHTML=view+`<div class="cl-controls cl-comic-controls">
-   <button type="button" class="rm-btn"></button>
-  </div>`;
-  const scene=root.querySelector('.cl-scene');
+ function comicPanel(panel,view,direction){
+  const {root,button}=panel;
+  const template=document.createElement('template');
+  template.innerHTML=view;
+  const scene=template.content.firstElementChild;
+  const previous=root.querySelector('.cl-scene');
+  root.append(scene);
+  const animations=[];
+  function clearTransition(){
+   animations.forEach(animation=>animation.cancel());
+   previous?.remove();
+  }
+  if(previous&&direction&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&scene.animate){
+   previous.inert=true;
+   previous.setAttribute('aria-hidden','true');
+   previous.classList.add('cl-scene-out');
+   const options={duration:370,easing:'cubic-bezier(.25,.65,.3,1)'};
+   animations.push(previous.animate([{transform:'translateX(0)'},{transform:`translateX(${-100*direction}%)`}],options));
+   animations.push(scene.animate([{transform:`translateX(${100*direction}%)`},{transform:'translateX(0)'}],options));
+   animations[1].finished.then(clearTransition,()=>{});
+  }else previous?.remove();
   const balloon=document.createElement('p');
   balloon.className='cl-balloon';
   balloon.setAttribute('aria-live','polite');
   balloon.setAttribute('aria-atomic','true');
   scene.append(balloon);
-  const button=root.querySelector('.cl-comic-controls button');
+  scene.classList.add('cl-tappable');
+  scene.onclick=()=>{
+   if(!button.hidden&&!button.disabled&&!window.getSelection()?.toString())button.click();
+  };
   function say(speaker,name,line){
    balloon.dataset.speaker=speaker;
    const label=document.createElement('span');
@@ -100,19 +124,12 @@
    label.textContent=name+' dice: ';
    balloon.replaceChildren(label,document.createTextNode(line));
   }
-  return {scene,balloon,button,say};
+  return {scene,balloon,button,say,clearTransition};
  }
- function mountIntro(root,copy,onNext){
-  const {scene,balloon,button,say}=comicPanel(root,festivalView);
-  copy.append(button.parentElement);
-  for(const name of ['sibilla-viale','red','bjorne','sibilla-banco']){
-   const image=document.createElement('img');
-   image.hidden=true;
-   image.alt='';
-   image.src=`${art}balloon-${name}.png?v=3`;
-   root.append(image);
-  }
+ function mountIntro(panel,onNext,direction){
+  const {scene,balloon,button,say,clearTransition}=comicPanel(panel,festivalView,direction);
   const state=gameState.intro;
+  if(direction<0&&state.beat>=introLines.length)state.beat=introLines.length-1;
   let timer;
   function draw(){
    const line=introLines[state.beat];
@@ -121,22 +138,29 @@
    scene.classList.toggle('cl-approached',state.beat>=introLines.length);
    button.textContent=state.beat===-1?'Avvia il fumetto':state.beat===introLines.length-1?'Avviciniamoci':state.beat>=introLines.length?'Vai alla prima sfida':'Continua';
    button.hidden=state.beat>=introLines.length&&!onNext;
+   button.disabled=!!timer;
   }
+  panel.back=()=>{
+   if(state.beat<0)return false;
+   if(timer){clearTimeout(timer);timer=null;}
+   state.beat--;
+   draw();
+   return true;
+  };
   draw();
   button.onclick=()=>{
    if(state.beat>=introLines.length){onNext?.();return;}
    state.beat++;
-   draw();
    if(state.beat>=introLines.length&&onNext){
-    button.disabled=true;
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
     timer=setTimeout(onNext,reduced?0:2450);
    }
+   draw();
   };
-  return ()=>clearTimeout(timer);
+  return ()=>{clearTimeout(timer);clearTransition();};
  }
- function mountPrediction(root,onNext){
-  const {scene,button,say}=comicPanel(root,boothView);
+ function mountPrediction(panel,onNext,direction){
+  const {scene,button,say,clearTransition}=comicPanel(panel,boothView,direction);
   const state=gameState.prediction;
   const result=scene.querySelector('output');
   const tranceStage=predictionLines.length-1;
@@ -144,29 +168,38 @@
   let timer;
   function draw(){
    const revealed=state.stage===revealStage;
-   const trance=state.stage>=tranceStage;
+   const trance=state.stage===tranceStage;
    say('sibilla','Sibilla',predictionLines[Math.min(state.stage,tranceStage)]);
    scene.classList.toggle('cl-trance',trance);
    scene.classList.toggle('cl-revealed',revealed);
-   if(revealed){result.textContent='5';result.setAttribute('aria-label','La sfera mostra 5');}
+   result.textContent=revealed?'5':'';
+   if(revealed)result.setAttribute('aria-label','La sfera mostra 5');
+   else result.removeAttribute('aria-label');
    button.hidden=revealed&&!onNext;
-   button.disabled=state.stage===tranceStage;
+   button.disabled=trance;
    button.textContent=revealed?'Vai alla seconda sfida':state.stage>=tranceStage-1?'Continua':'Fatto';
-   if(state.stage===tranceStage){
+   if(trance){
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
     timer=setTimeout(()=>{
      state.stage=revealStage;
      draw();
-    },reduced?100:1250);
+    },reduced?100:1950);
    }
   }
+  panel.back=()=>{
+   if(!state.stage)return false;
+   clearTimeout(timer);
+   state.stage=Math.min(state.stage-1,tranceStage-1);
+   draw();
+   return true;
+  };
   draw();
   button.onclick=()=>{
    if(state.stage===revealStage){onNext?.();return;}
    state.stage++;
    draw();
   };
-  return ()=>clearTimeout(timer);
+  return ()=>{clearTimeout(timer);clearTransition();};
  }
  function mountDigits(root){
   const state=gameState.digits;
@@ -202,21 +235,64 @@
    response.textContent='';
   };
  }
- window.GatitoLetterale={mount(box,kind,onNext){
-  const root=document.createElement('div');
-  root.className='cl-game';
-  box.classList.add(kind==='cl-digits'?'cl-festival-card':'cl-comic-card');
-  box.append(root);
-  if(kind==='cl-intro'){
-   box.classList.add('cl-intro-card');
+ const mounts={'cl-intro':mountIntro,'cl-prediction':mountPrediction};
+ function switchScene(box,kind,onNext,direction=0){
+  const panel=panels.get(box);
+  if(!panel||!isComic(kind))return false;
+  panel.dispose?.();
+  panel.dispose=mounts[kind](panel,onNext,direction);
+  return true;
+ }
+ window.GatitoLetterale={
+  sharesPanel:(from,to)=>from!==to&&isComic(from)&&isComic(to),
+  switchScene,
+  navigate(box,direction){
+   const panel=panels.get(box);
+   if(!panel)return false;
+   if(direction<0)return panel.back();
+   if(!panel.button.hidden&&!panel.button.disabled)panel.button.click();
+   return true;
+  },
+  mount(box,kind,onNext){
+   const root=document.createElement('div');
+   root.className='cl-game';
+   box.append(root);
+   if(!isComic(kind)){
+    box.classList.add('cl-festival-card');
+    mountDigits(root);
+    return ()=>{};
+   }
+   box.classList.add('cl-comic-card','cl-intro-card');
    const copy=document.createElement('div');
    copy.className='cl-intro-copy';
-   copy.append(box.querySelector('.rm-card-title'),box.querySelector('.rm-card-text'));
+   const heading=box.querySelector('.rm-card-title');
+   if(heading)heading.textContent=comicTitle;
+   const text=box.querySelector('.rm-card-text');
+   if(heading)copy.append(heading);
+   if(text)copy.append(text);
    box.prepend(copy);
-   return mountIntro(root,copy,onNext);
+   const controls=document.createElement('div');
+   controls.className='cl-controls cl-comic-controls';
+   const button=document.createElement('button');
+   button.type='button';
+   button.className='rm-btn';
+   button.setAttribute('aria-keyshortcuts','ArrowRight ArrowLeft');
+   controls.append(button);
+   copy.append(controls);
+   const panel={root,button};
+   panels.set(box,panel);
+   for(const filename of [
+    'balloon-sibilla-viale.png?v=3','balloon-red.png?v=3','balloon-bjorne.png?v=3','balloon-sibilla-banco.png?v=4',
+    'sibilla-concentrazione.webp','sibilla-gesto.webp'
+   ]){
+    const image=document.createElement('img');
+    image.hidden=true;
+    image.alt='';
+    image.src=art+filename;
+    root.append(image);
+   }
+   switchScene(box,kind,onNext);
+   return ()=>{panel.dispose();panels.delete(box);};
   }
-  if(kind==='cl-prediction')return mountPrediction(root,onNext);
-  mountDigits(root);
-  return ()=>{};
- }};
+ };
 })();

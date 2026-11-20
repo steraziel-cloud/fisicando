@@ -514,10 +514,18 @@ document.addEventListener('DOMContentLoaded',()=>{
   const updateBoard=card.board==='position'||card.board==='displacement'?positionBoard(box,card.board,steps.length>=3):null;
   if(!archived&&!allMode)mountedCard={section:current,card,box,text,updateBoard,groupFrom:steps.at(-1)?.cumulativeFrom??0,replace:!Number.isInteger(steps.at(-1)?.cumulativeFrom)&&(card.stepMode==='replace'||!!steps.at(-1)?.replace)};
  }
+ const sharedComicPanel=(from,to)=>window.GatitoLetterale?.sharesPanel(from?.board,to?.board);
  function render(direction=0){
   const section=lesson.sections[current],item=flat(section)[state[current].cursor];
   if(!allMode&&item&&mountedCard?.section===current&&mountedCard.card===item.card){
    $('reader-section-title').textContent=lesson.sections[current].title+(referenceMode?' · Richiamo':'');updateCard(item,direction);$('reader-feedback').textContent='';index();actions();return;
+  }
+  if(!allMode&&item&&mountedCard?.section===current&&sharedComicPanel(mountedCard.card,item.card)){
+   const next=referenceMode?undefined:()=>$('reader-next').click();
+   if(window.GatitoLetterale.switchScene(mountedCard.box,item.card.board,next,direction)){
+    mountedCard.card=item.card;
+    index();actions();return;
+   }
   }
   $('reader-completion')?.remove();cancelSlide();const previousHeight=$('reader-steps').getBoundingClientRect().height;const previous=direction?[...$('reader-steps').childNodes]:[];mountedCard=null;
   disposeQuizNotebook();disposeQuizNotebook=()=>{};disposeWidget();disposeWidget=()=>{};$('reader-steps').replaceChildren();$('reader-checkpoint').replaceChildren();$('reader-checkpoint').hidden=true;$('reader-feedback').textContent='';
@@ -530,25 +538,28 @@ document.addEventListener('DOMContentLoaded',()=>{
  function top(){const target=$('reader-section-title');target.focus({preventScroll:true});target.scrollIntoView({block:'start',behavior:'auto'});}
  function open(i,focus=false,direction=0){const missing=requiredBefore(i);if(missing.length){pendingSection=i;current=missing[0];allMode=false;referenceMode=false;state[current].cursor=flat(lesson.sections[current]).length;quizState(current).gateOnly=true;render();top();return;}pendingSection=null;allMode=false;referenceMode=false;current=i;if(!lesson.sections[i].quiz&&state[i].cursor===flat(lesson.sections[i]).length)state[i].cursor=0;render(direction);history.replaceState(null,'','#'+lesson.sections[i].id);if(focus)top();}
  $('reader-next').addEventListener('click',()=>{
-  if(reviewAccess){const st=state[current],items=flat(lesson.sections[current]);if(st.cursor<items.length){const previous=items[st.cursor];st.cursor++;if(st.cursor===items.length&&!lesson.sections[current].quiz&&current<state.length-1){current++;state[current].cursor=0;open(current,true,1);return;}render(1);if(st.cursor===items.length||items[st.cursor]?.ci!==previous.ci)top();}else if(current<state.length-1){current++;state[current].cursor=0;open(current,true,1);}return;}
+  if(reviewAccess){const st=state[current],items=flat(lesson.sections[current]);if(st.cursor<items.length){const previous=items[st.cursor];st.cursor++;if(st.cursor===items.length&&!lesson.sections[current].quiz&&current<state.length-1){current++;state[current].cursor=0;open(current,true,1);return;}render(1);if((st.cursor===items.length||items[st.cursor]?.ci!==previous.ci)&&!sharedComicPanel(previous.card,items[st.cursor]?.card))top();}else if(current<state.length-1){current++;state[current].cursor=0;open(current,true,1);}return;}
   if(referenceMode){const st=state[current],item=flat(lesson.sections[current])[st.cursor];if(st.cursor>=referenceBounds.last||stepBlocked(item))return;st.cursor++;render(1);return;}
   const st=state[current],items=flat(lesson.sections[current]);
   if(st.cursor<items.length){const item=items[st.cursor];if(stepBlocked(item))return;
    st.cursor++;st.reached=Math.max(st.reached,st.cursor);
    if(st.cursor===items.length&&!lesson.sections[current].quiz){state[current].complete=true;if(current<state.length-1){open(current+1,true,1);return;}render();$('reader-next').hidden=true;top();return;}
-   const replaces=st.cursor===items.length||items[st.cursor].ci!==item.ci||item.card.stepMode==='replace';render(1);if(replaces&&items[st.cursor]?.ci!==item.ci)top();
+   const replaces=st.cursor===items.length||items[st.cursor].ci!==item.ci||item.card.stepMode==='replace';render(1);if(replaces&&items[st.cursor]?.ci!==item.ci&&!sharedComicPanel(item.card,items[st.cursor]?.card))top();
   }else if(st.complete){if(current<state.length-1)open(current+1,true,1);else{$('reader-feedback').textContent='Lezione completata! Nell’indice puoi rivedere le parti o scegliere «Sblocca tutto».';$('reader-next').hidden=true;completionLinks();}}
  });
  $('reader-prev').addEventListener('click',()=>{
   if(referenceMode){if(state[current].cursor>referenceBounds.first){state[current].cursor--;render(-1);}return;}
   if(allMode)return;
-  if(state[current].cursor>0){const previous=flat(lesson.sections[current])[state[current].cursor];state[current].cursor--;render(-1);if(flat(lesson.sections[current])[state[current].cursor].ci!==previous?.ci)top();}
+  if(state[current].cursor>0){const previous=flat(lesson.sections[current])[state[current].cursor];state[current].cursor--;render(-1);const currentItem=flat(lesson.sections[current])[state[current].cursor];if(currentItem.ci!==previous?.ci&&!sharedComicPanel(previous?.card,currentItem.card))top();}
   else if(current>0){pendingSection=null;current--;state[current].cursor=Math.max(0,flat(lesson.sections[current]).length-1);render(-1);history.replaceState(null,'','#'+lesson.sections[current].id);top();}
  });
  document.addEventListener('keydown',e=>{
   if(e.defaultPrevented||e.repeat||e.altKey||e.ctrlKey||e.metaKey||e.shiftKey||allMode||!['ArrowLeft','ArrowRight'].includes(e.key))return;
   const target=e.target;
   if(document.querySelector('dialog[open]')||target.isContentEditable||target.closest('input,textarea,select,[contenteditable="true"],[role="slider"],[role="spinbutton"],[role="tablist"],.nb-notebook,.rm-reader-board,.dp-board,.mp-board,.rm-reader-card svg,canvas'))return;
+  if(mountedCard&&window.GatitoLetterale?.navigate(mountedCard.box,e.key==='ArrowLeft'?-1:1)){
+   e.preventDefault();return;
+  }
   const control=$(e.key==='ArrowLeft'?'reader-prev':'reader-next');
   if(!control.hidden&&!control.disabled){e.preventDefault();control.click();}
  });
