@@ -1,3 +1,6 @@
+html:has(body[data-reader-lesson="calcolo-letterale-introduzione"]) {
+ scrollbar-gutter:stable;
+}
 .cl-comic-card,
 .cl-festival-card {
  container-type:inline-size;
