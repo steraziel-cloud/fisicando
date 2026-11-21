@@ -139,12 +139,23 @@
   scene.onclick=()=>{
    if(!button.hidden&&!button.disabled&&!window.getSelection()?.toString())button.click();
   };
+  let previousLine,balloonEntrance;
   function say(speaker,name,line){
    balloon.dataset.speaker=speaker;
    const label=document.createElement('span');
    label.className='cl-speaker-name';
    label.textContent=name+' dice: ';
    balloon.replaceChildren(label,document.createTextNode(line));
+   if(previousLine===line)return;
+   previousLine=line;
+   if(!scene.classList.contains('cl-booth')||!balloon.animate||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+   balloonEntrance?.cancel();
+   const transformOrigin='8% 80%';
+   balloonEntrance=balloon.animate([
+    {opacity:0,transform:'translate(-5px, 2px) scale(.88)',transformOrigin},
+    {opacity:1,transform:'scale(1.025)',transformOrigin,offset:.66},
+    {opacity:1,transform:'scale(1)',transformOrigin}
+   ],{duration:280,easing:'ease-out'});
   }
   return {scene,balloon,button,say,clearTransition};
  }
