@@ -80,7 +80,7 @@
  {id:'sfide',title:'Le sfide di Sibilla',cards:[
  {...card(comicTitle,comicText),board:'cl-intro'},
  {...card('Prima sfida · La sfera di Sibilla',comicText),board:'cl-prediction'},
- {...card('Due numeri, proprio in quell’ordine','<p>Sibilla sorride. Stavolta scommette di indovinare due numeri, nell’ordine in cui li hai pensati.</p>'),board:'cl-digits'},
+ {...card('Due numeri, proprio in quell’ordine','Sibilla sorride. Stavolta scommette di indovinare due numeri, nell’ordine in cui li hai pensati.'),board:'cl-digits'},
  card('Come ha fatto?','Red guarda la sfera. «Lì dentro c’è qualcuno che suggerisce?» Bjorne si avvicina ancora un po’. «E se cambiassimo numeri?»<br><br>Nel primo gioco, scelte diverse portano alla stessa previsione. Nel secondo, invece, il risultato permette di ritrovare entrambe le scelte e il loro ordine.<br><br><strong>Per capire perché, dobbiamo descrivere le operazioni senza scegliere subito i numeri.</strong>')
  ]},
  {id:'lettere',title:'Descrivere il calcolo con le lettere',cards:[
@@ -226,6 +226,8 @@
  function mountDigits(panel,onNext,direction){
   const {scene,button,say,clearTransition}=comicPanel(panel,digitsView,direction);
   const state=gameState.digits;
+  const story=panel.text?.querySelector('.rm-reader-step > p');
+  const openingStory=story?.textContent;
   const reportStage=digitsLines.length-1;
   const form=document.createElement('form');
   form.className='cl-controls cl-digits-form';
@@ -239,6 +241,8 @@
   function draw(message=state.choices?`Hai pensato a ${state.choices[0]} e poi a ${state.choices[1]}!`:digitsLines[state.stage]){
    say('sibilla','Sibilla',message);
    const revealed=!!state.choices;
+   const storyLine=revealed?'Incredibile! Ma come ha fatto Sibilla? Sa davvero leggerti nel pensiero o c’è un trucco?':openingStory;
+   if(story&&story.textContent!==storyLine)story.textContent=storyLine;
    const reporting=state.stage===reportStage&&!revealed;
    button.hidden=reporting||(revealed&&!onNext);
    button.disabled=false;
@@ -329,7 +333,7 @@
    button.setAttribute('aria-keyshortcuts','ArrowRight ArrowLeft');
    controls.append(button);
    copy.append(controls);
-   const panel={root,button};
+   const panel={root,button,text};
    panels.set(box,panel);
    for(const filename of [
     'balloon-sibilla-viale.png?v=3','balloon-red.png?v=3','balloon-bjorne.png?v=3','balloon-sibilla-banco-curvo.png',
