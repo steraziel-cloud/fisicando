@@ -229,12 +229,13 @@
   const reportStage=digitsLines.length-1;
   const form=document.createElement('form');
   form.className='cl-controls cl-digits-form';
-  form.tabIndex=-1;
   form.innerHTML=`
-   <label>Il tuo risultato finale <input type="number" inputmode="numeric" step="1" required></label>
-   <button type="submit" class="rm-btn">Rivela le due scelte</button>`;
+   <label>Il tuo risultato finale è <input type="number" inputmode="numeric" step="1" required></label>
+   <button type="submit" class="rm-btn" hidden>Sibilla ti rivelerà i due numeri</button>`;
   button.after(form);
   const input=form.querySelector('input');
+  const submit=form.querySelector('button');
+  const updateSubmit=()=>{submit.hidden=!input.validity.valid;};
   function draw(message=state.choices?`Hai pensato a ${state.choices[0]} e poi a ${state.choices[1]}!`:digitsLines[state.stage]){
    say('sibilla','Sibilla',message);
    const revealed=!!state.choices;
@@ -247,8 +248,10 @@
    scene.dataset.pose=revealed?'reveal':state.stage%2===0?'talk':'listen';
   }
   input.value=state.answer;
+  updateSubmit();
   input.oninput=()=>{
    state.answer=input.value;
+   updateSubmit();
    if(input.hasAttribute('aria-invalid')){
     input.removeAttribute('aria-invalid');
     draw();
@@ -273,7 +276,7 @@
    else state.stage--;
    input.removeAttribute('aria-invalid');
    draw();
-   if(!form.hidden)form.focus({preventScroll:true});
+   if(!form.hidden)input.focus({preventScroll:true});
    else button.focus({preventScroll:true});
    return true;
   };
@@ -281,7 +284,7 @@
    if(state.choices){onNext?.();return;}
    state.stage++;
    draw();
-   if(!form.hidden)form.focus({preventScroll:true});
+   if(!form.hidden)input.focus({preventScroll:true});
   };
   scene.tabIndex=-1;
   draw();

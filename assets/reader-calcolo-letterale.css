@@ -317,21 +317,29 @@ html:has(body[data-reader-lesson="calcolo-letterale-introduzione"]) {
 }
 .cl-digits-form {
  padding:0;
+ gap:12px;
+ grid-template-rows:auto minmax(48px,auto);
 }
-.cl-controls label {
+.cl-digits-form label {
  display:flex;
  flex-wrap:wrap;
- gap:8px;
+ gap:10px;
  align-items:center;
+ font-size:clamp(1.1rem,2cqw,1.3rem);
+ font-weight:700;
 }
-.cl-controls input {
- width:6ch;
- padding:5px 8px;
- border:1px solid var(--rm-line);
- border-radius:8px;
+.cl-digits-form input {
+ box-sizing:border-box;
+ width:7ch;
+ min-height:48px;
+ padding:6px 10px;
+ border:2px solid var(--rm-line);
+ border-radius:10px;
  background:var(--rm-card);
  color:var(--rm-text);
  font:inherit;
+ text-align:center;
+ font-variant-numeric:tabular-nums;
 }
 .cl-formula {
  margin:18px 0;
