@@ -36,6 +36,17 @@
   </div>
   <output class="cl-orb-result" aria-live="polite" aria-atomic="true"></output>
  </div>`;
+ const digitsView=`<div class="cl-scene cl-booth cl-digits">
+  <div role="img" aria-label="Sibilla guarda verso di te. La sfera di cristallo è appoggiata a sinistra sul bancone.">
+   <img class="cl-backdrop" src="${art}banco-fumetto.webp" alt="">
+   <div class="cl-digits-poses">
+    <img class="cl-digits-listen" src="${art}sibilla-ascolta.png" alt="">
+    <img class="cl-digits-talk" src="${art}sibilla-parla.png" alt="">
+    <img class="cl-digits-reveal" src="${art}sibilla-rivela.png" alt="">
+   </div>
+   <img class="cl-orb" src="${art}sfera.webp" alt="">
+  </div>
+ </div>`;
  const introLines=[
   ['sibilla','Sibilla','Fatevi avanti! Io sono Sibilla, la gattina indovina!'],
   ['sibilla','Sibilla','Avvicinatevi, avvicinatevi!'],
@@ -211,10 +222,9 @@
   return ()=>{clearTimeout(timer);clearTransition();};
  }
  function mountDigits(panel,onNext,direction){
-  const {scene,button,say,clearTransition}=comicPanel(panel,boothView,direction);
+  const {scene,button,say,clearTransition}=comicPanel(panel,digitsView,direction);
   const state=gameState.digits;
   const reportStage=digitsLines.length-1;
-  const result=scene.querySelector('output');
   const form=document.createElement('form');
   form.className='cl-controls cl-digits-form';
   form.tabIndex=-1;
@@ -223,7 +233,7 @@
    <button type="submit" class="rm-btn">Rivela le due scelte</button>`;
   button.after(form);
   const input=form.querySelector('input');
-  function draw(message=state.choices?'Eccole, proprio nell’ordine che hai scelto!':digitsLines[state.stage]){
+  function draw(message=state.choices?`Hai pensato a ${state.choices[0]} e poi a ${state.choices[1]}!`:digitsLines[state.stage]){
    say('sibilla','Sibilla',message);
    const revealed=!!state.choices;
    const reporting=state.stage===reportStage&&!revealed;
@@ -232,10 +242,7 @@
    button.textContent=revealed?'Continua':'Fatto';
    form.hidden=!reporting;
    scene.classList.toggle('cl-tappable',!button.hidden);
-   scene.classList.toggle('cl-revealed',revealed);
-   result.textContent=state.choices;
-   if(revealed)result.setAttribute('aria-label',`La sfera mostra ${state.choices[0]} e ${state.choices[1]}`);
-   else result.removeAttribute('aria-label');
+   scene.dataset.pose=revealed?'reveal':state.stage%2===0?'talk':'listen';
   }
   input.value=state.answer;
   input.oninput=()=>{

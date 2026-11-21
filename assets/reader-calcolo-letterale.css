@@ -175,6 +175,34 @@ html:has(body[data-reader-lesson="calcolo-letterale-introduzione"]) {
  bottom:17.5%;
  width:23%;
 }
+.cl-digits .cl-orb {
+ left:15%;
+ width:16%;
+}
+.cl-digits-poses {
+ position:absolute;
+ inset:0;
+ clip-path:inset(0 0 29.7% 0);
+}
+.cl-digits-poses img {
+ left:25%;
+ top:12%;
+ width:48%;
+ visibility:hidden;
+}
+.cl-digits[data-pose="listen"] .cl-digits-listen,
+.cl-digits[data-pose="talk"] .cl-digits-talk,
+.cl-digits[data-pose="reveal"] .cl-digits-reveal {
+ visibility:visible;
+}
+.cl-digits[data-pose="talk"] .cl-digits-talk,
+.cl-digits[data-pose="reveal"] .cl-digits-reveal {
+ animation:cl-digits-gesture .3s ease-out;
+}
+@keyframes cl-digits-gesture {
+ from {transform:translateY(.45cqw);}
+ to {transform:translateY(0);}
+}
 .cl-sibilla-gesture,
 .cl-trance .cl-sibilla-calm {
  visibility:hidden;
