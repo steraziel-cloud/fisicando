@@ -163,12 +163,16 @@ html:has(body[data-reader-lesson="calcolo-letterale-introduzione"]) {
 .cl-approached .cl-step-rear {
  animation:cl-footfall .4s steps(1) calc(var(--gait-offset) - .2s) infinite;
 }
-.cl-booth .cl-sibilla {
+.cl-booth-character {
+ position:absolute;
+ inset:0;
+ /* The backdrop’s countertop hides the lower part of every pose. */
+ clip-path:inset(0 0 29.7% 0);
+}
+.cl-booth-character img {
+ top:19%;
  left:24%;
- top:11%;
  width:50%;
- clip-path:inset(0 0 6% 0);
- transform-origin:55% 77%;
 }
 .cl-booth .cl-orb {
  left:40.5%;
@@ -179,14 +183,8 @@ html:has(body[data-reader-lesson="calcolo-letterale-introduzione"]) {
  left:15%;
  width:16%;
 }
-.cl-digits-poses {
- position:absolute;
- inset:0;
- clip-path:inset(0 0 29.7% 0);
-}
-.cl-digits-poses img {
+.cl-digits .cl-booth-character img {
  left:25%;
- top:12%;
  width:48%;
  visibility:hidden;
 }

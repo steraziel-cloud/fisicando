@@ -29,9 +29,11 @@
  const boothView=`<div class="cl-scene cl-booth">
   <div role="img" aria-label="Sibilla siede dietro il bancone e tende le zampe intorno alla sfera di cristallo.">
    <img class="cl-backdrop" src="${art}banco-fumetto.webp" alt="">
-   <img class="cl-sibilla cl-sibilla-calm" src="${art}sibilla-seduta.webp" alt="">
-   <img class="cl-sibilla cl-sibilla-gesture cl-sibilla-first" src="${art}sibilla-concentrazione.webp" alt="">
-   <img class="cl-sibilla cl-sibilla-gesture cl-sibilla-second" src="${art}sibilla-gesto.webp" alt="">
+   <div class="cl-booth-character">
+    <img class="cl-sibilla cl-sibilla-calm" src="${art}sibilla-seduta.webp" alt="">
+    <img class="cl-sibilla cl-sibilla-gesture cl-sibilla-first" src="${art}sibilla-concentrazione.webp" alt="">
+    <img class="cl-sibilla cl-sibilla-gesture cl-sibilla-second" src="${art}sibilla-gesto.webp" alt="">
+   </div>
    <img class="cl-orb" src="${art}sfera.webp" alt="">
   </div>
   <output class="cl-orb-result" aria-live="polite" aria-atomic="true"></output>
@@ -39,7 +41,7 @@
  const digitsView=`<div class="cl-scene cl-booth cl-digits">
   <div role="img" aria-label="Sibilla guarda verso di te. La sfera di cristallo è appoggiata a sinistra sul bancone.">
    <img class="cl-backdrop" src="${art}banco-fumetto.webp" alt="">
-   <div class="cl-digits-poses">
+   <div class="cl-booth-character">
     <img class="cl-digits-listen" src="${art}sibilla-ascolta.png" alt="">
     <img class="cl-digits-talk" src="${art}sibilla-parla.png" alt="">
     <img class="cl-digits-reveal" src="${art}sibilla-rivela.png" alt="">
