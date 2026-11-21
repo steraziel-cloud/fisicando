@@ -67,7 +67,7 @@
  {id:'sfide',title:'Le sfide di Sibilla',cards:[
  {...card(comicTitle,comicText),board:'cl-intro'},
  {...card('Prima sfida · La sfera di Sibilla',comicText),board:'cl-prediction'},
- {...card('Due numeri, proprio in quell’ordine','<p>Red fissa il cinque nella sfera. Bjorne, che ha seguito ogni passaggio sul suo foglio, si sporge verso il bancone. Stavolta Sibilla dice che saprà indovinare addirittura due numeri, nell’ordine in cui li hai pensati.</p><p>Red lancia un’occhiata a Bjorne. Come farà a sapere quale dei due è venuto prima?</p>'),board:'cl-digits'},
+ {...card('Due numeri, proprio in quell’ordine','<p>Sibilla sorride. Stavolta scommette di indovinare due numeri, nell’ordine in cui li hai pensati.</p>'),board:'cl-digits'},
  card('Come ha fatto?','Red guarda la sfera. «Lì dentro c’è qualcuno che suggerisce?» Bjorne si avvicina ancora un po’. «E se cambiassimo numeri?»<br><br>Nel primo gioco, scelte diverse portano alla stessa previsione. Nel secondo, invece, il risultato permette di ritrovare entrambe le scelte e il loro ordine.<br><br><strong>Per capire perché, dobbiamo descrivere le operazioni senza scegliere subito i numeri.</strong>')
  ]},
  {id:'lettere',title:'Descrivere il calcolo con le lettere',cards:[
