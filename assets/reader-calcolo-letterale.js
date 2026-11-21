@@ -6,12 +6,12 @@
  const formula=s=>`<div class="cl-formula">${m(s)}</div>`;
  const card=(title,...html)=>({title,stepMode:'replace',steps:html.map(html=>({html}))});
  const quiz=(question,options,answer,feedback)=>({questions:[{question,options,answer,feedback}]});
- const gameState={intro:{beat:-1},prediction:{stage:0},digits:{answer:'',choices:''}};
+ const gameState={intro:{beat:-1},prediction:{stage:0},digits:{stage:0,answer:'',choices:''}};
  const art='assets/images/reader/sibilla-festival/';
  const panels=new WeakMap();
  const comicTitle='Ora vi leggerò nella mente…';
  const comicText='<p>Alla festa dell’Accademia c’è una bancarella insolita. Sibilla sostiene di saper leggere nel pensiero, e Red e Bjorne vogliono metterla alla prova.</p><p>La sfida è anche per te. Tieni pronto un foglio per i conti.</p>';
- const isComic=kind=>kind==='cl-intro'||kind==='cl-prediction';
+ const isOpeningComic=kind=>kind==='cl-intro'||kind==='cl-prediction';
  const festivalView=`<div class="cl-scene cl-festival">
   <div role="img" aria-label="Red e Bjorne camminano lungo il viale verso il portone in fondo. Più avanti, sulla destra, Sibilla li chiama accanto all’Antro di Sibilla.">
    <img class="cl-backdrop" src="${art}viale-antro-sibilla.webp" alt="">
@@ -52,13 +52,22 @@
   'Bene!',
   'Il risultato che stai pensando è…'
  ];
+ const digitsLines=[
+  'Scegli due cifre da 1 a 9. Anche uguali!',
+  'Decidi quale viene prima. Tienile segrete!',
+  'Raddoppia la prima cifra.',
+  'Aggiungi 5 al risultato.',
+  'Moltiplica il risultato per 5.',
+  'Ora aggiungi la seconda cifra.',
+  'Dimmi solo il totale. Al resto penso io!'
+ ];
  window.READER_LESSONS['calcolo-letterale-introduzione']={
  title:'Introduzione al calcolo letterale',subtitle:'Matematica · Algebra · Calcolo letterale',version:1,nextLesson:false,
  sections:[
  {id:'sfide',title:'Le sfide di Sibilla',cards:[
  {...card(comicTitle,comicText),board:'cl-intro'},
  {...card('Prima sfida · La sfera di Sibilla',comicText),board:'cl-prediction'},
- {...card('Seconda sfida · Due numeri, proprio in quell’ordine','Scegli in segreto <strong>due numeri interi da 1 a 9</strong>, anche uguali, e stabilisci quale viene prima. Raddoppia il primo, aggiungi 5, moltiplica il risultato per 5 e infine aggiungi il secondo. Comunica a Sibilla <strong>soltanto il risultato finale</strong>.'),board:'cl-digits'},
+ {...card('Due numeri, proprio in quell’ordine','<p>Red fissa il cinque nella sfera. Bjorne, che ha seguito ogni passaggio sul suo foglio, si sporge verso il bancone. Stavolta Sibilla dice che saprà indovinare addirittura due numeri, nell’ordine in cui li hai pensati.</p><p>Red lancia un’occhiata a Bjorne. Come farà a sapere quale dei due è venuto prima?</p>'),board:'cl-digits'},
  card('Come ha fatto?','Red guarda la sfera. «Lì dentro c’è qualcuno che suggerisce?» Bjorne si avvicina ancora un po’. «E se cambiassimo numeri?»<br><br>Nel primo gioco, scelte diverse portano alla stessa previsione. Nel secondo, invece, il risultato permette di ritrovare entrambe le scelte e il loro ordine.<br><br><strong>Per capire perché, dobbiamo descrivere le operazioni senza scegliere subito i numeri.</strong>')
  ]},
  {id:'lettere',title:'Descrivere il calcolo con le lettere',cards:[
@@ -201,50 +210,84 @@
   };
   return ()=>{clearTimeout(timer);clearTransition();};
  }
- function mountDigits(root){
+ function mountDigits(panel,onNext,direction){
+  const {scene,button,say,clearTransition}=comicPanel(panel,boothView,direction);
   const state=gameState.digits;
-  root.innerHTML=boothView+`<form class="cl-controls">
+  const reportStage=digitsLines.length-1;
+  const result=scene.querySelector('output');
+  const form=document.createElement('form');
+  form.className='cl-controls cl-digits-form';
+  form.tabIndex=-1;
+  form.innerHTML=`
    <label>Il tuo risultato finale <input type="number" inputmode="numeric" step="1" required></label>
-   <button type="submit" class="rm-btn">Rivela le due scelte</button>
-   <p class="cl-response" aria-live="polite"></p>
-  </form>`;
-  const form=root.querySelector('form'),input=form.querySelector('input');
-  const result=root.querySelector('output'),response=form.querySelector('.cl-response');
-  function showChoices(choices){
-   state.choices=choices;
-   result.textContent=choices;
-   result.setAttribute('aria-label',choices?`La sfera mostra ${choices[0]} e ${choices[1]}`:'');
+   <button type="submit" class="rm-btn">Rivela le due scelte</button>`;
+  button.after(form);
+  const input=form.querySelector('input');
+  function draw(message=state.choices?'Eccole, proprio nell’ordine che hai scelto!':digitsLines[state.stage]){
+   say('sibilla','Sibilla',message);
+   const revealed=!!state.choices;
+   const reporting=state.stage===reportStage&&!revealed;
+   button.hidden=reporting||(revealed&&!onNext);
+   button.disabled=false;
+   button.textContent=revealed?'Continua':'Fatto';
+   form.hidden=!reporting;
+   scene.classList.toggle('cl-tappable',!button.hidden);
+   scene.classList.toggle('cl-revealed',revealed);
+   result.textContent=state.choices;
+   if(revealed)result.setAttribute('aria-label',`La sfera mostra ${state.choices[0]} e ${state.choices[1]}`);
+   else result.removeAttribute('aria-label');
   }
   input.value=state.answer;
-  showChoices(state.choices);
   input.oninput=()=>{
    state.answer=input.value;
-   if(state.choices)showChoices('');
-   response.textContent='';
+   if(input.hasAttribute('aria-invalid')){
+    input.removeAttribute('aria-invalid');
+    draw();
+   }
   };
   form.onsubmit=event=>{
    event.preventDefault();
    const total=input.valueAsNumber,code=total-25;
    const first=Math.floor(code/10),second=code%10;
    if(!Number.isInteger(total)||first<1||first>9||second<1||second>9){
-    showChoices('');
-    response.textContent='Ricontrolla i passaggi. Il totale deve corrispondere a due scelte da 1 a 9.';
+    input.setAttribute('aria-invalid','true');
+    draw('Quel totale non torna. Ricontrolla i conti!');
     return;
    }
-   showChoices(`${first}${second}`);
-   response.textContent='';
+   state.choices=`${first}${second}`;
+   draw();
+   (onNext?button:scene).focus({preventScroll:true});
   };
+  panel.back=()=>{
+   if(!state.stage)return false;
+   if(state.choices)state.choices='';
+   else state.stage--;
+   input.removeAttribute('aria-invalid');
+   draw();
+   if(!form.hidden)form.focus({preventScroll:true});
+   else button.focus({preventScroll:true});
+   return true;
+  };
+  button.onclick=()=>{
+   if(state.choices){onNext?.();return;}
+   state.stage++;
+   draw();
+   if(!form.hidden)form.focus({preventScroll:true});
+  };
+  scene.tabIndex=-1;
+  draw();
+  return ()=>{form.remove();clearTransition();};
  }
- const mounts={'cl-intro':mountIntro,'cl-prediction':mountPrediction};
+ const mounts={'cl-intro':mountIntro,'cl-prediction':mountPrediction,'cl-digits':mountDigits};
  function switchScene(box,kind,onNext,direction=0){
   const panel=panels.get(box);
-  if(!panel||!isComic(kind))return false;
+  if(!panel||!Object.hasOwn(mounts,kind))return false;
   panel.dispose?.();
   panel.dispose=mounts[kind](panel,onNext,direction);
   return true;
  }
  window.GatitoLetterale={
-  sharesPanel:(from,to)=>from!==to&&isComic(from)&&isComic(to),
+  sharesPanel:(from,to)=>from!==to&&isOpeningComic(from)&&isOpeningComic(to),
   switchScene,
   navigate(box,direction){
    const panel=panels.get(box);
@@ -257,16 +300,11 @@
    const root=document.createElement('div');
    root.className='cl-game';
    box.append(root);
-   if(!isComic(kind)){
-    box.classList.add('cl-festival-card');
-    mountDigits(root);
-    return ()=>{};
-   }
    box.classList.add('cl-comic-card','cl-intro-card');
    const copy=document.createElement('div');
    copy.className='cl-intro-copy';
    const heading=box.querySelector('.rm-card-title');
-   if(heading)heading.textContent=comicTitle;
+   if(heading&&isOpeningComic(kind))heading.textContent=comicTitle;
    const text=box.querySelector('.rm-card-text');
    if(heading)copy.append(heading);
    if(text)copy.append(text);

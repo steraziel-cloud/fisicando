@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  function actions(){
   const activeItem=flat(lesson.sections[current])[state[current].cursor];
   const skippingGame=activeItem?.card.board==='matter-cards'&&!state[current].matterCards?.done;
-  const comicControls=['cl-intro','cl-prediction'].includes(activeItem?.card.board)&&!!window.GatitoLetterale;
+  const comicControls=['cl-intro','cl-prediction','cl-digits'].includes(activeItem?.card.board)&&!!window.GatitoLetterale;
   if(reviewAccess&&!allMode){const count=flat(lesson.sections[current]).length,st=state[current];$('reader-prev').hidden=current===0&&st.cursor===0;$('reader-next').hidden=comicControls||(current===state.length-1&&st.cursor===count);$('reader-next').disabled=false;$('reader-next').textContent=st.cursor<count?'Continua →':'Passa alla parte successiva →';$('reader-step-count').textContent=(st.cursor<count?'Passaggio '+(st.cursor+1)+' di '+count:'Checkpoint facoltativo')+' · Navigazione libera';return;}
   if(referenceMode){
    const st=state[current],item=flat(lesson.sections[current])[st.cursor];

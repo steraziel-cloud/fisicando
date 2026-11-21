@@ -8,8 +8,7 @@
 html:has(body[data-reader-lesson="calcolo-letterale-introduzione"]) {
  scrollbar-gutter:stable;
 }
-.cl-comic-card,
-.cl-festival-card {
+.cl-comic-card {
  container-type:inline-size;
 }
 .cl-comic-card > .rm-card-text {
@@ -81,28 +80,6 @@ html:has(body[data-reader-lesson="calcolo-letterale-introduzione"]) {
   grid-row:4;
   margin:0;
  }
-}
-.cl-festival-card {
- display:grid;
- grid-template-columns:minmax(0, .8fr) minmax(0, 1.2fr);
- grid-template-rows:auto 1fr;
- gap:8px 24px;
- align-items:start;
-}
-.cl-festival-card > .rm-card-title,
-.cl-festival-card > .rm-card-text {
- grid-column:1;
- margin:0;
-}
-.cl-festival-card > .rm-card-text {
- max-width:none;
-}
-.cl-festival-card .rm-reader-step {
- padding:0;
-}
-.cl-festival-card .cl-game {
- grid-column:2;
- grid-row:1 / 3;
 }
 .cl-game {
  position:relative;
@@ -313,12 +290,8 @@ html:has(body[data-reader-lesson="calcolo-letterale-introduzione"]) {
  background:#532e63;
  color:#fff;
 }
-.cl-controls p {
- margin:0;
- line-height:1.5;
-}
-.cl-controls p:empty {
- display:none;
+.cl-digits-form {
+ padding:0;
 }
 .cl-controls label {
  display:flex;
@@ -373,15 +346,6 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] math[display="block"] 
  to {opacity:1;transform:translate(-50%,-50%) scale(1);}
 }
 @media (max-width:700px) {
- .cl-festival-card {
-  grid-template-columns:minmax(0,1fr);
-  grid-template-rows:auto;
- }
- .cl-festival-card .cl-game {
-  grid-column:1;
-  grid-row:auto;
-  margin-top:6px;
- }
  .cl-festival .cl-balloon:not([data-speaker="sibilla"]) {
   max-width:58%;
  }
