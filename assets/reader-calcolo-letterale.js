@@ -116,7 +116,7 @@
   displayMath('<msup><mi>x</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><mfrac><mn>1</mn><mi>x</mi></mfrac><mspace width="1em"/><mtext>per</mtext><mspace width=".3em"/><mi>x</mi><mo>≠</mo><mn>0</mn>')+
   'Anche queste scritture sono frazionarie.'+
   displayMath('<mfrac><mn>2</mn><mi>x</mi></mfrac><mspace width="2em"/><mfrac><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mrow><mi>x</mi><mo>−</mo><mn>3</mn></mrow></mfrac>')+
-  'Una frazione con denominatore numerico può invece essere un coefficiente. Questa espressione è <strong>intera</strong>.'+
+  '<strong>Attenzione:</strong> l’espressione x diviso 2 è razionale <strong>intera</strong>. Al denominatore c’è il numero 2. Dividere il valore di x per 2 equivale a moltiplicarlo per un mezzo, cioè a dimezzare la quantità rappresentata da x.'+
   displayMath('<mfrac><mi>x</mi><mn>2</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>·</mo><mi>x</mi>')),
   stepMode:'intro-fixed'}
  ],quiz:{questions:[
