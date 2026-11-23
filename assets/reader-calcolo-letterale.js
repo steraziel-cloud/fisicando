@@ -172,9 +172,15 @@
   '<strong>Espressioni razionali.</strong> Le espressioni razionali sono intere quando le lettere non compaiono nei denominatori o come basi di potenze con esponente negativo. Sono frazionarie quando una lettera compare al denominatore, anche in scritture come x⁻¹, che indica 1/x.<br><br>'+
   '<strong>Valori ammessi.</strong> Teniamo conto di ciò che le lettere rappresentano e delle condizioni di esistenza. Per esempio, un denominatore deve essere diverso da zero.<br><br>'+
   '<strong>Valutare un’espressione.</strong> Sostituiamo ogni lettera con il valore assegnato, lo stesso ogni volta che compare, e svolgiamo i calcoli rispettando l’ordine delle operazioni.'+
-  displayMath('<mn>2</mn><mi>x</mi><mo>+</mo><mn>10</mn><mspace width="1em"/><mtext>per</mtext><mspace width=".3em"/><mi>x</mi><mo>=</mo><mn>7</mn><mo>:</mo><mspace width=".5em"/><mn>2</mn><mo>·</mo><mn>7</mn><mo>+</mo><mn>10</mn><mo>=</mo><mn>24</mn>')+
-  '<strong>I trucchi di Sibilla.</strong> Le lettere ci hanno permesso di seguire i calcoli dei due giochi. Nel primo la scelta iniziale si cancella e resta 5. Nel secondo, sottraendo 25, ritroviamo nell’ordine le due cifre scelte.')
- ]}
+  displayMath('<mn>2</mn><mi>x</mi><mo>+</mo><mn>10</mn><mspace width="1em"/><mtext>per</mtext><mspace width=".3em"/><mi>x</mi><mo>=</mo><mn>7</mn><mo>:</mo><mspace width=".5em"/><mn>2</mn><mo>·</mo><mn>7</mn><mo>+</mo><mn>10</mn><mo>=</mo><mn>24</mn>'))
+ ],quiz:{title:'Verifica finale',questions:[
+ question('In ogni scatola ci sono n matite. Metti insieme le matite di tre scatole e ne togli due. Quale espressione descrive il procedimento?',['3(n − 2)','3n − 2','n + 3 − 2'],1,'Le tre scatole danno 3n matite. Ne togliamo due dal totale, quindi otteniamo 3n − 2.'),
+ question('Quanto vale 2(x − 3) − x² per x = −2?',['−14','−6','6'],0,'Prima calcoliamo −2 − 3 = −5 e (−2)² = 4. Quindi 2 · (−5) − 4 = −14.'),
+ question('Quale tra queste espressioni razionali è intera?',['3/(x + 1)','2 + x⁻¹','(x² + 1)/3'],2,'Nell’ultima scrittura il denominatore è 3. In 3/(x + 1) la lettera è al denominatore e x⁻¹ equivale a 1/x.'),
+ question('Per quali valori di x possiamo valutare 1/(x − 2) + 1/(x + 1)?',['Tutti tranne −2 e 1','Tutti tranne 2 e −1','Tutti tranne 2'],1,'Devono essere diversi da zero entrambi i denominatori. Il primo si annulla per x = 2 e il secondo per x = −1.'),
+ question('Per trovare la media di 18 libri su n ripiani usiamo 18/n. Quale valore di n rispetta sia il contesto sia la condizione di esistenza?',['0','2,5','4'],2,'I ripiani si contano con numeri interi e la divisione esclude lo zero. Anche se 18 non è un multiplo di 4, la media si può calcolare.'),
+ question('Quanto vale (a + 2b)/(a − b) per a = −2 e b = 1?',['0','−4/3','L’espressione non esiste'],0,'Il denominatore vale −3 e il numeratore vale 0. La divisione si può fare e 0 diviso −3 vale 0.')
+ ]}}
  ]};
  function comicPanel(panel,view,direction){
   const {root,button}=panel;

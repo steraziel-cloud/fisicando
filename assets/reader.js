@@ -367,7 +367,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  function checkpoint(){
   const section=lesson.sections[current],quiz=section.quiz,qs=quizState(current),box=$('reader-checkpoint');
   disposeQuizNotebook();disposeQuizNotebook=()=>{};box.replaceChildren();box.hidden=false;box.classList.remove('rm-checkpoint-with-notebook');
-  box.append(el('h3','',pendingSection!==null?'Verifica i prerequisiti · '+section.title:'Controlla l’idea'));
+  box.append(el('h3','',pendingSection!==null?'Verifica i prerequisiti · '+section.title:(quiz.title??'Controlla l’idea')));
   if(quiz.type&&!qs.special&&!qs.gateOnly){
    if(quiz.type==='period-lab'){periodLab(box);return;}
    if(quiz.type==='velocity-graph'){window.GatitoVelocityGraph.mount(box,state[current].velocityGraph,()=>finish('Hai letto correttamente la funzione velocità nei quattro istanti.'));return;}
