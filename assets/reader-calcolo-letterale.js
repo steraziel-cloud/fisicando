@@ -146,8 +146,14 @@
   'Il denominatore si annulla quando '+m('x = 3')+'. Escludiamo quindi quel valore. La condizione di esistenza è:'+
   displayMath('<mi>x</mi><mo>≠</mo><mn>3</mn>')+
   'Con '+m('x = 4')+' il denominatore vale 1 e possiamo fare il calcolo:'+
-  displayMath('<mfrac><mrow><mn>4</mn><mo>+</mo><mn>1</mn></mrow><mrow><mn>4</mn><mo>−</mo><mn>3</mn></mrow></mfrac><mo>=</mo><mfrac><mn>5</mn><mn>1</mn></mfrac><mo>=</mo><mn>5</mn>')+
-  '<strong>I vincoli del contesto.</strong> Supponiamo di sistemare 12 libri su '+m('n')+' ripiani. Il numero medio di libri per ripiano è '+m('12/n')+'. Poiché '+m('n')+' conta i ripiani, deve essere un intero non negativo. La divisione richiede anche '+m('n ≠ 0')+'. Rispettando entrambe le condizioni, possiamo usare '+m('n = 1, 2, 3, …')+'.')
+  displayMath('<mfrac><mrow><mn>4</mn><mo>+</mo><mn>1</mn></mrow><mrow><mn>4</mn><mo>−</mo><mn>3</mn></mrow></mfrac><mo>=</mo><mfrac><mn>5</mn><mn>1</mn></mfrac><mo>=</mo><mn>5</mn>')),
+ card('Condizioni di esistenza e vincolo del contesto',
+  '<span class="cl-wide-text">Supponiamo di sistemare 12 libri e di avere '+m('n')+' ripiani. Per sapere quanti libri ci sono in media su ogni ripiano, dividiamo 12 per il numero di ripiani.</span>'+
+  displayMath('<mfrac><mn>12</mn><mi>n</mi></mfrac>')+
+  '<strong>Vincolo del contesto.</strong> La lettera '+m('n')+' rappresenta il numero di ripiani. Un conteggio può valere 0, 1, 2 e così via. Quindi '+m('n')+' deve essere un numero intero non negativo.<br><br>'+
+  '<strong>Condizione di esistenza.</strong> Il numero dei ripiani è anche il divisore. Poiché non possiamo dividere per zero, dobbiamo escludere '+m('n = 0')+'.'+
+  displayMath('<mi>n</mi><mo>≠</mo><mn>0</mn>')+
+  'Per rispettare entrambi i vincoli scegliamo quindi '+m('n = 1, 2, 3, …')+'. Per esempio, con 3 ripiani otteniamo 12 ÷ 3 = 4 libri per ripiano.')
  ],quiz:{questions:[
  question('Quanto vale x² + x quando x = −2?',['−6','6','2'],2,'Sostituiamo −2 in entrambe le occorrenze: (−2)² + (−2) = 4 − 2 = 2.'),
  question('Quale valore non può essere assegnato a x in (x + 1)/(x − 3)?',['−1','3','0'],1,'Per x = 3 il denominatore vale zero. Il numeratore può invece valere zero.'),
