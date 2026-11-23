@@ -347,22 +347,16 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reader-card > .rm-
 body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reader-card:has(> .rm-reference-scene) {
  display:grid;
  grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);
- grid-template-areas:"illustration title" "illustration text";
- column-gap:clamp(20px,3vw,42px);
- row-gap:12px;
-}
-body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reader-card:has(> .rm-reference-scene) > .rm-card-title {
- grid-area:title;
- align-self:end;
- margin:0;
+ grid-template-areas:"illustration text";
+ gap:clamp(16px,3vw,42px);
 }
 body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reader-card:has(> .rm-reference-scene) > .rm-card-text {
  grid-area:text;
- align-self:start;
+ align-self:center;
 }
 body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene {
  grid-area:illustration;
- align-self:center;
+ align-self:start;
  margin:0;
  -webkit-mask:url("images/reader/train-soft-mask.svg") center / 100% 100% no-repeat;
  mask:url("images/reader/train-soft-mask.svg") center / 100% 100% no-repeat;
@@ -379,7 +373,7 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene + 
 @media (max-width:960px) {
  body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reader-card:has(> .rm-reference-scene) {
   grid-template-columns:minmax(0,1fr);
-  grid-template-areas:"title" "illustration" "text";
+  grid-template-areas:"illustration" "text";
  }
 }
 body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-card-text:has(.cl-notation) {
