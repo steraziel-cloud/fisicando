@@ -95,12 +95,12 @@
  ]}},
  {id:'scritture',title:'Espressioni e convenzioni di scrittura',cards:[
  card('Espressioni algebriche letterali',
-  '<span class="cl-notation">Un’<strong>espressione algebrica letterale</strong> indica operazioni aritmetiche da eseguire su numeri e lettere. Le parentesi e le priorità delle operazioni stabiliscono l’ordine dei calcoli.</span>'+
+  '<span class="cl-wide-text">Un’<strong>espressione algebrica letterale</strong> indica operazioni aritmetiche da eseguire su numeri e lettere. Le parentesi e le priorità delle operazioni stabiliscono l’ordine dei calcoli.</span>'+
   displayMath('<mn>2</mn><mo>·</mo><mi>x</mi><mo>+</mo><mn>10</mn>')+
   displayMath('<mn>2</mn><mo>·</mo><mo>(</mo><mi>x</mi><mo>+</mo><mn>10</mn><mo>)</mo>')+
   'La prima scrittura ci dice di raddoppiare la quantità '+m('x')+' e poi aggiungere 10.<br>'+
   'La seconda ci dice di aggiungere prima 10 alla quantità '+m('x')+' e poi raddoppiare il risultato.',
-  '<span class="cl-notation">Per rendere la scrittura più compatta, spesso omettiamo il punto di moltiplicazione. Ciascuna riga mostra lo stesso prodotto in due scritture.</span>'+
+  '<span class="cl-wide-text">Per rendere la scrittura più compatta, spesso omettiamo il punto di moltiplicazione. Ciascuna riga mostra lo stesso prodotto in due scritture.</span>'+
   displayMath('<mn>2</mn><mo>·</mo><mi>x</mi><mo>=</mo><mn>2</mn><mi>x</mi>')+
   displayMath('<mi>a</mi><mo>·</mo><mi>b</mi><mo>=</mo><mi>a</mi><mi>b</mi>')+
   displayMath('<mn>3</mn><mo>·</mo><mo>(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>=</mo><mn>3</mn><mo>(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo>)</mo>')+
@@ -108,7 +108,7 @@
   displayMath('<mo>(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>)</mo><mo>(</mo><mi>c</mi><mo>+</mo><mi>d</mi><mo>)</mo>')+
   'Quando omettere il punto creerebbe ambiguità, lo scriviamo. Per esempio, 2 · 3 indica il prodotto di 2 e 3, mentre 23 è il numero ventitré.'),
  {...card('Espressioni razionali',
-  '<span class="cl-notation">Le espressioni costruite con addizioni, sottrazioni, moltiplicazioni, divisioni e potenze con esponente intero si chiamano <strong>espressioni razionali</strong>. Le operazioni devono avere significato per i valori che assegniamo alle indeterminate.</span>',
+  '<span class="cl-wide-text">Le espressioni costruite con addizioni, sottrazioni, moltiplicazioni, divisioni e potenze con esponente intero si chiamano <strong>espressioni razionali</strong>. Le operazioni devono avere significato per i valori che assegniamo alle indeterminate.</span>',
   'Sono <strong>intere</strong> quando non compaiono lettere nei denominatori né potenze di lettere con esponente negativo. Ecco due esempi.'+
   displayMath('<mn>2</mn><mi>x</mi><mo>+</mo><mn>5</mn>')+
   displayMath('<mn>3</mn><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>1</mn>'),
@@ -124,10 +124,35 @@
  question('In quale prodotto puoi togliere il punto di moltiplicazione senza cambiare il significato?',['2 · 5','3 · 4','5 · a'],2,'5 · a si può scrivere 5a. Tra due numeri il punto serve: per esempio, 2 · 5 vale 10 e 25 è il numero venticinque.'),
  question('Quale espressione è razionale frazionaria?',['2/x','x/2','2x + 1'],0,'In 2/x la lettera compare al denominatore. In x/2 il denominatore è il numero 2.')
  ]}},
- {id:'valutare',title:'Dallo schema al calcolo numerico',cards:[
- card('La valutazione è un passaggio preciso','Per <strong>valutare</strong> un’espressione assegniamo un valore a ogni lettera e svolgiamo il calcolo numerico ottenuto.<br><br>Con '+m('x = 7')+', l’espressione '+m('2x + 10')+' diventa:'+formula('2 · 7 + 10 = 24')+'Con '+m('x = −2')+', diventa:'+formula('2 · (−2) + 10 = 6')+'Lo schema delle operazioni è lo stesso; il risultato può cambiare al variare dell’assegnazione.'),
- card('Assegnazioni ammesse e condizioni di esistenza','Ogni occorrenza della stessa lettera riceve lo stesso valore. Se quel valore è negativo, le parentesi aiutano a conservarne il significato: con '+m('x = −3')+', '+m('x²')+' diventa '+m('(−3)² = 9')+'.<br><br>Inoltre tutte le operazioni devono essere possibili. In '+frac('x + 1','x − 3')+'non è ammesso '+m('x = 3')+': il denominatore sarebbe zero. La condizione '+m('x ≠ 3')+' è una <strong>condizione di esistenza</strong>. I vincoli del contesto vanno rispettati insieme a quelli delle operazioni.')
- ],quiz:quiz('Quale valore non può essere assegnato a x in (x + 1)/(x − 3)?',['−1','0','3'],2,'Per x = 3 il denominatore è zero: quella valutazione non è ammessa.')},
+ {id:'valutare',title:'Valutazione di un’espressione letterale e condizioni di esistenza',cards:[
+ card('Come si valuta un’espressione letterale',
+  '<span class="cl-wide-text">Per <strong>valutare</strong> un’espressione letterale, assegniamo un valore a ogni lettera. Sostituiamo tutte le lettere con i valori assegnati e svolgiamo le operazioni nell’ordine previsto.</span><br><br>'+
+  'Prendiamo l’espressione qui sotto.'+
+  displayMath('<mn>2</mn><mi>x</mi><mo>+</mo><mn>10</mn>')+
+  'Se assegniamo a '+m('x')+' il valore 7, otteniamo:'+
+  displayMath('<mn>2</mn><mo>·</mo><mn>7</mn><mo>+</mo><mn>10</mn><mo>=</mo><mn>14</mn><mo>+</mo><mn>10</mn><mo>=</mo><mn>24</mn>')+
+  'Se scegliamo −2, la stessa espressione vale:'+
+  displayMath('<mn>2</mn><mo>·</mo><mo>(</mo><mo>−</mo><mn>2</mn><mo>)</mo><mo>+</mo><mn>10</mn><mo>=</mo><mo>−</mo><mn>4</mn><mo>+</mo><mn>10</mn><mo>=</mo><mn>6</mn>'),
+  '<span class="cl-wide-text">Ogni volta che ricompare la stessa lettera, sostituiamo lo stesso valore. Se il valore è negativo, lo racchiudiamo tra parentesi, soprattutto quando la lettera è la base di una potenza.</span><br><br>'+
+  'Per esempio, con '+m('x = −3')+' otteniamo:'+
+  displayMath('<msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>x</mi><mo>=</mo><msup><mrow><mo>(</mo><mo>−</mo><mn>3</mn><mo>)</mo></mrow><mn>2</mn></msup><mo>+</mo><mo>(</mo><mo>−</mo><mn>3</mn><mo>)</mo><mo>=</mo><mn>9</mn><mo>−</mo><mn>3</mn><mo>=</mo><mn>6</mn>')),
+ card('Come si trovano le condizioni di esistenza',
+  '<span class="cl-wide-text">Prima di valutare un’espressione, controlliamo per quali valori tutte le sue operazioni hanno significato. Le restrizioni che troviamo si chiamano <strong>condizioni di esistenza</strong>.</span><br><br>'+
+  'Una divisione per zero è impossibile. In un’espressione razionale frazionaria, scriviamo quindi che ogni denominatore deve essere diverso da zero. Se c’è una potenza con esponente negativo, possiamo prima riscriverla come frazione e controllare il denominatore.',
+  '<span class="cl-wide-text">Vediamo come si fa con questa espressione.</span>'+
+  displayMath('<mfrac><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mrow><mi>x</mi><mo>−</mo><mn>3</mn></mrow></mfrac>')+
+  'Il denominatore deve essere diverso da zero.'+
+  displayMath('<mi>x</mi><mo>−</mo><mn>3</mn><mo>≠</mo><mn>0</mn>')+
+  'Il denominatore si annulla quando '+m('x = 3')+'. Escludiamo quindi quel valore. La condizione di esistenza è:'+
+  displayMath('<mi>x</mi><mo>≠</mo><mn>3</mn>')+
+  'Con '+m('x = 4')+' il denominatore vale 1 e possiamo fare il calcolo:'+
+  displayMath('<mfrac><mrow><mn>4</mn><mo>+</mo><mn>1</mn></mrow><mrow><mn>4</mn><mo>−</mo><mn>3</mn></mrow></mfrac><mo>=</mo><mfrac><mn>5</mn><mn>1</mn></mfrac><mo>=</mo><mn>5</mn>')+
+  'Se il problema impone anche vincoli sui valori, dobbiamo rispettarli insieme alle condizioni di esistenza.')
+ ],quiz:{questions:[
+ question('Quanto vale x² + x quando x = −2?',['−6','6','2'],2,'Sostituiamo −2 in entrambe le occorrenze: (−2)² + (−2) = 4 − 2 = 2.'),
+ question('Quale valore non può essere assegnato a x in (x + 1)/(x − 3)?',['−1','3','0'],1,'Per x = 3 il denominatore vale zero. Il numeratore può invece valere zero.'),
+ question('Qual è la condizione di esistenza di 1/(x + 2)?',['x ≠ −2','x ≠ 2','x ≠ 0'],0,'Il denominatore x + 2 si annulla quando x = −2. È quel valore che dobbiamo escludere.')
+ ]}},
  {id:'segreti',title:'Sveliamo i due trucchi',cards:[
  card('Il primo trucco','Chiamiamo '+m('x')+' il numero pensato. Raddoppiandolo otteniamo '+m('2x')+'. Aggiungendo 10 arriviamo a '+m('2x + 10')+'.<br><br>Sibilla chiede poi di dividere tutto per 2 e di sottrarre il numero di partenza. Il procedimento completo si scrive così:'+frac('2x + 10','2','<mo>−</mo><mi>x</mi>')+'La '+m('x')+' alla fine indica la stessa scelta iniziale.',
  'Dividiamo per 2 entrambi gli addendi del numeratore. Il doppio diventa '+m('x')+' e 10 diventa 5. L’espressione diventa:'+formula('x + 5 − x = 5')+'Il numero di partenza si annulla: resta sempre 5. <strong>Il trucco funziona con qualunque numero reale.</strong> Sibilla ti ha chiesto di sceglierne uno da 1 a 10 per rendere i conti più semplici.'),

@@ -376,7 +376,7 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene + 
   grid-template-areas:"illustration" "text";
  }
 }
-body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-card-text:has(.cl-notation) {
+body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-card-text:has(.cl-wide-text) {
  max-width:none;
 }
 .cl-formula {
