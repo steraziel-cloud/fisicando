@@ -147,7 +147,7 @@
   displayMath('<mi>x</mi><mo>≠</mo><mn>3</mn>')+
   'Con '+m('x = 4')+' il denominatore vale 1 e possiamo fare il calcolo:'+
   displayMath('<mfrac><mrow><mn>4</mn><mo>+</mo><mn>1</mn></mrow><mrow><mn>4</mn><mo>−</mo><mn>3</mn></mrow></mfrac><mo>=</mo><mfrac><mn>5</mn><mn>1</mn></mfrac><mo>=</mo><mn>5</mn>')+
-  'Se il problema impone anche vincoli sui valori, dobbiamo rispettarli insieme alle condizioni di esistenza.')
+  '<strong>I vincoli del contesto.</strong> Supponiamo di sistemare 12 libri su '+m('n')+' ripiani. Il numero medio di libri per ripiano è '+m('12/n')+'. Poiché '+m('n')+' conta i ripiani, deve essere un intero non negativo. La divisione richiede anche '+m('n ≠ 0')+'. Rispettando entrambe le condizioni, possiamo usare '+m('n = 1, 2, 3, …')+'.')
  ],quiz:{questions:[
  question('Quanto vale x² + x quando x = −2?',['−6','6','2'],2,'Sostituiamo −2 in entrambe le occorrenze: (−2)² + (−2) = 4 − 2 = 2.'),
  question('Quale valore non può essere assegnato a x in (x + 1)/(x − 3)?',['−1','3','0'],1,'Per x = 3 il denominatore vale zero. Il numeratore può invece valere zero.'),
