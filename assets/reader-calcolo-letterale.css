@@ -364,13 +364,14 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene {
  grid-area:illustration;
  align-self:center;
  margin:0;
+ -webkit-mask:url("images/reader/train-soft-mask.svg") center / 100% 100% no-repeat;
+ mask:url("images/reader/train-soft-mask.svg") center / 100% 100% no-repeat;
 }
 body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene > img {
  display:block;
  width:100%;
  height:auto;
  max-height:none;
- border-radius:14px;
 }
 body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene + .rm-card-text .rm-reader-step {
  padding:0;
