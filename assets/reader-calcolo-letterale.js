@@ -174,12 +174,27 @@
   '<strong>Valutare un’espressione.</strong> Sostituiamo ogni lettera con il valore assegnato, lo stesso ogni volta che compare, e svolgiamo i calcoli rispettando l’ordine delle operazioni.'+
   displayMath('<mn>2</mn><mi>x</mi><mo>+</mo><mn>10</mn><mspace width="1em"/><mtext>per</mtext><mspace width=".3em"/><mi>x</mi><mo>=</mo><mn>7</mn><mo>:</mo><mspace width=".5em"/><mn>2</mn><mo>·</mo><mn>7</mn><mo>+</mo><mn>10</mn><mo>=</mo><mn>24</mn>'))
  ],quiz:{title:'Verifica finale',questions:[
- question('In ogni scatola ci sono n matite. Metti insieme le matite di tre scatole e ne togli due. Quale espressione descrive il procedimento?',['3(n − 2)','3n − 2','n + 3 − 2'],1,'Le tre scatole danno 3n matite. Ne togliamo due dal totale, quindi otteniamo 3n − 2.'),
- question('Quanto vale 2(x − 3) − x² per x = −2?',['−14','−6','6'],0,'Prima calcoliamo −2 − 3 = −5 e (−2)² = 4. Quindi 2 · (−5) − 4 = −14.'),
- question('Quale tra queste espressioni razionali è intera?',['3/(x + 1)','2 + x⁻¹','(x² + 1)/3'],2,'Nell’ultima scrittura il denominatore è 3. In 3/(x + 1) la lettera è al denominatore e x⁻¹ equivale a 1/x.'),
- question('Per quali valori di x possiamo valutare 1/(x − 2) + 1/(x + 1)?',['Tutti tranne −2 e 1','Tutti tranne 2 e −1','Tutti tranne 2'],1,'Devono essere diversi da zero entrambi i denominatori. Il primo si annulla per x = 2 e il secondo per x = −1.'),
- question('Per trovare la media di 18 libri su n ripiani usiamo 18/n. Quale valore di n rispetta sia il contesto sia la condizione di esistenza?',['0','2,5','4'],2,'I ripiani si contano con numeri interi e la divisione esclude lo zero. Anche se 18 non è un multiplo di 4, la media si può calcolare.'),
- question('Quanto vale (a + 2b)/(a − b) per a = −2 e b = 1?',['0','−4/3','L’espressione non esiste'],0,'Il denominatore vale −3 e il numeratore vale 0. La divisione si può fare e 0 diviso −3 vale 0.')
+ {...question('In ogni scatola ci sono n matite. Metti insieme le matite di tre scatole e ne togli due. Quale espressione descrive il procedimento?',['3(n − 2)','3n − 2','n + 3 − 2'],1,'Moltiplichiamo per 3 le matite di una scatola e togliamo due matite dal totale.'),
+  optionMath:[
+   displayMath('<mn>3</mn><mo>(</mo><mi>n</mi><mo>−</mo><mn>2</mn><mo>)</mo>'),
+   displayMath('<mn>3</mn><mi>n</mi><mo>−</mo><mn>2</mn>'),
+   displayMath('<mi>n</mi><mo>+</mo><mn>3</mn><mo>−</mo><mn>2</mn>')]},
+ {...question('Quanto vale questa espressione per il valore assegnato?',['−14','−6','6'],0,'Calcoliamo prima la differenza tra parentesi e il quadrato, poi raddoppiamo la differenza e sottraiamo il quadrato.'),
+  questionMath:displayMath('<mn>2</mn><mo>(</mo><mi>x</mi><mo>−</mo><mn>3</mn><mo>)</mo><mo>−</mo><msup><mi>x</mi><mn>2</mn></msup>')+displayMath('<mtext>per</mtext><mspace width=".4em"/><mi>x</mi><mo>=</mo><mo>−</mo><mn>2</mn>'),
+  feedbackMath:displayMath('<mn>2</mn><mo>·</mo><mo>(</mo><mo>−</mo><mn>5</mn><mo>)</mo><mo>−</mo><mn>4</mn><mo>=</mo><mo>−</mo><mn>14</mn>')},
+ {...question('Quale tra queste espressioni razionali è intera?',['3/(x + 1)','2 + x⁻¹','(x² + 1)/3'],2,'Nell’ultima scrittura il denominatore è il numero 3. Nella prima la lettera è al denominatore e nella seconda compare con esponente negativo.'),
+  optionMath:[
+   displayMath('<mfrac><mn>3</mn><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow></mfrac>'),
+   displayMath('<mn>2</mn><mo>+</mo><msup><mi>x</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup>'),
+   displayMath('<mfrac><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow><mn>3</mn></mfrac>')]},
+ {...question('Per quali valori di x possiamo valutare questa espressione?',['Tutti tranne −2 e 1','Tutti tranne 2 e −1','Tutti tranne 2'],1,'Entrambi i denominatori devono essere diversi da zero. Escludiamo 2 per il primo denominatore e −1 per il secondo.'),
+  questionMath:displayMath('<mfrac><mn>1</mn><mrow><mi>x</mi><mo>−</mo><mn>2</mn></mrow></mfrac><mo>+</mo><mfrac><mn>1</mn><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow></mfrac>')},
+ {...question('Questa espressione dà la media di 18 libri su n ripiani. Quale valore di n rispetta sia il contesto sia la condizione di esistenza?',['0','2,5','4'],2,'I ripiani si contano con numeri interi e la divisione esclude lo zero. Anche se 18 non è un multiplo di 4, la media si può calcolare.'),
+  questionMath:displayMath('<mfrac><mn>18</mn><mi>n</mi></mfrac>')},
+ {...question('Quanto vale questa frazione per i valori assegnati?',['0','−4/3','L’espressione non esiste'],0,'Il denominatore vale −3 e il numeratore vale 0. Il denominatore è diverso da zero, quindi possiamo fare la divisione.'),
+  questionMath:displayMath('<mfrac><mrow><mi>a</mi><mo>+</mo><mn>2</mn><mi>b</mi></mrow><mrow><mi>a</mi><mo>−</mo><mi>b</mi></mrow></mfrac>')+displayMath('<mtext>per</mtext><mspace width=".4em"/><mi>a</mi><mo>=</mo><mo>−</mo><mn>2</mn><mspace width="1em"/><mtext>e</mtext><mspace width=".4em"/><mi>b</mi><mo>=</mo><mn>1</mn>'),
+  optionMath:[displayMath('<mn>0</mn>'),displayMath('<mo>−</mo><mfrac><mn>4</mn><mn>3</mn></mfrac>')],
+  feedbackMath:displayMath('<mfrac><mn>0</mn><mrow><mo>−</mo><mn>3</mn></mrow></mfrac><mo>=</mo><mn>0</mn>')}
  ]}}
  ]};
  function comicPanel(panel,view,direction){

@@ -518,3 +518,18 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene > 
  width:6px;
  height:5px;
 }
+
+.rm-reader-checkpoint label.rm-checkpoint-math-option {
+ align-items:center;
+}
+.rm-reader-checkpoint .rm-checkpoint-math-option input[type=radio] {
+ flex:none;
+ margin-top:0;
+}
+.rm-checkpoint-math-option > span {
+ flex:1;
+ min-width:0;
+}
+body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-checkpoint-math-option math[display="block"] {
+ margin:0;
+}

@@ -375,17 +375,29 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
   const questions=quiz.questions||[quiz],position=Math.min(qs.index,questions.length-1),q=window.GatitoCoins?window.GatitoCoins.questionFor(questions[position],coinExperiment):questions[position];
   box.append(el('p','rm-checkpoint-progress','Domanda '+(position+1)+' di '+questions.length),el('p','',q.question));
+  if(q.questionMath){const math=el('div','rm-checkpoint-math');math.innerHTML=q.questionMath;box.append(math);}
   if(q.illustration){const figure=el('figure','rm-quiz-figure'),img=el('img');img.src=q.illustration.src;img.alt=q.illustration.alt;img.width=q.illustration.width||360;img.height=q.illustration.height||220;figure.append(img);box.append(figure);}
   const withNotebook=!!(q.notebook&&window.GatitoMathNotebook),answerArea=withNotebook?el('div','rm-quiz-answers'):box;
   if(withNotebook){box.classList.add('rm-checkpoint-with-notebook');const workspace=el('div','rm-quiz-workspace');workspace.append(answerArea);box.append(workspace);}
-  q.options.forEach((option,i)=>{const label=el('label'),input=el('input');input.type='radio';input.name='checkpoint';input.value=i;label.append(input,el('span','',option));answerArea.append(label);});
+  q.options.forEach((option,i)=>{
+   const label=el('label'),input=el('input'),content=el('span','',option);
+   input.type='radio';input.name='checkpoint';input.value=i;
+   const math=q.optionMath?.[i];
+   if(math){label.classList.add('rm-checkpoint-math-option');input.setAttribute('aria-label',option);content.innerHTML=math;}
+   label.append(input,content);answerArea.append(label);
+  });
+  const appendFeedbackMath=()=>{
+   if(!q.feedbackMath)return;
+   const math=el('div','rm-checkpoint-math');math.innerHTML=q.feedbackMath;$('reader-feedback').append(math);
+  };
   const verify=button('Verifica',()=>{const selected=box.querySelector('input[type=radio][name=checkpoint]:checked');if(!selected){$('reader-feedback').textContent='Scegli una risposta prima di verificare.';return;}
    const chosen=Number(selected.value),feedback=q.feedbackByOption?.[chosen]||q.feedback;
-   if(chosen!==q.answer){retry($('reader-feedback'),feedback+' Puoi rileggere e riprovare.');return;}
+   if(chosen!==q.answer){retry($('reader-feedback'),feedback+' Puoi rileggere e riprovare.');appendFeedbackMath();return;}
    qs.passed[position]=true;
-   if(position===questions.length-1){completeSection('Hai superato tutte le '+questions.length+' domande. '+feedback);return;}
+   if(position===questions.length-1){completeSection('Hai superato tutte le '+questions.length+' domande. '+feedback);appendFeedbackMath();return;}
    box.querySelectorAll('input[type=radio][name=checkpoint]').forEach(input=>input.disabled=true);verify.disabled=true;
    celebrate($('reader-feedback'),'Corretto. '+feedback);
+   appendFeedbackMath();
    answerArea.append(button('Prossima domanda →',()=>{qs.index=position+1;$('reader-feedback').replaceChildren();checkpoint();actions();},'rm-btn'));
   });answerArea.append(verify);
   quizNotebook(withNotebook?box.querySelector('.rm-quiz-workspace'):box,q,position,qs,section);
