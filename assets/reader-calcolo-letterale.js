@@ -5,7 +5,8 @@
  const frac=(a,b,tail='')=>`<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mtext>${a}</mtext></mrow><mrow><mtext>${b}</mtext></mrow></mfrac>${tail}</math>`;
  const formula=s=>`<div class="cl-formula">${m(s)}</div>`;
  const card=(title,...html)=>({title,stepMode:'replace',steps:html.map(html=>({html}))});
- const quiz=(question,options,answer,feedback)=>({questions:[{question,options,answer,feedback}]});
+ const question=(question,options,answer,feedback)=>({question,options,answer,feedback});
+ const quiz=(...args)=>({questions:[question(...args)]});
  const gameState={intro:{beat:-1},prediction:{stage:0},digits:{stage:0,answer:'',choices:''}};
  const art='assets/images/reader/sibilla-festival/';
  const panels=new WeakMap();
@@ -83,10 +84,14 @@
  {...card('Due numeri, proprio in quell’ordine','Sibilla sorride. Stavolta scommette di indovinare due numeri, nell’ordine in cui li hai pensati.'),board:'cl-digits'}
  ]},
  {id:'lettere',title:'Descrivere il calcolo con le lettere',cards:[
- {...card('Il calcolo letterale','Per capire come ha fatto Sibilla, ci serve uno strumento dell’algebra: il <strong>calcolo letterale</strong>. Nelle espressioni possiamo usare lettere accanto ai numeri. Chiamiamo <strong>indeterminata</strong> una lettera che rappresenta una quantità senza fissarne il valore.<br><br>Se '+m('n')+' indica il numero di quaderni in uno zaino, '+m('n + 1')+' indica quanti quaderni ci saranno dopo averne aggiunto uno.<br><br>Scrivere con le lettere ci permette di descrivere un procedimento in generale e di usare le proprietà delle operazioni per semplificarlo anche senza conoscere il valore dell’indeterminata. Quando assegniamo un valore alla lettera, possiamo calcolare il risultato seguendo l’ordine delle operazioni.'),
+ {...card('Il calcolo letterale','Per capire come ha fatto Sibilla, ci serve uno strumento dell’algebra: il <button class="rm-keyword" data-term="calcolo-letterale" type="button">calcolo letterale</button>. Nelle espressioni possiamo usare lettere accanto ai numeri. Chiamiamo <button class="rm-keyword" data-term="indeterminata" type="button">indeterminata</button> una lettera che rappresenta una quantità senza fissarne il valore.<br><br>Se '+m('n')+' indica il numero di quaderni in uno zaino, '+m('n + 1')+' indica quanti quaderni ci saranno dopo averne aggiunto uno.<br><br>Scrivere con le lettere ci permette di descrivere un procedimento in generale e di usare le proprietà delle operazioni per semplificarlo anche senza conoscere il valore dell’indeterminata. Quando assegniamo un valore alla lettera, possiamo calcolare il risultato seguendo l’ordine delle operazioni.'),
  illustration:{src:art+'sibilla-reazione-festival.webp',alt:'Al festival dell’Accademia, Red e Bjorne guardano Sibilla stupiti davanti al bancone della sua bancarella.',width:1000,height:750}},
  card('Quali valori può assumere una lettera?','Per usare un’espressione dobbiamo sapere <strong>quali valori sono ammessi</strong> per le sue lettere. Dipende da ciò che rappresentano.<br><br>Il numero '+m('n')+' di quaderni nello zaino può essere 0, 1, 2 e così via. Se una lettera rappresenta invece una temperatura in gradi Celsius, può assumere anche valori negativi, come −3, o con la virgola, come 18,5.')
- ],quiz:quiz('Se n indica il numero di quaderni in uno zaino, quale valore è ammesso?',['−2','0','1,5'],1,'Lo zaino può contenere zero quaderni. Il numero di quaderni è un intero non negativo.')},
+ ],quiz:{questions:[
+ question('Che cosa indica la lettera n nell’esempio dei quaderni?',['Il quaderno che aggiungiamo','Un numero già fissato a 1','Il numero di quaderni all’inizio, lasciato da scegliere'],2,'La lettera n rappresenta il numero di quaderni prima di aggiungerne uno. Non abbiamo ancora fissato quel numero.'),
+ question('Se nello zaino ci sono 4 quaderni, quanto vale n + 1?',['5','4','1'],0,'Con n = 4, la scrittura n + 1 diventa 4 + 1, cioè 5.'),
+ question('Se n indica il numero di quaderni in uno zaino, quale valore è ammesso?',['−2','0','1,5'],1,'Lo zaino può contenere zero quaderni. Il numero di quaderni è un intero non negativo.')
+ ]}},
  {id:'scritture',title:'Espressioni e convenzioni di scrittura',cards:[
  card('Espressioni algebriche letterali','Un’<strong>espressione algebrica letterale</strong> indica operazioni aritmetiche da eseguire su numeri e lettere. Parentesi e priorità delle operazioni stabiliscono l’ordine dei calcoli.<br><br>Per esempio, '+m('2 · x + 10')+' richiede di raddoppiare il numero e poi aggiungere 10; '+m('2 · (x + 10)')+' richiede di aggiungere prima 10 e poi raddoppiare. Sono procedimenti diversi.',
  'Per rendere la scrittura più compatta, il punto di moltiplicazione viene spesso omesso:'+formula('2 · x = 2x     a · b = ab     3 · (x + 1) = 3(x + 1)')+'Anche due parentesi affiancate indicano un prodotto: '+m('(a + b)(c + d)')+'.<br><br>Il simbolo rimane quando ometterlo creerebbe ambiguità: '+m('2 · 3')+' è una moltiplicazione, mentre 23 è il numero ventitré.'),

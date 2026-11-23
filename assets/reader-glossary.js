@@ -1,4 +1,14 @@
 window.READER_GLOSSARY = {
+  "calcolo-letterale": {
+    "title": "Calcolo letterale",
+    "kind": "Definizione di matematica",
+    "text": "È il calcolo con numeri e lettere. Per esempio, n + 1 descrive il passaggio di aggiungere uno a n, qualunque sia il valore di partenza."
+  },
+  "indeterminata": {
+    "title": "Indeterminata",
+    "kind": "Definizione di matematica",
+    "text": "È una lettera che rappresenta un numero senza fissarne subito il valore. Per esempio, se n indica quanti quaderni ci sono in uno zaino, n può valere 0, 1, 2 e così via."
+  },
   "numero-reale": {
   "title": "Numero reale · ℝ",
   "kind": "Definizione di matematica",
