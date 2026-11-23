@@ -115,8 +115,7 @@
   'Sono <strong>frazionarie</strong> quando compaiono lettere nei denominatori, anche attraverso potenze con esponente negativo. Per esempio, una potenza come quella qui sotto indica il reciproco di x.'+
   displayMath('<msup><mi>x</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><mfrac><mn>1</mn><mi>x</mi></mfrac><mspace width="1em"/><mtext>per</mtext><mspace width=".3em"/><mi>x</mi><mo>≠</mo><mn>0</mn>')+
   'Anche queste scritture sono frazionarie.'+
-  displayMath('<mfrac><mn>2</mn><mi>x</mi></mfrac>')+
-  displayMath('<mfrac><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mrow><mi>x</mi><mo>−</mo><mn>3</mn></mrow></mfrac>')+
+  displayMath('<mfrac><mn>2</mn><mi>x</mi></mfrac><mspace width="2em"/><mfrac><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mrow><mi>x</mi><mo>−</mo><mn>3</mn></mrow></mfrac>')+
   'Una frazione con denominatore numerico può invece essere un coefficiente. Questa espressione è <strong>intera</strong>.'+
   displayMath('<mfrac><mi>x</mi><mn>2</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>·</mo><mi>x</mi>')),
   stepMode:'intro-fixed'}
