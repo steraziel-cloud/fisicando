@@ -446,3 +446,37 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] math[display="block"] 
   transition:none !important;
  }
 }
+
+body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reader-card:has(> .rm-reference-scene > img[src$="/sibilla-taccuino.webp"]) {
+ grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
+ grid-template-areas:"text illustration";
+}
+body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene:has(> img[src$="/sibilla-taccuino.webp"]) {
+ position:relative;
+ isolation:isolate;
+ mask:none;
+ -webkit-mask:none;
+}
+.rm-reference-scene:has(> img[src$="/sibilla-taccuino.webp"])::before {
+ content:"";
+ position:absolute;
+ inset:15% 8% 9%;
+ z-index:-1;
+ background:radial-gradient(ellipse at 35% 25%, #b482e35c, transparent 75%), #7852a940;
+ border-radius:55% 45% 36% 64% / 45% 51% 49% 55%;
+ transform:rotate(-11deg);
+}
+body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene > img[src$="/sibilla-taccuino.webp"] {
+ width:min(100%,420px);
+ margin-inline:auto;
+}
+@media (max-width:960px) {
+ body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reader-card:has(> .rm-reference-scene > img[src$="/sibilla-taccuino.webp"]) {
+  grid-template-columns:minmax(0,1fr);
+  grid-template-areas:"text" "illustration";
+ }
+ body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene:has(> img[src$="/sibilla-taccuino.webp"]) {
+  width:min(64%,250px);
+  justify-self:center;
+ }
+}
