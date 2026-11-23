@@ -12,7 +12,7 @@ window.GatitoQuizReactions=(()=>{
  function warm(){const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,jobs=Object.values(names).flatMap(name=>[{src:url(name,true),blob:false},...(reduced?[]:[{src:url(name),blob:onceNames.has(name)}])]);let i=0;function next(){if(i>=jobs.length)return;const job=jobs[i++];if(job.blob){animationFile(job.src).catch(()=>{}).finally(()=>setTimeout(next,40));return;}const img=preload(job.src);if(img.complete)setTimeout(next,40);else{img.addEventListener('load',next,{once:true});img.addEventListener('error',next,{once:true});}}next();}
  if(document.readyState==='complete')setTimeout(warm,500);else window.addEventListener('load',()=>setTimeout(warm,500),{once:true});
  const timers=new WeakMap();let positive=0,negative=0,finalPositive=0;
- function show(target,message,{correct=false,title,final=false}={}){
+ function show(target,message,{correct=false,title,final=false,detail}={}){
   clearTimeout(timers.get(target));release(target);
   const name=names[correct?(final?finalNames[finalPositive++%finalNames.length]:positiveNames[positive++%positiveNames.length]):negativeNames[negative++%negativeNames.length]];
   const still=url(name,true),animated=url(name);
@@ -26,7 +26,7 @@ window.GatitoQuizReactions=(()=>{
   if(!reduced&&onceNames.has(name))animationFile(animated).then(blob=>{if(!target.contains(cat))return;const fresh=URL.createObjectURL(blob);playback.set(target,fresh);cat.src=fresh;}).catch(()=>{if(target.contains(cat))cat.src=still;});
   const copy=document.createElement('span');copy.className='rm-celebration-copy';
   const heading=document.createElement('strong');heading.textContent=title||(correct?'Ottimo lavoro!':'Riproviamo');
-  const text=document.createElement('span');text.textContent=message;copy.append(heading,text);card.append(cat,copy);target.replaceChildren(card);
+  const text=document.createElement('span');text.textContent=message;copy.append(heading,text);if(detail)copy.append(detail);card.append(cat,copy);target.replaceChildren(card);
 
  }
  return{show};

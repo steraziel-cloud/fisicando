@@ -66,9 +66,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   const track=el('span','rm-total-progress');track.setAttribute('aria-hidden','true');const fill=el('span');fill.style.width=completed/state.length*100+'%';track.append(fill);$('reader-progress').append(track);
   $('reader-show-all').hidden=false;
  }
- function celebrate(target,message,title='Ottimo lavoro!'){window.GatitoQuizReactions.show(target,message,{correct:true,title,final:target===$('reader-feedback')});formatRationalFractions(target);}
- function retry(target,message){window.GatitoQuizReactions.show(target,message,{correct:false});formatRationalFractions(target);}
- function completeSection(message){if(reviewAccess){celebrate($('reader-feedback'),message,'Verifica completata');actions();return;}const first=!state[current].complete;state[current].complete=true;state[current].reached=flat(lesson.sections[current]).length;index();celebrate($('reader-feedback'),message,first?'Una parte in più, ci sei!':'Perfetto!');actions();if(pendingSection!==null){const target=pendingSection,remaining=requiredBefore(target);if(remaining.length){current=remaining[0];state[current].cursor=flat(lesson.sections[current]).length;quizState(current).gateOnly=true;render();top();}else{pendingSection=null;open(target,true,1);}return;}if(first&&lesson.sections[current].optionalNext)showOptionalParts();if(current===state.length-1)completionLinks();}
+ function celebrate(target,message,title='Ottimo lavoro!',detail){window.GatitoQuizReactions.show(target,message,{correct:true,title,final:target===$('reader-feedback'),detail});formatRationalFractions(target);}
+ function retry(target,message,detail){window.GatitoQuizReactions.show(target,message,{correct:false,detail});formatRationalFractions(target);}
+ function completeSection(message,detail){if(reviewAccess){celebrate($('reader-feedback'),message,'Verifica completata',detail);actions();return;}const first=!state[current].complete;state[current].complete=true;state[current].reached=flat(lesson.sections[current]).length;index();celebrate($('reader-feedback'),message,first?'Una parte in più, ci sei!':'Perfetto!',detail);actions();if(pendingSection!==null){const target=pendingSection,remaining=requiredBefore(target);if(remaining.length){current=remaining[0];state[current].cursor=flat(lesson.sections[current]).length;quizState(current).gateOnly=true;render();top();}else{pendingSection=null;open(target,true,1);}return;}if(first&&lesson.sections[current].optionalNext)showOptionalParts();if(current===state.length-1)completionLinks();}
  function finish(message){const qs=quizState(current),quiz=lesson.sections[current].quiz;if(quiz?.type&&quiz.questions?.length&&!qs.special){qs.special=true;checkpoint();$('reader-feedback').textContent='Attività completata. Ora verifica le idee con le domande.';actions();return;}completeSection(message);}
  function showOptionalParts(){
   const destinations=lesson.sections[current].optionalNext;
@@ -386,18 +386,15 @@ document.addEventListener('DOMContentLoaded',()=>{
    if(math){label.classList.add('rm-checkpoint-math-option');input.setAttribute('aria-label',option);content.innerHTML=math;}
    label.append(input,content);answerArea.append(label);
   });
-  const appendFeedbackMath=()=>{
-   if(!q.feedbackMath)return;
-   const math=el('div','rm-checkpoint-math');math.innerHTML=q.feedbackMath;$('reader-feedback').append(math);
-  };
   const verify=button('Verifica',()=>{const selected=box.querySelector('input[type=radio][name=checkpoint]:checked');if(!selected){$('reader-feedback').textContent='Scegli una risposta prima di verificare.';return;}
    const chosen=Number(selected.value),feedback=q.feedbackByOption?.[chosen]||q.feedback;
-   if(chosen!==q.answer){retry($('reader-feedback'),feedback+' Puoi rileggere e riprovare.');appendFeedbackMath();return;}
+   const detail=q.feedbackMath?el('span','rm-checkpoint-math'):null;
+   if(detail)detail.innerHTML=q.feedbackMath;
+   if(chosen!==q.answer){retry($('reader-feedback'),feedback+' Puoi rileggere e riprovare.',detail);return;}
    qs.passed[position]=true;
-   if(position===questions.length-1){completeSection('Hai superato tutte le '+questions.length+' domande. '+feedback);appendFeedbackMath();return;}
+   if(position===questions.length-1){completeSection('Hai superato tutte le '+questions.length+' domande. '+feedback,detail);return;}
    box.querySelectorAll('input[type=radio][name=checkpoint]').forEach(input=>input.disabled=true);verify.disabled=true;
-   celebrate($('reader-feedback'),'Corretto. '+feedback);
-   appendFeedbackMath();
+   celebrate($('reader-feedback'),'Corretto. '+feedback,undefined,detail);
    answerArea.append(button('Prossima domanda →',()=>{qs.index=position+1;$('reader-feedback').replaceChildren();checkpoint();actions();},'rm-btn'));
   });answerArea.append(verify);
   quizNotebook(withNotebook?box.querySelector('.rm-quiz-workspace'):box,q,position,qs,section);
