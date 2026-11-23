@@ -11,7 +11,7 @@
  const gameState={intro:{beat:-1},prediction:{stage:0},digits:{stage:0,answer:'',choices:''}};
  const art='assets/images/reader/sibilla-festival/';
  const panels=new WeakMap();
- const comicTitle='Ora vi leggerò nella mente…';
+ const comicTitle='Mi leggi nel pensiero?';
  const comicText='<p>Alla festa dell’Accademia c’è una bancarella insolita. Sibilla sostiene di saper leggere nel pensiero, e Red e Bjorne vogliono metterla alla prova.</p><p>La sfida è anche per te. Tieni pronto un foglio per i conti.</p>';
  const isOpeningComic=kind=>kind==='cl-intro'||kind==='cl-prediction';
  const festivalView=`<div class="cl-scene cl-festival">
@@ -451,10 +451,8 @@
    button.className='rm-btn';
    button.setAttribute('aria-keyshortcuts','ArrowRight ArrowLeft');
    controls.append(button);
-   if(isOpeningComic(kind)){
-    box.classList.add('cl-opening-card');
-    box.append(controls);
-   }else copy.append(controls);
+   if(isOpeningComic(kind))box.classList.add('cl-opening-card');
+   copy.append(controls);
    const panel={root,button,text};
    panels.set(box,panel);
    for(const filename of [

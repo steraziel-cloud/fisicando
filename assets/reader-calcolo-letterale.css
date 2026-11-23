@@ -315,11 +315,16 @@ html:has(body[data-reader-lesson="calcolo-letterale-introduzione"]) {
  background:#532e63;
  color:#fff;
 }
-.cl-opening-card > .cl-comic-controls {
- grid-column:1 / -1;
- padding:0;
+.cl-opening-card .cl-intro-copy > .rm-card-title {
+ max-width:none;
+ font-size:clamp(1.125rem,2.1cqw,1.9rem);
+ white-space:nowrap;
 }
-.cl-opening-card > .cl-comic-controls > .rm-btn {
+.cl-opening-card .cl-intro-copy > .cl-comic-controls {
+ justify-items:center;
+ justify-self:stretch;
+}
+.cl-opening-card .cl-comic-controls > .rm-btn {
  min-inline-size:min(11rem,100%);
  min-block-size:3.25rem;
  padding:.75rem 1.5rem;
