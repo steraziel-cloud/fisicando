@@ -441,6 +441,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   cancelSlide=cleanup;animations[1].finished.then(()=>{if(cancelSlide===cleanup)cleanup();}).catch(()=>{});
  }
  function cardSteps(item){
+  if(item.card.stepMode==='intro-fixed'&&item.si>0)return [item.card.steps[0],item.step];
   const from=item.step.cumulativeFrom;
   if(Number.isInteger(from)&&from>=0&&from<=item.si)return item.card.steps.slice(from,item.si+1);
   return item.card.stepMode==='replace'||item.step.replace?[item.step]:item.card.steps.slice(0,item.si+1);
@@ -470,8 +471,9 @@ document.addEventListener('DOMContentLoaded',()=>{
    if(view.box.classList.contains('rm-units-card'))next.forEach(node=>node.querySelector('.rm-unit-exercise')?.remove());
    slideSwap(view.text,previous,next,direction);
   }else{
-   const removed=[...view.text.children].slice(wanted.length);
-   if(removed.length&&direction&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&removed[0].animate){
+   const swapDetail=item.card.stepMode==='intro-fixed'&&wanted.length>1;
+   const removed=[...view.text.children].slice(swapDetail?1:wanted.length);
+   if(removed.length&&!swapDetail&&direction&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&removed[0].animate){
     const animations=removed.map(node=>{
      node.inert=true;node.setAttribute('aria-hidden','true');node.style.overflow='hidden';node.style.boxSizing='border-box';
      return node.animate([

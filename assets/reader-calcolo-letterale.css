@@ -382,6 +382,9 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene + 
   grid-template-areas:"title" "illustration" "text";
  }
 }
+body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-card-text:has(.cl-notation) {
+ max-width:none;
+}
 .cl-formula {
  margin:18px 0;
  text-align:center;

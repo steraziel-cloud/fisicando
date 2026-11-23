@@ -2,6 +2,7 @@
 (() => {
  'use strict';
  const m=s=>`<math xmlns="http://www.w3.org/1998/Math/MathML"><mtext>${s}</mtext></math>`;
+ const displayMath=content=>`<math display="block" xmlns="http://www.w3.org/1998/Math/MathML">${content}</math>`;
  const frac=(a,b,tail='')=>`<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mtext>${a}</mtext></mrow><mrow><mtext>${b}</mtext></mrow></mfrac>${tail}</math>`;
  const formula=s=>`<div class="cl-formula">${m(s)}</div>`;
  const card=(title,...html)=>({title,stepMode:'replace',steps:html.map(html=>({html}))});
@@ -89,14 +90,36 @@
  card('Quali valori può assumere una lettera?','Per usare un’espressione dobbiamo sapere <strong>quali valori sono ammessi</strong> per le sue lettere. Dipende da ciò che rappresentano.<br><br>Il numero '+m('n')+' di quaderni nello zaino può essere 0, 1, 2 e così via. Se una lettera rappresenta invece una temperatura in gradi Celsius, può assumere anche valori negativi, come −3, o con la virgola, come 18,5.')
  ],quiz:{questions:[
  question('Che cosa indica la lettera n nell’esempio dei quaderni?',['Il quaderno che aggiungiamo','Un numero già fissato a 1','Il numero di quaderni all’inizio, lasciato da scegliere'],2,'La lettera n rappresenta il numero di quaderni prima di aggiungerne uno. Non abbiamo ancora fissato quel numero.'),
- question('Se nello zaino ci sono 4 quaderni, quanto vale n + 1?',['5','4','1'],0,'Con n = 4, la scrittura n + 1 diventa 4 + 1, cioè 5.'),
- question('Se n indica il numero di quaderni in uno zaino, quale valore è ammesso?',['−2','0','1,5'],1,'Lo zaino può contenere zero quaderni. Il numero di quaderni è un intero non negativo.')
+ question('Un sacchetto contiene p biglie. Ne aggiungi 3. Se p vale 4, quanto vale p + 3?',['7','4','3'],0,'Con p = 4, la scrittura p + 3 diventa 4 + 3, cioè 7.'),
+ question('Una lettera indica il numero di biglietti venduti. Quale valore è ammesso?',['−2','0','1,5'],1,'Se non è stato venduto alcun biglietto, il numero è 0. I biglietti si contano con numeri interi non negativi.')
  ]}},
  {id:'scritture',title:'Espressioni e convenzioni di scrittura',cards:[
- card('Espressioni algebriche letterali','Un’<strong>espressione algebrica letterale</strong> indica operazioni aritmetiche da eseguire su numeri e lettere. Parentesi e priorità delle operazioni stabiliscono l’ordine dei calcoli.<br><br>Per esempio, '+m('2 · x + 10')+' richiede di raddoppiare il numero e poi aggiungere 10; '+m('2 · (x + 10)')+' richiede di aggiungere prima 10 e poi raddoppiare. Sono procedimenti diversi.',
- 'Per rendere la scrittura più compatta, il punto di moltiplicazione viene spesso omesso:'+formula('2 · x = 2x     a · b = ab     3 · (x + 1) = 3(x + 1)')+'Anche due parentesi affiancate indicano un prodotto: '+m('(a + b)(c + d)')+'.<br><br>Il simbolo rimane quando ometterlo creerebbe ambiguità: '+m('2 · 3')+' è una moltiplicazione, mentre 23 è il numero ventitré.'),
- card('Razionali intere o frazionarie','Le espressioni costruite con addizioni, sottrazioni, moltiplicazioni, divisioni e potenze con esponente intero si chiamano <strong>razionali</strong>. Le operazioni devono avere significato per i valori assegnati.<br><br>Sono <strong>intere</strong> quando non presentano lettere nei denominatori né potenze di lettere con esponente negativo. Per esempio: '+m('2x + 5')+', '+m('3x² − 1')+' e '+frac('x','2')+'Una frazione numerica come coefficiente non rende frazionaria un’espressione.',
- 'Sono <strong>frazionarie</strong> quando presentano lettere nei denominatori, anche attraverso potenze con esponente negativo. Per esempio:'+frac('2','x')+frac('x + 1','x − 3')+'Anche '+m('x⁻¹')+' rappresenta il reciproco di '+m('x')+', per '+m('x ≠ 0')+'.<br><br>La classificazione riguarda la scrittura considerata: una semplificazione non cancella le condizioni richieste dall’espressione iniziale.')
+ card('Espressioni algebriche letterali',
+  '<span class="cl-notation">Un’<strong>espressione algebrica letterale</strong> indica operazioni aritmetiche da eseguire su numeri e lettere. Le parentesi e le priorità delle operazioni stabiliscono l’ordine dei calcoli.</span>'+
+  displayMath('<mn>2</mn><mo>·</mo><mi>x</mi><mo>+</mo><mn>10</mn>')+
+  'Prima raddoppiamo il numero, poi aggiungiamo 10.'+
+  displayMath('<mn>2</mn><mo>·</mo><mo>(</mo><mi>x</mi><mo>+</mo><mn>10</mn><mo>)</mo>')+
+  'Qui invece aggiungiamo prima 10 e poi raddoppiamo.',
+  '<span class="cl-notation">Per rendere la scrittura più compatta, spesso omettiamo il punto di moltiplicazione. Ciascuna riga mostra lo stesso prodotto in due scritture.</span>'+
+  displayMath('<mn>2</mn><mo>·</mo><mi>x</mi><mo>=</mo><mn>2</mn><mi>x</mi>')+
+  displayMath('<mi>a</mi><mo>·</mo><mi>b</mi><mo>=</mo><mi>a</mi><mi>b</mi>')+
+  displayMath('<mn>3</mn><mo>·</mo><mo>(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>=</mo><mn>3</mn><mo>(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo>)</mo>')+
+  'Anche due gruppi tra parentesi affiancati indicano un prodotto.'+
+  displayMath('<mo>(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>)</mo><mo>(</mo><mi>c</mi><mo>+</mo><mi>d</mi><mo>)</mo>')+
+  'Quando omettere il punto creerebbe ambiguità, lo scriviamo. Per esempio, 2 · 3 indica il prodotto di 2 e 3, mentre 23 è il numero ventitré.'),
+ {...card('Espressioni razionali',
+  '<span class="cl-notation">Le espressioni costruite con addizioni, sottrazioni, moltiplicazioni, divisioni e potenze con esponente intero si chiamano <strong>espressioni razionali</strong>. Le operazioni devono avere significato per i valori che assegniamo alle indeterminate.</span>',
+  'Sono <strong>intere</strong> quando non compaiono lettere nei denominatori né potenze di lettere con esponente negativo. Ecco due esempi.'+
+  displayMath('<mn>2</mn><mi>x</mi><mo>+</mo><mn>5</mn>')+
+  displayMath('<mn>3</mn><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>1</mn>'),
+  'Sono <strong>frazionarie</strong> quando compaiono lettere nei denominatori, anche attraverso potenze con esponente negativo. Per esempio, una potenza come quella qui sotto indica il reciproco di x.'+
+  displayMath('<msup><mi>x</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><mfrac><mn>1</mn><mi>x</mi></mfrac><mspace width="1em"/><mtext>per</mtext><mspace width=".3em"/><mi>x</mi><mo>≠</mo><mn>0</mn>')+
+  'Anche queste scritture sono frazionarie.'+
+  displayMath('<mfrac><mn>2</mn><mi>x</mi></mfrac>')+
+  displayMath('<mfrac><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mrow><mi>x</mi><mo>−</mo><mn>3</mn></mrow></mfrac>')+
+  'Una frazione con denominatore numerico può invece essere un coefficiente. Questa espressione è <strong>intera</strong>.'+
+  displayMath('<mfrac><mi>x</mi><mn>2</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>·</mo><mi>x</mi>')),
+  stepMode:'intro-fixed'}
  ],quiz:quiz('Quale espressione è razionale frazionaria?',['x/2','2/x','2x + 1'],1,'In 2/x la lettera compare al denominatore. In x/2 il denominatore è il numero 2.')},
  {id:'valutare',title:'Dallo schema al calcolo numerico',cards:[
  card('La valutazione è un passaggio preciso','Per <strong>valutare</strong> un’espressione assegniamo un valore a ogni lettera e svolgiamo il calcolo numerico ottenuto.<br><br>Con '+m('x = 7')+', l’espressione '+m('2x + 10')+' diventa:'+formula('2 · 7 + 10 = 24')+'Con '+m('x = −2')+', diventa:'+formula('2 · (−2) + 10 = 6')+'Lo schema delle operazioni è lo stesso; il risultato può cambiare al variare dell’assegnazione.'),
