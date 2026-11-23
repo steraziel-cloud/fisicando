@@ -119,7 +119,11 @@
   'Una frazione con denominatore numerico può invece essere un coefficiente. Questa espressione è <strong>intera</strong>.'+
   displayMath('<mfrac><mi>x</mi><mn>2</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>·</mo><mi>x</mi>')),
   stepMode:'intro-fixed'}
- ],quiz:quiz('Quale espressione è razionale frazionaria?',['x/2','2/x','2x + 1'],1,'In 2/x la lettera compare al denominatore. In x/2 il denominatore è il numero 2.')},
+ ],quiz:{questions:[
+ question('Quale scrittura dice di aggiungere 4 a x e poi triplicare il risultato?',['3 · x + 4','3 · (x + 4)','4 · (x + 3)'],1,'Le parentesi fanno eseguire prima x + 4. Poi si moltiplica il risultato per 3.'),
+ question('In quale prodotto puoi togliere il punto di moltiplicazione senza cambiare il significato?',['2 · 5','3 · 4','5 · a'],2,'5 · a si può scrivere 5a. Tra due numeri il punto serve: per esempio, 2 · 5 vale 10 e 25 è il numero venticinque.'),
+ question('Quale espressione è razionale frazionaria?',['2/x','x/2','2x + 1'],0,'In 2/x la lettera compare al denominatore. In x/2 il denominatore è il numero 2.')
+ ]}},
  {id:'valutare',title:'Dallo schema al calcolo numerico',cards:[
  card('La valutazione è un passaggio preciso','Per <strong>valutare</strong> un’espressione assegniamo un valore a ogni lettera e svolgiamo il calcolo numerico ottenuto.<br><br>Con '+m('x = 7')+', l’espressione '+m('2x + 10')+' diventa:'+formula('2 · 7 + 10 = 24')+'Con '+m('x = −2')+', diventa:'+formula('2 · (−2) + 10 = 6')+'Lo schema delle operazioni è lo stesso; il risultato può cambiare al variare dell’assegnazione.'),
  card('Assegnazioni ammesse e condizioni di esistenza','Ogni occorrenza della stessa lettera riceve lo stesso valore. Se quel valore è negativo, le parentesi aiutano a conservarne il significato: con '+m('x = −3')+', '+m('x²')+' diventa '+m('(−3)² = 9')+'.<br><br>Inoltre tutte le operazioni devono essere possibili. In '+frac('x + 1','x − 3')+'non è ammesso '+m('x = 3')+': il denominatore sarebbe zero. La condizione '+m('x ≠ 3')+' è una <strong>condizione di esistenza</strong>. I vincoli del contesto vanno rispettati insieme a quelli delle operazioni.')
