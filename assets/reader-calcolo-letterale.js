@@ -11,7 +11,7 @@
  const gameState={intro:{beat:-1},prediction:{stage:0},digits:{stage:0,answer:'',choices:''}};
  const art='assets/images/reader/sibilla-festival/';
  const panels=new WeakMap();
- const comicTitle='Mi leggi nel pensiero?';
+ const comicTitle='Ora vi leggerò nella mente…';
  const comicText='<p>Alla festa dell’Accademia c’è una bancarella insolita. Sibilla sostiene di saper leggere nel pensiero, e Red e Bjorne vogliono metterla alla prova.</p><p>La sfida è anche per te. Tieni pronto un foglio per i conti.</p>';
  const isOpeningComic=kind=>kind==='cl-intro'||kind==='cl-prediction';
  const festivalView=`<div class="cl-scene cl-festival">

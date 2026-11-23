@@ -317,7 +317,9 @@ html:has(body[data-reader-lesson="calcolo-letterale-introduzione"]) {
 }
 .cl-opening-card .cl-intro-copy > .rm-card-title {
  max-width:none;
- font-size:clamp(1.125rem,2.1cqw,1.9rem);
+ font-size:clamp(1.125rem,2.2cqw,2rem);
+ font-weight:800;
+ letter-spacing:-.025em;
  white-space:nowrap;
 }
 .cl-opening-card .cl-intro-copy > .cl-comic-controls {
