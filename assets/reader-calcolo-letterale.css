@@ -447,57 +447,74 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] math[display="block"] 
  }
 }
 
-body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reader-card:has(> .rm-reference-scene > img[src$="/sibilla-taccuino-v2.webp"]) {
+body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reader-card:has(> .rm-reference-scene > img[src$="/sibilla-taccuino-v3.webp"]) {
  grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
  grid-template-areas:"text illustration";
 }
-body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene:has(> img[src$="/sibilla-taccuino-v2.webp"]) {
+body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene:has(> img[src$="/sibilla-taccuino-v3.webp"]) {
  position:relative;
  isolation:isolate;
  mask:none;
  -webkit-mask:none;
 }
-.rm-reference-scene:has(> img[src$="/sibilla-taccuino-v2.webp"])::before {
+.rm-reference-scene:has(> img[src$="/sibilla-taccuino-v3.webp"])::before {
  content:"";
  position:absolute;
- inset:15% 8% 9%;
+ inset:32% 8% 9%;
  z-index:-1;
  background:radial-gradient(ellipse at 35% 25%, #b482e35c, transparent 75%), #7852a940;
  border-radius:55% 45% 36% 64% / 45% 51% 49% 55%;
  transform:rotate(-11deg);
 }
-body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene > img[src$="/sibilla-taccuino-v2.webp"] {
+body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene > img[src$="/sibilla-taccuino-v3.webp"] {
  width:min(100%,420px);
  margin-inline:auto;
 }
 @media (max-width:960px) {
- body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reader-card:has(> .rm-reference-scene > img[src$="/sibilla-taccuino-v2.webp"]) {
+ body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reader-card:has(> .rm-reference-scene > img[src$="/sibilla-taccuino-v3.webp"]) {
   grid-template-columns:minmax(0,1fr);
   grid-template-areas:"text" "illustration";
  }
- body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene:has(> img[src$="/sibilla-taccuino-v2.webp"]) {
-  width:min(64%,250px);
-  justify-self:center;
+ body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene:has(> img[src$="/sibilla-taccuino-v3.webp"]) {
+  width:100%;
+ }
+ body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene > img[src$="/sibilla-taccuino-v3.webp"] {
+  width:min(72%,250px);
  }
 }
 
-.rm-reference-scene:has(> img[src$="/sibilla-taccuino-v2.webp"]) > .rm-illustration-speech {
+.rm-reference-scene:has(> img[src$="/sibilla-taccuino-v3.webp"]) > .rm-illustration-speech {
  position:relative;
  z-index:1;
- isolation:isolate;
- width:fit-content;
- max-width:95%;
- margin:0 auto 14px;
- padding:.6em 1.25em;
- text-align:center;
+ width:min(100%,340px);
+ box-sizing:border-box;
+ margin:0 auto 30px;
+ padding:.82em 1.25em;
+ border:2px solid #5c416a;
+ border-radius:44% 49% 45% 43% / 50% 50% 43% 47%;
+ background:#fff6e4;
  color:#2d2031;
+ text-align:center;
  font:700 clamp(1rem,1.55vw,1.2rem)/1.25 "Comic Neue","Comic Sans MS",sans-serif;
 }
-.rm-reference-scene:has(> img[src$="/sibilla-taccuino-v2.webp"]) > .rm-illustration-speech::before {
+.rm-reference-scene:has(> img[src$="/sibilla-taccuino-v3.webp"]) > .rm-illustration-speech::before,
+.rm-reference-scene:has(> img[src$="/sibilla-taccuino-v3.webp"]) > .rm-illustration-speech::after {
  content:"";
  position:absolute;
- inset:0 0 auto;
- height:136%;
- z-index:-1;
- background:url("images/reader/sibilla-festival/balloon-bjorne.png?v=3") center / 100% 100% no-repeat;
+ border:2px solid #5c416a;
+ border-radius:50%;
+ background:#fff6e4;
+}
+.rm-reference-scene:has(> img[src$="/sibilla-taccuino-v3.webp"]) > .rm-illustration-speech::before {
+ left:52%;
+ bottom:-14px;
+ width:12px;
+ height:8px;
+ transform:rotate(-18deg);
+}
+.rm-reference-scene:has(> img[src$="/sibilla-taccuino-v3.webp"]) > .rm-illustration-speech::after {
+ left:57%;
+ bottom:-23px;
+ width:6px;
+ height:5px;
 }
