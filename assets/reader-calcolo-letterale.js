@@ -126,12 +126,12 @@
  ]}},
  {id:'valutare',title:'Valutazione di un’espressione letterale e condizioni di esistenza',cards:[
  card('Come si valuta un’espressione letterale',
-  '<span class="cl-wide-text">Per <strong>valutare</strong> un’espressione letterale, assegniamo un valore a ogni lettera. Sostituiamo tutte le lettere con i valori assegnati e svolgiamo le operazioni nell’ordine previsto.</span><br><br>'+
+  '<span class="cl-wide-text">Per <button class="rm-keyword" data-term="valutare-espressione-letterale" type="button">valutare un’espressione letterale</button>, assegniamo un valore a ogni lettera. Sostituiamo tutte le lettere con i valori assegnati e svolgiamo le operazioni nell’ordine previsto.</span><br><br>'+
   'Prendiamo l’espressione qui sotto.'+
   displayMath('<mn>2</mn><mi>x</mi><mo>+</mo><mn>10</mn>')+
-  'Se assegniamo a '+m('x')+' il valore 7, otteniamo:'+
+  'Valutare l’espressione per '+m('x = 7')+' significa assegnare a '+m('x')+' il valore 7. Sostituiamo quindi '+m('x')+' con 7 ed eseguiamo i calcoli:'+
   displayMath('<mn>2</mn><mo>·</mo><mn>7</mn><mo>+</mo><mn>10</mn><mo>=</mo><mn>14</mn><mo>+</mo><mn>10</mn><mo>=</mo><mn>24</mn>')+
-  'Se scegliamo −2, la stessa espressione vale:'+
+  'Se invece valutiamo la stessa espressione per '+m('x = −2')+', sostituiamo '+m('x')+' con −2:'+
   displayMath('<mn>2</mn><mo>·</mo><mo>(</mo><mo>−</mo><mn>2</mn><mo>)</mo><mo>+</mo><mn>10</mn><mo>=</mo><mo>−</mo><mn>4</mn><mo>+</mo><mn>10</mn><mo>=</mo><mn>6</mn>'),
   '<span class="cl-wide-text">Ogni volta che ricompare la stessa lettera, sostituiamo lo stesso valore. Se il valore è negativo, lo racchiudiamo tra parentesi, soprattutto quando la lettera è la base di una potenza.</span><br><br>'+
   'Per esempio, con '+m('x = −3')+' otteniamo:'+
@@ -151,12 +151,12 @@
  ],quiz:{questions:[
  question('Quanto vale x² + x quando x = −2?',['−6','6','2'],2,'Sostituiamo −2 in entrambe le occorrenze: (−2)² + (−2) = 4 − 2 = 2.'),
  question('Quale valore non può essere assegnato a x in (x + 1)/(x − 3)?',['−1','3','0'],1,'Per x = 3 il denominatore vale zero. Il numeratore può invece valere zero.'),
- question('Qual è la condizione di esistenza di 1/(x + 2)?',['x ≠ −2','x ≠ 2','x ≠ 0'],0,'Il denominatore x + 2 si annulla quando x = −2. È quel valore che dobbiamo escludere.')
+ question('Quanto vale 3a + 2b quando a = 4 e b = −1?',['10','14','5'],0,'Sostituiamo 4 al posto di a e −1 al posto di b: 3 · 4 + 2 · (−1) = 12 − 2 = 10.')
  ]}},
  {id:'segreti',title:'Sveliamo i due trucchi',cards:[
- card('Il primo trucco','Chiamiamo '+m('x')+' il numero pensato. Raddoppiandolo otteniamo '+m('2x')+'. Aggiungendo 10 arriviamo a '+m('2x + 10')+'.<br><br>Sibilla chiede poi di dividere tutto per 2 e di sottrarre il numero di partenza. Il procedimento completo si scrive così:'+frac('2x + 10','2','<mo>−</mo><mi>x</mi>')+'La '+m('x')+' alla fine indica la stessa scelta iniziale.',
- 'Dividiamo per 2 entrambi gli addendi del numeratore. Il doppio diventa '+m('x')+' e 10 diventa 5. L’espressione diventa:'+formula('x + 5 − x = 5')+'Il numero di partenza si annulla: resta sempre 5. <strong>Il trucco funziona con qualunque numero reale.</strong> Sibilla ti ha chiesto di sceglierne uno da 1 a 10 per rendere i conti più semplici.'),
- card('Perché riappaiono le due cifre','Nel secondo gioco chiamiamo '+m('a')+' la prima scelta e '+m('b')+' la seconda. Il risultato comunicato è:'+formula('5(2a + 5) + b = 10a + 25 + b')+'Sibilla sottrae 25 e ottiene '+m('10a + b')+'. Poiché '+m('a')+' e '+m('b')+' sono cifre da 1 a 9, '+m('a')+' occupa il posto delle decine e '+m('b')+' quello delle unità.<br><br>Per esempio, 72 nasconde '+m('72 − 25 = 47')+': prima 4, poi 7. Invertendo le scelte cambia il risultato: l’ordine è conservato.')
+ card('Il primo trucco','<span class="cl-wide-text">Chiamiamo '+m('x')+' il numero pensato.</span> Raddoppiandolo otteniamo '+m('2x')+'. Aggiungendo 10 arriviamo a '+m('2x + 10')+'.<br><br>Sibilla chiede poi di dividere tutto per 2 e di sottrarre il numero di partenza. Il procedimento completo si scrive così:'+frac('2x + 10','2','<mo>−</mo><mi>x</mi>')+'La '+m('x')+' alla fine indica la stessa scelta iniziale.',
+ '<span class="cl-wide-text">Dividiamo per 2 entrambi gli addendi del numeratore.</span> Il doppio diventa '+m('x')+' e 10 diventa 5. L’espressione diventa:'+formula('x + 5 − x = 5')+'Il numero di partenza si annulla: resta sempre 5. <strong>Il trucco funziona con qualunque numero reale.</strong> Sibilla ti ha chiesto di sceglierne uno da 1 a 10 per rendere i conti più semplici.'),
+ card('Perché riappaiono le due cifre','<span class="cl-wide-text">Nel secondo gioco chiamiamo '+m('a')+' la prima scelta e '+m('b')+' la seconda.</span> Il risultato comunicato è:'+formula('5(2a + 5) + b = 10a + 25 + b')+'Sibilla sottrae 25 e ottiene '+m('10a + b')+'. Poiché '+m('a')+' e '+m('b')+' sono cifre da 1 a 9, '+m('a')+' occupa il posto delle decine e '+m('b')+' quello delle unità.<br><br>Per esempio, 72 nasconde '+m('72 − 25 = 47')+': prima 4, poi 7. Invertendo le scelte cambia il risultato: l’ordine è conservato.')
  ]},
  {id:'usi',title:'Semplificare e cercare valori',cards:[
  card('Uno schema più semplice, gli stessi risultati','Il calcolo letterale permette di cercare <strong>espressioni equivalenti</strong>: scritture che restituiscono gli stessi valori per tutte le assegnazioni ammesse, conservando le condizioni iniziali.<br><br>Nel primo gioco un lungo procedimento si riduce al numero 5. Una trasformazione può richiedere meno operazioni o rendere più evidente il significato del calcolo. Non tutte le riscritture accorciano il procedimento: scegliamo quella utile alla domanda.'),

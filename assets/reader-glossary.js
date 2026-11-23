@@ -1,4 +1,9 @@
 window.READER_GLOSSARY = {
+  "valutare-espressione-letterale": {
+    "title": "Valutare un’espressione letterale",
+    "kind": "Definizione di matematica",
+    "text": "Sostituire ogni lettera con il valore assegnato e fare i calcoli. Per esempio, valutare 2x + 10 per x = 7 significa calcolare 2 · 7 + 10, che vale 24."
+  },
   "calcolo-letterale": {
     "title": "Calcolo letterale",
     "kind": "Definizione di matematica",
