@@ -447,17 +447,17 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] math[display="block"] 
  }
 }
 
-body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reader-card:has(> .rm-reference-scene > img[src$="/sibilla-taccuino.webp"]) {
+body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reader-card:has(> .rm-reference-scene > img[src$="/sibilla-taccuino-v2.webp"]) {
  grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
  grid-template-areas:"text illustration";
 }
-body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene:has(> img[src$="/sibilla-taccuino.webp"]) {
+body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene:has(> img[src$="/sibilla-taccuino-v2.webp"]) {
  position:relative;
  isolation:isolate;
  mask:none;
  -webkit-mask:none;
 }
-.rm-reference-scene:has(> img[src$="/sibilla-taccuino.webp"])::before {
+.rm-reference-scene:has(> img[src$="/sibilla-taccuino-v2.webp"])::before {
  content:"";
  position:absolute;
  inset:15% 8% 9%;
@@ -466,17 +466,38 @@ body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene:ha
  border-radius:55% 45% 36% 64% / 45% 51% 49% 55%;
  transform:rotate(-11deg);
 }
-body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene > img[src$="/sibilla-taccuino.webp"] {
+body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene > img[src$="/sibilla-taccuino-v2.webp"] {
  width:min(100%,420px);
  margin-inline:auto;
 }
 @media (max-width:960px) {
- body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reader-card:has(> .rm-reference-scene > img[src$="/sibilla-taccuino.webp"]) {
+ body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reader-card:has(> .rm-reference-scene > img[src$="/sibilla-taccuino-v2.webp"]) {
   grid-template-columns:minmax(0,1fr);
   grid-template-areas:"text" "illustration";
  }
- body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene:has(> img[src$="/sibilla-taccuino.webp"]) {
+ body[data-reader-lesson="calcolo-letterale-introduzione"] .rm-reference-scene:has(> img[src$="/sibilla-taccuino-v2.webp"]) {
   width:min(64%,250px);
   justify-self:center;
  }
+}
+
+.rm-reference-scene:has(> img[src$="/sibilla-taccuino-v2.webp"]) > .rm-illustration-speech {
+ position:relative;
+ z-index:1;
+ isolation:isolate;
+ width:fit-content;
+ max-width:95%;
+ margin:0 auto 14px;
+ padding:.6em 1.25em;
+ text-align:center;
+ color:#2d2031;
+ font:700 clamp(1rem,1.55vw,1.2rem)/1.25 "Comic Neue","Comic Sans MS",sans-serif;
+}
+.rm-reference-scene:has(> img[src$="/sibilla-taccuino-v2.webp"]) > .rm-illustration-speech::before {
+ content:"";
+ position:absolute;
+ inset:0 0 auto;
+ height:136%;
+ z-index:-1;
+ background:url("images/reader/sibilla-festival/balloon-bjorne.png?v=3") center / 100% 100% no-repeat;
 }
