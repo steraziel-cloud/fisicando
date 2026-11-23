@@ -90,7 +90,9 @@
  illustration:{src:art+'sibilla-reazione-festival.webp',alt:'Al festival dell’Accademia, Red e Bjorne guardano Sibilla stupiti davanti al bancone della sua bancarella.',width:1000,height:750}}
  ],quiz:{questions:[
  question('Che cosa indica la lettera n nell’esempio dei quaderni?',['Il quaderno che aggiungiamo','Un numero già fissato a 1','Il numero di quaderni all’inizio, lasciato da scegliere'],2,'La lettera n rappresenta il numero di quaderni prima di aggiungerne uno. Non abbiamo ancora fissato quel numero.'),
- question('Un sacchetto contiene p biglie. Ne aggiungi 3. Se p vale 4, quanto vale p + 3?',['7','4','3'],0,'Con p = 4, la scrittura p + 3 diventa 4 + 3, cioè 7.'),
+ {...question('Un sacchetto contiene p biglie. Ne aggiungi 3. Quante biglie ci sono in tutto se p vale 4?',['7','4','3'],0,'Sostituisci il numero iniziale di biglie e aggiungi le tre nuove.'),
+  questionMath:displayMath('<mi>p</mi><mo>+</mo><mn>3</mn>'),
+  feedbackMath:displayMath('<mn>4</mn><mo>+</mo><mn>3</mn><mo>=</mo><mn>7</mn>')},
  question('Una lettera indica il numero di biglietti venduti. Quale valore è ammesso?',['−2','0','1,5'],1,'Se non è stato venduto alcun biglietto, il numero è 0. I biglietti si contano con numeri interi non negativi.')
  ]}},
  {id:'scritture',title:'Espressioni e convenzioni di scrittura',cards:[
@@ -120,9 +122,22 @@
   displayMath('<mfrac><mi>x</mi><mn>2</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>·</mo><mi>x</mi>')),
   stepMode:'intro-fixed'}
  ],quiz:{questions:[
- question('Quale scrittura dice di aggiungere 4 a x e poi triplicare il risultato?',['3 · x + 4','3 · (x + 4)','4 · (x + 3)'],1,'Le parentesi fanno eseguire prima x + 4. Poi si moltiplica il risultato per 3.'),
- question('In quale prodotto puoi togliere il punto di moltiplicazione senza cambiare il significato?',['2 · 5','3 · 4','5 · a'],2,'5 · a si può scrivere 5a. Tra due numeri il punto serve: per esempio, 2 · 5 vale 10 e 25 è il numero venticinque.'),
- question('Quale espressione è razionale frazionaria?',['2/x','x/2','2x + 1'],0,'In 2/x la lettera compare al denominatore. In x/2 il denominatore è il numero 2.')
+ {...question('Quale scrittura dice di aggiungere 4 a x e poi triplicare il risultato?',['3 · x + 4','3 · (x + 4)','4 · (x + 3)'],1,'Le parentesi fanno eseguire prima la somma di x e 4. Poi si moltiplica il risultato per 3.'),
+  optionMath:[
+   displayMath('<mn>3</mn><mo>·</mo><mi>x</mi><mo>+</mo><mn>4</mn>'),
+   displayMath('<mn>3</mn><mo>·</mo><mo>(</mo><mi>x</mi><mo>+</mo><mn>4</mn><mo>)</mo>'),
+   displayMath('<mn>4</mn><mo>·</mo><mo>(</mo><mi>x</mi><mo>+</mo><mn>3</mn><mo>)</mo>')]},
+ {...question('In quale prodotto puoi togliere il punto di moltiplicazione senza cambiare il significato?',['2 · 5','3 · 4','5 · a'],2,'Il punto si può omettere tra il numero 5 e la lettera a. Tra due numeri, invece, serve a distinguere il prodotto da un numero a più cifre.'),
+  optionMath:[
+   displayMath('<mn>2</mn><mo>·</mo><mn>5</mn>'),
+   displayMath('<mn>3</mn><mo>·</mo><mn>4</mn>'),
+   displayMath('<mn>5</mn><mo>·</mo><mi>a</mi>')],
+  feedbackMath:displayMath('<mn>5</mn><mo>·</mo><mi>a</mi><mo>=</mo><mn>5</mn><mi>a</mi>')},
+ {...question('Quale espressione è razionale frazionaria?',['2/x','x/2','2x + 1'],0,'Nella prima frazione la lettera compare al denominatore. Nella seconda il denominatore è il numero 2.'),
+  optionMath:[
+   displayMath('<mfrac><mn>2</mn><mi>x</mi></mfrac>'),
+   displayMath('<mfrac><mi>x</mi><mn>2</mn></mfrac>'),
+   displayMath('<mn>2</mn><mi>x</mi><mo>+</mo><mn>1</mn>')]}
  ]}},
  {id:'valutare',title:'Valutazione di un’espressione letterale e condizioni di esistenza',cards:[
  card('Come si valuta un’espressione letterale',
@@ -155,9 +170,14 @@
   displayMath('<mi>n</mi><mo>≠</mo><mn>0</mn>')+
   'Per rispettare entrambi i vincoli scegliamo quindi '+m('n = 1, 2, 3, …')+'. Per esempio, con 3 ripiani otteniamo 12 ÷ 3 = 4 libri per ripiano.')
  ],quiz:{questions:[
- question('Quanto vale x² + x quando x = −2?',['−6','6','2'],2,'Sostituiamo −2 in entrambe le occorrenze: (−2)² + (−2) = 4 − 2 = 2.'),
- question('Quale valore non può essere assegnato a x in (x + 1)/(x − 3)?',['−1','3','0'],1,'Per x = 3 il denominatore vale zero. Il numeratore può invece valere zero.'),
- question('Quanto vale 3a + 2b quando a = 4 e b = −1?',['10','14','5'],0,'Sostituiamo 4 al posto di a e −1 al posto di b: 3 · 4 + 2 · (−1) = 12 − 2 = 10.')
+ {...question('Quanto vale questa espressione per il valore assegnato?',['−6','6','2'],2,'Sostituisci −2 in entrambe le occorrenze di x, usando le parentesi quando elevi il numero negativo al quadrato.'),
+  questionMath:displayMath('<msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>x</mi><mspace width="1em"/><mtext>per</mtext><mspace width=".4em"/><mi>x</mi><mo>=</mo><mo>−</mo><mn>2</mn>'),
+  feedbackMath:displayMath('<msup><mrow><mo>(</mo><mo>−</mo><mn>2</mn><mo>)</mo></mrow><mn>2</mn></msup><mo>+</mo><mo>(</mo><mo>−</mo><mn>2</mn><mo>)</mo><mo>=</mo><mn>4</mn><mo>−</mo><mn>2</mn><mo>=</mo><mn>2</mn>')},
+ {...question('Quale valore non può essere assegnato a x in questa espressione?',['−1','3','0'],1,'Se x vale 3, il denominatore è zero. Il numeratore può invece valere zero.'),
+  questionMath:displayMath('<mfrac><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mrow><mi>x</mi><mo>−</mo><mn>3</mn></mrow></mfrac>')},
+ {...question('Quanto vale questa espressione per i valori assegnati?',['10','14','5'],0,'Sostituisci 4 al posto di a e −1 al posto di b.'),
+  questionMath:displayMath('<mn>3</mn><mi>a</mi><mo>+</mo><mn>2</mn><mi>b</mi>')+displayMath('<mtext>per</mtext><mspace width=".4em"/><mi>a</mi><mo>=</mo><mn>4</mn><mspace width="1em"/><mtext>e</mtext><mspace width=".4em"/><mi>b</mi><mo>=</mo><mo>−</mo><mn>1</mn>'),
+  feedbackMath:displayMath('<mn>3</mn><mo>·</mo><mn>4</mn><mo>+</mo><mn>2</mn><mo>·</mo><mo>(</mo><mo>−</mo><mn>1</mn><mo>)</mo><mo>=</mo><mn>12</mn><mo>−</mo><mn>2</mn><mo>=</mo><mn>10</mn>')}
  ]}},
  {id:'segreti',title:'Sveliamo i due trucchi',cards:[
  {title:'Il primo trucco',stepMode:'replace',visualLayout:'fixed-illustration',steps:[
@@ -431,7 +451,10 @@
    button.className='rm-btn';
    button.setAttribute('aria-keyshortcuts','ArrowRight ArrowLeft');
    controls.append(button);
-   copy.append(controls);
+   if(isOpeningComic(kind)){
+    box.classList.add('cl-opening-card');
+    box.append(controls);
+   }else copy.append(controls);
    const panel={root,button,text};
    panels.set(box,panel);
    for(const filename of [

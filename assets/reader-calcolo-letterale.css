@@ -315,6 +315,16 @@ html:has(body[data-reader-lesson="calcolo-letterale-introduzione"]) {
  background:#532e63;
  color:#fff;
 }
+.cl-opening-card > .cl-comic-controls {
+ grid-column:1 / -1;
+ padding:0;
+}
+.cl-opening-card > .cl-comic-controls > .rm-btn {
+ min-inline-size:min(11rem,100%);
+ min-block-size:3.25rem;
+ padding:.75rem 1.5rem;
+ font-size:1.05rem;
+}
 .cl-digits-form {
  padding:0;
  gap:12px;
