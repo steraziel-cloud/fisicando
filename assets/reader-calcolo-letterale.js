@@ -97,9 +97,9 @@
  card('Espressioni algebriche letterali',
   '<span class="cl-notation">Un’<strong>espressione algebrica letterale</strong> indica operazioni aritmetiche da eseguire su numeri e lettere. Le parentesi e le priorità delle operazioni stabiliscono l’ordine dei calcoli.</span>'+
   displayMath('<mn>2</mn><mo>·</mo><mi>x</mi><mo>+</mo><mn>10</mn>')+
-  'Prima raddoppiamo il numero, poi aggiungiamo 10.'+
   displayMath('<mn>2</mn><mo>·</mo><mo>(</mo><mi>x</mi><mo>+</mo><mn>10</mn><mo>)</mo>')+
-  'Qui invece aggiungiamo prima 10 e poi raddoppiamo.',
+  'La prima scrittura ci dice di raddoppiare la quantità '+m('x')+' e poi aggiungere 10.<br>'+
+  'La seconda ci dice di aggiungere prima 10 alla quantità '+m('x')+' e poi raddoppiare il risultato.',
   '<span class="cl-notation">Per rendere la scrittura più compatta, spesso omettiamo il punto di moltiplicazione. Ciascuna riga mostra lo stesso prodotto in due scritture.</span>'+
   displayMath('<mn>2</mn><mo>·</mo><mi>x</mi><mo>=</mo><mn>2</mn><mi>x</mi>')+
   displayMath('<mi>a</mi><mo>·</mo><mi>b</mi><mo>=</mo><mi>a</mi><mi>b</mi>')+
