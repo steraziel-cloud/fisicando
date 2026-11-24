@@ -10,12 +10,12 @@
   <link rel="stylesheet" href="assets/gatitomath-wordmark.css?v=7">
   <link rel="stylesheet" href="assets/learning-shell.css?v=1">
   <link rel="stylesheet" href="assets/lezioni.css?v=2">
-  <script src="assets/study-levels.js?v=1" defer></script>
-  <script src="assets/study-catalog.js?v=44" defer></script>
-  <script src="assets/catalog-menu.js?v=20" defer></script>
+  <script src="assets/study-levels.js?v=2" defer></script>
+  <script src="assets/study-catalog.js?v=45" defer></script>
+  <script src="assets/catalog-menu.js?v=21" defer></script>
 
-  <script src="assets/percorsi.js?v=6" defer></script>
-  <link rel="stylesheet" href="assets/catalog-menu.css?v=2">
+  <script src="assets/percorsi.js?v=7" defer></script>
+  <link rel="stylesheet" href="assets/catalog-menu.css?v=3">
   <script src="assets/main.js?v=2" defer></script>
   <link rel="stylesheet" href="assets/interactions.css?v=1">
 </head>
@@ -43,6 +43,7 @@
         <div class="rm-search-field"><label for="lesson-search">Cerca una lezione o un argomento</label><input id="lesson-search" type="search" placeholder="Es. velocità, frazioni, MRU…" autocomplete="off"></div>
         <div><label for="subject-filter">Materia</label><select id="subject-filter"><option value="">Tutte le materie</option><option value="matematica">Matematica</option><option value="fisica">Fisica</option></select></div>
         <div><label for="area-filter">Macroarea</label><select id="area-filter"><option value="">Tutte le macroaree</option></select></div>
+        <div id="school-track-field" hidden><label for="school-track-filter">Indirizzo</label><select id="school-track-filter"><option value="scientifico">Comuni e liceo scientifico</option><option value="comuni">Solo argomenti comuni</option></select></div>
         <div class="rm-filter-options"><label><input type="checkbox" id="available-filter"> Solo materiali disponibili</label><label><input type="checkbox" id="all-levels-filter"> Cerca anche negli altri livelli</label></div>
         <button type="button" id="reset-filters">Azzera filtri</button>
       </form>
@@ -51,6 +52,7 @@
         <aside class="sidebar" aria-labelledby="topics-title">
           <h2 id="topics-title">Argomenti</h2>
           <p class="rm-topics-hint" id="topics-hint">Espandi i rami del menu fino a trovare la lezione che ti interessa.</p>
+          <p id="school-track-legend" class="rm-topics-hint" hidden>★ Approfondimento per il liceo scientifico, utile anche per Analisi 1.</p>
           <p id="topics-empty" class="rm-topics-hint" hidden>Nessun risultato con questi filtri. Prova un’altra ricerca o includi gli altri livelli.</p>
           <nav id="sidebar" aria-label="Indice dei materiali didattici"></nav>
           <noscript>Attiva JavaScript per usare il catalogo e la ricerca.</noscript>

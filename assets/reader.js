@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
   compactIndex.addEventListener('change',event=>{if(!event.matches)closeIndex();});
  }
- const back=new URL('lezioni.html',location.href);['ruolo','livello'].forEach(k=>{if(params.has(k))back.searchParams.set(k,params.get(k));});$('reader-back').href=back.href;
+ const back=new URL('lezioni.html',location.href);['ruolo','livello','indirizzo','esame'].forEach(k=>{if(params.has(k))back.searchParams.set(k,params.get(k));});$('reader-back').href=back.href;
  const sourceLesson=window.READER_LESSONS[params.get('lezione')],selectedLevel=params.get('livello');
  // Filter optional grade-specific sections before progress and prerequisite gates are created.
  const lesson=sourceLesson?{...sourceLesson,sections:sourceLesson.sections.filter(s=>!s.levels||!selectedLevel||s.levels.includes(selectedLevel))}:null;
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('reader-glossary').querySelector('.rm-glossary-links')?.remove();
   if(term.links?.length){const links=el('div','rm-glossary-links');term.links.forEach(ref=>{
    const url=new URL('reader.html',location.href);url.searchParams.set('lezione',ref.lesson);url.searchParams.set('sezione',ref.section);url.searchParams.set('scheda',String(ref.card));
-   ['livello','ruolo'].forEach(k=>{if(params.has(k))url.searchParams.set(k,params.get(k));});
+   ['livello','ruolo','indirizzo','esame'].forEach(k=>{if(params.has(k))url.searchParams.set(k,params.get(k));});
    const line=el('p'),a=el('a','',ref.label+' ↗');a.href=url.href;a.target='_blank';a.rel='noopener';line.append(a);links.append(line);
   });$('reader-glossary').append(links);}
   formatRationalFractions($('glossary-text'));
@@ -405,8 +405,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   let host=$('reader-completion');if(!host){host=el('div','rm-reader-actions');host.id='reader-completion';$('reader-feedback').after(host);}host.replaceChildren();
   const subjects=window.LESSON_CATALOG||[];let next=null;
   function leaves(topic){return [...(topic.lessons||[]),...(topic.children||[]).flatMap(leaves)];}
-  for(const subject of subjects)for(const area of subject.areas)for(const topic of area.topics){const list=leaves(topic),i=list.findIndex(l=>l.id===params.get('lezione'));if(lesson.nextLesson){const chosen=list.find(l=>lesson.nextLesson.id?l.id===lesson.nextLesson.id:l.title===lesson.nextLesson.title);if(chosen)next=chosen;}else if(lesson.nextLesson!==false&&i>=0&&i+1<list.length)next=list[i+1];}
-  if(next?.url&&!next.unpublished){const link=el('a','rm-btn','Passa alla prossima lezione →');const url=new URL(next.url,location.href);['livello','ruolo'].forEach(k=>{if(params.has(k))url.searchParams.set(k,params.get(k));});link.href=url.href;host.append(link,el('span','',next.title));}
+  for(const subject of subjects)for(const area of subject.areas)for(const topic of area.topics){const list=leaves(topic),i=list.findIndex(l=>l.id===params.get('lezione')&&(!selectedLevel||l.levels.includes(selectedLevel)));if(lesson.nextLesson){const chosen=list.find(l=>lesson.nextLesson.id?l.id===lesson.nextLesson.id:l.title===lesson.nextLesson.title);if(chosen)next=chosen;}else if(lesson.nextLesson!==false&&i>=0&&i+1<list.length)next=list[i+1];}
+  if(next?.url&&!next.unpublished){const link=el('a','rm-btn','Passa alla prossima lezione →');const url=new URL(next.url,location.href);['livello','ruolo','indirizzo','esame'].forEach(k=>{if(params.has(k))url.searchParams.set(k,params.get(k));});link.href=url.href;host.append(link,el('span','',next.title));}
   else if(next){const b=button('Passa alla prossima lezione →',()=>{},'rm-btn');b.disabled=true;host.append(b,el('span','',next.title+' · In lavorazione'));}
   const back=el('a','rm-btn secondary','Torna al menu');back.href=$('reader-back').href;host.append(back);
  }

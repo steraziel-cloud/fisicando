@@ -43,6 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
       medie:"Uno spazio per consolidare le basi, ragionare sui problemi e prepararti al passo successivo.",
       biennio:"Esplora il percorso di matematica e fisica del biennio: concetti, grafici, moti e strumenti per imparare.",
       triennio:"Approfondisci matematica e fisica con spiegazioni, esercizi e laboratori interattivi.",
+      "ultimo-anno":"Esplora gli argomenti comuni dell’ultimo anno e gli approfondimenti per il liceo scientifico.",
+      "esami-universita":"Scegli un esame oppure cerca un argomento trasversale, anche quando fa parte di un corso accorpato.",
       universita:"Riprendi e approfondisci vettori e meccanica del punto materiale con teoria, esercizi e strumenti interattivi."
     };
     document.getElementById("lessons-lead").textContent = introductions[level] || 'Esplora matematica e fisica: concetti, esercizi e laboratori del tuo percorso.';

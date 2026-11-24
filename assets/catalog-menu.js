@@ -41,7 +41,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const area = document.getElementById('area-filter');
   const available = document.getElementById('available-filter');
   const all = document.getElementById('all-levels-filter');
-  const subjectAllowed = s => !s.visibleLevels || !level || all.checked || s.visibleLevels.includes(level);
+  const lastSchoolYear = level === 'ultimo-anno';
+  const universityExams = level === 'esami-universita';
+  const schoolTrack = document.getElementById('school-track-filter');
+  document.getElementById('school-track-field').hidden = !lastSchoolYear;
+  document.getElementById('school-track-legend').hidden = !lastSchoolYear;
+  if (lastSchoolYear && ['comuni', 'scientifico'].includes(params.get('indirizzo'))) {
+    schoolTrack.value = params.get('indirizzo');
+  }
+  if (universityExams) search.placeholder = 'Es. integrali, sistemi aperti, portata massica…';
+  const universitySubject = 'esami-universitari';
+  const areaValue = (s, a) => s.id + '/' + (a.id || a.title);
+  const subjectAllowed = s => {
+    if (universityExams && !all.checked) return s.id === universitySubject;
+    return !s.visibleLevels || !level || all.checked || s.visibleLevels.includes(level);
+  };
   function updateSubjects() {
     const previous=subject.value;
     subject.replaceChildren(new Option('Tutte le materie',''));
@@ -116,19 +130,20 @@ document.addEventListener('DOMContentLoaded', () => {
     return d;
   }
   function updateAreas() {
-    const previous=area.value;area.replaceChildren(new Option('Tutte le macroaree',''));
-    catalog.filter(s=>subjectAllowed(s)&&(!subject.value || s.id===subject.value)).forEach(s=>s.areas.forEach(a=>area.add(new Option(a.title,s.id+'/'+a.title))));
+    const previous=area.value;area.replaceChildren(new Option(universityExams && !all.checked ? 'Tutti gli esami' : 'Tutte le macroaree',''));
+    catalog.filter(s=>subjectAllowed(s)&&(!subject.value || s.id===subject.value)).forEach(s=>s.areas.forEach(a=>area.add(new Option(a.title,areaValue(s, a)))));
     if ([...area.options].some(o=>o.value===previous))area.value=previous;
   }
   let selectedKey = null, selectedLessonId = null;
   function catalogReturnURL(anchor='lesson-options') {
     const url = new URL(location.href);
-    ['q','materia','area','disponibili','tutti','lezione'].forEach(key => url.searchParams.delete(key));
+    ['q','materia','area','esame','disponibili','tutti','lezione','indirizzo'].forEach(key => url.searchParams.delete(key));
     if (search.value) url.searchParams.set('q', search.value);
     if (subject.value) url.searchParams.set('materia', subject.value);
     if (area.value) url.searchParams.set('area', area.value);
     if (available.checked) url.searchParams.set('disponibili', '1');
     if (all.checked) url.searchParams.set('tutti', '1');
+    if (lastSchoolYear && schoolTrack.value) url.searchParams.set('indirizzo', schoolTrack.value);
     if (selectedLessonId) url.searchParams.set('lezione', selectedLessonId);
     url.hash = anchor;
     return url;
@@ -146,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }));
     } catch {}
   }
-  function selectLesson(l, topic, subjectTitle, areaTitle, key) {
+  function selectLesson(l, topic, subjectTitle, areaTitle, key, examId) {
     selectedKey = key; selectedLessonId = l.id || key;
     nav.querySelectorAll('button.rm-catalog-lesson').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lessonKey === key)));
     document.getElementById('selection-prompt').hidden = true;
@@ -165,6 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = new URL(kind === 'Teoria' && !l.id ? 'reader.html' : materialUrl, location.href);
         if (kind === 'Teoria' && !l.id) url.searchParams.set('materiale', l.url);
         url.searchParams.set('livello',level && l.levels.includes(level) ? level : l.levels[0]);
+        if (lastSchoolYear && schoolTrack.value && !all.checked) url.searchParams.set('indirizzo', schoolTrack.value);
+        if (universityExams && examId) url.searchParams.set('esame', examId);
         if (['studente','altro'].includes(params.get('ruolo'))) url.searchParams.set('ruolo',params.get('ruolo'));
         card.href = url.href;
         {
@@ -192,13 +209,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const sd=branch(s.title,s.id,s.icon,filtering);
       sd.classList.add('rm-catalog-subject');
       s.areas.forEach((a,ai)=> {
-        if(area.value && area.value!==s.id+'/'+a.title)return;
+        if(area.value && area.value!==areaValue(s, a))return;
         const ad=branch(a.title,s.id+'/'+ai,a.icon,filtering);
         function visitTopic(t, topicKey, parent, ancestors) {
           const lessons=(t.lessons || []).filter(l=> {
             if(level && !all.checked && !l.levels.includes(level))return false;
+            if(lastSchoolYear && !all.checked && schoolTrack.value === 'comuni' && l.scientificTrack)return false;
             if(available.checked && ((!l.url&&!l.labUrl&&!l.exercisesUrl)||l.unpublished))return false;
-            const haystack=normalize([s.title,a.title,...ancestors,t.title,...(t.aliases||[]),l.title,...(l.aliases||[]),l.kind||''].join(' '));
+            const haystack=normalize([s.title,a.title,...(a.aliases||[]),...ancestors,t.title,...(t.aliases||[]),l.title,...(l.aliases||[]),l.kind||''].join(' '));
             return tokens.every(token=>haystack.includes(token));
           });
           const td=branch(t.title,topicKey,t.icon,filtering);td.classList.add('rm-catalog-topic');
@@ -208,8 +226,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const li=document.createElement('li');const label=document.createElement('button');label.type='button';label.className='rm-catalog-lesson';
             const key = `${topicKey}/${(t.lessons || []).indexOf(l)}`;
             label.dataset.lessonKey = key; label.dataset.catalogLessonId = l.id || key; label.setAttribute('aria-pressed',String(selectedKey === key));
-            label.addEventListener('click',()=>selectLesson(l,t,s.title,[a.title,...ancestors].join(' · '),key));
+            label.addEventListener('click',()=>selectLesson(l,t,s.title,[a.title,...ancestors].join(' · '),key,s.id === universitySubject ? a.id : null));
             const title=document.createElement('span');title.textContent=l.title;label.append(title);
+            if(lastSchoolYear && l.scientificTrack){
+              const labelTrack=document.createElement('small');
+              labelTrack.className='rm-lesson-levels';
+              labelTrack.textContent='★ Liceo scientifico';
+              label.append(labelTrack);
+            }
             if(l.status==='work-in-progress'||l.unpublished||!l.url){const status=document.createElement('small');status.textContent='In lavorazione';status.className='rm-lesson-planned';label.append(status);}
             if(all.checked || !level){const tags=document.createElement('small');tags.className='rm-lesson-levels';tags.textContent=l.levels.map(k=>levels[k]).join(' · ');label.append(tags);}
             li.append(label);list.append(li);
@@ -226,15 +250,23 @@ document.addEventListener('DOMContentLoaded', () => {
         if(ad.children.length>1)sd.append(ad);
       });if(sd.children.length>1)fragment.append(sd);
     });nav.replaceChildren(fragment);
+    schoolTrack.disabled = all.checked;
+    if (universityExams) {
+      subject.parentElement.hidden = !all.checked;
+      document.querySelector('label[for="area-filter"]').textContent = all.checked ? 'Macroarea o esame' : 'Esame';
+    }
     document.getElementById('topics-empty').hidden=nav.childElementCount!==0;
     document.getElementById('catalog-count').textContent=`${count} ${count===1?'voce':'voci'} · ${ready} materiali disponibili · ${all.checked || !level?'Tutti i livelli':levels[level]}`;
   }
   document.getElementById('catalog-filters').addEventListener('submit',e=>e.preventDefault());
   search.addEventListener('input',render);
   subject.addEventListener('change',()=>{updateAreas();render();});
-  [area,available].forEach(el=>el.addEventListener('change',render));
-  all.addEventListener('change',()=>{updateSubjects();updateAreas();render();});
-  document.getElementById('reset-filters').addEventListener('click',()=>{search.value='';subject.value='';available.checked=false;all.checked=false;area.value='';updateSubjects();updateAreas();render();search.focus();});
+  [area,available,schoolTrack].forEach(el=>el.addEventListener('change',render));
+  all.addEventListener('change',()=>{
+    if (universityExams && !all.checked) subject.value = '';
+    updateSubjects();updateAreas();render();
+  });
+  document.getElementById('reset-filters').addEventListener('click',()=>{search.value='';subject.value='';schoolTrack.selectedIndex=0;available.checked=false;all.checked=false;area.value='';updateSubjects();updateAreas();render();search.focus();});
   search.value = params.get('q') || '';
   available.checked = params.get('disponibili') === '1';
   all.checked = params.get('tutti') === '1';
@@ -242,7 +274,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const requestedSubject=params.get('materia');
   if([...subject.options].some(o=>o.value===requestedSubject))subject.value=requestedSubject;
   updateAreas();
-  if ([...area.options].some(option => option.value === params.get('area'))) area.value = params.get('area');
+  const requestedArea = params.get('area') || (universityExams && params.has('esame') ? universitySubject + '/' + params.get('esame') : null);
+  if ([...area.options].some(option => option.value === requestedArea)) area.value = requestedArea;
   render();
   const requestedLesson = params.get('lezione');
   const selected = [...nav.querySelectorAll('[data-lesson-key]')].find(button => button.dataset.catalogLessonId === requestedLesson || button.dataset.lessonKey === requestedLesson);
@@ -252,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function visit(t, key, ancestors) {
       (t.lessons || []).forEach((l, i) => {
         const lessonKey = key + '/' + i;
-        if ((l.id || lessonKey) === requestedLesson) hiddenSelection = [l, t, s.title, [a.title, ...ancestors].join(' · '), lessonKey];
+        if ((l.id || lessonKey) === requestedLesson) hiddenSelection = [l, t, s.title, [a.title, ...ancestors].join(' · '), lessonKey, s.id === universitySubject ? a.id : null];
       });
       (t.children || []).forEach((child, i) => visit(child, key + '/child/' + i, [...ancestors, t.title]));
     }

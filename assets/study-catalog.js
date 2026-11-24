@@ -2595,3 +2595,84 @@ window.LESSON_CATALOG = [
     ]
   }
 ];
+
+// The last school year combines the two existing school paths. Keep their
+// identifiers for old links and use the same lessons in the new menu.
+(() => {
+  const catalog = window.LESSON_CATALOG;
+  const addSchoolLevel = (topic, subjectId) => {
+    for (const lesson of topic.lessons || []) {
+      const common = lesson.levels.includes('ultimo-altro');
+      const scientific = subjectId === 'matematica' && lesson.levels.includes('analisi1');
+      if (scientific && !common) lesson.scientificTrack = true;
+      if (common || scientific) lesson.levels.push('ultimo-anno');
+    }
+    (topic.children || []).forEach(child => addSchoolLevel(child, subjectId));
+  };
+  for (const subject of catalog) {
+    for (const area of subject.areas) area.topics.forEach(topic => addSchoolLevel(topic, subject.id));
+  }
+
+  const examLevel = 'esami-universita';
+  const math = catalog.find(subject => subject.id === 'matematica');
+  const analysis = math.areas.find(area => area.title === 'Analisi matematica');
+  const complexNumbers = math.areas.flatMap(area => area.topics)
+    .find(topic => topic.lessons?.some(lesson => lesson.id === 'algebra-numeri-complessi'));
+  const asExamTopic = topic => ({
+    ...topic,
+    lessons: topic.lessons.map(lesson => ({...lesson, levels: [examLevel]}))
+  });
+  catalog.push({
+    id: 'esami-universitari',
+    title: 'Esami universitari',
+    icon: 'vectors',
+    visibleLevels: [examLevel],
+    areas: [
+      {
+        id: 'fisica-tecnica',
+        title: 'Fisica tecnica',
+        icon: 'thermometer',
+        aliases: ['termodinamica applicata'],
+        topics: [
+          {
+            title: 'Fondamenti di termodinamica',
+            icon: 'energy',
+            lessons: [
+              {
+                id: 'fisica-tecnica-sistemi',
+                title: 'Sistemi, confini e volumi di controllo',
+                url: 'reader.html?lezione=fisica-tecnica-sistemi',
+                kind: 'Teoria',
+                levels: [examLevel],
+                aliases: ['sistema aperto', 'sistemi aperti', 'sistema chiuso', 'sistemi chiusi', 'massa di controllo', 'bilancio di massa', 'portata massica'],
+                status: 'work-in-progress',
+                note: 'Prima lezione di Fisica tecnica. Impara a scegliere il confine prima di scrivere un bilancio.'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'analisi-1',
+        title: 'Analisi 1',
+        icon: 'graph',
+        aliases: ['analisi i', 'analisi matematica 1', 'analisi matematica i'],
+        topics: [...analysis.topics, complexNumbers].map(asExamTopic)
+      },
+      {
+        id: 'analisi-2',
+        title: 'Analisi 2',
+        icon: 'graph',
+        planned: true,
+        topics: []
+      },
+      {
+        id: 'algebra-lineare-geometria',
+        title: 'Algebra lineare e geometria',
+        icon: 'vectors',
+        planned: true,
+        topics: []
+      }
+    ]
+  });
+})();
