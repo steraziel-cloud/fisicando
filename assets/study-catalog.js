@@ -2627,12 +2627,18 @@ window.LESSON_CATALOG = [
     title: 'Esami universitari',
     icon: 'vectors',
     visibleLevels: [examLevel],
+    examGroups: [
+      { id: 'matematica', title: 'Matematica', icon: 'math' },
+      { id: 'fisica', title: 'Fisica', icon: 'atom' },
+      { id: 'ingegneria', title: 'Ingegneria', icon: 'gear' }
+    ],
     areas: [
       {
         id: 'fisica-tecnica',
+        examGroup: 'ingegneria',
         title: 'Fisica tecnica',
         icon: 'thermometer',
-        aliases: ['termodinamica applicata'],
+        aliases: ['termodinamica applicata', 'fisica tecnica industriale', 'fisica tecnica ambientale', 'ING-IND/10', 'ING-IND/11', 'IIND-07/A', 'IIND-07/B'],
         topics: [
           {
             title: 'Fondamenti di termodinamica',
@@ -2654,22 +2660,45 @@ window.LESSON_CATALOG = [
       },
       {
         id: 'analisi-1',
+        examGroup: 'matematica',
         title: 'Analisi 1',
         icon: 'graph',
-        aliases: ['analisi i', 'analisi matematica 1', 'analisi matematica i'],
+        aliases: ['analisi i', 'analisi matematica 1', 'analisi matematica i', 'MAT/05', 'MATH-03/A'],
         topics: [...analysis.topics, complexNumbers].map(asExamTopic)
       },
       {
         id: 'analisi-2',
+        examGroup: 'matematica',
         title: 'Analisi 2',
+        aliases: ['analisi ii', 'analisi matematica 2', 'analisi matematica ii', 'MAT/05', 'MATH-03/A'],
         icon: 'graph',
         planned: true,
         topics: []
       },
       {
         id: 'algebra-lineare-geometria',
+        examGroup: 'matematica',
         title: 'Algebra lineare e geometria',
+        aliases: ['geometria analitica', 'MAT/02', 'MAT/03'],
         icon: 'vectors',
+        planned: true,
+        topics: []
+      },
+      {
+        id: 'fisica-1',
+        examGroup: 'fisica',
+        title: 'Fisica 1',
+        icon: 'atom',
+        aliases: ['fisica i', 'fisica generale 1', 'meccanica'],
+        planned: true,
+        topics: []
+      },
+      {
+        id: 'fisica-2',
+        examGroup: 'fisica',
+        title: 'Fisica 2',
+        icon: 'bolt',
+        aliases: ['fisica ii', 'fisica generale 2', 'elettromagnetismo'],
         planned: true,
         topics: []
       }

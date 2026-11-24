@@ -131,7 +131,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function updateAreas() {
     const previous=area.value;area.replaceChildren(new Option(universityExams && !all.checked ? 'Tutti gli esami' : 'Tutte le macroaree',''));
-    catalog.filter(s=>subjectAllowed(s)&&(!subject.value || s.id===subject.value)).forEach(s=>s.areas.forEach(a=>area.add(new Option(a.title,areaValue(s, a)))));
+    for (const s of catalog.filter(s => subjectAllowed(s) && (!subject.value || s.id === subject.value))) {
+      if (!s.examGroups) {
+        s.areas.forEach(a => area.add(new Option(a.title, areaValue(s, a))));
+        continue;
+      }
+      for (const group of s.examGroups) {
+        const options = document.createElement('optgroup');
+        options.label = group.title;
+        for (const exam of s.areas.filter(a => a.examGroup === group.id)) {
+          options.append(new Option(exam.title, areaValue(s, exam)));
+        }
+        area.append(options);
+      }
+    }
     if ([...area.options].some(o=>o.value===previous))area.value=previous;
   }
   let selectedKey = null, selectedLessonId = null;
@@ -206,17 +219,25 @@ document.addEventListener('DOMContentLoaded', () => {
     catalog.forEach(s=> {
       if(!subjectAllowed(s))return;
       if(subject.value && s.id!==subject.value)return;
-      const sd=branch(s.title,s.id,s.icon,filtering);
+      const sd=branch(s.title,s.id,s.icon,filtering || (universityExams && s.id === universitySubject));
       sd.classList.add('rm-catalog-subject');
+      const groupBranches = new Map((s.examGroups || []).map(group => [
+        group.id,
+        branch(group.title, s.id + '/gruppo/' + group.id, group.icon, filtering)
+      ]));
+      for (const group of groupBranches.values()) group.classList.add('rm-catalog-exam-group');
       s.areas.forEach((a,ai)=> {
         if(area.value && area.value!==areaValue(s, a))return;
         const ad=branch(a.title,s.id+'/'+ai,a.icon,filtering);
+        const groupTitle = s.examGroups?.find(group => group.id === a.examGroup)?.title;
+        const areaSearch = [s.title, groupTitle, a.title, ...(a.aliases || [])];
+        const areaPath = [groupTitle, a.title].filter(Boolean);
         function visitTopic(t, topicKey, parent, ancestors) {
           const lessons=(t.lessons || []).filter(l=> {
             if(level && !all.checked && !l.levels.includes(level))return false;
             if(lastSchoolYear && !all.checked && schoolTrack.value === 'comuni' && l.scientificTrack)return false;
             if(available.checked && ((!l.url&&!l.labUrl&&!l.exercisesUrl)||l.unpublished))return false;
-            const haystack=normalize([s.title,a.title,...(a.aliases||[]),...ancestors,t.title,...(t.aliases||[]),l.title,...(l.aliases||[]),l.kind||''].join(' '));
+            const haystack=normalize([...areaSearch,...ancestors,t.title,...(t.aliases||[]),l.title,...(l.aliases||[]),l.kind||''].join(' '));
             return tokens.every(token=>haystack.includes(token));
           });
           const td=branch(t.title,topicKey,t.icon,filtering);td.classList.add('rm-catalog-topic');
@@ -226,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const li=document.createElement('li');const label=document.createElement('button');label.type='button';label.className='rm-catalog-lesson';
             const key = `${topicKey}/${(t.lessons || []).indexOf(l)}`;
             label.dataset.lessonKey = key; label.dataset.catalogLessonId = l.id || key; label.setAttribute('aria-pressed',String(selectedKey === key));
-            label.addEventListener('click',()=>selectLesson(l,t,s.title,[a.title,...ancestors].join(' · '),key,s.id === universitySubject ? a.id : null));
+            label.addEventListener('click',()=>selectLesson(l,t,s.title,[...areaPath,...ancestors].join(' · '),key,s.id === universitySubject ? a.id : null));
             const title=document.createElement('span');title.textContent=l.title;label.append(title);
             if(lastSchoolYear && l.scientificTrack){
               const labelTrack=document.createElement('small');
@@ -242,13 +263,18 @@ document.addEventListener('DOMContentLoaded', () => {
           if(td.children.length>1){if(t.inlineLessons)parent.append(...[...td.children].slice(1));else parent.append(td);}
         }
         a.topics.forEach((t,ti)=>visitTopic(t,s.id+'/'+ai+'/'+ti,ad,[]));
-        if(ad.children.length===1 && a.planned && !tokens.length && !available.checked) {
+        const matchesExam = !!groupTitle && tokens.every(token => normalize(areaSearch.join(' ')).includes(token));
+        if(ad.children.length===1 && a.planned && (!tokens.length || matchesExam) && !available.checked) {
           const note=document.createElement('p'); note.className='rm-topics-hint';
           note.textContent='In lavorazione · Le lezioni saranno aggiunte qui.';
           ad.append(note);
         }
-        if(ad.children.length>1)sd.append(ad);
-      });if(sd.children.length>1)fragment.append(sd);
+        if(ad.children.length>1)(groupBranches.get(a.examGroup) || sd).append(ad);
+      });
+      for (const group of groupBranches.values()) {
+        if (group.children.length > 1) sd.append(group);
+      }
+      if(sd.children.length>1)fragment.append(sd);
     });nav.replaceChildren(fragment);
     schoolTrack.disabled = all.checked;
     if (universityExams) {
@@ -282,10 +308,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // A filter may hide the selected menu item while its material cards stay open.
   let hiddenSelection = null;
   if (!selected && requestedLesson) catalog.forEach(s => s.areas.forEach((a, ai) => {
+    const groupTitle = s.examGroups?.find(group => group.id === a.examGroup)?.title;
     function visit(t, key, ancestors) {
       (t.lessons || []).forEach((l, i) => {
         const lessonKey = key + '/' + i;
-        if ((l.id || lessonKey) === requestedLesson) hiddenSelection = [l, t, s.title, [a.title, ...ancestors].join(' · '), lessonKey, s.id === universitySubject ? a.id : null];
+        if ((l.id || lessonKey) === requestedLesson) hiddenSelection = [l, t, s.title, [groupTitle, a.title, ...ancestors].filter(Boolean).join(' · '), lessonKey, s.id === universitySubject ? a.id : null];
       });
       (t.children || []).forEach((child, i) => visit(child, key + '/child/' + i, [...ancestors, t.title]));
     }
