@@ -2628,9 +2628,9 @@ window.LESSON_CATALOG = [
     icon: 'vectors',
     visibleLevels: [examLevel],
     examGroups: [
-      { id: 'matematica', title: 'Matematica', icon: 'math' },
-      { id: 'fisica', title: 'Fisica', icon: 'atom' },
-      { id: 'ingegneria', title: 'Ingegneria', icon: 'gear' }
+      { id: 'matematica', title: 'Esami di matematica', icon: 'math' },
+      { id: 'fisica', title: 'Esami di fisica', icon: 'atom' },
+      { id: 'ingegneria', title: 'Esami di ingegneria', icon: 'gear' }
     ],
     areas: [
       {
@@ -2641,7 +2641,8 @@ window.LESSON_CATALOG = [
         aliases: ['termodinamica applicata', 'fisica tecnica industriale', 'fisica tecnica ambientale', 'ING-IND/10', 'ING-IND/11', 'IIND-07/A', 'IIND-07/B'],
         topics: [
           {
-            title: 'Fondamenti di termodinamica',
+            title: 'Termodinamica generale',
+            aliases: ['fondamenti di termodinamica'],
             icon: 'energy',
             lessons: [
               {
@@ -2655,7 +2656,10 @@ window.LESSON_CATALOG = [
                 note: 'Prima lezione di Fisica tecnica. Impara a scegliere il confine prima di scrivere un bilancio.'
               }
             ]
-          }
+          },
+          { title: 'Termodinamica applicata ai cicli', icon: 'cycle', planned: true, aliases: ['cicli termodinamici'] },
+          { title: 'Igrometria', icon: 'measure', planned: true, aliases: ['aria umida', 'psicrometria'] },
+          { title: 'Trasmissione del calore', icon: 'thermometer', planned: true, aliases: ['conduzione', 'convezione', 'irraggiamento'] }
         ]
       },
       {
@@ -2664,7 +2668,21 @@ window.LESSON_CATALOG = [
         title: 'Analisi 1',
         icon: 'graph',
         aliases: ['analisi i', 'analisi matematica 1', 'analisi matematica i', 'MAT/05', 'MATH-03/A'],
-        topics: [...analysis.topics, complexNumbers].map(asExamTopic)
+        topics: [
+          {
+            title: 'Prerequisiti',
+            icon: 'math',
+            planned: true,
+            aliases: ['definizione di funzione', 'equazioni', 'disequazioni'],
+            children: [asExamTopic(complexNumbers)]
+          },
+          { title: 'Teoria dei limiti', icon: 'graph', planned: true },
+          { title: 'Funzioni continue', icon: 'graph', planned: true, aliases: ['continuità'] },
+          { title: 'Derivate', icon: 'graph', planned: true, aliases: ['calcolo differenziale'] },
+          ...analysis.topics.map(asExamTopic),
+          { title: 'Serie numeriche', icon: 'numbers', planned: true },
+          { title: 'Equazioni differenziali ordinarie', icon: 'equation', planned: true, note: 'Argomento facoltativo, secondo il programma del corso.', aliases: ['EDO'] }
+        ]
       },
       {
         id: 'analisi-2',

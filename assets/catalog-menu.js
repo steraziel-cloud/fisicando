@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     catalog.forEach(s=> {
       if(!subjectAllowed(s))return;
       if(subject.value && s.id!==subject.value)return;
-      const sd=branch(s.title,s.id,s.icon,filtering || (universityExams && s.id === universitySubject));
+      const sd=branch(s.title,s.id,s.icon,filtering);
       sd.classList.add('rm-catalog-subject');
       const groupBranches = new Map((s.examGroups || []).map(group => [
         group.id,
@@ -232,12 +232,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const groupTitle = s.examGroups?.find(group => group.id === a.examGroup)?.title;
         const areaSearch = [s.title, groupTitle, a.title, ...(a.aliases || [])];
         const areaPath = [groupTitle, a.title].filter(Boolean);
-        function visitTopic(t, topicKey, parent, ancestors) {
+        function visitTopic(t, topicKey, parent, ancestors, parentTerms) {
+          const topicTerms = [...parentTerms, t.title, ...(t.aliases || [])];
           const lessons=(t.lessons || []).filter(l=> {
             if(level && !all.checked && !l.levels.includes(level))return false;
             if(lastSchoolYear && !all.checked && schoolTrack.value === 'comuni' && l.scientificTrack)return false;
             if(available.checked && ((!l.url&&!l.labUrl&&!l.exercisesUrl)||l.unpublished))return false;
-            const haystack=normalize([...areaSearch,...ancestors,t.title,...(t.aliases||[]),l.title,...(l.aliases||[]),l.kind||''].join(' '));
+            const haystack=normalize([...topicTerms,l.title,...(l.aliases||[]),l.kind||''].join(' '));
             return tokens.every(token=>haystack.includes(token));
           });
           const td=branch(t.title,topicKey,t.icon,filtering);td.classList.add('rm-catalog-topic');
@@ -259,10 +260,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if(all.checked || !level){const tags=document.createElement('small');tags.className='rm-lesson-levels';tags.textContent=l.levels.map(k=>levels[k]).join(' · ');label.append(tags);}
             li.append(label);list.append(li);
           });if(lessons.length)td.append(list);
-          (t.children || []).forEach((child,ci)=>visitTopic(child,topicKey+'/child/'+ci,td,[...ancestors,t.title]));
+          (t.children || []).forEach((child,ci)=>visitTopic(child,topicKey+'/child/'+ci,td,[...ancestors,t.title],topicTerms));
+          if (td.children.length === 1 && t.planned && !available.checked && tokens.every(token => normalize(topicTerms.join(' ')).includes(token))) {
+            const note = document.createElement('p');
+            note.className = 'rm-topics-hint';
+            note.textContent = t.note || 'Lezioni da aggiungere.';
+            td.append(note);
+          }
           if(td.children.length>1){if(t.inlineLessons)parent.append(...[...td.children].slice(1));else parent.append(td);}
         }
-        a.topics.forEach((t,ti)=>visitTopic(t,s.id+'/'+ai+'/'+ti,ad,[]));
+        a.topics.forEach((t,ti)=>visitTopic(t,s.id+'/'+ai+'/'+ti,ad,[],areaSearch));
         const matchesExam = !!groupTitle && tokens.every(token => normalize(areaSearch.join(' ')).includes(token));
         if(ad.children.length===1 && a.planned && (!tokens.length || matchesExam) && !available.checked) {
           const note=document.createElement('p'); note.className='rm-topics-hint';
@@ -272,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(ad.children.length>1)(groupBranches.get(a.examGroup) || sd).append(ad);
       });
       for (const group of groupBranches.values()) {
-        if (group.children.length > 1) sd.append(group);
+        if (group.children.length > 1) fragment.append(group);
       }
       if(sd.children.length>1)fragment.append(sd);
     });nav.replaceChildren(fragment);
